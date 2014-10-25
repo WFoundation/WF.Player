@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{71E135DE-23A0-4EA2-B157-80A602ACE496}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>WF.Player.Common</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)IApp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\GeolocationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\IGeolocator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\Position.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\PositionEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\PositionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\FormatCoordinates.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\UnitLength.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Enums\" />
+  </ItemGroup>
+</Project>

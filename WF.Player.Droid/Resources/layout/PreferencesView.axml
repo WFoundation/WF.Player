@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/pref_feedback"
+        android:key="pref_key_feedback">
+        <CheckBoxPreference
+            android:key="FeedbackSound"
+            android:title="@string/pref_feedback_sound"
+            android:summary="@string/pref_feedback_sound_detail"
+            android:defaultValue="false" />
+        <CheckBoxPreference
+            android:key="FeedbackVibration"
+            android:title="@string/pref_feedback_vibration"
+            android:summary="@string/pref_feedback_vibration_detail"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_theme"
+        android:key="pref_key_theme">
+        <WF.Player.Droid.Preferences.IntListPreference
+            android:key="DisplayTheme"
+            android:title="@string/pref_theme"
+            android:summary="@string/pref_theme_detail"
+            android:entries="@array/theme_key"
+            android:entryValues="@array/theme_value"
+            android:defaultValue="0"
+            android:dialogTitle="@string/pref_theme" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_text"
+        android:key="pref_key_text">
+        <WF.Player.Droid.Preferences.IntListPreference
+            android:key="TextAlignment"
+            android:title="@string/pref_text_alignment"
+            android:summary="@string/pref_text_alignment_detail"
+            android:entries="@array/text_alignment_key"
+            android:entryValues="@array/text_alignment_value"
+            android:defaultValue="1"
+            android:dialogTitle="@string/pref_text_alignment" />
+        <WF.Player.Droid.Preferences.EditFloatPreference
+            android:id="@+id/text_size"
+            android:key="TextSize"
+            android:title="@string/pref_text_size"
+            android:summary="@string/pref_text_size_detail"
+            android:dialogTitle="@string/pref_text_size"
+            android:dialogMessage="@string/pref_text_size_dialog"
+            android:defaultValue="18"
+            android:digits="0123456789"
+            android:inputType="number" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_input"
+        android:key="pref_key_input">
+        <CheckBoxPreference
+            android:key="InputFocus"
+            android:title="@string/pref_input_focus"
+            android:summary="@string/pref_input_focus_detail"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_image"
+        android:key="pref_key_image">
+        <WF.Player.Droid.Preferences.IntListPreference
+            android:key="ImageSize"
+            android:title="@string/pref_image_size"
+            android:summary="@string/pref_image_size_detail"
+            android:entries="@array/image_size_key"
+            android:entryValues="@array/image_size_value"
+            android:defaultValue="0"
+            android:dialogTitle="@string/pref_image_size" />
+    </PreferenceCategory>
+    <PreferenceScreen
+        android:key="pref_key_senors"
+        android:title="@string/pref_sensors"
+        android:persistent="false">
+        <CheckBoxPreference
+            android:key="SensorHardwareCompass"
+            android:title="@string/pref_sensors_hardware_compass"
+            android:summary="@string/pref_sensors_hardware_compass_detail"
+            android:defaultValue="true" />
+        <CheckBoxPreference
+            android:key="SensorHardwareCompassAutoChange"
+            android:title="@string/pref_sensors_hardware_compass_auto_change"
+            android:summary="@string/pref_sensors_hardware_compass_auto_change_detail"
+            android:defaultValue="true" />
+        <WF.Player.Droid.Preferences.FloatListPreference
+            android:key="SensorHardwareCompassAutoChangeValue"
+            android:title="@string/pref_sensors_hardware_compass_auto_change_value"
+            android:summary="@string/pref_sensors_hardware_compass_auto_change_value_detail"
+            android:selectable="false"
+            android:defaultValue="1" />
+        <CheckBoxPreference
+            android:key="SensorAzimuthTrue"
+            android:title="@string/pref_sensors_azimuth_true"
+            android:summary="@string/pref_sensors_azimuth_true_detail"
+            android:defaultValue="true" />
+        <WF.Player.Droid.Preferences.IntListPreference
+            android:key="SensorOrientationFilter"
+            android:title="@string/pref_sensor_orientation_filter"
+            android:summary="@string/pref_sensor_orientation_filter_detail"
+            android:entries="@array/pref_sensor_orientation_filter_key"
+            android:entryValues="@array/pref_sensor_orientation_filter_value"
+            android:defaultValue="1"
+            android:dialogTitle="@string/pref_sensor_orientation_filter" />
+    </PreferenceScreen>
+</PreferenceScreen>

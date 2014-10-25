@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{7AE73E08-8DCE-4DD9-AF94-C511A3609759}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>WF.Player</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TranslateExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Preferences\DefaultPreferences.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Preferences\IPreferences.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Preferences\PreferencesCommon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ScreenType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\MapSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ImageResize.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeListPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeDetailPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\BottomBarPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ToolBarPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\DirectionBarPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeDetailBasePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeDetailDescriptionView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\ObservableObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Resources\Fonts.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Resources\Colors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\ConverterToDistance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameMainView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameCheckLocationView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\ConverterToLatLon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameCheckLocationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameMainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Device\ISound.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Device\IVibration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameDetailView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameMessageboxView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameMessageboxViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameInputViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameInputView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Resources\Chars.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameMainCellViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameMainCellView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Resources\Texts.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\CustomWebView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Routing\IRouting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DirectionArrow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\GameToolBarButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\BasePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Preferences\IPreferencesView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\BadgeImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\PinchScrollView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Device\IMeasure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\Converter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\ConverterToLatitude.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\ConverterToLongitude.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\ConverterToAccuracy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\ConverterToAccuracyVisibility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\ConverterToAltitude.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\ConverterToAltitudeVisibility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\ConverterToHTML.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\DirectionState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CartridgeSavegame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CartridgeStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CartridgeTag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Providers\CartridgeProviderSyncAbortEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Providers\CartridgeProviderSyncEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Providers\ICartridgeProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\ProgressAggregator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Utils\IImageTools.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AccessoryCell.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Game\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Enums\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Cartridges\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Common\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Data\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Resources\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Device\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Routing\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Providers\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Utils\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Utils\" />
+  </ItemGroup>
+</Project>

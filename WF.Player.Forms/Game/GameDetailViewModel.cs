@@ -1,0 +1,713 @@
+﻿// <copyright file="GameDetailViewModel.cs" company="Wherigo Foundation">
+// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
+// Copyright (C) 2012-2014  Dirk Weltz (mail@wfplayer.com)
+// </copyright>
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// 	You should have received a copy of the GNU Lesser General Public License
+// 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+namespace WF.Player
+{
+	using System;
+	using System.Collections.Generic;
+	using System.IO;
+	using Acr.XamForms.UserDialogs;
+	using Vernacular;
+	using WF.Player.Core;
+	using WF.Player.Core.Utils;
+	using WF.Player.Services.Device;
+	using WF.Player.Services.Geolocation;
+	using Xamarin.Forms;
+
+	/// <summary>
+	/// Game detail view model.
+	/// </summary>
+	public class GameDetailViewModel : BaseViewModel
+	{
+		/// <summary>
+		/// The name of the name property.
+		/// </summary>
+		public const string NamePropertyName = "Name";
+
+		/// <summary>
+		/// The name of the description property.
+		/// </summary>
+		public const string DescriptionPropertyName = "Description";
+
+		/// <summary>
+		/// The name of the image source property.
+		/// </summary>
+		public const string ImageSourcePropertyName = "ImageSource";
+
+		/// <summary>
+		/// The name of the html source property.
+		/// </summary>
+		public const string HtmlSourcePropertyName = "HtmlSource";
+
+		/// <summary>
+		/// The name of the has image property.
+		/// </summary>
+		public const string HasImagePropertyName = "HasImage";
+
+		/// <summary>
+		/// The name of the position property.
+		/// </summary>
+		public const string PositionPropertyName = "Position";
+
+		/// <summary>
+		/// The name of the has direction property.
+		/// </summary>
+		public const string HasDirectionPropertyName = "HasDirection";
+
+		/// <summary>
+		/// The name of the direction property.
+		/// </summary>
+		public const string DirectionPropertyName = "Direction";
+
+		/// <summary>
+		/// The name of the distance property.
+		/// </summary>
+		public const string DistancePropertyName = "Distance";
+
+		/// <summary>
+		/// The active object.
+		/// </summary>
+		private UIObject activeObject;
+
+		/// <summary>
+		/// The geo math helper.
+		/// </summary>
+		private GeoMathHelper geoMathHelper;
+
+		/// <summary>
+		/// The position.
+		/// </summary>
+		private Position position;
+
+		/// <summary>
+		/// The has direction.
+		/// </summary>
+		private bool hasDirection;
+
+		/// <summary>
+		/// The direction.
+		/// </summary>
+		private double direction;
+
+		/// <summary>
+		/// The distance.
+		/// </summary>
+		private double distance;
+
+		#region Constructor
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="WF.Player.GameDetailViewModel"/> class.
+		/// </summary>
+		public GameDetailViewModel()
+		{
+			this.geoMathHelper = new GeoMathHelper();
+
+			Position = App.GPS.LastKnownPosition;
+		}
+
+		#endregion
+
+		#region Properties
+
+		#region ActiveObject
+
+		/// <summary>
+		/// Gets or sets the active object.
+		/// </summary>
+		/// <value>The active object.</value>
+		public UIObject ActiveObject 
+		{
+			get 
+			{
+				return this.activeObject;
+			}
+
+			set 
+			{
+				// Remove method to active object property changed events
+				if (this.activeObject != null)
+				{
+					this.activeObject.PropertyChanged -= HandlePropertyChanged;
+				}
+
+				// Set property
+				SetProperty<UIObject>(ref this.activeObject, value);
+
+				// Only go on, if there is a valid active object
+				if (this.activeObject == null) 
+				{
+					// If there isn't an active object, we don't need a update (problems with ShowScreen(Mainscreen) for "Catch me - if you can")
+					App.GPS.HeadingChanged -= HandlePositionChanged;
+					App.GPS.PositionChanged -= HandlePositionChanged;
+					return;
+				}
+
+				// Add method to active object property changed events
+				this.activeObject.PropertyChanged += HandlePropertyChanged;
+
+				// Update all views
+				NotifyPropertyChanged(NamePropertyName);
+
+				#if __HTML__
+				NotifyPropertyChanged(HtmlSourcePropertyName);
+				#else
+				NotifyPropertyChanged(DescriptionPropertyName);
+				NotifyPropertyChanged(ImageSourcePropertyName);
+				NotifyPropertyChanged(HasImagePropertyName);
+				#endif
+
+				UpdateHasDirection();
+				UpdateDirection();
+				UpdateCommands();
+				}
+			}
+
+		#endregion
+
+		#region Name
+
+		/// <summary>
+		/// Gets the name of the active object.
+		/// </summary>
+		/// <value>The name.</value>
+		public string Name 
+		{
+			get 
+			{
+				if (this.activeObject == null)
+				{
+					return string.Empty;
+				}
+
+				if (this.activeObject is Task) 
+				{
+					if (((Task)this.activeObject).Complete) 
+					{
+						var result = this.activeObject.Name;
+						switch (((Task)this.activeObject).CorrectState) 
+						{
+							case TaskCorrectness.Correct:
+								result = App.Chars.TaskCorrect + result;
+								break;
+							case TaskCorrectness.NotCorrect:
+								result = App.Chars.TaskNotCorrect + result;
+								break;
+							case TaskCorrectness.None:
+								result = App.Chars.TaskNone + result;
+								break;
+						}
+
+						return result;
+					} 
+					else
+					{
+						return this.activeObject.Name;
+					}
+				} 
+				else
+				{
+					return this.activeObject.Name;
+				}
+			}
+		}
+
+		#endregion
+
+		#region Description
+
+		/// <summary>
+		/// Gets the description.
+		/// </summary>
+		/// <value>The description.</value>
+		public string Description 
+		{
+			get 
+			{
+				return this.activeObject != null ? this.activeObject.Description : string.Empty;
+			}
+		}
+
+		#endregion
+
+		#region ImageSource
+
+		/// <summary>
+		/// Gets the poster of cartridge.
+		/// </summary>
+		/// <value>The poster.</value>
+		public ImageSource ImageSource
+		{
+			get 
+			{
+				if (!HasImage)
+				{
+					return null;
+				}
+
+				return ImageSource.FromStream(() => 
+					{
+						return new MemoryStream(ActiveObject.Image.Data);
+					});
+			}
+		}
+
+		#endregion
+
+		#region HtmlSource
+
+		/// <summary>
+		/// Gets the description of object as Html.
+		/// </summary>
+		/// <value>The Html representation of the description.</value>
+		public HtmlWebViewSource HtmlSource
+		{
+			get 
+			{
+				var result = new HtmlWebViewSource();
+
+				if (!string.IsNullOrEmpty(ActiveObject.Html))
+				{
+					result.Html = ConverterToHtml.FromHtml(ActiveObject.Html);
+				}
+				else
+				{
+					if (!string.IsNullOrEmpty(ActiveObject.Markdown))
+					{
+						result.Html = ConverterToHtml.FromMarkdown(ActiveObject.Markdown, ActiveObject.Image);
+					}
+					else
+					{
+						result.Html = ConverterToHtml.FromText(ActiveObject.Description, ActiveObject.Image);
+					}
+				}
+
+				return result;
+			}
+		}
+
+		#endregion
+
+		#region HasImage
+
+		/// <summary>
+		/// Gets a value indicating whether this cartridge has poster.
+		/// </summary>
+		/// <value><c>true</c> if this cartridge has poster; otherwise, <c>false</c>.</value>
+		public bool HasImage 
+		{ 
+			get
+			{ 
+				return this.activeObject != null && this.activeObject.Image != null && this.activeObject.Image.Data != null; 
+			}
+		}
+
+		#endregion
+
+		#region Position
+
+		/// <summary>
+		/// Gets the position from the actuell location.
+		/// </summary>
+		/// <value>The Position.</value>
+		public Position Position
+		{
+			get 
+			{
+				return this.position;
+			}
+
+			internal set 
+			{
+				SetProperty<Position>(ref this.position, value, PositionPropertyName);
+			}
+		}
+
+		#endregion
+
+		#region HasDirection
+
+		/// <summary>
+		/// Gets a value indicating whether this instance has direction.
+		/// </summary>
+		/// <value><c>true</c> if this instance has direction; otherwise, <c>false</c>.</value>
+		public bool HasDirection 
+		{
+			get 
+			{
+				return this.hasDirection;
+			}
+
+			internal set 
+			{
+				SetProperty<bool>(ref this.hasDirection, value, HasDirectionPropertyName);
+			}
+		}
+
+		#endregion
+
+		#region Direction
+
+		/// <summary>
+		/// Gets the direction from the actuell location to the cartridge.
+		/// </summary>
+		/// <value>The distance.</value>
+		public double Direction 
+		{
+			get 
+			{
+				return this.direction;
+			}
+
+			internal set 
+			{
+				SetProperty<double>(ref this.direction, value, DirectionPropertyName);
+			}
+		}
+
+		#endregion
+
+		#region Distance
+
+		/// <summary>
+		/// Gets the distance from the actuell location to the cartridge.
+		/// </summary>
+		/// <value>The distance.</value>
+		public double Distance 
+		{
+			get 
+			{
+				return this.distance;
+			}
+
+			internal set 
+			{
+				SetProperty<double>(ref this.distance, value, DistancePropertyName);
+			}
+		}
+
+		#endregion
+
+		#endregion
+
+		#region Methods
+
+		/// <summary>
+		/// Raises the appearing event.
+		/// </summary>
+		public override void OnAppearing()
+		{
+			base.OnAppearing();
+
+			// The object is set to not visible or not active or the container is null, than remove it from screen
+			if (!this.activeObject.Visible)
+			{
+				App.Game.ShowScreen(ScreenType.Last, null);
+				return;
+			}
+
+			// The object is a item or a character and the container is null, than remove it from screen
+			if (!(this.activeObject is Task) && !(this.activeObject is Zone) && ((Thing)this.activeObject).Container == null)
+			{
+				App.Game.ShowScreen(ScreenType.Last, null);
+				return;
+			}
+
+			App.GPS.PositionChanged += HandlePositionChanged;
+			App.GPS.HeadingChanged += HandlePositionChanged;
+
+			if (this.activeObject != null)
+			{
+				this.activeObject.PropertyChanged += HandlePropertyChanged;
+			}
+
+			NotifyPropertyChanged(NamePropertyName);
+
+			#if __HTML__
+			NotifyPropertyChanged(HtmlSourcePropertyName);
+			#else
+			NotifyPropertyChanged(DescriptionPropertyName);
+			NotifyPropertyChanged(HasImagePropertyName);
+			NotifyPropertyChanged(ImageSourcePropertyName);
+			#endif
+
+			NotifyPropertyChanged(HasDirectionPropertyName);
+
+			UpdateHasDirection();
+			UpdateDirection();
+			UpdateCommands();
+		}
+
+		/// <summary>
+		/// Raises the disappearing event.
+		/// </summary>
+		public override void OnDisappearing()
+		{
+			// We are off screen, so don't listen to updates anymore
+			if (this.activeObject != null)
+			{
+				this.activeObject.PropertyChanged -= HandlePropertyChanged;
+			}
+
+			App.GPS.HeadingChanged -= HandlePositionChanged;
+			App.GPS.PositionChanged -= HandlePositionChanged;
+
+			base.OnDisappearing();
+		}
+
+		#endregion
+
+		#region Private Functions
+
+		/// <summary>
+		/// Handles the property changed.
+		/// </summary>
+		/// <param name="sender">Sender of event.</param>
+		/// <param name="e">Property changed event arguments.</param>
+		private void HandlePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			if (this.activeObject == null)
+			{
+				return;
+			}
+
+			// Commands are changed
+			if (e.PropertyName == "ActiveCommands")
+			{
+				UpdateCommands();
+			}
+
+			if (e.PropertyName == "Container")
+			{
+				UpdateHasDirection();
+			}
+
+			if (e.PropertyName == "Description" || e.PropertyName == "Image")
+			{
+				NotifyPropertyChanged(HtmlSourcePropertyName);
+			}
+
+			// Update in all other cases
+			NotifyPropertyChanged(e.PropertyName);
+		}
+
+		/// <summary>
+		/// Handles the position changed event.
+		/// </summary>
+		/// <param name="sender">Sender of event.</param>
+		/// <param name="e">Position event arguments.</param>
+		private void HandlePositionChanged(object sender, PositionEventArgs e)
+		{
+			if (this.activeObject == null)
+			{
+				return;
+			}
+
+			Position = e.Position;
+
+			UpdateDirection();
+		}
+
+		/// <summary>
+		/// Handles the click of toolbar button, if there are more than one command active.
+		/// </summary>
+		/// <param name="obj">Object, which is clicked.</param>
+		private void HandleCommandsClicked(object obj)
+		{
+			// Now show a list with all active commands
+			var cfg = new ActionSheetConfig().SetTitle(Catalog.GetString("Actions"));
+
+			foreach (WF.Player.Core.Command c in ((Thing)this.activeObject).ActiveCommands)
+			{
+				cfg.Add(
+					c.Text, 
+					() => 
+					{
+						ExecuteCommand(c);
+					});
+			}
+
+			cfg.Add(Catalog.GetString("Cancel"), () => App.Click());
+
+			DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
+		}
+
+		/// <summary>
+		/// Executes the selected command.
+		/// </summary>
+		/// <param name="command">Command to execute.</param>
+		private async void ExecuteCommand(WF.Player.Core.Command command)
+		{
+			if (command == null)
+			{
+				return;
+			}
+
+			// Notify user
+			App.Click();
+
+			if (command.CmdWith) 
+			{
+				if (command.TargetObjects.Count > 0) 
+				{
+					// There are one or more targets for this command
+					var cfg = new ActionSheetConfig().SetTitle(command.Text);
+
+					foreach (Thing t in command.TargetObjects)
+					{
+						cfg.Add(
+							t.Name, 
+							() => 
+							{
+								App.Click();
+								command.Execute(t);
+							});
+					}
+
+					cfg.Add(Catalog.GetString("Cancel"), () => App.Click());
+
+					DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
+				} 
+				else 
+				{
+					// There are no target for this command
+					await DependencyService.Get<IUserDialogService>().AlertAsync(command.EmptyTargetListText, command.Text, Catalog.GetString("Ok"));
+					App.Click();
+				}
+			} 
+			else 
+			{
+				command.Execute();
+			}
+		}
+
+		/// <summary>
+		///  Update direction for active object
+		/// </summary>
+		private void UpdateDirection()
+		{
+			if (this.activeObject == null)
+			{
+				return;
+			}
+
+			if (Position == null)
+			{
+				return;
+			}
+
+			double heading = 0;
+
+			if (Position.Heading != null)
+			{
+				// Show always to north
+				heading = 360.0 - (double)Position.Heading;
+			}
+
+			// Do it only for entries with ObjectLocation
+			if (this.activeObject.ObjectLocation != null)
+			{
+				// Calculate values for this thing
+				var vec = this.geoMathHelper.VectorToPoint(new ZonePoint(Position.Latitude, Position.Longitude, 0), this.activeObject.ObjectLocation);
+
+				// Set values
+				Direction = (double)((vec.Bearing + heading) % 360);
+				Distance = vec.Distance.Value;
+			}
+		}
+
+		/// <summary>
+		///  Update HasDirection for active object
+		/// </summary>
+		private void UpdateHasDirection()
+		{
+			if (this.activeObject == null)
+			{
+				return;
+			}
+
+			if (this.activeObject is Task)
+			{
+				HasDirection = false;
+			}
+
+			if (this.activeObject is Thing)
+			{
+				HasDirection = this.activeObject != null && this.activeObject.ObjectLocation != null && !App.Game.VisibleInventory.Contains((Thing)this.activeObject);
+			}
+		}
+
+		/// <summary>
+		/// Updates the commands.
+		/// </summary>
+		private void UpdateCommands()
+		{
+			if (this.activeObject == null)
+			{
+				return;
+			}
+
+			if (!(App.CurrentPage is GameDetailView))
+			{
+				return;
+			}
+
+			// Get active view
+			var view = (GameDetailView)App.CurrentPage;
+
+			view.Buttons.Clear();
+
+			if (this.activeObject != null && this.activeObject is Thing)
+			{
+				Thing thing = (Thing)this.activeObject;
+
+				// If there isn't a command, we are ready
+				if (thing.ActiveCommands.Count == 0)
+				{
+					return;
+				}
+
+				// Calculate width of all text for the commands
+				double sumTextWidth = 0;
+
+				foreach (WF.Player.Core.Command c in thing.ActiveCommands)
+				{
+					sumTextWidth += DependencyService.Get<IMeasure>().ButtonTextSize(c.Text);
+				}
+
+				sumTextWidth += view.BottomLayout.Spacing * (thing.ActiveCommands.Count - 1);
+
+				if (sumTextWidth > view.BottomLayout.Width * Device.OnPlatform<float>(1.0f, 1.7f, 1.0f))
+				{
+					// If there are more text than possible, display action menu
+					view.Buttons.Add(new ToolTextButton(Catalog.GetString("Actions"), new Xamarin.Forms.Command(HandleCommandsClicked)));
+					return;
+				}
+				else
+				{
+					foreach (WF.Player.Core.Command c in thing.ActiveCommands)
+					{
+						view.Buttons.Add(new ToolTextButton(c.Text, new Xamarin.Forms.Command(() => ExecuteCommand(c))));
+					}
+				}
+			}
+		}
+
+		#endregion
+	}
+}
