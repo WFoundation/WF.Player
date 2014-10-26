@@ -355,34 +355,14 @@ namespace WF.Player
 		/// <returns>The main page.</returns>
 		public static Page GetMainPage()
 		{
-			Cartridges cartridges = null;
-
-			CartridgeStore store = new CartridgeStore();
-			store.SyncFromStore();
+			var cartridges = new CartridgeStore();
+			cartridges.SyncFromStore();
 
 			var cartridgePath = PathForCartridges;
 			var logPath = PathForLogs;
 
-			// Check, if path exists
-//			if (!string.IsNullOrEmpty(cartridgePath))
-//			{
-//				cartridges = new Cartridges();
-//
-//				FileInfo[] cartridgeFiles = new DirectoryInfo(cartridgePath).GetFiles("*.gwc");
-//
-//				List<string> fileList = new List<string>(); 
-//
-//				foreach (FileInfo fileInfo in cartridgeFiles)
-//				{
-//					fileList.Add(fileInfo.FullName);
-//				}
-//
-//				// Fill cartridge list with files from local store
-//				cartridges.GetByFileList(fileList);
-//			}
-
 			// Create content page for cartridge list
-			var page = new NavigationPage(new CartridgeListPage(store)) 
+			var page = new NavigationPage(new CartridgeListPage(cartridges)) 
 				{
 					BackgroundColor = App.Colors.Background,
 					BarTextColor = App.Colors.BarText,

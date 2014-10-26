@@ -36,7 +36,7 @@ namespace WF.Player.Models
 	/// <summary>
 	/// A store for Cartridges and their related data.
 	/// </summary>
-	public class CartridgeStore : ObservableCollection<CartridgeTag>
+	public class CartridgeStore : List<CartridgeTag>, INotifyCollectionChanged, INotifyPropertyChanged
 	{
 		/// <summary>
 		/// The name of the cartridge name property.
@@ -72,7 +72,7 @@ namespace WF.Player.Models
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WF.Player.Models.CartridgeStore"/> class.
 		/// </summary>
-		public CartridgeStore() : base(new ObservableCollection<CartridgeTag>())
+		public CartridgeStore() : base()
 		{
 			// Registers event handlers.
 			isBusyAggregator.PropertyChanged += new PropertyChangedEventHandler(OnIsBusyAggregatorPropertyChanged);
@@ -88,34 +88,12 @@ namespace WF.Player.Models
 		/// <summary>
 		/// Occurs when property changed.
 		/// </summary>
-		public new event PropertyChangedEventHandler PropertyChanged
-		{
-			add
-			{
-				base.PropertyChanged += value;
-			}
-
-			remove
-			{
-				base.PropertyChanged -= value;
-			}
-		}
+		public event PropertyChangedEventHandler PropertyChanged;
 
 		/// <summary>
 		/// Occurs when collection changed.
 		/// </summary>
-		public new event NotifyCollectionChangedEventHandler CollectionChanged
-		{
-			add
-			{
-				base.CollectionChanged += value;
-			}
-
-			remove
-			{
-				base.CollectionChanged -= value;
-			}
-		}
+		public event NotifyCollectionChangedEventHandler CollectionChanged;
 
 		#endregion
 
@@ -265,35 +243,6 @@ namespace WF.Player.Models
 
 		#endregion
 
-		#region ReadOnlyObservableCollection
-
-		/// <Docs>To be added.</Docs>
-		/// <attribution license="cc4" from="Microsoft" modified="false"></attribution>
-		/// <see cref="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.CollectionChanged"></see>
-		/// <summary>
-		/// Raises the collection changed event.
-		/// </summary>
-		/// <param name="args">Notify collection changed event arguments.</param>
-		protected override void OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs args)
-		{
-			Device.BeginInvokeOnMainThread(
-				() => base.OnCollectionChanged(args));
-		}
-
-		/// <Docs>To be added.</Docs>
-		/// <attribution license="cc4" from="Microsoft" modified="false"></attribution>
-		/// <see cref="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.PropertyChanged"></see>
-		/// <summary>
-		/// Raises the property changed event.
-		/// </summary>
-		/// <param name="args">Arguments to use.</param>
-		protected override void OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs args)
-		{
-			Device.BeginInvokeOnMainThread(() => base.OnPropertyChanged(args));
-		}
-
-		#endregion
-
 		#region Tag Acceptance
 
 		/// <summary>
@@ -313,12 +262,13 @@ namespace WF.Player.Models
 			lock (syncRoot)
 			{
 				// Gets the existing cartridge if it was found.
-				CartridgeTag existingTag = this.Items.SingleOrDefault(cc => cc.Cartridge.Filename == filename);
+				CartridgeTag existingTag = this.SingleOrDefault(cc => cc.Cartridge.Filename == filename);
 
 				// Removes the tag if it was found.
 				if (existingTag != null)
 				{
-					this.Items.Remove(existingTag); 
+					this.Remove(existingTag);
+					RaiseCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, existingTag));
 				}
 			}
 
@@ -333,7 +283,9 @@ namespace WF.Player.Models
 		private void AcceptCartridgeAsync(string filename)
 		{
 			BackgroundWorker bw = new BackgroundWorker();
+
 			bw.DoWork += new System.ComponentModel.DoWorkEventHandler((o, e) => AcceptCartridge(filename));
+
 			bw.RunWorkerAsync();
 		}
 
@@ -396,7 +348,7 @@ namespace WF.Player.Models
 				// Returns the existing cartridge if it was found.
 				lock (syncRoot)
 				{
-					existingCC = this.Items.SingleOrDefault(cc => cc.Cartridge.Filename == filename);
+					existingCC = this.SingleOrDefault(cc => cc.Cartridge.Filename == filename);
 				}
 
 				if (existingCC != null)
@@ -413,7 +365,8 @@ namespace WF.Player.Models
 				// Adds the context to the store.
 				lock (syncRoot)
 				{
-					this.Items.Add(newCC);
+					this.Add(newCC);
+					RaiseCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, newCC));
 				}
 			}
 
@@ -466,7 +419,7 @@ namespace WF.Player.Models
 
 				lock (syncRoot)
 				{
-					matches = Items.Where(ct => ct.Cartridge.Name == saveMetadata.CartridgeName).ToList();
+					matches = this.Where(ct => ct.Cartridge.Name == saveMetadata.CartridgeName).ToList();
 				}
 
 				foreach (CartridgeTag tag in matches)
@@ -521,7 +474,7 @@ namespace WF.Player.Models
 			providers.Add(provider);
 
 			// Notifies the list has changed.
-			OnPropertyChanged(new PropertyChangedEventArgs("Providers"));
+			RaisePropertyChanged(new PropertyChangedEventArgs("Providers"));
 		}
 
 		/// <summary>
@@ -634,7 +587,41 @@ namespace WF.Player.Models
 			if (e.PropertyName == "HasWorkingSource")
 			{
 				// Relays the event.
-				OnPropertyChanged(new PropertyChangedEventArgs("IsBusy"));
+				RaisePropertyChanged(new PropertyChangedEventArgs("IsBusy"));
+			}
+		}
+
+		/// <summary>
+		/// Raises the collection changed.
+		/// </summary>
+		/// <param name="args">Arguments.</param>
+		private void RaiseCollectionChanged(NotifyCollectionChangedEventArgs args)
+		{
+			var handle = CollectionChanged;
+
+			if (handle != null)
+			{
+				lock (syncRoot)
+				{
+					Device.BeginInvokeOnMainThread(() => handle(this, args));
+				}
+			}
+		}
+
+		/// <summary>
+		/// Raises the property changed.
+		/// </summary>
+		/// <param name="args">Arguments.</param>
+		private void RaisePropertyChanged(PropertyChangedEventArgs args)
+		{
+			var handle = PropertyChanged;
+
+			if (handle != null)
+			{
+				lock (syncRoot)
+				{
+					Device.BeginInvokeOnMainThread(() => handle(this, args));
+				}
 			}
 		}
 	}
