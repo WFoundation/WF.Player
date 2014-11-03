@@ -130,10 +130,10 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Insights">
-      <HintPath>..\packages\Xamarin.Insights.1.7.2.97\lib\MonoTouch10\Xamarin.Insights.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Insights.1.7.3.98\lib\MonoTouch10\Xamarin.Insights.dll</HintPath>
     </Reference>
     <Reference Include="PLCrashReporter">
-      <HintPath>..\packages\Xamarin.Insights.1.7.2.97\lib\MonoTouch10\PLCrashReporter.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Insights.1.7.3.98\lib\MonoTouch10\PLCrashReporter.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

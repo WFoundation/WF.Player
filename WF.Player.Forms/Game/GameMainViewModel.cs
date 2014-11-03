@@ -177,22 +177,24 @@ namespace WF.Player
 		/// </summary>
 		private int tasksNumber;
 
+		/// <summary>
+		/// The last page, which was visible before game started.
+		/// </summary>
+		private Page lastPage;
+
 		#region Constructor
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WF.Player.GameMainViewModel"/> class.
 		/// </summary>
 		/// <param name="gameModel">Game model.</param>
-		public GameMainViewModel(GameModel gameModel)
+		public GameMainViewModel(GameModel gameModel, Page lastPage = null)
 		{
 			this.gameModel = gameModel;
 			this.geoMathHelper = new GeoMathHelper();
+			this.lastPage = lastPage;
 
 			Position = App.GPS.LastKnownPosition;
-
-			ActiveScreen = ScreenType.Locations;
-
-			this.gameModel.DisplayChanged += HandleDisplayChanged;
 
 			IsBusy = true;
 		}
@@ -493,6 +495,9 @@ namespace WF.Player
 		{
 			get 
 			{
+				if (this.gameModel == null || this.gameModel.Cartridge == null)
+					return Catalog.GetString("Loading...");
+
 				if (IsYouSeeSelected)
 				{
 					return this.gameModel.Cartridge.EmptyYouSeeListText;
@@ -659,6 +664,16 @@ namespace WF.Player
 
 		#region Methods
 
+
+		public void Init(GameModel gameModel)
+		{
+			this.gameModel = gameModel;
+
+			this.gameModel.DisplayChanged += HandleDisplayChanged;
+
+			ActiveScreen = ScreenType.Locations;
+		}
+
 		/// <summary>
 		/// Handles the menu action.
 		/// </summary>
@@ -683,7 +698,7 @@ namespace WF.Player
 					cfg.Title = Catalog.GetString("Comment Savefile");
 					cfg.OnResult = (savegameResult) =>
 					{
-						Device.BeginInvokeOnMainThread(() =>
+						Device.BeginInvokeOnMainThread(async () =>
 							{
 								App.Click();
 								if (savegameResult.Ok)
@@ -695,6 +710,12 @@ namespace WF.Player
 
 									// Remove active screen
 									App.CurrentPage.Navigation.PopModalAsync();
+
+									// We do this, because Xamarin.Forms don't throw OnAppearing() when game NavigationPage is popped modal
+									if (lastPage != null)
+									{
+										App.CurrentPage = lastPage;
+									}
 								}
 
 							});
@@ -708,6 +729,12 @@ namespace WF.Player
 
 					// Remove active screen
 					App.CurrentPage.Navigation.PopModalAsync();
+
+					// We do this, because Xamarin.Forms don't throw OnAppearing() when game NavigationPage is popped modal
+					if (lastPage != null)
+					{
+						App.CurrentPage = lastPage;
+					}
 				}
 			}
 
@@ -862,7 +889,7 @@ namespace WF.Player
 			bool hasListIcons = false;
 			bool hasDirections = false;
 
-			if (this.gameModel.GameState != WF.Player.Core.Engines.EngineGameState.Playing)
+			if (this.gameModel == null || this.gameModel.GameState != WF.Player.Core.Engines.EngineGameState.Playing)
 			{
 				return;
 			}

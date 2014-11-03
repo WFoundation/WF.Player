@@ -262,7 +262,7 @@ namespace WF.Player
 
 				return ImageSource.FromStream(() => 
 					{
-						return new MemoryStream(ActiveObject.Image.Data);
+						return ActiveObject.Image != null ? new MemoryStream(ActiveObject.Image.Data) : null;
 					});
 			}
 		}
@@ -413,20 +413,6 @@ namespace WF.Player
 		public override void OnAppearing()
 		{
 			base.OnAppearing();
-
-			// The object is set to not visible or not active or the container is null, than remove it from screen
-			if (!this.activeObject.Visible)
-			{
-				App.Game.ShowScreen(ScreenType.Last, null);
-				return;
-			}
-
-			// The object is a item or a character and the container is null, than remove it from screen
-			if (!(this.activeObject is Task) && !(this.activeObject is Zone) && ((Thing)this.activeObject).Container == null)
-			{
-				App.Game.ShowScreen(ScreenType.Last, null);
-				return;
-			}
 
 			App.GPS.PositionChanged += HandlePositionChanged;
 			App.GPS.HeadingChanged += HandlePositionChanged;

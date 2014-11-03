@@ -86,9 +86,6 @@ namespace WF.Player
 		public GameModel(CartridgeTag tag)
 		{
 			cartridgeTag = tag;
-
-			// Create Engine
-			this.CreateEngine(tag.Cartridge);
 		}
 
 		#endregion
@@ -108,7 +105,7 @@ namespace WF.Player
 		{
 			get
 			{
-				return this.engine.Cartridge;
+				return this.engine != null ? this.engine.Cartridge : null;
 			}
 		}
 
@@ -120,7 +117,7 @@ namespace WF.Player
 		{
 			get
 			{
-				return this.engine.GameState;
+				return this.engine != null ? this.engine.GameState : EngineGameState.Uninitialized;
 			}
 		}
 
@@ -179,43 +176,26 @@ namespace WF.Player
 		/// <summary>
 		/// Start this instance.
 		/// </summary>
-		public async void Start()
+		public async System.Threading.Tasks.Task StartAsync(CartridgeSavegame savegame = null)
 		{
-			// Create game screens
-			var gameMainViewModel = new GameMainViewModel(this);
-			this.gameMainView = new GameMainView(gameMainViewModel);
+			// Create Engine
+			await this.CreateEngine(cartridgeTag.Cartridge);
 
-			var navi = new NavigationPage(this.gameMainView);
-
-			navi.BarBackgroundColor = App.Colors.Bar;
-			navi.BarTextColor = App.Colors.BarText;
-
-			await App.CurrentPage.Navigation.PushModalAsync(navi);
-
-			var pos = App.GPS.LastKnownPosition ?? new Position(0, 0);
-			this.engine.RefreshLocation(pos.Latitude, pos.Longitude, pos.Altitude ?? 0, pos.Accuracy ?? double.NaN);
-
-			this.engine.Start();
-
-			App.GPS.PositionChanged += this.HandlePositionChanged;
-
-			gameMainViewModel.Update();
-
-			this.gameMainView.IsBusy = false;
-		}
-
-		/// <summary>
-		/// Restore the specified saveFilename.
-		/// </summary>
-		/// <param name="saveFilename">Save filename.</param>
-		public void Restore(CartridgeSavegame savegame)
-		{
-			if (File.Exists(Path.Combine(App.PathForSavegames, savegame.Filename)))
+			// If there is a valid savefile, than open it
+			if (savegame != null && File.Exists(Path.Combine(App.PathForSavegames, savegame.Filename)))
 			{
 				this.engine.Restore(new FileStream(savegame.Filename, FileMode.Open));
 			}
 
-			this.Start();
+			// Init for position
+			var pos = App.GPS.LastKnownPosition ?? new Position(0, 0);
+			this.engine.RefreshLocation(pos.Latitude, pos.Longitude, pos.Altitude ?? 0, pos.Accuracy ?? double.NaN);
+
+			App.GPS.PositionChanged += this.OnPositionChanged;
+
+			await System.Threading.Tasks.Task.Run(() => this.engine.Start());
+
+			App.CurrentPage.IsBusy = false;
 		}
 
 		/// <summary>
@@ -399,7 +379,7 @@ namespace WF.Player
 		/// <param name="args">Message box event arguments.</param>
 		public void OnShowMessageBox(object sender, MessageBoxEventArgs args)
 		{
-			this.ShowScreen(ScreenType.Dialog, args);
+			Device.BeginInvokeOnMainThread(async () => await this.ShowScreen(ScreenType.Dialog, args));
 		}
 
 		/// <summary>
@@ -444,10 +424,12 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="screenType">Screen type.</param>
 		/// <param name="obj">Object to show.</param>
-		public void ShowScreen(ScreenType screenType, object obj)
+		public async System.Threading.Tasks.Task ShowScreen(ScreenType screenType, object obj)
 		{
+			Console.WriteLine("ShowScreen with {0}", screenType);
+
 			// If we are no longer playing
-			if (this.engine == null || this.engine.GameState != EngineGameState.Playing)
+			if (this.engine == null || (this.engine.GameState != EngineGameState.Playing && this.engine.GameState != EngineGameState.Starting))
 			{
 				return;
 			}
@@ -473,7 +455,27 @@ namespace WF.Player
 										this.timer = null;
 									}
 
+									Console.WriteLine("Remove Last with Timer");
+
 									await App.CurrentPage.Navigation.PopAsync();
+
+									if (App.CurrentPage is GameDetailView)
+									{
+										var activeObject = ((GameDetailViewModel)((GameDetailView)App.CurrentPage).BindingContext).ActiveObject;
+
+										// The new page is a detail page and the active object is set to not visible or not active or the container is null, than remove it from screen
+										if (!activeObject.Visible)
+										{
+											await App.CurrentPage.Navigation.PopAsync();
+										}
+
+										// The object is a item or a character and the container is null, than remove it from screen
+										if (!(activeObject is Task) && !(activeObject is Zone) && ((Thing)activeObject).Container == null)
+										{
+											App.Game.ShowScreen(ScreenType.Last, null);
+											return;
+										}
+									}
 								});
 						}, 
 						null, 
@@ -491,22 +493,22 @@ namespace WF.Player
 						this.timer = null;
 					}
 
-					App.CurrentPage.Navigation.PopToRootAsync();
+					await App.CurrentPage.Navigation.PopToRootAsync();
 
 					// If main screen selected, don't change the active list
 					if (screenType == ScreenType.Main || screenType == ScreenType.Locations || screenType == ScreenType.Items)
 					{
-						((GameMainViewModel)this.gameMainView.BindingContext).ActiveScreen = ScreenType.Locations;
+						((GameMainViewModel)App.CurrentPage.BindingContext).ActiveScreen = ScreenType.Locations;
 					}
 
 					if (screenType == ScreenType.Inventory)
 					{
-						((GameMainViewModel)this.gameMainView.BindingContext).ActiveScreen = ScreenType.Inventory;
+						((GameMainViewModel)App.CurrentPage.BindingContext).ActiveScreen = ScreenType.Inventory;
 					}
 
 					if (screenType == ScreenType.Tasks)
 					{
-						((GameMainViewModel)this.gameMainView.BindingContext).ActiveScreen = ScreenType.Tasks;
+						((GameMainViewModel)App.CurrentPage.BindingContext).ActiveScreen = ScreenType.Tasks;
 					}
 
 					break;
@@ -529,7 +531,7 @@ namespace WF.Player
 						// Remove page (could only be a MessageBox or an Input)
 						if (!(App.CurrentPage is GameMainView) && !(App.CurrentPage is GameDetailView))
 						{
-							App.CurrentPage.Navigation.PopAsync();
+							await App.CurrentPage.Navigation.PopAsync();
 						}
 
 						// If active screen is detail screen than replace only active object
@@ -641,7 +643,7 @@ namespace WF.Player
 		/// Creates the engine.
 		/// </summary>
 		/// <param name="cartridge">Cartridge handled by this instance.</param>
-		private void CreateEngine(Cartridge cartridge)
+		private async System.Threading.Tasks.Task CreateEngine(Cartridge cartridge)
 		{
 			if (this.engine != null)
 			{
@@ -671,12 +673,13 @@ namespace WF.Player
 			this.engine.ShowScreenRequested += this.OnShowScreen;
 			this.engine.ShowStatusTextRequested += this.OnShowStatusText;
 			this.engine.StopSoundsRequested += this.OnStopSound;
+			this.engine.PropertyChanged += OnPropertyChanged;
 
 			// Open logFile first time
 			this.logFile = cartridgeTag.CreateLogFile();
 			this.logFile.MinimalLogLevel = logLevel;
 
-			this.engine.Init(new FileStream(Path.Combine(App.PathForCartridges, Path.GetFileName(cartridge.Filename)), FileMode.Open), cartridge);
+			await System.Threading.Tasks.Task.Run(() => this.engine.Init(new FileStream(Path.Combine(App.PathForCartridges, Path.GetFileName(cartridge.Filename)), FileMode.Open), cartridge));
 		}
 
 		/// <summary>
@@ -686,9 +689,6 @@ namespace WF.Player
 		{
 			if (this.engine != null)
 			{
-				this.engine.Stop();
-				this.engine.Reset();
-
 				this.engine.AttributeChanged -= this.OnAttributeChanged;
 				this.engine.InventoryChanged -= this.OnInventoryChanged;
 				this.engine.ZoneStateChanged -= this.OnZoneStateChanged;
@@ -702,6 +702,10 @@ namespace WF.Player
 				this.engine.ShowScreenRequested -= this.OnShowScreen;
 				this.engine.ShowStatusTextRequested -= this.OnShowStatusText;
 				this.engine.StopSoundsRequested -= this.OnStopSound;
+				this.engine.PropertyChanged -= OnPropertyChanged;
+
+				this.engine.Stop();
+				this.engine.Reset();
 
 				this.engine.Dispose();
 
@@ -742,11 +746,24 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="sender">Sender of event.</param>
 		/// <param name="e">Position changed event arguments.</param>
-		private void HandlePositionChanged(object sender, PositionEventArgs e)
+		private void OnPositionChanged(object sender, PositionEventArgs e)
 		{
 			if (this.engine != null && e != null && e.Position != null)
 			{
 				this.engine.RefreshLocation(e.Position.Latitude, e.Position.Longitude, (double)e.Position.Altitude, (double)e.Position.Accuracy);
+			}
+		}
+
+		/// <summary>
+		/// Handles the property changed event.
+		/// </summary>
+		/// <param name="sender">Sender of event.</param>
+		/// <param name="e">Property changed event arguments.</param>
+		void OnPropertyChanged (object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName.Equals("GameState"))
+			{
+				Console.WriteLine("GameState changed to {0}", this.engine.GameState);
 			}
 		}
 
