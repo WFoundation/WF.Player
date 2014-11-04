@@ -771,19 +771,28 @@ namespace WF.Player
 				}
 			}
 
-			if ((e.PropertyName.Equals("ActiveVisibleZones") || e.PropertyName.Equals("VisibleObjects")) && App.CurrentPage is GameMainView)
+			if (App.CurrentPage is GameMainView)
 			{
-				((GameMainViewModel)App.CurrentPage.BindingContext).YouSeeNumber = ActiveVisibleZones.Count + VisibleObjects.Count;
-			}
+				var gameMainViewModel = ((GameMainViewModel)App.CurrentPage.BindingContext);
 
-			if (e.PropertyName.Equals("VisibleInventory") && App.CurrentPage is GameMainView)
-			{
-				((GameMainViewModel)App.CurrentPage.BindingContext).InventoryNumber = VisibleInventory.Count;
-			}
+				if (e.PropertyName.Equals("ActiveVisibleZones") || e.PropertyName.Equals("VisibleObjects"))
+				{
+					gameMainViewModel.YouSeeNumber = ActiveVisibleZones.Count + VisibleObjects.Count;
+					if (gameMainViewModel.YouSeeNumber > 0 && !gameMainViewModel.IsListVisible)
+					{
+						gameMainViewModel.Update();
+					}
+				}
 
-			if (e.PropertyName.Equals("ActiveVisibleTasks") && App.CurrentPage is GameMainView)
-			{
-				((GameMainViewModel)App.CurrentPage.BindingContext).TasksNumber = ActiveVisibleTasks.Count;
+				if (e.PropertyName.Equals("VisibleInventory"))
+				{
+					gameMainViewModel.InventoryNumber = VisibleInventory.Count;
+				}
+
+				if (e.PropertyName.Equals("ActiveVisibleTasks"))
+				{
+					gameMainViewModel.TasksNumber = ActiveVisibleTasks.Count;
+				}
 			}
 
 			if (e.PropertyName.Equals("IsBusy"))

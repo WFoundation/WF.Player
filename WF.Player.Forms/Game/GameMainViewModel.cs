@@ -262,7 +262,7 @@ namespace WF.Player
 					}
 				}
 
-				HandleDisplayChanged();
+				OnDisplayChanged();
 			}
 		}
 
@@ -542,7 +542,7 @@ namespace WF.Player
 			set
 			{
 				SetProperty<int>(ref this.youSeeNumber, value, YouSeeNumberPropertyName);
-				HandleLayoutChanged();
+				OnLayoutChanged();
 			}
 		}
 
@@ -564,7 +564,7 @@ namespace WF.Player
 			set
 			{
 				SetProperty<int>(ref this.inventoryNumber, value, InventoryNumberPropertyName);
-				HandleLayoutChanged();
+				OnLayoutChanged();
 			}
 		}
 
@@ -586,7 +586,7 @@ namespace WF.Player
 			set
 			{
 				SetProperty<int>(ref this.tasksNumber, value, TasksNumberPropertyName);
-				HandleLayoutChanged();
+				OnLayoutChanged();
 			}
 		}
 
@@ -669,7 +669,7 @@ namespace WF.Player
 		{
 			this.gameModel = gameModel;
 
-			this.gameModel.DisplayChanged += HandleDisplayChanged;
+			this.gameModel.DisplayChanged += OnDisplayChanged;
 
 			ActiveScreen = ScreenType.Locations;
 		}
@@ -764,8 +764,8 @@ namespace WF.Player
 		/// </summary>
 		public void Update()
 		{
-			HandleDisplayChanged();
-			HandleLayoutChanged();
+			OnDisplayChanged();
+			OnLayoutChanged();
 		}
 
 		/// <summary>
@@ -775,10 +775,10 @@ namespace WF.Player
 		{
 			base.OnAppearing();
 
-			App.GPS.PositionChanged += HandlePositionChanged;
-			App.GPS.HeadingChanged += HandlePositionChanged;
+			App.GPS.PositionChanged += OnPositionChanged;
+			App.GPS.HeadingChanged += OnPositionChanged;
 
-			HandleDisplayChanged(null, null);
+			OnDisplayChanged(null, null);
 		}
 
 		/// <summary>
@@ -788,8 +788,8 @@ namespace WF.Player
 		{
 			base.OnDisappearing();
 
-			App.GPS.HeadingChanged -= HandlePositionChanged;
-			App.GPS.PositionChanged -= HandlePositionChanged;
+			App.GPS.HeadingChanged -= OnPositionChanged;
+			App.GPS.PositionChanged -= OnPositionChanged;
 		}
 
 		#endregion
@@ -807,7 +807,7 @@ namespace WF.Player
 
 			ActiveScreen = screen;
 
-			HandleDisplayChanged();
+			OnDisplayChanged();
 		}
 
 		/// <summary>
@@ -820,7 +820,7 @@ namespace WF.Player
 
 			ActiveScreen = ScreenType.Map;
 
-			HandleLayoutChanged();
+			OnLayoutChanged();
 
 			// TODO
 			Console.WriteLine("Show map");
@@ -829,7 +829,7 @@ namespace WF.Player
 		/// <summary>
 		/// Handles the layout changed.
 		/// </summary>
-		private void HandleLayoutChanged()
+		private void OnLayoutChanged()
 		{
 			NotifyPropertyChanged(EmptyListTextPropertyName);
 			NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
@@ -842,7 +842,7 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="sender">Sender of event.</param>
 		/// <param name="e">Display changed event arguments.</param>
-		private void HandleDisplayChanged(object sender = null, DisplayChangedEventArgs e = null)
+		private void OnDisplayChanged(object sender = null, DisplayChangedEventArgs e = null)
 		{
 			if (e == null)
 			{
@@ -963,7 +963,7 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="sender">Sender of event.</param>
 		/// <param name="e">Position changed event arguments.</param>
-		private void HandlePositionChanged(object sender, PositionEventArgs e)
+		private void OnPositionChanged(object sender, PositionEventArgs e)
 		{
 			Position = e.Position;
 
