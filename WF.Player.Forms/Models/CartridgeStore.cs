@@ -326,7 +326,7 @@ namespace WF.Player.Models
 				{
 					try
 					{
-						WF.Player.Core.Formats.CartridgeLoaders.Load(fs, cart);
+						WF.Player.Core.Formats.CartridgeLoaders.LoadMetadata(fs, cart);
 					}
 					catch (Exception ex)
 					{
