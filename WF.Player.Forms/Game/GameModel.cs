@@ -178,6 +178,8 @@ namespace WF.Player
 		/// </summary>
 		public async System.Threading.Tasks.Task StartAsync(CartridgeSavegame savegame = null)
 		{
+			App.CurrentPage.IsBusy = true;
+
 			// Create Engine
 			await this.CreateEngine(cartridgeTag.Cartridge);
 
@@ -426,8 +428,6 @@ namespace WF.Player
 		/// <param name="obj">Object to show.</param>
 		public async System.Threading.Tasks.Task ShowScreen(ScreenType screenType, object obj)
 		{
-			Console.WriteLine("ShowScreen with {0}", screenType);
-
 			// If we are no longer playing
 			if (this.engine == null || (this.engine.GameState != EngineGameState.Playing && this.engine.GameState != EngineGameState.Starting))
 			{
@@ -454,8 +454,6 @@ namespace WF.Player
 										this.timer.Dispose();
 										this.timer = null;
 									}
-
-									Console.WriteLine("Remove Last with Timer");
 
 									await App.CurrentPage.Navigation.PopAsync();
 
@@ -755,15 +753,42 @@ namespace WF.Player
 		}
 
 		/// <summary>
-		/// Handles the property changed event.
+		/// Handles the property changed event from the engine.
 		/// </summary>
 		/// <param name="sender">Sender of event.</param>
 		/// <param name="e">Property changed event arguments.</param>
 		void OnPropertyChanged (object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
-			if (e.PropertyName.Equals("GameState"))
+			// TODO: Remove
+			Console.WriteLine("Property changed: {0}", e.PropertyName);
+
+			if (e.PropertyName.Equals("GameState") && this.engine.GameState == EngineGameState.Playing)
 			{
-				Console.WriteLine("GameState changed to {0}", this.engine.GameState);
+				// If the current page is the main screen, than update it
+				if (App.CurrentPage is GameMainView)
+				{
+					((GameMainViewModel)App.CurrentPage.BindingContext).Update();
+				}
+			}
+
+			if ((e.PropertyName.Equals("ActiveVisibleZones") || e.PropertyName.Equals("VisibleObjects")) && App.CurrentPage is GameMainView)
+			{
+				((GameMainViewModel)App.CurrentPage.BindingContext).YouSeeNumber = ActiveVisibleZones.Count + VisibleObjects.Count;
+			}
+
+			if (e.PropertyName.Equals("VisibleInventory") && App.CurrentPage is GameMainView)
+			{
+				((GameMainViewModel)App.CurrentPage.BindingContext).InventoryNumber = VisibleInventory.Count;
+			}
+
+			if (e.PropertyName.Equals("ActiveVisibleTasks") && App.CurrentPage is GameMainView)
+			{
+				((GameMainViewModel)App.CurrentPage.BindingContext).TasksNumber = ActiveVisibleTasks.Count;
+			}
+
+			if (e.PropertyName.Equals("IsBusy"))
+			{
+				App.CurrentPage.IsBusy = this.engine.IsBusy;
 			}
 		}
 
