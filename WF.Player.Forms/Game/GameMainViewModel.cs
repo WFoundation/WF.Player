@@ -196,6 +196,8 @@ namespace WF.Player
 
 			Position = App.GPS.LastKnownPosition;
 
+			this.gameModel.DisplayChanged += OnDisplayChanged;
+
 			IsBusy = true;
 		}
 
@@ -663,7 +665,6 @@ namespace WF.Player
 		#endregion
 
 		#region Methods
-
 
 		public void Init(GameModel gameModel)
 		{

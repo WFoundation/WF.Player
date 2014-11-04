@@ -78,11 +78,6 @@ namespace WF.Player
 		public const string PlaceholderPropertyName = "Placeholder";
 
 		/// <summary>
-		/// The timer.
-		/// </summary>
-		private System.Threading.Timer timer;
-
-		/// <summary>
 		/// The input.
 		/// </summary>
 		private Input input;
@@ -109,13 +104,6 @@ namespace WF.Player
 
 			set
 			{
-				// Stop timer, if there is one
-				if (this.timer != null)
-				{
-					this.timer.Dispose();
-					this.timer = null;
-				}
-
 				// Set property
 				SetProperty<Input>(ref this.input, value, InputPropertyName);
 
@@ -317,14 +305,6 @@ namespace WF.Player
 		public override void OnDisappearing()
 		{
 			base.OnDisappearing();
-
-			if (this.timer == null)
-			{
-				return;
-			}
-
-			this.timer.Dispose();
-			this.timer = null;
 		}
 
 		#endregion

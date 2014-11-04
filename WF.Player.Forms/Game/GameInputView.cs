@@ -108,7 +108,7 @@ namespace WF.Player
 				{
 					Orientation = StackOrientation.Horizontal,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
-					Padding = Device.OnPlatform(10, 4, 4),
+					Padding = Device.OnPlatform(6, 2, 2),
 				};
 
 			var entry = new Entry 
@@ -116,6 +116,7 @@ namespace WF.Player
 					Placeholder = "Answer",
 					#if __IOS__
 					BackgroundColor = Color.FromRgb(223, 223, 223),
+					TextColor = App.Colors.Tint,
 					#endif
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 				};

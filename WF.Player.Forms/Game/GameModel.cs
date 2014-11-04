@@ -381,7 +381,7 @@ namespace WF.Player
 		/// <param name="args">Message box event arguments.</param>
 		public void OnShowMessageBox(object sender, MessageBoxEventArgs args)
 		{
-			Device.BeginInvokeOnMainThread(async () => await this.ShowScreen(ScreenType.Dialog, args));
+			this.ShowScreen(ScreenType.Dialog, args);
 		}
 
 		/// <summary>
@@ -477,7 +477,7 @@ namespace WF.Player
 								});
 						}, 
 						null, 
-						150, 
+						App.CurrentPage is GameMessageboxView ? 150 : 0,  // Only MessageBoxes should stay a little bit longer, if there is one coming close behind
 						Timeout.Infinite);
 					break;
 				case ScreenType.Main:
@@ -761,39 +761,6 @@ namespace WF.Player
 		{
 			// TODO: Remove
 			Console.WriteLine("Property changed: {0}", e.PropertyName);
-
-			if (e.PropertyName.Equals("GameState") && this.engine.GameState == EngineGameState.Playing)
-			{
-				// If the current page is the main screen, than update it
-				if (App.CurrentPage is GameMainView)
-				{
-					((GameMainViewModel)App.CurrentPage.BindingContext).Update();
-				}
-			}
-
-			if (App.CurrentPage is GameMainView)
-			{
-				var gameMainViewModel = ((GameMainViewModel)App.CurrentPage.BindingContext);
-
-				if (e.PropertyName.Equals("ActiveVisibleZones") || e.PropertyName.Equals("VisibleObjects"))
-				{
-					gameMainViewModel.YouSeeNumber = ActiveVisibleZones.Count + VisibleObjects.Count;
-					if (gameMainViewModel.YouSeeNumber > 0 && !gameMainViewModel.IsListVisible)
-					{
-						gameMainViewModel.Update();
-					}
-				}
-
-				if (e.PropertyName.Equals("VisibleInventory"))
-				{
-					gameMainViewModel.InventoryNumber = VisibleInventory.Count;
-				}
-
-				if (e.PropertyName.Equals("ActiveVisibleTasks"))
-				{
-					gameMainViewModel.TasksNumber = ActiveVisibleTasks.Count;
-				}
-			}
 
 			if (e.PropertyName.Equals("IsBusy"))
 			{
