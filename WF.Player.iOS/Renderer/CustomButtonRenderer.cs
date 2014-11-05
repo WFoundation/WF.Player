@@ -41,12 +41,13 @@ namespace WF.Player.iOS
 			// If only an image is displayed, than move it to the center of button
 			if (String.IsNullOrEmpty (button.TitleLabel.Text) && button.ImageView.Image != null) {
 				button.ImageEdgeInsets = new UIEdgeInsets(0.0f, 10.0f, 0.0f, 0.0f);
+				button.TitleEdgeInsets = new UIEdgeInsets(0.0f, 0.0f, 0.0f, 0.0f);
 			} else {
 				button.ImageEdgeInsets = new UIEdgeInsets(0.0f, 0.0f, 0.0f, 0.0f);
+				button.TitleEdgeInsets = new UIEdgeInsets(0.0f, 0.0f, 0.0f, 0.0f);
 			}
 
 			button.TintColor = e.NewElement.IsEnabled ? App.Colors.Tint.ToUIColor () : Color.Black.ToUIColor();
-			button.TitleLabel.AdjustsFontSizeToFitWidth = true;
 		}
 
 		protected override void OnElementPropertyChanged (object sender, System.ComponentModel.PropertyChangedEventArgs e)

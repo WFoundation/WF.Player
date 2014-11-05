@@ -38,7 +38,7 @@ namespace WF.Player.iOS.Services.Device
 			}
 
 			NSString nsText = new NSString(text);
-			return nsText.GetSizeUsingAttributes(new UIStringAttributes()).Width + _button.ContentEdgeInsets.Left + _button.ContentEdgeInsets.Right;
+			return nsText.GetSizeUsingAttributes(new UIStringAttributes() { Font = UIFont.SystemFontOfSize((float)(App.Prefs.TextSize*0.8)) }).Width + _button.ContentEdgeInsets.Left + _button.ContentEdgeInsets.Right;
 		}
 	}
 }
