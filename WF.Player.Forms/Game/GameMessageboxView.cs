@@ -78,13 +78,13 @@ namespace WF.Player
 
 			layout.Children.Add(image);
 
-			var description = new Label() 
+			var description = new ExtendedLabel() 
 			{
 				TextColor = App.Colors.Text,
 				Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
 				XAlign = App.Prefs.TextAlignment,
 			};
-			description.SetBinding(Label.TextProperty, GameMessageboxViewModel.TextPropertyName);
+			description.SetBinding(ExtendedLabel.TextProperty, GameMessageboxViewModel.TextPropertyName);
 
 			layout.Children.Add(description);
 

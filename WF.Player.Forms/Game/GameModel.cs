@@ -82,10 +82,10 @@ namespace WF.Player
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WF.Player.GameModel"/> class.
 		/// </summary>
-		/// <param name="cartridge">Cartridge handled by this instance.</param>
+		/// <param name="tag">CartridgeTag handled by this instance.</param>
 		public GameModel(CartridgeTag tag)
 		{
-			cartridgeTag = tag;
+			this.cartridgeTag = tag;
 		}
 
 		#endregion
@@ -176,12 +176,14 @@ namespace WF.Player
 		/// <summary>
 		/// Start this instance.
 		/// </summary>
+		/// <returns>The task.</returns>
+		/// <param name="savegame">Savegame object.</param> 
 		public async System.Threading.Tasks.Task StartAsync(CartridgeSavegame savegame = null)
 		{
 			App.CurrentPage.IsBusy = true;
 
 			// Create Engine
-			await this.CreateEngine(cartridgeTag.Cartridge);
+			await this.CreateEngine(this.cartridgeTag.Cartridge);
 
 			// If there is a valid savefile, than open it
 			if (savegame != null && File.Exists(Path.Combine(App.PathForSavegames, savegame.Filename)))
@@ -227,18 +229,19 @@ namespace WF.Player
 		/// <summary>
 		/// Save this instance.
 		/// </summary>
+		/// <param name="name">Comment for save file</param> 
 		public void Save(string name = "Ingame saving")
 		{
 			App.CurrentPage.IsBusy = true;
 
 			// Create a new savegame name for this cartridge tag
-			var cs = new CartridgeSavegame(cartridgeTag);
+			var cs = new CartridgeSavegame(this.cartridgeTag);
 
 			// Save game
 			this.engine.Save(new FileStream(cs.Filename, FileMode.Create), name);
 
 			// Add savegame, which is now in store, to cartridge tag
-			cartridgeTag.AddSavegame(cs);
+			this.cartridgeTag.AddSavegame(cs);
 
 			App.CurrentPage.IsBusy = false;
 		}
@@ -424,6 +427,7 @@ namespace WF.Player
 		/// <summary>
 		/// Shows the screen.
 		/// </summary>
+		/// <returns>The task.</returns>
 		/// <param name="screenType">Screen type.</param>
 		/// <param name="obj">Object to show.</param>
 		public async System.Threading.Tasks.Task ShowScreen(ScreenType screenType, object obj)
@@ -624,13 +628,13 @@ namespace WF.Player
 		{
 			if (this.logFile == null)
 			{
-				this.logFile = cartridgeTag.CreateLogFile();
-				this.logFile.MinimalLogLevel = logLevel;
+				this.logFile = this.cartridgeTag.CreateLogFile();
+				this.logFile.MinimalLogLevel = this.logLevel;
 			}
 
 			if (level <= this.logLevel)
 			{
-				this.logFile.TryWriteLogEntry(logLevel, message, engine);
+				this.logFile.TryWriteLogEntry(this.logLevel, message, this.engine);
 			}
 
 			// TODO: Remove
@@ -640,6 +644,7 @@ namespace WF.Player
 		/// <summary>
 		/// Creates the engine.
 		/// </summary>
+		/// <returns>The task.</returns>
 		/// <param name="cartridge">Cartridge handled by this instance.</param>
 		private async System.Threading.Tasks.Task CreateEngine(Cartridge cartridge)
 		{
@@ -671,11 +676,11 @@ namespace WF.Player
 			this.engine.ShowScreenRequested += this.OnShowScreen;
 			this.engine.ShowStatusTextRequested += this.OnShowStatusText;
 			this.engine.StopSoundsRequested += this.OnStopSound;
-			this.engine.PropertyChanged += OnPropertyChanged;
+			this.engine.PropertyChanged += this.OnPropertyChanged;
 
 			// Open logFile first time
-			this.logFile = cartridgeTag.CreateLogFile();
-			this.logFile.MinimalLogLevel = logLevel;
+			this.logFile = this.cartridgeTag.CreateLogFile();
+			this.logFile.MinimalLogLevel = this.logLevel;
 
 			await System.Threading.Tasks.Task.Run(() => this.engine.Init(new FileStream(Path.Combine(App.PathForCartridges, Path.GetFileName(cartridge.Filename)), FileMode.Open), cartridge));
 		}
@@ -700,7 +705,7 @@ namespace WF.Player
 				this.engine.ShowScreenRequested -= this.OnShowScreen;
 				this.engine.ShowStatusTextRequested -= this.OnShowStatusText;
 				this.engine.StopSoundsRequested -= this.OnStopSound;
-				this.engine.PropertyChanged -= OnPropertyChanged;
+				this.engine.PropertyChanged -= this.OnPropertyChanged;
 
 				this.engine.Stop();
 				this.engine.Reset();
@@ -748,7 +753,7 @@ namespace WF.Player
 		{
 			if (this.engine != null && e != null && e.Position != null)
 			{
-				this.engine.RefreshLocation(e.Position.Latitude, e.Position.Longitude, (double)e.Position.Altitude, (double)e.Position.Accuracy);
+				System.Threading.Tasks.Task.Run(() => this.engine.RefreshLocation(e.Position.Latitude, e.Position.Longitude, (double)e.Position.Altitude, (double)e.Position.Accuracy));
 			}
 		}
 
@@ -757,11 +762,8 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="sender">Sender of event.</param>
 		/// <param name="e">Property changed event arguments.</param>
-		void OnPropertyChanged (object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
-			// TODO: Remove
-			Console.WriteLine("Property changed: {0}", e.PropertyName);
-
 			if (e.PropertyName.Equals("IsBusy"))
 			{
 				App.CurrentPage.IsBusy = this.engine.IsBusy;

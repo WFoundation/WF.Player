@@ -86,7 +86,7 @@ namespace WF.Player
 						Command = new Command((parameter) => KeyClick(t.Command, parameter)),
 						CommandParameter = (t is ToolTextButton) ? ((ToolTextButton)t).Text : null,
 						#if __IOS__
-						Font = Font.SystemFontOfSize(App.Prefs.TextSize * 0.8f),
+						Font = Font.SystemFontOfSize(20),
 						#endif
 					};
 

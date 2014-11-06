@@ -267,6 +267,10 @@ namespace WF.Player
 
 		#region ButtonClicked
 
+		/// <summary>
+		/// Gets the button clicked command for text input "Ok" button.
+		/// </summary>
+		/// <value>The button clicked command.</value>
 		public Xamarin.Forms.Command ButtonClicked
 		{
 			get
@@ -366,7 +370,7 @@ namespace WF.Player
 						});
 				}
 
-				cfg.Add(Catalog.GetString("Cancel"), () => App.Click());
+				cfg.Add(Catalog.GetString("Cancel"), App.Click);
 
 				DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
 			}

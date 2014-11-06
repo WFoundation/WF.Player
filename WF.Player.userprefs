@@ -1,11 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone von Dirk Weltz" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.iOS/Services/Device/Measure.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Game/GameMessageboxViewModel.cs">
     <Files>
-      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/Engines/Engine.cs" Line="12" Column="12" />
+      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="172" Column="172" />
+      <File FileName="WF.Player.Core/Core/Engines/Engine.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameCheckLocationViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Models/CartridgeStore.cs" Line="59" Column="59" />
+      <File FileName="WF.Player.Forms/Models/CartridgeStore.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Models/Providers/ICartridgeProvider.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Models/CartridgeTag.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Common/BottomBarPage.cs" Line="1" Column="1" />
@@ -19,17 +19,19 @@
       <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Controls/GameToolBarButton.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Common/BasePage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Device/Measure.cs" Line="17" Column="17" />
-      <File FileName="WF.Player.iOS/Renderer/CustomButtonRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Services/Device/Measure.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Renderer/CustomButtonRenderer.cs" Line="54" Column="54" />
+      <File FileName="WF.Player.Forms/Controls/BadgeImage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Controls/HtmlLabel.cs" Line="34" Column="34" />
+      <File FileName="WF.Player.iOS/Renderer/HtmlLabelRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameMessageboxView.cs" Line="79" Column="79" />
+      <File FileName="WF.Player.Forms/Game/GameMessageboxViewModel.cs" Line="133" Column="133" />
+      <File FileName="WF.Player.Core/Core/Utils/MarkdownSharp.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" Line="13" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/Game/GameDetailViewModel.cs" line="681" column="1" />
-      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/Common/ToolBarPage.cs" line="158" column="1" />
-      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/Common/ToolBarPage.cs" line="134" column="1" />
-      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.iOS/Services/Device/Measure.cs" line="41" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="WF.Player.Android/Renderer/DirectionViewRenderer.cs" line="53" offsetX="342" offsetY="540" expression="_view.Parent" liveUpdate="False" />

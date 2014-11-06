@@ -1,4 +1,4 @@
-﻿// <copyright file="Measure.cs" company="Wherigo Foundation">
+﻿// <copyright file="HtmlLabel.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 //   Copyright (C) 2012-2014  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
@@ -16,31 +16,36 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-using System;
-using Xamarin.Forms;
-using WF.Player.Services.Device;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
 
-[assembly: Dependency(typeof(WF.Player.iOS.Services.Device.Measure))]
-
-namespace WF.Player.iOS.Services.Device
+namespace WF.Player.Controls
 {
-	public class Measure : IMeasure
+	using System;
+	using Xamarin.Forms;
+	using System.Text.RegularExpressions;
+
+	/// <summary>
+	/// Label, capable of displaying text with html tags.
+	/// </summary>
+	public class ExtendedLabel : Label
 	{
-		private static UIButton button;
-		private static float textSize = 20f;
+		#region Properties
 
-		public float ButtonTextSize(string text)
+		#region TextExt
+
+		/// <summary>
+		/// Gets the extended text (html code).
+		/// </summary>
+		/// <value>The html code.</value>
+		public string TextExt
 		{
-			if (button == null) {
-				button = new UIButton();
-				button.Font = UIFont.SystemFontOfSize((float)App.Prefs.TextSize * 0.8f);
+			get
+			{
+				return ConverterToHtml.FromMarkdown(Text);
 			}
-
-			NSString nsText = new NSString(text);
-			return nsText.GetSizeUsingAttributes(new UIStringAttributes() { Font = UIFont.SystemFontOfSize(textSize) }).Width + button.ContentEdgeInsets.Left + button.ContentEdgeInsets.Right;
 		}
+
+		#endregion
+
+		#endregion
 	}
 }
-

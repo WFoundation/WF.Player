@@ -188,6 +188,7 @@ namespace WF.Player
 		/// Initializes a new instance of the <see cref="WF.Player.GameMainViewModel"/> class.
 		/// </summary>
 		/// <param name="gameModel">Game model.</param>
+		/// <param name="lastPage">Last page, which was displayed before game started.</param>
 		public GameMainViewModel(GameModel gameModel, Page lastPage = null)
 		{
 			this.gameModel = gameModel;
@@ -498,7 +499,9 @@ namespace WF.Player
 			get 
 			{
 				if (this.gameModel == null || this.gameModel.Cartridge == null)
+				{
 					return Catalog.GetString("Loading...");
+				}
 
 				if (IsYouSeeSelected)
 				{
@@ -666,15 +669,6 @@ namespace WF.Player
 
 		#region Methods
 
-		public void Init(GameModel gameModel)
-		{
-			this.gameModel = gameModel;
-
-			this.gameModel.DisplayChanged += OnDisplayChanged;
-
-			ActiveScreen = ScreenType.Locations;
-		}
-
 		/// <summary>
 		/// Handles the menu action.
 		/// </summary>
@@ -718,7 +712,6 @@ namespace WF.Player
 										App.CurrentPage = lastPage;
 									}
 								}
-
 							});
 					};
 					DependencyService.Get<IUserDialogService>().Prompt(cfg);

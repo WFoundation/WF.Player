@@ -94,8 +94,9 @@ namespace WF.Player
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WF.Player.GameCheckLocationViewModel"/> class.
 		/// </summary>
-		/// <param name="cartridge">Cartridge file.</param>
-		/// <param name="saveFilename">Save filename.</param>
+		/// <param name="tag">CartridgeTag to use.</param>
+		/// <param name="savegame">Savegame object to use for restore.</param>
+		/// <param name="lastPage">Info about which was the last page before call of check location</param>
 		public GameCheckLocationViewModel(CartridgeTag tag, CartridgeSavegame savegame = null, Page lastPage = null)
 		{
 			this.cartridgeTag = tag;
@@ -179,23 +180,6 @@ namespace WF.Player
 
 		#endregion
 
-		#region IsRunning
-
-		public bool IsRunning
-		{
-			get
-			{
-				return isRunning;
-			}
-
-			internal set
-			{
-				SetProperty<bool>(ref isRunning, value, IsRunningPropertyName);
-			}
-		}
-
-		#endregion
-
 		#endregion
 
 		#region Commands
@@ -212,8 +196,6 @@ namespace WF.Player
 			{
 				return new Xamarin.Forms.Command(async (sender) =>
 					{
-						IsRunning = true;
-
 						// Remove check location from screen 
 						await App.CurrentPage.Navigation.PopAsync();
 

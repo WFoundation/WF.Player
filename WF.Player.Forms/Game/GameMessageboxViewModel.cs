@@ -79,7 +79,7 @@ namespace WF.Player
 
 				// Update all views
 				#if __HTML__
-				NotifyPropertyChanged (HtmlSourcePropertyName);
+				NotifyPropertyChanged(HtmlSourcePropertyName);
 				#else
 				NotifyPropertyChanged(TextPropertyName);
 				NotifyPropertyChanged(ImageSourcePropertyName);

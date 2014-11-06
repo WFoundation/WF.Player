@@ -81,6 +81,7 @@ namespace WF.Player
 			};
 
 			list.ItemTemplate.SetBinding(TextCell.TextProperty, CartridgeStore.CartridgeNamePropertyName);
+			list.ItemTemplate.SetBinding(TextCell.TextColorProperty, "TextColor");
 			list.ItemTemplate.SetBinding(TextCell.DetailProperty, CartridgeStore.CartridgeAuthorNamePropertyName);
 			list.ItemSelected += (sender, e) =>
 			{

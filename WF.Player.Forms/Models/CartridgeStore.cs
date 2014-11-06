@@ -99,6 +99,15 @@ namespace WF.Player.Models
 
 		#region Properties
 
+		// TODO: Remove later
+		public Color TextColor
+		{
+			get
+			{
+				return App.Colors.Text;
+			}
+		}
+
 		/// <summary>
 		/// Gets a value indicating whether this instance is busy loading cartridges.
 		/// </summary>

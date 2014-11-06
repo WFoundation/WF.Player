@@ -116,6 +116,7 @@
     <Compile Include="Renderer\CustomButtonRenderer.cs" />
     <Compile Include="Services\Device\Measure.cs" />
     <Compile Include="Services\Utils\ImageTools.cs" />
+    <Compile Include="Renderer\ExtendedLabelRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
