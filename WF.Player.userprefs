@@ -1,13 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone von Dirk Weltz" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Game/GameMessageboxViewModel.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Droid/Resources/values/Strings.xml">
     <Files>
-      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="172" Column="172" />
+      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Core/Core/Engines/Engine.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameCheckLocationViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Models/CartridgeStore.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Models/Providers/ICartridgeProvider.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Models/CartridgeTag.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Common/BottomBarPage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Common/ToolBarPage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameInputView.cs" Line="1" Column="1" />
@@ -20,14 +18,28 @@
       <File FileName="WF.Player.Forms/Controls/GameToolBarButton.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Common/BasePage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Services/Device/Measure.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/CustomButtonRenderer.cs" Line="54" Column="54" />
+      <File FileName="WF.Player.iOS/Renderer/CustomButtonRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Controls/BadgeImage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Controls/HtmlLabel.cs" Line="34" Column="34" />
-      <File FileName="WF.Player.iOS/Renderer/HtmlLabelRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMessageboxView.cs" Line="79" Column="79" />
-      <File FileName="WF.Player.Forms/Game/GameMessageboxViewModel.cs" Line="133" Column="133" />
-      <File FileName="WF.Player.Core/Core/Utils/MarkdownSharp.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" Line="13" Column="13" />
+      <File FileName="WF.Player.Forms/Controls/ExtendedLabel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameMessageboxView.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameDetailView.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameMainCellViewModel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameMainCellView.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Settings.bundle/Localisation.plist" />
+      <File FileName="WF.Player.iOS/Settings.bundle/Acknowledge.plist" />
+      <File FileName="WF.Player.Droid/Resources/values-de/strings.xml" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Resources/values-de/vernacular_strings.xml" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Resources/values/Strings.xml" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Renderer/CustomNavigationRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/MainActivity.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Resources/drawable/SplashScaled.xml" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/App.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Resources/Resource.designer.cs" Line="1" Column="1" />
+      <File FileName="../Vernacular/Vernacular.Catalog/Vernacular/FieldReflectionResourceCatalog.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

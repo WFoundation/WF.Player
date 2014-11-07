@@ -18,7 +18,6 @@
 
 namespace WF.Player
 {
-	using System;
 	using Vernacular;
 	using Xamarin.Forms;
 
@@ -73,7 +72,7 @@ namespace WF.Player
 
 			var coordinates = new Label() 
 			{
-				Text = string.Format(Catalog.GetString("Current Coordinates\n{0}"), Catalog.GetString("unknown")),
+				Text = string.Format(Catalog.GetString("Current Coordinates\n{0}"), Catalog.GetString("Unknown")),
 				TextColor = App.Colors.Text,
 				BackgroundColor = Color.Transparent,
 				LineBreakMode = LineBreakMode.WordWrap,
@@ -86,7 +85,7 @@ namespace WF.Player
 
 			var accuracy = new Label() 
 			{
-				Text = string.Format(Catalog.GetString("Current Accuracy\n{0}"), Catalog.GetString("unknown")),
+				Text = string.Format(Catalog.GetString("Current Accuracy\n{0}"), Catalog.GetString("Unknown")),
 				TextColor = App.Colors.Text,
 				BackgroundColor = Color.Transparent,
 				LineBreakMode = LineBreakMode.WordWrap,

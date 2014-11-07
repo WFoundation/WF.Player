@@ -18,9 +18,7 @@
 
 namespace WF.Player
 {
-	using System;
 	using WF.Player.Controls;
-	using WF.Player.Services;
 	using Xamarin.Forms;
 
 	/// <summary>

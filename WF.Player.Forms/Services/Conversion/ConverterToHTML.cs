@@ -21,7 +21,6 @@ namespace WF.Player
 	using System;
 	using System.Text;
 	using WF.Player.Core;
-	using WF.Player.Core.Engines;
 	using Xamarin.Forms;
 
 	/// <summary>

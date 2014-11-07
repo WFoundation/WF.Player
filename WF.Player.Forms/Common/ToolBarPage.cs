@@ -18,7 +18,6 @@
 
 namespace WF.Player
 {
-	using System;
 	using System.Collections.ObjectModel;
 	using WF.Player.Services.Device;
 	using Xamarin.Forms;

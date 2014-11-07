@@ -18,11 +18,8 @@
 
 namespace WF.Player
 {
-	using System;
 	using Vernacular;
-	using WF.Player.Core;
 	using WF.Player.Models;
-	using WF.Player.Services;
 	using WF.Player.Services.Geolocation;
 	using Xamarin.Forms;
 

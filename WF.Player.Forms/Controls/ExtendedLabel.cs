@@ -19,9 +19,7 @@
 
 namespace WF.Player.Controls
 {
-	using System;
 	using Xamarin.Forms;
-	using System.Text.RegularExpressions;
 
 	/// <summary>
 	/// Label, capable of displaying text with html tags.

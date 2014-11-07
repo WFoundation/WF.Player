@@ -42,9 +42,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Vernacular.Catalog">
-      <HintPath>..\Libraries\Vernacular.Catalog.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.v13">
       <HintPath>..\packages\Xamarin.Android.Support.v13.20.0.0.4\lib\MonoAndroid32\Xamarin.Android.Support.v13.dll</HintPath>
     </Reference>
@@ -86,6 +83,9 @@
     </Reference>
     <Reference Include="Xamarin.Insights">
       <HintPath>..\packages\Xamarin.Insights.1.7.3.98\lib\MonoAndroid10\Xamarin.Insights.dll</HintPath>
+    </Reference>
+    <Reference Include="Vernacular.Catalog.Android">
+      <HintPath>..\Libraries\Vernacular.Catalog.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +185,10 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\IconAltitudeDark.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\IconAltitudeLight.png" />
     <AndroidResource Include="Resources\drawable\IconEmpty.png" />
+    <AndroidResource Include="Resources\values-de\strings.xml" />
+    <AndroidResource Include="Resources\values-de\vernacular_strings.xml" />
+    <AndroidResource Include="Resources\values-en\strings.xml" />
+    <AndroidResource Include="Resources\values-en\vernacular_strings.xml" />
   </ItemGroup>
   <Import Project="..\WF.Player.Common\WF.Player.Common.projitems" Label="Shared" Condition="Exists('..\WF.Player.Common\WF.Player.Common.projitems')" />
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
@@ -201,6 +205,8 @@
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Preferences\" />
     <Folder Include="Services\Utils\" />
+    <Folder Include="Resources\values-de\" />
+    <Folder Include="Resources\values-en\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidNativeLibrary Include="lib\armeabi\liblua5.1.so" />

@@ -18,11 +18,9 @@
 
 namespace WF.Player
 {
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Threading;
 	using Acr.XamForms.UserDialogs;
+	using System;
+	using System.IO;
 	using Vernacular;
 	using WF.Player.Core;
 	using Xamarin.Forms;

@@ -17,19 +17,15 @@
 /// 
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
+using Google.Maps;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using Google.Maps;
 using Vernacular;
-using Xamarin.Forms;
 using WF.Player.Core;
 using WF.Player.Core.Formats;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using System.Threading.Tasks;
 
 namespace WF.Player.iOS
 {

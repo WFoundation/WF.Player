@@ -18,12 +18,10 @@
 
 namespace WF.Player
 {
-	using System;
-	using System.Collections.ObjectModel;
-	using System.IO;
-	using System.Text;
-	using System.Threading;
 	using Acr.XamForms.UserDialogs;
+	using System;
+	using System.IO;
+	using System.Threading;
 	using WF.Player.Core;
 	using WF.Player.Core.Engines;
 	using WF.Player.Core.Formats;
@@ -41,11 +39,6 @@ namespace WF.Player
 		/// The cartridge tag.
 		/// </summary>
 		private CartridgeTag cartridgeTag;
-
-		/// <summary>
-		/// The game main view.
-		/// </summary>
-		private GameMainView gameMainView;
 
 		/// <summary>
 		/// The engine.

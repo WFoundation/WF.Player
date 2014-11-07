@@ -101,11 +101,11 @@ namespace WF.Player
 
 			var listSource = new List<MenuEntry>() 
 			{
-				new MenuEntry("Description", App.Colors.Text, HandleDescriptionClicked),
-				new MenuEntry("Details", App.Colors.Text, HandleDetailsClicked),
-				new MenuEntry("Attributes", App.Colors.Text, HandleAttributesClicked),
-				new MenuEntry("History", App.Colors.Text, HandleHistoryClicked),
-				new MenuEntry("Logs", App.Colors.Text, HandleLogsClicked),
+				new MenuEntry(Catalog.GetString("Description"), App.Colors.Text, HandleDescriptionClicked),
+				new MenuEntry(Catalog.GetString("Details"), App.Colors.Text, HandleDetailsClicked),
+				new MenuEntry(Catalog.GetString("Attributes"), App.Colors.Text, HandleAttributesClicked),
+				new MenuEntry(Catalog.GetString("History"), App.Colors.Text, HandleHistoryClicked),
+				new MenuEntry(Catalog.GetString("Logs"), App.Colors.Text, HandleLogsClicked),
 			};
 
 			var list = new ListView() 

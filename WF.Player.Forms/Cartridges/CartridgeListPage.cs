@@ -18,10 +18,7 @@
 
 namespace WF.Player
 {
-	using System;
 	using Vernacular;
-	using WF.Player.Core;
-	using WF.Player.Core.Live;
 	using WF.Player.Models;
 	using Xamarin.Forms;
 
@@ -60,7 +57,7 @@ namespace WF.Player
 
 			// Only show settings, if device is Android
 			#if __ANDROID__
-			this.ToolbarItems.Add(new ToolbarItem("Settings", null, () =>
+			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Settings"), null, () =>
 					{
 						DependencyService.Get<IPreferencesView>().Show();
 					}, ToolbarItemOrder.Secondary));
