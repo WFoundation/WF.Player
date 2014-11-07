@@ -69,6 +69,8 @@ namespace WF.Player.Droid
 
 			// Set default page for this activity
 			SetPage (App.GetMainPage ());
+
+			this.Window.DecorView.KeepScreenOn = true;
 		}
 
 		/// <summary>

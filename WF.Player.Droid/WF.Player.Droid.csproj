@@ -126,7 +126,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
-    <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
     <AndroidResource Include="Resources\drawable\IconAccuracyDark.png" />
     <AndroidResource Include="Resources\drawable\IconAccuracyLight.png" />
@@ -146,7 +145,6 @@
     <AndroidResource Include="Resources\drawable\HomeIcon.png" />
     <AndroidResource Include="Resources\layout\PreferencesView.axml" />
     <AndroidResource Include="Resources\values\array.xml" />
-    <AndroidResource Include="Resources\values\Style.xml" />
     <AndroidResource Include="Resources\drawable\SplashScaled.xml" />
     <AndroidResource Include="Resources\drawable\Splash.png" />
     <AndroidResource Include="Resources\drawable-ldpi\IconPlay.png" />
@@ -189,6 +187,8 @@
     <AndroidResource Include="Resources\values-de\vernacular_strings.xml" />
     <AndroidResource Include="Resources\values-en\strings.xml" />
     <AndroidResource Include="Resources\values-en\vernacular_strings.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\style.xml" />
   </ItemGroup>
   <Import Project="..\WF.Player.Common\WF.Player.Common.projitems" Label="Shared" Condition="Exists('..\WF.Player.Common\WF.Player.Common.projitems')" />
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />

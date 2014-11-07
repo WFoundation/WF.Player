@@ -99,6 +99,9 @@ namespace WF.Player.iOS
 				},
 			};
 
+			// Screen always on when app is running
+			UIApplication.SharedApplication.IdleTimerDisabled = true;
+
 			// Set Google Maps API Key
 			MapServices.ProvideAPIKey (MapsApiKey);
 
