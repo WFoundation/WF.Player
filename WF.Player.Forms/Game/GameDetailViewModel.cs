@@ -482,10 +482,21 @@ namespace WF.Player
 				UpdateHasDirection();
 			}
 
+			#if __HTML__
+
 			if (e.PropertyName == "Description" || e.PropertyName == "Image")
 			{
 				NotifyPropertyChanged(HtmlSourcePropertyName);
 			}
+
+			#else
+
+			if (e.PropertyName == "Media")
+			{
+				NotifyPropertyChanged(ImageSourcePropertyName);
+			}
+
+			#endif
 
 			// Update in all other cases
 			NotifyPropertyChanged(e.PropertyName);
