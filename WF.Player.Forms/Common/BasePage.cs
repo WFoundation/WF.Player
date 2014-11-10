@@ -18,6 +18,7 @@
 
 namespace WF.Player
 {
+	using System;
 	using Xamarin.Forms;
 
 	/// <summary>
@@ -79,7 +80,7 @@ namespace WF.Player
 
 			base.OnAppearing();
 
-			IsBusy = false;
+			App.Click();
 
 			if (BindingContext is BaseViewModel)
 			{
@@ -92,8 +93,6 @@ namespace WF.Player
 		/// </summary>
 		protected override void OnDisappearing()
 		{
-			IsBusy = false;
-
 			base.OnDisappearing();
 
 			if (BindingContext is BaseViewModel)

@@ -15,10 +15,11 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using Vernacular;
 
 namespace WF.Player
 {
-	using Vernacular;
+	using System;
 	using WF.Player.Controls;
 	using Xamarin.Forms;
 
@@ -87,13 +88,13 @@ namespace WF.Player
 
 			layout.Children.Add(image);
 
-			var description = new ExtendedLabel() 
+			var description = new Label() 
 				{
 					TextColor = App.Colors.Text,
 					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
 					XAlign = App.Prefs.TextAlignment,
 				};
-			description.SetBinding(ExtendedLabel.TextProperty, GameMessageboxViewModel.TextPropertyName);
+			description.SetBinding(Label.TextProperty, GameMessageboxViewModel.TextPropertyName);
 
 			layout.Children.Add(description);
 
@@ -107,7 +108,7 @@ namespace WF.Player
 				{
 					Orientation = StackOrientation.Horizontal,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
-					Padding = Device.OnPlatform(6, 2, 2),
+					Padding = Device.OnPlatform(10, 4, 4),
 				};
 
 			var entry = new Entry 
@@ -115,7 +116,6 @@ namespace WF.Player
 					Placeholder = "Answer",
 					#if __IOS__
 					BackgroundColor = Color.FromRgb(223, 223, 223),
-					TextColor = App.Colors.Tint,
 					#endif
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 				};

@@ -18,7 +18,9 @@
 
 namespace WF.Player
 {
+	using System;
 	using WF.Player.Controls;
+	using WF.Player.Services;
 	using Xamarin.Forms;
 
 	/// <summary>
@@ -76,13 +78,13 @@ namespace WF.Player
 
 			layout.Children.Add(image);
 
-			var description = new ExtendedLabel() 
+			var description = new Label() 
 			{
 				TextColor = App.Colors.Text,
 				Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
 				XAlign = App.Prefs.TextAlignment,
 			};
-			description.SetBinding(ExtendedLabel.TextProperty, GameMessageboxViewModel.TextPropertyName);
+			description.SetBinding(Label.TextProperty, GameMessageboxViewModel.TextPropertyName);
 
 			layout.Children.Add(description);
 

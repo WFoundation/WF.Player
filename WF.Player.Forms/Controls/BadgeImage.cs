@@ -18,6 +18,7 @@
 
 namespace WF.Player.Controls
 {
+	using System;
 	using Xamarin.Forms;
 
 	/// <summary>

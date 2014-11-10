@@ -18,7 +18,10 @@
 
 namespace WF.Player
 {
+	using System;
 	using Vernacular;
+	using WF.Player.Core;
+	using WF.Player.Core.Live;
 	using WF.Player.Models;
 	using Xamarin.Forms;
 
@@ -57,7 +60,7 @@ namespace WF.Player
 
 			// Only show settings, if device is Android
 			#if __ANDROID__
-			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Settings"), null, () =>
+			this.ToolbarItems.Add(new ToolbarItem("Settings", null, () =>
 					{
 						DependencyService.Get<IPreferencesView>().Show();
 					}, ToolbarItemOrder.Secondary));
@@ -78,7 +81,6 @@ namespace WF.Player
 			};
 
 			list.ItemTemplate.SetBinding(TextCell.TextProperty, CartridgeStore.CartridgeNamePropertyName);
-			list.ItemTemplate.SetBinding(TextCell.TextColorProperty, "TextColor");
 			list.ItemTemplate.SetBinding(TextCell.DetailProperty, CartridgeStore.CartridgeAuthorNamePropertyName);
 			list.ItemSelected += (sender, e) =>
 			{

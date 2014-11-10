@@ -18,6 +18,7 @@
 
 namespace WF.Player
 {
+	using System;
 	using System.Collections.ObjectModel;
 	using WF.Player.Services.Device;
 	using Xamarin.Forms;
@@ -85,7 +86,7 @@ namespace WF.Player
 						Command = new Command((parameter) => KeyClick(t.Command, parameter)),
 						CommandParameter = (t is ToolTextButton) ? ((ToolTextButton)t).Text : null,
 						#if __IOS__
-						Font = Font.SystemFontOfSize(20),
+						Font = Font.SystemFontOfSize(App.Prefs.TextSize * 0.8f),
 						#endif
 					};
 
@@ -119,24 +120,14 @@ namespace WF.Player
 				}
 			}
 
-			if (buttons.Count == 0 || buttons[0] is ToolIconButton)
+			if (buttons.Count <= 1 || buttons[0] is ToolIconButton)
 			{
-				// If the first button is an icon, than we are ready
 				return;
 			}
 
-			if (buttons.Count == 1)
-			{
-				// We only have one button, so set width to maximum width 
-				buttons[0].Button.WidthRequest = BottomLayout.Width;
-				return;
-			}
+			// So now we know, that we have more than one text buttons, so calc correct size
 
-			// So, now we know, that we have more than one text button, so calc correct size for buttons
-
-			double deviceSpace = Device.OnPlatform<double>(15, 0, 0);
-
-			// Calc whole width of text on all buttons
+			// Calc whole size of text on all buttons
 			double sumTextWidth = 0;
 			foreach (ToolButton t in buttons)
 			{
@@ -158,41 +149,21 @@ namespace WF.Player
 			// We have text buttons in the toolbar, so use a relative layout instead of the stack layout
 			BottomLayout.Children.Add(relativeLayout);
 
-			double sumButtonWidth = 0;
-			double maxWidth = BottomLayout.Width - ((buttons.Count - 1) * BottomLayout.Spacing);
-
-			// Get max width of all buttons, so we could calc spacing between them
-			foreach (ToolButton t in buttons)
-			{
-				double textWidth = DependencyService.Get<IMeasure>().ButtonTextSize(((ToolTextButton)t).Text);
-				double width = (maxWidth * textWidth) / (sumTextWidth != 0 ? sumTextWidth : textWidth);
-				double buttonWidth = textWidth + deviceSpace < width ? textWidth + deviceSpace : width;
-
-				sumButtonWidth += buttonWidth;
-			}
-
-			double spacing = (maxWidth - sumButtonWidth) / (buttons.Count - 1) + BottomLayout.Spacing;
+			bool first = true;
+			double spacing = 6;
 			Button lastButton = null;
-			Button startButton = buttons[0].Button;
-			Button endButton = buttons[buttons.Count - 1].Button;
 
-			// We now have all relevant information, so we could place all buttons in relative layout
 			foreach (ToolButton t in buttons)
 			{
 				double textWidth = DependencyService.Get<IMeasure>().ButtonTextSize(((ToolTextButton)t).Text);
-				double width = (maxWidth * textWidth) / (sumTextWidth != 0 ? sumTextWidth : textWidth);
+				double width = ((BottomLayout.Width - ((buttons.Count - 1) * BottomLayout.Spacing)) * textWidth) / (sumTextWidth != 0 ? sumTextWidth : textWidth);
 
- 				t.Button.WidthRequest = textWidth + deviceSpace < width ? textWidth + deviceSpace : width;
+				t.Button.WidthRequest = width;
 
-				if (t.Button == startButton)
+				if (first)
 				{
-					t.Button.HorizontalOptions = LayoutOptions.Start;
+					first = false;
 					relativeLayout.Children.Add(t.Button, Constraint.Constant(0), Constraint.Constant(0));
-				}
-				else if (t.Button == endButton)
-				{
-					t.Button.HorizontalOptions = LayoutOptions.Start;
-					relativeLayout.Children.Add(t.Button, Constraint.RelativeToParent((parent) => { return parent.Width - t.Button.Width; }), Constraint.Constant(0));
 				}
 				else
 				{
@@ -212,7 +183,7 @@ namespace WF.Player
 		}
 
 		/// <summary>
-		/// Clicked on button.
+		/// Keies the click.
 		/// </summary>
 		/// <param name="command">Command to execute.</param>
 		/// <param name="parameter">Parameter for command.</param>

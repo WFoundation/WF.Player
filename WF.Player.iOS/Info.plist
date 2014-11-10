@@ -26,6 +26,8 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
@@ -48,11 +50,11 @@
 	<key>CFBundleDisplayName</key>
 	<string>WF.Player</string>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>6.0</string>
 	<key>CFBundleIdentifier</key>
 	<string>wfplayerios</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.6</string>
+	<string>0.5</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon</string>
@@ -67,6 +69,6 @@
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>9</string>
 </dict>
 </plist>

@@ -76,7 +76,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\ProgressAggregator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Utils\IImageTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AccessoryCell.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />
