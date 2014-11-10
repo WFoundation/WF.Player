@@ -374,7 +374,8 @@ border: none;
 		{
 //			markdown.Replace("<", "&lt;").Replace(">", "&gt;").Replace("\n", "<br>");
 
-			var html = markdownConverter.Transform(markdown);
+			// Because markdown interpretes linebreaks in a different way
+			var html = markdownConverter.Transform(markdown.Replace(@"\n", @"  \n"));
 
 			// Add style to html code
 			#if __IOS__

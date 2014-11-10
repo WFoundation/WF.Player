@@ -15,6 +15,8 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Core;
+using WF.Player.Core.Formats;
 
 namespace WF.Player
 {
@@ -371,6 +373,25 @@ namespace WF.Player
 
 			CurrentPage = page;
 
+//			// Check for autosave file
+//			var dir = new Acr.XamForms.Mobile.IO.Directory(App.PathForSavegames);
+//			var gwsFilename = dir.Files.First((f) => f.Name.Equals("autosave.gws")).FullName;
+//
+//			if (gwsFilename != null)
+//			{
+//				var gwsMetadata = GWS.LoadMetadata(new FileStream(gwsFilename, FileMode.Open));
+//				var gwcFilename = gwsMetadata.CartridgeName;
+//
+//				var cartridgeTag = new CartridgeTag(new Cartridge(filename.FullName));
+//				var cartridgeSave = new CartridgeSavegame();
+//
+//				cartridgeSave.
+//
+//				// We have a autosave file, so start this cartridge
+//				page.Navigation.PushAsync(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, cartridgeSave, App.CurrentPage)));
+//			}
+
+
 			return page;
 		}
 
@@ -397,6 +418,35 @@ namespace WF.Player
 			if (vibrate != null && Prefs.Get<bool>(DefaultPreferences.FeedbackVibrationKey))
 			{
 				vibrate.Vibrate(150);
+			}
+		}
+
+		#endregion
+
+		#region Events
+
+		public static void EnterBackground()
+		{
+			// Is there a game running?
+			if (App.Game != null && App.Game.GameState == WF.Player.Core.Engines.EngineGameState.Playing)
+			{
+				// Create an autosave file
+				App.Game.AutoSave();
+
+				// And pause the game
+				App.Game.Pause();
+			}
+		}
+
+		public static void EnterForeground()
+		{
+			if (App.Game != null)
+			{
+				// Delete autosave information
+				App.Game.AutoRemove();
+
+				// And resume game
+				App.Game.Resume();
 			}
 		}
 

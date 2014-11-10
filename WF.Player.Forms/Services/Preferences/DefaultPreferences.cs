@@ -28,6 +28,16 @@ namespace WF.Player.Services.Preferences
 		/// </summary>
 		public const string CartridgePathKey = "CartridgePath";
 
+		/// <summary>
+		/// Key for autosave file.
+		/// </summary>
+		public const string AutosaveGWSKey = "AutosaveGWS";
+
+		/// <summary>
+		/// Key for autosave file.
+		/// </summary>
+		public const string AutosaveGWCKey = "AutosaveGWC";
+
 		// Display
 
 		/// <summary>

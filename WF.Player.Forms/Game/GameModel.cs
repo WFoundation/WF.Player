@@ -28,6 +28,7 @@ namespace WF.Player
 	using WF.Player.Models;
 	using WF.Player.Services.Device;
 	using WF.Player.Services.Geolocation;
+	using WF.Player.Services.Preferences;
 	using Xamarin.Forms;
 
 	/// <summary>
@@ -223,7 +224,7 @@ namespace WF.Player
 		/// Save this instance.
 		/// </summary>
 		/// <param name="name">Comment for save file</param> 
-		public void Save(string name = "Ingame saving")
+		public CartridgeSavegame Save(string name = "Ingame saving", bool autosaving = false)
 		{
 			App.CurrentPage.IsBusy = true;
 
@@ -234,9 +235,14 @@ namespace WF.Player
 			this.engine.Save(new FileStream(cs.Filename, FileMode.Create), name);
 
 			// Add savegame, which is now in store, to cartridge tag
-			this.cartridgeTag.AddSavegame(cs);
+			if (!autosaving)
+			{
+				this.cartridgeTag.AddSavegame(cs);
+			}
 
 			App.CurrentPage.IsBusy = false;
+
+			return cs;
 		}
 
 		/// <summary>
@@ -245,6 +251,44 @@ namespace WF.Player
 		public void Stop()
 		{
 			this.DestroyEngine();
+		}
+
+		#endregion
+
+		#region Autosave
+
+		/// <summary>
+		/// Autosave the current game.
+		/// </summary>
+		public void AutoSave()
+		{
+			var cs = Save("Autosave", true);
+
+			App.Prefs.Set<string>(DefaultPreferences.AutosaveGWSKey, cs.Filename);
+			App.Prefs.Set<string>(DefaultPreferences.AutosaveGWCKey, cartridgeTag.Cartridge.Filename);
+		}
+
+		/// <summary>
+		/// Delete autosave information and file.
+		/// </summary>
+		public void AutoRemove()
+		{
+			if (App.Prefs.Get<string>(DefaultPreferences.AutosaveGWSKey) == string.Empty)
+			{
+				return;
+			}
+
+			// Delete files
+			var file = new Acr.XamForms.Mobile.IO.File(App.Prefs.Get<string>(DefaultPreferences.AutosaveGWSKey));
+
+			if (file.Exists)
+			{
+				file.Delete();
+			}
+
+			// Delete entries in preferences
+			App.Prefs.Set<string>(DefaultPreferences.AutosaveGWSKey, string.Empty);
+			App.Prefs.Set<string>(DefaultPreferences.AutosaveGWCKey, string.Empty);
 		}
 
 		#endregion

@@ -484,7 +484,7 @@ namespace WF.Player
 
 			#if __HTML__
 
-			if (e.PropertyName == "Description" || e.PropertyName == "Image")
+			if (e.PropertyName == "Description" || e.PropertyName == "Media")
 			{
 				NotifyPropertyChanged(HtmlSourcePropertyName);
 			}
