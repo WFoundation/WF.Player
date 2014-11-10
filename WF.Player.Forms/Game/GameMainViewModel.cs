@@ -18,14 +18,9 @@
 
 namespace WF.Player
 {
+	using Acr.XamForms.UserDialogs;
 	using System;
 	using System.Collections.Generic;
-	using System.Collections.ObjectModel;
-	using System.ComponentModel;
-	using System.IO;
-	using System.Runtime.CompilerServices;
-	using System.Text;
-	using Acr.XamForms.UserDialogs;
 	using Vernacular;
 	using WF.Player.Core;
 	using WF.Player.Core.Utils;
@@ -177,22 +172,27 @@ namespace WF.Player
 		/// </summary>
 		private int tasksNumber;
 
+		/// <summary>
+		/// The last page, which was visible before game started.
+		/// </summary>
+		private Page lastPage;
+
 		#region Constructor
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WF.Player.GameMainViewModel"/> class.
 		/// </summary>
 		/// <param name="gameModel">Game model.</param>
-		public GameMainViewModel(GameModel gameModel)
+		/// <param name="lastPage">Last page, which was displayed before game started.</param>
+		public GameMainViewModel(GameModel gameModel, Page lastPage = null)
 		{
 			this.gameModel = gameModel;
 			this.geoMathHelper = new GeoMathHelper();
+			this.lastPage = lastPage;
 
 			Position = App.GPS.LastKnownPosition;
 
-			ActiveScreen = ScreenType.Locations;
-
-			this.gameModel.DisplayChanged += HandleDisplayChanged;
+			this.gameModel.DisplayChanged += OnDisplayChanged;
 
 			IsBusy = true;
 		}
@@ -260,7 +260,7 @@ namespace WF.Player
 					}
 				}
 
-				HandleDisplayChanged();
+				OnDisplayChanged();
 			}
 		}
 
@@ -493,6 +493,11 @@ namespace WF.Player
 		{
 			get 
 			{
+				if (this.gameModel == null || this.gameModel.Cartridge == null)
+				{
+					return Catalog.GetString("Loading...");
+				}
+
 				if (IsYouSeeSelected)
 				{
 					return this.gameModel.Cartridge.EmptyYouSeeListText;
@@ -537,7 +542,7 @@ namespace WF.Player
 			set
 			{
 				SetProperty<int>(ref this.youSeeNumber, value, YouSeeNumberPropertyName);
-				HandleLayoutChanged();
+				OnLayoutChanged();
 			}
 		}
 
@@ -559,7 +564,7 @@ namespace WF.Player
 			set
 			{
 				SetProperty<int>(ref this.inventoryNumber, value, InventoryNumberPropertyName);
-				HandleLayoutChanged();
+				OnLayoutChanged();
 			}
 		}
 
@@ -581,7 +586,7 @@ namespace WF.Player
 			set
 			{
 				SetProperty<int>(ref this.tasksNumber, value, TasksNumberPropertyName);
-				HandleLayoutChanged();
+				OnLayoutChanged();
 			}
 		}
 
@@ -683,7 +688,7 @@ namespace WF.Player
 					cfg.Title = Catalog.GetString("Comment Savefile");
 					cfg.OnResult = (savegameResult) =>
 					{
-						Device.BeginInvokeOnMainThread(() =>
+						Device.BeginInvokeOnMainThread(async () =>
 							{
 								App.Click();
 								if (savegameResult.Ok)
@@ -695,8 +700,13 @@ namespace WF.Player
 
 									// Remove active screen
 									App.CurrentPage.Navigation.PopModalAsync();
-								}
 
+									// We do this, because Xamarin.Forms don't throw OnAppearing() when game NavigationPage is popped modal
+									if (lastPage != null)
+									{
+										App.CurrentPage = lastPage;
+									}
+								}
 							});
 					};
 					DependencyService.Get<IUserDialogService>().Prompt(cfg);
@@ -708,6 +718,12 @@ namespace WF.Player
 
 					// Remove active screen
 					App.CurrentPage.Navigation.PopModalAsync();
+
+					// We do this, because Xamarin.Forms don't throw OnAppearing() when game NavigationPage is popped modal
+					if (lastPage != null)
+					{
+						App.CurrentPage = lastPage;
+					}
 				}
 			}
 
@@ -737,8 +753,8 @@ namespace WF.Player
 		/// </summary>
 		public void Update()
 		{
-			HandleDisplayChanged();
-			HandleLayoutChanged();
+			OnDisplayChanged();
+			OnLayoutChanged();
 		}
 
 		/// <summary>
@@ -748,10 +764,10 @@ namespace WF.Player
 		{
 			base.OnAppearing();
 
-			App.GPS.PositionChanged += HandlePositionChanged;
-			App.GPS.HeadingChanged += HandlePositionChanged;
+			App.GPS.PositionChanged += OnPositionChanged;
+			App.GPS.HeadingChanged += OnPositionChanged;
 
-			HandleDisplayChanged(null, null);
+			OnDisplayChanged(null, null);
 		}
 
 		/// <summary>
@@ -761,8 +777,8 @@ namespace WF.Player
 		{
 			base.OnDisappearing();
 
-			App.GPS.HeadingChanged -= HandlePositionChanged;
-			App.GPS.PositionChanged -= HandlePositionChanged;
+			App.GPS.HeadingChanged -= OnPositionChanged;
+			App.GPS.PositionChanged -= OnPositionChanged;
 		}
 
 		#endregion
@@ -780,7 +796,7 @@ namespace WF.Player
 
 			ActiveScreen = screen;
 
-			HandleDisplayChanged();
+			OnDisplayChanged();
 		}
 
 		/// <summary>
@@ -793,7 +809,7 @@ namespace WF.Player
 
 			ActiveScreen = ScreenType.Map;
 
-			HandleLayoutChanged();
+			OnLayoutChanged();
 
 			// TODO
 			Console.WriteLine("Show map");
@@ -802,7 +818,7 @@ namespace WF.Player
 		/// <summary>
 		/// Handles the layout changed.
 		/// </summary>
-		private void HandleLayoutChanged()
+		private void OnLayoutChanged()
 		{
 			NotifyPropertyChanged(EmptyListTextPropertyName);
 			NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
@@ -815,7 +831,7 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="sender">Sender of event.</param>
 		/// <param name="e">Display changed event arguments.</param>
-		private void HandleDisplayChanged(object sender = null, DisplayChangedEventArgs e = null)
+		private void OnDisplayChanged(object sender = null, DisplayChangedEventArgs e = null)
 		{
 			if (e == null)
 			{
@@ -862,7 +878,7 @@ namespace WF.Player
 			bool hasListIcons = false;
 			bool hasDirections = false;
 
-			if (this.gameModel.GameState != WF.Player.Core.Engines.EngineGameState.Playing)
+			if (this.gameModel == null || this.gameModel.GameState != WF.Player.Core.Engines.EngineGameState.Playing)
 			{
 				return;
 			}
@@ -936,7 +952,7 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="sender">Sender of event.</param>
 		/// <param name="e">Position changed event arguments.</param>
-		private void HandlePositionChanged(object sender, PositionEventArgs e)
+		private void OnPositionChanged(object sender, PositionEventArgs e)
 		{
 			Position = e.Position;
 

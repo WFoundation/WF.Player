@@ -1,0 +1,42 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Game/GameModel.cs">
+    <Files>
+      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="55" Column="55" />
+      <File FileName="WF.Player.Core/Core/Engines/Engine.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameCheckLocationViewModel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Models/CartridgeStore.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Common/BottomBarPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Common/ToolBarPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Common/BasePage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/App.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Core/Formats/GWS.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/AppDelegate.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Services/Preferences/DefaultPreferences.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Models/CartridgeTag.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameMessageboxViewModel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Controls/ExtendedLabel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameMessageboxView.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Core/MessageBox.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Core/Utils/Extensions.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Core/Engines/WIGInternalImpl.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Eluant/Eluant/LuaRuntime.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameDetailViewModel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/Game/GameModel.cs" line="267" column="1" />
+      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/App.cs" line="446" column="1" />
+      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/App.cs" line="434" column="1" />
+      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/Game/GameModel.cs" line="674" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="WF.Player.Android/Renderer/DirectionViewRenderer.cs" line="53" offsetX="342" offsetY="540" expression="_view.Parent" liveUpdate="False" />
+    <Watch file="WF.Player.Forms/Game/GameModel.cs" line="427" offsetX="754" offsetY="6390" expression="obj.Name" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>

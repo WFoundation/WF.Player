@@ -93,9 +93,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="Vernacular.Catalog">
-      <HintPath>..\Libraries\Vernacular.Catalog.dll</HintPath>
-    </Reference>
     <Reference Include="GoogleMaps">
       <HintPath>..\Libraries\GoogleMaps.dll</HintPath>
     </Reference>
@@ -130,10 +127,13 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Insights">
-      <HintPath>..\packages\Xamarin.Insights.1.7.2.97\lib\MonoTouch10\Xamarin.Insights.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Insights.1.7.3.98\lib\MonoTouch10\Xamarin.Insights.dll</HintPath>
     </Reference>
     <Reference Include="PLCrashReporter">
-      <HintPath>..\packages\Xamarin.Insights.1.7.2.97\lib\MonoTouch10\PLCrashReporter.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Insights.1.7.3.98\lib\MonoTouch10\PLCrashReporter.dll</HintPath>
+    </Reference>
+    <Reference Include="Vernacular.Catalog.XamarinForms">
+      <HintPath>..\Libraries\Vernacular.Catalog.XamarinForms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -148,7 +148,6 @@
     <BundleResource Include="Resources\Icon-60%402x.png" />
     <BundleResource Include="Resources\Icon.png" />
     <BundleResource Include="Resources\Icon%402x.png" />
-    <BundleResource Include="Localization\de.lproj\Localizable.strings" />
     <BundleResource Include="Resources\IconPlay.png" />
     <BundleResource Include="Resources\IconPlay%402x.png" />
     <BundleResource Include="Resources\IconResume.png" />
@@ -180,6 +179,7 @@
     <BundleResource Include="Resources\Icon-Small.png" />
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\Icon-Small-40%402x.png" />
+    <BundleResource Include="Resources\de.lproj\Localizable.strings" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -211,6 +211,7 @@
     <Compile Include="Bootstrap\UserDialogsBootstrap.cs" />
     <Compile Include="Bootstrap\MobileBootstrap.cs" />
     <Compile Include="Services\Utils\ImageTools.cs" />
+    <Compile Include="Renderer\ExtendedLabelRenderer.cs" />
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="..\WF.Player.Common\WF.Player.Common.projitems" Label="Shared" Condition="Exists('..\WF.Player.Common\WF.Player.Common.projitems')" />
@@ -224,7 +225,6 @@
     <Folder Include="Services\Preferences\" />
     <Folder Include="Settings.bundle\Acknowledgements.xcassets\" />
     <Folder Include="Game\" />
-    <Folder Include="Localization\" />
     <Folder Include="Renderer\" />
     <Folder Include="Services\Core\" />
     <Folder Include="Services\Device\" />
@@ -232,6 +232,7 @@
     <Folder Include="Sounds\" />
     <Folder Include="Assets\" />
     <Folder Include="Services\Utils\" />
+    <Folder Include="Resources\de.lproj\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sounds\tap.aif" />

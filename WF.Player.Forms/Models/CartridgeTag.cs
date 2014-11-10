@@ -212,7 +212,7 @@ namespace WF.Player.Models
 			// Sanity check: a savegame with similar name should
 			// not exist.
 			CartridgeSavegame sameNameCS;
-			if ((sameNameCS = this.Savegames.SingleOrDefault(c => c.Metadata.SaveName == cs.Metadata.SaveName)) != null)
+			if ((sameNameCS = this.Savegames.SingleOrDefault(c => c.Metadata != null && cs.Metadata != null && c.Metadata.SaveName == cs.Metadata.SaveName)) != null)
 			{
 				System.Diagnostics.Debug.WriteLine("CartridgeTag: Removing savegame to make room for new one: " + sameNameCS.Metadata.SaveName);
 				

@@ -19,13 +19,10 @@ using System;
 
 using Android.App;
 using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-
-using Xamarin.Forms.Platform.Android;
 using Android.Preferences;
+using Vernacular;
+using Xamarin.Forms.Platform.Android;
 using WF.Player.Services.Preferences;
 
 
@@ -52,6 +49,8 @@ namespace WF.Player.Droid
 
 			base.OnCreate (bundle);
 
+			Catalog.Implementation = new AndroidCatalog (Resources, typeof (Resource.String));
+
 			#if __HOCKEYAPP__
 
 			//Register to with the Update Manager
@@ -70,6 +69,8 @@ namespace WF.Player.Droid
 
 			// Set default page for this activity
 			SetPage (App.GetMainPage ());
+
+			this.Window.DecorView.KeepScreenOn = true;
 		}
 
 		/// <summary>

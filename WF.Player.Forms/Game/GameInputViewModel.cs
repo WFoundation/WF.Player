@@ -18,11 +18,9 @@
 
 namespace WF.Player
 {
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Threading;
 	using Acr.XamForms.UserDialogs;
+	using System;
+	using System.IO;
 	using Vernacular;
 	using WF.Player.Core;
 	using Xamarin.Forms;
@@ -78,11 +76,6 @@ namespace WF.Player
 		public const string PlaceholderPropertyName = "Placeholder";
 
 		/// <summary>
-		/// The timer.
-		/// </summary>
-		private System.Threading.Timer timer;
-
-		/// <summary>
 		/// The input.
 		/// </summary>
 		private Input input;
@@ -109,13 +102,6 @@ namespace WF.Player
 
 			set
 			{
-				// Stop timer, if there is one
-				if (this.timer != null)
-				{
-					this.timer.Dispose();
-					this.timer = null;
-				}
-
 				// Set property
 				SetProperty<Input>(ref this.input, value, InputPropertyName);
 
@@ -279,6 +265,10 @@ namespace WF.Player
 
 		#region ButtonClicked
 
+		/// <summary>
+		/// Gets the button clicked command for text input "Ok" button.
+		/// </summary>
+		/// <value>The button clicked command.</value>
 		public Xamarin.Forms.Command ButtonClicked
 		{
 			get
@@ -317,14 +307,6 @@ namespace WF.Player
 		public override void OnDisappearing()
 		{
 			base.OnDisappearing();
-
-			if (this.timer == null)
-			{
-				return;
-			}
-
-			this.timer.Dispose();
-			this.timer = null;
 		}
 
 		#endregion
@@ -386,7 +368,7 @@ namespace WF.Player
 						});
 				}
 
-				cfg.Add(Catalog.GetString("Cancel"), () => App.Click());
+				cfg.Add(Catalog.GetString("Cancel"), App.Click);
 
 				DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
 			}

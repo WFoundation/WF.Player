@@ -19,7 +19,6 @@
 namespace WF.Player
 {
 	using System;
-	using System.Collections.Generic;
 	using System.IO;
 	using Acr.XamForms.UserDialogs;
 	using Vernacular;
@@ -262,7 +261,7 @@ namespace WF.Player
 
 				return ImageSource.FromStream(() => 
 					{
-						return new MemoryStream(ActiveObject.Image.Data);
+						return ActiveObject.Image != null ? new MemoryStream(ActiveObject.Image.Data) : null;
 					});
 			}
 		}
@@ -414,20 +413,6 @@ namespace WF.Player
 		{
 			base.OnAppearing();
 
-			// The object is set to not visible or not active or the container is null, than remove it from screen
-			if (!this.activeObject.Visible)
-			{
-				App.Game.ShowScreen(ScreenType.Last, null);
-				return;
-			}
-
-			// The object is a item or a character and the container is null, than remove it from screen
-			if (!(this.activeObject is Task) && !(this.activeObject is Zone) && ((Thing)this.activeObject).Container == null)
-			{
-				App.Game.ShowScreen(ScreenType.Last, null);
-				return;
-			}
-
 			App.GPS.PositionChanged += HandlePositionChanged;
 			App.GPS.HeadingChanged += HandlePositionChanged;
 
@@ -497,10 +482,21 @@ namespace WF.Player
 				UpdateHasDirection();
 			}
 
-			if (e.PropertyName == "Description" || e.PropertyName == "Image")
+			#if __HTML__
+
+			if (e.PropertyName == "Description" || e.PropertyName == "Media")
 			{
 				NotifyPropertyChanged(HtmlSourcePropertyName);
 			}
+
+			#else
+
+			if (e.PropertyName == "Media")
+			{
+				NotifyPropertyChanged(ImageSourcePropertyName);
+			}
+
+			#endif
 
 			// Update in all other cases
 			NotifyPropertyChanged(e.PropertyName);

@@ -17,19 +17,15 @@
 /// 
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
+using Google.Maps;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using Google.Maps;
 using Vernacular;
-using Xamarin.Forms;
 using WF.Player.Core;
 using WF.Player.Core.Formats;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using System.Threading.Tasks;
 
 namespace WF.Player.iOS
 {
@@ -103,19 +99,16 @@ namespace WF.Player.iOS
 				},
 			};
 
+			// Screen always on when app is running
+			UIApplication.SharedApplication.IdleTimerDisabled = true;
+
 			// Set Google Maps API Key
 			MapServices.ProvideAPIKey (MapsApiKey);
 
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
-			// Now create list for cartridges
-//			viewCartSelect = new CartridgeList(this);
-
-			// Add the cartridge view to the navigation controller
-			// (it'll be the top most screen)
-//			navCartSelect.PushViewController((UIViewController)viewCartSelect, false);
-
+			// Start Xamarin.Forms
 			Forms.Init ();
 
 			// Set default color for NavigationButtons
@@ -140,10 +133,20 @@ namespace WF.Player.iOS
 			return true;
 		}
 
+		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
+		/// <remarks>Application are allocated approximately 5 seconds to complete this method. Application developers should use this
+		/// time to save user data and tasks, and remove sensitive information from the screen.</remarks>
+		/// <altmember cref="M:MonoTouch.UIKit.UIApplicationDelegate.WillEnterForeground"></altmember>
+		/// <summary>
+		/// Dids the enter background.
+		/// </summary>
+		/// <param name="application">Application.</param>
 		public override void DidEnterBackground (UIApplication application)
 		{
 			// TODO: Delete
 			Console.WriteLine ("DidEnterBackground");
+
+			App.EnterBackground();
 
 //			// Save game before going into background
 //			if (screenCtrl != null && screenCtrl.Engine != null && screenCtrl.Engine.GameState == WF.Player.Core.Engines.EngineGameState.Playing) {
@@ -160,6 +163,8 @@ namespace WF.Player.iOS
 		{
 			// TODO: Delete
 			Console.WriteLine ("WillEnterForeground");
+
+			App.EnterForeground();
 
 //			if (screenCtrl != null && screenCtrl.Engine != null && screenCtrl.Engine.GameState == WF.Player.Core.Engines.EngineGameState.Paused) {
 //				// Resume engine, so we continue

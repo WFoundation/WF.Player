@@ -14,18 +14,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
-using WF.Player.iOS;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
-
-[assembly: ExportRendererAttribute(typeof(Button), typeof(CustomButtonRenderer))]
+[assembly: Xamarin.Forms.ExportRendererAttribute(typeof(Xamarin.Forms.Button), typeof(WF.Player.iOS.CustomButtonRenderer))]
 
 namespace WF.Player.iOS
 {
+	using System;
+	using MonoTouch.UIKit;
+	using Xamarin.Forms;
+	using Xamarin.Forms.Platform.iOS;
+
 	public class CustomButtonRenderer : ButtonRenderer
 	{
 		public CustomButtonRenderer()
@@ -41,12 +38,13 @@ namespace WF.Player.iOS
 			// If only an image is displayed, than move it to the center of button
 			if (String.IsNullOrEmpty (button.TitleLabel.Text) && button.ImageView.Image != null) {
 				button.ImageEdgeInsets = new UIEdgeInsets(0.0f, 10.0f, 0.0f, 0.0f);
+				button.TitleEdgeInsets = new UIEdgeInsets(0.0f, 0.0f, 0.0f, 0.0f);
 			} else {
 				button.ImageEdgeInsets = new UIEdgeInsets(0.0f, 0.0f, 0.0f, 0.0f);
+				button.TitleEdgeInsets = new UIEdgeInsets(0.0f, 0.0f, 0.0f, 0.0f);
 			}
 
 			button.TintColor = e.NewElement.IsEnabled ? App.Colors.Tint.ToUIColor () : Color.Black.ToUIColor();
-			button.TitleLabel.AdjustsFontSizeToFitWidth = true;
 		}
 
 		protected override void OnElementPropertyChanged (object sender, System.ComponentModel.PropertyChangedEventArgs e)

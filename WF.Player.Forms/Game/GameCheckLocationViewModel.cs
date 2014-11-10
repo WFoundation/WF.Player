@@ -18,11 +18,8 @@
 
 namespace WF.Player
 {
-	using System;
 	using Vernacular;
-	using WF.Player.Core;
 	using WF.Player.Models;
-	using WF.Player.Services;
 	using WF.Player.Services.Geolocation;
 	using Xamarin.Forms;
 
@@ -78,6 +75,11 @@ namespace WF.Player
 		private Position position;
 
 		/// <summary>
+		/// The last page, which was shown on the screen.
+		/// </summary>
+		private Page lastPage;
+
+		/// <summary>
 		/// The is running flag.
 		/// </summary>
 		private bool isRunning = false;
@@ -89,14 +91,16 @@ namespace WF.Player
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WF.Player.GameCheckLocationViewModel"/> class.
 		/// </summary>
-		/// <param name="cartridge">Cartridge file.</param>
-		/// <param name="saveFilename">Save filename.</param>
-		public GameCheckLocationViewModel(CartridgeTag tag, CartridgeSavegame savegame = null)
+		/// <param name="tag">CartridgeTag to use.</param>
+		/// <param name="savegame">Savegame object to use for restore.</param>
+		/// <param name="lastPage">Info about which was the last page before call of check location</param>
+		public GameCheckLocationViewModel(CartridgeTag tag, CartridgeSavegame savegame = null, Page lastPage = null)
 		{
 			this.cartridgeTag = tag;
 			this.savegame = savegame;
+			this.lastPage = lastPage;
 
-			App.GPS.PositionChanged += HandlePositionChanged;
+			App.GPS.PositionChanged += OnPositionChanged;
 			Position = App.GPS.LastKnownPosition;
 		}
 
@@ -173,23 +177,6 @@ namespace WF.Player
 
 		#endregion
 
-		#region IsRunning
-
-		public bool IsRunning
-		{
-			get
-			{
-				return isRunning;
-			}
-
-			internal set
-			{
-				SetProperty<bool>(ref isRunning, value, IsRunningPropertyName);
-			}
-		}
-
-		#endregion
-
 		#endregion
 
 		#region Commands
@@ -206,25 +193,31 @@ namespace WF.Player
 			{
 				return new Xamarin.Forms.Command(async (sender) =>
 					{
-						IsRunning = true;
-
 						// Remove check location from screen 
 						await App.CurrentPage.Navigation.PopAsync();
 
-						App.GPS.PositionChanged -= HandlePositionChanged;
+						App.GPS.PositionChanged -= OnPositionChanged;
 
 						// Create GameModel
 						App.Game = new GameModel(this.cartridgeTag);
 
+						// Create game main view with model
+						var gameMainViewModel = new GameMainViewModel(App.Game, this.lastPage);
+						var gameMainView = new GameMainView(gameMainViewModel);
+
+						// Create a new navigation page for the game
+						var navi = new NavigationPage(gameMainView);
+
+						navi.BarBackgroundColor = App.Colors.Bar;
+						navi.BarTextColor = App.Colors.BarText;
+
+						// Push main view to screen
+						await App.CurrentPage.Navigation.PushModalAsync(navi);
+
+						gameMainViewModel.Update();
+
 						// StartGame
-						if (this.savegame == null)
-						{
-							App.Game.Start();
-						} 
-						else
-						{
-							App.Game.Restore(this.savegame);
-						}
+						App.Game.StartAsync(this.savegame);
 					});
 			}
 		}
@@ -240,7 +233,7 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="sender">Sender of event.</param>
 		/// <param name="e">Position event args.</param>
-		private void HandlePositionChanged(object sender, PositionEventArgs e)
+		private void OnPositionChanged(object sender, PositionEventArgs e)
 		{
 			Position = e.Position;
 		}

@@ -18,7 +18,6 @@
 
 namespace WF.Player
 {
-	using System;
 	using Vernacular;
 	using Xamarin.Forms;
 
@@ -73,7 +72,7 @@ namespace WF.Player
 
 			var coordinates = new Label() 
 			{
-				Text = string.Empty,
+				Text = string.Format(Catalog.GetString("Current Coordinates\n{0}"), Catalog.GetString("Unknown")),
 				TextColor = App.Colors.Text,
 				BackgroundColor = Color.Transparent,
 				LineBreakMode = LineBreakMode.WordWrap,
@@ -86,7 +85,7 @@ namespace WF.Player
 
 			var accuracy = new Label() 
 			{
-				Text = string.Empty,
+				Text = string.Format(Catalog.GetString("Current Accuracy\n{0}"), Catalog.GetString("Unknown")),
 				TextColor = App.Colors.Text,
 				BackgroundColor = Color.Transparent,
 				LineBreakMode = LineBreakMode.WordWrap,
@@ -106,41 +105,42 @@ namespace WF.Player
 				Content = layout,
 			};
 
-			var relativeLayout = new RelativeLayout() 
-			{
-				VerticalOptions = LayoutOptions.FillAndExpand,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-			};
+//			var relativeLayout = new RelativeLayout() 
+//			{
+//				VerticalOptions = LayoutOptions.FillAndExpand,
+//				HorizontalOptions = LayoutOptions.FillAndExpand,
+//			};
 
-			((StackLayout)ContentLayout).Children.Add(relativeLayout);
+//			((StackLayout)ContentLayout).Children.Add(relativeLayout);
+			((StackLayout)ContentLayout).Children.Add(scrollLayout);
 
-			relativeLayout.Children.Add(
-				scrollLayout,
-				Constraint.Constant(0),
-				Constraint.Constant(0),
-				Constraint.RelativeToParent((parent) => { return parent.Width; }),
-				Constraint.RelativeToParent((parent) => { return parent.Height; }));
+//			relativeLayout.Children.Add(
+//				scrollLayout,
+//				Constraint.Constant(0),
+//				Constraint.Constant(0),
+//				Constraint.RelativeToParent((parent) => { return parent.Width; }),
+//				Constraint.RelativeToParent((parent) => { return parent.Height; }));
 
-
-			relativeLayout.Children.Add(
-				frame = new Frame()
-				{
-					BackgroundColor = Color.FromRgba(32, 32, 32, 240),
-					HorizontalOptions = LayoutOptions.FillAndExpand,
-					VerticalOptions = LayoutOptions.FillAndExpand,
-					Content = activity = new ActivityIndicator()
-					{
-						HorizontalOptions = LayoutOptions.Center,
-						VerticalOptions = LayoutOptions.Center,
-						IsRunning = true,
-					}
-				},
-				Constraint.Constant(-5),
-				Constraint.Constant(-5),
-				Constraint.RelativeToParent((parent) => { return parent.Width + 10; }),
-				Constraint.RelativeToParent((parent) => { return parent.Height + 10; }));
-
-			frame.SetBinding(Frame.IsVisibleProperty, GameCheckLocationViewModel.IsRunningPropertyName);
+//			relativeLayout.Children.Add(
+//				frame = new Frame()
+//				{
+//					BackgroundColor = Color.FromRgba(32, 32, 32, 240),
+//					HorizontalOptions = LayoutOptions.FillAndExpand,
+//					VerticalOptions = LayoutOptions.FillAndExpand,
+//					IsVisible = false,
+//					Content = activity = new ActivityIndicator()
+//					{
+//						HorizontalOptions = LayoutOptions.Center,
+//						VerticalOptions = LayoutOptions.Center,
+//						IsRunning = true,
+//					}
+//				},
+//				Constraint.Constant(-5),
+//				Constraint.Constant(-5),
+//				Constraint.RelativeToParent((parent) => { return parent.Width + 10; }),
+//				Constraint.RelativeToParent((parent) => { return parent.Height + 10; }));
+//
+//			frame.SetBinding(Frame.IsVisibleProperty, GameCheckLocationViewModel.IsRunningPropertyName);
 
 			Buttons.Add(new ToolTextButton(Catalog.GetString("Start anyway"), viewModel.StartCommand));
 

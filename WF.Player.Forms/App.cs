@@ -15,6 +15,8 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Core;
+using WF.Player.Core.Formats;
 
 namespace WF.Player
 {
@@ -355,34 +357,14 @@ namespace WF.Player
 		/// <returns>The main page.</returns>
 		public static Page GetMainPage()
 		{
-			Cartridges cartridges = null;
-
-			CartridgeStore store = new CartridgeStore();
-			store.SyncFromStore();
+			var cartridges = new CartridgeStore();
+			cartridges.SyncFromStore();
 
 			var cartridgePath = PathForCartridges;
 			var logPath = PathForLogs;
 
-			// Check, if path exists
-//			if (!string.IsNullOrEmpty(cartridgePath))
-//			{
-//				cartridges = new Cartridges();
-//
-//				FileInfo[] cartridgeFiles = new DirectoryInfo(cartridgePath).GetFiles("*.gwc");
-//
-//				List<string> fileList = new List<string>(); 
-//
-//				foreach (FileInfo fileInfo in cartridgeFiles)
-//				{
-//					fileList.Add(fileInfo.FullName);
-//				}
-//
-//				// Fill cartridge list with files from local store
-//				cartridges.GetByFileList(fileList);
-//			}
-
 			// Create content page for cartridge list
-			var page = new NavigationPage(new CartridgeListPage(store)) 
+			var page = new NavigationPage(new CartridgeListPage(cartridges)) 
 				{
 					BackgroundColor = App.Colors.Background,
 					BarTextColor = App.Colors.BarText,
@@ -390,6 +372,25 @@ namespace WF.Player
 				};
 
 			CurrentPage = page;
+
+//			// Check for autosave file
+//			var dir = new Acr.XamForms.Mobile.IO.Directory(App.PathForSavegames);
+//			var gwsFilename = dir.Files.First((f) => f.Name.Equals("autosave.gws")).FullName;
+//
+//			if (gwsFilename != null)
+//			{
+//				var gwsMetadata = GWS.LoadMetadata(new FileStream(gwsFilename, FileMode.Open));
+//				var gwcFilename = gwsMetadata.CartridgeName;
+//
+//				var cartridgeTag = new CartridgeTag(new Cartridge(filename.FullName));
+//				var cartridgeSave = new CartridgeSavegame();
+//
+//				cartridgeSave.
+//
+//				// We have a autosave file, so start this cartridge
+//				page.Navigation.PushAsync(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, cartridgeSave, App.CurrentPage)));
+//			}
+
 
 			return page;
 		}
@@ -417,6 +418,35 @@ namespace WF.Player
 			if (vibrate != null && Prefs.Get<bool>(DefaultPreferences.FeedbackVibrationKey))
 			{
 				vibrate.Vibrate(150);
+			}
+		}
+
+		#endregion
+
+		#region Events
+
+		public static void EnterBackground()
+		{
+			// Is there a game running?
+			if (App.Game != null && App.Game.GameState == WF.Player.Core.Engines.EngineGameState.Playing)
+			{
+				// Create an autosave file
+				App.Game.AutoSave();
+
+				// And pause the game
+				App.Game.Pause();
+			}
+		}
+
+		public static void EnterForeground()
+		{
+			if (App.Game != null)
+			{
+				// Delete autosave information
+				App.Game.AutoRemove();
+
+				// And resume game
+				App.Game.Resume();
 			}
 		}
 

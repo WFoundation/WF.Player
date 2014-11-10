@@ -18,8 +18,6 @@
 
 namespace WF.Player
 {
-	using System;
-	using System.Collections.Generic;
 	using Acr.XamForms.UserDialogs;
 	using Vernacular;
 	using WF.Player.Controls;
