@@ -658,13 +658,13 @@ namespace WF.Player
 				return;
 			}
 
-			if (!(App.CurrentPage is GameDetailView))
+			if (!(App.GameNavigation.CurrentPage is GameDetailView))
 			{
 				return;
 			}
 
 			// Get active view
-			var view = (GameDetailView)App.CurrentPage;
+			var view = (GameDetailView)App.GameNavigation.CurrentPage;
 
 			view.Buttons.Clear();
 

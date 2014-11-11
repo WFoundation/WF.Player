@@ -80,9 +80,14 @@ namespace WF.Player
 		#region Properties
 
 		/// <summary>
-		/// Gets or sets the current page on screen.
+		/// Navigation page for outside of game navigation.
 		/// </summary>
-		public static Page CurrentPage { get; set; }
+		public static NavigationPage Navigation;
+
+		/// <summary>
+		/// Navigation page for inside of game navigation.
+		/// </summary>
+		public static NavigationPage GameNavigation;
 
 		/// <summary>
 		/// Gets or sets the game.
@@ -364,14 +369,12 @@ namespace WF.Player
 			var logPath = PathForLogs;
 
 			// Create content page for cartridge list
-			var page = new NavigationPage(new CartridgeListPage(cartridges)) 
+			App.Navigation = new NavigationPage(new CartridgeListPage(cartridges)) 
 				{
 					BackgroundColor = App.Colors.Background,
 					BarTextColor = App.Colors.BarText,
 					BarBackgroundColor = App.Colors.Bar,
 				};
-
-			CurrentPage = page;
 
 //			// Check for autosave file
 //			var dir = new Acr.XamForms.Mobile.IO.Directory(App.PathForSavegames);
@@ -392,7 +395,7 @@ namespace WF.Player
 //			}
 
 
-			return page;
+			return App.Navigation;
 		}
 
 		/// <summary>

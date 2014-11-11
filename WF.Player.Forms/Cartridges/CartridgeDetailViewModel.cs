@@ -320,7 +320,7 @@ namespace WF.Player
 					{
 						CartridgeSavegame cs = null;
 
-						App.CurrentPage.Navigation.PushAsync(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, cs, App.CurrentPage)));
+						App.Navigation.PushAsync(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, cs, App.Navigation.CurrentPage)));
 					});
 			}
 		}
@@ -339,7 +339,7 @@ namespace WF.Player
 			{
 				return new Xamarin.Forms.Command((sender) =>
 					{
-						App.CurrentPage.Navigation.PushAsync(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, null, App.CurrentPage)));
+						App.Navigation.PushAsync(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, null, App.Navigation.CurrentPage)));
 					});
 			}
 		}

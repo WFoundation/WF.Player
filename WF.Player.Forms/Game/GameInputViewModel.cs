@@ -320,7 +320,7 @@ namespace WF.Player
 		private async void HandleButtonClicked(object sender)
 		{
 			// Get active view
-			var view = (GameInputView)App.CurrentPage;
+			var view = (GameInputView)App.GameNavigation.CurrentPage;
 
 			if (this.input.InputType == InputType.Unknown)
 			{
@@ -330,9 +330,13 @@ namespace WF.Player
 
 			if (this.input.InputType == InputType.Text)
 			{
+				// Click for button
 				App.Click();
 
+				// Remove the input screen
 				App.Game.ShowScreen(ScreenType.Last, null);
+
+				// Handle input of dialog
 				this.input.GiveResult(inputText);
 
 //				var cfg = new PromptConfig();
@@ -380,10 +384,15 @@ namespace WF.Player
 		/// <param name="result">Result of the multiple choice question.</param>
 		private async void MultipleChoiceSelected(string result)
 		{
-			Device.BeginInvokeOnMainThread(() =>
+			Device.BeginInvokeOnMainThread(async () =>
 				{
+					// Click for button
 					App.Click();
+
+					// Remove the input screen
 					App.Game.ShowScreen(ScreenType.Last, null);
+
+					// Handle input of dialog
 					this.input.GiveResult(result);
 				});
 		}
@@ -393,7 +402,7 @@ namespace WF.Player
 		/// </summary>
 		private void UpdateCommands()
 		{
-			if (!(App.CurrentPage is GameInputView))
+			if (!(App.GameNavigation.CurrentPage is GameInputView))
 			{
 				return;
 			}
@@ -404,7 +413,7 @@ namespace WF.Player
 			}
 
 			// Get active view
-			var view = (GameInputView)App.CurrentPage;
+			var view = (GameInputView)App.GameNavigation.CurrentPage;
 
 			string text = string.Empty;
 

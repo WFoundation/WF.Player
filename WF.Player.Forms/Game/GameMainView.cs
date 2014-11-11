@@ -364,8 +364,6 @@ namespace WF.Player
 		/// </summary>
 		protected override void OnAppearing()
 		{
-			App.CurrentPage = this;
-
 			base.OnAppearing();
 
 			this.SetBinding(GameMainView.TitleProperty, GameMainViewModel.TitelPropertyName);

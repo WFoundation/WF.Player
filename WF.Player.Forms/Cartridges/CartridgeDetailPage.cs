@@ -155,7 +155,7 @@ namespace WF.Player
 		/// <param name="e">Event arguments.</param>
 		private void HandleDescriptionClicked(object sender, EventArgs e)
 		{
-			Navigation.PushAsync(new CartridgeDetailDescriptionView((CartridgeDetailViewModel)this.BindingContext));
+			App.Navigation.PushAsync(new CartridgeDetailDescriptionView((CartridgeDetailViewModel)this.BindingContext));
 		}
 
 		/// <summary>

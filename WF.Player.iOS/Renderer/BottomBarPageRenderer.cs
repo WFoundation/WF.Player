@@ -46,9 +46,6 @@ namespace WF.Player.iOS
 			animated = false;
 
 			base.ViewDidAppear(animated);
-
-			// Do this, because sometimes CurrentPage isn't set correctly on iOS (OnAppearing isn't called)
-			App.CurrentPage = (Page)this.Element;
 		}
 
 		public override void ViewWillDisappear (bool animated)

@@ -375,10 +375,11 @@ border: none;
 //			markdown.Replace("<", "&lt;").Replace(">", "&gt;").Replace("\n", "<br>");
 
 			// Because markdown interpretes linebreaks in a different way
-			var html = markdownConverter.Transform(markdown.Replace(@"\n", @"  \n"));
+			var html = markdownConverter.Transform(markdown.Replace("\n", "  \n"));
 
 			// Add style to html code
 			#if __IOS__
+
 			html = "<style>" + DefaultStyle + "</style>" + html;
 
 			// Replace default values
@@ -391,6 +392,7 @@ border: none;
 			html = html.Replace("-TextAlign-", AlignmentToString(App.Prefs.TextAlignment));
 			html = html.Replace("-TextColor-", ColorToHTML(App.Colors.Text));
 			html = html.Replace("-BackgroundColor-", ColorToHTML(App.Colors.Background));
+
 			#endif
 
 			return html;

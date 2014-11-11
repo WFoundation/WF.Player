@@ -75,8 +75,6 @@ namespace WF.Player
 		/// </summary>
 		protected override void OnAppearing()
 		{
-			App.CurrentPage = this;
-
 			base.OnAppearing();
 
 			IsBusy = false;

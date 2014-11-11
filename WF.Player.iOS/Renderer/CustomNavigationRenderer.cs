@@ -71,8 +71,6 @@ namespace WF.Player.iOS
 		{
 			animated = false;
 
-//			App.CurrentPage = page;
-
 			return base.OnPushAsync (page, animated);
 		}
 

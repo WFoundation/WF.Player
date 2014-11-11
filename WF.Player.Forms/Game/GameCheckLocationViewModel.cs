@@ -194,7 +194,7 @@ namespace WF.Player
 				return new Xamarin.Forms.Command(async (sender) =>
 					{
 						// Remove check location from screen 
-						await App.CurrentPage.Navigation.PopAsync();
+						App.Navigation.PopAsync();
 
 						App.GPS.PositionChanged -= OnPositionChanged;
 
@@ -206,13 +206,14 @@ namespace WF.Player
 						var gameMainView = new GameMainView(gameMainViewModel);
 
 						// Create a new navigation page for the game
-						var navi = new NavigationPage(gameMainView);
-
-						navi.BarBackgroundColor = App.Colors.Bar;
-						navi.BarTextColor = App.Colors.BarText;
+						App.GameNavigation = new NavigationPage(gameMainView)
+							{
+								BarBackgroundColor = App.Colors.Bar,
+								BarTextColor = App.Colors.BarText,
+							};
 
 						// Push main view to screen
-						await App.CurrentPage.Navigation.PushModalAsync(navi);
+						await App.Navigation.CurrentPage.Navigation.PushModalAsync(App.GameNavigation);
 
 						gameMainViewModel.Update();
 

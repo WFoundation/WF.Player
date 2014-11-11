@@ -699,13 +699,7 @@ namespace WF.Player
 									this.gameModel.Stop();
 
 									// Remove active screen
-									App.CurrentPage.Navigation.PopModalAsync();
-
-									// We do this, because Xamarin.Forms don't throw OnAppearing() when game NavigationPage is popped modal
-									if (lastPage != null)
-									{
-										App.CurrentPage = lastPage;
-									}
+									App.GameNavigation.CurrentPage.Navigation.PopModalAsync();
 								}
 							});
 					};
@@ -717,13 +711,7 @@ namespace WF.Player
 					this.gameModel.Stop();
 
 					// Remove active screen
-					App.CurrentPage.Navigation.PopModalAsync();
-
-					// We do this, because Xamarin.Forms don't throw OnAppearing() when game NavigationPage is popped modal
-					if (lastPage != null)
-					{
-						App.CurrentPage = lastPage;
-					}
+					App.GameNavigation.CurrentPage.Navigation.PopModalAsync();
 				}
 			}
 

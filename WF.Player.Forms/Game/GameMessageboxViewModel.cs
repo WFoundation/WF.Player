@@ -241,13 +241,13 @@ namespace WF.Player
 		/// </summary>
 		private void UpdateCommands()
 		{
-			if (!(App.CurrentPage is GameMessageboxView)) 
+			if (!(App.GameNavigation.CurrentPage is GameMessageboxView)) 
 			{
 				return;
 			}
 
 			// Get active view
-			var view = (GameMessageboxView)App.CurrentPage;
+			var view = (GameMessageboxView)App.GameNavigation.CurrentPage;
 
 			view.Buttons.Clear();
 

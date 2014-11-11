@@ -92,7 +92,7 @@ namespace WF.Player
 				var cartridgeTag = (CartridgeTag)e.SelectedItem;
 				var cartridgeDetailPage = new CartridgeDetailPage(new CartridgeDetailViewModel(cartridgeTag));
 
-				App.CurrentPage.Navigation.PushAsync(cartridgeDetailPage);
+				App.Navigation.PushAsync(cartridgeDetailPage);
 
 				// Clear selection, so it is possible later select the same item
 				list.SelectedItem = null;
@@ -112,8 +112,6 @@ namespace WF.Player
 		/// </summary>
 		protected override void OnAppearing()
 		{
-			App.CurrentPage = this;
-
 			base.OnAppearing();
 		}
 
