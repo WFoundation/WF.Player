@@ -77,6 +77,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Utils\IImageTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AccessoryCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\AbstractUserDialogService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\ActionSheetConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\ActionSheetOption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\AlertConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\ConfirmConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\IUserDialogService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\PromptConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\PromptResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />
@@ -93,5 +102,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Models\Providers\" />
     <Folder Include="$(MSBuildThisFileDirectory)Utils\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Utils\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\" />
   </ItemGroup>
 </Project>

@@ -61,17 +61,21 @@ namespace WF.Player
 			NavigationPage.SetBackButtonTitle(this, string.Empty);
 
 			#if __IOS__
-				var toolbarMenu = new ToolbarItem (Catalog.GetString("Game Menu"), "IconMenu.png", async () => {
-					App.Click();
-					var cfg = new ActionSheetConfig().SetTitle(Catalog.GetString("Game Menu"));
-					cfg.Add(Catalog.GetString("Save"), () => ((GameMainViewModel)BindingContext).HandleMenuAction(this, Catalog.GetString("Save")));
-					cfg.Add(Catalog.GetString("Quit"), () => ((GameMainViewModel)BindingContext).HandleMenuAction(this, Catalog.GetString("Quit")));
-					cfg.Add(Catalog.GetString("Cancel"), () => App.Click());
-					DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
-				});
-				this.ToolbarItems.Add (toolbarMenu);
+
+			var toolbarMenu = new ToolbarItem (Catalog.GetString("Game Menu"), "IconMenu.png", async () => {
+				App.Click();
+				var cfg = new ActionSheetConfig().SetTitle(Catalog.GetString("Game Menu"));
+				cfg.Add(Catalog.GetString("Save"), () => ((GameMainViewModel)BindingContext).HandleMenuAction(this, Catalog.GetString("Save")));
+				cfg.Add(Catalog.GetString("Quit"), () => ((GameMainViewModel)BindingContext).HandleMenuAction(this, Catalog.GetString("Quit")));
+				cfg.Cancel = new ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
+				DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
+			});
+			this.ToolbarItems.Add (toolbarMenu);
+
 			#endif
+
 			#if __ANDROID__
+
 			var toolbarSave = new ToolbarItem(Catalog.GetString("Save"), "", async () =>
 				{ 
 					App.Click();
@@ -88,6 +92,7 @@ namespace WF.Player
 				Order = ToolbarItemOrder.Secondary,
 			};
 			ToolbarItems.Add(toolbarQuit);
+
 			#endif
 
 			var buttonLayout = new StackLayout() 

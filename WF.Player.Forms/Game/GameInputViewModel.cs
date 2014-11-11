@@ -15,10 +15,10 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using Acr.XamForms.UserDialogs;
 
 namespace WF.Player
 {
-	using Acr.XamForms.UserDialogs;
 	using System;
 	using System.IO;
 	using Vernacular;
@@ -372,7 +372,7 @@ namespace WF.Player
 						});
 				}
 
-				cfg.Add(Catalog.GetString("Cancel"), App.Click);
+				cfg.Cancel = new ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 
 				DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
 			}

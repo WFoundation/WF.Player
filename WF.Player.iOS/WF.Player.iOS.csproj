@@ -105,15 +105,6 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.1.2.3.6257\lib\MonoTouch10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="Acr.XamForms.UserDialogs">
-      <HintPath>..\packages\Acr.XamForms.UserDialogs.2.1.2\lib\MonoTouch\Acr.XamForms.UserDialogs.dll</HintPath>
-    </Reference>
-    <Reference Include="Acr.XamForms.UserDialogs.iOS">
-      <HintPath>..\packages\Acr.XamForms.UserDialogs.2.1.2\lib\MonoTouch\Acr.XamForms.UserDialogs.iOS.dll</HintPath>
-    </Reference>
-    <Reference Include="BTProgressHUD">
-      <HintPath>..\packages\Acr.XamForms.UserDialogs.2.1.2\lib\MonoTouch\BTProgressHUD.dll</HintPath>
-    </Reference>
     <Reference Include="Acr.XamForms.Mobile">
       <HintPath>..\packages\Acr.XamForms.Mobile.1.5\lib\MonoTouch\Acr.XamForms.Mobile.dll</HintPath>
     </Reference>
@@ -208,10 +199,10 @@
     <Compile Include="Renderer\BadgeImageRenderer.cs" />
     <Compile Include="Renderer\PinchScrollViewRenderer.cs" />
     <Compile Include="Services\Device\Measure.cs" />
-    <Compile Include="Bootstrap\UserDialogsBootstrap.cs" />
     <Compile Include="Bootstrap\MobileBootstrap.cs" />
     <Compile Include="Services\Utils\ImageTools.cs" />
     <Compile Include="Renderer\ExtendedLabelRenderer.cs" />
+    <Compile Include="Services\Acr.XamForms.UserDialogs.iOS\UserDialogService.cs" />
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="..\WF.Player.Common\WF.Player.Common.projitems" Label="Shared" Condition="Exists('..\WF.Player.Common\WF.Player.Common.projitems')" />
@@ -233,6 +224,7 @@
     <Folder Include="Assets\" />
     <Folder Include="Services\Utils\" />
     <Folder Include="Resources\de.lproj\" />
+    <Folder Include="Services\Acr.XamForms.UserDialogs.iOS\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sounds\tap.aif" />

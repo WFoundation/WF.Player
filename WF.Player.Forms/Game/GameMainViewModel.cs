@@ -688,7 +688,7 @@ namespace WF.Player
 					cfg.Title = Catalog.GetString("Comment Savefile");
 					cfg.OnResult = (savegameResult) =>
 					{
-						Device.BeginInvokeOnMainThread(async () =>
+						Device.BeginInvokeOnMainThread(() =>
 							{
 								App.Click();
 								if (savegameResult.Ok)

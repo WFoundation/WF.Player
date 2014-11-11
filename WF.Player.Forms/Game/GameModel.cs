@@ -204,12 +204,9 @@ namespace WF.Player
 		{
 			App.GameNavigation.CurrentPage.IsBusy = true;
 
-			App.GameNavigation.Popped += (sender, e) => HandleScreenQueue();
-			App.GameNavigation.PoppedToRoot += (sender, e) => HandleScreenQueue();
-			#if __IOS__
-			// Seams that handling of this type of events is different for iOS and Android
-			App.GameNavigation.Pushed += (sender, e) => HandleScreenQueue();
-			#endif
+			App.GameNavigation.Popped += (sender, e) => HandlePagePopped();
+			App.GameNavigation.PoppedToRoot += (sender, e) => HandlePagePopped();
+			App.GameNavigation.Pushed += (sender, e) => HandlePagePushed();
 
 			// Create Engine
 			await this.CreateEngine(this.cartridgeTag.Cartridge);
@@ -476,7 +473,6 @@ namespace WF.Player
 		/// <param name="args">Status text event arguments.</param>
 		public void OnShowStatusText(object sender, StatusTextEventArgs args)
 		{
-			DependencyService.Get<IUserDialogService>().Toast(args.Text);
 		}
 
 		/// <summary>
@@ -513,6 +509,31 @@ namespace WF.Player
 
 		#region Private Functions
 
+		private void HandlePagePopped()
+		{
+			if (App.GameNavigation.CurrentPage is BasePage)
+			{
+				((BasePage)App.GameNavigation.CurrentPage).OnAppeared();
+			}
+
+			HandleScreenQueue();
+		}
+
+		private void HandlePagePushed()
+		{
+			#if __IOS__
+
+			// Seams that handling of this type of events is different for iOS and Android
+			HandleScreenQueue();
+
+			#endif
+
+			if (App.GameNavigation.CurrentPage is BasePage)
+			{
+				((BasePage)App.GameNavigation.CurrentPage).OnAppeared();
+			}
+		}
+
 		private void HandleScreenQueue()
 		{
 			// If we are no longer playing
@@ -547,6 +568,26 @@ namespace WF.Player
 				}
 			}
 
+			// Check if a detail screen is visible, that shouldn't
+			if (App.GameNavigation.CurrentPage is GameDetailView)
+			{
+				var activeObject = ((GameDetailViewModel)App.GameNavigation.CurrentPage.BindingContext).ActiveObject;
+
+				// Check, if detail screen is shown with a invalid or invisible object
+				if (activeObject == null || !activeObject.Visible)
+				{
+					Device.BeginInvokeOnMainThread(() => App.GameNavigation.PopAsync());
+					return;
+				}
+
+				// Check if detail screen is shown with an object without container
+				if (!(activeObject is Task) && !(activeObject is Zone) && ((Thing)activeObject).Container == null)
+				{
+					Device.BeginInvokeOnMainThread(() => App.GameNavigation.PopAsync());
+					return;
+				}
+			}
+
 			if (screenQueue.Count == 0)
 			{
 				// Nothing to do
@@ -555,8 +596,6 @@ namespace WF.Player
 
 			// Get next screen to display
 			var screen = screenQueue.Peek();
-
-			Console.WriteLine("Next screen: {0}, actual {1}", screen.ScreenType == ScreenType.Dialog ? screen.Object : screen.ScreenType, App.GameNavigation.CurrentPage);
 
 			switch (screen.ScreenType)
 			{

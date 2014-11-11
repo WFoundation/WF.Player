@@ -60,15 +60,6 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.1.2.3.6257\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="Acr.XamForms.UserDialogs">
-      <HintPath>..\packages\Acr.XamForms.UserDialogs.2.1.2\lib\MonoAndroid\Acr.XamForms.UserDialogs.dll</HintPath>
-    </Reference>
-    <Reference Include="Acr.XamForms.UserDialogs.Droid">
-      <HintPath>..\packages\Acr.XamForms.UserDialogs.2.1.2\lib\MonoAndroid\Acr.XamForms.UserDialogs.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="AndHUD">
-      <HintPath>..\packages\Acr.XamForms.UserDialogs.2.1.2\lib\MonoAndroid\AndHUD.dll</HintPath>
-    </Reference>
     <Reference Include="Acr.XamForms.Mobile">
       <HintPath>..\packages\Acr.XamForms.Mobile.1.5\lib\MonoAndroid\Acr.XamForms.Mobile.dll</HintPath>
     </Reference>
@@ -117,6 +108,7 @@
     <Compile Include="Services\Device\Measure.cs" />
     <Compile Include="Services\Utils\ImageTools.cs" />
     <Compile Include="Renderer\ExtendedLabelRenderer.cs" />
+    <Compile Include="Services\Acr.XamForms.UserDialogs.Droid\UserDialogService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -207,6 +199,7 @@
     <Folder Include="Services\Utils\" />
     <Folder Include="Resources\values-de\" />
     <Folder Include="Resources\values-en\" />
+    <Folder Include="Services\Acr.XamForms.UserDialogs.Droid\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidNativeLibrary Include="lib\armeabi\liblua5.1.so" />

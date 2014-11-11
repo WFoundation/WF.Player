@@ -28,12 +28,20 @@ namespace WF.Player.iOS
 	{
 		public override void ViewWillAppear(bool animated)
 		{
-			NavigationController.SetNavigationBarHidden (false, false);
+			if (NavigationController != null)
+			{
+				NavigationController.SetNavigationBarHidden(false, false);
+			}
 
 			base.ViewWillAppear(animated);
 
 			// Did this, because Xamarin.Forms couldn't set HasBackButton correct.
 			ViewController.ParentViewController.NavigationItem.SetHidesBackButton(!((BottomBarPage)this.Element).HasBackButton, false);
+
+			if (NavigationController == null)
+			{
+				return;
+			}
 
 			// Did this, because Xamarin.Forms don't set the TintColor correct for ToolbarItems.
 			foreach(var i in this.NavigationController.NavigationBar.Items)

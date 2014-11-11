@@ -87,6 +87,13 @@ namespace WF.Player
 		}
 
 		/// <summary>
+		/// Raises the appeared event.
+		/// </summary>
+		public virtual void OnAppeared ()
+		{
+		}
+
+		/// <summary>
 		/// Raises the disappearing event.
 		/// </summary>
 		public virtual void OnDisappearing ()

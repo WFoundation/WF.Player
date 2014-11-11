@@ -77,11 +77,22 @@ namespace WF.Player
 		{
 			base.OnAppearing();
 
+			if (BindingContext is BaseViewModel)
+			{
+				((BaseViewModel)BindingContext).OnAppearing();
+			}
+		}
+
+		/// <summary>
+		/// Raises the appeared event.
+		/// </summary>
+		public void OnAppeared()
+		{
 			IsBusy = false;
 
 			if (BindingContext is BaseViewModel)
 			{
-				((BaseViewModel)BindingContext).OnAppearing();
+				((BaseViewModel)BindingContext).OnAppeared();
 			}
 		}
 

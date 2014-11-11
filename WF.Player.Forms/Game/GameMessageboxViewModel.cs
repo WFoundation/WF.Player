@@ -212,9 +212,9 @@ namespace WF.Player
 		/// <param name="sender">Sender of event.</param>
 		private void HandleFirstButtonClicked(object sender)
 		{
-			this.messagebox.GiveResult(MessageBoxResult.FirstButton);
-
 			RemoveMessageBox();
+
+			this.messagebox.GiveResult(MessageBoxResult.FirstButton);
 		}
 
 		/// <summary>
@@ -223,9 +223,9 @@ namespace WF.Player
 		/// <param name="sender">Sender of event.</param>
 		private void HandleSecondButtonClicked(object sender)
 		{
-			this.messagebox.GiveResult(MessageBoxResult.SecondButton);
-
 			RemoveMessageBox();
+
+			this.messagebox.GiveResult(MessageBoxResult.SecondButton);
 		}
 
 		/// <summary>
