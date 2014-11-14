@@ -84,6 +84,7 @@ namespace WF.Player
 					XAlign = App.Prefs.TextAlignment,
 				};
 			description.SetBinding(ExtendedLabel.TextProperty, GameMessageboxViewModel.TextPropertyName);
+			description.SetBinding(ExtendedLabel.IsVisibleProperty, GameMessageboxViewModel.HasTextPropertyName);
 
 			layout.Children.Add(description);
 

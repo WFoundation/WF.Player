@@ -44,6 +44,11 @@ namespace WF.Player
 		public const string DescriptionPropertyName = "Description";
 
 		/// <summary>
+		/// The name of the description property.
+		/// </summary>
+		public const string HasDescriptionPropertyName = "HasDescription";
+
+		/// <summary>
 		/// The name of the image source property.
 		/// </summary>
 		public const string ImageSourcePropertyName = "ImageSource";
@@ -239,6 +244,22 @@ namespace WF.Player
 			get 
 			{
 				return this.activeObject != null ? this.activeObject.Description : string.Empty;
+			}
+		}
+
+		#endregion
+
+		#region HasDescription
+
+		/// <summary>
+		/// Gets, if this object has a description.
+		/// </summary>
+		/// <value>The has description flag.</value>
+		public bool HasDescription 
+		{
+			get 
+			{
+				return this.activeObject != null ? !string.IsNullOrEmpty(this.activeObject.Description) : false;
 			}
 		}
 

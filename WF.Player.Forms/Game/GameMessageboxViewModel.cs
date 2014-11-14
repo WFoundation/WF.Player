@@ -38,6 +38,11 @@ namespace WF.Player
 		public const string TextPropertyName = "Text";
 
 		/// <summary>
+		/// The name of the has text property.
+		/// </summary>
+		public const string HasTextPropertyName = "HasText";
+
+		/// <summary>
 		/// The name of the image source property.
 		/// </summary>
 		public const string ImageSourcePropertyName = "ImageSource";
@@ -103,6 +108,22 @@ namespace WF.Player
 			get 
 			{
 				return this.messagebox != null ? this.messagebox.Text : string.Empty;
+			}
+		}
+
+		#endregion
+
+		#region HasText
+
+		/// <summary>
+		/// Gets, if this messagebox contains text.
+		/// </summary>
+		/// <value>The has text flag.</value>
+		public bool HasText 
+		{
+			get 
+			{
+				return this.messagebox != null ? !string.IsNullOrWhiteSpace(this.messagebox.Text) : false;
 			}
 		}
 
