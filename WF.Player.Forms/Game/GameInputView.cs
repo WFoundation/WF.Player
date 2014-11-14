@@ -78,9 +78,9 @@ namespace WF.Player
 					VerticalOptions = LayoutOptions.FillAndExpand,
 				};
 
-			var image = new Image() 
+			var image = new ExtendedImage() 
 				{
-					Aspect = App.Prefs.ImageResize == ImageResize.ShrinkWidth ? Aspect.AspectFit : Aspect.AspectFill,
+					Aspect = Aspect.AspectFit,
 				};
 			image.SetBinding(Image.SourceProperty, GameMessageboxViewModel.ImageSourcePropertyName);
 			image.SetBinding(Image.IsVisibleProperty, GameMessageboxViewModel.HasImagePropertyName);

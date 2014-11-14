@@ -135,6 +135,11 @@ namespace WF.Player.Droid
 				return;
 			}
 
+			if (App.Navigation != null && App.Navigation.CurrentPage is CartridgeListPage)
+			{
+				return;
+			}
+
 			// Go one page back
 			if (App.GameNavigation != null)
 			{

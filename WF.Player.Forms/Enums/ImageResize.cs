@@ -24,9 +24,14 @@ namespace WF.Player
 	public enum ImageResize : int
 	{
 		/// <summary>
+		/// Don't resize.
+		/// </summary>
+		NoResize = 0, 
+
+		/// <summary>
 		/// Shrink to width of screen.
 		/// </summary>
-		ShrinkWidth = 0,
+		ShrinkWidth,
 
 		/// <summary>
 		/// Resize to width of screen.
@@ -37,10 +42,5 @@ namespace WF.Player
 		/// Resize to part of height of screen.
 		/// </summary>
 		ResizeHeight,
-
-		/// <summary>
-		/// Don't resize.
-		/// </summary>
-		NoResize
 	}
 }

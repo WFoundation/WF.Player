@@ -61,7 +61,7 @@
         android:title="@string/pref_image"
         android:key="pref_key_image">
         <WF.Player.Droid.Preferences.IntListPreference
-            android:key="ImageSize"
+            android:key="ImageResize"
             android:title="@string/pref_image_size"
             android:summary="@string/pref_image_size_detail"
             android:entries="@array/image_size_key"

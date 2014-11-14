@@ -89,10 +89,10 @@ namespace WF.Player
 			layout.Children.Add(label);
 
 			// Poster
-			var poster = new Image 
-			{
-				Aspect = Aspect.AspectFit,
-			};
+			var poster = new ExtendedImage 
+				{
+					Aspect = Aspect.AspectFit,
+				};
 
 			poster.SetBinding(Image.SourceProperty, CartridgeDetailViewModel.PosterSourcePropertyName);
 			poster.SetBinding(Image.IsVisibleProperty, CartridgeDetailViewModel.HasPosterPropertyName);

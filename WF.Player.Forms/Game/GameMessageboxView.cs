@@ -38,11 +38,12 @@ namespace WF.Player
 
 			#if __HTML__
 
-			var webView = new CustomWebView() {
-				BackgroundColor = App.Colors.Background,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-			};
+			var webView = new CustomWebView() 
+				{
+					BackgroundColor = App.Colors.Background,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+				};
 			webView.SetBinding(WebView.SourceProperty, GameMessageboxViewModel.HtmlSourcePropertyName);
 
 			((StackLayout)ContentLayout).Children.Add(webView);
@@ -50,38 +51,38 @@ namespace WF.Player
 			#else
 
 			var scrollLayout = new PinchScrollView() 
-			{
-				Orientation = ScrollOrientation.Vertical,
-				Padding = new Thickness(0, 0),
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-			};
+				{
+					Orientation = ScrollOrientation.Vertical,
+					Padding = new Thickness(0, 0),
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+				};
 
 			var layout = new StackLayout() 
-			{
-				BackgroundColor = App.Colors.Background,
-				Orientation = StackOrientation.Vertical,
-				Padding = new Thickness(10, 10),
-				Spacing = 10,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-			};
+				{
+					BackgroundColor = App.Colors.Background,
+					Orientation = StackOrientation.Vertical,
+					Padding = new Thickness(10, 10),
+					Spacing = 10,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+				};
 
-			var image = new Image() 
-			{
-				Aspect = App.Prefs.ImageResize == ImageResize.ShrinkWidth ? Aspect.AspectFit : Aspect.AspectFill,
-			};
+			var image = new ExtendedImage() 
+				{
+					Aspect = Aspect.AspectFit,
+				};
 			image.SetBinding(Image.SourceProperty, GameMessageboxViewModel.ImageSourcePropertyName);
 			image.SetBinding(Image.IsVisibleProperty, GameMessageboxViewModel.HasImagePropertyName);
 
 			layout.Children.Add(image);
 
 			var description = new ExtendedLabel() 
-			{
-				TextColor = App.Colors.Text,
-				Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
-				XAlign = App.Prefs.TextAlignment,
-			};
+				{
+					TextColor = App.Colors.Text,
+					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
+					XAlign = App.Prefs.TextAlignment,
+				};
 			description.SetBinding(ExtendedLabel.TextProperty, GameMessageboxViewModel.TextPropertyName);
 
 			layout.Children.Add(description);

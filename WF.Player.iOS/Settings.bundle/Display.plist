@@ -108,25 +108,28 @@
 			<key>Values</key>
 			<array>
 				<integer>0</integer>
-				<integer>2</integer>
 				<integer>1</integer>
-			</array>
-			<key>Titles</key>
-			<array>
-				<string>Don&apos;t resize</string>
-				<string>Resize to screen width</string>
-				<string>Resize to half height</string>
-			</array>
-			<key>ShortTitles</key>
-			<array>
-				<string>No</string>
-				<string>Screen width</string>
-				<string>Half height</string>
+				<integer>2</integer>
+				<integer>3</integer>
 			</array>
 			<key>Key</key>
 			<string>ImageResize</string>
 			<key>DefaultValue</key>
 			<integer>1</integer>
+			<key>Titles</key>
+			<array>
+				<string>Don&apos;t resize</string>
+				<string>Shrink only</string>
+				<string>Resize to screen width</string>
+				<string>Resize to max. half height</string>
+			</array>
+			<key>ShortTitles</key>
+			<array>
+				<string>No</string>
+				<string>Shrink only</string>
+				<string>Screen width</string>
+				<string>Half height</string>
+			</array>
 		</dict>
 		<dict>
 			<key>Type</key>

@@ -305,13 +305,15 @@ namespace WF.Player
 		/// </summary>
 		public void AutoRemove()
 		{
-			if (App.Prefs.Get<string>(DefaultPreferences.AutosaveGWSKey) == string.Empty)
+			if (string.IsNullOrEmpty(App.Prefs.Get<string>(DefaultPreferences.AutosaveGWSKey)))
 			{
 				return;
 			}
 
+			var filename = App.Prefs.Get<string>(DefaultPreferences.AutosaveGWSKey);
+
 			// Delete files
-			var file = new Acr.XamForms.Mobile.IO.File(App.Prefs.Get<string>(DefaultPreferences.AutosaveGWSKey));
+			var file = new Acr.XamForms.Mobile.IO.File(filename);
 
 			if (file.Exists)
 			{

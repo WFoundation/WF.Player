@@ -86,6 +86,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\IUserDialogService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\PromptConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\PromptResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedImage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />
