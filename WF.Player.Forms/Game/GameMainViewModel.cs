@@ -698,8 +698,11 @@ namespace WF.Player
 									// Stop engine
 									this.gameModel.Stop();
 
+									App.Game = null;
+
 									// Remove active screen
 									App.GameNavigation.CurrentPage.Navigation.PopModalAsync();
+									App.GameNavigation = null;
 								}
 							});
 					};
@@ -710,8 +713,11 @@ namespace WF.Player
 					// Stop engine
 					this.gameModel.Stop();
 
+					App.Game = null;
+
 					// Remove active screen
 					App.GameNavigation.CurrentPage.Navigation.PopModalAsync();
+					App.GameNavigation = null;
 				}
 			}
 

@@ -18,6 +18,9 @@ bld/
 [Bb]in/
 [Oo]bj/
 
+# APK files
+*.apk
+
 # Roslyn cache directories
 *.ide/
 
