@@ -16,6 +16,7 @@
     <AssemblyName>WF.Player.Android</AssemblyName>
     <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <ReleaseVersion>0.6</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -123,15 +124,12 @@
     <AndroidResource Include="Resources\drawable\IconAltitudeDark.png" />
     <AndroidResource Include="Resources\drawable\IconAltitudeLight.png" />
     <AndroidResource Include="Resources\drawable\IconInventory.png" />
-    <AndroidResource Include="Resources\drawable\IconLocation.png" />
     <AndroidResource Include="Resources\drawable\IconMap.png" />
     <AndroidResource Include="Resources\drawable\IconMenu.png" />
     <AndroidResource Include="Resources\drawable\IconNumber.png" />
     <AndroidResource Include="Resources\drawable\IconPlay.png" />
     <AndroidResource Include="Resources\drawable\IconResume.png" />
     <AndroidResource Include="Resources\drawable\IconRouting.png" />
-    <AndroidResource Include="Resources\drawable\IconTask.png" />
-    <AndroidResource Include="Resources\drawable\IconYouSee.png" />
     <AndroidResource Include="Resources\drawable\IconSmall.png" />
     <AndroidResource Include="Resources\drawable\HomeIcon.png" />
     <AndroidResource Include="Resources\layout\PreferencesView.axml" />
@@ -180,6 +178,9 @@
     <AndroidResource Include="Resources\values-en\vernacular_strings.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\values\style.xml" />
+    <AndroidResource Include="Resources\drawable\IconOverview.png" />
+    <AndroidResource Include="Resources\drawable\IconLocation.png" />
+    <AndroidResource Include="Resources\drawable\IconTasks.png" />
   </ItemGroup>
   <Import Project="..\WF.Player.Common\WF.Player.Common.projitems" Label="Shared" Condition="Exists('..\WF.Player.Common\WF.Player.Common.projitems')" />
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />

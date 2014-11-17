@@ -42,4 +42,3 @@ namespace WF.Player.Droid
 		}
 	}
 }
-

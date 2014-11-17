@@ -49,7 +49,7 @@ namespace WF.Player.Controls.iOS
 
 				NSDictionary dict = new NSMutableDictionary() { {
 						UIStringAttributeKey.Font,
-						App.Fonts.Normal.ToUIFont()
+						((ExtendedLabel)Element).Font.ToUIFont()
 					},
 				};
 
@@ -60,19 +60,34 @@ namespace WF.Player.Controls.iOS
 				attr.DocumentType = NSDocumentType.HTML;
 				attr.StringEncoding = NSStringEncoding.UTF8;
 
-				var html = ((ExtendedLabel)Element).TextExt;
-
-				//					html = "<style>" + DefaultStyle + "</style>" + html;
+				var html = ((ExtendedLabel)Element).TextExt + Environment.NewLine;
 
 				NSString htmlString = new NSString(html); 
 				NSData htmlData = htmlString.DataUsingEncoding(NSStringEncoding.UTF8); 
 
 				NSAttributedString attrStr = new NSAttributedString(htmlData, attr, out dict, ref nsError);
-				//					NSMutableAttributedString attrStrM = new NSMutableAttributedString(attrStr);
 
 				Control.AttributedText = attrStr;
+				Control.SetNeedsLayout();
 
 				return;
+			}
+
+			if (e.PropertyName == "Height" || e.PropertyName == "Width")
+			{
+				// We calculate the correct height, because of the attributed string, Xamarin.Forms don't do it correct
+				var width = (float)((ExtendedLabel)Element).Width;
+
+				// Only do this, if we have a valid width
+				if (width != -1)
+				{
+					var rect = Control.AttributedText.GetBoundingRect(new System.Drawing.SizeF(width, float.MaxValue), NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading, null);
+
+					if (rect.Height != ((ExtendedLabel)Element).Height)
+					{
+						((ExtendedLabel)Element).HeightRequest = rect.Height;
+					}
+				}
 			}
 
 			base.OnElementPropertyChanged(sender, e);

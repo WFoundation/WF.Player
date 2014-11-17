@@ -9,6 +9,7 @@
     <RootNamespace>WF.Player.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>WFPlayeriOS</AssemblyName>
+    <ReleaseVersion>0.6</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -147,16 +148,8 @@
     <BundleResource Include="Resources\IconRouting%402x.png" />
     <BundleResource Include="Resources\IconInventory.png" />
     <BundleResource Include="Resources\IconInventory%402x.png" />
-    <BundleResource Include="Resources\IconTask.png" />
-    <BundleResource Include="Resources\IconTask%402x.png" />
-    <BundleResource Include="Resources\IconYouSee.png" />
-    <BundleResource Include="Resources\IconYouSee%402x.png" />
-    <BundleResource Include="Resources\IconLocation.png" />
-    <BundleResource Include="Resources\IconLocation%402x.png" />
     <BundleResource Include="Resources\IconMap.png" />
     <BundleResource Include="Resources\IconMap%402x.png" />
-    <BundleResource Include="Resources\IconNumber.png" />
-    <BundleResource Include="Resources\IconNumber%402x.png" />
     <BundleResource Include="Resources\IconAccuracyDark.png" />
     <BundleResource Include="Resources\IconAccuracyDark%402x.png" />
     <BundleResource Include="Resources\IconAccuracyLight.png" />
@@ -171,6 +164,14 @@
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\Icon-Small-40%402x.png" />
     <BundleResource Include="Resources\de.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\IconOverview.png" />
+    <BundleResource Include="Resources\IconOverview%402x.png" />
+    <BundleResource Include="Resources\IconLocation.png" />
+    <BundleResource Include="Resources\IconLocation%402x.png" />
+    <BundleResource Include="Resources\IconYouSee.png" />
+    <BundleResource Include="Resources\IconYouSee%402x.png" />
+    <BundleResource Include="Resources\IconTasks%402x.png" />
+    <BundleResource Include="Resources\IconTasks.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

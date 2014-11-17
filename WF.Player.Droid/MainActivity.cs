@@ -128,10 +128,12 @@ namespace WF.Player.Droid
 
 		public override void OnBackPressed()
 		{
-			// We are on the GameMainView, so we don't want to go back. 
-			// We should leave tzhe game only by quit.
+			// We are on the GameMainView, so we want to go back until main screen, 
+			// but we should leave the game only by quit.
 			if (App.GameNavigation != null && App.GameNavigation.CurrentPage is GameMainView)
 			{
+				App.Game.ShowScreen(ScreenType.Main, null);
+
 				return;
 			}
 
@@ -143,6 +145,7 @@ namespace WF.Player.Droid
 			// Go one page back
 			if (App.GameNavigation != null)
 			{
+				// We are in the "in the game" navigation
 				if (App.GameNavigation.CurrentPage is GameInputView || App.GameNavigation.CurrentPage is GameMessageboxView)
 				{
 					return;
@@ -152,6 +155,7 @@ namespace WF.Player.Droid
 			}
 			else
 			{
+				// We are in the "out of game" navigation
 				App.Navigation.PopAsync();
 			}
 		}

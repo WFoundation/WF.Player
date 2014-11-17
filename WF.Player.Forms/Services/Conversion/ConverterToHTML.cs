@@ -370,7 +370,7 @@ border: none;
 		/// <returns>Markdown converted to HTML.</returns>
 		/// <param name="markdown">Text with markdown.</param>
 		/// <param name="media">Media object.</param>
-		public static string FromMarkdown(string markdown, Media media = null)
+		public static string FromMarkdown(string markdown, Media media = null, int fontSize = -1)
 		{
 //			markdown.Replace("<", "&lt;").Replace(">", "&gt;").Replace("\n", "<br>");
 
@@ -380,15 +380,20 @@ border: none;
 			// Add style to html code
 			#if __IOS__
 
+			if (fontSize == -1)
+			{
+				fontSize = (int)App.Fonts.Normal.FontSize;
+			}
+
 			html = "<style>" + DefaultStyle + "</style>" + html;
 
 			// Replace default values
-			html = html.Replace("-Font0-", ((int)App.Fonts.Normal.FontSize * 0.9).ToString());
-			html = html.Replace("-Font1-", ((int)App.Fonts.Normal.FontSize * 1.0).ToString());
-			html = html.Replace("-Font2-", ((int)App.Fonts.Normal.FontSize * 1.2).ToString());
-			html = html.Replace("-Font3-", ((int)App.Fonts.Normal.FontSize * 1.4).ToString());
-			html = html.Replace("-Font4-", ((int)App.Fonts.Normal.FontSize * 1.8).ToString());
-			html = html.Replace("-Font5-", ((int)App.Fonts.Normal.FontSize * 2.0).ToString());
+			html = html.Replace("-Font0-", ((int)(fontSize * 0.9)).ToString());
+			html = html.Replace("-Font1-", ((int)(fontSize * 1.0)).ToString());
+			html = html.Replace("-Font2-", ((int)(fontSize * 1.2)).ToString());
+			html = html.Replace("-Font3-", ((int)(fontSize * 1.4)).ToString());
+			html = html.Replace("-Font4-", ((int)(fontSize * 1.8)).ToString());
+			html = html.Replace("-Font5-", ((int)(fontSize * 2.0)).ToString());
 			html = html.Replace("-TextAlign-", AlignmentToString(App.Prefs.TextAlignment));
 			html = html.Replace("-TextColor-", ColorToHTML(App.Colors.Text));
 			html = html.Replace("-BackgroundColor-", ColorToHTML(App.Colors.Background));

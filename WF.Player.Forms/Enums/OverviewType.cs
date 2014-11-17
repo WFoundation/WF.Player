@@ -1,4 +1,4 @@
-﻿// <copyright file="ExtendedLabel.cs" company="Wherigo Foundation">
+﻿// <copyright file="OverviewType.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 //   Copyright (C) 2012-2014  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
@@ -16,41 +16,23 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace WF.Player.Controls
+namespace WF.Player
 {
-	using System;
-	using Xamarin.Forms;
-
-	/// <summary>
-	/// Label, capable of displaying text with html tags.
-	/// </summary>
-	public class ExtendedLabel : Label
+	public enum OverviewType
 	{
-		#region Properties
-
-		#region TextExt
+		/// <summary>
+		/// You see entry.
+		/// </summary>
+		YouSee,
 
 		/// <summary>
-		/// Gets the extended text (html code).
+		/// Inventory entry.
 		/// </summary>
-		/// <value>The html code.</value>
-		public string TextExt
-		{
-			get
-			{
-				var html = ConverterToHtml.FromMarkdown(Text, null, (int)Font.FontSize);
+		Inventory,
 
-				while (html.EndsWith(Environment.NewLine))
-				{
-					html = html.Substring(0, html.Length - 1);
-				}
-
-				return html;
-			}
-		}
-
-		#endregion
-
-		#endregion
+		/// <summary>
+		/// Tasks entry.
+		/// </summary>
+		Tasks
 	}
 }

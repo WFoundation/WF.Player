@@ -1,6 +1,6 @@
 ﻿// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 // Copyright (C) 2012-2014  Dirk Weltz <mail@wfplayer.com>
-//
+
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as
 // published by the Free Software Foundation, either version 3 of the
@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using Xamarin.Forms.Platform.Android;
-using Xamarin.Forms;
-using WF.Player.Controls;
-using WF.Player.Controls.Droid;
-
-[assembly: ExportRendererAttribute (typeof (ExtendedLabel), typeof (ExtendedLabelRenderer))]
+[assembly: Xamarin.Forms.ExportRendererAttribute (typeof (WF.Player.Controls.ExtendedLabel), typeof (WF.Player.Controls.Droid.ExtendedLabelRenderer))]
 
 namespace WF.Player.Controls.Droid
 {
+	using Android.Text;
+	using System;
+	using WF.Player.Controls;
+	using Xamarin.Forms;
+	using Xamarin.Forms.Platform.Android;
+
 	public class ExtendedLabelRenderer : LabelRenderer
 	{
 		protected override void OnElementChanged(ElementChangedEventArgs<Label> e)
@@ -43,7 +43,14 @@ namespace WF.Player.Controls.Droid
 			{
 				var html = ((ExtendedLabel)Element).TextExt;
 
-				Control.TextFormatted = global::Android.Text.Html.FromHtml(html);
+				var formattedText = global::Android.Text.Html.FromHtml(html);
+
+				while (formattedText.Length() > 0 && formattedText.CharAt(formattedText.Length() - 1) == '\n')
+				{
+					formattedText = (ISpanned)formattedText.SubSequenceFormatted(0, formattedText.Length() - 1);
+				}
+
+				Control.TextFormatted = formattedText;
 
 				return;
 			}

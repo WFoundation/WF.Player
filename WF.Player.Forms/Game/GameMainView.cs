@@ -19,6 +19,7 @@
 namespace WF.Player
 {
 	using Acr.XamForms.UserDialogs;
+	using System;
 	using Vernacular;
 	using WF.Player.Controls;
 	using Xamarin.Forms;
@@ -28,6 +29,11 @@ namespace WF.Player
 	/// </summary>
 	public class GameMainView : BottomBarPage
 	{
+		/// <summary>
+		/// The button you see.
+		/// </summary>
+		private GameToolBarButton buttonOverview;
+
 		/// <summary>
 		/// The button you see.
 		/// </summary>
@@ -47,6 +53,11 @@ namespace WF.Player
 		/// The button map.
 		/// </summary>
 		private GameToolBarButton buttonMap;
+
+		/// <summary>
+		/// The overview list.
+		/// </summary>
+		public ListView Overview;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WF.Player.GameMainView"/> class.
@@ -95,27 +106,52 @@ namespace WF.Player
 
 			#endif
 
+			TapGestureRecognizer tapRecognizer;
+
 			var buttonLayout = new StackLayout() 
 			{
 				BackgroundColor = App.Colors.BackgroundButtons,
 				Orientation = StackOrientation.Horizontal,
-				VerticalOptions = LayoutOptions.Center,
+//				VerticalOptions = LayoutOptions.Fill,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
+				HeightRequest = 72,
+				MinimumHeightRequest = 72,
 			};
+
+			// Overview button
+			this.buttonOverview = new GameToolBarButton("IconOverview.png") 
+				{
+					BackgroundColor = Color.Transparent,
+					SelectedColor = App.Colors.Background,
+					Padding = new Thickness(2, 10),
+					HasShadow = false,
+					HorizontalOptions = LayoutOptions.CenterAndExpand,
+				};
+			this.buttonOverview.SetBinding(GameToolBarButton.SelectedProperty, GameMainViewModel.IsOverviewSelectedPropertyName);
+
+			tapRecognizer = new TapGestureRecognizer 
+				{
+					Command = gameMainViewModel.OverviewCommand,
+					NumberOfTapsRequired = 1
+				};
+
+			this.buttonOverview.GestureRecognizers.Add(tapRecognizer);
+
+			buttonLayout.Children.Add(this.buttonOverview);
 
 			// You See button
 			this.buttonYouSee = new GameToolBarButton("IconLocation.png") 
-			{
-				BackgroundColor = Color.Transparent,
-				SelectedColor = App.Colors.Background,
-				Padding = 10,
-				HasShadow = false,
-				HorizontalOptions = LayoutOptions.CenterAndExpand,
-			};
+				{
+					BackgroundColor = Color.Transparent,
+					SelectedColor = App.Colors.Background,
+					Padding = new Thickness(2, 10),
+					HasShadow = false,
+					HorizontalOptions = LayoutOptions.CenterAndExpand,
+				};
 			this.buttonYouSee.SetBinding(GameToolBarButton.SelectedProperty, GameMainViewModel.IsYouSeeSelectedPropertyName);
 			this.buttonYouSee.Image.SetBinding(BadgeImage.NumberProperty, GameMainViewModel.YouSeeNumberPropertyName);
 
-			var tapRecognizer = new TapGestureRecognizer 
+			tapRecognizer = new TapGestureRecognizer 
 			{
 				Command = gameMainViewModel.YouSeeCommand,
 				NumberOfTapsRequired = 1
@@ -127,13 +163,13 @@ namespace WF.Player
 
 			// Inventory button
 			this.buttonInventory = new GameToolBarButton("IconInventory.png") 
-			{
-				BackgroundColor = Color.Transparent,
-				SelectedColor = App.Colors.Background,
-				Padding = 10,
-				HasShadow = false,
-				HorizontalOptions = LayoutOptions.CenterAndExpand,
-			};
+				{
+					BackgroundColor = Color.Transparent,
+					SelectedColor = App.Colors.Background,
+					Padding = new Thickness(2, 10),
+					HasShadow = false,
+					HorizontalOptions = LayoutOptions.CenterAndExpand,
+				};
 			this.buttonInventory.SetBinding(GameToolBarButton.SelectedProperty, GameMainViewModel.IsInventorySelectedPropertyName);
 			this.buttonInventory.Image.SetBinding(BadgeImage.NumberProperty, GameMainViewModel.InventoryNumberPropertyName);
 
@@ -148,14 +184,14 @@ namespace WF.Player
 			buttonLayout.Children.Add(this.buttonInventory);
 
 			// Tasks button
-			this.buttonTasks = new GameToolBarButton("IconTask.png") 
-			{
-				BackgroundColor = Color.Transparent,
-				SelectedColor = App.Colors.Background,
-				Padding = 10,
-				HasShadow = false,
-				HorizontalOptions = LayoutOptions.CenterAndExpand,
-			};
+			this.buttonTasks = new GameToolBarButton("IconTasks.png") 
+				{
+					BackgroundColor = Color.Transparent,
+					SelectedColor = App.Colors.Background,
+					Padding = new Thickness(2, 10),
+					HasShadow = false,
+					HorizontalOptions = LayoutOptions.CenterAndExpand,
+				};
 			this.buttonTasks.SetBinding(GameToolBarButton.SelectedProperty, GameMainViewModel.IsTasksSelectedPropertyName);
 			this.buttonTasks.Image.SetBinding(BadgeImage.NumberProperty, GameMainViewModel.TasksNumberPropertyName);
 
@@ -171,13 +207,13 @@ namespace WF.Player
 
 			// Map button
 			this.buttonMap = new GameToolBarButton("IconMap.png") 
-			{
-				BackgroundColor = Color.Transparent,
-				SelectedColor = App.Colors.Background,
-				Padding = 10,
-				HasShadow = false,
-				HorizontalOptions = LayoutOptions.CenterAndExpand,
-			};
+				{
+					BackgroundColor = Color.Transparent,
+					SelectedColor = App.Colors.Background,
+					Padding = new Thickness(2, 10),
+					HasShadow = false,
+					HorizontalOptions = LayoutOptions.CenterAndExpand,
+				};
 			this.buttonMap.SetBinding(GameToolBarButton.SelectedProperty, GameMainViewModel.IsMapSelectedPropertyName);
 
 			tapRecognizer = new TapGestureRecognizer 
@@ -214,6 +250,132 @@ namespace WF.Player
 
 			listLayout.Children.Add(label);
 
+			var overview = new ScrollView() {
+				VerticalOptions = LayoutOptions.FillAndExpand,
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				IsVisible = false,
+			};
+			overview.SetBinding(ScrollView.IsVisibleProperty, GameMainViewModel.IsOverviewVisiblePropertyName);
+
+			var layoutOverview = new StackLayout() 
+				{
+					Orientation = StackOrientation.Vertical,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+				};
+
+			var layoutOverviewYouSee = new StackLayout()
+				{
+					Orientation = StackOrientation.Horizontal,
+					VerticalOptions = LayoutOptions.Fill,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					Padding = 10,
+					Spacing = 10,
+				};
+
+			tapRecognizer = new TapGestureRecognizer 
+				{
+					Command = gameMainViewModel.YouSeeCommand,
+					NumberOfTapsRequired = 1
+				};
+
+			layoutOverviewYouSee.GestureRecognizers.Add(tapRecognizer);
+
+			var imageOverviewYouSee = new Image() 
+				{
+					Source = "IconLocation.png",
+					VerticalOptions = LayoutOptions.Start,
+				};
+
+			layoutOverviewYouSee.Children.Add(imageOverviewYouSee);
+
+			var labelOverviewYouSee = new ExtendedLabel() 
+				{
+					LineBreakMode = LineBreakMode.WordWrap,
+					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.7),
+				};
+			labelOverviewYouSee.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.YouSeeOverviewContentPropertyName);
+
+			layoutOverviewYouSee.Children.Add(labelOverviewYouSee);
+
+			layoutOverview.Children.Add(layoutOverviewYouSee);
+
+			var layoutOverviewInventory = new StackLayout()
+				{
+					Orientation = StackOrientation.Horizontal,
+					VerticalOptions = LayoutOptions.Fill,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					Padding = 10,
+					Spacing = 10,
+				};
+
+			tapRecognizer = new TapGestureRecognizer 
+				{
+					Command = gameMainViewModel.InventoryCommand,
+					NumberOfTapsRequired = 1
+				};
+
+			layoutOverviewInventory.GestureRecognizers.Add(tapRecognizer);
+
+			var imageOverviewInventory = new Image() 
+				{
+					Source = "IconInventory.png",
+					VerticalOptions = LayoutOptions.Start,
+				};
+
+			layoutOverviewInventory.Children.Add(imageOverviewInventory);
+
+			var labelOverviewInventory = new ExtendedLabel() 
+				{
+					LineBreakMode = LineBreakMode.WordWrap,
+					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.7),
+				};
+			labelOverviewInventory.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.InventoryOverviewContentPropertyName);
+
+			layoutOverviewInventory.Children.Add(labelOverviewInventory);
+
+			layoutOverview.Children.Add(layoutOverviewInventory);
+
+			var layoutOverviewTasks = new StackLayout()
+				{
+					Orientation = StackOrientation.Horizontal,
+					VerticalOptions = LayoutOptions.Fill,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					Padding = 10,
+					Spacing = 10,
+				};
+
+			tapRecognizer = new TapGestureRecognizer 
+				{
+					Command = gameMainViewModel.TasksCommand,
+					NumberOfTapsRequired = 1
+				};
+
+			layoutOverviewTasks.GestureRecognizers.Add(tapRecognizer);
+
+			var imageOverviewTasks = new Image() 
+				{
+					Source = "IconTasks.png",
+					VerticalOptions = LayoutOptions.Start,
+				};
+
+			layoutOverviewTasks.Children.Add(imageOverviewTasks);
+
+			var labelOverviewTasks = new ExtendedLabel() 
+				{
+					LineBreakMode = LineBreakMode.WordWrap,
+					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.7),
+				};
+			labelOverviewTasks.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.TasksOverviewContentPropertyName);
+
+			layoutOverviewTasks.Children.Add(labelOverviewTasks);
+
+			layoutOverview.Children.Add(layoutOverviewTasks);
+
+			overview.Content = layoutOverview;
+
+			listLayout.Children.Add(overview);
+
 			var list = new ListView() 
 			{
 				BackgroundColor = Color.Transparent,
@@ -221,6 +383,8 @@ namespace WF.Player
 				HasUnevenRows = false,
 				RowHeight = 60,
 				IsVisible = false,
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
 			};
 			list.SetBinding(ListView.IsVisibleProperty, GameMainViewModel.IsListVisiblePropertyName);
 			list.SetBinding(ListView.ItemsSourceProperty, GameMainViewModel.GameMainListPropertyName);
@@ -256,7 +420,7 @@ namespace WF.Player
 
 			var layout = new StackLayout() 
 			{
-				BackgroundColor = App.Colors.Background,
+				BackgroundColor = Color.Transparent,
 				Spacing = 0,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand,

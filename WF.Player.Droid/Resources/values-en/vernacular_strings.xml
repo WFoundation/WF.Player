@@ -50,10 +50,14 @@
   <string formatted="false" name="Vernacular_P0_No">No</string>
   <string formatted="false" name="Vernacular_P0_Nodescriptionavailable">No description available</string>
   <string formatted="false" name="Vernacular_P0_Nofilter">No filter</string>
+  <string formatted="false" name="Vernacular_P0_Noitems">No items</string>
   <string formatted="false" name="Vernacular_P0_Nomapavailable">No map available</string>
+  <string formatted="false" name="Vernacular_P0_Nonewtasks">No new tasks</string>
   <string formatted="false" name="Vernacular_P0_Noresize">No resize</string>
+  <string formatted="false" name="Vernacular_P0_Nothingofinterest">Nothing of interest</string>
   <string formatted="false" name="Vernacular_P0_Ok">Ok</string>
   <string formatted="false" name="Vernacular_P0_Orientationfilter">Orientation filter</string>
+  <string formatted="false" name="Vernacular_P0_Overview">Overview</string>
   <string formatted="false" name="Vernacular_P0_Playasoundeachtimeabuttonispressed">Play a sound each time a button is pressed</string>
   <string formatted="false" name="Vernacular_P0_Pleasewait464646">Please wait…</string>
   <string formatted="false" name="Vernacular_P0_Provideacommenttoidentifythissavefile">Provide a comment to identify this savefile</string>
@@ -75,7 +79,6 @@
   <string formatted="false" name="Vernacular_P0_Text">Text</string>
   <string formatted="false" name="Vernacular_P0_Theme">Theme</string>
   <string formatted="false" name="Vernacular_P0_Themeforthisapp40onlyupdatedafterarestartoftheapp41">Theme for this app (only updated after a restart of the app)</string>
-  <string formatted="false" name="Vernacular_P0_unknown">unknown</string>
   <string formatted="false" name="Vernacular_P0_Unknown">Unknown</string>
   <string formatted="false" name="Vernacular_P0_Usehardwarecompass">Use hardware compass</string>
   <string formatted="false" name="Vernacular_P0_Usehardwarecompassformaprotationandcompassscreen46BearingfromGPS40betterforcar41willbeusedifdisabled46">Use hardware compass for map rotation and compass screen. Bearing from GPS (better for car) will be used if disabled.</string>

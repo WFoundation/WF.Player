@@ -82,22 +82,6 @@ namespace WF.Player
 		/// </summary>
 		private Queue<Screens> screenQueue;
 
-		#region Screens class
-
-		private class Screens
-		{
-			public Screens(ScreenType screenType, object obj)
-			{
-				ScreenType = screenType;
-				Object = obj;
-			}
-
-			public ScreenType ScreenType { get; private set; }
-			public object Object {get; private set; }
-		}
-
-		#endregion
-
 		#region Constructor
 
 		/// <summary>
@@ -112,10 +96,47 @@ namespace WF.Player
 
 		#endregion
 
+		#region Events
+
 		/// <summary>
 		/// Occurs when display changed.
 		/// </summary>
 		public event EventHandler<DisplayChangedEventArgs> DisplayChanged;
+
+		#endregion
+
+		#region Screens class
+
+		/// <summary>
+		/// Class for screens in screen queue.
+		/// </summary>
+		private class Screens
+		{
+			/// <summary>
+			/// Initializes a new instance of the <see cref="WF.Player.GameModel+Screens"/> class.
+			/// </summary>
+			/// <param name="screenType">Screen type.</param>
+			/// <param name="obj">Object for detail screen.</param>
+			public Screens(ScreenType screenType, object obj)
+			{
+				this.ScreenType = screenType;
+				this.Object = obj;
+			}
+
+			/// <summary>
+			/// Gets the type of the screen.
+			/// </summary>
+			/// <value>The type of the screen.</value>
+			public ScreenType ScreenType { get; private set; }
+
+			/// <summary>
+			/// Gets the object.
+			/// </summary>
+			/// <value>The object.</value>
+			public object Object { get; private set; }
+		}
+
+		#endregion
 
 		#region Properties
 
@@ -518,15 +539,19 @@ namespace WF.Player
 				((BasePage)App.GameNavigation.CurrentPage).OnAppeared();
 			}
 
+			Console.WriteLine("Popped 1: {0}", App.GameNavigation.CurrentPage);
+
 			HandleScreenQueue();
 		}
 
 		private void HandlePagePushed()
 		{
+			Console.WriteLine("Pushed 2: {0}", App.GameNavigation.CurrentPage);
+
 			#if __IOS__
 
 			// Seams that handling of this type of events is different for iOS and Android
-			HandleScreenQueue();
+//			HandleScreenQueue();
 
 			#endif
 
@@ -548,22 +573,29 @@ namespace WF.Player
 			if (App.GameNavigation.CurrentPage is GameInputView)
 			{
 				// Cancel input
-				//				((GameInputViewModel)((GameInputView)App.Navigation.CurrentPage).BindingContext).Input.GiveResult(null);
+				//				((GameInputViewModel)((GameInputView)App.GameNavigation.CurrentPage).BindingContext).Input.GiveResult(null);
 			}
 
 			// Is there a delayed MessageBox on the screen
 			if (this.timer != null)
 			{
-				lock (timerLock)
+				lock (this.timerLock)
 				{
 					this.timer.Dispose();
 					this.timer = null;
 				}
 
-				if (screenQueue.Count == 0 || !(screenQueue.Peek().ScreenType == ScreenType.Dialog && screenQueue.Peek().Object is MessageBoxEventArgs))
+				if (this.screenQueue.Count == 0 || !(this.screenQueue.Peek().ScreenType == ScreenType.Dialog && this.screenQueue.Peek().Object is MessageBoxEventArgs))
 				{
 					// Only delete MessageBox, if the next isn't a MessageBox
-					Device.BeginInvokeOnMainThread(() => App.GameNavigation.PopAsync());
+					Device.BeginInvokeOnMainThread(() =>
+						{
+							if (!(App.GameNavigation.CurrentPage is GameMainView))
+							{
+								Console.WriteLine("Remove 1: {0}", App.GameNavigation.CurrentPage);
+								App.GameNavigation.PopAsync();
+							}
+						});
 
 					// Return and wait for popped event
 					return;
@@ -576,28 +608,45 @@ namespace WF.Player
 				var activeObject = ((GameDetailViewModel)App.GameNavigation.CurrentPage.BindingContext).ActiveObject;
 
 				// Check, if detail screen is shown with a invalid or invisible object
-				if (activeObject == null || !activeObject.Visible)
+				if (activeObject != null && !activeObject.Visible)
 				{
-					Device.BeginInvokeOnMainThread(() => App.GameNavigation.PopAsync());
+					Device.BeginInvokeOnMainThread(() =>
+						{
+							if (!(App.GameNavigation.CurrentPage is GameMainView))
+							{
+								Console.WriteLine("Remove 2: {0}", App.GameNavigation.CurrentPage);
+								App.GameNavigation.PopAsync();
+							}
+						});
+
 					return;
 				}
 
 				// Check if detail screen is shown with an object without container
 				if (!(activeObject is Task) && !(activeObject is Zone) && ((Thing)activeObject).Container == null)
 				{
-					Device.BeginInvokeOnMainThread(() => App.GameNavigation.PopAsync());
+					Device.BeginInvokeOnMainThread(() =>
+						{
+							if (!(App.GameNavigation.CurrentPage is GameMainView))
+							{
+								Console.WriteLine("Remove 3: {0}", App.GameNavigation.CurrentPage);
+								activeObject = null;
+								App.GameNavigation.PopAsync();
+							}
+						});
+
 					return;
 				}
 			}
 
-			if (screenQueue.Count == 0)
+			if (this.screenQueue.Count == 0)
 			{
 				// Nothing to do
 				return;
 			}
 
 			// Get next screen to display
-			var screen = screenQueue.Peek();
+			var screen = this.screenQueue.Peek();
 
 			switch (screen.ScreenType)
 			{
@@ -605,7 +654,7 @@ namespace WF.Player
 					if (App.GameNavigation.CurrentPage is GameMessageboxView)
 					{
 						// We have a MessageBox on screen, so wait some time, if perhaps another MessageBox arrives
-						lock (timerLock)
+						lock (this.timerLock)
 						{
 							this.timer = new System.Threading.Timer((sender) => HandleScreenQueue(), null, 150, Timeout.Infinite);
 						}
@@ -614,10 +663,18 @@ namespace WF.Player
 					{
 						screenQueue.Dequeue();
 
-						Device.BeginInvokeOnMainThread(() => App.GameNavigation.PopAsync());
+						Device.BeginInvokeOnMainThread(() =>
+							{
+								if (!(App.GameNavigation.CurrentPage is GameMainView))
+								{
+									Console.WriteLine("Remove 4: {0}", App.GameNavigation.CurrentPage);
+									App.GameNavigation.PopAsync();
+								}
+							});
 
 						return;
 					}
+
 					break;
 				case ScreenType.Main:
 				case ScreenType.Locations:
@@ -627,25 +684,33 @@ namespace WF.Player
 					// Check, if main view is visible
 					if (!(App.GameNavigation.CurrentPage is GameMainView))
 					{
+						Console.WriteLine("Remove 5: {0} - PopToRoot", App.GameNavigation.CurrentPage);
 						Device.BeginInvokeOnMainThread(async () => await App.GameNavigation.PopToRootAsync());
 
 						// Return and wait for popped event
 						return;
 					}
 
-					// If main screen selected, don't change the active list
+					if (screen.ScreenType == ScreenType.Main)
+					{
+						((GameMainViewModel)App.GameNavigation.CurrentPage.BindingContext).ActiveScreen = ScreenType.Main;
+					}
+
 					if (screen.ScreenType == ScreenType.Locations || screen.ScreenType == ScreenType.Items)
 					{
 						((GameMainViewModel)App.GameNavigation.CurrentPage.BindingContext).ActiveScreen = ScreenType.Locations;
 					}
+
 					if (screen.ScreenType == ScreenType.Inventory)
 					{
 						((GameMainViewModel)App.GameNavigation.CurrentPage.BindingContext).ActiveScreen = ScreenType.Inventory;
 					}
+
 					if (screen.ScreenType == ScreenType.Tasks)
 					{
 						((GameMainViewModel)App.GameNavigation.CurrentPage.BindingContext).ActiveScreen = ScreenType.Tasks;
 					}
+
 					break;
 				case ScreenType.Details:
 					if (screen.Object is UIObject)
@@ -663,7 +728,14 @@ namespace WF.Player
 						// Remove page (could only be a MessageBox or an Input)
 						if (!(App.GameNavigation.CurrentPage is GameMainView) && !(App.GameNavigation.CurrentPage is GameDetailView))
 							{
-								Device.BeginInvokeOnMainThread(() => App.GameNavigation.PopAsync());
+							Device.BeginInvokeOnMainThread(() =>
+								{
+									if (!(App.GameNavigation.CurrentPage is GameMainView))
+									{
+										Console.WriteLine("Remove 6: {0}", App.GameNavigation.CurrentPage);
+										App.GameNavigation.PopAsync();
+									}
+								});
 
 							// Return and wait for popped event
 							return;
@@ -685,6 +757,7 @@ namespace WF.Player
 								{
 									ActiveObject = (UIObject)screen.Object,
 								});
+							Console.WriteLine("Push 1: {0}", gameDetailView);
 							Device.BeginInvokeOnMainThread(() => App.GameNavigation.PushAsync(gameDetailView));
 						}
 					}
@@ -702,7 +775,14 @@ namespace WF.Player
 							// Remove all screens until we find a detail screen or the main screen
 							if (!(App.GameNavigation.CurrentPage is GameMainView) && !(App.GameNavigation.CurrentPage is GameDetailView))
 							{
-								Device.BeginInvokeOnMainThread(() => App.GameNavigation.PopAsync());
+								Device.BeginInvokeOnMainThread(() =>
+									{
+										if (!(App.GameNavigation.CurrentPage is GameMainView))
+										{
+											Console.WriteLine("Remove 7: {0}", App.GameNavigation.CurrentPage);
+											App.GameNavigation.PopAsync();
+										}
+									});
 
 								// Return and wait for popped event
 								return;
@@ -713,6 +793,7 @@ namespace WF.Player
 								{
 									MessageBox = ((MessageBoxEventArgs)screen.Object).Descriptor,
 								});
+							Console.WriteLine("Push 2: {0}, was {1}", gameMessageboxView, App.GameNavigation.CurrentPage);
 							Device.BeginInvokeOnMainThread(() => App.GameNavigation.PushAsync(gameMessageboxView));
 						}
 					}
@@ -729,7 +810,14 @@ namespace WF.Player
 							// Remove all screens until we find a detail screen or the main screen
 							if (!(App.GameNavigation.CurrentPage is GameMainView) && !(App.GameNavigation.CurrentPage is GameDetailView))
 							{
-								Device.BeginInvokeOnMainThread(() => App.GameNavigation.PopAsync());
+								Device.BeginInvokeOnMainThread(() =>
+									{
+										if (!(App.GameNavigation.CurrentPage is GameMainView))
+										{
+											Console.WriteLine("Remove 8: {0}", App.GameNavigation.CurrentPage);
+											App.GameNavigation.PopAsync();
+										}
+									});
 
 								// Return and wait for popped event
 								return;
@@ -740,6 +828,7 @@ namespace WF.Player
 								{
 									Input = (Input)screen.Object,
 								});
+							Console.WriteLine("Push 3: {0}", gameInputView);
 							Device.BeginInvokeOnMainThread(() => App.GameNavigation.PushAsync(gameInputView));
 						}
 					}
@@ -895,7 +984,7 @@ namespace WF.Player
 		/// <param name="e">Property changed event arguments.</param>
 		private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
-			if (e.PropertyName.Equals("IsBusy"))
+			if (e.PropertyName.Equals("IsBusy") && App.GameNavigation != null && App.GameNavigation.CurrentPage != null)
 			{
 				App.GameNavigation.CurrentPage.IsBusy = this.engine.IsBusy;
 			}

@@ -49,14 +49,14 @@ namespace WF.Player
 		public GameMainCellView()
 		{
 			this.horiLayout = new StackLayout() 
-			{
-				BackgroundColor = App.Colors.Background,
-				Orientation = StackOrientation.Horizontal,
-				Spacing = 10,
-				Padding = new Thickness(10, 0, 0, 0),
-				VerticalOptions = LayoutOptions.FillAndExpand,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-			};
+				{
+					BackgroundColor = Color.Transparent,
+					Orientation = StackOrientation.Horizontal,
+					Spacing = 10,
+					Padding = new Thickness(10, 0, 0, 0),
+					VerticalOptions = LayoutOptions.FillAndExpand,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+				};
 
 			this.icon = new Image() 
 			{

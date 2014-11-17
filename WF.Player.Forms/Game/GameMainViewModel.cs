@@ -21,6 +21,7 @@ namespace WF.Player
 	using Acr.XamForms.UserDialogs;
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using Vernacular;
 	using WF.Player.Core;
 	using WF.Player.Core.Utils;
@@ -32,6 +33,15 @@ namespace WF.Player
 	/// </summary>
 	public class GameMainViewModel : BaseViewModel
 	{
+		/// <summary>
+		/// Class for a overview entry.
+		/// </summary>
+		private class OverviewEntry
+		{
+			public string Header { get; set; }
+			public string Content { get; set; }
+		}
+
 		/// <summary>
 		/// The name of the active screen property.
 		/// </summary>
@@ -46,6 +56,11 @@ namespace WF.Player
 		/// The name of the game main list property.
 		/// </summary>
 		public const string GameMainListPropertyName = "GameMainList";
+
+		/// <summary>
+		/// The name of the is you see selected property.
+		/// </summary>
+		public const string IsOverviewSelectedPropertyName = "IsOverviewSelected";
 
 		/// <summary>
 		/// The name of the is you see selected property.
@@ -71,6 +86,11 @@ namespace WF.Player
 		/// The name of the has list icons property.
 		/// </summary>
 		public const string HasListIconsPropertyName = "HasListIcons";
+
+		/// <summary>
+		/// The name of the is overview visible property.
+		/// </summary>
+		public const string IsOverviewVisiblePropertyName = "IsOverviewVisible";
 
 		/// <summary>
 		/// The name of the is list visible property.
@@ -106,6 +126,26 @@ namespace WF.Player
 		/// The name of the tasks number property.
 		/// </summary>
 		public const string TasksNumberPropertyName = "TasksNumber";
+
+		/// <summary>
+		/// The name of the you see overview content property.
+		/// </summary>
+		public const string YouSeeOverviewContentPropertyName = "YouSeeOverviewContent";
+
+		/// <summary>
+		/// The name of the inventory overview content property.
+		/// </summary>
+		public const string InventoryOverviewContentPropertyName = "InventoryOverviewContent";
+
+		/// <summary>
+		/// The name of the tasks overview content property.
+		/// </summary>
+		public const string TasksOverviewContentPropertyName = "TasksOverviewContent";
+
+		/// <summary>
+		/// The name of the you see command property.
+		/// </summary>
+		public const string OverviewCommandPropertyName = "OverviewCommand";
 
 		/// <summary>
 		/// The name of the you see command property.
@@ -156,6 +196,21 @@ namespace WF.Player
 		/// The has list icons.
 		/// </summary>
 		private bool hasListIcons;
+
+		/// <summary>
+		/// The content of the you see overview on main screen.
+		/// </summary>
+		private string youSeeOverviewContent = string.Format("## {0}{1}{2}", Catalog.GetString("You See"), Environment.NewLine, Catalog.GetString("Nothing of interest"));
+
+		/// <summary>
+		/// The content of the inventory overview on main screen.
+		/// </summary>
+		private string inventoryOverviewContent = string.Format("## {0}{1}{2}", Catalog.GetString("Inventory"), Environment.NewLine, Catalog.GetString("No items"));
+
+		/// <summary>
+		/// The content of the tasks overview on main screen.
+		/// </summary>
+		private string tasksOverviewContent = string.Format("## {0}{1}{2}", Catalog.GetString("Tasks"), Environment.NewLine, Catalog.GetString("No new tasks"));
 
 		/// <summary>
 		/// You see number.
@@ -225,6 +280,8 @@ namespace WF.Player
 					switch (lastScreen)
 					{
 						case ScreenType.Main:
+							NotifyPropertyChanged(IsOverviewSelectedPropertyName);
+							break;
 						case ScreenType.Locations:
 						case ScreenType.Items:
 							NotifyPropertyChanged(IsYouSeeSelectedPropertyName);
@@ -244,6 +301,8 @@ namespace WF.Player
 					switch (this.activeScreen)
 					{
 						case ScreenType.Main:
+							NotifyPropertyChanged(IsOverviewSelectedPropertyName);
+							break;
 						case ScreenType.Locations:
 						case ScreenType.Items:
 							NotifyPropertyChanged(IsYouSeeSelectedPropertyName);
@@ -260,7 +319,7 @@ namespace WF.Player
 					}
 				}
 
-				OnDisplayChanged();
+				Update(); //OnDisplayChanged();
 			}
 		}
 
@@ -319,6 +378,22 @@ namespace WF.Player
 
 		#endregion
 
+		#region IsOverviewSelected
+
+		/// <summary>
+		/// Gets a value indicating whether overview is selected.
+		/// </summary>
+		/// <value><c>true</c> if this instance is you see selected; otherwise, <c>false</c>.</value>
+		public bool IsOverviewSelected
+		{
+			get 
+			{
+				return this.activeScreen == ScreenType.Main; 
+			}
+		}
+
+		#endregion
+
 		#region IsYouSeeSelected
 
 		/// <summary>
@@ -329,7 +404,7 @@ namespace WF.Player
 		{
 			get 
 			{
-				return this.activeScreen == ScreenType.Main || this.activeScreen == ScreenType.Locations || this.activeScreen == ScreenType.Items; 
+				return this.activeScreen == ScreenType.Locations || this.activeScreen == ScreenType.Items; 
 			}
 		}
 
@@ -399,6 +474,22 @@ namespace WF.Player
 
 		#endregion
 
+		#region IsOverviewVisible
+
+		/// <summary>
+		/// Gets a value indicating whether overview is visible.
+		/// </summary>
+		/// <value><c>true</c> if overview is visible; otherwise, <c>false</c>.</value>
+		public bool IsOverviewVisible
+		{
+			get 
+			{
+				return this.activeScreen == ScreenType.Main;
+			}
+		}
+
+		#endregion
+
 		#region IsListVisible
 
 		/// <summary>
@@ -410,7 +501,7 @@ namespace WF.Player
 			get 
 			{
 				// Never show list for map
-				if (this.activeScreen == ScreenType.Map)
+				if (this.activeScreen == ScreenType.Map || this.activeScreen == ScreenType.Main)
 				{
 					return false;
 				}
@@ -434,7 +525,7 @@ namespace WF.Player
 			get 
 			{
 				// Never show empty text for map
-				if (this.activeScreen == ScreenType.Map)
+				if (this.activeScreen == ScreenType.Map || this.activeScreen == ScreenType.Main)
 				{
 					return false;
 				}
@@ -457,6 +548,11 @@ namespace WF.Player
 		{
 			get 
 			{
+				if (this.activeScreen == ScreenType.Main)
+				{
+					return Catalog.GetString("Overview");
+				}
+
 				if (IsYouSeeSelected)
 				{
 					return Catalog.GetString("You See");
@@ -526,6 +622,57 @@ namespace WF.Player
 
 		#endregion
 
+		#region YouSeeOverviewContent
+
+		public string YouSeeOverviewContent
+		{
+			get
+			{
+				return this.youSeeOverviewContent;
+			}
+
+			set
+			{
+				SetProperty<string>(ref this.youSeeOverviewContent, value, YouSeeOverviewContentPropertyName);
+			}
+		}
+
+		#endregion
+
+		#region InventoryOverviewContent
+
+		public string InventoryOverviewContent
+		{
+			get
+			{
+				return this.inventoryOverviewContent;
+			}
+
+			set
+			{
+				SetProperty<string>(ref this.inventoryOverviewContent, value, InventoryOverviewContentPropertyName);
+			}
+		}
+
+		#endregion
+
+		#region TasksOverviewContent
+
+		public string TasksOverviewContent
+		{
+			get
+			{
+				return this.tasksOverviewContent;
+			}
+
+			set
+			{
+				SetProperty<string>(ref this.tasksOverviewContent, value, TasksOverviewContentPropertyName);
+			}
+		}
+
+		#endregion
+
 		#region YouSeeNumber
 
 		/// <summary>
@@ -542,7 +689,6 @@ namespace WF.Player
 			set
 			{
 				SetProperty<int>(ref this.youSeeNumber, value, YouSeeNumberPropertyName);
-				OnLayoutChanged();
 			}
 		}
 
@@ -564,7 +710,6 @@ namespace WF.Player
 			set
 			{
 				SetProperty<int>(ref this.inventoryNumber, value, InventoryNumberPropertyName);
-				OnLayoutChanged();
 			}
 		}
 
@@ -586,7 +731,6 @@ namespace WF.Player
 			set
 			{
 				SetProperty<int>(ref this.tasksNumber, value, TasksNumberPropertyName);
-				OnLayoutChanged();
 			}
 		}
 
@@ -595,6 +739,22 @@ namespace WF.Player
 		#endregion
 
 		#region Commands
+
+		#region Overview Command
+
+		/// <summary>
+		/// Gets overview command.
+		/// </summary>
+		/// <value>Overview command.</value>
+		public Xamarin.Forms.Command OverviewCommand
+		{
+			get
+			{
+				return new Xamarin.Forms.Command(() => ExecuteScreenChanged(ScreenType.Main));
+			}
+		}
+
+		#endregion
 
 		#region You See Command
 
@@ -761,7 +921,7 @@ namespace WF.Player
 			App.GPS.PositionChanged += OnPositionChanged;
 			App.GPS.HeadingChanged += OnPositionChanged;
 
-			OnDisplayChanged(null, null);
+			Update();
 		}
 
 		/// <summary>
@@ -790,7 +950,7 @@ namespace WF.Player
 
 			ActiveScreen = screen;
 
-			OnDisplayChanged();
+			Update();
 		}
 
 		/// <summary>
@@ -810,14 +970,22 @@ namespace WF.Player
 		}
 
 		/// <summary>
-		/// Handles the layout changed.
+		/// Handles the layout changed, which is called, when screen changes.
 		/// </summary>
 		private void OnLayoutChanged()
 		{
-			NotifyPropertyChanged(EmptyListTextPropertyName);
-			NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
-			NotifyPropertyChanged(IsListVisiblePropertyName);
 			NotifyPropertyChanged(TitelPropertyName);
+			NotifyPropertyChanged(IsListVisiblePropertyName);
+			NotifyPropertyChanged(IsOverviewVisiblePropertyName);
+			if (this.activeScreen != ScreenType.Main && this.activeScreen != ScreenType.Map)
+			{
+				NotifyPropertyChanged(EmptyListTextPropertyName);
+				NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
+			}
+			if (this.activeScreen == ScreenType.Main)
+			{
+				NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
+			}
 		}
 
 		/// <summary>
@@ -832,32 +1000,37 @@ namespace WF.Player
 				e = new DisplayChangedEventArgs();
 			}
 
-			// Check, if there is something, because if which we should update 
+			// Check, if there is something we should update 
 			if (e.What == "Property")
 			{
 				var ret = true;
 
-				if (e.PropertyName == "ActiveVisibleZones" && IsYouSeeSelected)
+				if (e.PropertyName == "ActiveVisibleZones" && (IsYouSeeSelected || IsOverviewSelected))
 				{
 					ret = false;
 				}
 
-				if (e.PropertyName == "VisibleObjects" && IsYouSeeSelected)
+				if (e.PropertyName == "VisibleObjects" && (IsYouSeeSelected || IsOverviewSelected))
 				{
 					ret = false;
 				}
 
-				if (e.PropertyName == "VisibleInventory" && IsInventorySelected)
+				if (e.PropertyName == "VisibleInventory" && (IsInventorySelected || IsOverviewSelected))
 				{
 					ret = false;
 				}
 
-				if (e.PropertyName == "ActiveVisibleTasks" && IsTasksSelected)
+				if (e.PropertyName == "ActiveVisibleTasks" && (IsTasksSelected || IsOverviewSelected))
 				{
 					ret = false;
 				}
 
 				if (e.PropertyName == "Active" || e.PropertyName == "Visible")
+				{
+					ret = false;
+				}
+
+				if (e.PropertyName == "Name" && IsOverviewSelected)
 				{
 					ret = false;
 				}
@@ -868,7 +1041,7 @@ namespace WF.Player
 				}
 			}
 
-			var listItems = new List<GameMainCellViewModel>();
+			List<GameMainCellViewModel> listItems = null;
 			bool hasListIcons = false;
 			bool hasDirections = false;
 
@@ -880,9 +1053,14 @@ namespace WF.Player
 			switch (this.activeScreen)
 			{
 				case ScreenType.Main:
+					hasListIcons = false;
+					hasDirections = false;
+					break;
 				case ScreenType.Locations:
 				case ScreenType.Items:
 					var zones = this.gameModel.ActiveVisibleZones;
+
+					listItems = new List<GameMainCellViewModel>();
 
 					foreach (Zone z in zones)
 					{
@@ -903,6 +1081,8 @@ namespace WF.Player
 				case ScreenType.Inventory:
 					var inventory = this.gameModel.VisibleInventory;
 
+					listItems = new List<GameMainCellViewModel>();
+
 					foreach (Thing t in inventory)
 					{
 						listItems.Add(new GameMainCellViewModel(t.Name, App.Colors.Text, t));
@@ -912,6 +1092,8 @@ namespace WF.Player
 					break;
 				case ScreenType.Tasks:
 					var tasks = this.gameModel.ActiveVisibleTasks;
+
+					listItems = new List<GameMainCellViewModel>();
 
 					foreach (Task t in tasks)
 					{
@@ -924,21 +1106,101 @@ namespace WF.Player
 
 			this.hasListIcons = hasListIcons;
 
-			// Set icon visible flag
-			foreach (var o in listItems)
+			if (activeScreen != ScreenType.Main && activeScreen != ScreenType.Map)
 			{
-				o.ShowIcon = this.hasListIcons;
-				o.ShowDirection = hasDirections & o.UIObject.ObjectLocation != null;
-			}
+				// Set icon visible flag
+				foreach (var o in listItems)
+				{
+					o.ShowIcon = this.hasListIcons;
+					o.ShowDirection = hasDirections & o.UIObject.ObjectLocation != null;
+				}
 
-			this.gameMainList = listItems;
-			NotifyPropertyChanged(GameMainListPropertyName);
+				this.gameMainList = listItems;
+				NotifyPropertyChanged(GameMainListPropertyName);
+			}
 
 			YouSeeNumber = this.gameModel.ActiveVisibleZones.Count + this.gameModel.VisibleObjects.Count;
 			InventoryNumber = this.gameModel.VisibleInventory.Count;
 			TasksNumber = this.gameModel.ActiveVisibleTasks.Count;
 
-			UpdateDirections();
+			if (activeScreen == ScreenType.Main)
+			{
+				// Create content for You See on main screen
+				string result = string.Format("## {0}", Catalog.GetString("You See"));
+
+				if (YouSeeNumber > 0)
+				{
+					result = result + string.Format(" [{0}]", YouSeeNumber);
+				}
+
+				result = result + Environment.NewLine;
+
+				var listYouSee = this.gameModel.ActiveVisibleZones.Select(o => o.Name).ToList();
+				listYouSee.AddRange(this.gameModel.VisibleObjects.Select(o => o.Name).ToList());
+
+				if (listYouSee.Count > 0)
+				{
+					result = result + string.Join(", ", listYouSee);
+				}
+				else
+				{
+					result = result + this.gameModel.Cartridge.EmptyYouSeeListText;
+				}
+
+				YouSeeOverviewContent = result;
+
+				// Create content for Inventory on main screen
+				result = string.Format("## {0}", Catalog.GetString("Inventory"));
+
+				if (InventoryNumber > 0)
+				{
+					result = result + string.Format(" [{0}]", InventoryNumber);
+				}
+
+				result = result + Environment.NewLine;
+
+				var listInventory = this.gameModel.VisibleInventory.Select(o => o.Name).ToList();
+
+				if (listInventory.Count > 0)
+				{
+					result = result + string.Join(", ", listInventory);
+				}
+				else
+				{
+					result = result + this.gameModel.Cartridge.EmptyInventoryListText;
+				}
+
+				InventoryOverviewContent = result;
+
+				// Create content for Tasks on main screen
+				result = string.Format("## {0}", Catalog.GetString("Tasks"));
+
+				if (TasksNumber > 0)
+				{
+					result = result + string.Format(" [{0}]", TasksNumber);
+				}
+
+				result = result + Environment.NewLine;
+
+				var listTasks = this.gameModel.ActiveVisibleTasks.Select(o => o.Name).ToList();
+
+				if (listTasks.Count > 0)
+				{
+					result = result + string.Join(", ", listTasks);
+				}
+				else
+				{
+					result = result + this.gameModel.Cartridge.EmptyTasksListText;
+				}
+
+				TasksOverviewContent = result;
+
+			}
+
+			if (!IsOverviewVisible)
+			{
+				UpdateDirections();
+			}
 		}
 
 		/// <summary>

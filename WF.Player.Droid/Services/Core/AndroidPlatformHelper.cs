@@ -26,6 +26,7 @@ using Android.Content.PM;
 using Android.OS;
 using Xamarin.Forms;
 using WF.Player.Core.Engines;
+using Vernacular;
 
 [assembly: Dependency(typeof(WF.Player.Droid.Services.Core.AndroidPlatformHelper))]
 
@@ -72,32 +73,32 @@ namespace WF.Player.Droid.Services.Core
 
 		public string Ok
 		{
-			get { return "Ok"; }
+			get { return Catalog.GetString("Ok"); }
 		}
 
 		public string EmptyYouSeeListText
 		{
-			get { return "Nothing of interest"; }
+			get { return Catalog.GetString("Nothing of interest"); }
 		}
 
 		public string EmptyInventoryListText 
 		{
-			get { return "No items"; }
+			get { return Catalog.GetString("No items"); }
 		}
 
 		public string EmptyTasksListText 
 		{
-			get { return "No new tasks"; }
+			get { return Catalog.GetString("No new tasks"); }
 		}
 
 		public string EmptyZonesListText
 		{
-			get { return "Nowhere to go"; }
+			get { return Catalog.GetString("Nowhere to go"); }
 		}
 
 		public string EmptyTargetListText 
 		{
-			get { return "Nothing available"; }
+			get { return Catalog.GetString("Nothing available"); }
 		}
 
 		public string PathSeparator
@@ -126,7 +127,7 @@ namespace WF.Player.Droid.Services.Core
 			get
 			{
 				// TODO: Insert right DeviceId
-				return "Unknown";
+				return Catalog.GetString("Unknown");
 			}
 		}
 
