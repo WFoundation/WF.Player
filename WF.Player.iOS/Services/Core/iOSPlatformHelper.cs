@@ -22,6 +22,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using Xamarin.Forms;
 using WF.Player.Core.Engines;
+using Vernacular;
 
 [assembly: Dependency(typeof(WF.Player.iOS.Services.Core.iOSPlatformHelper))]
 
@@ -70,32 +71,32 @@ namespace WF.Player.iOS.Services.Core
 
 		public string Ok
 		{
-			get { return "Ok"; }
+			get { return Catalog.GetString("Ok"); }
 		}
 
 		public string EmptyYouSeeListText
 		{
-			get { return "Nothing of interest"; }
+			get { return Catalog.GetString("Nothing of interest"); }
 		}
 
 		public string EmptyInventoryListText 
 		{
-			get { return "No items"; }
+			get { return Catalog.GetString("No items"); }
 		}
 
 		public string EmptyTasksListText 
 		{
-			get { return "No new tasks"; }
+			get { return Catalog.GetString("No new tasks"); }
 		}
 
 		public string EmptyZonesListText
 		{
-			get { return "Nowhere to go"; }
+			get { return Catalog.GetString("Nowhere to go"); }
 		}
 
 		public string EmptyTargetListText 
 		{
-			get { return "Nothing available"; }
+			get { return Catalog.GetString("Nothing available"); }
 		}
 
 		public string PathSeparator

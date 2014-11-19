@@ -484,7 +484,7 @@ namespace WF.Player
 		{
 			get 
 			{
-				return this.activeScreen == ScreenType.Main;
+				return (this.activeScreen == ScreenType.Main && gameModel.GameState == WF.Player.Core.Engines.EngineGameState.Playing);
 			}
 		}
 
@@ -525,7 +525,7 @@ namespace WF.Player
 			get 
 			{
 				// Never show empty text for map
-				if (this.activeScreen == ScreenType.Map || this.activeScreen == ScreenType.Main)
+				if (this.activeScreen == ScreenType.Map || (this.activeScreen == ScreenType.Main && gameModel.GameState == WF.Player.Core.Engines.EngineGameState.Playing))
 				{
 					return false;
 				}
@@ -998,6 +998,14 @@ namespace WF.Player
 			if (e == null)
 			{
 				e = new DisplayChangedEventArgs();
+			}
+
+			// If GameState change, update the main screen
+			if (e.What == "GameState" && gameModel.GameState == WF.Player.Core.Engines.EngineGameState.Playing)
+			{
+				Update();
+
+				return;
 			}
 
 			// Check, if there is something we should update 

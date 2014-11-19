@@ -984,6 +984,12 @@ namespace WF.Player
 		/// <param name="e">Property changed event arguments.</param>
 		private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
+			// If GameState changes to Playing, than update screen
+			if (e.PropertyName == "GameState" && GameState == EngineGameState.Playing)
+			{
+				RaiseDisplayChanged("GameState");
+			}
+
 			if (e.PropertyName.Equals("IsBusy") && App.GameNavigation != null && App.GameNavigation.CurrentPage != null)
 			{
 				App.GameNavigation.CurrentPage.IsBusy = this.engine.IsBusy;

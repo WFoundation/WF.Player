@@ -68,7 +68,10 @@ namespace WF.Player.Controls.iOS
 				NSAttributedString attrStr = new NSAttributedString(htmlData, attr, out dict, ref nsError);
 
 				Control.AttributedText = attrStr;
+				Control.SizeToFit();
 				Control.SetNeedsLayout();
+
+				Element.HeightRequest = Control.Bounds.Height;
 
 				return;
 			}

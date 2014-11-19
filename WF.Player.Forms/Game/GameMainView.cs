@@ -243,7 +243,7 @@ namespace WF.Player
 				Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
 				VerticalOptions = LayoutOptions.CenterAndExpand,
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
-				IsVisible = false,
+				IsVisible = true,
 			};
 			label.SetBinding(Label.TextProperty, GameMainViewModel.EmptyListTextPropertyName);
 			label.SetBinding(Label.IsVisibleProperty, GameMainViewModel.IsEmptyListTextVisiblePropertyName);
