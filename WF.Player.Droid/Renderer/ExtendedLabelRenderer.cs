@@ -42,25 +42,19 @@ namespace WF.Player.Controls.Droid
 			if (e.PropertyName.Equals("Text") && Control != null)
 			{
 				var html = ((ExtendedLabel)Element).TextExt;
-
 				var formattedText = global::Android.Text.Html.FromHtml(html);
+				var end = formattedText.Length();
 
-				while (formattedText.Length() > 0 && formattedText.CharAt(formattedText.Length() - 1) == '\n')
+				while (--end > 0 && Char.IsWhiteSpace(formattedText.CharAt(end)))
 				{
-					formattedText = (ISpanned)formattedText.SubSequenceFormatted(0, formattedText.Length() - 1);
 				}
 
-				Control.TextFormatted = formattedText;
+				Control.TextFormatted = formattedText.SubSequenceFormatted(0, ++end);
 
 				return;
 			}
 
 			base.OnElementPropertyChanged(sender, e);
-		}
-
-		private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-		{
-
 		}
 	}
 }

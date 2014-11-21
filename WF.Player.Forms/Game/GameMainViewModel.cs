@@ -1202,7 +1202,6 @@ namespace WF.Player
 				}
 
 				TasksOverviewContent = result;
-
 			}
 
 			if (!IsOverviewVisible)

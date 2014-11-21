@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Droid/Renderer/ExtendedLabelRenderer.cs">
     <Files>
       <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
@@ -10,13 +10,14 @@
       <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Core/Core/Cartridge.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/MainActivity.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Renderer/ExtendedLabelRenderer.cs" Line="46" Column="46" />
       <File FileName="WF.Player.Droid/Renderer/CustomNavigationRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Controls/ExtendedLabel.cs" Line="62" Column="62" />
+      <File FileName="WF.Player.Forms/Controls/ExtendedLabel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Renderer/ExtendedLabelRenderer.cs" Line="21" Column="21" />
       <File FileName="WF.Player.iOS/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" Line="22" Column="22" />
+      <File FileName="WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Enums/OverviewType.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs" Line="40" Column="40" />
+      <File FileName="WF.Player.Core/Core/Engines/Engine.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameCheckLocationViewModel.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
