@@ -928,8 +928,6 @@ namespace WF.Player
 				this.engine.PropertyChanged -= this.OnPropertyChanged;
 
 				this.engine.Stop();
-				this.engine.Reset();
-
 				this.engine.Dispose();
 
 				this.engine = null;

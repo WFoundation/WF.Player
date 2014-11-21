@@ -282,7 +282,7 @@ namespace WF.Player
 
 				return ImageSource.FromStream(() => 
 					{
-						return ActiveObject.Image != null ? new MemoryStream(ActiveObject.Image.Data) : null;
+						return ActiveObject.Media != null ? new MemoryStream(ActiveObject.Media.Data) : null;
 					});
 			}
 		}
@@ -309,11 +309,11 @@ namespace WF.Player
 				{
 					if (!string.IsNullOrEmpty(ActiveObject.Markdown))
 					{
-						result.Html = ConverterToHtml.FromMarkdown(ActiveObject.Markdown, ActiveObject.Image);
+						result.Html = ConverterToHtml.FromMarkdown(ActiveObject.Markdown, ActiveObject.Media);
 					}
 					else
 					{
-						result.Html = ConverterToHtml.FromText(ActiveObject.Description, ActiveObject.Image);
+						result.Html = ConverterToHtml.FromText(ActiveObject.Description, ActiveObject.Media);
 					}
 				}
 
@@ -333,7 +333,7 @@ namespace WF.Player
 		{ 
 			get
 			{ 
-				return this.activeObject != null && this.activeObject.Image != null && this.activeObject.Image.Data != null; 
+				return this.activeObject != null && this.activeObject.Media != null && this.activeObject.Media.Data != null; 
 			}
 		}
 

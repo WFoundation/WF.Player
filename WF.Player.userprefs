@@ -1,10 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Droid/Renderer/ExtendedLabelRenderer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.0123456789ABCDEF" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Game/GameMainViewModel.cs">
     <Files>
       <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="11" Column="11" />
       <File FileName="WF.Player.Forms/Game/GameMainCellViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainCellView.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
@@ -12,7 +12,7 @@
       <File FileName="WF.Player.Droid/MainActivity.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/Renderer/CustomNavigationRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Controls/ExtendedLabel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Renderer/ExtendedLabelRenderer.cs" Line="21" Column="21" />
+      <File FileName="WF.Player.Droid/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Enums/OverviewType.cs" Line="1" Column="1" />

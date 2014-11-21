@@ -1,0 +1,3 @@
+[submodule "WF.Player.Core"]
+	path = WF.Player.Core
+	url = https://github.com/WFoundation/WF.Player.Core
