@@ -87,7 +87,7 @@ namespace WF.Player
 		/// <summary>
 		/// Navigation page for inside of game navigation.
 		/// </summary>
-		public static NavigationPage GameNavigation;
+		public static ExtendedNavigationPage GameNavigation;
 
 		/// <summary>
 		/// Gets or sets the game.

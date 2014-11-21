@@ -15,12 +15,12 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Acr.XamForms.UserDialogs;
 
 namespace WF.Player
 {
 	using System;
 	using System.IO;
+	using Acr.XamForms.UserDialogs;
 	using Vernacular;
 	using WF.Player.Core;
 	using Xamarin.Forms;
@@ -144,9 +144,9 @@ namespace WF.Player
 		#region HasText
 
 		/// <summary>
-		/// Gets, if this input contains text.
+		/// Gets a value indicating whether this instance has text.
 		/// </summary>
-		/// <value>The has text flag.</value>
+		/// <value><c>true</c> if this instance has text; otherwise, <c>false</c>.</value>
 		public bool HasText 
 		{
 			get 
@@ -338,7 +338,7 @@ namespace WF.Player
 		/// Handles the click of the button.
 		/// </summary>
 		/// <param name="sender">Sender iof event.</param>
-		private async void HandleButtonClicked(object sender)
+		private void HandleButtonClicked(object sender)
 		{
 			// Get active view
 			var view = (GameInputView)App.GameNavigation.CurrentPage;
@@ -359,24 +359,6 @@ namespace WF.Player
 
 				// Handle input of dialog
 				this.input.GiveResult(inputText);
-
-//				var cfg = new PromptConfig();
-//				cfg.Message = this.input.Text;
-//				cfg.Title = string.Empty;
-//				cfg.OnResult = (result) =>
-//				{
-//					Device.BeginInvokeOnMainThread(() =>
-//						{
-//							App.Click();
-//							if (result.Ok)
-//							{
-//								App.Game.ShowScreen(ScreenType.Last, null);
-//								this.input.GiveResult(result.Text);
-//							}
-//						});
-//				};
-//
-//				DependencyService.Get<IUserDialogService>().Prompt(cfg);
 			}
 
 			if (this.input.InputType == InputType.MultipleChoice)
@@ -403,9 +385,9 @@ namespace WF.Player
 		/// Called when the user has selected an answer from the multiple choice question.
 		/// </summary>
 		/// <param name="result">Result of the multiple choice question.</param>
-		private async void MultipleChoiceSelected(string result)
+		private void MultipleChoiceSelected(string result)
 		{
-			Device.BeginInvokeOnMainThread(async () =>
+			Device.BeginInvokeOnMainThread(() =>
 				{
 					// Click for button
 					App.Click();
@@ -440,7 +422,6 @@ namespace WF.Player
 
 			if (this.input.InputType == InputType.Text)
 			{
-//				text = Catalog.GetString("Answer");
 				view.BottomLayout.Children.Clear();
 				view.BottomLayout.Children.Add(view.BottomEntry);
 				return;

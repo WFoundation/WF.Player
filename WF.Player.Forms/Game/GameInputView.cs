@@ -27,10 +27,7 @@ namespace WF.Player
 	/// </summary>
 	public class GameInputView : ToolBarPage
 	{
-		/// <summary>
-		/// The bottom.
-		/// </summary>
-		public StackLayout BottomEntry;
+		#region Constructor
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WF.Player.GameInputView"/> class.
@@ -142,5 +139,17 @@ namespace WF.Player
 
 			BottomEntry.Children.Add(button);
 		}
+
+		#endregion
+
+		#region Properties
+
+		/// <summary>
+		/// Gets or sets the bottom entry.
+		/// </summary>
+		/// <value>The bottom entry.</value>
+		public StackLayout BottomEntry { get; set; }
+
+		#endregion
 	}
 }

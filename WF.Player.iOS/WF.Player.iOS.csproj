@@ -194,7 +194,6 @@
     <Compile Include="Renderer\BottomBarPageRenderer.cs" />
     <Compile Include="Renderer\CustomWebViewRenderer.cs" />
     <Compile Include="Renderer\CustomButtonRenderer.cs" />
-    <Compile Include="Renderer\CustomNavigationRenderer.cs" />
     <Compile Include="Services\Routing\Routing.cs" />
     <Compile Include="Renderer\DirectionArrowRenderer.cs" />
     <Compile Include="Renderer\BadgeImageRenderer.cs" />
@@ -204,6 +203,7 @@
     <Compile Include="Services\Utils\ImageTools.cs" />
     <Compile Include="Renderer\ExtendedLabelRenderer.cs" />
     <Compile Include="Services\Acr.XamForms.UserDialogs.iOS\UserDialogService.cs" />
+    <Compile Include="Renderer\CustomNavigationPageRenderer.cs" />
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="..\WF.Player.Common\WF.Player.Common.projitems" Label="Shared" Condition="Exists('..\WF.Player.Common\WF.Player.Common.projitems')" />

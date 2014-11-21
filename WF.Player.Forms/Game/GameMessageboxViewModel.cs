@@ -87,6 +87,7 @@ namespace WF.Player
 				NotifyPropertyChanged(HtmlSourcePropertyName);
 				#else
 				NotifyPropertyChanged(TextPropertyName);
+				NotifyPropertyChanged(HasTextPropertyName);
 				NotifyPropertyChanged(ImageSourcePropertyName);
 				NotifyPropertyChanged(HasImagePropertyName);
 				#endif
@@ -116,7 +117,7 @@ namespace WF.Player
 		#region HasText
 
 		/// <summary>
-		/// Gets, if this messagebox contains text.
+		/// Gets a value indicating whether this messagebox contains text.
 		/// </summary>
 		/// <value>The has text flag.</value>
 		public bool HasText 

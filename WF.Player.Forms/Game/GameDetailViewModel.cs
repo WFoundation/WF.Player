@@ -252,9 +252,9 @@ namespace WF.Player
 		#region HasDescription
 
 		/// <summary>
-		/// Gets, if this object has a description.
+		/// Gets a value indicating whether this instance has description.
 		/// </summary>
-		/// <value>The has description flag.</value>
+		/// <value><c>true</c> if this instance has description; otherwise, <c>false</c>.</value>
 		public bool HasDescription 
 		{
 			get 

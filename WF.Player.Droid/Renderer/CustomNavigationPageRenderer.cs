@@ -21,11 +21,11 @@ using WF.Player.Droid;
 using System.Drawing;
 using Android.App;
 
-[assembly: ExportRendererAttribute(typeof(NavigationPage), typeof(CustomNavigationRenderer))]
+[assembly: ExportRendererAttribute(typeof(NavigationPage), typeof(CustomNavigationPageRenderer))]
 
 namespace WF.Player.Droid
 {
-	public class CustomNavigationRenderer : NavigationRenderer
+	public class CustomNavigationPageRenderer : NavigationRenderer
 	{
 		protected override System.Threading.Tasks.Task<bool> OnPopViewAsync (Page page, bool animated)
 		{

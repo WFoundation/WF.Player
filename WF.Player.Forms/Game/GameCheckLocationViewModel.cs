@@ -202,11 +202,11 @@ namespace WF.Player
 						App.Game = new GameModel(this.cartridgeTag);
 
 						// Create game main view with model
-						var gameMainViewModel = new GameMainViewModel(App.Game, this.lastPage);
+						var gameMainViewModel = new GameMainViewModel(App.Game);
 						var gameMainView = new GameMainView(gameMainViewModel);
 
 						// Create a new navigation page for the game
-						App.GameNavigation = new NavigationPage(gameMainView)
+						App.GameNavigation = new ExtendedNavigationPage(gameMainView)
 							{
 								BarBackgroundColor = App.Colors.Bar,
 								BarTextColor = App.Colors.BarText,

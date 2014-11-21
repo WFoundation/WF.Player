@@ -21,8 +21,15 @@ namespace WF.Player.Controls
 	using System;
 	using Xamarin.Forms;
 
+	/// <summary>
+	/// Extended image.
+	/// </summary>
 	public class ExtendedImage : Image
 	{
+		/// <param name="propertyName">The name of the property that changed.</param>
+		/// <summary>
+		/// Call this method from a child class to notify that a change happened on a property.
+		/// </summary>
 		protected override void OnPropertyChanged(string propertyName)
 		{
 			if (propertyName.Equals("Source"))
@@ -32,6 +39,12 @@ namespace WF.Player.Controls
 			base.OnPropertyChanged(propertyName);
 		}
 
+		/// <summary>
+		/// This method is called during the measure pass of a layout cycle to get the desired size of an element.
+		/// </summary>
+		/// <returns>New size of element.</returns>
+		/// <param name="widthConstraint">The available width for the element to use.</param>
+		/// <param name="heightConstraint">The available height for the element to use.</param>
 		protected override SizeRequest OnSizeRequest(double widthConstraint, double heightConstraint)
 		{
 			var sizeRequest = base.OnSizeRequest(widthConstraint, heightConstraint);
@@ -85,9 +98,10 @@ namespace WF.Player.Controls
 
 					var aspect = sizeRequest.Request.Height / sizeRequest.Request.Width;
 
+					// TODO: Get correct screen size
 					if (widthConstraint * aspect > 320)
 					{
-						sizeRequest.Request = new Size(320 / aspect, 320); //double.IsPositiveInfinity(heightConstraint) ? new Size(320 / aspect, 320) : new Size(widthConstraint * 320 / heightConstraint, 320);
+						sizeRequest.Request = new Size(320 / aspect, 320);
 						sizeRequest.Minimum = sizeRequest.Request;
 
 						return sizeRequest;
@@ -104,4 +118,3 @@ namespace WF.Player.Controls
 		}
 	}
 }
-

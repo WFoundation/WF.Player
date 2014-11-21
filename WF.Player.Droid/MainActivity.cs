@@ -35,8 +35,6 @@ namespace WF.Player.Droid
 	)]
 	public class MainActivity : AndroidActivity
 	{
-		const string HOCKEYAPP_APPID = "<YOUR-HOCKEY-APP-APPID>";
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			var isDarkTheme = PreferenceManager.GetDefaultSharedPreferences (this).GetInt (DefaultPreferences.DisplayThemeKey, default(int));
@@ -54,7 +52,7 @@ namespace WF.Player.Droid
 			#if __HOCKEYAPP__
 
 			//Register to with the Update Manager
-			HockeyApp.UpdateManager.Register (this, HOCKEYAPP_APPID);
+			HockeyApp.UpdateManager.Register (this, "<YOUR-HOCKEY-APP-APPID>");
 
 			#endif
 

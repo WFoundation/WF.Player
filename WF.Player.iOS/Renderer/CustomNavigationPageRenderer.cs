@@ -22,13 +22,13 @@ using MonoTouch.UIKit;
 using MonoTouch.CoreGraphics;
 using System.Drawing;
 
-[assembly: ExportRendererAttribute(typeof(NavigationPage), typeof(CustomNavigationRenderer))]
+[assembly: ExportRendererAttribute(typeof(NavigationPage), typeof(CustomNavigationPageRenderer))]
 
 namespace WF.Player.iOS
 {
-	public class CustomNavigationRenderer : NavigationRenderer
+	public class CustomNavigationPageRenderer : NavigationRenderer
 	{
-		public CustomNavigationRenderer()
+		public CustomNavigationPageRenderer()
 		{
 //			NavigationBar.BarStyle = App.Colors.IsDarkTheme ? UIBarStyle.Black : UIBarStyle.Default;
 		}

@@ -88,7 +88,6 @@
     <Compile Include="Services\Geolocation\Geolocator.cs" />
     <Compile Include="Services\Core\AndroidPlatformHelper.cs" />
     <Compile Include="Services\Geolocation\GeolocationListener.cs" />
-    <Compile Include="Renderer\CustomNavigationRenderer.cs" />
     <Compile Include="Renderer\GameToolBarButtonRenderer.cs" />
     <Compile Include="Services\Device\Sound.cs" />
     <Compile Include="Services\Device\Vibration.cs" />
@@ -109,6 +108,7 @@
     <Compile Include="Services\Utils\ImageTools.cs" />
     <Compile Include="Renderer\ExtendedLabelRenderer.cs" />
     <Compile Include="Services\Acr.XamForms.UserDialogs.Droid\UserDialogService.cs" />
+    <Compile Include="Renderer\CustomNavigationPageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

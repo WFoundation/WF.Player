@@ -18,8 +18,6 @@
 
 namespace WF.Player
 {
-	using Acr.XamForms.UserDialogs;
-	using System;
 	using Vernacular;
 	using WF.Player.Controls;
 	using Xamarin.Forms;
@@ -55,11 +53,6 @@ namespace WF.Player
 		private GameToolBarButton buttonMap;
 
 		/// <summary>
-		/// The overview list.
-		/// </summary>
-		public ListView Overview;
-
-		/// <summary>
 		/// Initializes a new instance of the <see cref="WF.Player.GameMainView"/> class.
 		/// </summary>
 		/// <param name="gameMainViewModel">Game main view model.</param>
@@ -87,7 +80,7 @@ namespace WF.Player
 
 			#if __ANDROID__
 
-			var toolbarSave = new ToolbarItem(Catalog.GetString("Save"), "", async () =>
+			var toolbarSave = new ToolbarItem(Catalog.GetString("Save"), "", () =>
 				{ 
 					App.Click();
 					((GameMainViewModel)BindingContext).HandleMenuAction(this, Catalog.GetString("Save")); 
@@ -95,7 +88,7 @@ namespace WF.Player
 				Order = ToolbarItemOrder.Secondary,
 			};
 			ToolbarItems.Add(toolbarSave);
-			var toolbarQuit = new ToolbarItem(Catalog.GetString("Quit"), "", async () =>
+			var toolbarQuit = new ToolbarItem(Catalog.GetString("Quit"), "", () =>
 				{ 
 					App.Click();
 					((GameMainViewModel)BindingContext).HandleMenuAction(this, Catalog.GetString("Quit")); 
@@ -112,7 +105,6 @@ namespace WF.Player
 			{
 				BackgroundColor = App.Colors.BackgroundButtons,
 				Orientation = StackOrientation.Horizontal,
-//				VerticalOptions = LayoutOptions.Fill,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				HeightRequest = 72,
 				MinimumHeightRequest = 72,
@@ -250,11 +242,12 @@ namespace WF.Player
 
 			listLayout.Children.Add(label);
 
-			var overview = new ScrollView() {
-				VerticalOptions = LayoutOptions.FillAndExpand,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				IsVisible = false,
-			};
+			var overview = new ScrollView() 
+				{
+					VerticalOptions = LayoutOptions.FillAndExpand,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					IsVisible = false,
+				};
 			overview.SetBinding(ScrollView.IsVisibleProperty, GameMainViewModel.IsOverviewVisiblePropertyName);
 
 			var layoutOverview = new StackLayout() 

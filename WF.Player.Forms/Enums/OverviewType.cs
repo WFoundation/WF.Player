@@ -18,6 +18,9 @@
 
 namespace WF.Player
 {
+	/// <summary>
+	/// Type of overview.
+	/// </summary>
 	public enum OverviewType
 	{
 		/// <summary>

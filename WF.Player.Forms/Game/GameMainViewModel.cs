@@ -18,10 +18,10 @@
 
 namespace WF.Player
 {
-	using Acr.XamForms.UserDialogs;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using Acr.XamForms.UserDialogs;
 	using Vernacular;
 	using WF.Player.Core;
 	using WF.Player.Core.Utils;
@@ -33,15 +33,6 @@ namespace WF.Player
 	/// </summary>
 	public class GameMainViewModel : BaseViewModel
 	{
-		/// <summary>
-		/// Class for a overview entry.
-		/// </summary>
-		private class OverviewEntry
-		{
-			public string Header { get; set; }
-			public string Content { get; set; }
-		}
-
 		/// <summary>
 		/// The name of the active screen property.
 		/// </summary>
@@ -227,23 +218,16 @@ namespace WF.Player
 		/// </summary>
 		private int tasksNumber;
 
-		/// <summary>
-		/// The last page, which was visible before game started.
-		/// </summary>
-		private Page lastPage;
-
 		#region Constructor
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WF.Player.GameMainViewModel"/> class.
 		/// </summary>
 		/// <param name="gameModel">Game model.</param>
-		/// <param name="lastPage">Last page, which was displayed before game started.</param>
-		public GameMainViewModel(GameModel gameModel, Page lastPage = null)
+		public GameMainViewModel(GameModel gameModel)
 		{
 			this.gameModel = gameModel;
 			this.geoMathHelper = new GeoMathHelper();
-			this.lastPage = lastPage;
 
 			Position = App.GPS.LastKnownPosition;
 
@@ -319,7 +303,7 @@ namespace WF.Player
 					}
 				}
 
-				Update(); //OnDisplayChanged();
+				Update();
 			}
 		}
 
@@ -484,7 +468,7 @@ namespace WF.Player
 		{
 			get 
 			{
-				return (this.activeScreen == ScreenType.Main && gameModel.GameState == WF.Player.Core.Engines.EngineGameState.Playing);
+				return this.activeScreen == ScreenType.Main && gameModel.GameState == WF.Player.Core.Engines.EngineGameState.Playing;
 			}
 		}
 
@@ -624,6 +608,10 @@ namespace WF.Player
 
 		#region YouSeeOverviewContent
 
+		/// <summary>
+		/// Gets or sets the content of the you see overview.
+		/// </summary>
+		/// <value>The content of the you see overview.</value>
 		public string YouSeeOverviewContent
 		{
 			get
@@ -641,6 +629,10 @@ namespace WF.Player
 
 		#region InventoryOverviewContent
 
+		/// <summary>
+		/// Gets or sets the content of the inventory overview.
+		/// </summary>
+		/// <value>The content of the inventory overview.</value>
 		public string InventoryOverviewContent
 		{
 			get
@@ -658,6 +650,10 @@ namespace WF.Player
 
 		#region TasksOverviewContent
 
+		/// <summary>
+		/// Gets or sets the content of the tasks overview.
+		/// </summary>
+		/// <value>The content of the tasks overview.</value>
 		public string TasksOverviewContent
 		{
 			get
@@ -977,11 +973,13 @@ namespace WF.Player
 			NotifyPropertyChanged(TitelPropertyName);
 			NotifyPropertyChanged(IsListVisiblePropertyName);
 			NotifyPropertyChanged(IsOverviewVisiblePropertyName);
+
 			if (this.activeScreen != ScreenType.Main && this.activeScreen != ScreenType.Map)
 			{
 				NotifyPropertyChanged(EmptyListTextPropertyName);
 				NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
 			}
+
 			if (this.activeScreen == ScreenType.Main)
 			{
 				NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
@@ -1256,6 +1254,28 @@ namespace WF.Player
 					}
 				}
 			}
+		}
+
+		#endregion
+
+		#region OverviewEntry Class
+
+		/// <summary>
+		/// Class for a overview entry.
+		/// </summary>
+		private class OverviewEntry
+		{
+			/// <summary>
+			/// Gets or sets the header.
+			/// </summary>
+			/// <value>The header.</value>
+			public string Header { get; set; }
+
+			/// <summary>
+			/// Gets or sets the content.
+			/// </summary>
+			/// <value>The content.</value>
+			public string Content { get; set; }
 		}
 
 		#endregion
