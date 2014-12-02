@@ -215,7 +215,7 @@ namespace WF.Player
 						// Push main view to screen
 						await App.Navigation.CurrentPage.Navigation.PushModalAsync(App.GameNavigation);
 
-						gameMainViewModel.Update();
+						gameMainViewModel.Refresh();
 
 						// StartGame
 						App.Game.StartAsync(this.savegame);

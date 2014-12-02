@@ -17,6 +17,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using WF.Player.Core;
 using WF.Player.Core.Formats;
+using Acr.XamForms.Mobile;
+using PCLStorage;
 
 namespace WF.Player
 {
@@ -78,6 +80,16 @@ namespace WF.Player
 		private static IVibration vibrate;
 
 		#region Properties
+
+		/// <summary>
+		/// The documents path.
+		/// </summary>
+		public static string PathCartridges;
+
+		/// <summary>
+		/// The library path.
+		/// </summary>
+		public static string PathDatabase;
 
 		/// <summary>
 		/// Navigation page for outside of game navigation.
@@ -265,27 +277,8 @@ namespace WF.Player
 				#endif
 				#if __IOS__
 				// iOS have a default folder for the app
-				cartridgePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+				cartridgePath = PathCartridges;
 				#endif
-
-				// If there isn't any gwc file in the path,
-				// than copy Wherigo Tutorial to cartridge folder
-				var dir = new Acr.XamForms.Mobile.IO.Directory(cartridgePath);
-
-				if (dir.Files.Where((f) => f.Extension.EndsWith("gwc", StringComparison.InvariantCultureIgnoreCase)).Count() == 0)
-				{
-					#if __ANDROID__
-					using (var input = Forms.Context.Assets.Open("Wherigo Tutorial.gwc"))
-					#endif
-					#if __IOS__
-					using (var input = System.IO.File.OpenRead("Wherigo Tutorial.gwc"))
-					#endif
-					{
-						var output = new Acr.XamForms.Mobile.IO.File(Path.Combine(cartridgePath, "Wherigo Tutorial.gwc")).OpenWrite();
-						input.CopyTo(output);
-						output.Close();
-					}
-				}
 
 				// Save path
 				App.Prefs.Set<string>(DefaultPreferences.CartridgePathKey, cartridgePath);
@@ -302,24 +295,17 @@ namespace WF.Player
 		{
 			get
 			{
-				var cartridgePath = PathForCartridges;
-				var cartridgeDir = new Acr.XamForms.Mobile.IO.Directory(cartridgePath);
-				Acr.XamForms.Mobile.IO.IDirectory logDir = null;
+				var folderCartridges = new FileSystemFolder(PathCartridges);
 
-				foreach (var dir in new Acr.XamForms.Mobile.IO.Directory(cartridgePath).Directories)
-				{
-					if (dir.Name.ToLower().Equals("logs"))
+				folderCartridges.GetFoldersAsync(new System.Threading.CancellationToken()).ContinueWith((task) =>
 					{
-						logDir = dir;
-					}
-				}
+						if (!task.Result.Any((file) => file.Name.Equals("Logs")))
+						{
+							folderCartridges.CreateFolderAsync("Logs", CreationCollisionOption.OpenIfExists, new System.Threading.CancellationToken()).Wait();
+						}
+					});
 
-				if (logDir == null)
-				{
-					logDir = cartridgeDir.CreateSubdirectory("Logs");
-				}
-
-				return logDir.FullName;
+				return Path.Combine(PathCartridges, "Logs");
 			}
 		}
 
@@ -362,11 +348,10 @@ namespace WF.Player
 		/// <returns>The main page.</returns>
 		public static Page GetMainPage()
 		{
+			CheckFolder();
+
 			var cartridges = new CartridgeStore();
 			cartridges.SyncFromStore();
-
-			var cartridgePath = PathForCartridges;
-			var logPath = PathForLogs;
 
 			// Create content page for cartridge list
 			App.Navigation = new NavigationPage(new CartridgeListPage(cartridges)) 
@@ -396,6 +381,32 @@ namespace WF.Player
 
 
 			return App.Navigation;
+		}
+
+		public static async void CheckFolder()
+		{
+
+			// If there isn't any gwc file in the path,
+			// than copy Wherigo Tutorial to cartridges folder
+			var folder = new FileSystemFolder(PathCartridges);
+
+			var files = await folder.GetFilesAsync(new System.Threading.CancellationToken());
+
+			if (!files.Any((file) => Path.GetExtension(file.Name).EndsWith("gwc", StringComparison.InvariantCultureIgnoreCase)))
+			{
+				#if __ANDROID__
+				using (var input = Forms.Context.Assets.Open("Wherigo Tutorial.gwc"))
+				#endif
+				#if __IOS__
+				using (var input = System.IO.File.OpenRead(Path.Combine("Assets", "Wherigo Tutorial.gwc")))
+				#endif
+				{
+					var file = await new FileSystemFolder(PathCartridges).CreateFileAsync("Wherigo Tutorial.gwc", CreationCollisionOption.ReplaceExisting, new System.Threading.CancellationToken());
+					var output = await file.OpenAsync(PCLStorage.FileAccess.ReadAndWrite, new System.Threading.CancellationToken());
+
+					input.CopyTo(output);
+				}
+			}
 		}
 
 		/// <summary>

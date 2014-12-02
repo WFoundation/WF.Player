@@ -52,6 +52,11 @@ namespace WF.Player
 				accuracy = (double)pos.Accuracy;
 			}
 
+			if (accuracy == 0)
+			{
+				return " ";
+			}
+
 			if (parameter is string)
 			{
 				return string.Format((string)parameter, Converter.NumberToLength(accuracy, "0"));

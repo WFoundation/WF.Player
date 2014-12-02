@@ -186,8 +186,9 @@ namespace WF.Player.iOS.Services.Geolocation
 			if (this.isListening)
 				throw new InvalidOperationException ("Already listening");
 
-			if(!CLLocationManager.LocationServicesEnabled || CLLocationManager.Status != CLAuthorizationStatus.Authorized)
+			if(!CLLocationManager.LocationServicesEnabled || !(CLLocationManager.Status == CLAuthorizationStatus.AuthorizedAlways || CLLocationManager.Status == CLAuthorizationStatus.AuthorizedWhenInUse))
 			{
+				return;
 				throw new NotImplementedException ("GPS not existing or not authorized");
 			}
 
@@ -234,6 +235,12 @@ namespace WF.Player.iOS.Services.Geolocation
 		{
 			CLLocationManager m = null;
 			new NSObject().InvokeOnMainThread (() => m = new CLLocationManager());
+
+			if (m.RespondsToSelector (new MonoTouch.ObjCRuntime.Selector("requestWhenInUseAuthorization")))
+			{
+				m.RequestWhenInUseAuthorization ();
+			} 
+
 			return m;
 		}
 

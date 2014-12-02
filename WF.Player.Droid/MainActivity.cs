@@ -52,7 +52,7 @@ namespace WF.Player.Droid
 			#if __HOCKEYAPP__
 
 			//Register to with the Update Manager
-			HockeyApp.UpdateManager.Register (this, "<YOUR-HOCKEY-APP-APPID>");
+			HockeyApp.UpdateManager.Register (this, "acc974c814cad87cf7e01b8e8c4d5ece");
 
 			#endif
 
@@ -64,6 +64,10 @@ namespace WF.Player.Droid
 
 			// Init Xamarin.Forms
 			Xamarin.Forms.Forms.Init (this, bundle);
+			Xamarin.FormsMaps.Init(this, bundle);
+
+			App.PathCartridges = App.PathForCartridges;
+			App.PathDatabase = App.PathForCartridges;
 
 			// Set default page for this activity
 			SetPage (App.GetMainPage ());
@@ -104,7 +108,7 @@ namespace WF.Player.Droid
 
 			// Register for Crash detection / handling
 			// You should do this in your main activity
-			HockeyApp.CrashManager.Register (this, HOCKEYAPP_APPID);
+			HockeyApp.CrashManager.Register (this, "acc974c814cad87cf7e01b8e8c4d5ece");
 
 			//Start Tracking usage in this activity
 			HockeyApp.Tracking.StartUsage (this);

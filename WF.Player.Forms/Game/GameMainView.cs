@@ -15,6 +15,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using Xamarin.Forms.Maps;
 
 namespace WF.Player
 {
@@ -66,13 +67,13 @@ namespace WF.Player
 
 			#if __IOS__
 
-			var toolbarMenu = new ToolbarItem (Catalog.GetString("Game Menu"), "IconMenu.png", async () => {
+			var toolbarMenu = new ToolbarItem (Catalog.GetString("Game Menu"), "IconMenu.png", () => {
 				App.Click();
-				var cfg = new ActionSheetConfig().SetTitle(Catalog.GetString("Game Menu"));
+				var cfg = new Acr.XamForms.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Game Menu"));
 				cfg.Add(Catalog.GetString("Save"), () => ((GameMainViewModel)BindingContext).HandleMenuAction(this, Catalog.GetString("Save")));
 				cfg.Add(Catalog.GetString("Quit"), () => ((GameMainViewModel)BindingContext).HandleMenuAction(this, Catalog.GetString("Quit")));
-				cfg.Cancel = new ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
-				DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
+				cfg.Cancel = new Acr.XamForms.UserDialogs.ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
+				DependencyService.Get<Acr.XamForms.UserDialogs.IUserDialogService>().ActionSheet(cfg);
 			});
 			this.ToolbarItems.Add (toolbarMenu);
 
@@ -226,6 +227,7 @@ namespace WF.Player
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 			};
+			listLayout.SetBinding(StackLayout.IsVisibleProperty, GameMainViewModel.IsMapNotSelectedPropertyName);
 
 			var label = new Label() 
 			{
@@ -411,6 +413,19 @@ namespace WF.Player
 
 			listLayout.Children.Add(list);
 
+			// Map view
+			var mapViewModel = new MapViewModel();
+
+			var mapView = new MapView(mapViewModel)
+				{
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+					HeightRequest = 250,
+				};
+			mapView.SetBinding(MapView.IsVisibleProperty, GameMainViewModel.IsMapSelectedPropertyName);
+
+			gameMainViewModel.Map = mapViewModel.Map;
+
 			var layout = new StackLayout() 
 			{
 				BackgroundColor = Color.Transparent,
@@ -420,6 +435,7 @@ namespace WF.Player
 			};
 
 			layout.Children.Add(listLayout);
+			layout.Children.Add(mapView);
 			layout.Children.Add(buttonLayout);
 
 			((StackLayout)ContentLayout).Children.Add(layout);
@@ -457,19 +473,17 @@ namespace WF.Player
 
 			var imageAltitude = new Image() 
 			{
-				Source = App.Colors.IsDarkTheme ? "IconAltitudeLight" : "IconAltitudeDark",
 				WidthRequest = 16,
 				HeightRequest = 16,
 			};
-			imageAltitude.SetBinding(Image.IsVisibleProperty, GameMainViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToAltitudeVisibility());
+			imageAltitude.SetBinding(Image.SourceProperty, GameMainViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToAltitudeVisibility());
 
 			var imageAccuracy = new Image() 
 			{
-				Source = App.Colors.IsDarkTheme ? "IconAccuracyLight" : "IconAccuracyDark",
 				WidthRequest = 16,
 				HeightRequest = 16,
 			};
-			imageAccuracy.SetBinding(Image.IsVisibleProperty, GameMainViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToAccuracyVisibility());
+			imageAccuracy.SetBinding(Image.SourceProperty, GameMainViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToAccuracyVisibility());
 
 			var layoutBottomVert1 = new StackLayout() 
 			{

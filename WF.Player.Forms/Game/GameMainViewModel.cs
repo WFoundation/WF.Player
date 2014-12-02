@@ -15,6 +15,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Controls;
 
 namespace WF.Player
 {
@@ -72,6 +73,11 @@ namespace WF.Player
 		/// The name of the is map selected property.
 		/// </summary>
 		public const string IsMapSelectedPropertyName = "IsMapSelected";
+
+		/// <summary>
+		/// The name of the is map not selected property.
+		/// </summary>
+		public const string IsMapNotSelectedPropertyName = "IsMapNotSelected";
 
 		/// <summary>
 		/// The name of the has list icons property.
@@ -278,6 +284,7 @@ namespace WF.Player
 							break;
 						case ScreenType.Map:
 							NotifyPropertyChanged(IsMapSelectedPropertyName);
+							NotifyPropertyChanged(IsMapNotSelectedPropertyName);
 							break;
 					}
 
@@ -299,11 +306,12 @@ namespace WF.Player
 							break;
 						case ScreenType.Map:
 							NotifyPropertyChanged(IsMapSelectedPropertyName);
+							NotifyPropertyChanged(IsMapNotSelectedPropertyName);
 							break;
 					}
 				}
 
-				Update();
+				Refresh();
 			}
 		}
 
@@ -327,6 +335,16 @@ namespace WF.Player
 				SetProperty<Position>(ref this.position, value, PositionPropertyName);
 			}
 		}
+
+		#endregion
+
+		#region Map
+
+		/// <summary>
+		/// Gets or sets the map.
+		/// </summary>
+		/// <value>The map.</value>
+		public ExtendedMap Map { get; set; } 
 
 		#endregion
 
@@ -442,6 +460,22 @@ namespace WF.Player
 
 		#endregion
 
+		#region IsMapNotSelected
+
+		/// <summary>
+		/// Gets a value indicating whether this instance is map not selected.
+		/// </summary>
+		/// <value><c>true</c> if this instance is map not selected; otherwise, <c>false</c>.</value>
+		public bool IsMapNotSelected
+		{
+			get 
+			{
+				return this.activeScreen != ScreenType.Map;
+			}
+		}
+
+		#endregion
+
 		#region HasListIcons
 
 		/// <summary>
@@ -484,7 +518,7 @@ namespace WF.Player
 		{
 			get 
 			{
-				// Never show list for map
+				// Never show list for map and main screen
 				if (this.activeScreen == ScreenType.Map || this.activeScreen == ScreenType.Main)
 				{
 					return false;
@@ -591,13 +625,6 @@ namespace WF.Player
 				if (this.activeScreen == ScreenType.Tasks)
 				{
 					return this.gameModel.Cartridge.EmptyTasksListText;
-				}
-
-				// TODO: Remove, when map is implemented
-				// Never show empty text for map
-				if (this.activeScreen == ScreenType.Map)
-				{
-					return Catalog.GetString("No map available");
 				}
 
 				return string.Empty;
@@ -901,7 +928,7 @@ namespace WF.Player
 		/// <summary>
 		/// Update this instance.
 		/// </summary>
-		public void Update()
+		public void Refresh()
 		{
 			OnDisplayChanged();
 			OnLayoutChanged();
@@ -917,7 +944,7 @@ namespace WF.Player
 			App.GPS.PositionChanged += OnPositionChanged;
 			App.GPS.HeadingChanged += OnPositionChanged;
 
-			Update();
+			Refresh();
 		}
 
 		/// <summary>
@@ -946,7 +973,7 @@ namespace WF.Player
 
 			ActiveScreen = screen;
 
-			Update();
+			Refresh();
 		}
 
 		/// <summary>
@@ -959,10 +986,7 @@ namespace WF.Player
 
 			ActiveScreen = ScreenType.Map;
 
-			OnLayoutChanged();
-
-			// TODO
-			Console.WriteLine("Show map");
+			Refresh();
 		}
 
 		/// <summary>
@@ -980,7 +1004,7 @@ namespace WF.Player
 				NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
 			}
 
-			if (this.activeScreen == ScreenType.Main)
+			if (this.activeScreen == ScreenType.Main || this.activeScreen == ScreenType.Map)
 			{
 				NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
 			}
@@ -1001,7 +1025,14 @@ namespace WF.Player
 			// If GameState change, update the main screen
 			if (e.What == "GameState" && gameModel.GameState == WF.Player.Core.Engines.EngineGameState.Playing)
 			{
-				Update();
+				Refresh();
+
+				return;
+			}
+
+			if (IsMapSelected)
+			{
+				RefreshMap(e);
 
 				return;
 			}
@@ -1009,59 +1040,102 @@ namespace WF.Player
 			// Check, if there is something we should update 
 			if (e.What == "Property")
 			{
-				var ret = true;
+				var ret = false;
 
-				if (e.PropertyName == "ActiveVisibleZones" && (IsYouSeeSelected || IsOverviewSelected))
-				{
-					ret = false;
-				}
+				ret = ret || (e.PropertyName != "ActiveVisibleZones" || (!IsYouSeeSelected && !IsOverviewSelected));
+				ret = ret || (e.PropertyName == "VisibleObjects" && (IsYouSeeSelected || IsOverviewSelected));
+				ret = ret || (e.PropertyName == "VisibleInventory" && (IsInventorySelected || IsOverviewSelected));
+				ret = ret || (e.PropertyName == "ActiveVisibleTasks" && (IsTasksSelected || IsOverviewSelected));
+				ret = ret || (e.PropertyName == "Name" && IsOverviewSelected);
 
-				if (e.PropertyName == "VisibleObjects" && (IsYouSeeSelected || IsOverviewSelected))
-				{
-					ret = false;
-				}
-
-				if (e.PropertyName == "VisibleInventory" && (IsInventorySelected || IsOverviewSelected))
-				{
-					ret = false;
-				}
-
-				if (e.PropertyName == "ActiveVisibleTasks" && (IsTasksSelected || IsOverviewSelected))
-				{
-					ret = false;
-				}
-
-				if (e.PropertyName == "Active" || e.PropertyName == "Visible")
-				{
-					ret = false;
-				}
-
-				if (e.PropertyName == "Name" && IsOverviewSelected)
-				{
-					ret = false;
-				}
-
-				if (ret)
+				if (!ret)
 				{
 					return;
 				}
 			}
-
-			List<GameMainCellViewModel> listItems = null;
-			bool hasListIcons = false;
-			bool hasDirections = false;
 
 			if (this.gameModel == null || this.gameModel.GameState != WF.Player.Core.Engines.EngineGameState.Playing)
 			{
 				return;
 			}
 
+			RefreshButtons();
+
+			if (activeScreen != ScreenType.Main && activeScreen != ScreenType.Map)
+			{
+				RefreshListContent();
+			}
+
+			if (activeScreen == ScreenType.Main)
+			{
+				RefreshMainScreen();
+			}
+
+			if (!IsOverviewVisible)
+			{
+				RefreshDirections();
+			}
+		}
+
+		/// <summary>
+		/// Handles the position changed event.
+		/// </summary>
+		/// <param name="sender">Sender of event.</param>
+		/// <param name="e">Position changed event arguments.</param>
+		private void OnPositionChanged(object sender, PositionEventArgs e)
+		{
+			Position = e.Position;
+
+			RefreshDirections();
+		}
+
+		/// <summary>
+		///  Update directions for all visible list entries
+		/// </summary>
+		private void RefreshDirections()
+		{
+			if (Position == null)
+			{
+				return;
+			}
+
+			// Recalc all directions and distances when position changes, but only, if You See screen is active
+			if (IsYouSeeSelected)
+			{
+				double heading = 0;
+				if (Position != null && Position.Heading != null)
+				{
+					// Show always to north
+					heading = 360.0 - (double)Position.Heading;
+				}
+
+				foreach (var entry in GameMainList)
+				{
+					// Do it only for entries with ObjectLocation
+					if (entry.UIObject.ObjectLocation != null)
+					{
+						// Calculate values for this thing
+						var vec = this.geoMathHelper.VectorToPoint(new ZonePoint(Position.Latitude, Position.Longitude, 0), entry.UIObject.ObjectLocation);
+
+						// Set values
+						entry.Direction = (double)((vec.Bearing + heading) % 360);
+						entry.Distance = vec.Distance.Value;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Refreshs the content of the list.
+		/// </summary>
+		private void RefreshListContent()
+		{
+			List<GameMainCellViewModel> listItems = null;
+			bool hasListIcons = false;
+			bool hasDirections = false;
+
 			switch (this.activeScreen)
 			{
-				case ScreenType.Main:
-					hasListIcons = false;
-					hasDirections = false;
-					break;
 				case ScreenType.Locations:
 				case ScreenType.Items:
 					var zones = this.gameModel.ActiveVisibleZones;
@@ -1124,135 +1198,117 @@ namespace WF.Player
 				this.gameMainList = listItems;
 				NotifyPropertyChanged(GameMainListPropertyName);
 			}
+		}
 
+		/// <summary>
+		/// Refreshs the buttons.
+		/// </summary>
+		private void RefreshButtons()
+		{
 			YouSeeNumber = this.gameModel.ActiveVisibleZones.Count + this.gameModel.VisibleObjects.Count;
 			InventoryNumber = this.gameModel.VisibleInventory.Count;
 			TasksNumber = this.gameModel.ActiveVisibleTasks.Count;
-
-			if (activeScreen == ScreenType.Main)
-			{
-				// Create content for You See on main screen
-				string result = string.Format("## {0}", Catalog.GetString("You See"));
-
-				if (YouSeeNumber > 0)
-				{
-					result = result + string.Format(" [{0}]", YouSeeNumber);
-				}
-
-				result = result + Environment.NewLine;
-
-				var listYouSee = this.gameModel.ActiveVisibleZones.Select(o => o.Name).ToList();
-				listYouSee.AddRange(this.gameModel.VisibleObjects.Select(o => o.Name).ToList());
-
-				if (listYouSee.Count > 0)
-				{
-					result = result + string.Join(", ", listYouSee);
-				}
-				else
-				{
-					result = result + this.gameModel.Cartridge.EmptyYouSeeListText;
-				}
-
-				YouSeeOverviewContent = result;
-
-				// Create content for Inventory on main screen
-				result = string.Format("## {0}", Catalog.GetString("Inventory"));
-
-				if (InventoryNumber > 0)
-				{
-					result = result + string.Format(" [{0}]", InventoryNumber);
-				}
-
-				result = result + Environment.NewLine;
-
-				var listInventory = this.gameModel.VisibleInventory.Select(o => o.Name).ToList();
-
-				if (listInventory.Count > 0)
-				{
-					result = result + string.Join(", ", listInventory);
-				}
-				else
-				{
-					result = result + this.gameModel.Cartridge.EmptyInventoryListText;
-				}
-
-				InventoryOverviewContent = result;
-
-				// Create content for Tasks on main screen
-				result = string.Format("## {0}", Catalog.GetString("Tasks"));
-
-				if (TasksNumber > 0)
-				{
-					result = result + string.Format(" [{0}]", TasksNumber);
-				}
-
-				result = result + Environment.NewLine;
-
-				var listTasks = this.gameModel.ActiveVisibleTasks.Select(o => o.Name).ToList();
-
-				if (listTasks.Count > 0)
-				{
-					result = result + string.Join(", ", listTasks);
-				}
-				else
-				{
-					result = result + this.gameModel.Cartridge.EmptyTasksListText;
-				}
-
-				TasksOverviewContent = result;
-			}
-
-			if (!IsOverviewVisible)
-			{
-				UpdateDirections();
-			}
 		}
 
 		/// <summary>
-		/// Handles the position changed event.
+		/// Refreshs content of main screen.
 		/// </summary>
-		/// <param name="sender">Sender of event.</param>
-		/// <param name="e">Position changed event arguments.</param>
-		private void OnPositionChanged(object sender, PositionEventArgs e)
+		private void RefreshMainScreen()
 		{
-			Position = e.Position;
+			// Create content for You See on main screen
+			string content = string.Format("## {0}", Catalog.GetString("You See"));
+			if (YouSeeNumber > 0)
+			{
+				content = content + string.Format(" [{0}]", YouSeeNumber);
+			}
+			content = content + Environment.NewLine;
+			var listYouSee = this.gameModel.ActiveVisibleZones.Select(o => o.Name).ToList();
+			listYouSee.AddRange(this.gameModel.VisibleObjects.Select(o => o.Name).ToList());
+			if (listYouSee.Count > 0)
+			{
+				content = content + string.Join(", ", listYouSee);
+			}
+			else
+			{
+				content = content + this.gameModel.Cartridge.EmptyYouSeeListText;
+			}
+			YouSeeOverviewContent = content;
 
-			UpdateDirections();
+			// Create content for Inventory on main screen
+			content = string.Format("## {0}", Catalog.GetString("Inventory"));
+			if (InventoryNumber > 0)
+			{
+				content = content + string.Format(" [{0}]", InventoryNumber);
+			}
+			content = content + Environment.NewLine;
+			var listInventory = this.gameModel.VisibleInventory.Select(o => o.Name).ToList();
+			if (listInventory.Count > 0)
+			{
+				content = content + string.Join(", ", listInventory);
+			}
+			else
+			{
+				content = content + this.gameModel.Cartridge.EmptyInventoryListText;
+			}
+			InventoryOverviewContent = content;
+
+			// Create content for Tasks on main screen
+			content = string.Format("## {0}", Catalog.GetString("Tasks"));
+			if (TasksNumber > 0)
+			{
+				content = content + string.Format(" [{0}]", TasksNumber);
+			}
+			content = content + Environment.NewLine;
+			var listTasks = this.gameModel.ActiveVisibleTasks.Select(o => o.Name).ToList();
+			if (listTasks.Count > 0)
+			{
+				content = content + string.Join(", ", listTasks);
+			}
+			else
+			{
+				content = content + this.gameModel.Cartridge.EmptyTasksListText;
+			}
+			TasksOverviewContent = content;
 		}
 
 		/// <summary>
-		///  Update directions for all visible list entries
+		/// Refreshs the map.
 		/// </summary>
-		private void UpdateDirections()
+		/// <param name="e">E.</param>
+		private void RefreshMap(DisplayChangedEventArgs e = null)
 		{
-			if (Position == null)
+			if (e == null)
+			{
+				// Refresh the whole map
+			}
+
+			// Task are not interessting
+			if (e.UIObject is Task)
 			{
 				return;
 			}
 
-			// Recalc all directions and distances when position changes, but only, if You See screen is active
-			if (IsYouSeeSelected)
+			if (e.What == null || (e.What == "Property" && e.PropertyName == "Points"))
 			{
-				double heading = 0;
-				if (Position != null && Position.Heading != null)
+				var polygons = new List<WF.Player.Controls.ExtendedMap.MapPolygon>();
+
+				foreach (var z in App.Game.ActiveVisibleZones)
 				{
-					// Show always to north
-					heading = 360.0 - (double)Position.Heading;
+					polygons.Add(new WF.Player.Controls.ExtendedMap.MapPolygon(z.Points, new WF.Player.Controls.ExtendedMap.MapPoint(z.ObjectLocation, z.Name)));
 				}
 
-				foreach (var entry in GameMainList)
-				{
-					// Do it only for entries with ObjectLocation
-					if (entry.UIObject.ObjectLocation != null)
-					{
-						// Calculate values for this thing
-						var vec = this.geoMathHelper.VectorToPoint(new ZonePoint(Position.Latitude, Position.Longitude, 0), entry.UIObject.ObjectLocation);
+				Map.Polygons = polygons;
+			}
 
-						// Set values
-						entry.Direction = (double)((vec.Bearing + heading) % 360);
-						entry.Distance = vec.Distance.Value;
-					}
-				}
+			// We are only interessted in the following changes
+			// Visible
+			// Active
+			// Name
+			// Points
+			// ObjectLocation
+			if (e.What != "Visible" && e.What != "Active" && e.What != "Name" && e.What != "Points" && e.What != "ObjectLocation")
+			{
+				return;
 			}
 		}
 

@@ -8,9 +8,11 @@ using Xamarin.Forms;
 
 namespace Acr.XamForms.UserDialogs.iOS {
     
-    public class UserDialogService : AbstractUserDialogService {
+    public class UserDialogService : AbstractUserDialogService 
+	{
 
-        public override void ActionSheet(ActionSheetConfig config) {
+        public override void ActionSheet(ActionSheetConfig config) 
+		{
             Device.BeginInvokeOnMainThread(() => {
                 var action = new UIActionSheet(config.Title);
                 config.Options.ToList().ForEach(x => action.AddButton(x.Text));
@@ -31,7 +33,8 @@ namespace Acr.XamForms.UserDialogs.iOS {
         }
 
 
-        public override void Alert(AlertConfig config) {
+        public override void Alert(AlertConfig config) 
+		{
             Device.BeginInvokeOnMainThread(() => {
                 var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, null, config.OkText);
                 if (config.OnOk != null) 
@@ -42,7 +45,8 @@ namespace Acr.XamForms.UserDialogs.iOS {
         }
 
 
-        public override void Confirm(ConfirmConfig config) {
+        public override void Confirm(ConfirmConfig config) 
+		{
             Device.BeginInvokeOnMainThread(() => {
                 var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText);
                 dlg.Clicked += (s, e) => {

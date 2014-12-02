@@ -23,11 +23,12 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;__INSIGHTS__</DefineConstants>
+    <DefineConstants>DEBUG;__HOCKEYAPP__</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
     <ConsolePause>false</ConsolePause>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -78,6 +79,30 @@
     <Reference Include="Vernacular.Catalog.Android">
       <HintPath>..\Libraries\Vernacular.Catalog.Android.dll</HintPath>
     </Reference>
+    <Reference Include="PCLStorage">
+      <HintPath>..\packages\PCLStorage.1.0.0\lib\monoandroid\PCLStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions">
+      <HintPath>..\packages\PCLStorage.1.0.0\lib\monoandroid\PCLStorage.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps.Android">
+      <HintPath>..\packages\Xamarin.Forms.Maps.1.2.3.6257\lib\MonoAndroid10\Xamarin.Forms.Maps.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps">
+      <HintPath>..\packages\Xamarin.Forms.Maps.1.2.3.6257\lib\MonoAndroid10\Xamarin.Forms.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.20.0.0.2\lib\MonoAndroid10\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="GooglePlayServicesLib">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.19.0.0.1\lib\MonoAndroid23\GooglePlayServicesLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.MediaRouter">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.MediaRouter.20.0.0.1\lib\MonoAndroid10\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
+    </Reference>
+    <Reference Include="HockeyApp.Android">
+      <HintPath>..\Components\hockeyappandroid-3.0.2\lib\android\HockeyApp.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -109,6 +134,9 @@
     <Compile Include="Renderer\ExtendedLabelRenderer.cs" />
     <Compile Include="Services\Acr.XamForms.UserDialogs.Droid\UserDialogService.cs" />
     <Compile Include="Renderer\CustomNavigationPageRenderer.cs" />
+    <Compile Include="Services\Acr.XamForms.Mobile.Droid\DeviceInfo.cs" />
+    <Compile Include="Renderer\ExtendedMapRenderer.cs" />
+    <Compile Include="Services\Utils\ExtensionZonePoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -181,6 +209,26 @@
     <AndroidResource Include="Resources\drawable\IconOverview.png" />
     <AndroidResource Include="Resources\drawable\IconLocation.png" />
     <AndroidResource Include="Resources\drawable\IconTasks.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\IconMapCenter.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\IconMapCenter.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\IconMapCenter.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\IconMapCenter.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\IconMapCenter.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\IconMapNorth.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\IconMapOrientation.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\IconMapType.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\IconMapNorth.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\IconMapOrientation.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\IconMapType.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\IconMapNorth.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\IconMapOrientation.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\IconMapType.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\IconMapNorth.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\IconMapOrientation.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\IconMapType.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\IconMapNorth.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\IconMapOrientation.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\IconMapType.png" />
   </ItemGroup>
   <Import Project="..\WF.Player.Common\WF.Player.Common.projitems" Label="Shared" Condition="Exists('..\WF.Player.Common\WF.Player.Common.projitems')" />
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
@@ -200,6 +248,7 @@
     <Folder Include="Resources\values-de\" />
     <Folder Include="Resources\values-en\" />
     <Folder Include="Services\Acr.XamForms.UserDialogs.Droid\" />
+    <Folder Include="Services\Acr.XamForms.Mobile.Droid\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidNativeLibrary Include="lib\armeabi\liblua5.1.so" />
@@ -214,5 +263,11 @@
       <Project>{47C98C7A-1A47-457B-9A22-6D621F344B56}</Project>
       <Name>WF.Player.Core.Droid</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="hockeyappandroid">
+      <Version>3.0.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
 </Project>

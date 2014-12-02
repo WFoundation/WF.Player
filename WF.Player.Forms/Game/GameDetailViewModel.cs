@@ -698,7 +698,7 @@ namespace WF.Player
 
 			view.Buttons.Clear();
 
-			if (this.activeObject != null && this.activeObject is Thing)
+			if (this.activeObject is Thing)
 			{
 				Thing thing = (Thing)this.activeObject;
 
@@ -718,7 +718,7 @@ namespace WF.Player
 
 				sumTextWidth += view.BottomLayout.Spacing * (thing.ActiveCommands.Count - 1);
 
-				if (sumTextWidth > view.BottomLayout.Width * Device.OnPlatform<float>(1.0f, 1.7f, 1.0f))
+				if (sumTextWidth > view.BottomLayout.Width * Device.OnPlatform<float>(1.0f, 1.2f, 1.0f))
 				{
 					// If there are more text than possible, display action menu
 					view.Buttons.Add(new ToolTextButton(Catalog.GetString("Actions"), new Xamarin.Forms.Command(HandleCommandsClicked)));

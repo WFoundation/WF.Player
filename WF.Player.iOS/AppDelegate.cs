@@ -18,6 +18,7 @@
 
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Google.Maps;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
@@ -60,10 +61,10 @@ namespace WF.Player.iOS
 			HockeyApp.Setup.EnableCustomCrashReporting (() => {
 
 				//Get the shared instance
-				var manager = BITHockeyManager.SharedHockeyManager;
+				var manager = HockeyApp.BITHockeyManager.SharedHockeyManager;
 
 				//Configure it to use our APP_ID
-				manager.Configure ("YOUR-HOCKEYAPP-APPID");
+				manager.Configure ("e3400f32526545003c05a81a53da0fd9");
 
 				//Start the manager
 				manager.StartManager ();
@@ -74,10 +75,10 @@ namespace WF.Player.iOS
 				//Rethrow any unhandled .NET exceptions as native iOS 
 				// exceptions so the stack traces appear nicely in HockeyApp
 				AppDomain.CurrentDomain.UnhandledException += (sender, e) => 
-					Setup.ThrowExceptionAsNative(e.ExceptionObject);
+					HockeyApp.Setup.ThrowExceptionAsNative(e.ExceptionObject);
 
 				TaskScheduler.UnobservedTaskException += (sender, e) => 
-					Setup.ThrowExceptionAsNative(e.Exception);
+					HockeyApp.Setup.ThrowExceptionAsNative(e.Exception);
 			});
 
 			#endif
@@ -90,6 +91,20 @@ namespace WF.Player.iOS
 
 			// Activate TestFlight
 //			MonoTouch.TestFlight.TestFlight.TakeOffThreadSafe(@"d8fc2051-04bd-4612-b83f-19786b749aab");
+
+			double version;
+			double.TryParse(UIDevice.CurrentDevice.SystemVersion, out version);
+
+			if (version >= 8)
+			{
+				App.PathCartridges = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User) [0].RelativePath;
+				App.PathDatabase = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.LibraryDirectory, NSSearchPathDomain.User) [0].RelativePath;
+			}
+			else
+			{
+				App.PathCartridges = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+				App.PathDatabase = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + ".." + System.IO.Path.DirectorySeparatorChar + "Library";
+			}
 
 			// Activate Vernacular Catalog
 			Catalog.Implementation = new ResourceCatalog {
@@ -109,7 +124,8 @@ namespace WF.Player.iOS
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
 			// Start Xamarin.Forms
-			Forms.Init ();
+			Xamarin.Forms.Forms.Init ();
+			Xamarin.FormsMaps.Init();
 
 			// Set default color for NavigationButtons
 			UIBarButtonItem.Appearance.TintColor = App.Colors.Bar.ToUIColor();
@@ -118,7 +134,7 @@ namespace WF.Player.iOS
 			navCartSelect = new UINavigationController();
 
 			// Init observer for changes of the settings
-			observerSettings = NSNotificationCenter.DefaultCenter.AddObserver ((NSString)"NSUserDefaultsDidChangeNotification", DefaultsChanged);
+			observerSettings = NSNotificationCenter.DefaultCenter.AddObserver((NSString)"NSUserDefaultsDidChangeNotification", DefaultsChanged);
 
 			// Set the root view controller on the window. The nav
 			// controller will handle the rest

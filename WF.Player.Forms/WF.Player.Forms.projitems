@@ -89,6 +89,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\OverviewType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedNavigationPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.Mobile\IDeviceInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\MapView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\MapViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />
@@ -106,5 +110,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Utils\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Utils\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.Mobile\" />
   </ItemGroup>
 </Project>

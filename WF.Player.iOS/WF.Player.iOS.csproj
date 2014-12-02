@@ -16,7 +16,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
-    <DefineConstants>DEBUG;__MOBILE__;__IOS__;__INSIGHTS__</DefineConstants>
+    <DefineConstants>DEBUG;__MOBILE__;__IOS__;__HOCKEYAPP__</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -48,10 +48,13 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <IpaPackageName>
-    </IpaPackageName>
+    <IpaPackageName>WF.Player</IpaPackageName>
+    <CodesignProvision>AEDBD980-A0E1-493A-8C3D-B9DA7146489E</CodesignProvision>
+    <BuildIpa>true</BuildIpa>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -63,12 +66,13 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <BuildIpa>true</BuildIpa>
+    <IpaPackageName>WF.Player</IpaPackageName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
-    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
-    <DefineConstants>__MOBILE__;__IOS__;</DefineConstants>
+    <DefineConstants>__MOBILE__;__IOS__;__HOCKEYAPP__</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -76,6 +80,7 @@
     <BuildIpa>true</BuildIpa>
     <CodesignProvision>Automatic:AdHoc</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
+    <IpaPackageName>WF.Player</IpaPackageName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>full</DebugType>
@@ -127,6 +132,21 @@
     <Reference Include="Vernacular.Catalog.XamarinForms">
       <HintPath>..\Libraries\Vernacular.Catalog.XamarinForms.dll</HintPath>
     </Reference>
+    <Reference Include="PCLStorage">
+      <HintPath>..\packages\PCLStorage.1.0.0\lib\portable-monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions">
+      <HintPath>..\packages\PCLStorage.1.0.0\lib\portable-monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps.iOS">
+      <HintPath>..\packages\Xamarin.Forms.Maps.1.2.3.6257\lib\MonoTouch10\Xamarin.Forms.Maps.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps">
+      <HintPath>..\packages\Xamarin.Forms.Maps.1.2.3.6257\lib\MonoTouch10\Xamarin.Forms.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="HockeyApp.iOS">
+      <HintPath>..\Components\hockeyappios-3.5.5.1\lib\ios\HockeyApp.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -172,6 +192,14 @@
     <BundleResource Include="Resources\IconYouSee%402x.png" />
     <BundleResource Include="Resources\IconTasks%402x.png" />
     <BundleResource Include="Resources\IconTasks.png" />
+    <BundleResource Include="Resources\IconMapCenter%402x.png" />
+    <BundleResource Include="Resources\IconMapType%402x.png" />
+    <BundleResource Include="Resources\IconMapCenter.png" />
+    <BundleResource Include="Resources\IconMapType.png" />
+    <BundleResource Include="Resources\IconMapNorth.png" />
+    <BundleResource Include="Resources\IconMapNorth%402x.png" />
+    <BundleResource Include="Resources\IconMapOrientation.png" />
+    <BundleResource Include="Resources\IconMapOrientation%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -204,6 +232,8 @@
     <Compile Include="Renderer\ExtendedLabelRenderer.cs" />
     <Compile Include="Services\Acr.XamForms.UserDialogs.iOS\UserDialogService.cs" />
     <Compile Include="Renderer\CustomNavigationPageRenderer.cs" />
+    <Compile Include="Services\Acr.XamForms.Mobile.iOS\DeviceInfo.cs" />
+    <Compile Include="Renderer\ExtendedMapRenderer.cs" />
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="..\WF.Player.Common\WF.Player.Common.projitems" Label="Shared" Condition="Exists('..\WF.Player.Common\WF.Player.Common.projitems')" />
@@ -226,6 +256,7 @@
     <Folder Include="Services\Utils\" />
     <Folder Include="Resources\de.lproj\" />
     <Folder Include="Services\Acr.XamForms.UserDialogs.iOS\" />
+    <Folder Include="Services\Acr.XamForms.Mobile.iOS\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sounds\tap.aif" />
@@ -236,5 +267,11 @@
       <Project>{DFD85D7E-251B-4D9E-BF44-2F054386F46F}</Project>
       <Name>WF.Player.Core.iOS</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="hockeyappios">
+      <Version>3.5.5.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
 </Project>

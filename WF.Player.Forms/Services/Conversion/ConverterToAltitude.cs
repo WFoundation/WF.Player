@@ -52,6 +52,11 @@ namespace WF.Player
 				alt = (double)pos.Altitude;
 			}
 
+			if (alt == 0)
+			{
+				return " ";
+			}
+
 			// TODO: Use extra converter for altitude
 			if (parameter is string)
 			{

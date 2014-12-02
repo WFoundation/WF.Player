@@ -856,7 +856,7 @@ namespace WF.Player
 			this.logFile = this.cartridgeTag.CreateLogFile();
 			this.logFile.MinimalLogLevel = this.logLevel;
 
-			await System.Threading.Tasks.Task.Run(() => this.engine.Init(new FileStream(Path.Combine(App.PathForCartridges, Path.GetFileName(cartridge.Filename)), FileMode.Open), cartridge));
+			await System.Threading.Tasks.Task.Run(() => this.engine.Init(new FileStream(Path.Combine(App.PathCartridges, Path.GetFileName(cartridge.Filename)), FileMode.Open), cartridge));
 		}
 
 		/// <summary>

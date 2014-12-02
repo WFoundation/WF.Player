@@ -42,15 +42,15 @@ namespace WF.Player
 
 			if (pos == null)
 			{
-				return false;
+				return null;
 			}
 
 			if (pos.Altitude != null)
 			{
-				return true;
+				return App.Colors.IsDarkTheme ? "IconAltitudeLight" : "IconAltitudeDark";
 			}
 
-			return false;
+			return null;
 		}
 
 		/// <param name="value">Value to convert.</param>
