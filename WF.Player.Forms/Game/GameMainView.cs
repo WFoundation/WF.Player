@@ -287,7 +287,7 @@ namespace WF.Player
 			var labelOverviewYouSee = new ExtendedLabel() 
 				{
 					LineBreakMode = LineBreakMode.WordWrap,
-					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.7),
+					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.8),
 				};
 			labelOverviewYouSee.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.YouSeeOverviewContentPropertyName);
 
@@ -323,7 +323,7 @@ namespace WF.Player
 			var labelOverviewInventory = new ExtendedLabel() 
 				{
 					LineBreakMode = LineBreakMode.WordWrap,
-					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.7),
+					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.8),
 				};
 			labelOverviewInventory.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.InventoryOverviewContentPropertyName);
 
@@ -359,7 +359,7 @@ namespace WF.Player
 			var labelOverviewTasks = new ExtendedLabel() 
 				{
 					LineBreakMode = LineBreakMode.WordWrap,
-					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.7),
+					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.8),
 				};
 			labelOverviewTasks.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.TasksOverviewContentPropertyName);
 

@@ -141,7 +141,7 @@ namespace WF.Player
 			{
 				BackgroundColor = Color.Transparent,
 				TextColor = App.Colors.Text,
-					Text = string.Empty,
+				Text = string.Empty,
 				HorizontalOptions = LayoutOptions.Center,
 			};
 

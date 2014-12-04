@@ -257,17 +257,7 @@ namespace WF.Player
 		{ 
 			get
 			{
-				if (this.uiObject.Icon != null && this.uiObject.Icon.Data != null)
-				{
-					return ImageSource.FromStream(() =>
-						{
-							return this.uiObject.Icon.Data != null ? new MemoryStream(this.uiObject.Icon.Data) : null;
-						});
-				}
-				else
-				{
-					return ImageSource.FromResource("IconEmpty.png");
-				}
+				return App.Game.GetImageSourceForMedia(this.uiObject.Icon);
 			}
 		}
 

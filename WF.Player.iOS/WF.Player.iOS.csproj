@@ -43,7 +43,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhone\Debug</OutputPath>
-    <DefineConstants>DEBUG;__MOBILE__;__IOS__;</DefineConstants>
+    <DefineConstants>DEBUG;__MOBILE__;__IOS__;__HOCKEYAPP__</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -51,10 +51,10 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <IpaPackageName>WF.Player</IpaPackageName>
     <CodesignProvision>AEDBD980-A0E1-493A-8C3D-B9DA7146489E</CodesignProvision>
-    <BuildIpa>true</BuildIpa>
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>ARMv7</MtouchArch>
+    <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -203,6 +203,18 @@
     <BundleResource Include="Resources\IconMapNorth%402x.png" />
     <BundleResource Include="Resources\IconMapOrientation.png" />
     <BundleResource Include="Resources\IconMapOrientation%402x.png" />
+    <BundleResource Include="Resources\IconMenu%403x.png" />
+    <BundleResource Include="Resources\IconAltitudeLight%403x.png" />
+    <BundleResource Include="Resources\IconAccuracyLight%403x.png" />
+    <BundleResource Include="Resources\IconAccuracyDark%403x.png" />
+    <BundleResource Include="Resources\IconAltitudeDark%403x.png" />
+    <BundleResource Include="Resources\IconRouting%403x.png" />
+    <BundleResource Include="Resources\IconResume%403x.png" />
+    <BundleResource Include="Resources\IconPlay%403x.png" />
+    <BundleResource Include="Resources\IconMapOrientation%403x.png" />
+    <BundleResource Include="Resources\IconMapNorth%403x.png" />
+    <BundleResource Include="Resources\IconMapType%403x.png" />
+    <BundleResource Include="Resources\IconMapCenter%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

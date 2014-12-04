@@ -1059,6 +1059,10 @@ namespace WF.Player
 				return;
 			}
 
+			// TODO: Remove
+			if (e != null && e.UIObject != null)
+				Console.WriteLine("Property: {0} - {1} from {2}", e.What, e.PropertyName, e.UIObject.Name);
+
 			RefreshButtons();
 
 			if (activeScreen != ScreenType.Main && activeScreen != ScreenType.Map)

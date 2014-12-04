@@ -107,12 +107,13 @@ namespace WF.Player.iOS
 			}
 
 			// Activate Vernacular Catalog
-			Catalog.Implementation = new ResourceCatalog {
-				GetResourceById = id => {
-					var resource = 	NSBundle.MainBundle.LocalizedString(id, null);
-					return resource == id ? null : resource;
-				},
-			};
+			Catalog.Implementation = new ResourceCatalog 
+				{
+					GetResourceById = id => {
+						var resource = 	NSBundle.MainBundle.LocalizedString(id, null);
+						return resource == id ? null : resource;
+					},
+				};
 
 			// Screen always on when app is running
 			UIApplication.SharedApplication.IdleTimerDisabled = true;
@@ -217,6 +218,8 @@ namespace WF.Player.iOS
 		{
 			// TODO: Delete
 			Console.WriteLine ("ReceiveMemoryWarning");
+
+			GC.Collect();
 
 //			// Save game before we could get killed
 //			if (screenCtrl != null && screenCtrl.Engine != null) {

@@ -32,7 +32,7 @@ namespace WF.Player
 		/// Initializes a new instance of the <see cref="WF.Player.GameDetailView"/> class.
 		/// </summary>
 		/// <param name="gameDetailViewModel">Game detail view model.</param>
-		public GameDetailView(GameDetailViewModel gameDetailViewModel)
+		public GameDetailView(GameDetailViewModel gameDetailViewModel) : base()
 		{
 			this.BindingContext = gameDetailViewModel;
 

@@ -259,6 +259,11 @@ namespace WF.Player
 		{
 			get 
 			{
+				// Do this, because if not, than the layout process isn't started for the direction arrow
+				// and the direction arrow is placed mostly outside the screen
+				if (!HasImage && (this.activeObject == null || string.IsNullOrEmpty(this.activeObject.Description)))
+					return true;
+
 				return this.activeObject != null ? !string.IsNullOrEmpty(this.activeObject.Description) : false;
 			}
 		}
@@ -280,10 +285,12 @@ namespace WF.Player
 					return null;
 				}
 
-				return ImageSource.FromStream(() => 
-					{
-						return ActiveObject.Media != null ? new MemoryStream(ActiveObject.Media.Data) : null;
-					});
+				return App.Game.GetImageSourceForMedia(ActiveObject.Media);
+				// TODO: Remove
+//				return ImageSource.FromStream(() => 
+//					{
+//						return ActiveObject.Media != null ? new MemoryStream(ActiveObject.Media.Data) : null;
+//					});
 			}
 		}
 

@@ -60,7 +60,7 @@ namespace WF.Player
 
 			// Exists a save file
 			// TODO
-			if (true)
+			if (false)
 			{
 				buttonResume.IsEnabled = true;
 			}

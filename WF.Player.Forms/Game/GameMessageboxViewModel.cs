@@ -145,10 +145,12 @@ namespace WF.Player
 					return null;
 				}
 
-				return ImageSource.FromStream(() => 
-						{
-							return new MemoryStream(MessageBox.Image.Data);
-						});
+				return App.Game.GetImageSourceForMedia(MessageBox.Image);
+				// TODO: Remove
+//				return ImageSource.FromStream(() => 
+//						{
+//							return new MemoryStream(MessageBox.Image.Data);
+//						});
 			}
 		}
 

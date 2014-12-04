@@ -81,6 +81,16 @@ namespace WF.Player
 		/// </summary>
 		private Queue<Screens> screenQueue;
 
+		/// <summary>
+		/// The cache for image sources.
+		/// </summary>
+		private Dictionary<int, ImageSource> imageSources = new Dictionary<int, ImageSource>();
+
+		/// <summary>
+		/// The image source for an empty icon.
+		/// </summary>
+		private ImageSource imageSourceEmptyIcon = ImageSource.FromResource("IconEmpty.png");
+
 		#region Constructor
 
 		/// <summary>
@@ -492,6 +502,32 @@ namespace WF.Player
 			this.screenQueue.Enqueue(new Screens(screenType, obj));
 
 			this.HandleScreenQueue();
+		}
+
+		/// <summary>
+		/// Gets the cached image source for media.
+		/// </summary>
+		/// <returns>The image source for media.</returns>
+		/// <param name="media">Media to use.</param>
+		public ImageSource GetImageSourceForMedia(Media media)
+		{
+			ImageSource imageSource;
+
+			if (media == null || media.Data == null)
+			{
+				return imageSourceEmptyIcon;
+			}
+
+			if (!imageSources.TryGetValue(media.MediaId, out imageSource))
+			{
+				// Didn't find ImageSource, so create a new one
+				imageSource = ImageSource.FromStream(() => media.Data != null ? new MemoryStream(media.Data) : null);
+				// And save it in the cache for later use 
+				imageSources.Add(media.MediaId, imageSource);
+			}
+
+			// Found ImageSource
+			return imageSource;
 		}
 
 		#endregion

@@ -172,7 +172,7 @@ namespace WF.Player.Controls.iOS
 
 					polygons.Add(polygon);
 
-					if (z.Label != null)
+					if (z.Label != null && z.Label.Point != null)
 					{
 						var polygonName = new MKPointAnnotation() {
 							Coordinate = new CLLocationCoordinate2D(z.Label.Point.Latitude, z.Label.Point.Longitude),
