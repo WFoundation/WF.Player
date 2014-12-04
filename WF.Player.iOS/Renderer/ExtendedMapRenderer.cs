@@ -39,7 +39,7 @@ namespace WF.Player.Controls.iOS
 		MKMapView nativeMap;
 		MKPolygonRenderer polygonRenderer;
 		List<MKPolygon> polygons;
-		List<MKMapItem> polygonNames;
+		List<MKAnnotation> polygonNames;
 //		List<Android.Gms.Maps.Model.Marker> points;
 
 		public ExtendedMapRenderer()
@@ -131,15 +131,18 @@ namespace WF.Player.Controls.iOS
 						{
 							map.RemoveOverlay(overlay);
 						}
-
 					}
 
-//					if (polygonNames is MKAnnotation && polygonNames.Contains((MKAnnotation)overlay))
-//					{
-//						map.RemoveOverlay(overlay);
-//					}
-
 					polygons = null;
+
+					foreach (var annotation in Control.Annotations)
+					{
+						if (annotation is MKPointAnnotation && polygonNames.Contains((MKAnnotation)annotation))
+						{
+							map.RemoveAnnotation(annotation);
+						}
+					}
+
 					polygonNames = null;
 				}
 
@@ -147,9 +150,6 @@ namespace WF.Player.Controls.iOS
 				{
 					return;
 				}
-
-				polygons = new List<MKPolygon>();
-				polygonNames = new List<MKMapItem>();
 
 				foreach (var z in ((ExtendedMap)Element).Polygons)
 				{
@@ -165,14 +165,29 @@ namespace WF.Player.Controls.iOS
 
 					map.AddOverlay(polygon);
 
+					if (polygons == null)
+					{
+						polygons = new List<MKPolygon>();
+					}
+
 					polygons.Add(polygon);
 
-//					var markerOptions = new MarkerOptions();
-//
-//					markerOptions.SetPosition(z.Label.Point.ToLatLng());
-//					markerOptions.SetTitle(z.Label.Name);
-//
-//					polygonNames.Add(nativeMap.AddMarker(markerOptions));
+					if (z.Label != null)
+					{
+						var polygonName = new MKPointAnnotation() {
+							Coordinate = new CLLocationCoordinate2D(z.Label.Point.Latitude, z.Label.Point.Longitude),
+							Title = z.Label.Name,
+						};
+
+						map.AddAnnotationObject(polygonName);
+
+						if (polygonNames == null)
+						{
+							polygonNames = new List<MKAnnotation>();
+						}
+
+						polygonNames.Add(polygonName);
+					}
 				}
 			}
 
@@ -279,6 +294,20 @@ namespace WF.Player.Controls.iOS
 
 					return renderer;
 				}
+
+//				if (overlay is MKAnnotation)
+//				{
+//					var polygonName = (MKAnnotation)overlay;
+//
+//					var renderer = new MKAnnotationRenderer(polygonName)
+//						{ 
+////							LineWidth = 2,
+////							StrokeColor = UIColor.Red.ColorWithAlpha(0.7f),
+////							FillColor = UIColor.Red.ColorWithAlpha(0.3f),
+//						};
+//
+//					return renderer;
+//				}
 
 				return null;
 			}

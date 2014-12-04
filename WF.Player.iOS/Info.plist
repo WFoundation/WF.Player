@@ -50,7 +50,7 @@
 	<key>MinimumOSVersion</key>
 	<string>7.0</string>
 	<key>CFBundleIdentifier</key>
-	<string>wfplayerios</string>
+	<string>WFPlayer</string>
 	<key>CFBundleShortVersionString</key>
 	<string>0.6</string>
 	<key>CFBundleIconFiles</key>

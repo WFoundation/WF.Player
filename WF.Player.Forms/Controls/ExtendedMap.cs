@@ -24,7 +24,7 @@ namespace WF.Player.Controls
 	using System.Collections.Generic;
 	using System.ComponentModel;
 
-	public class ExtendedMap : Map, INotifyPropertyChanged
+	public class ExtendedMap : Map
 	{
 		private MapSpan visibleRegion;
 		private IEnumerable<MapPolygon> polygons;

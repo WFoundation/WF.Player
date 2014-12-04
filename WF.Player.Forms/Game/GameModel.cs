@@ -925,7 +925,7 @@ namespace WF.Player
 		{
 			if (this.engine != null && e != null && e.Position != null)
 			{
-				System.Threading.Tasks.Task.Run(() => this.engine.RefreshLocation(e.Position.Latitude, e.Position.Longitude, (double)e.Position.Altitude, (double)e.Position.Accuracy));
+				System.Threading.Tasks.Task.Run(() => this.engine.RefreshLocation(e.Position.Latitude, e.Position.Longitude, (double)(e.Position.Altitude ?? double.NaN), (double)(e.Position.Accuracy ?? double.NaN)));
 			}
 		}
 
