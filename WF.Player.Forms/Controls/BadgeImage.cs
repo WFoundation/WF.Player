@@ -30,6 +30,11 @@ namespace WF.Player.Controls
 		/// </summary>
 		public const string NumberPropertyName = "Number";
 
+		/// <summary>
+		/// The name of the selected property.
+		/// </summary>
+		public const string SelectedPropertyName = "Selected";
+
 		#region Number
 
 		/// <summary>
@@ -55,5 +60,32 @@ namespace WF.Player.Controls
 		}
 
 		#endregion
+
+		#region Number
+
+		/// <summary>
+		/// Bindable selected flag property.
+		/// </summary>
+		public static readonly BindableProperty SelectedProperty = BindableProperty.Create<BadgeImage, bool>(p => p.Selected, false);
+
+		/// <summary>
+		/// Gets or sets the selected flag.
+		/// </summary>
+		/// <value>The selected flag.</value>
+		public bool Selected
+		{
+			get
+			{
+				return (bool)GetValue(SelectedProperty);
+			}
+
+			set
+			{
+				SetValue(SelectedProperty, value);
+			}
+		}
+
+		#endregion
+
 	}
 }

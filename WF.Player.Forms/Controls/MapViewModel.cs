@@ -39,14 +39,14 @@ namespace WF.Player
 
 		public MapViewModel()
 		{
-			if (App.GPS.LastKnownPosition != null)
-			{
-				visibleRegion = MapSpan.FromCenterAndRadius(new Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Distance.FromMeters(1000));
-			}
-			else
-			{
-				visibleRegion = MapSpan.FromCenterAndRadius(new Position(0, 0), Distance.FromMeters(1000));
-			}
+//			if (App.GPS.LastKnownPosition != null)
+//			{
+//				visibleRegion = MapSpan.FromCenterAndRadius(new Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Distance.FromMeters(1000));
+//			}
+//			else
+//			{
+//				visibleRegion = MapSpan.FromCenterAndRadius(new Position(0, 0), Distance.FromMeters(1000));
+//			}
 		}
 
 		#region Properties
@@ -68,7 +68,7 @@ namespace WF.Player
 					}
 					map = value;
 					map.PropertyChanged += HandlePropertyChanged;
-					map.MoveToRegion(visibleRegion);
+//					map.MoveToRegion(visibleRegion);
 				}
 			}
 		}
@@ -142,8 +142,12 @@ namespace WF.Player
 
 		private void HandlePropertyChanged (object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
-			if (e.PropertyName == "VisibleRegion" && map.VisibleRegion != null)
-				CalculateBoundingCoordinates (map.VisibleRegion);
+			if (e.PropertyName == "VisibleRegion" && visibleRegion != null)
+			{
+				map.MoveToRegion(visibleRegion);
+				// TODO: Remove?
+				CalculateBoundingCoordinates(map.VisibleRegion);
+			}
 		}
 
 		private void ButtonCenterPressed(object o)

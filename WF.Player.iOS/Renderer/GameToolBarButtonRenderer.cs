@@ -45,27 +45,27 @@ namespace WF.Player.Controls.iOS
 
 				// Draw selected marker
 				if (button.Selected) {
-					using (CGPath path = new CGPath()) {
-
-						context.SetFillColor(button.SelectedColor.ToCGColor());
-						context.SetStrokeColor(button.SelectedColor.ToCGColor());
-						context.SetLineWidth(0.0f);
-
-						float center = (float)bounds.Width / 2.0f;
-						float size = 8.0f;
-
-						PointF[] points = new PointF[3];
-
-						points[0] = new PointF(center, size); //(float)bounds.Height - size);
-						points[1] = new PointF(center + size, 0f); // (float)bounds.Height);
-						points[2] = new PointF(center - size, 0f); // (float)bounds.Height);
-
-						path.AddLines(points);
-						path.CloseSubpath();
-
-						context.AddPath(path);
-						context.DrawPath(CGPathDrawingMode.FillStroke);
-					}
+//					using (CGPath path = new CGPath()) {
+//
+//						context.SetFillColor(button.SelectedColor.ToCGColor());
+//						context.SetStrokeColor(button.SelectedColor.ToCGColor());
+//						context.SetLineWidth(0.0f);
+//
+//						float center = (float)bounds.Width / 2.0f;
+//						float size = 8.0f;
+//
+//						PointF[] points = new PointF[3];
+//
+//						points[0] = new PointF(center, size); //(float)bounds.Height - size);
+//						points[1] = new PointF(center + size, 0f); // (float)bounds.Height);
+//						points[2] = new PointF(center - size, 0f); // (float)bounds.Height);
+//
+//						path.AddLines(points);
+//						path.CloseSubpath();
+//
+//						context.AddPath(path);
+//						context.DrawPath(CGPathDrawingMode.FillStroke);
+//					}
 				}
 
 				// Restore saved state of context
@@ -78,8 +78,11 @@ namespace WF.Player.Controls.iOS
 			base.OnElementPropertyChanged (sender, e);
 
 			if (e.PropertyName == GameToolBarButton.SelectedProperty.PropertyName
-				|| e.PropertyName == GameToolBarButton.SelectedColorProperty.PropertyName)
-				SetNeedsDisplay ();
+			    || e.PropertyName == GameToolBarButton.SelectedColorProperty.PropertyName)
+			{
+				((GameToolBarButton)Element).Image.Selected = ((GameToolBarButton)Element).Selected;
+				SetNeedsDisplay();
+			}
 		}
 	}
 }

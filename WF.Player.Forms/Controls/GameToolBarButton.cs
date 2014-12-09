@@ -65,6 +65,7 @@ namespace WF.Player.Controls
 
 			image = new BadgeImage() 
 			{
+				Selected = false,
 				BackgroundColor = Color.Transparent,
 				Aspect = Aspect.AspectFit,
 				Source = imageName,
@@ -120,6 +121,7 @@ namespace WF.Player.Controls
 			set
 			{
 				SetValue(SelectedProperty, value);
+				image.Selected = value;
 			}
 		}
 

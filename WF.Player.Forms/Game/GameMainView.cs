@@ -26,7 +26,7 @@ namespace WF.Player
 	/// <summary>
 	/// Game main view.
 	/// </summary>
-	public class GameMainView : BottomBarPage
+	public class GameMainView : BasePage
 	{
 		/// <summary>
 		/// The button you see.
@@ -104,19 +104,20 @@ namespace WF.Player
 
 			var buttonLayout = new StackLayout() 
 			{
-				BackgroundColor = App.Colors.BackgroundButtons,
+				BackgroundColor = App.Colors.Bar, //App.Colors.BackgroundButtons,
 				Orientation = StackOrientation.Horizontal,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
-				HeightRequest = 72,
-				MinimumHeightRequest = 72,
+				HeightRequest = 56, //72,
+				MinimumHeightRequest = 56, //72,
 			};
 
 			// Overview button
 			this.buttonOverview = new GameToolBarButton("IconOverview.png") 
 				{
 					BackgroundColor = Color.Transparent,
+					Selected = true,
 					SelectedColor = App.Colors.Background,
-					Padding = new Thickness(2, 10),
+					Padding = new Thickness(2, 2), //10),
 					HasShadow = false,
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
@@ -136,8 +137,9 @@ namespace WF.Player
 			this.buttonYouSee = new GameToolBarButton("IconLocation.png") 
 				{
 					BackgroundColor = Color.Transparent,
+					Selected = false,
 					SelectedColor = App.Colors.Background,
-					Padding = new Thickness(2, 10),
+					Padding = new Thickness(2, 2), //10),
 					HasShadow = false,
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
@@ -158,8 +160,9 @@ namespace WF.Player
 			this.buttonInventory = new GameToolBarButton("IconInventory.png") 
 				{
 					BackgroundColor = Color.Transparent,
+					Selected = false,
 					SelectedColor = App.Colors.Background,
-					Padding = new Thickness(2, 10),
+					Padding = new Thickness(2, 2), //10),
 					HasShadow = false,
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
@@ -180,8 +183,9 @@ namespace WF.Player
 			this.buttonTasks = new GameToolBarButton("IconTasks.png") 
 				{
 					BackgroundColor = Color.Transparent,
+					Selected = false,
 					SelectedColor = App.Colors.Background,
-					Padding = new Thickness(2, 10),
+					Padding = new Thickness(2, 2), //10),
 					HasShadow = false,
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
@@ -202,8 +206,9 @@ namespace WF.Player
 			this.buttonMap = new GameToolBarButton("IconMap.png") 
 				{
 					BackgroundColor = Color.Transparent,
+					Selected = false,
 					SelectedColor = App.Colors.Background,
-					Padding = new Thickness(2, 10),
+					Padding = new Thickness(2, 2), //10),
 					HasShadow = false,
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
@@ -436,9 +441,33 @@ namespace WF.Player
 
 			layout.Children.Add(listLayout);
 			layout.Children.Add(mapView);
+
+			#if __IOS__
+			// Dark grey line on iOS
+			var frame = new StackLayout () 
+				{
+					Padding = new Thickness(0, 0),
+					BackgroundColor = App.Colors.IsDarkTheme ? Color.FromRgb(0x26, 0x26, 0x26) : Color.FromRgb (0xAE, 0xAE, 0xAE),
+					HeightRequest = 0.5f,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+				};
+
+			layout.Children.Add(
+				frame);
+//				Constraint.Constant(0),
+//				Constraint.RelativeToParent((parent) => { return parent.Height - barHeight - 0.5f; }),
+//				Constraint.RelativeToParent((parent) => { return parent.Width; }),
+//				Constraint.Constant(0.5f));
+			#endif
 			layout.Children.Add(buttonLayout);
 
-			((StackLayout)ContentLayout).Children.Add(layout);
+			var contentLayout = new StackLayout() {
+				Orientation = StackOrientation.Vertical,
+			};
+			contentLayout.Children.Add(layout);
+			Content = contentLayout;
+
+//			((StackLayout)ContentLayout).Children.Add(layout);
 
 			// Create position entries at bottom of screen
 			var latitude = new Label() 
@@ -532,7 +561,7 @@ namespace WF.Player
 			layoutBottomHori.Children.Add(layoutBottomVert2);
 			layoutBottomHori.Children.Add(layoutBottomVert3);
 
-			BottomLayout.Children.Add(layoutBottomHori);
+//			BottomLayout.Children.Add(layoutBottomHori);
 		}
 
 		/// <summary>

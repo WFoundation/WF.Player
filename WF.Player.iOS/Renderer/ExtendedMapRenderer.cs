@@ -119,6 +119,11 @@ namespace WF.Player.Controls.iOS
 				this.UpdateHasZoomEnabled();
 			}
 
+			if(e.PropertyName == "VisibleRegion")
+			{
+				MoveToRegion(((ExtendedMap)base.Element).VisibleRegion);
+			}
+
 			if (e.PropertyName == "Polygons")
 			{
 				MKMapView map = (MKMapView)base.Control;

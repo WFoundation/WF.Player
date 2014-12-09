@@ -25,6 +25,7 @@ using System.Drawing;
 using MonoTouch.CoreGraphics;
 using WF.Player.Controls;
 using WF.Player.Controls.iOS;
+using MonoTouch.CoreImage;
 
 [assembly: ExportRendererAttribute (typeof (BadgeImage), typeof (BadgeImageRenderer))]
 
@@ -32,7 +33,7 @@ namespace WF.Player.Controls.iOS
 {
 	public class BadgeImageRenderer : ImageRenderer
 	{
-		UIImage _image;
+		UIImage image;
 
 		public override void Draw(System.Drawing.RectangleF rect)
 		{
@@ -89,7 +90,9 @@ namespace WF.Player.Controls.iOS
 		{
 			base.OnElementChanged(e);
 
-			_image = this.Control.Image;
+			image = this.Control.Image;
+
+			UpdateImage();
 		}
 
 		protected override void OnElementPropertyChanged (object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -100,19 +103,75 @@ namespace WF.Player.Controls.iOS
 				UpdateImage();
 				SetNeedsDisplay();
 			}
+
+			if (e.PropertyName == BadgeImage.SelectedProperty.PropertyName) {
+				UpdateImage();
+				SetNeedsDisplay();
+			}
 		}
 
 		void UpdateImage()
 		{
 			UIImage newImage;
 			string number = ((BadgeImage)Element).Number.ToString();
-			SizeF size = new SizeF(_image.Size.Width, _image.Size.Height);
+			SizeF size = new SizeF(image.Size.Width, image.Size.Height);
 
 			// Begin a graphics context of sufficient size
 			UIGraphics.BeginImageContextWithOptions(size, false, 0f);
 
 			// Draw original image into the context
-			_image.Draw(new PointF(0, 0));
+			if (((BadgeImage)Element).Selected)
+			{
+				image.Draw(new PointF(0, 0));
+			}
+			else
+			{
+				// Found at http://iosdevelopertips.com/graphics/convert-an-image-uiimage-to-grayscale.html
+
+				// Create image rectangle with current image width/height
+				RectangleF imageRect = new RectangleF(new PointF(0, 0), new SizeF(image.Size.Width * image.CurrentScale, image.Size.Width * image.CurrentScale));
+
+				// Grayscale color space
+				CGColorSpace colorSpace = CGColorSpace.CreateDeviceGray();
+				CGImage grayImage;
+				CGImage mask;
+
+				// Create bitmap content with current image size and grayscale colorspace
+				using (var context = new CGBitmapContext(null, (int)image.Size.Width * (int)image.CurrentScale, (int)image.Size.Height * (int)image.CurrentScale, 8, 0, colorSpace, CGImageAlphaInfo.None))
+				{
+
+					// Draw image into current context, with specified rectangle
+					// using previously defined context (with grayscale colorspace)
+					context.DrawImage(imageRect, image.CGImage);
+
+					/* changes start here */
+					// Create bitmap image info from pixel data in current context
+					grayImage = context.ToImage();
+
+					// release the colorspace and graphics context
+					colorSpace.Dispose();
+				}
+
+					// make a new alpha-only graphics context
+				using (var context = new CGBitmapContext(null, (int)image.Size.Width * (int)image.CurrentScale, (int)image.Size.Height * (int)image.CurrentScale, 8, 0, CGColorSpace.Null, CGImageAlphaInfo.Only))
+				{
+
+					// draw image into context with no colorspace
+					context.DrawImage(imageRect, image.CGImage);
+
+					// create alpha bitmap mask from current context
+					mask = context.ToImage();
+				}
+
+				// make UIImage from grayscale image with alpha mask
+				UIImage grayScaleImage = new UIImage(grayImage.WithMask(mask), image.CurrentScale, image.Orientation); //image.CurrentScale
+
+				// release the CG images
+				grayImage.Dispose();
+				mask.Dispose();
+
+				grayScaleImage.Draw(new PointF(0, 0)); //, image.Size));
+			}
 
 			// Get the context for CoreGraphics
 			using (var context = UIGraphics.GetCurrentContext()) {
@@ -141,11 +200,14 @@ namespace WF.Player.Controls.iOS
 						badgeWidth = badgeHeight;
 
 					float left = (float)(size.Width - badgeWidth);
-					float top = (float)(size.Height - badgeHeight);
+					float top = 0; //(float)(size.Height - badgeHeight);
 
-					using (UIBezierPath path = UIBezierPath.FromRoundedRect(new RectangleF(left, top, badgeWidth, badgeHeight), UIRectCorner.AllCorners, new System.Drawing.SizeF(10, 10))) {
-						context.SetFillColor(Color.Red.ToCGColor());
-						context.SetStrokeColor(Color.Red.ToCGColor());
+					using (UIBezierPath path = UIBezierPath.FromRoundedRect(new RectangleF(left, top, badgeWidth, badgeHeight), UIRectCorner.AllCorners, new System.Drawing.SizeF(10, 10))) 
+					{
+						var color = ((BadgeImage)Element).Selected ? Color.Red.ToCGColor() : Color.FromRgb(192, 192, 192).ToCGColor();
+
+						context.SetFillColor(color);
+						context.SetStrokeColor(color);
 						context.SetLineWidth(0.0f);
 
 						context.AddPath(path.CGPath);

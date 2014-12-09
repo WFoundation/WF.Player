@@ -215,6 +215,12 @@
     <BundleResource Include="Resources\IconMapNorth%403x.png" />
     <BundleResource Include="Resources\IconMapType%403x.png" />
     <BundleResource Include="Resources\IconMapCenter%403x.png" />
+    <BundleResource Include="Resources\IconInventory%403x.png" />
+    <BundleResource Include="Resources\IconMap%403x.png" />
+    <BundleResource Include="Resources\IconOverview%403x.png" />
+    <BundleResource Include="Resources\IconTasks%403x.png" />
+    <BundleResource Include="Resources\IconYouSee%403x.png" />
+    <BundleResource Include="Resources\IconLocation%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

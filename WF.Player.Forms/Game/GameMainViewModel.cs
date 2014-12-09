@@ -16,6 +16,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using WF.Player.Controls;
+using Xamarin.Forms.Maps;
 
 namespace WF.Player
 {
@@ -983,6 +984,18 @@ namespace WF.Player
 		{
 			// Notify user
 			App.Click();
+
+			if (Map.VisibleRegion == null)
+			{
+				if (App.GPS.LastKnownPosition != null)
+				{
+					Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+				}
+				else
+				{
+					Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(0, 0), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+				}
+			}
 
 			ActiveScreen = ScreenType.Map;
 
