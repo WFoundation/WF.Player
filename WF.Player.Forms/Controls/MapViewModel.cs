@@ -27,6 +27,7 @@ namespace WF.Player
 
 	public class MapViewModel : BaseViewModel
 	{
+		public static string PositionPropertyName = "Position";
 		public static string MapOrientationSourcePropertyName = "MapOrientationSource";
 		public static string CommandButtonCenterPressedPropertyName = "CommandButtonCenterPressed";
 		public static string CommandButtonTypePressedPropertyName = "CommandButtonTypePressed";
@@ -37,16 +38,14 @@ namespace WF.Player
 
 		private bool mapOrientationNorth = true;
 
+		/// <summary>
+		/// The position.
+		/// </summary>
+		private WF.Player.Services.Geolocation.Position position;
+
 		public MapViewModel()
 		{
-//			if (App.GPS.LastKnownPosition != null)
-//			{
-//				visibleRegion = MapSpan.FromCenterAndRadius(new Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Distance.FromMeters(1000));
-//			}
-//			else
-//			{
-//				visibleRegion = MapSpan.FromCenterAndRadius(new Position(0, 0), Distance.FromMeters(1000));
-//			}
+//			Position = App.GPS.LastKnownPosition;
 		}
 
 		#region Properties
@@ -68,6 +67,7 @@ namespace WF.Player
 					}
 					map = value;
 					map.PropertyChanged += HandlePropertyChanged;
+//					Position = App.GPS.LastKnownPosition;
 //					map.MoveToRegion(visibleRegion);
 				}
 			}
@@ -109,6 +109,27 @@ namespace WF.Player
 				}
 			}
 		}
+
+		#region Position
+
+		/// <summary>
+		/// Gets Position from the actual location.
+		/// </summary>
+		/// <value>The Position.</value>
+		public WF.Player.Services.Geolocation.Position Position
+		{
+			get
+			{
+				return this.position;
+			}
+
+			internal set
+			{
+				SetProperty<WF.Player.Services.Geolocation.Position>(ref this.position, value, PositionPropertyName);
+			}
+		}
+
+		#endregion
 
 		#endregion
 

@@ -171,6 +171,11 @@ namespace WF.Player
 		private GameModel gameModel;
 
 		/// <summary>
+		/// The map view model.
+		/// </summary>
+		private MapViewModel mapViewModel;
+
+		/// <summary>
 		/// The geo math helper.
 		/// </summary>
 		private GeoMathHelper geoMathHelper;
@@ -342,10 +347,25 @@ namespace WF.Player
 		#region Map
 
 		/// <summary>
-		/// Gets or sets the map.
+		/// Gets or sets the map view model.
 		/// </summary>
 		/// <value>The map.</value>
-		public ExtendedMap Map { get; set; } 
+		public MapViewModel MapViewModel
+		{ 
+			get
+			{
+				return mapViewModel;
+			}
+
+			set
+			{
+				if (mapViewModel != value)
+				{
+					mapViewModel = value;
+					mapViewModel.Position = null;
+				}
+			}
+		}
 
 		#endregion
 
@@ -985,15 +1005,17 @@ namespace WF.Player
 			// Notify user
 			App.Click();
 
-			if (Map.VisibleRegion == null)
+//			MapViewModel.Position = App.GPS.LastKnownPosition;
+
+			if (MapViewModel.Map.VisibleRegion == null)
 			{
 				if (App.GPS.LastKnownPosition != null)
 				{
-					Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+					MapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
 				}
 				else
 				{
-					Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(0, 0), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+					MapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(0, 0), Xamarin.Forms.Maps.Distance.FromMeters(1000));
 				}
 			}
 
@@ -1102,6 +1124,7 @@ namespace WF.Player
 		private void OnPositionChanged(object sender, PositionEventArgs e)
 		{
 			Position = e.Position;
+			MapViewModel.Position = e.Position;
 
 			RefreshDirections();
 		}
@@ -1314,7 +1337,7 @@ namespace WF.Player
 					polygons.Add(new WF.Player.Controls.ExtendedMap.MapPolygon(z.Points, new WF.Player.Controls.ExtendedMap.MapPoint(z.ObjectLocation, z.Name)));
 				}
 
-				Map.Polygons = polygons;
+				MapViewModel.Map.Polygons = polygons;
 			}
 
 			// We are only interessted in the following changes

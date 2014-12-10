@@ -15,6 +15,9 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Controls;
+using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace WF.Player
 {
@@ -25,7 +28,7 @@ namespace WF.Player
 	/// <summary>
 	/// Cartridge list page.
 	/// </summary>
-	public class CartridgeListPage : ContentPage
+	public class CartridgeListPage : ContentPage, INotifyPropertyChanged
 	{
 		/// <summary>
 		/// The cartridges.
@@ -40,7 +43,17 @@ namespace WF.Player
 		/// <summary>
 		/// The list.
 		/// </summary>
-		private ListView list;
+		private PullToRefreshListView list;
+
+		/// <summary>
+		/// The refresh command.
+		/// </summary>
+		private Command refreshCommand;
+
+		/// <summary>
+		/// The flag for is busy.
+		/// </summary>
+		private bool isBusy;
 
 		#region Constructor
 
@@ -51,6 +64,7 @@ namespace WF.Player
 		public CartridgeListPage(CartridgeStore store)
 		{
 			this.cartridges = store;
+			this.BindingContext = this;
 
 			Title = Catalog.GetString("Cartridges");
 			NavigationPage.SetTitleIcon(this, "HomeIcon.png");
@@ -69,13 +83,16 @@ namespace WF.Player
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			};
 
-			list = new ListView() 
+			list = new PullToRefreshListView() 
 			{
 				BackgroundColor = App.Colors.Background,
 				RowHeight = Device.OnPlatform<int>(104, 60, 60),
 				ItemsSource = cartridges,
 				ItemTemplate = new DataTemplate(typeof(TextCell)),
+				Message = Catalog.GetString("Loading..."),
+				RefreshCommand = this.RefreshCommand,
 			};
+			list.SetBinding<CartridgeListPage> (PullToRefreshListView.IsRefreshingProperty, vm => vm.IsBusy);
 
 			list.ItemTemplate.SetBinding(TextCell.TextProperty, CartridgeStore.CartridgeNamePropertyName);
 			list.ItemTemplate.SetBinding(TextCell.TextColorProperty, "TextColor");
@@ -105,6 +122,42 @@ namespace WF.Player
 
 		#endregion
 
+		#region Properties
+
+		public bool IsBusy
+		{
+			get 
+			{ 
+				return isBusy; 
+			}
+
+			set
+			{
+				if (isBusy == value)
+				{
+					return;
+				}
+
+				isBusy = value;
+				list.IsRefreshing = value;
+				HandlePropertyChanged ("IsBusy");
+			}
+		}
+
+		#endregion
+
+		#region Commands
+
+		public Command RefreshCommand
+		{
+			get 
+			{ 
+				return refreshCommand ?? (refreshCommand = new Command (async ()=> await ExecuteRefreshCommand())); 
+			}
+		}
+
+		#endregion
+
 		#region Events
 
 		/// <summary>
@@ -116,5 +169,41 @@ namespace WF.Player
 		}
 
 		#endregion
+
+		#region Private Functions
+
+		private async Task ExecuteRefreshCommand()
+		{
+			if (IsBusy)
+			{
+				return;
+			}
+
+			IsBusy = true;
+
+			cartridges.Clear ();
+			cartridges.SyncFromStore();
+
+			IsBusy = false;
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged implementation
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		#endregion
+
+		public void HandlePropertyChanged(string propertyName)
+		{
+			var handler = PropertyChanged;
+
+			if (handler != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
 	} 
 }

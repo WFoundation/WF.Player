@@ -612,7 +612,7 @@ namespace WF.Player
 							});
 					}
 
-					cfg.Add(Catalog.GetString("Cancel"), () => App.Click());
+					cfg.Cancel = new ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 
 					DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
 				} 

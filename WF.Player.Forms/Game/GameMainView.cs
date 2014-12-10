@@ -107,8 +107,8 @@ namespace WF.Player
 				BackgroundColor = App.Colors.Bar, //App.Colors.BackgroundButtons,
 				Orientation = StackOrientation.Horizontal,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
-				HeightRequest = 56, //72,
-				MinimumHeightRequest = 56, //72,
+				HeightRequest = 60, //72,
+				MinimumHeightRequest = 60, //72,
 			};
 
 			// Overview button
@@ -429,45 +429,7 @@ namespace WF.Player
 				};
 			mapView.SetBinding(MapView.IsVisibleProperty, GameMainViewModel.IsMapSelectedPropertyName);
 
-			gameMainViewModel.Map = mapViewModel.Map;
-
-			var layout = new StackLayout() 
-			{
-				BackgroundColor = Color.Transparent,
-				Spacing = 0,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-			};
-
-			layout.Children.Add(listLayout);
-			layout.Children.Add(mapView);
-
-			#if __IOS__
-			// Dark grey line on iOS
-			var frame = new StackLayout () 
-				{
-					Padding = new Thickness(0, 0),
-					BackgroundColor = App.Colors.IsDarkTheme ? Color.FromRgb(0x26, 0x26, 0x26) : Color.FromRgb (0xAE, 0xAE, 0xAE),
-					HeightRequest = 0.5f,
-					HorizontalOptions = LayoutOptions.FillAndExpand,
-				};
-
-			layout.Children.Add(
-				frame);
-//				Constraint.Constant(0),
-//				Constraint.RelativeToParent((parent) => { return parent.Height - barHeight - 0.5f; }),
-//				Constraint.RelativeToParent((parent) => { return parent.Width; }),
-//				Constraint.Constant(0.5f));
-			#endif
-			layout.Children.Add(buttonLayout);
-
-			var contentLayout = new StackLayout() {
-				Orientation = StackOrientation.Vertical,
-			};
-			contentLayout.Children.Add(layout);
-			Content = contentLayout;
-
-//			((StackLayout)ContentLayout).Children.Add(layout);
+			gameMainViewModel.MapViewModel = mapViewModel;
 
 			// Create position entries at bottom of screen
 			var latitude = new Label() 
@@ -556,10 +518,49 @@ namespace WF.Player
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				Spacing = 0,
 			};
+			layoutBottomHori.SetBinding(StackLayout.IsVisibleProperty, GameMainViewModel.IsMapSelectedPropertyName);
 
 			layoutBottomHori.Children.Add(layoutBottomVert1);
 			layoutBottomHori.Children.Add(layoutBottomVert2);
 			layoutBottomHori.Children.Add(layoutBottomVert3);
+
+			var layout = new StackLayout() 
+				{
+					BackgroundColor = Color.Transparent,
+					Spacing = 0,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+				};
+
+			layout.Children.Add(listLayout);
+//			layout.Children.Add(layoutBottomHori);
+			layout.Children.Add(mapView);
+
+			#if __IOS__
+			// Dark grey line on iOS
+			var frame = new StackLayout () 
+			{
+			Padding = new Thickness(0, 0),
+			BackgroundColor = App.Colors.IsDarkTheme ? Color.FromRgb(0x26, 0x26, 0x26) : Color.FromRgb (0xAE, 0xAE, 0xAE),
+			HeightRequest = 0.5f,
+			HorizontalOptions = LayoutOptions.FillAndExpand,
+			};
+
+			layout.Children.Add(
+			frame);
+			//				Constraint.Constant(0),
+			//				Constraint.RelativeToParent((parent) => { return parent.Height - barHeight - 0.5f; }),
+			//				Constraint.RelativeToParent((parent) => { return parent.Width; }),
+			//				Constraint.Constant(0.5f));
+			#endif
+			layout.Children.Add(buttonLayout);
+
+			var contentLayout = new StackLayout() {
+				Orientation = StackOrientation.Vertical,
+			};
+			contentLayout.Children.Add(layout);
+			Content = contentLayout;
+
 
 //			BottomLayout.Children.Add(layoutBottomHori);
 		}

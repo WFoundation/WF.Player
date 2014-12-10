@@ -25,7 +25,7 @@ namespace WF.Player.Controls
 {
 	public class MapView : ContentView
 	{
-		private const int frame = 16;
+		private const int frame = 10;
 
 		private RelativeLayout layout;
 		private ExtendedMap map;
@@ -96,15 +96,96 @@ namespace WF.Player.Controls
 
 			layout.Children.Add(mapButtonCenter, 
 				Constraint.Constant(frame),
-				Constraint.Constant(frame));
+				Constraint.Constant(38 + frame));
 
 			layout.Children.Add(mapButtonOrientation, 
 				Constraint.Constant(frame),
-				Constraint.RelativeToParent(p => frame + mapButtonCenter.Width + frame));
+				Constraint.RelativeToParent(p => 38 + frame + mapButtonCenter.Width + frame));
 
 			layout.Children.Add(mapButtonType, 
 				Constraint.RelativeToParent(p => p.Width - frame - mapButtonType.Width),
-				Constraint.Constant(frame));
+				Constraint.Constant(38 + frame));
+
+			// Create position entries at bottom of screen
+			var latitude = new Label() 
+				{
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					XAlign = TextAlignment.Start,
+					TextColor = Color.White,
+					Font = Font.SystemFontOfSize(16).WithAttributes(FontAttributes.Bold),
+				};
+			latitude.SetBinding(Label.TextProperty, MapViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToLatitude());
+
+			var longitude = new Label() 
+				{
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					XAlign = TextAlignment.Start,
+					TextColor = Color.White,
+					Font = Font.SystemFontOfSize(16).WithAttributes(FontAttributes.Bold),
+				};
+			longitude.SetBinding(Label.TextProperty, MapViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToLongitude());
+
+			var altitude = new Label() 
+				{
+					XAlign = TextAlignment.End,
+					TextColor = Color.White,
+					Font = Font.SystemFontOfSize(16).WithAttributes(FontAttributes.Bold),
+				};
+			altitude.SetBinding(Label.TextProperty, MapViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToAltitude());
+
+			var accuracy = new Label() 
+				{
+					XAlign = TextAlignment.End,
+					TextColor = Color.White,
+					Font = Font.SystemFontOfSize(16).WithAttributes(FontAttributes.Bold),
+				};
+			accuracy.SetBinding(Label.TextProperty, MapViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToAccuracy());
+
+			var imageAltitude = new Image() 
+				{
+					WidthRequest = 16,
+					HeightRequest = 16,
+					Source = "IconAltitudeLight.png",
+				};
+
+			var imageAccuracy = new Image() 
+				{
+					WidthRequest = 16,
+					HeightRequest = 16,
+					Source = "IconAccuracyLight.png",
+				};
+
+			var layoutPosition = new Grid() 
+				{
+					BackgroundColor = Color.Gray.MultiplyAlpha(0.8),
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					Padding = new Thickness(10, 4),
+					RowSpacing = 2,
+				};
+
+			layoutPosition.RowDefinitions = new RowDefinitionCollection {
+				new RowDefinition { Height = 16 },
+				new RowDefinition { Height = 16 }
+			};
+
+			layoutPosition.ColumnDefinitions = new ColumnDefinitionCollection {
+				new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },
+				new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+				new ColumnDefinition { Width = 16 }
+			};
+
+			layoutPosition.Children.Add(latitude, 0, 0);
+			layoutPosition.Children.Add(longitude, 0, 1);
+			layoutPosition.Children.Add(imageAltitude, 2, 0);
+			layoutPosition.Children.Add(imageAccuracy, 2, 1);
+			layoutPosition.Children.Add(altitude, 1, 0);
+			layoutPosition.Children.Add(accuracy, 1, 1);
+
+			layout.Children.Add(layoutPosition, 
+				Constraint.Constant(0), //.RelativeToParent(p => p.Width - layoutBottomHori.Width - 8),
+				Constraint.Constant(0), //RelativeToParent(p => p.Height - 44 - 8));
+				Constraint.RelativeToParent(p => p.Width),
+				Constraint.Constant(40));
 
 			this.Content = layout;
 		}
