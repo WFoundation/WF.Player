@@ -42,34 +42,37 @@ namespace WF.Player
 			this.DirectionView.SetBinding(DirectionArrow.DirectionProperty, CartridgeDetailViewModel.DirectionPropertyName);
 			this.DistanceView.SetBinding(Label.TextProperty, CartridgeDetailViewModel.DistancePropertyName, BindingMode.OneWay, new ConverterToDistance());
 
-			var scrollView = new ScrollView() 
-			{
-				Orientation = ScrollOrientation.Vertical,
-				Padding = 0,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-			};
+			var scrollView = new PinchScrollView() 
+				{
+					Orientation = ScrollOrientation.Vertical,
+					Padding = 0,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+				};
 
 			// Used for padding around the label
 			var layout = new StackLayout() 
-			{
-				Padding = new Thickness(10, 10),
-			};
+				{
+					Padding = 10,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+				};
 
 			var label = new Label() 
-			{
-				XAlign = App.Prefs.TextAlignment,
-				Font = App.Fonts.Normal,
-				TextColor = App.Colors.Text,
-			};
-
+				{
+					XAlign = App.Prefs.TextAlignment,
+					Font = App.Fonts.Normal,
+					TextColor = App.Colors.Text,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+				};
 			label.SetBinding(Label.TextProperty, CartridgeDetailViewModel.DescriptionPropertyName);
 
 			layout.Children.Add(label);
 
 			scrollView.Content = layout;
 
-			ContentLayout = scrollView;
+			((StackLayout)ContentLayout).Children.Add(scrollView);
 		}
 
 		#endregion

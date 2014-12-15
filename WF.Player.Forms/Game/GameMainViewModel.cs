@@ -53,6 +53,11 @@ namespace WF.Player
 		/// <summary>
 		/// The name of the is you see selected property.
 		/// </summary>
+		public const string IsBackbuttonVisiblePropertyName = "IsBackbuttonVisible";
+
+		/// <summary>
+		/// The name of the is you see selected property.
+		/// </summary>
 		public const string IsOverviewSelectedPropertyName = "IsOverviewSelected";
 
 		/// <summary>
@@ -315,6 +320,8 @@ namespace WF.Player
 							NotifyPropertyChanged(IsMapNotSelectedPropertyName);
 							break;
 					}
+
+					NotifyPropertyChanged(IsBackbuttonVisiblePropertyName);
 				}
 
 				Refresh();
@@ -396,6 +403,22 @@ namespace WF.Player
 			get 
 			{
 				return this.gameMainList;
+			}
+		}
+
+		#endregion
+
+		#region IsBackbuttonVisible
+
+		/// <summary>
+		/// Gets a value indicating whether backbutton should be visible.
+		/// </summary>
+		/// <value><c>true</c> if backbutton should be visible; otherwise, <c>false</c>.</value>
+		public bool IsBackbuttonVisible
+		{
+			get 
+			{
+				return this.activeScreen != ScreenType.Main; 
 			}
 		}
 
@@ -1093,10 +1116,6 @@ namespace WF.Player
 			{
 				return;
 			}
-
-			// TODO: Remove
-			if (e != null && e.UIObject != null)
-				Console.WriteLine("Property: {0} - {1} from {2}", e.What, e.PropertyName, e.UIObject.Name);
 
 			RefreshButtons();
 

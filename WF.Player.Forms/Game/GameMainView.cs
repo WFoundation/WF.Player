@@ -61,9 +61,14 @@ namespace WF.Player
 		{
 			BindingContext = gameMainViewModel;
 
-			HasBackButton = false;
+//			HasBackButton = true;
+
+//			this.SetBinding(GameMainView.HasBackButtonProperty, GameMainViewModel.IsBackbuttonVisiblePropertyName);
 			this.SetBinding(GameMainView.TitleProperty, GameMainViewModel.TitelPropertyName);
+
 			NavigationPage.SetBackButtonTitle(this, string.Empty);
+			NavigationPage.SetHasBackButton(this, true);
+
 
 			#if __IOS__
 

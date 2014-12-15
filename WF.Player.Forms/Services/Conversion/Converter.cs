@@ -215,7 +215,7 @@ namespace WF.Player
 					doubleMin = (coord - (double)intDeg) * 60.0;
 					intMin = (int)doubleMin;
 					doubleSec = (doubleMin - (double)intMin) * 60.0;
-					result = string.Format("{0:" + format + "}° {1:00}' {2:00.00}", intDeg, intMin, doubleSec);
+					result = string.Format("{0:" + format + "}° {1:00}' {2:00.00}\"", intDeg, intMin, doubleSec);
 					break;
 				case FormatCoordinates.DecimalMinutes:
 				default:

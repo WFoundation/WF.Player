@@ -47,18 +47,18 @@ namespace WF.Player
 			var layoutScroll = new ScrollView() 
 			{
 				Orientation = ScrollOrientation.Vertical,
-				Padding = 10,
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 			};
 
 			var layout = new StackLayout() 
-			{
-				Orientation = StackOrientation.Vertical,
-				Spacing = 10,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-			};
+				{
+					Orientation = StackOrientation.Vertical,
+					Padding = 10,
+					Spacing = 10,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+				};
 
 			// Header
 			var label = new Label 
@@ -109,10 +109,10 @@ namespace WF.Player
 			};
 
 			var list = new ListView() 
-			{
-				BackgroundColor = Color.Transparent,
-				ItemsSource = listSource,
-			};
+				{
+					ItemsSource = listSource,
+					HeightRequest = 5 * 44,
+				};
 
 			var cell = new DataTemplate(typeof(AccessoryCell));
 
@@ -120,23 +120,23 @@ namespace WF.Player
 			cell.SetBinding(AccessoryCell.TextColorProperty, "TextColor");
 
 			list.ItemTemplate = cell;
-			list.ItemSelected += (object sender, SelectedItemChangedEventArgs e) =>
-			{
-				// Get selected MenuEntry
-				MenuEntry me = (MenuEntry)e.SelectedItem;
+			list.ItemTapped += (object sender, ItemTappedEventArgs e) => 
+				{
+					// Get selected MenuEntry
+					MenuEntry me = (MenuEntry)e.Item;
 
-				// If MenuEntry is null (unselected item), than leave
-				if (me == null)
+					// If MenuEntry is null (unselected item), than leave
+					if (me == null)
 					{
 						return;
 					}
 
-				// Call handler of this MenuEntry
-				me.Handler(sender, e);
+					// Call handler of this MenuEntry
+					me.Handler(sender, e);
 
-				// Deselect MenuEntry
-				list.SelectedItem = null;
-			};
+					// Deselect MenuEntry
+					list.SelectedItem = null;
+				};
 
 			layout.Children.Add(list);
 

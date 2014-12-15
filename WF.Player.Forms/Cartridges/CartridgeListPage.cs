@@ -97,7 +97,7 @@ namespace WF.Player
 			list.ItemTemplate.SetBinding(TextCell.TextProperty, CartridgeStore.CartridgeNamePropertyName);
 			list.ItemTemplate.SetBinding(TextCell.TextColorProperty, "TextColor");
 			list.ItemTemplate.SetBinding(TextCell.DetailProperty, CartridgeStore.CartridgeAuthorNamePropertyName);
-			list.ItemSelected += (sender, e) =>
+			list.ItemSelected += async (sender, e) =>
 			{
 				if (e.SelectedItem == null)
 				{
@@ -109,7 +109,7 @@ namespace WF.Player
 				var cartridgeTag = (CartridgeTag)e.SelectedItem;
 				var cartridgeDetailPage = new CartridgeDetailPage(new CartridgeDetailViewModel(cartridgeTag));
 
-				App.Navigation.PushAsync(cartridgeDetailPage);
+				await App.Navigation.PushAsync(cartridgeDetailPage);
 
 				// Clear selection, so it is possible later select the same item
 				list.SelectedItem = null;
