@@ -15,6 +15,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 
 namespace WF.Player
 {
@@ -24,7 +25,7 @@ namespace WF.Player
 	/// <summary>
 	/// Extended navigation page.
 	/// </summary>
-	public class ExtendedNavigationPage : NavigationPage, INavigation
+	public class ExtendedNavigationPage : NavigationPage
 	{
 		/// <summary>
 		/// The stack.
@@ -106,9 +107,9 @@ namespace WF.Player
 
 			System.Threading.Tasks.Task result = null;
 
-			Device.BeginInvokeOnMainThread(() =>
+			Device.BeginInvokeOnMainThread(async () =>
 				{
-					result = base.PushAsync(page);
+					await base.Navigation.PushAsync(page, false);
 				});
 
 			return result;
@@ -132,9 +133,13 @@ namespace WF.Player
 
 			System.Threading.Tasks.Task result = null;
 
-			Device.BeginInvokeOnMainThread(() =>
+			Device.BeginInvokeOnMainThread(async () =>
 				{
-					result = base.PopToRootAsync();
+					lock (syncRoot)
+					{
+						transition = false;
+					}
+					await base.Navigation.PopToRootAsync(false);
 				});
 
 			return result;
@@ -149,6 +154,10 @@ namespace WF.Player
 			// First page must always on screen
 			if (stack.Count == 1)
 			{
+				lock (syncRoot)
+				{
+					transition = false;
+				}
 				return null;
 			}
 
@@ -160,9 +169,9 @@ namespace WF.Player
 
 			System.Threading.Tasks.Task result = null;
 
-			Device.BeginInvokeOnMainThread(() =>
+			Device.BeginInvokeOnMainThread(async () =>
 				{
-					result = base.PopAsync();
+					await base.Navigation.PopAsync(false);
 				});
 
 			return result;
@@ -175,7 +184,7 @@ namespace WF.Player
 		/// <param name="page">Page to push.</param>
 		public System.Threading.Tasks.Task PushModalAsync(Page page)
 		{
-			return this.Navigation.PushModalAsync(page);
+			return this.Navigation.PushModalAsync(page, false);
 		}
 
 		/// <summary>
@@ -184,7 +193,7 @@ namespace WF.Player
 		/// <returns>The modal async.</returns>
 		public System.Threading.Tasks.Task<Page> PopModalAsync()
 		{
-			return this.Navigation.PopModalAsync();
+			return this.Navigation.PopModalAsync(false);
 		}
 
 		#endregion

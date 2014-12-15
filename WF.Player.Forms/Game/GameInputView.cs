@@ -110,7 +110,6 @@ namespace WF.Player
 
 			var entry = new Entry 
 				{
-					Placeholder = "Answer",
 					#if __IOS__
 					BackgroundColor = Color.FromRgb(223, 223, 223),
 					TextColor = App.Colors.Tint,

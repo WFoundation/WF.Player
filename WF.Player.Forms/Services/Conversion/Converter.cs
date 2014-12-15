@@ -96,19 +96,19 @@ namespace WF.Player
 					}
 					else if (lengthInUnits < 100000.0)
 					{
-						result = string.Format("{0:0.000} mil", lengthInUnits / 5280.0);
+						result = string.Format("{0:0.000} mi", lengthInUnits / 5280.0);
 					}
 					else if (lengthInUnits < 1000000.0)
 					{
-						result = string.Format("{0:0.00} mil", lengthInUnits / 5280.0);
+						result = string.Format("{0:0.00} mi", lengthInUnits / 5280.0);
 					}
 					else if (lengthInUnits < 10000000.0)
 					{
-						result = string.Format("{0:0.0} mil", lengthInUnits / 5280.0);
+						result = string.Format("{0:0.0} mi", lengthInUnits / 5280.0);
 					}
 					else
 					{
-						result = string.Format("{0:0} mil", lengthInUnits / 5280.0);
+						result = string.Format("{0:0} mi", lengthInUnits / 5280.0);
 					}
 
 					break;
@@ -147,7 +147,7 @@ namespace WF.Player
 		/// <param name="lat">Latitude in degrees.</param>
 		public static string NumberToLatitude(double lat)
 		{
-			return (lat >= 0.0 ? Catalog.GetString("N", comment: "North") : Catalog.GetString("S", comment: "South")) + " " + NumberToCoordinat(lat, "00");
+			return (lat >= 0.0 ? Catalog.GetString("N", comment: "North") : Catalog.GetString("S", comment: "South")) + " " + NumberToCoordinat(Math.Abs(lat), "00");
 		}
 
 		/// <summary>
@@ -157,7 +157,7 @@ namespace WF.Player
 		/// <param name="lon">Longitude in degrees.</param>
 		public static string NumberToLongitude(double lon)
 		{
-			return (lon >= 0.0 ? Catalog.GetString("E", comment: "East") : Catalog.GetString("W", comment: "West")) + " " + NumberToCoordinat(lon, "000");
+			return (lon >= 0.0 ? Catalog.GetString("E", comment: "East") : Catalog.GetString("W", comment: "West")) + " " + NumberToCoordinat(Math.Abs(lon), "000");
 		}
 
 		#endregion

@@ -67,7 +67,7 @@ namespace WF.Player
 
 			#if __IOS__
 
-			var toolbarMenu = new ToolbarItem (Catalog.GetString("Game Menu"), "IconMenu.png", () => {
+			var toolbarMenu = new ToolbarItem(Catalog.GetString("Game Menu"), "IconMenu.png", () => {
 				App.Click();
 				var cfg = new Acr.XamForms.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Game Menu"));
 				cfg.Add(Catalog.GetString("Save"), () => ((GameMainViewModel)BindingContext).HandleMenuAction(this, Catalog.GetString("Save")));
@@ -397,7 +397,7 @@ namespace WF.Player
 				if (entry == null)
 				{
 					return;
-					}
+				}
 
 				App.Click();
 

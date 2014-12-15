@@ -59,27 +59,6 @@ namespace WF.Player.iOS
 			NavigationBar.BarStyle = App.Colors.IsDarkTheme ? UIBarStyle.Black : UIBarStyle.Default;
 			UIApplication.SharedApplication.SetStatusBarHidden (false, false);
 		}
-
-		protected override System.Threading.Tasks.Task<bool> OnPopViewAsync (Page page, bool animated)
-		{
-			animated = false;
-
-			return base.OnPopViewAsync (page, animated);
-		}
-
-		protected override System.Threading.Tasks.Task<bool> OnPushAsync (Page page, bool animated)
-		{
-			animated = false;
-
-			return base.OnPushAsync (page, animated);
-		}
-
-		protected override System.Threading.Tasks.Task<bool> OnPopToRoot(Page page, bool animated)
-		{
-			animated = false;
-
-			return base.OnPopToRoot(page, animated);
-		}
 	}
 }
 

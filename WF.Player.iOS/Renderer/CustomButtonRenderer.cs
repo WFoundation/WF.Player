@@ -35,6 +35,11 @@ namespace WF.Player.iOS
 
 			UIButton button = (UIButton)Control;
 
+			if (e.NewElement == null)
+			{
+				return;
+			}
+
 			// If only an image is displayed, than move it to the center of button
 			if (String.IsNullOrEmpty (button.TitleLabel.Text) && button.ImageView.Image != null) {
 				button.ImageEdgeInsets = new UIEdgeInsets(0.0f, 10.0f, 0.0f, 0.0f);

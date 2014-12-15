@@ -147,6 +147,11 @@ namespace WF.Player.Controls.iOS
 		{
 			base.OnElementChanged(e);
 
+			if (e.NewElement == null)
+			{
+				return;
+			}
+
 			// Set a normal view as underlaying control
 			var view = new UIView();
 

@@ -27,10 +27,9 @@ namespace WF.Player.Controls.iOS
 {
 	public class AccessoryCellRenderer : TextCellRenderer
 	{
-
-		public override MonoTouch.UIKit.UITableViewCell GetCell (Cell item, MonoTouch.UIKit.UITableView tv)
+		public override UITableViewCell GetCell(Cell item, UITableViewCell reusableCell, UITableView tv)
 		{
-			var cell = base.GetCell (item, tv);
+			var cell = base.GetCell(item, reusableCell, tv);
 
 			cell.Accessory = MonoTouch.UIKit.UITableViewCellAccessory.DisclosureIndicator;
 			cell.BackgroundColor = UIColor.Clear;
