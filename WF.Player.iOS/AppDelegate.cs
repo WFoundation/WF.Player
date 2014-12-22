@@ -46,6 +46,36 @@ namespace WF.Player.iOS
 		// Google Maps API Key for iOS
 		const string MapsApiKey = "AIzaSyCgldJMI1uFzqYWU7kEjRz_-kVkDRZxBN0";
 
+		//Helper Function to copy our assets (e.g. *.gwc) to application documents folder
+		private void CopyFilesInBundleToDocumentsFolder(
+			String path,
+			String filePattern)
+		{
+
+			// Source Folder = Bundle Folder
+			var sourcePath = NSBundle.MainBundle.BundlePath;
+
+			//Files by pattern in Source Folder
+			FileInfo[] filesInBundle = new DirectoryInfo (sourcePath).GetFiles (filePattern);
+
+			//For all files, check if exists and copy
+			foreach (FileInfo fileInfo in filesInBundle) {
+				var sourceFilePath = System.IO.Path.Combine(NSBundle.MainBundle.BundlePath, fileInfo.Name);
+				var destinationFilePath = System.IO.Path.Combine(path, fileInfo.Name);
+
+				try {
+					//---copy only if file does not exist---
+					if (!File.Exists(destinationFilePath))
+					{
+						File.Copy(sourceFilePath, destinationFilePath);
+					}
+				}  catch (Exception e) {
+					Console.WriteLine(e.Message);
+				}
+			}
+
+		}
+
 		// This method is invoked when the application has loaded and is ready to run. In this 
 		// method you should instantiate the window, load the UI into it and then make the window
 		// visible.
@@ -99,6 +129,10 @@ namespace WF.Player.iOS
 			{
 				App.PathCartridges = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User) [0].RelativePath;
 				App.PathDatabase = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.LibraryDirectory, NSSearchPathDomain.User) [0].RelativePath;
+
+				//copy assets to ios8 documents folder
+				string documentsPath = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User) [0].Path;
+				CopyFilesInBundleToDocumentsFolder(documentsPath, "*.gwc");
 			}
 			else
 			{
