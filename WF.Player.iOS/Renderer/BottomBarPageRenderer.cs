@@ -19,6 +19,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using WF.Player;
 using WF.Player.iOS;
+using MonoTouch.UIKit;
 
 [assembly: ExportRendererAttribute(typeof(BottomBarPage), typeof(BottomBarPageRenderer))]
 
@@ -54,6 +55,11 @@ namespace WF.Player.iOS
 			animated = false;
 
 			base.ViewDidAppear(animated);
+//
+//			var backButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, (sender, args) => {});
+//			backButton.Title = "Test";
+//			var temp = this.NavigationController.NavigationItem.LeftBarButtonItem;
+//			NavigationItem.SetLeftBarButtonItem(backButton, false);
 		}
 
 		public override void ViewWillDisappear (bool animated)

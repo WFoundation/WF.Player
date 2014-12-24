@@ -78,6 +78,11 @@ namespace WF.Player
 		public const string DistanceTextPropertyName = "DistanceText";
 
 		/// <summary>
+		/// The name of the map view model property.
+		/// </summary>
+		public const string MapViewModelPropertyName = "MapViewModel";
+
+		/// <summary>
 		/// The name of the routing command property.
 		/// </summary>
 		public const string RoutingCommandPropertyName = "RoutingCommand";
@@ -116,6 +121,11 @@ namespace WF.Player
 		/// The distance.
 		/// </summary>
 		private double distance;
+
+		/// <summary>
+		/// The map view model.
+		/// </summary>
+		private MapViewModel mapViewModel;
 
 		#region Constructor
 
@@ -277,6 +287,19 @@ namespace WF.Player
 				{
 					return Catalog.GetString("Unknown");
 				}
+			}
+		}
+
+		public MapViewModel MapViewModel
+		{
+			get
+			{
+				return mapViewModel;
+			}
+
+			set
+			{
+				SetProperty<MapViewModel>(ref mapViewModel, value, MapViewModelPropertyName);
 			}
 		}
 

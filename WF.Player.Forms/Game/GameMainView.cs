@@ -61,13 +61,12 @@ namespace WF.Player
 		{
 			BindingContext = gameMainViewModel;
 
-//			HasBackButton = true;
-
 //			this.SetBinding(GameMainView.HasBackButtonProperty, GameMainViewModel.IsBackbuttonVisiblePropertyName);
 			this.SetBinding(GameMainView.TitleProperty, GameMainViewModel.TitelPropertyName);
 
 			NavigationPage.SetBackButtonTitle(this, string.Empty);
-			NavigationPage.SetHasBackButton(this, true);
+			HasBackButton = false;
+//			NavigationPage.SetHasBackButton(this, false);
 
 
 			#if __IOS__
@@ -544,12 +543,12 @@ namespace WF.Player
 			#if __IOS__
 			// Dark grey line on iOS
 			var frame = new StackLayout () 
-			{
-			Padding = new Thickness(0, 0),
-			BackgroundColor = App.Colors.IsDarkTheme ? Color.FromRgb(0x26, 0x26, 0x26) : Color.FromRgb (0xAE, 0xAE, 0xAE),
-			HeightRequest = 0.5f,
-			HorizontalOptions = LayoutOptions.FillAndExpand,
-			};
+				{
+					Padding = new Thickness(0, 0),
+					BackgroundColor = App.Colors.IsDarkTheme ? Color.FromRgb(0x26, 0x26, 0x26) : Color.FromRgb (0xAE, 0xAE, 0xAE),
+					HeightRequest = 0.5f,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+				};
 
 			layout.Children.Add(
 			frame);

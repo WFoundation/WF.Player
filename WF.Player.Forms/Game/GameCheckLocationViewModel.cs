@@ -75,14 +75,9 @@ namespace WF.Player
 		private Position position;
 
 		/// <summary>
-		/// The last page, which was shown on the screen.
+		/// Flag for cartridge is started or not.
 		/// </summary>
-		private Page lastPage;
-
-		/// <summary>
-		/// The is running flag.
-		/// </summary>
-		private bool isRunning = false;
+		private bool started = false;
 
 		#endregion
 
@@ -98,7 +93,6 @@ namespace WF.Player
 		{
 			this.cartridgeTag = tag;
 			this.savegame = savegame;
-			this.lastPage = lastPage;
 
 			App.GPS.PositionChanged += OnPositionChanged;
 			Position = App.GPS.LastKnownPosition;
@@ -210,18 +204,20 @@ namespace WF.Player
 							};
 
 						// Remove check location from screen 
-//						await App.Navigation.PopAsync();
+						App.Navigation.PopAsync();
 
 						// Push main view to screen
 						await App.Navigation.CurrentPage.Navigation.PushModalAsync(App.GameNavigation);
 
 						// Remove check location from screen 
-						App.Navigation.Navigation.RemovePage(App.Navigation.Navigation.NavigationStack[App.Navigation.Navigation.NavigationStack.Count-1]);
+//						App.Navigation.Navigation.RemovePage(App.Navigation.Navigation.NavigationStack[App.Navigation.Navigation.NavigationStack.Count-1]);
 
 						gameMainViewModel.Refresh();
 
+						started = true;
+
 						// StartGame
-						App.Game.StartAsync(this.savegame);
+						await App.Game.StartAsync(this.savegame);
 					});
 			}
 		}
@@ -229,6 +225,17 @@ namespace WF.Player
 		#endregion
 
 		#endregion
+
+		public override void OnAppearing()
+		{
+			base.OnAppearing();
+
+//			if (started)
+//			{
+//				started = false;
+//				App.Navigation.Navigation.PopAsync();
+//			}
+		}
 
 		#region Private Functions
 

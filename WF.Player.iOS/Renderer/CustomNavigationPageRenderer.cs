@@ -30,7 +30,6 @@ namespace WF.Player.iOS
 	{
 		public CustomNavigationPageRenderer()
 		{
-//			NavigationBar.BarStyle = App.Colors.IsDarkTheme ? UIBarStyle.Black : UIBarStyle.Default;
 		}
 
 		public override void ViewDidLoad()
@@ -57,17 +56,6 @@ namespace WF.Player.iOS
 			NavigationBar.TintColor = App.Colors.Tint.ToUIColor();
 			NavigationBar.SetBackgroundImage(image, UIBarMetrics.Default);
 			NavigationBar.BarStyle = App.Colors.IsDarkTheme ? UIBarStyle.Black : UIBarStyle.Default;
-//			UIApplication.SharedApplication.SetStatusBarHidden (false, false);
-		}
-
-		protected override void OnElementChanged(VisualElementChangedEventArgs e)
-		{
-			base.OnElementChanged(e);
-
-			var backButton = new UIBarButtonItem();
-			backButton.Title = "Test";
-
-			NavigationItem.LeftBarButtonItem = backButton;
 		}
 	}
 }

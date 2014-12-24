@@ -48,9 +48,9 @@ namespace WF.Player.Droid.Services.Geolocation
 
 		public Geolocator()
 		{
-			_locManager = (LocationManager) Application.Context.GetSystemService(Context.LocationService);
+			_locManager = (LocationManager)Android.App.Application.Context.GetSystemService(Context.LocationService);
 			_providers = _locManager.GetProviders(false).Where(s => s != LocationManager.PassiveProvider).ToArray();
-			_sensorManager = (SensorManager)Application.Context.GetSystemService (Context.SensorService);
+			_sensorManager = (SensorManager)Android.App.Application.Context.GetSystemService (Context.SensorService);
 		}
 
 		#endregion

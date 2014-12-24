@@ -915,7 +915,7 @@ namespace WF.Player
 					cfg.Title = Catalog.GetString("Comment Savefile");
 					cfg.OnResult = (savegameResult) =>
 					{
-						Device.BeginInvokeOnMainThread(() =>
+						Device.BeginInvokeOnMainThread(async () =>
 							{
 								App.Click();
 								if (savegameResult.Ok)
@@ -1080,6 +1080,9 @@ namespace WF.Player
 				e = new DisplayChangedEventArgs();
 			}
 
+			// TODO: Remove
+//			Console.WriteLine("{0}: {1}", e.What, e.PropertyName);
+
 			// If GameState change, update the main screen
 			if (e.What == "GameState" && gameModel.GameState == WF.Player.Core.Engines.EngineGameState.Playing)
 			{
@@ -1100,7 +1103,7 @@ namespace WF.Player
 			{
 				var ret = false;
 
-				ret = ret || (e.PropertyName != "ActiveVisibleZones" || (!IsYouSeeSelected && !IsOverviewSelected));
+				ret = ret || (e.PropertyName == "ActiveVisibleZones" && (IsYouSeeSelected || IsOverviewSelected));
 				ret = ret || (e.PropertyName == "VisibleObjects" && (IsYouSeeSelected || IsOverviewSelected));
 				ret = ret || (e.PropertyName == "VisibleInventory" && (IsInventorySelected || IsOverviewSelected));
 				ret = ret || (e.PropertyName == "ActiveVisibleTasks" && (IsTasksSelected || IsOverviewSelected));

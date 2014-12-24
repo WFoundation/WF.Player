@@ -27,7 +27,7 @@ namespace WF.Player.Droid
 {
 	// Found at http://forums.xamarin.com/discussion/22426/webview-horizontal-scrolling-issue
 
-	public class CustomWebViewRenderer : WebRenderer
+	public class CustomWebViewRenderer : WebViewRenderer
 	{
 		public CustomWebViewRenderer() : base()
 		{

@@ -94,6 +94,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MapViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PullToRefreshListView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeDetailMapView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />

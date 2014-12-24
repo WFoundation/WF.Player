@@ -94,7 +94,7 @@ namespace WF.Player.Controls.Droid
 					double offsetY = (image.Bounds.Height - image.Bounds.Height) / 2;
 
 					float left = this.DipToPixel(image.Bounds.Width) - badgeWidth;
-					float top = this.DipToPixel(image.Bounds.Height) - badgeHeight;
+					float top = 0;
 					float right = left + badgeWidth;
 					float bottom = top + badgeHeight;
 					float radius = (badgeHeight / 2f) - 1f;

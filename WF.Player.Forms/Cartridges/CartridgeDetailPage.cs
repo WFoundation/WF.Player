@@ -104,6 +104,7 @@ namespace WF.Player
 				new MenuEntry(Catalog.GetString("Description"), App.Colors.Text, HandleDescriptionClicked),
 				new MenuEntry(Catalog.GetString("Details"), App.Colors.Text, HandleDetailsClicked),
 				new MenuEntry(Catalog.GetString("Attributes"), App.Colors.Text, HandleAttributesClicked),
+				new MenuEntry(Catalog.GetString("Map"), App.Colors.Text, HandleMapClicked),
 				new MenuEntry(Catalog.GetString("History"), App.Colors.Text, HandleHistoryClicked),
 				new MenuEntry(Catalog.GetString("Logs"), App.Colors.Text, HandleLogsClicked),
 			};
@@ -111,7 +112,7 @@ namespace WF.Player
 			var list = new ListView() 
 				{
 					ItemsSource = listSource,
-					HeightRequest = 5 * 44,
+					HeightRequest = listSource.Count * 44,
 				};
 
 			var cell = new DataTemplate(typeof(AccessoryCell));
@@ -176,6 +177,16 @@ namespace WF.Player
 		private void HandleAttributesClicked(object sender, EventArgs e)
 		{
 			Console.WriteLine("Attributes");
+		}
+
+		/// <summary>
+		/// Handles the attributes clicked.
+		/// </summary>
+		/// <param name="sender">Sender of event.</param>
+		/// <param name="e">Event arguments.</param>
+		private void HandleMapClicked(object sender, EventArgs e)
+		{
+			App.Navigation.PushAsync(new CartridgeDetailMapView((CartridgeDetailViewModel)this.BindingContext));
 		}
 
 		/// <summary>

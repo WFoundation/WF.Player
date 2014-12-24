@@ -90,6 +90,11 @@ namespace WF.Player.Controls.iOS
 		{
 			base.OnElementChanged(e);
 
+			if (Element == null)
+			{
+				return;
+			}
+
 			image = this.Control.Image;
 
 			UpdateImage();
