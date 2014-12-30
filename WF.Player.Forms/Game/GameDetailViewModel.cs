@@ -720,12 +720,12 @@ namespace WF.Player
 
 				foreach (WF.Player.Core.Command c in thing.ActiveCommands)
 				{
-					sumTextWidth += DependencyService.Get<IMeasure>().ButtonTextSize(c.Text);
+					sumTextWidth += Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(c.Text));
 				}
 
-				sumTextWidth += view.BottomLayout.Spacing * (thing.ActiveCommands.Count - 1);
+				sumTextWidth += 6 * (thing.ActiveCommands.Count - 1);
 
-				if (sumTextWidth > view.BottomLayout.Width * Device.OnPlatform<float>(1.0f, 1.2f, 1.0f))
+				if (sumTextWidth > (view.BottomLayout.Width - 2 * 10) * Device.OnPlatform<float>(1.0f, 1.2f, 1.0f))
 				{
 					// If there are more text than possible, display action menu
 					view.Buttons.Add(new ToolTextButton(Catalog.GetString("Actions"), new Xamarin.Forms.Command(HandleCommandsClicked)));

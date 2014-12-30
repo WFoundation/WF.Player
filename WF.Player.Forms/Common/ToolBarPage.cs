@@ -18,6 +18,7 @@
 
 namespace WF.Player
 {
+	using System;
 	using System.Collections.ObjectModel;
 	using WF.Player.Services.Device;
 	using Xamarin.Forms;
@@ -125,90 +126,89 @@ namespace WF.Player
 				return;
 			}
 
+			Thickness padding = new Thickness(10, 0);
+			double spacing = 6;
+
 			if (buttons.Count == 1)
 			{
 				// We only have one button, so set width to maximum width 
-				buttons[0].Button.WidthRequest = BottomLayout.Width;
+				BottomLayout.Padding = padding;
+				buttons[0].Button.WidthRequest = BottomLayout.Width - padding.Left - padding.Right;
 				return;
 			}
 
 			// So, now we know, that we have more than one text button, so calc correct size for buttons
 
-			double deviceSpace = Device.OnPlatform<double>(15, 0, 0);
+			double sumWidth = 0;
 
-			// Calc whole width of text on all buttons
-			double sumTextWidth = 0;
-			foreach (ToolButton t in buttons)
+			// Get width of all buttons
+			for (int i = 0; i < buttons.Count; i++)
 			{
-				if (t is ToolTextButton && t.IsEnabled)
-				{
-					sumTextWidth += DependencyService.Get<IMeasure>().ButtonTextSize(((ToolTextButton)t).Text);
-				}
+				sumWidth += Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[i].Button.Text));
 			}
 
-			RelativeLayout relativeLayout;
+			// Substract spacing between
+			sumWidth -= spacing * (buttons.Count - 1);
 
-			relativeLayout = new RelativeLayout() 
-			{
-				BackgroundColor = Color.Transparent,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
+			// Create grid for buttons
+			Grid grid = new Grid() {
 				VerticalOptions = LayoutOptions.FillAndExpand,
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				RowDefinitions = {
+					new RowDefinition { Height = GridLength.Auto },
+				},
+				ColumnSpacing = spacing,
 			};
 
-			// We have text buttons in the toolbar, so use a relative layout instead of the stack layout
-			BottomLayout.Children.Add(relativeLayout);
+			// Create columns for buttons
+			var colDefs = new ColumnDefinitionCollection();
 
-			double sumButtonWidth = 0;
-			double maxWidth = BottomLayout.Width - ((buttons.Count - 1) * BottomLayout.Spacing);
-
-			// Get max width of all buttons, so we could calc spacing between them
-			foreach (ToolButton t in buttons)
+			if (sumWidth > BottomLayout.Width - padding.Left - padding.Right)
 			{
-				double textWidth = DependencyService.Get<IMeasure>().ButtonTextSize(((ToolTextButton)t).Text);
-				double width = (maxWidth * textWidth) / (sumTextWidth != 0 ? sumTextWidth : textWidth);
-				double buttonWidth = textWidth + deviceSpace < width ? textWidth + deviceSpace : width;
-
-				sumButtonWidth += buttonWidth;
+				// Buttons are wider than possible space (could only happen with Messagebox), so change width of column according to space
+				colDefs.Add(new ColumnDefinition { Width = new GridLength((BottomLayout.Width - padding.Left - padding.Right) * Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[0].Button.Text)) / sumWidth, GridUnitType.Absolute) }); // Width = GridLength.Auto }); // 
+			}
+			else
+			{
+				// Set coulmn width to real size of button
+				colDefs.Add(new ColumnDefinition { Width = new GridLength(Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[0].Button.Text)), GridUnitType.Absolute) }); // Width = GridLength.Auto }); // 
 			}
 
-			double spacing = (maxWidth - sumButtonWidth) / (buttons.Count - 1) + BottomLayout.Spacing;
-			Button lastButton = null;
-			Button startButton = buttons[0].Button;
-			Button endButton = buttons[buttons.Count - 1].Button;
+			// Set layout of first button
+			buttons[0].Button.HorizontalOptions = LayoutOptions.StartAndExpand;
 
-			// We now have all relevant information, so we could place all buttons in relative layout
-			foreach (ToolButton t in buttons)
+			// Set width (autosize) and layout of all buttons between first and last
+			for (int i = 1; i < buttons.Count-1; i++)
 			{
-				double textWidth = DependencyService.Get<IMeasure>().ButtonTextSize(((ToolTextButton)t).Text);
-				double width = (maxWidth * textWidth) / (sumTextWidth != 0 ? sumTextWidth : textWidth);
-
- 				t.Button.WidthRequest = textWidth + deviceSpace < width ? textWidth + deviceSpace : width;
-
-				if (t.Button == startButton)
-				{
-					t.Button.HorizontalOptions = LayoutOptions.Start;
-					relativeLayout.Children.Add(t.Button, Constraint.Constant(0), Constraint.Constant(0));
-				}
-				else if (t.Button == endButton)
-				{
-					t.Button.HorizontalOptions = LayoutOptions.Start;
-					relativeLayout.Children.Add(t.Button, Constraint.RelativeToParent((parent) => { return parent.Width - t.Button.Width; }), Constraint.Constant(0));
-				}
-				else
-				{
-					relativeLayout.Children.Add(
-						t.Button, 
-						Constraint.RelativeToView(
-							lastButton, 
-							(layout, sibling) =>
-							{
-								return sibling.X + sibling.Width + spacing;
-							}),
-						Constraint.Constant(0));
-				}
-
-				lastButton = t.Button;
+				colDefs.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); // Width = GridLength.Auto }); // 
+				buttons[i].Button.HorizontalOptions = LayoutOptions.CenterAndExpand;
 			}
+
+			if (buttons.Count == 2)
+			{
+				// If we only have two buttons, than set width to autosize
+				colDefs.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); // Width = GridLength.Auto }); // 
+				buttons[buttons.Count - 1].Button.HorizontalOptions = LayoutOptions.EndAndExpand;
+			}
+			else
+			{
+				// If we have more than 2 buttons, than set width to real size of button
+				colDefs.Add(new ColumnDefinition { Width = new GridLength(Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[buttons.Count - 1].Button.Text)), GridUnitType.Absolute) }); // Width = GridLength.Auto }); // 
+				buttons[buttons.Count - 1].Button.HorizontalOptions = LayoutOptions.EndAndExpand;
+			}
+
+			// Set column definitions for the buttons
+			grid.ColumnDefinitions = colDefs;
+
+			// Add all buttons to the grid
+			for (int i = 0; i < buttons.Count; i++)
+			{
+				grid.Children.Add(buttons[i].Button, i, 0);
+			}
+
+			// Add grid to BottomLayout
+			BottomLayout.Padding = padding;
+			BottomLayout.Children.Add(grid);
 		}
 
 		/// <summary>

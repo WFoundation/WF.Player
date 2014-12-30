@@ -4,7 +4,6 @@ using Xamarin.Forms.Platform.iOS;
 using WF.Player.Controls.iOS;
 using WF.Player.Controls;
 using MonoTouch.UIKit;
-using WF.Player.Controls.iOS;
 
 [assembly:ExportRendererAttribute(typeof(PullToRefreshListView), typeof(PullToRefreshListViewRenderer))]
 

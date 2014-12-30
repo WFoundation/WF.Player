@@ -47,6 +47,7 @@ namespace WF.Player.iOS
 			} else {
 				button.ImageEdgeInsets = new UIEdgeInsets(0.0f, 0.0f, 0.0f, 0.0f);
 				button.TitleEdgeInsets = new UIEdgeInsets(0.0f, 0.0f, 0.0f, 0.0f);
+//				button.LineBreakMode = UILineBreakMode.TailTruncation;
 			}
 
 			button.TintColor = e.NewElement.IsEnabled ? App.Colors.Tint.ToUIColor () : Color.Black.ToUIColor();
