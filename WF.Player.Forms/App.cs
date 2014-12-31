@@ -405,6 +405,11 @@ namespace WF.Player
 					var output = await file.OpenAsync(PCLStorage.FileAccess.ReadAndWrite, new System.Threading.CancellationToken());
 
 					input.CopyTo(output);
+
+					if (App.Navigation.CurrentPage is CartridgeListPage)
+					{
+						((CartridgeListPage)App.Navigation.CurrentPage).RefreshCommand.Execute(null);
+					}
 				}
 			}
 		}
