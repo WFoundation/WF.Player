@@ -38,7 +38,16 @@ namespace WF.Player.Controls
 		{
 			get
 			{
-				var html = ConverterToHtml.FromMarkdown(Text, null, (int)Font.FontSize);
+				string html;
+
+				if (UseMarkdown)
+				{
+					html = ConverterToHtml.FromMarkdown(Text, null, (int)Font.FontSize);
+				}
+				else
+				{
+					html = ConverterToHtml.FromText(Text, null, (int)Font.FontSize);
+				}
 
 				while (html.EndsWith(Environment.NewLine))
 				{
@@ -47,6 +56,20 @@ namespace WF.Player.Controls
 
 				return html;
 			}
+		}
+
+		#endregion
+
+		#region UseMarkdown
+
+		/// <summary>
+		/// Gets a value indicating whether this <see cref="WF.Player.Controls.ExtendedLabel"/> use markdown.
+		/// </summary>
+		/// <value><c>true</c> if use markdown; otherwise, <c>false</c>.</value>
+		public bool UseMarkdown
+		{
+			get;
+			set;
 		}
 
 		#endregion

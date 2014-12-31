@@ -357,11 +357,34 @@ border: none;
 		/// <returns>Text converted to HTML.</returns>
 		/// <param name="text">Original text.</param>
 		/// <param name="media">Media object.</param>
-		public static string FromText(string text, Media media = null)
+		public static string FromText(string text, Media media = null, int fontSize = -1)
 		{
-			text.Replace("<", "&lt;").Replace(">", "&gt;").Replace("\n", "<br>");
+			var html = text.Replace("<", "&lt;").Replace(">", "&gt;").Replace("\n", "<br>");
 
-			return ConvertStringToHTML(text, media);
+			// Add style to html code
+			#if __IOS__
+
+			if (fontSize == -1)
+			{
+				fontSize = (int)App.Fonts.Normal.FontSize;
+			}
+
+			html = "<style>" + DefaultStyle + "</style>" + html;
+
+			// Replace default values
+			html = html.Replace("-Font0-", ((int)(fontSize * 0.9)).ToString());
+			html = html.Replace("-Font1-", ((int)(fontSize * 1.0)).ToString());
+			html = html.Replace("-Font2-", ((int)(fontSize * 1.2)).ToString());
+			html = html.Replace("-Font3-", ((int)(fontSize * 1.4)).ToString());
+			html = html.Replace("-Font4-", ((int)(fontSize * 1.8)).ToString());
+			html = html.Replace("-Font5-", ((int)(fontSize * 2.0)).ToString());
+			html = html.Replace("-TextAlign-", AlignmentToString(App.Prefs.TextAlignment));
+			html = html.Replace("-TextColor-", ColorToHTML(App.Colors.Text));
+			html = html.Replace("-BackgroundColor-", ColorToHTML(App.Colors.Background));
+
+			#endif
+
+			return html;
 		}
 
 		/// <summary>
@@ -426,7 +449,7 @@ border: none;
 		#region Private Functions
 
 		/// <summary>
-		/// Converts the string to HTM and add decoration.
+		/// Converts the string to HTML and add decoration.
 		/// </summary>
 		/// <returns>String converted and docorated as HTML.</returns>
 		/// <param name="text">Text to convert.</param>

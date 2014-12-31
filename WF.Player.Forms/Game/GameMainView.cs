@@ -297,6 +297,7 @@ namespace WF.Player
 				{
 					LineBreakMode = LineBreakMode.WordWrap,
 					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.8),
+					UseMarkdown = true,
 				};
 			labelOverviewYouSee.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.YouSeeOverviewContentPropertyName);
 
@@ -333,6 +334,7 @@ namespace WF.Player
 				{
 					LineBreakMode = LineBreakMode.WordWrap,
 					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.8),
+					UseMarkdown = true,
 				};
 			labelOverviewInventory.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.InventoryOverviewContentPropertyName);
 
@@ -369,6 +371,7 @@ namespace WF.Player
 				{
 					LineBreakMode = LineBreakMode.WordWrap,
 					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.8),
+					UseMarkdown = true,
 				};
 			labelOverviewTasks.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.TasksOverviewContentPropertyName);
 

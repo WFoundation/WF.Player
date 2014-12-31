@@ -117,6 +117,18 @@ namespace WF.Player
 		#region Properties
 
 		/// <summary>
+		/// Gets a value indicating whether this <see cref="WF.Player.GameModel"/> use markdown.
+		/// </summary>
+		/// <value><c>true</c> if use markdown; otherwise, <c>false</c>.</value>
+		public bool UseMarkdown
+		{
+			get
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
 		/// Gets the cartridge.
 		/// </summary>
 		/// <value>The cartridge.</value>
@@ -493,18 +505,6 @@ namespace WF.Player
 		#region Public Functions
 
 		/// <summary>
-		/// Shows the screen.
-		/// </summary>
-		/// <param name="screenType">Screen type.</param>
-		/// <param name="obj">Object to show.</param>
-		public void ShowScreen(ScreenType screenType, object obj)
-		{
-			this.screenQueue.Enqueue(new Screens(screenType, obj));
-
-			this.HandleScreenQueue();
-		}
-
-		/// <summary>
 		/// Gets the cached image source for media.
 		/// </summary>
 		/// <returns>The image source for media.</returns>
@@ -530,35 +530,21 @@ namespace WF.Player
 			return imageSource;
 		}
 
+		/// <summary>
+		/// Shows the screen.
+		/// </summary>
+		/// <param name="screenType">Screen type.</param>
+		/// <param name="obj">Object to show.</param>
+		public void ShowScreen(ScreenType screenType, object obj)
+		{
+			this.screenQueue.Enqueue(new Screens(screenType, obj));
+
+			this.HandleScreenQueue();
+		}
+
 		#endregion
 
 		#region Private Functions
-
-		/// <summary>
-		/// Handles event, that page is popped.
-		/// </summary>
-		private void HandlePagePopped()
-		{
-			if (App.GameNavigation.CurrentPage is BasePage)
-			{
-				((BasePage)App.GameNavigation.CurrentPage).OnAppeared();
-			}
-
-			this.HandleScreenQueue();
-		}
-
-		/// <summary>
-		/// Handles event, that page is pushed.
-		/// </summary>
-		private void HandlePagePushed()
-		{
-			if (App.GameNavigation.CurrentPage is BasePage)
-			{
-				((BasePage)App.GameNavigation.CurrentPage).OnAppeared();
-			}
-
-			this.HandleScreenQueue();
-		}
 
 		/// <summary>
 		/// Handles the screen queue.
@@ -619,6 +605,7 @@ namespace WF.Player
 						App.GameNavigation.PopAsync();
 					}
 
+					// Return and wait for popped event
 					return;
 				}
 
@@ -630,6 +617,7 @@ namespace WF.Player
 						App.GameNavigation.PopAsync();
 					}
 
+					// Return and wait for popped event
 					return;
 				}
 			}
@@ -665,10 +653,12 @@ namespace WF.Player
 							App.GameNavigation.PopAsync();
 						}
 
+						// Return and wait for popped event
 						return;
 					}
 
 					break;
+
 				case ScreenType.Main:
 				case ScreenType.Locations:
 				case ScreenType.Items:
@@ -705,7 +695,17 @@ namespace WF.Player
 
 					this.screenQueue.Dequeue();
 
+					// If there are other screens to show, than do this
+					if (screenQueue.Count > 0)
+					{
+						HandleScreenQueue();
+					}
+
+					// Queue is empty and we are up-to-date with the screen
+					return;
+
 					break;
+
 				case ScreenType.Details:
 					if (screen.Object is UIObject)
 					{
@@ -716,6 +716,13 @@ namespace WF.Player
 
 							((GameDetailViewModel)((GameDetailView)App.GameNavigation.CurrentPage).BindingContext).ActiveObject = (UIObject)screen.Object;
 
+							// If there are other screens to show, than do this
+							if (screenQueue.Count > 0)
+							{
+								HandleScreenQueue();
+							}
+
+							// Queue is empty and we are up-to-date with the screen
 							return;
 						}
 
@@ -734,6 +741,15 @@ namespace WF.Player
 							this.screenQueue.Dequeue();
 
 							((GameDetailViewModel)((GameDetailView)App.GameNavigation.CurrentPage).BindingContext).ActiveObject = (UIObject)screen.Object;
+
+							// If there are other screens to show, than do this
+							if (screenQueue.Count > 0)
+							{
+								HandleScreenQueue();
+							}
+
+							// Queue is empty and we are up-to-date with the screen
+							return;
 						}
 						else
 						{
@@ -746,10 +762,14 @@ namespace WF.Player
 							this.screenQueue.Dequeue();
 
 							App.GameNavigation.PushAsync(gameDetailView);
+
+							// Return and wait for popped event
+							return;
 						}
 					}
 
 					break;
+
 				case ScreenType.Dialog:
 					if (screen.Object is MessageBoxEventArgs)
 					{
@@ -759,6 +779,15 @@ namespace WF.Player
 							this.screenQueue.Dequeue();
 
 							((GameMessageboxViewModel)((GameMessageboxView)App.GameNavigation.CurrentPage).BindingContext).MessageBox = ((MessageBoxEventArgs)screen.Object).Descriptor;
+
+							// If there are other screens to show, than do this
+							if (screenQueue.Count > 0)
+							{
+								HandleScreenQueue();
+							}
+
+							// Queue is empty and we are up-to-date with the screen
+							return;
 						}
 						else
 						{
@@ -785,6 +814,9 @@ namespace WF.Player
 
 							// Bring messagebox to screen
 							App.GameNavigation.PushAsync(gameMessageboxView);
+
+							// Return and wait for popped event
+							return;
 						}
 					}
 
@@ -796,6 +828,15 @@ namespace WF.Player
 							this.screenQueue.Dequeue();
 
 							((GameInputViewModel)((GameInputView)App.GameNavigation.CurrentPage).BindingContext).Input = (Input)screen.Object;
+
+							// If there are other screens to show, than do this
+							if (screenQueue.Count > 0)
+							{
+								HandleScreenQueue();
+							}
+
+							// Queue is empty and we are up-to-date with the screen
+							return;
 						}
 						else
 						{
@@ -822,11 +863,40 @@ namespace WF.Player
 
 							// Bring input to screen
 							App.GameNavigation.PushAsync(gameInputView);
+
+							// Return and wait for popped event
+							return;
 						}
 					}
 
 					break;
 			}
+		}
+
+		/// <summary>
+		/// Handles event, that page is popped.
+		/// </summary>
+		private void HandlePagePopped()
+		{
+			if (App.GameNavigation.CurrentPage is BasePage)
+			{
+				((BasePage)App.GameNavigation.CurrentPage).OnAppeared();
+			}
+
+			this.HandleScreenQueue();
+		}
+
+		/// <summary>
+		/// Handles event, that page is pushed.
+		/// </summary>
+		private void HandlePagePushed()
+		{
+			if (App.GameNavigation.CurrentPage is BasePage)
+			{
+				((BasePage)App.GameNavigation.CurrentPage).OnAppeared();
+			}
+
+			this.HandleScreenQueue();
 		}
 
 		/// <summary>

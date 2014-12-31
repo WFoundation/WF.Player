@@ -93,6 +93,7 @@ namespace WF.Player
 					TextColor = App.Colors.Text,
 					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
 					XAlign = App.Prefs.TextAlignment,
+					UseMarkdown = App.Game.UseMarkdown,
 				};
 			description.SetBinding(ExtendedLabel.TextProperty, GameDetailViewModel.DescriptionPropertyName);
 			description.SetBinding(ExtendedLabel.IsVisibleProperty, GameDetailViewModel.HasDescriptionPropertyName);
