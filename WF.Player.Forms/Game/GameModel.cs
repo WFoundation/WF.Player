@@ -91,6 +91,21 @@ namespace WF.Player
 		/// </summary>
 		private ImageSource imageSourceEmptyIcon = ImageSource.FromResource("IconEmpty.png");
 
+		/// <summary>
+		/// The game detail view.
+		/// </summary>
+		private GameDetailView gameDetailView;
+
+		/// <summary>
+		/// The game messagebox view.
+		/// </summary>
+		private GameMessageboxView gameMessageboxView;
+
+		/// <summary>
+		/// The game input view.
+		/// </summary>
+		private GameInputView gameInputView;
+
 		#region Constructor
 
 		/// <summary>
@@ -753,17 +768,17 @@ namespace WF.Player
 						}
 						else
 						{
-							// Create new detail screen and put it onto the screen
-							var gameDetailView = new GameDetailView(new GameDetailViewModel() 
-								{
-									ActiveObject = (UIObject)screen.Object,
-								});
+							// Create new detail screen, if there isn't one
+							gameDetailView = gameDetailView ?? new GameDetailView(new GameDetailViewModel());
+
+							// Set active object
+							((GameDetailViewModel)gameDetailView.BindingContext).ActiveObject = (UIObject)screen.Object;
 
 							this.screenQueue.Dequeue();
 
 							App.GameNavigation.PushAsync(gameDetailView);
 
-							// Return and wait for popped event
+							// Return and wait for pushed event
 							return;
 						}
 					}
@@ -804,10 +819,10 @@ namespace WF.Player
 							}
 
 							// Create new messagebox and put it onto the screen
-							var gameMessageboxView = new GameMessageboxView(new GameMessageboxViewModel() 
-								{
-									MessageBox = ((MessageBoxEventArgs)screen.Object).Descriptor,
-								});
+							gameMessageboxView = gameMessageboxView ?? new GameMessageboxView(new GameMessageboxViewModel()); 
+
+							// Set active message box
+							((GameMessageboxViewModel)gameMessageboxView.BindingContext).MessageBox = ((MessageBoxEventArgs)screen.Object).Descriptor;
 
 							// Remove entry from screen queue
 							this.screenQueue.Dequeue();
@@ -815,7 +830,7 @@ namespace WF.Player
 							// Bring messagebox to screen
 							App.GameNavigation.PushAsync(gameMessageboxView);
 
-							// Return and wait for popped event
+							// Return and wait for pushed event
 							return;
 						}
 					}
@@ -853,10 +868,10 @@ namespace WF.Player
 							}
 
 							// Create new input and put it onto the screen
-							var gameInputView = new GameInputView(new GameInputViewModel() 
-								{
-									Input = (Input)screen.Object,
-								});
+							gameInputView = gameInputView ?? new GameInputView(new GameInputViewModel()); 
+
+							// Set active input
+							((GameInputViewModel)gameInputView.BindingContext).Input = (Input)screen.Object;
 
 							// Remove entry from screen queue
 							this.screenQueue.Dequeue();
@@ -864,7 +879,7 @@ namespace WF.Player
 							// Bring input to screen
 							App.GameNavigation.PushAsync(gameInputView);
 
-							// Return and wait for popped event
+							// Return and wait for pushed event
 							return;
 						}
 					}
