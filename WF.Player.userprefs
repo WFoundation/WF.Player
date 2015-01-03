@@ -1,20 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Ad-Hoc|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.iOS/Main.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.1" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.iOS/Renderer/BottomBarPageRenderer.cs">
     <Files>
-      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="7" Column="7" />
-      <File FileName="WF.Player.Forms/App.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/AppDelegate.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="34" Column="34" />
+      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Controls/MapViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Controls/MapView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Models/CartridgeStore.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Controls/ExtendedNavigationPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Acr.XamForms.UserDialogs.iOS/UserDialogService.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/CustomNavigationPageRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailPage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameCheckLocationViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailBasePage.cs" Line="1" Column="1" />
@@ -25,21 +18,15 @@
       <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailDescriptionView.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailMapView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameDetailView.cs" Line="41" Column="41" />
+      <File FileName="WF.Player.Forms/Game/GameDetailView.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameDetailViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Common/ToolBarPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/CustomButtonRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMessageboxView.cs" Line="41" Column="41" />
       <File FileName="WF.Player.Forms/Game/GameMessageboxViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/PullToRefreshListViewRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Acr.XamForms.Mobile.iOS/DeviceInfo.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Geolocation/GeolocationSingleUpdateDelegate.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameInputViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameInputView.cs" Line="41" Column="41" />
-      <File FileName="WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/Input.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Controls/ExtendedLabel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameInputView.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Renderer/GameInputViewRenderer.cs" Line="79" Column="79" />
+      <File FileName="WF.Player.iOS/Renderer/PinchScrollViewRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Renderer/PullToRefreshListViewRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Renderer/GameToolBarButtonRenderer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -52,6 +39,7 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="WF.Player.Forms/Game/GameModel.cs" line="589" offsetX="667" offsetY="8820" expression="App.GameNavigation.stack._array" liveUpdate="False" />
+    <Watch file="WF.Player.Forms/Common/BottomBarPage.cs" line="253" offsetX="479" offsetY="3780" expression="ContentLayout.Children.list[0].Bounds" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.ItemProperties.WF.Player.iOS>
     <IPhoneZipBundleSettings CurrentFolder="/Entwicklung/WF.Player/WF.Player.iOS" />

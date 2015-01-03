@@ -46,6 +46,11 @@ namespace WF.Player
 		public const string HasTextPropertyName = "HasText";
 
 		/// <summary>
+		/// The name of the has no text property.
+		/// </summary>
+		public const string HasNoTextPropertyName = "HasNoText";
+
+		/// <summary>
 		/// The name of the image source property.
 		/// </summary>
 		public const string ImageSourcePropertyName = "ImageSource";
@@ -110,13 +115,18 @@ namespace WF.Player
 				// Set property
 				SetProperty<Input>(ref this.input, value, InputPropertyName);
 
+				InputText = string.Empty;
+
 				// Call all events
 				#if __HTML__
 				NotifyPropertyChanged (HtmlSourcePropertyName);
 				#else
+				NotifyPropertyChanged(HasTextPropertyName);
+				NotifyPropertyChanged(HasNoTextPropertyName);
 				NotifyPropertyChanged(TextPropertyName);
 				NotifyPropertyChanged(ImageSourcePropertyName);
 				NotifyPropertyChanged(HasImagePropertyName);
+				NotifyPropertyChanged(HasEntryPropertyName);
 				#endif
 
 				UpdateCommands();
@@ -152,6 +162,22 @@ namespace WF.Player
 			get 
 			{
 				return this.input != null ? !string.IsNullOrWhiteSpace(this.input.Text) : false;
+			}
+		}
+
+		#endregion
+
+		#region HasNoText
+
+		/// <summary>
+		/// Gets a value indicating whether this instance has no text.
+		/// </summary>
+		/// <value><c>true</c> if this instance has no text; otherwise, <c>false</c>.</value>
+		public bool HasNoText 
+		{
+			get 
+			{
+				return this.input != null ? string.IsNullOrWhiteSpace(this.input.Text) : true;
 			}
 		}
 
@@ -316,9 +342,12 @@ namespace WF.Player
 			#if __HTML__
 			NotifyPropertyChanged (HtmlSourcePropertyName);
 			#else
+			NotifyPropertyChanged(HasTextPropertyName);
+			NotifyPropertyChanged(HasNoTextPropertyName);
 			NotifyPropertyChanged(TextPropertyName);
-			NotifyPropertyChanged(HasImagePropertyName);
 			NotifyPropertyChanged(ImageSourcePropertyName);
+			NotifyPropertyChanged(HasImagePropertyName);
+			NotifyPropertyChanged(HasEntryPropertyName);
 			#endif
 
 			UpdateCommands();
@@ -426,6 +455,7 @@ namespace WF.Player
 			{
 				view.BottomLayout.Children.Clear();
 				view.BottomLayout.Children.Add(view.BottomEntry);
+
 				return;
 			}
 
@@ -439,6 +469,7 @@ namespace WF.Player
 				text = Catalog.GetString("Unknown");
 			}
 
+			view.Buttons.Clear();
 			view.Buttons.Add(new ToolTextButton(text, new Xamarin.Forms.Command(HandleButtonClicked)));
 		}
 

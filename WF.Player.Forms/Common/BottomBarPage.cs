@@ -40,6 +40,8 @@ namespace WF.Player
 		/// </summary>
 		private StackLayout bottomLayout;
 
+		private StackLayout lineLayout;
+
 		/// <summary>
 		/// The height of the bar.
 		/// </summary>
@@ -49,6 +51,8 @@ namespace WF.Player
 		/// The color of the bar.
 		/// </summary>
 		private Color barColor = App.Colors.Bar;
+
+		private float keyboardHeight = 0;
 
 		#region Constructor
 
@@ -93,12 +97,12 @@ namespace WF.Player
 					}),
 				Constraint.RelativeToParent((parent) =>
 					{
-						return parent.Height - barHeight;
+						return parent.Height - barHeight - keyboardHeight;
 					}));
 
 			#if __IOS__
 			// Dark grey line on iOS
-			var frame = new StackLayout () 
+			lineLayout = new StackLayout () 
 			{
 				Padding = new Thickness(0, 0),
 				BackgroundColor = App.Colors.IsDarkTheme ? Color.FromRgb(0x26, 0x26, 0x26) : Color.FromRgb (0xAE, 0xAE, 0xAE),
@@ -107,9 +111,9 @@ namespace WF.Player
 			};
 
 			layout.Children.Add(
-				frame,
+				lineLayout,
 				Constraint.Constant(0),
-				Constraint.RelativeToParent((parent) => { return parent.Height - barHeight - 0.5f; }),
+				Constraint.RelativeToParent((parent) => { return parent.Height - barHeight - keyboardHeight - 0.5f; }),
 				Constraint.RelativeToParent((parent) => { return parent.Width; }),
 				Constraint.Constant(0.5f));
 			#endif
@@ -119,7 +123,7 @@ namespace WF.Player
 				Constraint.Constant(0),
 				Constraint.RelativeToParent((parent) =>
 					{
-						return parent.Height - barHeight;
+						return parent.Height - barHeight - keyboardHeight;
 					}),
 				Constraint.RelativeToParent((parent) =>
 					{
@@ -197,7 +201,7 @@ namespace WF.Player
 						Constraint.Constant(0),
 						Constraint.RelativeToParent((parent) =>
 							{
-								return parent.Height - barHeight;
+								return parent.Height - barHeight - keyboardHeight;
 							}),
 						Constraint.RelativeToParent((parent) =>
 							{
@@ -225,6 +229,46 @@ namespace WF.Player
 				{
 					barColor = value;
 					bottomLayout.BackgroundColor = barColor;
+				}
+			}
+		}
+
+		public float KeyboardHeight
+		{
+			get
+			{
+				return keyboardHeight;
+			}
+
+			set
+			{
+				if (keyboardHeight != value)
+				{
+					keyboardHeight = value;
+
+					var bounds = ContentLayout.Bounds;
+
+					bounds.Height = layout.Height - barHeight - keyboardHeight;
+
+					ContentLayout.LayoutTo(bounds, 200);
+					ContentLayout.ForceLayout();
+
+					#if __IOS__
+
+					bounds = lineLayout.Bounds;
+
+					bounds.Top = layout.Height - barHeight - keyboardHeight - 0.5f;
+
+					lineLayout.LayoutTo(bounds, 200);
+
+					#endif
+
+					bounds = BottomLayout.Bounds;
+
+					bounds.Top = layout.Height - barHeight - keyboardHeight;
+
+					BottomLayout.LayoutTo(bounds, 200);
+					BottomLayout.ForceLayout();
 				}
 			}
 		}

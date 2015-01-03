@@ -29,9 +29,10 @@ namespace WF.Player.Controls.iOS
 {
 	public class PinchScrollViewRenderer : ScrollViewRenderer
 	{
-		public PinchScrollViewRenderer()
-		{
-		}
+		/// <summary>
+		/// The zoom scale.
+		/// </summary>
+		private float zoomScale = 1;
 
 		protected override void OnElementChanged(VisualElementChangedEventArgs e)
 		{
@@ -41,7 +42,13 @@ namespace WF.Player.Controls.iOS
 				this.MaximumZoomScale = 4f;
 				this.MinimumZoomScale = 1f;
 				this.ViewForZoomingInScrollView += (UIScrollView sv) => { return this.Subviews[0]; };
+				this.DidZoom += UpdateZoom;
 			}
+		}
+
+		private void UpdateZoom(object sender, EventArgs ea)
+		{
+			zoomScale = this.ZoomScale;
 		}
 	}
 }

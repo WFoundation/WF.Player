@@ -57,7 +57,7 @@ namespace WF.Player
 
 			#else
 
-			var scrollLayout = new PinchScrollView() 
+			ScrollLayout = new PinchScrollView() 
 				{
 					Orientation = ScrollOrientation.Vertical,
 					Padding = new Thickness(0, 0),
@@ -79,8 +79,8 @@ namespace WF.Player
 				{
 					Aspect = Aspect.AspectFit,
 				};
-			image.SetBinding(Image.SourceProperty, GameMessageboxViewModel.ImageSourcePropertyName);
-			image.SetBinding(Image.IsVisibleProperty, GameMessageboxViewModel.HasImagePropertyName);
+			image.SetBinding(Image.SourceProperty, GameInputViewModel.ImageSourcePropertyName);
+			image.SetBinding(Image.IsVisibleProperty, GameInputViewModel.HasImagePropertyName);
 
 			layout.Children.Add(image);
 
@@ -90,15 +90,16 @@ namespace WF.Player
 					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
 					XAlign = App.Prefs.TextAlignment,
 					UseMarkdown = App.Game.UseMarkdown,
+					VerticalOptions = LayoutOptions.Start,
 				};
-			description.SetBinding(ExtendedLabel.TextProperty, GameMessageboxViewModel.TextPropertyName);
-			description.SetBinding(ExtendedLabel.IsVisibleProperty, GameMessageboxViewModel.HasTextPropertyName);
+			description.SetBinding(ExtendedLabel.TextProperty, GameInputViewModel.TextPropertyName);
+			description.SetBinding(ExtendedLabel.IsVisibleProperty, GameInputViewModel.HasTextPropertyName);
 
 			layout.Children.Add(description);
 
-			scrollLayout.Content = layout;
+			ScrollLayout.Content = layout;
 
-			((StackLayout)ContentLayout).Children.Add(scrollLayout);
+			((StackLayout)ContentLayout).Children.Add(ScrollLayout);
 
 			#endif
 
@@ -116,10 +117,12 @@ namespace WF.Player
 					TextColor = App.Colors.Tint,
 					#endif
 					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.Fill,
 				};
 
 			entry.SetBinding(Entry.TextProperty, GameInputViewModel.InputTextPropertyName, BindingMode.TwoWay);
 			entry.SetBinding(Entry.PlaceholderProperty, GameInputViewModel.PlaceholderPropertyName);
+			entry.SetBinding(Entry.IsVisibleProperty, GameInputViewModel.HasEntryPropertyName);
 
 			BottomEntry.Children.Add(entry);
 
@@ -128,11 +131,11 @@ namespace WF.Player
 					Text = Catalog.GetString("Ok"),
 					TextColor = App.Colors.Tint,
 					BackgroundColor = Color.Transparent,
-					HorizontalOptions = LayoutOptions.Center,
-					VerticalOptions = LayoutOptions.Center,
 					#if __IOS__
-					Font = Font.SystemFontOfSize(App.Prefs.TextSize * 0.8f),
+					Font = Font.SystemFontOfSize(20),
 					#endif
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.Center,
 				};
 
 			button.SetBinding(Button.CommandProperty, GameInputViewModel.ButtonClickedPropertyName); 
@@ -149,6 +152,8 @@ namespace WF.Player
 		/// </summary>
 		/// <value>The bottom entry.</value>
 		public StackLayout BottomEntry { get; set; }
+
+		public ScrollView ScrollLayout { get; private set; }
 
 		#endregion
 	}
