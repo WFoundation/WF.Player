@@ -64,7 +64,7 @@ namespace WF.Player.iOS
 				var manager = HockeyApp.BITHockeyManager.SharedHockeyManager;
 
 				//Configure it to use our APP_ID
-				manager.Configure ("e3400f32526545003c05a81a53da0fd9");
+				manager.Configure ("2311139d00212362b8ae16fcb2c427ee");
 
 				//Start the manager
 				manager.StartManager ();

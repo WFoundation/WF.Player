@@ -271,6 +271,12 @@ namespace WF.Player.Models
 				Path.GetFileNameWithoutExtension(Cartridge.Filename), 
 				DateTime.Now.ToLocalTime());
 
+			// Create log path
+			if (!Directory.Exists(App.PathForLogs))
+			{
+				Directory.CreateDirectory(App.PathForLogs);
+			}
+
 			// Creates a logger for this file.
 			return new GWL(new FileStream(Path.Combine(App.PathForLogs, filename), FileMode.Create));
 		}
