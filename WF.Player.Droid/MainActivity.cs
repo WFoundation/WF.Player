@@ -141,7 +141,12 @@ namespace WF.Player.Droid
 
 			if (App.Navigation != null && App.Navigation.CurrentPage is CartridgeListPage)
 			{
-				return;
+				Intent intent = new Intent(Intent.ActionMain);
+				intent.AddCategory(Intent.CategoryHome);
+				intent.SetFlags(ActivityFlags.ClearTop);
+				StartActivity(intent);
+				Finish();
+				System.Environment.Exit(0);
 			}
 
 			// Go one page back

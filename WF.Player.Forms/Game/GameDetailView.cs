@@ -36,9 +36,11 @@ namespace WF.Player
 		{
 			this.BindingContext = gameDetailViewModel;
 
+			HasBackButton = true;
+
 			this.SetBinding(GameDetailView.TitleProperty, GameDetailViewModel.NamePropertyName);
 			NavigationPage.SetBackButtonTitle(this, string.Empty);
-			NavigationPage.SetHasBackButton(this, false);
+			NavigationPage.SetHasBackButton(this, true);
 
 			// Set binding for direction
 			this.DirectionLayout.SetBinding(StackLayout.IsVisibleProperty, GameDetailViewModel.HasDirectionPropertyName);
