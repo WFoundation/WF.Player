@@ -141,12 +141,7 @@ namespace WF.Player.Droid
 
 			if (App.Navigation != null && App.Navigation.CurrentPage is CartridgeListPage)
 			{
-				Intent intent = new Intent(Intent.ActionMain);
-				intent.AddCategory(Intent.CategoryHome);
-				intent.SetFlags(ActivityFlags.ClearTop);
-				StartActivity(intent);
-				Finish();
-				System.Environment.Exit(0);
+				Exit(0);
 			}
 
 			// Go one page back
@@ -165,6 +160,16 @@ namespace WF.Player.Droid
 				// We are in the "out of game" navigation
 				App.Navigation.PopAsync();
 			}
+		}
+
+		public void Exit(int exitCode)
+		{
+			Intent intent = new Intent(Intent.ActionMain);
+			intent.AddCategory(Intent.CategoryHome);
+			intent.SetFlags(ActivityFlags.ClearTop);
+			StartActivity(intent);
+			Finish();
+			System.Environment.Exit(exitCode);
 		}
 	}
 }

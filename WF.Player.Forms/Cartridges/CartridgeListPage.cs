@@ -75,6 +75,12 @@ namespace WF.Player
 					{
 						DependencyService.Get<IPreferencesView>().Show();
 					}, ToolbarItemOrder.Secondary));
+			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Quit"), null, () =>
+				{
+					((WF.Player.Droid.MainActivity)Forms.Context).Exit(0);
+				}, ToolbarItemOrder.Secondary));
+
+
 			#endif
 
 			layout = new StackLayout() 
