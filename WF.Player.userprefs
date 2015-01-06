@@ -1,6 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Ad-Hoc|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.iOS/AppDelegate.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.1" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Models/CartridgeTag.cs">
     <Files>
       <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
@@ -28,6 +28,7 @@
       <File FileName="WF.Player.iOS/Renderer/PullToRefreshListViewRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Renderer/GameToolBarButtonRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/AppDelegate.cs" Line="57" Column="57" />
+      <File FileName="WF.Player.Forms/Models/CartridgeTag.cs" Line="4" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

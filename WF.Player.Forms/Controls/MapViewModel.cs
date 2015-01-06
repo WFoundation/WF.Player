@@ -46,6 +46,7 @@ namespace WF.Player
 		public MapViewModel()
 		{
 //			Position = App.GPS.LastKnownPosition;
+			visibleRegion = MapSpan.FromCenterAndRadius(new Position(0, 0), Distance.FromMeters(1000));
 		}
 
 		#region Properties
