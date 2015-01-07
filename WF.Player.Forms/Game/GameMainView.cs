@@ -118,14 +118,9 @@ namespace WF.Player
 			// Overview button
 			this.buttonOverview = new GameToolBarButton("IconOverview.png") 
 				{
-					BackgroundColor = Color.Transparent,
-					Selected = true,
-					SelectedColor = App.Colors.Background,
-					Padding = new Thickness(2, 2), //10),
-					HasShadow = false,
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
-			this.buttonOverview.SetBinding(GameToolBarButton.SelectedProperty, GameMainViewModel.IsOverviewSelectedPropertyName);
+			this.buttonOverview.Image.SetBinding(BadgeImage.SelectedProperty, GameMainViewModel.IsOverviewSelectedPropertyName);
 
 			tapRecognizer = new TapGestureRecognizer 
 				{
@@ -140,14 +135,9 @@ namespace WF.Player
 			// You See button
 			this.buttonYouSee = new GameToolBarButton("IconLocation.png") 
 				{
-					BackgroundColor = Color.Transparent,
-					Selected = false,
-					SelectedColor = App.Colors.Background,
-					Padding = new Thickness(2, 2), //10),
-					HasShadow = false,
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
-			this.buttonYouSee.SetBinding(GameToolBarButton.SelectedProperty, GameMainViewModel.IsYouSeeSelectedPropertyName);
+			this.buttonYouSee.Image.SetBinding(BadgeImage.SelectedProperty, GameMainViewModel.IsYouSeeSelectedPropertyName);
 			this.buttonYouSee.Image.SetBinding(BadgeImage.NumberProperty, GameMainViewModel.YouSeeNumberPropertyName);
 
 			tapRecognizer = new TapGestureRecognizer 
@@ -163,14 +153,9 @@ namespace WF.Player
 			// Inventory button
 			this.buttonInventory = new GameToolBarButton("IconInventory.png") 
 				{
-					BackgroundColor = Color.Transparent,
-					Selected = false,
-					SelectedColor = App.Colors.Background,
-					Padding = new Thickness(2, 2), //10),
-					HasShadow = false,
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
-			this.buttonInventory.SetBinding(GameToolBarButton.SelectedProperty, GameMainViewModel.IsInventorySelectedPropertyName);
+			this.buttonInventory.Image.SetBinding(BadgeImage.SelectedProperty, GameMainViewModel.IsInventorySelectedPropertyName);
 			this.buttonInventory.Image.SetBinding(BadgeImage.NumberProperty, GameMainViewModel.InventoryNumberPropertyName);
 
 			tapRecognizer = new TapGestureRecognizer 
@@ -186,14 +171,9 @@ namespace WF.Player
 			// Tasks button
 			this.buttonTasks = new GameToolBarButton("IconTasks.png") 
 				{
-					BackgroundColor = Color.Transparent,
-					Selected = false,
-					SelectedColor = App.Colors.Background,
-					Padding = new Thickness(2, 2), //10),
-					HasShadow = false,
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
-			this.buttonTasks.SetBinding(GameToolBarButton.SelectedProperty, GameMainViewModel.IsTasksSelectedPropertyName);
+			this.buttonTasks.Image.SetBinding(BadgeImage.SelectedProperty, GameMainViewModel.IsTasksSelectedPropertyName);
 			this.buttonTasks.Image.SetBinding(BadgeImage.NumberProperty, GameMainViewModel.TasksNumberPropertyName);
 
 			tapRecognizer = new TapGestureRecognizer 
@@ -209,14 +189,9 @@ namespace WF.Player
 			// Map button
 			this.buttonMap = new GameToolBarButton("IconMap.png") 
 				{
-					BackgroundColor = Color.Transparent,
-					Selected = false,
-					SelectedColor = App.Colors.Background,
-					Padding = new Thickness(2, 2), //10),
-					HasShadow = false,
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
-			this.buttonMap.SetBinding(GameToolBarButton.SelectedProperty, GameMainViewModel.IsMapSelectedPropertyName);
+			this.buttonMap.Image.SetBinding(BadgeImage.SelectedProperty, GameMainViewModel.IsMapSelectedPropertyName);
 
 			tapRecognizer = new TapGestureRecognizer 
 			{

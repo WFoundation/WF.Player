@@ -110,7 +110,6 @@
     <Compile Include="Services\Geolocation\Geolocator.cs" />
     <Compile Include="Services\Core\AndroidPlatformHelper.cs" />
     <Compile Include="Services\Geolocation\GeolocationListener.cs" />
-    <Compile Include="Renderer\GameToolBarButtonRenderer.cs" />
     <Compile Include="Services\Device\Sound.cs" />
     <Compile Include="Services\Device\Vibration.cs" />
     <Compile Include="Services\Routing\Routing.cs" />

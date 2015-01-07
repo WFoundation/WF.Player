@@ -234,7 +234,6 @@
     <Compile Include="Services\Core\iOSPlatformHelper.cs" />
     <Compile Include="Services\Device\Sound.cs" />
     <Compile Include="Services\Device\Vibration.cs" />
-    <Compile Include="Renderer\GameToolBarButtonRenderer.cs" />
     <Compile Include="Renderer\BottomBarPageRenderer.cs" />
     <Compile Include="Renderer\CustomWebViewRenderer.cs" />
     <Compile Include="Renderer\CustomButtonRenderer.cs" />

@@ -35,57 +35,6 @@ namespace WF.Player.Controls.iOS
 	{
 		UIImage image;
 
-		public override void Draw(System.Drawing.RectangleF rect)
-		{
-			base.Draw(rect);
-
-//			BadgeImage image = (BadgeImage)Element;
-//
-//			if (image.Number <= 0)
-//				return;
-
-//			using (var context = UIGraphics.GetCurrentContext()) 
-//			{
-//				// Save active state of context
-//				context.SaveState();
-//
-//				// Calc text size
-//				float fontSize = 14f;
-//
-//				var text = new NSString(image.Number.ToString()); //, UIFont.BoldSystemFontOfSize(fontSize), Color.White.ToUIColor(), Color.Red.ToUIColor());
-//				var attr = new UIStringAttributes();
-//
-//				attr.Font = Font.SystemFontOfSize(fontSize).WithAttributes(FontAttributes.Bold).ToUIFont();
-//				attr.ForegroundColor = Color.White.ToUIColor();
-//				attr.BackgroundColor = Color.Transparent.ToUIColor();
-//
-//				var textSize = text.GetSizeUsingAttributes(attr);
-//
-//				var badgeWidth = textSize.Width + 9;
-//				var badgeHeight = textSize.Height + 9;
-//
-//				if (badgeWidth < badgeHeight)
-//					badgeWidth = badgeHeight;
-//
-//				float left = (float)(rect.Width - badgeWidth);
-//				float top = (float)(rect.Height - badgeHeight);
-//
-//				using (UIBezierPath path = UIBezierPath.FromRoundedRect(new RectangleF(left, top, badgeWidth, badgeHeight), UIRectCorner.AllCorners, new System.Drawing.SizeF(10, 10))) {
-//					context.SetFillColor(Color.Red.ToCGColor());
-//					context.SetStrokeColor(Color.Red.ToCGColor());
-//					context.SetLineWidth(0.0f);
-//
-//					context.AddPath(path.CGPath);
-//					context.DrawPath(CGPathDrawingMode.FillStroke);
-//				}
-//
-//				text.DrawString(new PointF(left + textSize.Width, top), attr);
-//
-//				// Restore saved state of context
-//				context.RestoreState();
-//			}
-		}
-
 		protected override void OnElementChanged(ElementChangedEventArgs<Image> e)
 		{
 			base.OnElementChanged(e);
@@ -157,25 +106,25 @@ namespace WF.Player.Controls.iOS
 					colorSpace.Dispose();
 				}
 
-					// make a new alpha-only graphics context
+				// Make a new alpha-only graphics context
 				using (var context = new CGBitmapContext(null, (int)image.Size.Width * (int)image.CurrentScale, (int)image.Size.Height * (int)image.CurrentScale, 8, 0, CGColorSpace.Null, CGImageAlphaInfo.Only))
 				{
 
-					// draw image into context with no colorspace
+					// Draw image into context with no colorspace
 					context.DrawImage(imageRect, image.CGImage);
 
-					// create alpha bitmap mask from current context
+					// Create alpha bitmap mask from current context
 					mask = context.ToImage();
 				}
 
-				// make UIImage from grayscale image with alpha mask
+				// Make UIImage from grayscale image with alpha mask
 				UIImage grayScaleImage = new UIImage(grayImage.WithMask(mask), image.CurrentScale, image.Orientation); //image.CurrentScale
 
-				// release the CG images
+				// Release the CG images
 				grayImage.Dispose();
 				mask.Dispose();
 
-				grayScaleImage.Draw(new PointF(0, 0)); //, image.Size));
+				grayScaleImage.Draw(new PointF(0, 0));
 			}
 
 			// Get the context for CoreGraphics

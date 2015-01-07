@@ -26,26 +26,6 @@ namespace WF.Player.Controls
 	public class GameToolBarButton : Frame
 	{
 		/// <summary>
-		/// The name of the selected property.
-		/// </summary>
-		public const string SelectedPropertyName = "Selected";
-
-		/// <summary>
-		/// The name of the selected color property.
-		/// </summary>
-		public const string SelectedColorPropertyName = "SelectedColor";
-
-		/// <summary>
-		/// Bindable property for selected.
-		/// </summary>
-		public static readonly BindableProperty SelectedProperty = BindableProperty.Create<GameToolBarButton, bool>(p => p.Selected, false);
-
-		/// <summary>
-		/// Bindable property for selected color.
-		/// </summary>
-		public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create<GameToolBarButton, Color>(p => p.SelectedColor, Color.White);
-
-		/// <summary>
 		/// Badge image.
 		/// </summary>
 		private BadgeImage image;
@@ -58,10 +38,9 @@ namespace WF.Player.Controls
 		/// <param name="imageName">Image name.</param>
 		public GameToolBarButton(string imageName) : base()
 		{
-			var layout = new RelativeLayout() 
-			{
-				Padding = 0,
-			};
+			HasShadow = false;
+			BackgroundColor = Color.Transparent;
+			Padding = new Thickness(2, 4, 2, 2);
 
 			image = new BadgeImage() 
 			{
@@ -71,18 +50,7 @@ namespace WF.Player.Controls
 				Source = imageName,
 			};
 
-			layout.Children.Add(
-				image, 
-				Constraint.RelativeToParent((parent) =>
-					{
-						return 4;
-					}),
-				Constraint.RelativeToParent((parent) =>
-					{
-						return 4;
-					}));
-
-			Content = layout;
+			Content = image; // layout;
 		}
 
 		#endregion
@@ -100,49 +68,6 @@ namespace WF.Player.Controls
 			get
 			{
 				return image;
-			}
-		}
-
-		#endregion
-
-		#region Selected
-
-		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="WF.Player.Controls.GameToolBarButton"/> is selected.
-		/// </summary>
-		/// <value><c>true</c> if selected; otherwise, <c>false</c>.</value>
-		public bool Selected
-		{
-			get
-			{
-				return (bool)GetValue(SelectedProperty);
-			}
-
-			set
-			{
-				SetValue(SelectedProperty, value);
-				image.Selected = value;
-			}
-		}
-
-		#endregion
-
-		#region SelectedColor
-
-		/// <summary>
-		/// Gets or sets the color of the selected.
-		/// </summary>
-		/// <value>The color of the selected.</value>
-		public Color SelectedColor
-		{
-			get
-			{
-				return (Color)GetValue(SelectedColorProperty);
-			}
-
-			set
-			{
-				SetValue(SelectedColorProperty, value);
 			}
 		}
 

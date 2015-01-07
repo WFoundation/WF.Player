@@ -16,40 +16,64 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using WF.Player.Controls;
-using WF.Player.Controls.Droid;
-using Xamarin.Forms;
-
-[assembly: ExportRendererAttribute(typeof(BadgeImage), typeof(BadgeImageRenderer))]
+[assembly: Xamarin.Forms.ExportRendererAttribute(typeof(WF.Player.Controls.BadgeImage), typeof(WF.Player.Controls.Droid.BadgeImageRenderer))]
 
 namespace WF.Player.Controls.Droid
 {
-	using System;
-	using Android.Content.Res;
 	using Android.Graphics;
+	using Android.Graphics.Drawables;
 	using Android.Util;
-	using WF.Player;
+	using Xamarin.Forms;
 	using Xamarin.Forms.Platform.Android;
+	using WF.Player.Controls;
 
 	/// <summary>
 	/// Badge image renderer.
 	/// </summary>
 	public class BadgeImageRenderer : ImageRenderer
 	{
-		/// <summary>
-		/// The center x.
-		/// </summary>
-		private float centerX;
+		private ColorMatrixColorFilter filterColor;
+		private ColorMatrixColorFilter filterGray;
+
+		protected override void OnElementChanged(ElementChangedEventArgs<Image> e)
+		{
+			base.OnElementChanged(e);
+
+			if (Element == null)
+			{
+				return;
+			}
+
+			var matrixColor = new ColorMatrix();
+
+			filterColor = new ColorMatrixColorFilter(matrixColor);
+
+			var matrixGray = new ColorMatrix();
+
+			matrixGray.SetSaturation(0);
+
+			filterGray = new ColorMatrixColorFilter(matrixGray);
+		}
 
 		/// <summary>
-		/// The center y.
+		/// Raises the element property changed event.
 		/// </summary>
-		private float centerY;
+		/// <param name="sender">Sender of event.</param>
+		/// <param name="e">Property changed event arguments.</param>
+		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			base.OnElementPropertyChanged(sender, e);
 
-		/// <summary>
-		/// The size.
-		/// </summary>
-		private float size;
+			if (e.PropertyName == BadgeImage.NumberProperty.PropertyName)
+			{
+				this.Invalidate();
+			}
+
+			if (e.PropertyName == BadgeImage.SelectedProperty.PropertyName)
+			{
+				this.Invalidate();
+			}
+		}
 
 		/// <Docs>The Canvas to which the View is rendered.</Docs>
 		/// <summary>
@@ -60,13 +84,26 @@ namespace WF.Player.Controls.Droid
 		{
 			BadgeImage image = (BadgeImage)Element;
 
+			// Set color of icon
+			if (Control.Drawable != null)
+			{
+				if (image.Selected)
+				{
+					Control.Drawable.SetColorFilter(filterColor);
+				}
+				else
+				{
+					Control.Drawable.SetColorFilter(filterGray);
+				}
+			}
+
 			base.Draw(canvas);
 
 			if (image.Number > 0)
 			{
 				using (Paint paint = new Paint())
 				{
-					paint.Color = Xamarin.Forms.Color.Red.ToAndroid();
+					paint.Color = image.Selected ? Xamarin.Forms.Color.Red.ToAndroid() : Xamarin.Forms.Color.Gray.ToAndroid();
 					paint.StrokeWidth = 0f;
 					paint.SetStyle(Paint.Style.FillAndStroke);
 
@@ -94,7 +131,7 @@ namespace WF.Player.Controls.Droid
 					double offsetY = (image.Bounds.Height - image.Bounds.Height) / 2;
 
 					float left = this.DipToPixel(image.Bounds.Width) - badgeWidth;
-					float top = 0;
+					float top = 1;
 					float right = left + badgeWidth;
 					float bottom = top + badgeHeight;
 					float radius = (badgeHeight / 2f) - 1f;
@@ -108,42 +145,6 @@ namespace WF.Player.Controls.Droid
 						canvas.DrawText(image.Number.ToString(), left + ((badgeWidth - textWidth) / 2) - 1, bottom - ((badgeHeight - textHeight) / 2), paint);
 					}
 				}
-			}
-		}
-
-		/// <Docs>Current width of this view.</Docs>
-		/// <summary>
-		/// This is called during layout when the size of this view has changed.
-		/// </summary>
-		/// <para tool="javadoc-to-mdoc">This is called during layout when the size of this view has changed. If
-		///  you were just added to the view hierarchy, you're called with the old
-		///  values of 0.</para>
-		/// <format type="text/html">[Android Documentation]</format>
-		/// <since version="Added in API level 1"></since>
-		/// <param name="w">The width.</param>
-		/// <param name="h">The height.</param>
-		/// <param name="oldw">Old width.</param>
-		/// <param name="oldh">Old height.</param>
-		protected override void OnSizeChanged(int w, int h, int oldw, int oldh)
-		{
-			base.OnSizeChanged(w, h, oldw, oldh);
-
-			this.centerX = this.centerY = w / 2f;
-			this.size = w * 0.1f;
-		}
-
-		/// <summary>
-		/// Raises the element property changed event.
-		/// </summary>
-		/// <param name="sender">Sender of event.</param>
-		/// <param name="e">Property changed event arguments.</param>
-		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-		{
-			base.OnElementPropertyChanged(sender, e);
-
-			if (e.PropertyName == BadgeImage.NumberProperty.PropertyName)
-			{
-				this.Invalidate();
 			}
 		}
 
