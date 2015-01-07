@@ -53,6 +53,7 @@ namespace WF.Player.Controls.Droid
 				nativeMap.UiSettings.MyLocationButtonEnabled = false;
 				nativeMap.UiSettings.ScrollGesturesEnabled = true;
 				nativeMap.UiSettings.ZoomGesturesEnabled = true;
+				nativeMap.UiSettings.CompassEnabled = true;
 			}
 		}
 
@@ -63,6 +64,11 @@ namespace WF.Player.Controls.Droid
 			if (nativeMap == null)
 			{
 				return;
+			}
+
+			if (e.PropertyName == "MapOrientation")
+			{
+				UpdateMapOrientation();
 			}
 
 			if (e.PropertyName == "Polygons")
@@ -119,6 +125,23 @@ namespace WF.Player.Controls.Droid
 			{
 			}
 		}
+
+		private void UpdateMapOrientation()
+		{
+			switch(((ExtendedMap)base.Element).MapOrientation)
+			{
+				case MapOrientation.NorthUp:
+//					((MapView)base.Control).Or.UserTrackingMode = MKUserTrackingMode.None;
+					return;
+				case MapOrientation.HeadingUp:
+//					((MapView)base.Control).UserTrackingMode = MKUserTrackingMode.FollowWithHeading;
+					return;
+				default:
+					return;
+			}
+		}
+
+
 	}
 }
 

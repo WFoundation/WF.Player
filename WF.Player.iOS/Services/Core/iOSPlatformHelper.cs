@@ -124,7 +124,7 @@ namespace WF.Player.iOS.Services.Core
 				foreach (var i in System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces ())
 					if (i.Id.Equals ("en0")) 
 						return i.GetPhysicalAddress ().ToString ();
-				return "No Id";
+				return "unknown";
 			}
 		}
 

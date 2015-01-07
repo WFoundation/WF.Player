@@ -15,6 +15,8 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using Vernacular;
+using Acr.XamForms.UserDialogs;
 
 namespace WF.Player
 {
@@ -22,12 +24,12 @@ namespace WF.Player
 	using System.Windows.Input;
 	using Xamarin.Forms;
 	using Xamarin.Forms.Maps;
-	using Acr.XamForms.UserDialogs;
 	using WF.Player.Controls;
 
 	public class MapViewModel : BaseViewModel
 	{
 		public static string PositionPropertyName = "Position";
+		public static string MapOrientationPropertyName = "MapOrientation";
 		public static string MapOrientationSourcePropertyName = "MapOrientationSource";
 		public static string CommandButtonCenterPressedPropertyName = "CommandButtonCenterPressed";
 		public static string CommandButtonTypePressedPropertyName = "CommandButtonTypePressed";
@@ -35,8 +37,6 @@ namespace WF.Player
 		private ExtendedMap map;
 
 		private MapSpan visibleRegion;
-
-		private bool mapOrientationNorth = true;
 
 		/// <summary>
 		/// The position.
@@ -47,6 +47,8 @@ namespace WF.Player
 		{
 //			Position = App.GPS.LastKnownPosition;
 			visibleRegion = MapSpan.FromCenterAndRadius(new Position(0, 0), Distance.FromMeters(1000));
+
+			MapOrientation = MapOrientation.NorthUp;
 		}
 
 		#region Properties
@@ -96,11 +98,27 @@ namespace WF.Player
 			}
 		}
 
+		public MapOrientation MapOrientation 
+		{ 
+			get
+			{
+				return map.MapOrientation;
+			}
+
+			private set
+			{
+				if (map != null)
+				{
+					map.MapOrientation = value;
+				}
+			}
+		}
+
 		public string MapOrientationSource
 		{
 			get
 			{
-				if (mapOrientationNorth)
+				if (MapOrientation == MapOrientation.NorthUp)
 				{
 					return "IconMapNorth.png";
 				}
@@ -176,6 +194,19 @@ namespace WF.Player
 		{
 			App.Click();
 
+			var cfg = new Acr.XamForms.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Focus on"));
+
+			cfg.Add(Catalog.GetString("Current Location"), () => HandleCenterLocation());
+			cfg.Add(Catalog.GetString("Gamefield"), () => HandleCenterGamefield());
+			cfg.Add(Catalog.GetString("Both"), () => HandleCenterBoth());
+
+			cfg.Cancel = new Acr.XamForms.UserDialogs.ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
+
+			DependencyService.Get<Acr.XamForms.UserDialogs.IUserDialogService>().ActionSheet(cfg);
+		}
+
+		private void HandleCenterLocation()
+		{
 			if (App.GPS.LastKnownPosition != null)
 			{
 				visibleRegion = MapSpan.FromCenterAndRadius(new Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Distance.FromMeters(1000));
@@ -184,6 +215,41 @@ namespace WF.Player
 			{
 				visibleRegion = MapSpan.FromCenterAndRadius(new Position(0, 0), Distance.FromMeters(1000));
 			}
+
+			map.MoveToRegion(visibleRegion);
+		}
+
+		private void HandleCenterGamefield()
+		{
+			var bounds = App.Game.Bounds;
+
+			if (bounds == null)
+			{
+				return;
+			}
+
+			visibleRegion = new MapSpan(new Xamarin.Forms.Maps.Position(bounds.Center.Latitude, bounds.Center.Longitude), 
+				Math.Abs(bounds.Top - bounds.Bottom) * 1.1, 
+				Math.Abs(bounds.Right - bounds.Left) * 1.1);
+
+			map.MoveToRegion(visibleRegion);
+		}
+
+		private void HandleCenterBoth()
+		{
+			var bounds = App.Game.Bounds;
+
+			if (bounds == null)
+			{
+				return;
+			}
+
+			if (App.GPS.LastKnownPosition != null)
+			{
+				bounds.Inflate(new WF.Player.Core.ZonePoint(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude, 0));
+			}
+
+			visibleRegion = new MapSpan(new Xamarin.Forms.Maps.Position(bounds.Center.Latitude, bounds.Center.Longitude), Math.Abs(bounds.Top - bounds.Bottom) * 1.1, Math.Abs(bounds.Right - bounds.Left) * 1.1);
 
 			map.MoveToRegion(visibleRegion);
 		}
@@ -206,7 +272,7 @@ namespace WF.Player
 		{
 			App.Click();
 
-			mapOrientationNorth = !mapOrientationNorth;
+			MapOrientation = MapOrientation == MapOrientation.NorthUp ? MapOrientation.HeadingUp : MapOrientation.NorthUp;
 
 			NotifyPropertyChanged(MapOrientationSourcePropertyName);
 		}

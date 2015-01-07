@@ -119,6 +119,11 @@ namespace WF.Player.Controls.iOS
 				this.UpdateHasZoomEnabled();
 			}
 
+			if(e.PropertyName == ExtendedMap.MapOrientationProperty.PropertyName)
+			{
+				this.UpdateMapOrientation();
+			}
+
 			if(e.PropertyName == "VisibleRegion")
 			{
 				MoveToRegion(((ExtendedMap)base.Element).VisibleRegion);
@@ -257,6 +262,21 @@ namespace WF.Player.Controls.iOS
 					return;
 				case MapType.Hybrid:
 					((MKMapView)base.Control).MapType = MKMapType.Hybrid;
+					return;
+				default:
+					return;
+			}
+		}
+
+		private void UpdateMapOrientation()
+		{
+			switch(((ExtendedMap)base.Element).MapOrientation)
+			{
+				case MapOrientation.NorthUp:
+					((MKMapView)base.Control).UserTrackingMode = MKUserTrackingMode.None;
+					return;
+				case MapOrientation.HeadingUp:
+					((MKMapView)base.Control).UserTrackingMode = MKUserTrackingMode.FollowWithHeading;
 					return;
 				default:
 					return;

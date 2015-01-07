@@ -132,6 +132,18 @@ namespace WF.Player
 		#region Properties
 
 		/// <summary>
+		/// Gets the bounds of all visible zones and items.
+		/// </summary>
+		/// <value>The bounds.</value>
+		public CoordBounds Bounds
+		{
+			get
+			{
+				return engine.Bounds;
+			}
+		}
+
+		/// <summary>
 		/// Gets a value indicating whether this <see cref="WF.Player.GameModel"/> use markdown.
 		/// </summary>
 		/// <value><c>true</c> if use markdown; otherwise, <c>false</c>.</value>

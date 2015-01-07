@@ -127,7 +127,7 @@ namespace WF.Player.Droid.Services.Core
 			get
 			{
 				// TODO: Insert right DeviceId
-				return Catalog.GetString("Unknown");
+				return "unknown";
 			}
 		}
 

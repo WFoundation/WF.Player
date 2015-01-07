@@ -57,6 +57,8 @@ namespace WF.Player.Controls
 			};
 			mapButtonCenter.GestureRecognizers.Add(tapRecognizer);
 
+			#if __IOS__
+
 			tapRecognizer = new TapGestureRecognizer 
 				{
 					Command = this.mapViewModel.CommandButtonOrientationPressed,
@@ -69,6 +71,8 @@ namespace WF.Player.Controls
 			};
 			mapButtonOrientation.SetBinding(Image.SourceProperty, MapViewModel.MapOrientationSourcePropertyName);
 			mapButtonOrientation.GestureRecognizers.Add(tapRecognizer);
+
+			#endif
 
 			tapRecognizer = new TapGestureRecognizer 
 				{
@@ -98,21 +102,26 @@ namespace WF.Player.Controls
 				Constraint.Constant(frame),
 				Constraint.Constant(38 + frame));
 
+			#if __IOS__
+
 			layout.Children.Add(mapButtonOrientation, 
 				Constraint.Constant(frame),
 				Constraint.RelativeToParent(p => 38 + frame + mapButtonCenter.Width + frame));
+
+			#endif
 
 			layout.Children.Add(mapButtonType, 
 				Constraint.RelativeToParent(p => p.Width - frame - mapButtonType.Width),
 				Constraint.Constant(38 + frame));
 
+			var font = Device.OnPlatform(Font.SystemFontOfSize(16).WithAttributes(FontAttributes.Bold), Font.SystemFontOfSize(14), Font.SystemFontOfSize(16).WithAttributes(FontAttributes.Bold));
 			// Create position entries at bottom of screen
 			var latitude = new Label() 
 				{
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					XAlign = TextAlignment.Start,
 					TextColor = Color.White,
-					Font = Font.SystemFontOfSize(16).WithAttributes(FontAttributes.Bold),
+					Font = font,
 				};
 			latitude.SetBinding(Label.TextProperty, MapViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToLatitude());
 
@@ -121,7 +130,7 @@ namespace WF.Player.Controls
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					XAlign = TextAlignment.Start,
 					TextColor = Color.White,
-					Font = Font.SystemFontOfSize(16).WithAttributes(FontAttributes.Bold),
+					Font = font,
 				};
 			longitude.SetBinding(Label.TextProperty, MapViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToLongitude());
 
@@ -129,7 +138,7 @@ namespace WF.Player.Controls
 				{
 					XAlign = TextAlignment.End,
 					TextColor = Color.White,
-					Font = Font.SystemFontOfSize(16).WithAttributes(FontAttributes.Bold),
+					Font = font,
 				};
 			altitude.SetBinding(Label.TextProperty, MapViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToAltitude());
 
@@ -137,7 +146,7 @@ namespace WF.Player.Controls
 				{
 					XAlign = TextAlignment.End,
 					TextColor = Color.White,
-					Font = Font.SystemFontOfSize(16).WithAttributes(FontAttributes.Bold),
+					Font = font,
 				};
 			accuracy.SetBinding(Label.TextProperty, MapViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToAccuracy());
 
@@ -159,7 +168,7 @@ namespace WF.Player.Controls
 				{
 					BackgroundColor = Color.Gray.MultiplyAlpha(0.8),
 					HorizontalOptions = LayoutOptions.FillAndExpand,
-					Padding = new Thickness(10, 4),
+					Padding = new Thickness(10, Device.OnPlatform(4, 2, 4)),
 					RowSpacing = 2,
 				};
 

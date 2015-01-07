@@ -15,6 +15,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using Xamarin.Forms;
 
 namespace WF.Player.Controls
 {
@@ -29,9 +30,11 @@ namespace WF.Player.Controls
 		private MapSpan visibleRegion;
 		private IEnumerable<MapPolygon> polygons;
 		private IEnumerable<MapPoint> points;
+		private MapOrientation mapOrientation;
 
 		public ExtendedMap(MapSpan span) : base(span)
 		{
+			mapOrientation = MapOrientation.NorthUp;
 		}
 
 		#region Nested Classes
@@ -109,17 +112,36 @@ namespace WF.Player.Controls
 
 		#region Properties
 
+		#region MapOrientation
+
+		public static readonly BindableProperty MapOrientationProperty = BindableProperty.Create<ExtendedMap, MapOrientation>(p => p.MapOrientation, MapOrientation.NorthUp, BindingMode.OneWay);
+
+		public MapOrientation MapOrientation
+		{ 
+			get
+			{
+				return mapOrientation;
+			}
+
+			set
+			{
+				if (value != mapOrientation)
+				{
+					mapOrientation = value;
+					OnPropertyChanged("MapOrientation");
+				}
+			}
+		}
+
+		#endregion
+
 		#region Polygons
 
 		public IEnumerable<MapPolygon> Polygons
 		{
 			get
 			{
-				if (polygons == null)
-				{
-					polygons = new List<MapPolygon>();
-				}
-				return polygons;
+				return polygons ?? new List<MapPolygon>();
 			}
 			set
 			{
