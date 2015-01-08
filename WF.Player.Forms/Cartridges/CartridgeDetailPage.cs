@@ -99,15 +99,17 @@ namespace WF.Player
 
 			layout.Children.Add(poster);
 
-			var listSource = new List<MenuEntry>() 
+			var listSource = new List<MenuEntry>();
+
+			listSource.Add(new MenuEntry(Catalog.GetString("Description"), App.Colors.Text, HandleDescriptionClicked));
+			listSource.Add(new MenuEntry(Catalog.GetString("Details"), App.Colors.Text, HandleDetailsClicked));
+			listSource.Add(new MenuEntry(Catalog.GetString("Attributes"), App.Colors.Text, HandleAttributesClicked));
+			if (!viewModel.IsPlayAnywhere)
 			{
-				new MenuEntry(Catalog.GetString("Description"), App.Colors.Text, HandleDescriptionClicked),
-				new MenuEntry(Catalog.GetString("Details"), App.Colors.Text, HandleDetailsClicked),
-				new MenuEntry(Catalog.GetString("Attributes"), App.Colors.Text, HandleAttributesClicked),
-				new MenuEntry(Catalog.GetString("Map"), App.Colors.Text, HandleMapClicked),
-				new MenuEntry(Catalog.GetString("History"), App.Colors.Text, HandleHistoryClicked),
-				new MenuEntry(Catalog.GetString("Logs"), App.Colors.Text, HandleLogsClicked),
-			};
+				listSource.Add(new MenuEntry(Catalog.GetString("Map"), App.Colors.Text, HandleMapClicked));
+			}
+			listSource.Add(new MenuEntry(Catalog.GetString("History"), App.Colors.Text, HandleHistoryClicked));
+			listSource.Add(new MenuEntry(Catalog.GetString("Logs"), App.Colors.Text, HandleLogsClicked));
 
 			var list = new ListView() 
 				{

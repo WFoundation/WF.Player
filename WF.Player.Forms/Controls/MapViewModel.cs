@@ -70,6 +70,12 @@ namespace WF.Player
 					}
 					map = value;
 					map.PropertyChanged += HandlePropertyChanged;
+
+					var bounds = map.Bounds;
+
+					bounds.Height += 1;
+
+					map.Layout(map.Bounds);
 //					Position = App.GPS.LastKnownPosition;
 //					map.MoveToRegion(visibleRegion);
 				}
@@ -97,6 +103,8 @@ namespace WF.Player
 				}
 			}
 		}
+
+		public WF.Player.Core.ZonePoint StartingLocation { get; set; }
 
 		public MapOrientation MapOrientation 
 		{ 
@@ -196,9 +204,29 @@ namespace WF.Player
 
 			var cfg = new Acr.XamForms.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Focus on"));
 
-			cfg.Add(Catalog.GetString("Current Location"), () => HandleCenterLocation());
-			cfg.Add(Catalog.GetString("Gamefield"), () => HandleCenterGamefield());
-			cfg.Add(Catalog.GetString("Both"), () => HandleCenterBoth());
+			if (App.Game != null)
+			{
+				// Center menu for inside of game
+				cfg.Add(Catalog.GetString("Current Location"), () => HandleCenterLocation());
+				cfg.Add(Catalog.GetString("Gamefield"), () => HandleCenterGamefield());
+				cfg.Add(Catalog.GetString("Both"), () => HandleCenterBoth());
+			}
+			else
+			{
+				if (StartingLocation != null)
+				{
+					// Show in case we have a StartingLocation the center menu for outside of game
+					cfg.Add(Catalog.GetString("Current Location"), () => HandleCenterLocation());
+					cfg.Add(Catalog.GetString("Starting Location"), () => HandleCenterGamefield());
+					cfg.Add(Catalog.GetString("Both"), () => HandleCenterBoth());
+				}
+				else
+				{
+					HandleCenterLocation();
+
+					return;
+				}
+			}
 
 			cfg.Cancel = new Acr.XamForms.UserDialogs.ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 
@@ -221,16 +249,27 @@ namespace WF.Player
 
 		private void HandleCenterGamefield()
 		{
-			var bounds = App.Game.Bounds;
+			WF.Player.Core.CoordBounds bounds;
 
-			if (bounds == null)
+			if (App.Game != null)
 			{
-				return;
-			}
+				// Map is viewed inside the game
+				bounds = App.Game.Bounds;
 
-			visibleRegion = new MapSpan(new Xamarin.Forms.Maps.Position(bounds.Center.Latitude, bounds.Center.Longitude), 
-				Math.Abs(bounds.Top - bounds.Bottom) * 1.1, 
-				Math.Abs(bounds.Right - bounds.Left) * 1.1);
+				if (bounds == null)
+				{
+					return;
+				}
+
+				visibleRegion = new MapSpan(new Xamarin.Forms.Maps.Position(bounds.Center.Latitude, bounds.Center.Longitude), 
+					Math.Abs(bounds.Top - bounds.Bottom) * 1.1, 
+					Math.Abs(bounds.Right - bounds.Left) * 1.1);
+			}
+			else
+			{
+				// Map is viewed outside the game, so show StartingLocation
+				visibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(StartingLocation.Latitude, StartingLocation.Longitude), Distance.FromMeters(1000));
+			}
 
 			map.MoveToRegion(visibleRegion);
 		}

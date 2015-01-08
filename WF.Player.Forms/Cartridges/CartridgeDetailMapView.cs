@@ -41,7 +41,10 @@ namespace WF.Player
 			Title = Catalog.GetString("Map");
 
 			this.DirectionView.SetBinding(DirectionArrow.DirectionProperty, CartridgeDetailViewModel.DirectionPropertyName);
-			this.DistanceView.SetBinding(Label.TextProperty, CartridgeDetailViewModel.DistancePropertyName, BindingMode.OneWay, new ConverterToDistance());
+			this.DistanceView.SetBinding(Label.TextProperty, CartridgeDetailViewModel.DistanceTextPropertyName, BindingMode.OneWay);
+
+//			this.DirectionView.SetBinding(DirectionArrow.DirectionProperty, CartridgeDetailViewModel.DirectionPropertyName);
+//			this.DistanceView.SetBinding(Label.TextProperty, CartridgeDetailViewModel.DistancePropertyName, BindingMode.OneWay, new ConverterToDistance());
 
 			var mapViewModel = new MapViewModel();
 
@@ -62,6 +65,11 @@ namespace WF.Player
 				{
 					mapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(0, 0), Xamarin.Forms.Maps.Distance.FromMeters(1000));
 				}
+			}
+
+			if (!viewModel.IsPlayAnywhere)
+			{
+				mapViewModel.StartingLocation = viewModel.StartingLocation;
 			}
 
 			((StackLayout)ContentLayout).Children.Add(mapView);

@@ -67,6 +67,12 @@ namespace WF.Player.iOS
 			animated = false;
 
 			base.ViewDidAppear(animated);
+
+//			this.NavigationItem.BackBarButtonItem = new UIBarButtonItem(
+//				"Text", 
+//				UIBarButtonItemStyle.Plain, 
+//				(sender, args) => { NavigationController.PopViewControllerAnimated(false); });
+
 //
 //			UIBarButtonItem *back = [[UIBackButtonItem alloc] initWithTitle:@"\U000025C0\U0000FE0E" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
 //			[self.navigationItem setLeftBarButtonItem:back]
@@ -78,12 +84,15 @@ namespace WF.Player.iOS
 
 		public override void ViewWillDisappear (bool animated)
 		{
+			NSNotificationCenter.DefaultCenter.RemoveObserver(observerHideKeyboard);
+			NSNotificationCenter.DefaultCenter.RemoveObserver(observerShowKeyboard);
+
 			animated = false;
 
 			base.ViewWillDisappear (animated);
 
-			NSNotificationCenter.DefaultCenter.RemoveObserver(observerHideKeyboard);
-			NSNotificationCenter.DefaultCenter.RemoveObserver(observerShowKeyboard);
+//			this.NavigationController.PopViewControllerAnimated(animated);
+
 		}
 
 		/// <summary>

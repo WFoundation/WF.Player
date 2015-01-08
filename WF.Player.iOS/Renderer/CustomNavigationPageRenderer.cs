@@ -57,6 +57,11 @@ namespace WF.Player.iOS
 			NavigationBar.SetBackgroundImage(image, UIBarMetrics.Default);
 			NavigationBar.BarStyle = App.Colors.IsDarkTheme ? UIBarStyle.Black : UIBarStyle.Default;
 		}
+
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+		}
 	}
 }
 

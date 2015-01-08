@@ -34,8 +34,8 @@ namespace WF.Player.Droid
 			var element = (BasePage)Element;
 			var actionBar = ((Activity) Context).ActionBar;
 
-			actionBar.SetHomeButtonEnabled (element.HasBackButton);			// Don't activate button behavior
-			actionBar.SetDisplayHomeAsUpEnabled (element.HasBackButton);	// Don't show back arrow
+//			actionBar.SetHomeButtonEnabled (element.HasBackButton);			// Don't activate button behavior
+//			actionBar.SetDisplayHomeAsUpEnabled (element.HasBackButton);	// Don't show back arrow
 //			actionBar.SetDisplayShowHomeEnabled (element.HasBackButton);	// Don't show back arrow and icon
 		}
 

@@ -205,6 +205,18 @@ namespace WF.Player
 		}
 
 		/// <summary>
+		/// Gets the starting location.
+		/// </summary>
+		/// <value>The starting location.</value>
+		public ZonePoint StartingLocation
+		{
+			get
+			{
+				return IsPlayAnywhere ? null : cartridgeTag.Cartridge.StartingLocation;
+			}
+		}
+
+		/// <summary>
 		/// Gets the poster of cartridge.
 		/// </summary>
 		/// <value>The poster.</value>
