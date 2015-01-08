@@ -39,8 +39,6 @@ namespace WF.Player
 
 			NavigationPage.SetHasBackButton(this, false);
 
-			BackgroundColor = App.Colors.Background;
-
 			#if __HTML__
 
 			var webView = new CustomWebView () {
@@ -60,25 +58,24 @@ namespace WF.Player
 			ScrollLayout = new PinchScrollView() 
 				{
 					Orientation = ScrollOrientation.Vertical,
-					Padding = new Thickness(0, 0),
+					Padding = 0,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.FillAndExpand,
 				};
 
 			var layout = new StackLayout() 
 				{
-//					BackgroundColor = App.Colors.Background,
 					Orientation = StackOrientation.Vertical,
-					Padding = new Thickness(10, 10),
+					Padding = 10,
 					Spacing = 10,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
-					VerticalOptions = LayoutOptions.FillAndExpand,
 				};
 
 			var image = new ExtendedImage() 
 				{
 					Aspect = Aspect.AspectFit,
 				};
+
 			image.SetBinding(Image.SourceProperty, GameInputViewModel.ImageSourcePropertyName);
 			image.SetBinding(Image.IsVisibleProperty, GameInputViewModel.HasImagePropertyName);
 
@@ -87,11 +84,12 @@ namespace WF.Player
 			var description = new ExtendedLabel() 
 				{
 					TextColor = App.Colors.Text,
-					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
+					FontSize = App.Prefs.TextSize,
+					FontFamily = App.Fonts.Normal.FontFamily,
 					XAlign = App.Prefs.TextAlignment,
 					UseMarkdown = App.Game.UseMarkdown,
-					VerticalOptions = LayoutOptions.Start,
 				};
+
 			description.SetBinding(ExtendedLabel.TextProperty, GameInputViewModel.TextPropertyName);
 			description.SetBinding(ExtendedLabel.IsVisibleProperty, GameInputViewModel.HasTextPropertyName);
 
@@ -130,9 +128,9 @@ namespace WF.Player
 				{
 					Text = Catalog.GetString("Ok"),
 					TextColor = App.Colors.Tint,
-					BackgroundColor = Color.Transparent,
 					#if __IOS__
-					Font = Font.SystemFontOfSize(20),
+					FontSize = 20,
+					FontFamily = Font.SystemFontOfSize(20).FontFamily,
 					#endif
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.Center,
@@ -153,7 +151,11 @@ namespace WF.Player
 		/// <value>The bottom entry.</value>
 		public StackLayout BottomEntry { get; set; }
 
-		public ScrollView ScrollLayout { get; private set; }
+		/// <summary>
+		/// Gets the scroll layout.
+		/// </summary>
+		/// <value>The scroll layout.</value>
+		public PinchScrollView ScrollLayout { get; private set; }
 
 		#endregion
 	}

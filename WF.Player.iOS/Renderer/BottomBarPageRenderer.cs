@@ -20,6 +20,7 @@ using Xamarin.Forms.Platform.iOS;
 using WF.Player;
 using WF.Player.iOS;
 using MonoTouch.UIKit;
+using MonoTouch.Foundation;
 
 [assembly: ExportRendererAttribute(typeof(BottomBarPage), typeof(BottomBarPageRenderer))]
 
@@ -27,6 +28,16 @@ namespace WF.Player.iOS
 {
 	public class BottomBarPageRenderer : PageRenderer
 	{
+		/// <summary>
+		/// The observer for hiding keyboard.
+		/// </summary>
+		private NSObject observerHideKeyboard;
+
+		/// <summary>
+		/// The observer for showing keyboard.
+		/// </summary>
+		private NSObject observerShowKeyboard;
+
 		public override void ViewWillAppear(bool animated)
 		{
 			if (NavigationController != null)
@@ -36,8 +47,9 @@ namespace WF.Player.iOS
 
 			base.ViewWillAppear(animated);
 
-			// Did this, because Xamarin.Forms couldn't set HasBackButton correct.
-//			ViewController.ParentViewController.NavigationItem.SetHidesBackButton(!((BottomBarPage)this.Element).HasBackButton, false);
+			// Register for keyboard notifications
+			observerHideKeyboard = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardNotification);
+			observerShowKeyboard = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardNotification);
 
 			if (NavigationController == null)
 			{
@@ -69,6 +81,34 @@ namespace WF.Player.iOS
 			animated = false;
 
 			base.ViewWillDisappear (animated);
+
+			NSNotificationCenter.DefaultCenter.RemoveObserver(observerHideKeyboard);
+			NSNotificationCenter.DefaultCenter.RemoveObserver(observerShowKeyboard);
+		}
+
+		/// <summary>
+		/// Raised when keyboard is shown or hidden.
+		/// </summary>
+		/// <param name="notification">Notification.</param>
+		private void OnKeyboardNotification (NSNotification notification)
+		{
+			if (!IsViewLoaded) return;
+
+			var frameBegin = UIKeyboard.FrameBeginFromNotification(notification);
+			var frameEnd = UIKeyboard.FrameEndFromNotification(notification);
+			var bounds = Element.Bounds;
+			var newBounds = new Rectangle(bounds.Left, bounds.Top, bounds.Width, bounds.Height - frameBegin.Top + frameEnd.Top);
+
+			Element.Layout(newBounds);
+
+			// Workaround, because ScrollView isn't set correctly (parts are not visible, if content was scrolled while keyboard is shown)
+			if (Element is GameInputView)
+			{
+				var contentLayout = ((GameInputView)Element).ContentLayout;
+				bounds = contentLayout.Bounds;
+				bounds.Height += 1;
+				contentLayout.Layout(bounds);
+			}
 		}
 	}
 }

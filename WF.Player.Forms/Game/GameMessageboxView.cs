@@ -36,8 +36,6 @@ namespace WF.Player
 
 			NavigationPage.SetHasBackButton(this, false);
 
-			BackgroundColor = App.Colors.Background;
-
 			#if __HTML__
 
 			var webView = new CustomWebView() 

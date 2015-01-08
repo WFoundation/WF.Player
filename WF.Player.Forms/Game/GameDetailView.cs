@@ -38,8 +38,6 @@ namespace WF.Player
 
 			NavigationPage.SetHasBackButton(this, true);
 
-			BackgroundColor = App.Colors.Background;
-
 			this.SetBinding(GameDetailView.TitleProperty, GameDetailViewModel.NamePropertyName);
 
 			// Set binding for direction

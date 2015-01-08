@@ -34,9 +34,9 @@ namespace WF.Player
 		{
 			BindingContext = viewModel;
 
-			Title = Catalog.GetString("GPS Check");
-
 			NavigationPage.SetHasBackButton(this, true);
+
+			Title = Catalog.GetString("GPS Check");
 
 			var layout = new StackLayout() 
 			{

@@ -251,7 +251,6 @@
     <Compile Include="Renderer\FormsUIRefreshControl.cs" />
     <Compile Include="Renderer\PullToRefreshListViewRenderer.cs" />
     <Compile Include="Bootstrap\MobileBootstrap.cs" />
-    <Compile Include="Renderer\GameInputViewRenderer.cs" />
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="..\WF.Player.Common\WF.Player.Common.projitems" Label="Shared" Condition="Exists('..\WF.Player.Common\WF.Player.Common.projitems')" />

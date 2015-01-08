@@ -64,8 +64,6 @@ namespace WF.Player
 			NavigationPage.SetBackButtonTitle(this, string.Empty);
 			NavigationPage.SetHasBackButton(this, false);
 
-			BackgroundColor = App.Colors.Background;
-
 			this.SetBinding(GameMainView.TitleProperty, GameMainViewModel.TitelPropertyName);
 
 			#if __IOS__

@@ -15,13 +15,13 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Xamarin.Forms;
 
 namespace WF.Player
 {
 	using System;
 	using WF.Player.Core;
 	using WF.Player.Core.Utils;
+	using Xamarin.Forms;
 
 	/// <summary>
 	/// Cartridge detail base page, which is holding routing/resume/start buttons and direction, 

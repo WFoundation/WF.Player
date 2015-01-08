@@ -40,8 +40,6 @@ namespace WF.Player
 		/// </summary>
 		private StackLayout bottomLayout;
 
-		private StackLayout lineLayout;
-
 		/// <summary>
 		/// The height of the bar.
 		/// </summary>
@@ -51,8 +49,6 @@ namespace WF.Player
 		/// The color of the bar.
 		/// </summary>
 		private Color barColor = App.Colors.Bar;
-
-		private float keyboardHeight = 0;
 
 		#region Constructor
 
@@ -69,7 +65,7 @@ namespace WF.Player
 				Padding = 0,
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
-				IsClippedToBounds = false,
+//				IsClippedToBounds = false,
 			};
 
 			contentLayout = new StackLayout() 
@@ -97,14 +93,13 @@ namespace WF.Player
 					}),
 				Constraint.RelativeToParent((parent) =>
 					{
-						return parent.Height - barHeight - keyboardHeight;
+						return parent.Height - barHeight;
 					}));
 
 			#if __IOS__
 			// Dark grey line on iOS
-			lineLayout = new StackLayout () 
+			var lineLayout = new BoxView() 
 			{
-				Padding = new Thickness(0, 0),
 				BackgroundColor = App.Colors.IsDarkTheme ? Color.FromRgb(0x26, 0x26, 0x26) : Color.FromRgb (0xAE, 0xAE, 0xAE),
 				HeightRequest = 0.5f,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -113,7 +108,7 @@ namespace WF.Player
 			layout.Children.Add(
 				lineLayout,
 				Constraint.Constant(0),
-				Constraint.RelativeToParent((parent) => { return parent.Height - barHeight - keyboardHeight - 0.5f; }),
+				Constraint.RelativeToParent((parent) => { return parent.Height - barHeight - 0.5f; }),
 				Constraint.RelativeToParent((parent) => { return parent.Width; }),
 				Constraint.Constant(0.5f));
 			#endif
@@ -123,7 +118,7 @@ namespace WF.Player
 				Constraint.Constant(0),
 				Constraint.RelativeToParent((parent) =>
 					{
-						return parent.Height - barHeight - keyboardHeight;
+						return parent.Height - barHeight;
 					}),
 				Constraint.RelativeToParent((parent) =>
 					{
@@ -153,8 +148,11 @@ namespace WF.Player
 			{
 				if (contentLayout != value)
 				{
+					var bounds = contentLayout.Bounds;
+
 					contentLayout = value;
-					contentLayout.ForceLayout();
+
+					contentLayout.Layout(bounds);
 				}
 			}
 		}
@@ -201,7 +199,7 @@ namespace WF.Player
 						Constraint.Constant(0),
 						Constraint.RelativeToParent((parent) =>
 							{
-								return parent.Height - barHeight - keyboardHeight;
+								return parent.Height - barHeight;
 							}),
 						Constraint.RelativeToParent((parent) =>
 							{
@@ -229,48 +227,6 @@ namespace WF.Player
 				{
 					barColor = value;
 					bottomLayout.BackgroundColor = barColor;
-				}
-			}
-		}
-
-		public float KeyboardHeight
-		{
-			get
-			{
-				return keyboardHeight;
-			}
-
-			set
-			{
-				if (keyboardHeight != value)
-				{
-					keyboardHeight = value;
-
-					var bounds = ContentLayout.Bounds;
-
-					bounds.Height = layout.Height - barHeight - keyboardHeight;
-
-					ContentLayout.LayoutTo(bounds, 200);
-
-					#if __IOS__
-
-					bounds = lineLayout.Bounds;
-
-					bounds.Top = layout.Height - barHeight - keyboardHeight - 0.5f;
-
-					lineLayout.LayoutTo(bounds, 200);
-
-					#endif
-
-					bounds = BottomLayout.Bounds;
-
-					bounds.Top = layout.Height - barHeight - keyboardHeight;
-
-					BottomLayout.LayoutTo(bounds, 200);
-
-					// Force layout
-					ContentLayout.ForceLayout();
-					BottomLayout.ForceLayout();
 				}
 			}
 		}

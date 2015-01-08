@@ -25,11 +25,6 @@ namespace WF.Player
 	/// </summary>
 	public class BasePage : ContentPage
 	{
-		/// <summary>
-		/// Bindable property for back button.
-		/// </summary>
-//		public static readonly BindableProperty HasBackButtonProperty = BindableProperty.Create<BasePage, bool>(p => p.HasBackButton, true);
-
 		#region Constructor
 
 		/// <summary>
@@ -37,34 +32,16 @@ namespace WF.Player
 		/// </summary>
 		public BasePage()
 		{
+			// Set an empty icon as home icon
 			NavigationPage.SetTitleIcon(this, "HomeIcon.png");
+
+			// Set background color to default value
 			BackgroundColor = App.Colors.Background;
 		}
 
 		#endregion
 
 		#region Properties
-
-//		#region HasBackButton
-//
-//		/// <summary>
-//		/// Gets or sets a value indicating whether this instance has back button.
-//		/// </summary>
-//		/// <value><c>true</c> if this instance has back button; otherwise, <c>false</c>.</value>
-//		public bool HasBackButton
-//		{
-//			get
-//			{
-//				return (bool)GetValue(HasBackButtonProperty);
-//			}
-//
-//			set
-//			{
-//				SetValue(HasBackButtonProperty, value);
-//			}
-//		}
-//
-//		#endregion
 
 		#endregion
 
