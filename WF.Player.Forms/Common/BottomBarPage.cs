@@ -251,7 +251,6 @@ namespace WF.Player
 					bounds.Height = layout.Height - barHeight - keyboardHeight;
 
 					ContentLayout.LayoutTo(bounds, 200);
-					ContentLayout.ForceLayout();
 
 					#if __IOS__
 
@@ -268,6 +267,9 @@ namespace WF.Player
 					bounds.Top = layout.Height - barHeight - keyboardHeight;
 
 					BottomLayout.LayoutTo(bounds, 200);
+
+					// Force layout
+					ContentLayout.ForceLayout();
 					BottomLayout.ForceLayout();
 				}
 			}

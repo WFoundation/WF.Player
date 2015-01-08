@@ -15,18 +15,18 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
-using System;
-using Xamarin.Forms;
-using WF.Player;
-using WF.Player.iOS;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
 
-[assembly: ExportRendererAttribute (typeof (GameInputView), typeof (GameInputViewRenderer))]
+[assembly: Xamarin.Forms.ExportRendererAttribute (typeof (WF.Player.GameInputView), typeof (WF.Player.iOS.GameInputViewRenderer))]
 
 namespace WF.Player.iOS
 {
+	using System;
+	using Xamarin.Forms;
+	using WF.Player;
+	using WF.Player.iOS;
+	using MonoTouch.Foundation;
+	using MonoTouch.UIKit;
+
 	public class GameInputViewRenderer : BottomBarPageRenderer
 	{
 		private double originalSize;

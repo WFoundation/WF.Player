@@ -28,7 +28,7 @@ namespace WF.Player
 		/// <summary>
 		/// Bindable property for back button.
 		/// </summary>
-		public static readonly BindableProperty HasBackButtonProperty = BindableProperty.Create<BasePage, bool>(p => p.HasBackButton, true);
+//		public static readonly BindableProperty HasBackButtonProperty = BindableProperty.Create<BasePage, bool>(p => p.HasBackButton, true);
 
 		#region Constructor
 
@@ -45,26 +45,26 @@ namespace WF.Player
 
 		#region Properties
 
-		#region HasBackButton
-
-		/// <summary>
-		/// Gets or sets a value indicating whether this instance has back button.
-		/// </summary>
-		/// <value><c>true</c> if this instance has back button; otherwise, <c>false</c>.</value>
-		public bool HasBackButton
-		{
-			get
-			{
-				return (bool)GetValue(HasBackButtonProperty);
-			}
-
-			set
-			{
-				SetValue(HasBackButtonProperty, value);
-			}
-		}
-
-		#endregion
+//		#region HasBackButton
+//
+//		/// <summary>
+//		/// Gets or sets a value indicating whether this instance has back button.
+//		/// </summary>
+//		/// <value><c>true</c> if this instance has back button; otherwise, <c>false</c>.</value>
+//		public bool HasBackButton
+//		{
+//			get
+//			{
+//				return (bool)GetValue(HasBackButtonProperty);
+//			}
+//
+//			set
+//			{
+//				SetValue(HasBackButtonProperty, value);
+//			}
+//		}
+//
+//		#endregion
 
 		#endregion
 

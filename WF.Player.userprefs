@@ -1,52 +1,35 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Droid/Renderer/GameToolBarButtonRenderer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.1" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.iOS/Renderer/BottomBarPageRenderer.cs">
     <Files>
-      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="53" Column="53" />
       <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="38" Column="38" />
+      <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Controls/MapView.cs" Line="10" Column="10" />
       <File FileName="WF.Player.Forms/Controls/MapViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Controls/MapView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameCheckLocationViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailBasePage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Common/DirectionBarPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Common/BottomBarPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/BottomBarPageRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Common/BasePage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailDescriptionView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailMapView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameDetailView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameDetailViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMessageboxViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameInputViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameInputView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/GameInputViewRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/PinchScrollViewRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/PullToRefreshListViewRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/GameToolBarButtonRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/AppDelegate.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Models/CartridgeTag.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/App.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/MainActivity.cs" Line="9" Column="9" />
-      <File FileName="WF.Player.Droid/Renderer/ExtendedMapRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Eluant/Eluant/Scripts.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Eluant/Eluant/LuaRuntime.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Renderer/BasePageRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Controls/GameToolBarButton.cs" Line="16" Column="16" />
       <File FileName="WF.Player.Forms/Controls/BadgeImage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/BadgeImageRenderer.cs" Line="44" Column="44" />
-      <File FileName="WF.Player.Droid/Renderer/GameToolBarButtonRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Renderer/BadgeImageRenderer.cs" Line="12" Column="12" />
+      <File FileName="WF.Player.Droid/Renderer/BadgeImageRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Renderer/ExtendedMapRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Controls/ExtendedMap.cs" Line="20" Column="20" />
+      <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Renderer/ExtendedMapRenderer.cs" Line="31" Column="31" />
+      <File FileName="WF.Player.iOS/Renderer/BottomBarPageRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameInputViewModel.cs" Line="13" Column="13" />
+      <File FileName="WF.Player.Forms/Common/BottomBarPage.cs" Line="19" Column="19" />
+      <File FileName="WF.Player.Forms/Game/GameDetailView.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Controls/ExtendedNavigationPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Renderer/CustomNavigationPageRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameInputView.cs" Line="49" Column="49" />
+      <File FileName="WF.Player.Forms/Game/GameMessageboxView.cs" Line="3" Column="3" />
+      <File FileName="WF.Player.Forms/Game/GameCheckLocationView.cs" Line="44" Column="44" />
+      <File FileName="WF.Player.Forms/Common/BasePage.cs" Line="3" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.iOS/Renderer/BottomBarPageRenderer.cs" line="62" column="1" />
       <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" line="459" column="1" />
-      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/Controls/MapViewModel.cs" line="94" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>

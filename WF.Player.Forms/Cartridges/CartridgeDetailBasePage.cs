@@ -15,6 +15,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using Xamarin.Forms;
 
 namespace WF.Player
 {
@@ -37,6 +38,9 @@ namespace WF.Player
 		public CartridgeDetailBasePage(CartridgeDetailViewModel viewModel)
 		{
 			this.BindingContext = viewModel;
+
+			// Show empty string as back button title (default "Back" would be null as string)
+			NavigationPage.SetBackButtonTitle(this, string.Empty);
 
 			var buttonResume = new ToolIconButton("IconResume.png", viewModel.ResumeCommand);
 			var buttonStart = new ToolIconButton("IconPlay.png", viewModel.StartCommand);

@@ -61,13 +61,12 @@ namespace WF.Player
 		{
 			BindingContext = gameMainViewModel;
 
-//			this.SetBinding(GameMainView.HasBackButtonProperty, GameMainViewModel.IsBackbuttonVisiblePropertyName);
-			this.SetBinding(GameMainView.TitleProperty, GameMainViewModel.TitelPropertyName);
-
 			NavigationPage.SetBackButtonTitle(this, string.Empty);
-			HasBackButton = false;
-//			NavigationPage.SetHasBackButton(this, false);
+			NavigationPage.SetHasBackButton(this, false);
 
+			BackgroundColor = App.Colors.Background;
+
+			this.SetBinding(GameMainView.TitleProperty, GameMainViewModel.TitelPropertyName);
 
 			#if __IOS__
 
@@ -108,7 +107,7 @@ namespace WF.Player
 
 			var buttonLayout = new StackLayout() 
 			{
-				BackgroundColor = App.Colors.Bar, //App.Colors.BackgroundButtons,
+				BackgroundColor = App.Colors.Bar,
 				Orientation = StackOrientation.Horizontal,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				HeightRequest = 60, //72,

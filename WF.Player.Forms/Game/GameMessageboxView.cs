@@ -32,9 +32,11 @@ namespace WF.Player
 		/// <param name="gameMessageboxViewModel">Game messagebox view model.</param>
 		public GameMessageboxView(GameMessageboxViewModel gameMessageboxViewModel)
 		{
-			this.BindingContext = gameMessageboxViewModel;
+			BindingContext = gameMessageboxViewModel;
 
-			this.HasBackButton = false;
+			NavigationPage.SetHasBackButton(this, false);
+
+			BackgroundColor = App.Colors.Background;
 
 			#if __HTML__
 
@@ -60,7 +62,7 @@ namespace WF.Player
 
 			var layout = new StackLayout() 
 				{
-					BackgroundColor = App.Colors.Background,
+//					BackgroundColor = App.Colors.Background,
 					Orientation = StackOrientation.Vertical,
 					Padding = new Thickness(10, 10),
 					Spacing = 10,

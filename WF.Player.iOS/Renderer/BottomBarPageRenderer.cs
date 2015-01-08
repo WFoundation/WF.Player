@@ -37,7 +37,7 @@ namespace WF.Player.iOS
 			base.ViewWillAppear(animated);
 
 			// Did this, because Xamarin.Forms couldn't set HasBackButton correct.
-			ViewController.ParentViewController.NavigationItem.SetHidesBackButton(!((BottomBarPage)this.Element).HasBackButton, false);
+//			ViewController.ParentViewController.NavigationItem.SetHidesBackButton(!((BottomBarPage)this.Element).HasBackButton, false);
 
 			if (NavigationController == null)
 			{
@@ -56,8 +56,10 @@ namespace WF.Player.iOS
 
 			base.ViewDidAppear(animated);
 //
+//			UIBarButtonItem *back = [[UIBackButtonItem alloc] initWithTitle:@"\U000025C0\U0000FE0E" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
+//			[self.navigationItem setLeftBarButtonItem:back]
 //			var backButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, (sender, args) => {});
-//			backButton.Title = "Test";
+//			backButton.Title = @"\U000025C0\U0000FE0E";
 //			var temp = this.NavigationController.NavigationItem.LeftBarButtonItem;
 //			NavigationItem.SetLeftBarButtonItem(backButton, false);
 		}

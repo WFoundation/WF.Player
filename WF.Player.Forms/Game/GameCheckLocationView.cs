@@ -36,8 +36,7 @@ namespace WF.Player
 
 			Title = Catalog.GetString("GPS Check");
 
-			NavigationPage.SetBackButtonTitle(this, string.Empty);
-			NavigationPage.SetHasBackButton(this, false);
+			NavigationPage.SetHasBackButton(this, true);
 
 			var layout = new StackLayout() 
 			{

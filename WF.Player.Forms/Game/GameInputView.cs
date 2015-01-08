@@ -37,9 +37,9 @@ namespace WF.Player
 		{
 			BindingContext = gameInputViewModel;
 
-			BackgroundColor = App.Colors.Background;
+			NavigationPage.SetHasBackButton(this, false);
 
-			HasBackButton = false;
+			BackgroundColor = App.Colors.Background;
 
 			#if __HTML__
 
@@ -67,7 +67,7 @@ namespace WF.Player
 
 			var layout = new StackLayout() 
 				{
-					BackgroundColor = App.Colors.Background,
+//					BackgroundColor = App.Colors.Background,
 					Orientation = StackOrientation.Vertical,
 					Padding = new Thickness(10, 10),
 					Spacing = 10,

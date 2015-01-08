@@ -67,7 +67,9 @@ namespace WF.Player
 			this.BindingContext = this;
 
 			Title = Catalog.GetString("Cartridges");
+
 			NavigationPage.SetTitleIcon(this, "HomeIcon.png");
+			NavigationPage.SetBackButtonTitle(this, string.Empty);
 
 			// Only show settings, if device is Android
 			#if __ANDROID__

@@ -6,6 +6,7 @@
   <string formatted="false" name="Vernacular_P0_Attributes">Attribute</string>
   <string formatted="false" name="Vernacular_P0_Autochange">Automatischer Wechsel</string>
   <string formatted="false" name="Vernacular_P0_Blue">Blau</string>
+  <string formatted="false" name="Vernacular_P0_Both">Beides</string>
   <string formatted="false" name="Vernacular_P0_By">Von</string>
   <string formatted="false" name="Vernacular_P0_Cancel">Abbruch</string>
   <string formatted="false" name="Vernacular_P0_Cartridges">Cartridges</string>
@@ -16,6 +17,7 @@
 {0}</string>
   <string formatted="false" name="Vernacular_P0_CurrentCoordinates101230125">Aktuelle Koordinaten
 {0}</string>
+  <string formatted="false" name="Vernacular_P0_CurrentLocation">Aktuelle Position</string>
   <string formatted="false" name="Vernacular_P0_Dark">Dunkel</string>
   <string formatted="false" name="Vernacular_P0_Description">Beschreibung</string>
   <string formatted="false" name="Vernacular_P0_Details">Details</string>
@@ -24,16 +26,19 @@
   <string formatted="false" name="Vernacular_P0_Filterappliedtoorientation46Strongerfiltercauseslowerreactions44butfluentmovement46">Filter für die Orientierung. Stärkerer Filter führt zu langsameren Reaktionen, aber flüssigeren Bewegungen.</string>
   <string formatted="false" name="Vernacular_P0_Focus">Fokus</string>
   <string formatted="false" name="Vernacular_P0_Focusinputfieldwhendialogappears">Eingabefeld fokussieren wenn Dialog erscheint</string>
+  <string formatted="false" name="Vernacular_P0_Focuson">Fokussieren auf</string>
   <string formatted="false" name="Vernacular_P0_Fontsize">Zeichengröße</string>
   <string formatted="false" name="Vernacular_P0_Fontsizeofdialogtext">Buchstabengröße von Dialogtext</string>
   <string formatted="false" name="Vernacular_P0_Fontsizeoftextinsp46Defaultis1846">Buchstabengröße von Text in sp. Vorgabe ist 18.</string>
   <string formatted="false" name="Vernacular_P0_Formuchfunwiththecartridge44youshouldwaitforagoodaccuracyofyourGPSsignal46">Bevor Du die Cartridge startest, solltest Du warten, bis Du ein gutes Satellitensignal hast.</string>
+  <string formatted="false" name="Vernacular_P0_Gamefield">Spielfeld</string>
   <string formatted="false" name="Vernacular_P0_GameMenu">Spielmenü</string>
   <string formatted="false" name="Vernacular_P0_GPSCheck">GPS Überprüfung</string>
   <string formatted="false" name="Vernacular_P0_Halfheightofscreen">Halbe Höhe des Bildschirmes</string>
   <string formatted="false" name="Vernacular_P0_Heavyfilter">Starker Filter</string>
   <string formatted="false" name="Vernacular_P0_HelloWorld44ClickMe33">Hallo, drücke mich!</string>
   <string formatted="false" name="Vernacular_P0_History">Verlauf</string>
+  <string formatted="false" name="Vernacular_P0_Hybrid">Hybrid</string>
   <string formatted="false" name="Vernacular_P0_Ifenabledusetruebearing46Otherwiseusemagneticbearing46">Wenn angewählt, dann benutze wahre Peilung. Ansonsten benutze magnetische Peilung.</string>
   <string formatted="false" name="Vernacular_P0_Image">Bild</string>
   <string formatted="false" name="Vernacular_P0_Input">Eingabe</string>
@@ -45,16 +50,18 @@
   <string formatted="false" name="Vernacular_P0_Loading464646">Laden…</string>
   <string formatted="false" name="Vernacular_P0_Logs">Logs</string>
   <string formatted="false" name="Vernacular_P0_Map">Karte</string>
+  <string formatted="false" name="Vernacular_P0_Maptype">Kartenart</string>
   <string formatted="false" name="Vernacular_P0_Mediumfilter">Mittlerer Filter</string>
   <string formatted="false" name="Vernacular_P0_N">N</string>
   <string formatted="false" name="Vernacular_P0_No">Nein</string>
   <string formatted="false" name="Vernacular_P0_Nodescriptionavailable">Keine Beschreibung vorhanden</string>
   <string formatted="false" name="Vernacular_P0_Nofilter">Kein Filter</string>
   <string formatted="false" name="Vernacular_P0_Noitems">Keine Gegenstände</string>
-  <string formatted="false" name="Vernacular_P0_Nomapavailable">Keine Karte vorhanden</string>
   <string formatted="false" name="Vernacular_P0_Nonewtasks">Keine neuen Aufgaben</string>
   <string formatted="false" name="Vernacular_P0_Noresize">Keine Größenänderung</string>
+  <string formatted="false" name="Vernacular_P0_Nothingavailable">Nichts verfügbar</string>
   <string formatted="false" name="Vernacular_P0_Nothingofinterest">Nichts von Interesse</string>
+  <string formatted="false" name="Vernacular_P0_Nowheretogo">Keine Orte</string>
   <string formatted="false" name="Vernacular_P0_Ok">Ok</string>
   <string formatted="false" name="Vernacular_P0_Orientationfilter">Orientierungsfilter</string>
   <string formatted="false" name="Vernacular_P0_Overview">Überblick</string>
@@ -66,6 +73,7 @@
   <string formatted="false" name="Vernacular_P0_Resizeimagewhendisplaying">Größenänderung des Bildes beim Anzeigen</string>
   <string formatted="false" name="Vernacular_P0_Rightalign">Rechts ausrichten</string>
   <string formatted="false" name="Vernacular_P0_S">S</string>
+  <string formatted="false" name="Vernacular_P0_Satellite">Satellit</string>
   <string formatted="false" name="Vernacular_P0_Save">Sichern</string>
   <string formatted="false" name="Vernacular_P0_SaveGame">Spiel sichern</string>
   <string formatted="false" name="Vernacular_P0_Sensors">Sensoren</string>
@@ -75,6 +83,7 @@
   <string formatted="false" name="Vernacular_P0_Speedvalue">Geschwindigkeitswert</string>
   <string formatted="false" name="Vernacular_P0_Start">Start</string>
   <string formatted="false" name="Vernacular_P0_Startanyway">Trotzdem starten</string>
+  <string formatted="false" name="Vernacular_P0_Street">Standard</string>
   <string formatted="false" name="Vernacular_P0_Tasks">Aufgaben</string>
   <string formatted="false" name="Vernacular_P0_Text">Text</string>
   <string formatted="false" name="Vernacular_P0_Theme">Theme</string>

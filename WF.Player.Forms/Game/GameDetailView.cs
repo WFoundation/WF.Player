@@ -34,13 +34,13 @@ namespace WF.Player
 		/// <param name="gameDetailViewModel">Game detail view model.</param>
 		public GameDetailView(GameDetailViewModel gameDetailViewModel) : base()
 		{
-			this.BindingContext = gameDetailViewModel;
+			BindingContext = gameDetailViewModel;
 
-			HasBackButton = true;
+			NavigationPage.SetHasBackButton(this, true);
+
+			BackgroundColor = App.Colors.Background;
 
 			this.SetBinding(GameDetailView.TitleProperty, GameDetailViewModel.NamePropertyName);
-			NavigationPage.SetBackButtonTitle(this, string.Empty);
-			NavigationPage.SetHasBackButton(this, true);
 
 			// Set binding for direction
 			this.DirectionLayout.SetBinding(StackLayout.IsVisibleProperty, GameDetailViewModel.HasDirectionPropertyName);
