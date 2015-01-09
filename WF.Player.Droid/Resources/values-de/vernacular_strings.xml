@@ -37,6 +37,7 @@
   <string formatted="false" name="Vernacular_P0_Halfheightofscreen">Halbe Höhe des Bildschirmes</string>
   <string formatted="false" name="Vernacular_P0_Heavyfilter">Starker Filter</string>
   <string formatted="false" name="Vernacular_P0_HelloWorld44ClickMe33">Hallo, drücke mich!</string>
+  <string formatted="false" name="Vernacular_P0_Here">Hier</string>
   <string formatted="false" name="Vernacular_P0_History">Verlauf</string>
   <string formatted="false" name="Vernacular_P0_Hybrid">Hybrid</string>
   <string formatted="false" name="Vernacular_P0_Ifenabledusetruebearing46Otherwiseusemagneticbearing46">Wenn angewählt, dann benutze wahre Peilung. Ansonsten benutze magnetische Peilung.</string>
@@ -83,6 +84,7 @@
   <string formatted="false" name="Vernacular_P0_Speedvalue">Geschwindigkeitswert</string>
   <string formatted="false" name="Vernacular_P0_Start">Start</string>
   <string formatted="false" name="Vernacular_P0_Startanyway">Trotzdem starten</string>
+  <string formatted="false" name="Vernacular_P0_StartingLocation">Startpunkt</string>
   <string formatted="false" name="Vernacular_P0_Street">Standard</string>
   <string formatted="false" name="Vernacular_P0_Tasks">Aufgaben</string>
   <string formatted="false" name="Vernacular_P0_Text">Text</string>

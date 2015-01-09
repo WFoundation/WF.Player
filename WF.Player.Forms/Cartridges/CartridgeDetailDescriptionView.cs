@@ -54,8 +54,6 @@ namespace WF.Player
 			var layout = new StackLayout() 
 				{
 					Padding = 10,
-//					VerticalOptions = LayoutOptions.FillAndExpand,
-//					HorizontalOptions = LayoutOptions.FillAndExpand,
 				};
 
 			var label = new Label() 
@@ -77,20 +75,5 @@ namespace WF.Player
 		}
 
 		#endregion
-
-		/// <summary>
-		/// Raises the appearing event.
-		/// </summary>
-		/// <remarks>
-		/// Did this, because layout isn't updated and because of this, direction arrow isn't visible.
-		/// </remarks>
-		protected override void OnAppearing()
-		{
-			base.OnAppearing();
-
-			var bounds = this.Content.Bounds;
-//			bounds.Height += 0.0001;
-			this.Content.Layout(bounds);
-		}
 	}
 }

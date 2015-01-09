@@ -99,10 +99,11 @@ namespace WF.Player.Controls.Droid
 			bool update = false;
 
 			if (e.PropertyName == "Renderer") {
-				UpdatePaintCircle ();
-				UpdatePaintArrow ();
-				UpdatePathArrow ();
-				UpdatePathInside ();
+				UpdatePaintCircle();
+				UpdatePaintArrow();
+				UpdatePathArrow();
+				UpdatePathInside();
+				UpdatePathUnknown();
 				update = true;
 			}
 
@@ -139,6 +140,7 @@ namespace WF.Player.Controls.Droid
 
 			UpdatePathArrow ();
 			UpdatePathInside ();
+			UpdatePathUnknown();
 		}
 
 		protected override void OnLayout (bool changed, int l, int t, int r, int b)

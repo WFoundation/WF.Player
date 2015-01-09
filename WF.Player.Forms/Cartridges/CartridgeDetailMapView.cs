@@ -16,6 +16,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using Xamarin.Forms.Maps;
+using WF.Player.Services.Geolocation;
 
 namespace WF.Player
 {
@@ -30,6 +31,8 @@ namespace WF.Player
 	/// </summary>
 	public class CartridgeDetailMapView : CartridgeDetailBasePage
 	{
+		private MapViewModel mapViewModel;
+
 		#region Constructor
 
 		/// <summary>
@@ -43,10 +46,9 @@ namespace WF.Player
 			this.DirectionView.SetBinding(DirectionArrow.DirectionProperty, CartridgeDetailViewModel.DirectionPropertyName);
 			this.DistanceView.SetBinding(Label.TextProperty, CartridgeDetailViewModel.DistanceTextPropertyName, BindingMode.OneWay);
 
-//			this.DirectionView.SetBinding(DirectionArrow.DirectionProperty, CartridgeDetailViewModel.DirectionPropertyName);
-//			this.DistanceView.SetBinding(Label.TextProperty, CartridgeDetailViewModel.DistancePropertyName, BindingMode.OneWay, new ConverterToDistance());
+			mapViewModel = new MapViewModel();
 
-			var mapViewModel = new MapViewModel();
+			mapViewModel.Position = App.GPS.LastKnownPosition;
 
 			var mapView = new MapView(mapViewModel) 
 				{
@@ -76,5 +78,39 @@ namespace WF.Player
 		}
 
 		#endregion
+
+		/// <summary>
+		/// Raises the appearing event.
+		/// </summary>
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+
+			mapViewModel.Position = App.GPS.LastKnownPosition;
+
+			App.GPS.PositionChanged += OnPositionChanged;
+
+		}
+
+		/// <summary>
+		/// Raises the disappearing event.
+		/// </summary>
+		protected override void OnDisappearing()
+		{
+			base.OnDisappearing();
+
+			App.GPS.PositionChanged -= OnPositionChanged;
+		}
+
+		/// <summary>
+		/// Handles the position changed event.
+		/// </summary>
+		/// <param name="sender">Sender of event.</param>
+		/// <param name="e">Position changed event arguments.</param>
+		private void OnPositionChanged(object sender, PositionEventArgs e)
+		{
+			mapViewModel.Position = e.Position;
+		}
+
 	}
 }

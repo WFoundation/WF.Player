@@ -71,11 +71,6 @@ namespace WF.Player
 					map = value;
 					map.PropertyChanged += HandlePropertyChanged;
 
-					var bounds = map.Bounds;
-
-					bounds.Height += 1;
-
-					map.Layout(map.Bounds);
 //					Position = App.GPS.LastKnownPosition;
 //					map.MoveToRegion(visibleRegion);
 				}
@@ -276,11 +271,22 @@ namespace WF.Player
 
 		private void HandleCenterBoth()
 		{
-			var bounds = App.Game.Bounds;
+			WF.Player.Core.CoordBounds bounds = new WF.Player.Core.CoordBounds();
 
-			if (bounds == null)
+			if (App.Game != null)
 			{
-				return;
+				// Map is viewed inside the game
+				bounds = App.Game.Bounds;
+
+				if (bounds == null)
+				{
+					return;
+				}
+			}
+			else
+			{
+				// Map is viewed outside the game, so show StartingLocation
+				bounds = new WF.Player.Core.CoordBounds(StartingLocation.Longitude, StartingLocation.Latitude, StartingLocation.Longitude, StartingLocation.Latitude);
 			}
 
 			if (App.GPS.LastKnownPosition != null)
@@ -345,10 +351,10 @@ namespace WF.Player
 			if (right > 180) right = (right - 180) - 180;
 
 			// I don't wrap around north or south; I don't think the map control allows this anyway
-			Console.WriteLine ("Bounding box:");
-			Console.WriteLine ("            " + top);
-			Console.WriteLine (" " + left + " " + right);
-			Console.WriteLine ("            " + bottom);
+//			Console.WriteLine ("Bounding box:");
+//			Console.WriteLine ("            " + top);
+//			Console.WriteLine (" " + left + " " + right);
+//			Console.WriteLine ("            " + bottom);
 		}
 	}
 }

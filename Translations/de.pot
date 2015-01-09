@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WF.Player\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-01-07 16:30+0100\n"
+"PO-Revision-Date: 2015-01-09 12:02+0100\n"
 "Last-Translator: Dirk Weltz <web@weltz-online.de>\n"
 "Language-Team: Wherigo Foundation <info@wfplayer.com>\n"
 "Language: de\n"
@@ -26,7 +26,7 @@ msgstr "Ausrichtung"
 msgid "Alignment of text"
 msgstr "Ausrichtung des Textes"
 
-#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:106
+#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:104
 msgid "Attributes"
 msgstr "Attribute"
 
@@ -38,7 +38,10 @@ msgstr "Automatischer Wechsel"
 msgid "Blue"
 msgstr "Blau"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:201
+#: WF.Player.Forms/Controls/MapViewModel.cs:212
+#: WF.Player.Forms/Controls/MapViewModel.cs:221
+#: WF.Player.Forms/Controls/MapViewModel.cs:207
+#: WF.Player.Forms/Controls/MapViewModel.cs:216
 msgid "Both"
 msgstr "Beides"
 
@@ -49,10 +52,11 @@ msgstr "Von"
 #: WF.Player.Forms/Game/GameDetailViewModel.cs:578
 #: WF.Player.Forms/Game/GameDetailViewModel.cs:615
 #: WF.Player.Forms/Game/GameInputViewModel.cs:409
-#: WF.Player.Forms/Controls/MapViewModel.cs:203
-#: WF.Player.Forms/Controls/MapViewModel.cs:254
-#: WF.Player.Forms/Game/GameMainView.cs:79
-#: WF.Player.Forms/Controls/MapViewModel.cs:266
+#: WF.Player.Forms/Controls/MapViewModel.cs:231
+#: WF.Player.Forms/Controls/MapViewModel.cs:305
+#: WF.Player.Forms/Game/GameMainView.cs:76
+#: WF.Player.Forms/Controls/MapViewModel.cs:226
+#: WF.Player.Forms/Controls/MapViewModel.cs:315
 msgid "Cancel"
 msgstr "Abbruch"
 
@@ -74,8 +78,8 @@ msgstr "Wählen"
 msgid "Comment Savefile"
 msgstr "Kommentar Sicherungsdatei"
 
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:80
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:87
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:79
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:86
 msgid ""
 "Current Accuracy\n"
 "{0}"
@@ -83,8 +87,8 @@ msgstr ""
 "Aktuelle Genauigkeit\n"
 "{0}"
 
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:67
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:74
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:66
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:73
 msgid ""
 "Current Coordinates\n"
 "{0}"
@@ -92,7 +96,10 @@ msgstr ""
 "Aktuelle Koordinaten\n"
 "{0}"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:199
+#: WF.Player.Forms/Controls/MapViewModel.cs:210
+#: WF.Player.Forms/Controls/MapViewModel.cs:219
+#: WF.Player.Forms/Controls/MapViewModel.cs:205
+#: WF.Player.Forms/Controls/MapViewModel.cs:214
 msgid "Current Location"
 msgstr "Aktuelle Position"
 
@@ -100,12 +107,12 @@ msgstr "Aktuelle Position"
 msgid "Dark"
 msgstr "Dunkel"
 
-#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:104
+#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:102
 #: WF.Player.Forms/Cartridges/CartridgeDetailDescriptionView.cs:40
 msgid "Description"
 msgstr "Beschreibung"
 
-#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:105
+#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:103
 msgid "Details"
 msgstr "Details"
 
@@ -134,7 +141,8 @@ msgstr "Fokus"
 msgid "Focus input field when dialog appears"
 msgstr "Eingabefeld fokussieren wenn Dialog erscheint"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:197
+#: WF.Player.Forms/Controls/MapViewModel.cs:205
+#: WF.Player.Forms/Controls/MapViewModel.cs:200
 msgid "Focus on"
 msgstr "Fokussieren auf"
 
@@ -150,7 +158,7 @@ msgstr "Buchstabengröße von Text in sp. Vorgabe ist 18."
 msgid "Fontsize"
 msgstr "Zeichengröße"
 
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:53
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:52
 msgid ""
 "For much fun with the cartridge, you should wait for a good accuracy of your "
 "GPS signal."
@@ -158,16 +166,17 @@ msgstr ""
 "Bevor Du die Cartridge startest, solltest Du warten, bis Du ein gutes "
 "Satellitensignal hast."
 
-#: WF.Player.Forms/Game/GameMainView.cs:74
-#: WF.Player.Forms/Game/GameMainView.cs:76
+#: WF.Player.Forms/Game/GameMainView.cs:71
+#: WF.Player.Forms/Game/GameMainView.cs:73
 msgid "Game Menu"
 msgstr "Spielmenü"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:200
+#: WF.Player.Forms/Controls/MapViewModel.cs:211
+#: WF.Player.Forms/Controls/MapViewModel.cs:206
 msgid "Gamefield"
 msgstr "Spielfeld"
 
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:37
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:39
 msgid "GPS Check"
 msgstr "GPS Überprüfung"
 
@@ -183,12 +192,16 @@ msgstr "Starker Filter"
 msgid "Hello World, Click Me!"
 msgstr "Hallo, drücke mich!"
 
-#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:108
+#: WF.Player.Forms/Services/Conversion/ConverterToDistance.cs:45
+msgid "Here"
+msgstr "Hier"
+
+#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:109
 msgid "History"
 msgstr "Verlauf"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:253
-#: WF.Player.Forms/Controls/MapViewModel.cs:265
+#: WF.Player.Forms/Controls/MapViewModel.cs:304
+#: WF.Player.Forms/Controls/MapViewModel.cs:314
 msgid "Hybrid"
 msgstr "Hybrid"
 
@@ -206,7 +219,8 @@ msgstr "Bild"
 msgid "Input"
 msgstr "Eingabe"
 
-#: WF.Player.Forms/Controls/DirectionArrow.cs:116
+#: WF.Player.Forms/Controls/DirectionArrow.cs:143
+#: WF.Player.Forms/Data/DirectionInfo.cs:109
 msgid "Inside"
 msgstr "Innerhalb"
 
@@ -228,23 +242,24 @@ msgstr "Hell"
 msgid "Light filter"
 msgstr "Leichter Filter"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:98
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:100
 #: WF.Player.Forms/Game/GameMainViewModel.cs:656
 msgid "Loading..."
 msgstr "Laden..."
 
-#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:109
+#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:110
 msgid "Logs"
 msgstr "Logs"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:107
 #: WF.Player.Forms/Game/GameMainViewModel.cs:635
 #: WF.Player.Forms/Cartridges/CartridgeDetailMapView.cs:41
+#: WF.Player.Forms/Cartridges/CartridgeDetailMapView.cs:44
 msgid "Map"
 msgstr "Karte"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:250
-#: WF.Player.Forms/Controls/MapViewModel.cs:262
+#: WF.Player.Forms/Controls/MapViewModel.cs:301
+#: WF.Player.Forms/Controls/MapViewModel.cs:311
 msgid "Maptype"
 msgstr "Kartenart"
 
@@ -302,7 +317,7 @@ msgstr "Keine Orte"
 
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:76
 #: WF.Player.Forms/Game/GameDetailViewModel.cs:622
-#: WF.Player.Forms/Game/GameInputView.cs:131
+#: WF.Player.Forms/Game/GameInputView.cs:129
 #: WF.Player.Forms/Services/Resources/Texts.cs:36
 #: WF.Player.Forms/Services/Acr.XamForms.UserDialogs/AlertConfig.cs:16
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:74
@@ -321,7 +336,7 @@ msgstr "Überblick"
 msgid "Play a sound each time a button is pressed"
 msgstr "Spiele jedesmal, wenn eine Taste gedrückt wird, einen Ton"
 
-#: WF.Player.Forms/Game/GameMainView.cs:218
+#: WF.Player.Forms/Game/GameMainView.cs:215
 msgid "Please wait..."
 msgstr "Bitte warten..."
 
@@ -332,11 +347,11 @@ msgstr ""
 "Bitte gib einen Kommentar für diese Sicherungsdatei ein, damit Du sie später "
 "wieder zuordnen kannst."
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:78
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:80
+#: WF.Player.Forms/Game/GameMainView.cs:93
 #: WF.Player.Forms/Game/GameMainView.cs:96
-#: WF.Player.Forms/Game/GameMainView.cs:99
 #: WF.Player.Forms/Game/GameMainViewModel.cs:904
-#: WF.Player.Forms/Game/GameMainView.cs:78
+#: WF.Player.Forms/Game/GameMainView.cs:75
 msgid "Quit"
 msgstr "Beenden"
 
@@ -357,15 +372,15 @@ msgstr "Rechts ausrichten"
 msgid "S"
 msgstr "S"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:252
-#: WF.Player.Forms/Controls/MapViewModel.cs:264
+#: WF.Player.Forms/Controls/MapViewModel.cs:303
+#: WF.Player.Forms/Controls/MapViewModel.cs:313
 msgid "Satellite"
 msgstr "Satellit"
 
+#: WF.Player.Forms/Game/GameMainView.cs:85
 #: WF.Player.Forms/Game/GameMainView.cs:88
-#: WF.Player.Forms/Game/GameMainView.cs:91
 #: WF.Player.Forms/Game/GameMainViewModel.cs:951
-#: WF.Player.Forms/Game/GameMainView.cs:77
+#: WF.Player.Forms/Game/GameMainView.cs:74
 msgid "Save"
 msgstr "Sichern"
 
@@ -376,7 +391,7 @@ msgstr "Spiel sichern"
 msgid "Sensors"
 msgstr "Sensoren"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:74
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:76
 #: WF.Player.Droid/Resources/values/strings.xml:7
 msgid "Settings"
 msgstr "Einstellungen"
@@ -397,13 +412,18 @@ msgstr "Geschwindigkeitswert"
 msgid "Start"
 msgstr "Start"
 
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:102
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:101
 #: WF.Player.Forms/Game/GameCheckLocationViewModel.cs:144
 msgid "Start anyway"
 msgstr "Trotzdem starten"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:251
-#: WF.Player.Forms/Controls/MapViewModel.cs:263
+#: WF.Player.Forms/Controls/MapViewModel.cs:220
+#: WF.Player.Forms/Controls/MapViewModel.cs:215
+msgid "Starting Location"
+msgstr "Startpunkt"
+
+#: WF.Player.Forms/Controls/MapViewModel.cs:302
+#: WF.Player.Forms/Controls/MapViewModel.cs:312
 msgid "Street"
 msgstr "Standard"
 
@@ -426,14 +446,9 @@ msgid "Theme for this app (only updated after a restart of the app)"
 msgstr ""
 "Theme für diese App (wird erst nach einem Neustart vollständig angezeigt)"
 
-#: WF.Player.Forms/Common/DirectionBarPage.cs:44
-#: WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs:288
-#: WF.Player.Forms/Services/Conversion/ConverterToDistance.cs:45
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:67
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:80
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:66
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:79
 #: WF.Player.Forms/Game/GameInputViewModel.cs:469
-#: WF.Player.Forms/Controls/DirectionArrow.cs:124
-#: WF.Player.Forms/Controls/DirectionArrow.cs:43
 msgid "Unknown"
 msgstr "Unbekannt"
 

@@ -35,6 +35,8 @@ namespace WF.Player.Controls
 		{
 			MapSpan span;
 
+			this.BindingContext = mapViewModel;
+
 			map = new ExtendedMap(mapViewModel.VisibleRegion) 
 				{
 					HorizontalOptions = LayoutOptions.FillAndExpand,

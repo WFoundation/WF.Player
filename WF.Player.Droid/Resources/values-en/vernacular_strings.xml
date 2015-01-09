@@ -37,6 +37,7 @@
   <string formatted="false" name="Vernacular_P0_Halfheightofscreen">Half height of screen</string>
   <string formatted="false" name="Vernacular_P0_Heavyfilter">Heavy filter</string>
   <string formatted="false" name="Vernacular_P0_HelloWorld44ClickMe33">Hello World, Click Me!</string>
+  <string formatted="false" name="Vernacular_P0_Here">Here</string>
   <string formatted="false" name="Vernacular_P0_History">History</string>
   <string formatted="false" name="Vernacular_P0_Hybrid">Hybrid</string>
   <string formatted="false" name="Vernacular_P0_Ifenabledusetruebearing46Otherwiseusemagneticbearing46">If enabled use true bearing. Otherwise use magnetic bearing.</string>
@@ -83,6 +84,7 @@
   <string formatted="false" name="Vernacular_P0_Speedvalue">Speed value</string>
   <string formatted="false" name="Vernacular_P0_Start">Start</string>
   <string formatted="false" name="Vernacular_P0_Startanyway">Start anyway</string>
+  <string formatted="false" name="Vernacular_P0_StartingLocation">Starting Location</string>
   <string formatted="false" name="Vernacular_P0_Street">Street</string>
   <string formatted="false" name="Vernacular_P0_Tasks">Tasks</string>
   <string formatted="false" name="Vernacular_P0_Text">Text</string>
