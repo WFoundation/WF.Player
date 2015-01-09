@@ -40,9 +40,13 @@ namespace WF.Player
 		{
 			double distance = (double)value;
 
-			if (double.IsNaN(distance))
+			if (double.IsPositiveInfinity(distance))
 			{
-				return Catalog.GetString("Unknown");
+				return Catalog.GetString("Here");
+			}
+			else if (double.IsNegativeInfinity(distance) || double.IsNaN(distance))
+			{
+				return " "; //Catalog.GetString("Unknown");
 			}
 			else
 			{

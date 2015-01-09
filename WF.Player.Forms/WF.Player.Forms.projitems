@@ -96,6 +96,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PullToRefreshListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeDetailMapView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\MapOrientation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DirectionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />

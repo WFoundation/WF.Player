@@ -31,7 +31,7 @@ namespace WF.Player
 		/// <summary>
 		/// Bindable property for direction.
 		/// </summary>
-		public static readonly BindableProperty DirectionProperty = BindableProperty.Create<DirectionBarPage, double>(p => p.Direction, double.NaN);
+		public static readonly BindableProperty DirectionProperty = BindableProperty.Create<DirectionBarPage, double>(p => p.Direction, double.PositiveInfinity);
 
 		/// <summary>
 		/// The distance property.
@@ -41,7 +41,7 @@ namespace WF.Player
 		/// <summary>
 		/// The distance text property.
 		/// </summary>
-		public static readonly BindableProperty DistanceTextProperty = BindableProperty.Create<DirectionBarPage, string>(p => p.DistanceText, Catalog.GetString("Unknown"));
+		public static readonly BindableProperty DistanceTextProperty = BindableProperty.Create<DirectionBarPage, string>(p => p.DistanceText, " "); //Catalog.GetString("Unknown"));
 
 		/// <summary>
 		/// The size of the direction.
@@ -119,17 +119,12 @@ namespace WF.Player
 
 			layoutDirection = new StackLayout() 
 			{
-				BackgroundColor = Color.Transparent,
-				Orientation = StackOrientation.Vertical,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-				Spacing = 0,
-				Padding = new Thickness(0, 0, 0, 0),
-				IsClippedToBounds = false,
+//				VerticalOptions = LayoutOptions.FillAndExpand,
+				Padding = 0,
 			};
 
 			direction = new DirectionArrow() 
 			{
-				BackgroundColor = Color.Transparent,
 				CircleColor = App.Colors.DirectionBackground,
 				ArrowColor = App.Colors.DirectionColor,
 				HeightRequest = DirectionSize,
@@ -150,14 +145,17 @@ namespace WF.Player
 
 			relativeLayout.Children.Add(
 				layoutDirection,
-				Constraint.RelativeToParent((parent) =>
-					{ 
-						return parent.Width - DirectionSize - 4; 
-					}),
-				Constraint.RelativeToParent((parent) =>
-					{ 
-						return parent.Height - layoutDirection.Height - 4; 
-					}));
+				Constraint.RelativeToParent((parent) => parent.Width - DirectionSize - 4),
+				Constraint.RelativeToParent((parent) => parent.Height - layoutDirection.Height - 4));
+
+			// Do this, because Xamarin.Forms don't update the relative layout after calculationg the size of the direction stack.
+			layoutDirection.PropertyChanged += (object sender, System.ComponentModel.PropertyChangedEventArgs e) => {
+				if(e.PropertyName == "Height")
+				{
+					relativeLayout.ForceLayout();
+				}
+			};
+
 		}
 
 		#endregion

@@ -20,10 +20,8 @@ namespace WF.Player
 {
 	using System;
 	using System.Collections.Generic;
-	using System.IO;
 	using Vernacular;
 	using WF.Player.Controls;
-	using WF.Player.Core;
 	using Xamarin.Forms;
 
 	/// <summary>

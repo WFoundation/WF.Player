@@ -204,10 +204,10 @@ namespace WF.Player
 							};
 
 						// Remove check location from screen 
-						App.Navigation.PopAsync();
+						App.Navigation.PopAsync(false);
 
 						// Push main view to screen
-						await App.Navigation.CurrentPage.Navigation.PushModalAsync(App.GameNavigation);
+						await App.Navigation.CurrentPage.Navigation.PushModalAsync(App.GameNavigation, true);
 
 						// Remove check location from screen 
 //						App.Navigation.Navigation.RemovePage(App.Navigation.Navigation.NavigationStack[App.Navigation.Navigation.NavigationStack.Count-1]);

@@ -31,6 +31,7 @@ namespace WF.Player.Controls.Droid
 		Paint _paintArrow;
 		Paint _paintCircle;
 		global::Android.Graphics.Path _pathArrow;
+		global::Android.Graphics.Path _pathUnknown;
 		global::Android.Graphics.Path _pathInside;
 		global::Android.Views.View _view;
 		float _centerX;
@@ -49,6 +50,8 @@ namespace WF.Player.Controls.Droid
 			_paintArrow.SetStyle (Paint.Style.FillAndStroke);
 
 			UpdatePathInside ();
+
+			UpdatePathUnknown ();
 		}
 
 		/// <summary>
@@ -59,11 +62,14 @@ namespace WF.Player.Controls.Droid
 		{
 			base.OnElementChanged (e);
 
-			// Set a normal view as underlaying control
-			_view = new global::Android.Views.View (Context);
-			_view.BringToFront ();
-			_view.SetWillNotCacheDrawing (true);
-			SetNativeControl (_view);
+			if (e.OldElement == null)
+			{
+				// Set a normal view as underlaying control
+				_view = new global::Android.Views.View(Context);
+				_view.BringToFront();
+				_view.SetWillNotCacheDrawing(true);
+				SetNativeControl(_view);
+			}
 		}
 
 		public override void Draw (Canvas canvas)
@@ -72,10 +78,18 @@ namespace WF.Player.Controls.Droid
 
 			// Draw
 			canvas.DrawCircle (_centerX, _centerY, _centerX, _paintCircle);
-			if (((DirectionArrow)Element).IsInside)
-				canvas.DrawPath (_pathInside, _paintArrow);
+			if (((DirectionArrow)Element).IsInside || double.IsNegativeInfinity(((DirectionArrow)Element).Direction))
+			{
+				canvas.DrawPath(_pathInside, _paintArrow);
+			}
+			else if (double.IsPositiveInfinity(((DirectionArrow)Element).Direction))
+			{
+				canvas.DrawPath(_pathUnknown, _paintArrow);
+			}
 			else if (_pathArrow != null)
-				canvas.DrawPath (_pathArrow, _paintArrow);
+			{
+				canvas.DrawPath(_pathArrow, _paintArrow);
+			}
 		}
 
 		protected override void OnElementPropertyChanged (object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -212,6 +226,27 @@ namespace WF.Player.Controls.Droid
 			_pathInside.LineTo (x1, y2);
 		}
 
+		void UpdatePathUnknown()
+		{
+			if (_size <= 0)
+				return;
+
+			if (_pathUnknown == null)
+				_pathUnknown = new global::Android.Graphics.Path ();
+			else
+				_pathUnknown.Reset ();
+
+			float x1 = _centerX + _size * 0.4f;
+			float x2 = _centerX - _size * 0.4f;
+
+			float y1 = _centerY + _size * 0.4f;
+			float y2 = _centerY - _size * 0.4f;
+
+			_pathUnknown.MoveTo(x1, y1);
+			_pathUnknown.LineTo(x2, y2);
+			_pathUnknown.MoveTo(x1, y2);
+			_pathUnknown.LineTo(x2, y1);
+		}
 		#endregion
 	}
 }

@@ -23,12 +23,13 @@ using System.Drawing;
 using MonoTouch.CoreGraphics;
 using WF.Player.Controls;
 using WF.Player.Controls.iOS;
+using System.Collections.Generic;
 
 [assembly: ExportRendererAttribute(typeof(DirectionArrow), typeof(DirectionArrowRenderer))]
 
 namespace WF.Player.Controls.iOS
 {
-	public class DirectionArrowRenderer :  ViewRenderer
+	public class DirectionArrowRenderer : ViewRenderer
 	{
 		public override void Draw (System.Drawing.RectangleF rect)
 		{
@@ -68,26 +69,60 @@ namespace WF.Player.Controls.iOS
 				}
 			}
 
-			if (double.IsNaN (dv.Direction)) {
+			// Check, if we inside of the zone
+			if (double.IsNegativeInfinity(dv.Direction)) {
 				// Draw circle, because we are here
 				using (var context = UIGraphics.GetCurrentContext ()) {
 					context.SetFillColor (dv.ArrowColor.ToCGColor ());
 					context.SetStrokeColor (dv.ArrowColor.ToCGColor ());
-					context.SetLineWidth (0.0f);
+					context.SetLineWidth (5.0f);
 					// Draw circle
 					using (CGPath path = new CGPath ()) {
-
-						// Set colors and line widhts
-						context.SetLineWidth (0.0f);
-						context.SetStrokeColor (dv.CircleColor.ToCGColor ());
-						context.SetFillColor (dv.CircleColor.ToCGColor ());
 						// Draw circle
 						path.AddArc (centerX, centerY, centerX * 0.3f, 0.0f, (float)Math.PI * 2.0f, true);
 						path.CloseSubpath ();
 						// Draw path
 						context.AddPath (path);
 						context.DrawPath (CGPathDrawingMode.FillStroke);
+					}
+				}
 
+				return;
+			}
+
+			// Check, if the direction is invalid
+			if (double.IsPositiveInfinity(dv.Direction)) {
+				// Draw cross, because direction is invalid
+				using (var context = UIGraphics.GetCurrentContext()) {
+					context.SetFillColor(dv.ArrowColor.ToCGColor());
+					context.SetStrokeColor(dv.ArrowColor.ToCGColor());
+					context.SetLineWidth(12.0f);
+					context.SetLineCap(CGLineCap.Round);
+					// Draw circle
+					using (CGPath path = new CGPath ()) {
+						// Draw cross
+						var points = new List<PointF>(2);
+
+						points.Add(new PointF(centerX - centerX * 0.4f, centerY - centerY * 0.4f));
+						points.Add(new PointF(centerX + centerX * 0.4f, centerY + centerY * 0.4f));
+
+						path.AddLines(points.ToArray());
+
+						path.CloseSubpath ();
+						context.AddPath (path);
+
+						points = new List<PointF>(2);
+
+						points.Add(new PointF(centerX - centerX * 0.4f, centerY + centerY * 0.4f));
+						points.Add(new PointF(centerX + centerX * 0.4f, centerY - centerY * 0.4f));
+
+						path.AddLines(points.ToArray());
+
+						path.CloseSubpath ();
+						context.AddPath (path);
+
+						context.SetLineCap(CGLineCap.Round);
+						context.DrawPath(CGPathDrawingMode.Stroke);
 					}
 				}
 

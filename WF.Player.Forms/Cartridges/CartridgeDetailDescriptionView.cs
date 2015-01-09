@@ -40,9 +40,9 @@ namespace WF.Player
 			Title = Catalog.GetString("Description");
 
 			this.DirectionView.SetBinding(DirectionArrow.DirectionProperty, CartridgeDetailViewModel.DirectionPropertyName);
-			this.DistanceView.SetBinding(Label.TextProperty, CartridgeDetailViewModel.DistancePropertyName, BindingMode.OneWay, new ConverterToDistance());
+			this.DistanceView.SetBinding(Label.TextProperty, CartridgeDetailViewModel.DistanceTextPropertyName, BindingMode.OneWay);
 
-			var scrollView = new PinchScrollView() 
+			var layoutScroll = new PinchScrollView() 
 				{
 					Orientation = ScrollOrientation.Vertical,
 					Padding = 0,
@@ -54,8 +54,8 @@ namespace WF.Player
 			var layout = new StackLayout() 
 				{
 					Padding = 10,
-					VerticalOptions = LayoutOptions.FillAndExpand,
-					HorizontalOptions = LayoutOptions.FillAndExpand,
+//					VerticalOptions = LayoutOptions.FillAndExpand,
+//					HorizontalOptions = LayoutOptions.FillAndExpand,
 				};
 
 			var label = new Label() 
@@ -66,15 +66,31 @@ namespace WF.Player
 					VerticalOptions = LayoutOptions.FillAndExpand,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 				};
+
 			label.SetBinding(Label.TextProperty, CartridgeDetailViewModel.DescriptionPropertyName);
 
 			layout.Children.Add(label);
 
-			scrollView.Content = layout;
+			layoutScroll.Content = layout;
 
-			((StackLayout)ContentLayout).Children.Add(scrollView);
+			((StackLayout)ContentLayout).Children.Add(layoutScroll);
 		}
 
 		#endregion
+
+		/// <summary>
+		/// Raises the appearing event.
+		/// </summary>
+		/// <remarks>
+		/// Did this, because layout isn't updated and because of this, direction arrow isn't visible.
+		/// </remarks>
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+
+			var bounds = this.Content.Bounds;
+//			bounds.Height += 0.0001;
+			this.Content.Layout(bounds);
+		}
 	}
 }

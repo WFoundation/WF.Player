@@ -23,6 +23,7 @@ namespace WF.Player
 	using System.IO;
 	using WF.Player.Core;
 	using Xamarin.Forms;
+	using Vernacular;
 
 	/// <summary>
 	/// Game main cell view model.
@@ -183,7 +184,14 @@ namespace WF.Player
 		{ 
 			get
 			{
-				return this.direction;
+				if (uiObject is Zone && ((Zone)uiObject).State == PlayerZoneState.Inside)
+				{
+					return double.NegativeInfinity;
+				}
+				else
+				{
+					return this.direction;
+				}
 			}
 
 			set
@@ -211,7 +219,14 @@ namespace WF.Player
 		{ 
 			get
 			{
-				return this.distance;
+				if (uiObject is Zone && ((Zone)uiObject).State == PlayerZoneState.Inside)
+				{
+					return double.PositiveInfinity;
+				}
+				else
+				{
+					return this.distance;
+				}
 			}
 
 			set

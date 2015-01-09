@@ -21,12 +21,18 @@ namespace WF.Player.Controls
 	using System;
 	using Vernacular;
 	using Xamarin.Forms;
+	using WF.Player.Data;
 
 	/// <summary>
 	/// Direction arrow.
 	/// </summary>
 	public class DirectionArrow : View
 	{
+		/// <summary>
+		/// Bindable property for distance.
+		/// </summary>
+		public static readonly BindableProperty DirectionInfoProperty = BindableProperty.Create<DirectionArrow, DirectionInfo>(p => p.DirectionInfo, null);
+
 		/// <summary>
 		/// Bindable property for distance.
 		/// </summary>
@@ -40,7 +46,7 @@ namespace WF.Player.Controls
 		/// <summary>
 		/// Binable property for distance text.
 		/// </summary>
-		public static readonly BindableProperty DistanceTextProperty = BindableProperty.Create<DirectionArrow, string>(p => p.DistanceText, Catalog.GetString("Unknown"));
+		public static readonly BindableProperty DistanceTextProperty = BindableProperty.Create<DirectionArrow, string>(p => p.DistanceText, " "); //Catalog.GetString("Unknown"));
 
 		/// <summary>
 		/// Bindable property for inside.
@@ -58,6 +64,27 @@ namespace WF.Player.Controls
 		public static readonly BindableProperty ArrowColorProperty = BindableProperty.Create<DirectionArrow, Color>(p => p.ArrowColor, Color.Transparent);
 
 		#region Properties
+ 
+		#region DirectionInfo
+
+		/// <summary>
+		/// Gets or sets the direction info.
+		/// </summary>
+		/// <value>The direction.</value>
+		public DirectionInfo DirectionInfo
+		{
+			get
+			{
+				return (DirectionInfo)GetValue(DirectionInfoProperty);
+			}
+
+			set
+			{
+				SetValue(DirectionInfoProperty, value);
+			}
+		}
+
+		#endregion
 
 		#region Direction
 
@@ -115,13 +142,13 @@ namespace WF.Player.Controls
 				{
 					return Catalog.GetString("Inside");
 				}
-				else if (!double.IsNaN(Direction))
+				else if (!double.IsPositiveInfinity(Direction))
 				{
 					return 	Converter.NumberToBestLength(Distance);
 				}
 				else
 				{
-					return Catalog.GetString("Unknown");
+					return " "; //Catalog.GetString("Unknown");
 				}
 			}
 		}

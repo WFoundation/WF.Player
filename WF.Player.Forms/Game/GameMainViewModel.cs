@@ -1254,7 +1254,7 @@ namespace WF.Player
 				foreach (var o in listItems)
 				{
 					o.ShowIcon = this.hasListIcons;
-					o.ShowDirection = hasDirections & o.UIObject.ObjectLocation != null;
+					o.ShowDirection = hasDirections && (o.UIObject.ObjectLocation != null || o.UIObject is Zone);
 				}
 
 				this.gameMainList = listItems;

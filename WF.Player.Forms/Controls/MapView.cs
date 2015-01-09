@@ -86,6 +86,14 @@ namespace WF.Player.Controls
 			};
 			mapButtonType.GestureRecognizers.Add(tapRecognizer);
 
+			// Do this, because Xamarin.Forms don't update the relative layout after calculationg the size of the direction stack.
+			mapButtonType.PropertyChanged += (object sender, System.ComponentModel.PropertyChangedEventArgs e) => {
+				if(e.PropertyName == "Height" || e.PropertyName == "Width")
+				{
+					layout.ForceLayout();
+				}
+			};
+
 			layout = new RelativeLayout() 
 			{
 				HorizontalOptions = LayoutOptions.FillAndExpand,

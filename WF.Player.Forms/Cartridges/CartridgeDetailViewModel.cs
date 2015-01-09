@@ -140,7 +140,7 @@ namespace WF.Player
 			this.geoMathHelper = new GeoMathHelper();
 			this.target = new ZonePoint(cartridgeTag.Cartridge.StartingLocationLatitude, cartridgeTag.Cartridge.StartingLocationLongitude, 0);
 
-			Direction = double.NaN;
+			Direction = double.PositiveInfinity;
 			Distance = double.NaN;
 
 			if (App.GPS.LastKnownPosition != null)
@@ -291,13 +291,13 @@ namespace WF.Player
 		{
 			get
 			{
-				if (!double.IsNaN(Direction))
+				if (!double.IsPositiveInfinity(Direction))
 				{
 					return 	Converter.NumberToBestLength(Distance);
 				}
 				else
 				{
-					return Catalog.GetString("Unknown");
+					return " "; //Catalog.GetString("Unknown");
 				}
 			}
 		}
