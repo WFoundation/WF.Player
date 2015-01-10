@@ -55,6 +55,7 @@ namespace WF.Player
 					Padding = 0,
 					VerticalOptions = LayoutOptions.FillAndExpand,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
+					BindingContext = mapViewModel,
 				};
 
 			if (mapViewModel.Map.VisibleRegion == null)
