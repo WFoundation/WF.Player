@@ -19,6 +19,7 @@ using WF.Player.Core;
 using WF.Player.Core.Formats;
 using Acr.XamForms.Mobile;
 using PCLStorage;
+using WF.Player.Controls;
 
 namespace WF.Player
 {
@@ -94,7 +95,7 @@ namespace WF.Player
 		/// <summary>
 		/// Navigation page for outside of game navigation.
 		/// </summary>
-		public static NavigationPage Navigation;
+		public static ExtendedNavigationPage Navigation;
 
 		/// <summary>
 		/// Navigation page for inside of game navigation.
@@ -354,7 +355,7 @@ namespace WF.Player
 			cartridges.SyncFromStore();
 
 			// Create content page for cartridge list
-			App.Navigation = new NavigationPage(new CartridgeListPage(cartridges)) 
+			App.Navigation = new ExtendedNavigationPage(new CartridgeListPage(cartridges), true) 
 				{
 					BackgroundColor = App.Colors.Background,
 					BarTextColor = App.Colors.BarText,

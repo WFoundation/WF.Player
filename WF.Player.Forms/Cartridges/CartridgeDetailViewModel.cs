@@ -15,6 +15,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Controls;
 
 namespace WF.Player
 {
@@ -355,7 +356,15 @@ namespace WF.Player
 					{
 						CartridgeSavegame cs = null;
 
-						App.Navigation.PushAsync(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, cs, App.Navigation.CurrentPage)));
+						// Create a new navigation page for the game
+						App.GameNavigation = new ExtendedNavigationPage(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, cs, App.Navigation.CurrentPage)), false)
+							{
+								BarBackgroundColor = App.Colors.Bar,
+								BarTextColor = App.Colors.BarText,
+							};
+						App.Navigation.CurrentPage.Navigation.PushModalAsync(App.GameNavigation);
+
+						App.GameNavigation.ShowBackButton = true;
 					});
 			}
 		}
@@ -374,7 +383,17 @@ namespace WF.Player
 			{
 				return new Xamarin.Forms.Command((sender) =>
 					{
-						App.Navigation.PushAsync(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, null, App.Navigation.CurrentPage)));
+						// Create a new navigation page for the game
+						App.GameNavigation = new ExtendedNavigationPage(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, null, App.Navigation.CurrentPage)), false)
+							{
+								BarBackgroundColor = App.Colors.Bar,
+								BarTextColor = App.Colors.BarText,
+								ShowBackButton = true,
+							};
+
+						App.Navigation.CurrentPage.Navigation.PushModalAsync(App.GameNavigation);
+
+						App.GameNavigation.ShowBackButton = true;
 					});
 			}
 		}

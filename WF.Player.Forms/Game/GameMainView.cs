@@ -404,104 +404,11 @@ namespace WF.Player
 				{
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.FillAndExpand,
-					HeightRequest = 250,
 				};
+
 			mapView.SetBinding(MapView.IsVisibleProperty, GameMainViewModel.IsMapSelectedPropertyName);
 
 			gameMainViewModel.MapViewModel = mapViewModel;
-
-//			// Create position entries at bottom of screen
-//			var latitude = new Label() 
-//			{
-//				HorizontalOptions = LayoutOptions.FillAndExpand,
-//				XAlign = TextAlignment.Start,
-//				TextColor = App.Colors.Text,
-//			};
-//			latitude.SetBinding(Label.TextProperty, GameMainViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToLatitude());
-//
-//			var longitude = new Label() 
-//			{
-//				HorizontalOptions = LayoutOptions.FillAndExpand,
-//				XAlign = TextAlignment.Start,
-//				TextColor = App.Colors.Text,
-//			};
-//			longitude.SetBinding(Label.TextProperty, GameMainViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToLongitude());
-//
-//			var altitude = new Label() 
-//			{
-//				XAlign = TextAlignment.End,
-//				TextColor = App.Colors.Text,
-//			};
-//			altitude.SetBinding(Label.TextProperty, GameMainViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToAltitude());
-//
-//			var accuracy = new Label() 
-//			{
-//				XAlign = TextAlignment.End,
-//				TextColor = App.Colors.Text,
-//			};
-//			accuracy.SetBinding(Label.TextProperty, GameMainViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToAccuracy());
-//
-//			var imageAltitude = new Image() 
-//			{
-//				WidthRequest = 16,
-//				HeightRequest = 16,
-//			};
-//			imageAltitude.SetBinding(Image.SourceProperty, GameMainViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToAltitudeVisibility());
-//
-//			var imageAccuracy = new Image() 
-//			{
-//				WidthRequest = 16,
-//				HeightRequest = 16,
-//			};
-//			imageAccuracy.SetBinding(Image.SourceProperty, GameMainViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToAccuracyVisibility());
-//
-//			var layoutBottomVert1 = new StackLayout() 
-//			{
-//				Orientation = StackOrientation.Vertical,
-//				HorizontalOptions = LayoutOptions.FillAndExpand,
-//				VerticalOptions = LayoutOptions.Center,
-//				Padding = new Thickness(10, 2),
-//				Spacing = 0,
-//			};
-//
-//			layoutBottomVert1.Children.Add(latitude);
-//			layoutBottomVert1.Children.Add(longitude);
-//
-//			var layoutBottomVert2 = new StackLayout() 
-//			{
-//				Orientation = StackOrientation.Vertical,
-//				HorizontalOptions = LayoutOptions.End,
-//				VerticalOptions = LayoutOptions.Center,
-//				Padding = new Thickness(0, 2),
-//				Spacing = 0,
-//			};
-//
-//			layoutBottomVert2.Children.Add(altitude);
-//			layoutBottomVert2.Children.Add(accuracy);
-//
-//			var layoutBottomVert3 = new StackLayout() 
-//			{
-//				Orientation = StackOrientation.Vertical,
-//				HorizontalOptions = LayoutOptions.End,
-//				VerticalOptions = LayoutOptions.Center,
-//				Padding = new Thickness(10, 2),
-//				Spacing = 4,
-//			};
-//
-//			layoutBottomVert3.Children.Add(imageAltitude);
-//			layoutBottomVert3.Children.Add(imageAccuracy);
-//
-//			var layoutBottomHori = new StackLayout() 
-//			{
-//				Orientation = StackOrientation.Horizontal,
-//				HorizontalOptions = LayoutOptions.FillAndExpand,
-//				Spacing = 0,
-//			};
-//			layoutBottomHori.SetBinding(StackLayout.IsVisibleProperty, GameMainViewModel.IsMapSelectedPropertyName);
-//
-//			layoutBottomHori.Children.Add(layoutBottomVert1);
-//			layoutBottomHori.Children.Add(layoutBottomVert2);
-//			layoutBottomHori.Children.Add(layoutBottomVert3);
 
 			var layout = new StackLayout() 
 				{
@@ -512,7 +419,6 @@ namespace WF.Player
 				};
 
 			layout.Children.Add(listLayout);
-//			layout.Children.Add(layoutBottomHori);
 			layout.Children.Add(mapView);
 
 			#if __IOS__
@@ -551,7 +457,7 @@ namespace WF.Player
 		{
 			base.OnAppearing();
 
-			this.SetBinding(GameMainView.TitleProperty, GameMainViewModel.TitelPropertyName);
+//			this.SetBinding(GameMainView.TitleProperty, GameMainViewModel.TitelPropertyName);
 		}
 
 		/// <summary>

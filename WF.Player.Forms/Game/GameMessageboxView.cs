@@ -36,6 +36,8 @@ namespace WF.Player
 
 			NavigationPage.SetHasBackButton(this, false);
 
+			App.GameNavigation.ShowBackButton = false;
+
 			#if __HTML__
 
 			var webView = new CustomWebView() 

@@ -15,6 +15,7 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Controls;
 
 namespace WF.Player
 {
@@ -196,20 +197,13 @@ namespace WF.Player
 						var gameMainViewModel = new GameMainViewModel(App.Game);
 						var gameMainView = new GameMainView(gameMainViewModel);
 
-						// Create a new navigation page for the game
-						App.GameNavigation = new ExtendedNavigationPage(gameMainView)
-							{
-								BarBackgroundColor = App.Colors.Bar,
-								BarTextColor = App.Colors.BarText,
-							};
-
 						// Remove check location from screen 
-						App.Navigation.PopAsync(false);
+//						App.Navigation.PopAsync(false);
 
 						// Push main view to screen
-						await App.Navigation.CurrentPage.Navigation.PushModalAsync(App.GameNavigation, true);
+						await App.GameNavigation.PushAsync(gameMainView, false);
 
-						// Remove check location from screen 
+						// Remove check location from screen
 //						App.Navigation.Navigation.RemovePage(App.Navigation.Navigation.NavigationStack[App.Navigation.Navigation.NavigationStack.Count-1]);
 
 						gameMainViewModel.Refresh();

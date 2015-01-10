@@ -16,8 +16,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.ComponentModel;
 
-namespace WF.Player
+namespace WF.Player.Controls
 {
 	using System.Collections;
 	using Xamarin.Forms;
@@ -42,22 +43,29 @@ namespace WF.Player
 		/// </summary>
 		private object syncRoot = new object();
 
+		private bool showBackButton;
+
 		#region Constructor
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="WF.Player.ExtendedNavigationPage"/> class.
+		/// Initializes a new instance of the <see cref="WF.Player.Controls.ExtendedNavigationPage"/> class.
 		/// </summary>
-		public ExtendedNavigationPage() : this(null)
+		/// <param name="animation">If set to <c>true</c> animation.</param>
+		public ExtendedNavigationPage(bool animation = true) : this(null, animation)
 		{
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="WF.Player.ExtendedNavigationPage"/> class.
+		/// Initializes a new instance of the <see cref="WF.Player.Controls.ExtendedNavigationPage"/> class.
 		/// </summary>
-		/// <param name="page">Initial page to push.</param>
-		public ExtendedNavigationPage(Page page) : base(page)
+		/// <param name="page">Page.</param>
+		/// <param name="animation">If set to <c>true</c> animation.</param>
+		public ExtendedNavigationPage(Page page, bool animation = true) : base(page)
 		{
 			stack = new Stack(8);
+
+			Animation = animation;
+			showBackButton = false;
 
 			this.Popped += HandlePopped;
 			this.PoppedToRoot += HandlePoppedToRoot;
@@ -75,6 +83,23 @@ namespace WF.Player
 		#endregion
 
 		#region Properties
+
+		public bool Animation { get; private set; }
+
+		public bool ShowBackButton
+		{ 
+			get
+			{
+				return showBackButton;
+			}
+
+			set
+			{
+				showBackButton = value;
+
+				OnPropertyChanged("ShowBackButton");
+			}
+		}
 
 		/// <summary>
 		/// Gets a value indicating whether this <see cref="WF.Player.ExtendedNavigationPage"/> is transition.

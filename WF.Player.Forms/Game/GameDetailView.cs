@@ -38,6 +38,8 @@ namespace WF.Player
 
 			NavigationPage.SetHasBackButton(this, true);
 
+			App.GameNavigation.ShowBackButton = true;
+
 			this.SetBinding(GameDetailView.TitleProperty, GameDetailViewModel.NamePropertyName);
 
 			// Set binding for direction

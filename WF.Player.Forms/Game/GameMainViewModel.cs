@@ -304,20 +304,25 @@ namespace WF.Player
 					{
 						case ScreenType.Main:
 							NotifyPropertyChanged(IsOverviewSelectedPropertyName);
+							App.GameNavigation.ShowBackButton = false;
 							break;
 						case ScreenType.Locations:
 						case ScreenType.Items:
 							NotifyPropertyChanged(IsYouSeeSelectedPropertyName);
+							App.GameNavigation.ShowBackButton = true;
 							break;
 						case ScreenType.Inventory:
 							NotifyPropertyChanged(IsInventorySelectedPropertyName);
+							App.GameNavigation.ShowBackButton = true;
 							break;
 						case ScreenType.Tasks:
 							NotifyPropertyChanged(IsTasksSelectedPropertyName);
+							App.GameNavigation.ShowBackButton = true;
 							break;
 						case ScreenType.Map:
 							NotifyPropertyChanged(IsMapSelectedPropertyName);
 							NotifyPropertyChanged(IsMapNotSelectedPropertyName);
+							App.GameNavigation.ShowBackButton = true;
 							break;
 					}
 

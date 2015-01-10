@@ -117,7 +117,7 @@ namespace WF.Player
 				var cartridgeTag = (CartridgeTag)e.SelectedItem;
 				var cartridgeDetailPage = new CartridgeDetailPage(new CartridgeDetailViewModel(cartridgeTag));
 
-				await App.Navigation.PushAsync(cartridgeDetailPage);
+				await App.Navigation.PushAsync(cartridgeDetailPage, true);
 
 				// Clear selection, so it is possible later select the same item
 				list.SelectedItem = null;

@@ -611,6 +611,7 @@ namespace WF.Player
 					// Only delete MessageBox, if the next isn't a MessageBox
 					if (!(App.GameNavigation.CurrentPage is GameMainView))
 					{
+						// TODO: ShowBackButton?
 						App.GameNavigation.PopAsync();
 					}
 
@@ -629,6 +630,7 @@ namespace WF.Player
 				{
 					if (!(App.GameNavigation.CurrentPage is GameMainView))
 					{
+						// TODO: ShowBackButton?
 						App.GameNavigation.PopAsync();
 					}
 
@@ -641,6 +643,7 @@ namespace WF.Player
 				{
 					if (!(App.GameNavigation.CurrentPage is GameMainView))
 					{
+						// TODO: ShowBackButton?
 						App.GameNavigation.PopAsync();
 					}
 
@@ -677,7 +680,22 @@ namespace WF.Player
 
 						if (!(App.GameNavigation.CurrentPage is GameMainView))
 						{
+							// Check, if new page is main screen
+							if (App.GameNavigation.CurrentPage.Navigation.NavigationStack.Count > 1
+							    && App.GameNavigation.CurrentPage.Navigation.NavigationStack[App.GameNavigation.CurrentPage.Navigation.NavigationStack.Count - 2] is GameMainView
+							    && ((GameMainViewModel)((GameMainView)App.GameNavigation.CurrentPage.Navigation.NavigationStack[App.GameNavigation.CurrentPage.Navigation.NavigationStack.Count - 2]).BindingContext).ActiveScreen == ScreenType.Main)
+							{
+								App.GameNavigation.ShowBackButton = false;
+							}
+							else
+							{
+								App.GameNavigation.ShowBackButton = true;
+							}
 							App.GameNavigation.PopAsync();
+						}
+						else if (((GameMainViewModel)((GameMainView)App.GameNavigation.CurrentPage).BindingContext).ActiveScreen != ScreenType.Main)
+						{
+							ShowScreen(ScreenType.Main, null);
 						}
 
 						// Return and wait for popped event
@@ -694,6 +712,7 @@ namespace WF.Player
 					// Check, if main view is visible
 					if (!(App.GameNavigation.CurrentPage is GameMainView))
 					{
+						App.GameNavigation.ShowBackButton = false;
 						App.GameNavigation.PopToRootAsync();
 
 						// Return and wait for popped event
@@ -702,21 +721,25 @@ namespace WF.Player
 
 					if (screen.ScreenType == ScreenType.Main)
 					{
+						App.GameNavigation.ShowBackButton = false;
 						((GameMainViewModel)App.GameNavigation.CurrentPage.BindingContext).ActiveScreen = ScreenType.Main;
 					}
 
 					if (screen.ScreenType == ScreenType.Locations || screen.ScreenType == ScreenType.Items)
 					{
+						App.GameNavigation.ShowBackButton = true;
 						((GameMainViewModel)App.GameNavigation.CurrentPage.BindingContext).ActiveScreen = ScreenType.Locations;
 					}
 
 					if (screen.ScreenType == ScreenType.Inventory)
 					{
+						App.GameNavigation.ShowBackButton = true;
 						((GameMainViewModel)App.GameNavigation.CurrentPage.BindingContext).ActiveScreen = ScreenType.Inventory;
 					}
 
 					if (screen.ScreenType == ScreenType.Tasks)
 					{
+						App.GameNavigation.ShowBackButton = true;
 						((GameMainViewModel)App.GameNavigation.CurrentPage.BindingContext).ActiveScreen = ScreenType.Tasks;
 					}
 
@@ -788,6 +811,8 @@ namespace WF.Player
 
 							this.screenQueue.Dequeue();
 
+							// Bring detail view on screen
+							App.GameNavigation.ShowBackButton = true;
 							App.GameNavigation.PushAsync(gameDetailView);
 
 							// Return and wait for pushed event
@@ -840,6 +865,7 @@ namespace WF.Player
 							this.screenQueue.Dequeue();
 
 							// Bring messagebox to screen
+							App.GameNavigation.ShowBackButton = false;
 							App.GameNavigation.PushAsync(gameMessageboxView);
 
 							// Return and wait for pushed event
@@ -889,6 +915,7 @@ namespace WF.Player
 							this.screenQueue.Dequeue();
 
 							// Bring input to screen
+							App.GameNavigation.ShowBackButton = false;
 							App.GameNavigation.PushAsync(gameInputView);
 
 							// Return and wait for pushed event

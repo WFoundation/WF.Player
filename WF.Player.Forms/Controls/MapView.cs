@@ -35,7 +35,7 @@ namespace WF.Player.Controls
 		{
 			MapSpan span;
 
-			this.BindingContext = mapViewModel;
+//			this.BindingContext = mapViewModel;
 
 			map = new ExtendedMap(mapViewModel.VisibleRegion) 
 				{
