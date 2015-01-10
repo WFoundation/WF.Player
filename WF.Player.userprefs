@@ -1,21 +1,28 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Controls/AnimationNavigationPage.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6Plus.8.1" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.iOS/Renderer/ExtendedNavigationPageRenderer.cs">
     <Files>
-      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="19" Column="19" />
+      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="44" Column="44" />
       <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/ExtendedNavigationPageRenderer.cs" Line="27" Column="27" />
-      <File FileName="WF.Player.Forms/Controls/AnimationNavigationPage.cs" Line="78" Column="78" />
+      <File FileName="WF.Player.iOS/Renderer/ExtendedNavigationPageRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Controls/ExtendedNavigationPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Data/ObservableObject.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="38" Column="38" />
+      <File FileName="WF.Player.Forms/App.cs" Line="7" Column="7" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailBasePage.cs" Line="3" Column="3" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameCheckLocationView.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameCheckLocationViewModel.cs" Line="22" Column="22" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailPage.cs" Line="4" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="WF.Player.Forms" expanded="True">
-            <Node name="Controls" expanded="True" selected="True" />
-          </Node>
           <Node name="WF.Player.iOS" expanded="True">
             <Node name="Renderer" expanded="True" />
+            <Node name="Resources" expanded="True" selected="True" />
           </Node>
         </State>
       </Pad>

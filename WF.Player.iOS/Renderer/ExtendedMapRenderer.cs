@@ -50,11 +50,20 @@ namespace WF.Player.Controls.iOS
 		{
 			base.OnElementChanged(e);
 
+			if (e.NewElement == null)
+			{
+				return;
+			}
 
 			base.SetNativeControl(new MKMapView(RectangleF.Empty));
 
 			ExtendedMap mapModel = (ExtendedMap)base.Element;
 			MKMapView mkMapView = (MKMapView)base.Control;
+
+			if (mapModel == null)
+			{
+				return;
+			}
 
 			mkMapView.RegionChanged += delegate(object s, MKMapViewChangeEventArgs a)
 				{

@@ -201,10 +201,11 @@ namespace WF.Player
 //						App.Navigation.PopAsync(false);
 
 						// Push main view to screen
+						App.GameNavigation.ShowBackButton = false;
 						await App.GameNavigation.PushAsync(gameMainView, false);
 
 						// Remove check location from screen
-//						App.Navigation.Navigation.RemovePage(App.Navigation.Navigation.NavigationStack[App.Navigation.Navigation.NavigationStack.Count-1]);
+						App.GameNavigation.Navigation.RemovePage(App.GameNavigation.Navigation.NavigationStack[0]);
 
 						gameMainViewModel.Refresh();
 
