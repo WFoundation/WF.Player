@@ -109,6 +109,15 @@ namespace WF.Player.Controls.iOS
 		{
 			var item = NavigationBar.Items.Last();
 
+			// Do this, because Xamarin.Forms don't set the TintColor for the first time correct.
+			foreach (var navBarItem in NavigationBar.Items)
+			{
+				foreach (var navBarRightItem in navBarItem.RightBarButtonItems)
+				{
+					navBarRightItem.TintColor = App.Colors.Tint.ToUIColor();
+				}
+			}
+
 			if (((ExtendedNavigationPage)Element).ShowBackButton)
 			{
 				if (leftIconBarButtonItem == null)

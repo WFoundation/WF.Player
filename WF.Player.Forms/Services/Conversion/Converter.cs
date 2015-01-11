@@ -90,19 +90,15 @@ namespace WF.Player
 					{
 						result = string.Format("{0:0} ft", lengthInUnits);
 					}
-					else if (lengthInUnits < 10000.0)
+					else if (lengthInUnits < 5280.0)
 					{
 						result = string.Format("{0:0} ft", lengthInUnits);
 					}
-					else if (lengthInUnits < 100000.0)
-					{
-						result = string.Format("{0:0.000} mi", lengthInUnits / 5280.0);
-					}
-					else if (lengthInUnits < 1000000.0)
+					else if (lengthInUnits < 52800.0)
 					{
 						result = string.Format("{0:0.00} mi", lengthInUnits / 5280.0);
 					}
-					else if (lengthInUnits < 10000000.0)
+					else if (lengthInUnits < 528000.0)
 					{
 						result = string.Format("{0:0.0} mi", lengthInUnits / 5280.0);
 					}
@@ -115,11 +111,11 @@ namespace WF.Player
 				case UnitLength.NauticalMiles:
 					if (lengthInUnits < 10.0)
 					{
-						result = string.Format("{0:0.000} nm", lengthInUnits);
+						result = string.Format("{0:0.0} nm", lengthInUnits);
 					}
 					else if (lengthInUnits < 100.0)
 					{
-						result = string.Format("{0:0.00} nm", lengthInUnits);
+						result = string.Format("{0:0.0} nm", lengthInUnits);
 					}
 					else if (lengthInUnits < 1000.0)
 					{

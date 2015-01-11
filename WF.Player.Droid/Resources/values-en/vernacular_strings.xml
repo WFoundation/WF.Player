@@ -53,6 +53,7 @@
   <string formatted="false" name="Vernacular_P0_Map">Map</string>
   <string formatted="false" name="Vernacular_P0_Maptype">Maptype</string>
   <string formatted="false" name="Vernacular_P0_Mediumfilter">Medium filter</string>
+  <string formatted="false" name="Vernacular_P0_Menu">Menu</string>
   <string formatted="false" name="Vernacular_P0_N">N</string>
   <string formatted="false" name="Vernacular_P0_No">No</string>
   <string formatted="false" name="Vernacular_P0_Nodescriptionavailable">No description available</string>

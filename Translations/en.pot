@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-01-09 12:02+0100\n"
+"PO-Revision-Date: 2015-01-11 19:24+0100\n"
 "Last-Translator: Dirk Weltz <web@weltz-online.de>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -45,6 +45,7 @@ msgid "Both"
 msgstr "Both"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs:189
+#: WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs:190
 msgid "By"
 msgstr "By"
 
@@ -55,7 +56,7 @@ msgstr "By"
 #: WF.Player.Forms/Controls/MapViewModel.cs:305
 #: WF.Player.Forms/Game/GameMainView.cs:76
 #: WF.Player.Forms/Controls/MapViewModel.cs:226
-#: WF.Player.Forms/Controls/MapViewModel.cs:315
+#: WF.Player.Forms/Controls/MapViewModel.cs:311
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -74,6 +75,8 @@ msgstr "Choose"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:915
 #: WF.Player.Forms/Game/GameMainViewModel.cs:956
+#: WF.Player.Forms/Game/GameMainViewModel.cs:920
+#: WF.Player.Forms/Game/GameMainViewModel.cs:961
 msgid "Comment Savefile"
 msgstr "Comment Savefile"
 
@@ -117,6 +120,7 @@ msgstr "Details"
 
 #. East
 #: WF.Player.Forms/Services/Conversion/Converter.cs:160
+#: WF.Player.Forms/Services/Conversion/Converter.cs:156
 msgid "E"
 msgstr "E"
 
@@ -165,7 +169,6 @@ msgstr ""
 "For much fun with the cartridge, you should wait for a good accuracy of your "
 "GPS signal."
 
-#: WF.Player.Forms/Game/GameMainView.cs:71
 #: WF.Player.Forms/Game/GameMainView.cs:73
 msgid "Game Menu"
 msgstr "Game Menu"
@@ -200,7 +203,7 @@ msgid "History"
 msgstr "History"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:304
-#: WF.Player.Forms/Controls/MapViewModel.cs:314
+#: WF.Player.Forms/Controls/MapViewModel.cs:310
 msgid "Hybrid"
 msgstr "Hybrid"
 
@@ -224,6 +227,8 @@ msgstr "Inside"
 #: WF.Player.Forms/Game/GameMainViewModel.cs:216
 #: WF.Player.Forms/Game/GameMainViewModel.cs:625
 #: WF.Player.Forms/Game/GameMainViewModel.cs:1300
+#: WF.Player.Forms/Game/GameMainViewModel.cs:630
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1305
 msgid "Inventory"
 msgstr "Inventory"
 
@@ -241,6 +246,7 @@ msgstr "Light filter"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:100
 #: WF.Player.Forms/Game/GameMainViewModel.cs:656
+#: WF.Player.Forms/Game/GameMainViewModel.cs:661
 msgid "Loading..."
 msgstr "Loading..."
 
@@ -251,12 +257,13 @@ msgstr "Logs"
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:107
 #: WF.Player.Forms/Game/GameMainViewModel.cs:635
 #: WF.Player.Forms/Cartridges/CartridgeDetailMapView.cs:41
+#: WF.Player.Forms/Game/GameMainViewModel.cs:640
 #: WF.Player.Forms/Cartridges/CartridgeDetailMapView.cs:44
 msgid "Map"
 msgstr "Map"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:301
-#: WF.Player.Forms/Controls/MapViewModel.cs:311
+#: WF.Player.Forms/Controls/MapViewModel.cs:307
 msgid "Maptype"
 msgstr "Maptype"
 
@@ -264,8 +271,13 @@ msgstr "Maptype"
 msgid "Medium filter"
 msgstr "Medium filter"
 
+#: WF.Player.Forms/Game/GameMainView.cs:71
+msgid "Menu"
+msgstr "Menu"
+
 #. North
 #: WF.Player.Forms/Services/Conversion/Converter.cs:150
+#: WF.Player.Forms/Services/Conversion/Converter.cs:146
 msgid "N"
 msgstr "N"
 
@@ -273,6 +285,7 @@ msgid "No"
 msgstr "No"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs:176
+#: WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs:177
 msgid "No description available"
 msgstr "No description available"
 
@@ -318,6 +331,7 @@ msgstr "Nowhere to go"
 #: WF.Player.Forms/Services/Resources/Texts.cs:36
 #: WF.Player.Forms/Services/Acr.XamForms.UserDialogs/AlertConfig.cs:16
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:74
+#: WF.Player.Forms/Game/GameInputView.cs:131
 msgid "Ok"
 msgstr "Ok"
 
@@ -326,6 +340,7 @@ msgid "Orientation filter"
 msgstr "Orientation filter"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:615
+#: WF.Player.Forms/Game/GameMainViewModel.cs:620
 msgid "Overview"
 msgstr "Overview"
 
@@ -334,11 +349,14 @@ msgid "Play a sound each time a button is pressed"
 msgstr "Play a sound each time a button is pressed"
 
 #: WF.Player.Forms/Game/GameMainView.cs:215
+#: WF.Player.Forms/Game/GameMainView.cs:243
 msgid "Please wait..."
 msgstr "Please wait..."
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:914
 #: WF.Player.Forms/Game/GameMainViewModel.cs:955
+#: WF.Player.Forms/Game/GameMainViewModel.cs:919
+#: WF.Player.Forms/Game/GameMainViewModel.cs:960
 msgid "Provide a comment to identify this savefile"
 msgstr "Provide a comment to identify this savefile"
 
@@ -347,6 +365,7 @@ msgstr "Provide a comment to identify this savefile"
 #: WF.Player.Forms/Game/GameMainView.cs:96
 #: WF.Player.Forms/Game/GameMainViewModel.cs:904
 #: WF.Player.Forms/Game/GameMainView.cs:75
+#: WF.Player.Forms/Game/GameMainViewModel.cs:909
 msgid "Quit"
 msgstr "Quit"
 
@@ -364,11 +383,12 @@ msgstr "Right align"
 
 #. South
 #: WF.Player.Forms/Services/Conversion/Converter.cs:150
+#: WF.Player.Forms/Services/Conversion/Converter.cs:146
 msgid "S"
 msgstr "S"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:303
-#: WF.Player.Forms/Controls/MapViewModel.cs:313
+#: WF.Player.Forms/Controls/MapViewModel.cs:309
 msgid "Satellite"
 msgstr "Satellite"
 
@@ -376,6 +396,7 @@ msgstr "Satellite"
 #: WF.Player.Forms/Game/GameMainView.cs:88
 #: WF.Player.Forms/Game/GameMainViewModel.cs:951
 #: WF.Player.Forms/Game/GameMainView.cs:74
+#: WF.Player.Forms/Game/GameMainViewModel.cs:956
 msgid "Save"
 msgstr "Save"
 
@@ -404,11 +425,13 @@ msgid "Speed value"
 msgstr "Speed value"
 
 #: WF.Player.Forms/Game/GameCheckLocationViewModel.cs:140
+#: WF.Player.Forms/Game/GameCheckLocationViewModel.cs:141
 msgid "Start"
 msgstr "Start"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:101
 #: WF.Player.Forms/Game/GameCheckLocationViewModel.cs:144
+#: WF.Player.Forms/Game/GameCheckLocationViewModel.cs:145
 msgid "Start anyway"
 msgstr "Start anyway"
 
@@ -418,13 +441,15 @@ msgid "Starting Location"
 msgstr "Starting Location"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:302
-#: WF.Player.Forms/Controls/MapViewModel.cs:312
+#: WF.Player.Forms/Controls/MapViewModel.cs:308
 msgid "Street"
 msgstr "Street"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:221
 #: WF.Player.Forms/Game/GameMainViewModel.cs:630
 #: WF.Player.Forms/Game/GameMainViewModel.cs:1318
+#: WF.Player.Forms/Game/GameMainViewModel.cs:635
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1323
 msgid "Tasks"
 msgstr "Tasks"
 
@@ -488,6 +513,7 @@ msgstr "Vibrate each time a button is pressed"
 
 #. West
 #: WF.Player.Forms/Services/Conversion/Converter.cs:160
+#: WF.Player.Forms/Services/Conversion/Converter.cs:156
 msgid "W"
 msgstr "W"
 
@@ -500,6 +526,7 @@ msgid "Width of screen"
 msgstr "Width of screen"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:906
+#: WF.Player.Forms/Game/GameMainViewModel.cs:911
 msgid "Would you like to save the current game?"
 msgstr "Would you like to save the current game?"
 
@@ -513,6 +540,8 @@ msgstr "Yes"
 #: WF.Player.Forms/Game/GameMainViewModel.cs:211
 #: WF.Player.Forms/Game/GameMainViewModel.cs:620
 #: WF.Player.Forms/Game/GameMainViewModel.cs:1281
+#: WF.Player.Forms/Game/GameMainViewModel.cs:625
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1286
 msgid "You See"
 msgstr "You See"
 

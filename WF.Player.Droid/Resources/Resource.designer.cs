@@ -2106,202 +2106,211 @@ namespace WF.Player.Droid
 			public const int Vernacular_P0_HelloWorld44ClickMe33 = 2131165325;
 			
 			// aapt resource value: 0x7f07008e
-			public const int Vernacular_P0_History = 2131165326;
+			public const int Vernacular_P0_Here = 2131165326;
 			
 			// aapt resource value: 0x7f07008f
-			public const int Vernacular_P0_Hybrid = 2131165327;
+			public const int Vernacular_P0_History = 2131165327;
 			
 			// aapt resource value: 0x7f070090
-			public const int Vernacular_P0_Ifenabledusetruebearing46Otherwiseusemagneticbearing46 = 2131165328;
+			public const int Vernacular_P0_Hybrid = 2131165328;
 			
 			// aapt resource value: 0x7f070091
-			public const int Vernacular_P0_Image = 2131165329;
+			public const int Vernacular_P0_Ifenabledusetruebearing46Otherwiseusemagneticbearing46 = 2131165329;
 			
 			// aapt resource value: 0x7f070092
-			public const int Vernacular_P0_Input = 2131165330;
+			public const int Vernacular_P0_Image = 2131165330;
 			
 			// aapt resource value: 0x7f070093
-			public const int Vernacular_P0_Inside = 2131165331;
+			public const int Vernacular_P0_Input = 2131165331;
 			
 			// aapt resource value: 0x7f070094
-			public const int Vernacular_P0_Inventory = 2131165332;
+			public const int Vernacular_P0_Inside = 2131165332;
 			
 			// aapt resource value: 0x7f070095
-			public const int Vernacular_P0_Leftalign = 2131165333;
+			public const int Vernacular_P0_Inventory = 2131165333;
 			
 			// aapt resource value: 0x7f070096
-			public const int Vernacular_P0_Light = 2131165334;
+			public const int Vernacular_P0_Leftalign = 2131165334;
 			
 			// aapt resource value: 0x7f070097
-			public const int Vernacular_P0_Lightfilter = 2131165335;
+			public const int Vernacular_P0_Light = 2131165335;
 			
 			// aapt resource value: 0x7f070098
-			public const int Vernacular_P0_Loading464646 = 2131165336;
+			public const int Vernacular_P0_Lightfilter = 2131165336;
 			
 			// aapt resource value: 0x7f070099
-			public const int Vernacular_P0_Logs = 2131165337;
+			public const int Vernacular_P0_Loading464646 = 2131165337;
 			
 			// aapt resource value: 0x7f07009a
-			public const int Vernacular_P0_Map = 2131165338;
+			public const int Vernacular_P0_Logs = 2131165338;
 			
 			// aapt resource value: 0x7f07009b
-			public const int Vernacular_P0_Maptype = 2131165339;
+			public const int Vernacular_P0_Map = 2131165339;
 			
 			// aapt resource value: 0x7f07009c
-			public const int Vernacular_P0_Mediumfilter = 2131165340;
+			public const int Vernacular_P0_Maptype = 2131165340;
 			
 			// aapt resource value: 0x7f07009d
-			public const int Vernacular_P0_N = 2131165341;
+			public const int Vernacular_P0_Mediumfilter = 2131165341;
 			
 			// aapt resource value: 0x7f07009e
-			public const int Vernacular_P0_No = 2131165342;
+			public const int Vernacular_P0_Menu = 2131165342;
 			
 			// aapt resource value: 0x7f07009f
-			public const int Vernacular_P0_Nodescriptionavailable = 2131165343;
+			public const int Vernacular_P0_N = 2131165343;
 			
 			// aapt resource value: 0x7f0700a0
-			public const int Vernacular_P0_Nofilter = 2131165344;
+			public const int Vernacular_P0_No = 2131165344;
 			
 			// aapt resource value: 0x7f0700a1
-			public const int Vernacular_P0_Noitems = 2131165345;
+			public const int Vernacular_P0_Nodescriptionavailable = 2131165345;
 			
 			// aapt resource value: 0x7f0700a2
-			public const int Vernacular_P0_Nonewtasks = 2131165346;
+			public const int Vernacular_P0_Nofilter = 2131165346;
 			
 			// aapt resource value: 0x7f0700a3
-			public const int Vernacular_P0_Noresize = 2131165347;
+			public const int Vernacular_P0_Noitems = 2131165347;
 			
 			// aapt resource value: 0x7f0700a4
-			public const int Vernacular_P0_Nothingavailable = 2131165348;
+			public const int Vernacular_P0_Nonewtasks = 2131165348;
 			
 			// aapt resource value: 0x7f0700a5
-			public const int Vernacular_P0_Nothingofinterest = 2131165349;
+			public const int Vernacular_P0_Noresize = 2131165349;
 			
 			// aapt resource value: 0x7f0700a6
-			public const int Vernacular_P0_Nowheretogo = 2131165350;
+			public const int Vernacular_P0_Nothingavailable = 2131165350;
 			
 			// aapt resource value: 0x7f0700a7
-			public const int Vernacular_P0_Ok = 2131165351;
+			public const int Vernacular_P0_Nothingofinterest = 2131165351;
 			
 			// aapt resource value: 0x7f0700a8
-			public const int Vernacular_P0_Orientationfilter = 2131165352;
+			public const int Vernacular_P0_Nowheretogo = 2131165352;
 			
 			// aapt resource value: 0x7f0700a9
-			public const int Vernacular_P0_Overview = 2131165353;
+			public const int Vernacular_P0_Ok = 2131165353;
 			
 			// aapt resource value: 0x7f0700aa
-			public const int Vernacular_P0_Playasoundeachtimeabuttonispressed = 2131165354;
+			public const int Vernacular_P0_Orientationfilter = 2131165354;
 			
 			// aapt resource value: 0x7f0700ab
-			public const int Vernacular_P0_Pleasewait464646 = 2131165355;
+			public const int Vernacular_P0_Overview = 2131165355;
 			
 			// aapt resource value: 0x7f0700ac
-			public const int Vernacular_P0_Provideacommenttoidentifythissavefile = 2131165356;
+			public const int Vernacular_P0_Playasoundeachtimeabuttonispressed = 2131165356;
 			
 			// aapt resource value: 0x7f0700ad
-			public const int Vernacular_P0_Quit = 2131165357;
+			public const int Vernacular_P0_Pleasewait464646 = 2131165357;
 			
 			// aapt resource value: 0x7f0700ae
-			public const int Vernacular_P0_Resize = 2131165358;
+			public const int Vernacular_P0_Provideacommenttoidentifythissavefile = 2131165358;
 			
 			// aapt resource value: 0x7f0700af
-			public const int Vernacular_P0_Resizeimagewhendisplaying = 2131165359;
+			public const int Vernacular_P0_Quit = 2131165359;
 			
 			// aapt resource value: 0x7f0700b0
-			public const int Vernacular_P0_Rightalign = 2131165360;
+			public const int Vernacular_P0_Resize = 2131165360;
 			
 			// aapt resource value: 0x7f0700b1
-			public const int Vernacular_P0_S = 2131165361;
+			public const int Vernacular_P0_Resizeimagewhendisplaying = 2131165361;
 			
 			// aapt resource value: 0x7f0700b2
-			public const int Vernacular_P0_Satellite = 2131165362;
+			public const int Vernacular_P0_Rightalign = 2131165362;
 			
 			// aapt resource value: 0x7f0700b3
-			public const int Vernacular_P0_Save = 2131165363;
+			public const int Vernacular_P0_S = 2131165363;
 			
 			// aapt resource value: 0x7f0700b4
-			public const int Vernacular_P0_SaveGame = 2131165364;
+			public const int Vernacular_P0_Satellite = 2131165364;
 			
 			// aapt resource value: 0x7f0700b5
-			public const int Vernacular_P0_Sensors = 2131165365;
+			public const int Vernacular_P0_Save = 2131165365;
 			
 			// aapt resource value: 0x7f0700b6
-			public const int Vernacular_P0_Settings = 2131165366;
+			public const int Vernacular_P0_SaveGame = 2131165366;
 			
 			// aapt resource value: 0x7f0700b7
-			public const int Vernacular_P0_Shrinktowidthofscreen = 2131165367;
+			public const int Vernacular_P0_Sensors = 2131165367;
 			
 			// aapt resource value: 0x7f0700b8
-			public const int Vernacular_P0_Sound = 2131165368;
+			public const int Vernacular_P0_Settings = 2131165368;
 			
 			// aapt resource value: 0x7f0700b9
-			public const int Vernacular_P0_Speedvalue = 2131165369;
+			public const int Vernacular_P0_Shrinktowidthofscreen = 2131165369;
 			
 			// aapt resource value: 0x7f0700ba
-			public const int Vernacular_P0_Start = 2131165370;
+			public const int Vernacular_P0_Sound = 2131165370;
 			
 			// aapt resource value: 0x7f0700bb
-			public const int Vernacular_P0_Startanyway = 2131165371;
+			public const int Vernacular_P0_Speedvalue = 2131165371;
 			
 			// aapt resource value: 0x7f0700bc
-			public const int Vernacular_P0_Street = 2131165372;
+			public const int Vernacular_P0_Start = 2131165372;
 			
 			// aapt resource value: 0x7f0700bd
-			public const int Vernacular_P0_Tasks = 2131165373;
+			public const int Vernacular_P0_Startanyway = 2131165373;
 			
 			// aapt resource value: 0x7f0700be
-			public const int Vernacular_P0_Text = 2131165374;
+			public const int Vernacular_P0_StartingLocation = 2131165374;
 			
 			// aapt resource value: 0x7f0700bf
-			public const int Vernacular_P0_Theme = 2131165375;
+			public const int Vernacular_P0_Street = 2131165375;
 			
 			// aapt resource value: 0x7f0700c0
-			public const int Vernacular_P0_Themeforthisapp40onlyupdatedafterarestartoftheapp41 = 2131165376;
+			public const int Vernacular_P0_Tasks = 2131165376;
 			
 			// aapt resource value: 0x7f0700c1
-			public const int Vernacular_P0_Unknown = 2131165377;
+			public const int Vernacular_P0_Text = 2131165377;
 			
 			// aapt resource value: 0x7f0700c2
-			public const int Vernacular_P0_Usehardwarecompass = 2131165378;
+			public const int Vernacular_P0_Theme = 2131165378;
 			
 			// aapt resource value: 0x7f0700c3
-			public const int Vernacular_P0_Usehardwarecompassformaprotationandcompassscreen46BearingfromGPS40betterforcar41willbeusedifdisabled46 = 2131165379;
+			public const int Vernacular_P0_Themeforthisapp40onlyupdatedafterarestartoftheapp41 = 2131165379;
 			
 			// aapt resource value: 0x7f0700c4
-			public const int Vernacular_P0_Usesourceforbearingdefinedby34Usehardwarecompass34settingsforlowspeed46ForhighspeedusebearingfromGPS46 = 2131165380;
+			public const int Vernacular_P0_Unknown = 2131165380;
 			
 			// aapt resource value: 0x7f0700c5
-			public const int Vernacular_P0_Usetruebearing = 2131165381;
+			public const int Vernacular_P0_Usehardwarecompass = 2131165381;
 			
 			// aapt resource value: 0x7f0700c6
-			public const int Vernacular_P0_Valuethatdefinewhichsourceforbearingwillbeused40lowspeedbelowthisvalue44highspeedabovethisvalue4146 = 2131165382;
+			public const int Vernacular_P0_Usehardwarecompassformaprotationandcompassscreen46BearingfromGPS40betterforcar41willbeusedifdisabled46 = 2131165382;
 			
 			// aapt resource value: 0x7f0700c7
-			public const int Vernacular_P0_Vibrate = 2131165383;
+			public const int Vernacular_P0_Usesourceforbearingdefinedby34Usehardwarecompass34settingsforlowspeed46ForhighspeedusebearingfromGPS46 = 2131165383;
 			
 			// aapt resource value: 0x7f0700c8
-			public const int Vernacular_P0_Vibrateeachtimeabuttonispressed = 2131165384;
+			public const int Vernacular_P0_Usetruebearing = 2131165384;
 			
 			// aapt resource value: 0x7f0700c9
-			public const int Vernacular_P0_W = 2131165385;
+			public const int Vernacular_P0_Valuethatdefinewhichsourceforbearingwillbeused40lowspeedbelowthisvalue44highspeedabovethisvalue4146 = 2131165385;
 			
 			// aapt resource value: 0x7f0700ca
-			public const int Vernacular_P0_WF46Player46Android = 2131165386;
+			public const int Vernacular_P0_Vibrate = 2131165386;
 			
 			// aapt resource value: 0x7f0700cb
-			public const int Vernacular_P0_Widthofscreen = 2131165387;
+			public const int Vernacular_P0_Vibrateeachtimeabuttonispressed = 2131165387;
 			
 			// aapt resource value: 0x7f0700cc
-			public const int Vernacular_P0_Wouldyouliketosavethecurrentgame63 = 2131165388;
+			public const int Vernacular_P0_W = 2131165388;
 			
 			// aapt resource value: 0x7f0700cd
-			public const int Vernacular_P0_Writeyourinputhere464646 = 2131165389;
+			public const int Vernacular_P0_WF46Player46Android = 2131165389;
 			
 			// aapt resource value: 0x7f0700ce
-			public const int Vernacular_P0_Yes = 2131165390;
+			public const int Vernacular_P0_Widthofscreen = 2131165390;
 			
 			// aapt resource value: 0x7f0700cf
-			public const int Vernacular_P0_YouSee = 2131165391;
+			public const int Vernacular_P0_Wouldyouliketosavethecurrentgame63 = 2131165391;
+			
+			// aapt resource value: 0x7f0700d0
+			public const int Vernacular_P0_Writeyourinputhere464646 = 2131165392;
+			
+			// aapt resource value: 0x7f0700d1
+			public const int Vernacular_P0_Yes = 2131165393;
+			
+			// aapt resource value: 0x7f0700d2
+			public const int Vernacular_P0_YouSee = 2131165394;
 			
 			// aapt resource value: 0x7f070029
 			public const int abc_action_bar_home_description = 2131165225;

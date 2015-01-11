@@ -199,6 +199,14 @@ namespace WF.Player.Models
 			}
 		}
 
+		public Color TextColor
+		{
+			get
+			{
+				return App.Colors.Text;
+			}
+		}
+
 		#endregion
 
 		#region Savegames

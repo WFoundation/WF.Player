@@ -68,7 +68,7 @@ namespace WF.Player
 
 			#if __IOS__
 
-			var toolbarMenu = new ToolbarItem(Catalog.GetString("Game Menu"), "IconMenu.png", () => {
+			var toolbarMenu = new ToolbarItem(Catalog.GetString("Menu"), null, () => { //"IconMenu.png", () => {
 				App.Click();
 				var cfg = new Acr.XamForms.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Game Menu"));
 				cfg.Add(Catalog.GetString("Save"), () => ((GameMainViewModel)BindingContext).HandleMenuAction(this, Catalog.GetString("Save")));
@@ -101,12 +101,48 @@ namespace WF.Player
 
 			#endif
 
+			var grid = new Grid() {
+				RowSpacing = 0,
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
+			};
+
+			grid.RowDefinitions = new RowDefinitionCollection {
+				new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+				new RowDefinition { Height = 60 }
+			};
+
+			grid.ColumnDefinitions = new ColumnDefinitionCollection {
+				new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+			};
+
+			var bottomLayout = new StackLayout() {
+				Spacing = 0,
+				Orientation = StackOrientation.Vertical,
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.Fill,
+			};
+
+			#if __IOS__
+
+			// Dark grey line on iOS
+			var line = new BoxView () 
+				{
+					BackgroundColor = App.Colors.IsDarkTheme ? Color.FromRgb(0x26, 0x26, 0x26) : Color.FromRgb (0xAE, 0xAE, 0xAE),
+					HeightRequest = 0.5f,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+				};
+
+			bottomLayout.Children.Add(line);
+
+			#endif
+
 			TapGestureRecognizer tapRecognizer;
 
 			var buttonLayout = new StackLayout() 
 			{
 				BackgroundColor = App.Colors.Bar,
-				Orientation = StackOrientation.Horizontal,
+					Orientation = StackOrientation.Horizontal,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				HeightRequest = 60, //72,
 				MinimumHeightRequest = 60, //72,
@@ -200,17 +236,9 @@ namespace WF.Player
 
 			buttonLayout.Children.Add(this.buttonMap);
 
-			// Create layout for ListView
-			var listLayout = new StackLayout() 
-			{
-				BackgroundColor = Color.Transparent,
-				Padding = 0,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-			};
-			listLayout.SetBinding(StackLayout.IsVisibleProperty, GameMainViewModel.IsMapNotSelectedPropertyName);
+			bottomLayout.Children.Add(buttonLayout);
 
-			var label = new Label() 
+			var labelEmpty = new Label() 
 			{
 				Text = Catalog.GetString("Please wait..."),
 				BackgroundColor = Color.Transparent,
@@ -218,20 +246,16 @@ namespace WF.Player
 				Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
 				VerticalOptions = LayoutOptions.CenterAndExpand,
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
-				IsVisible = true,
 			};
-			label.SetBinding(Label.TextProperty, GameMainViewModel.EmptyListTextPropertyName);
-			label.SetBinding(Label.IsVisibleProperty, GameMainViewModel.IsEmptyListTextVisiblePropertyName);
+			labelEmpty.SetBinding(Label.TextProperty, GameMainViewModel.EmptyListTextPropertyName);
+			labelEmpty.SetBinding(Label.IsVisibleProperty, GameMainViewModel.IsEmptyListTextVisiblePropertyName);
 
-			listLayout.Children.Add(label);
-
-			var overview = new ScrollView() 
+			var overviewScroll = new ScrollView() 
 				{
 					VerticalOptions = LayoutOptions.FillAndExpand,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
-					IsVisible = false,
 				};
-			overview.SetBinding(ScrollView.IsVisibleProperty, GameMainViewModel.IsOverviewVisiblePropertyName);
+			overviewScroll.SetBinding(ScrollView.IsVisibleProperty, GameMainViewModel.IsOverviewVisiblePropertyName);
 
 			var layoutOverview = new StackLayout() 
 				{
@@ -351,9 +375,7 @@ namespace WF.Player
 
 			layoutOverview.Children.Add(layoutOverviewTasks);
 
-			overview.Content = layoutOverview;
-
-			listLayout.Children.Add(overview);
+			overviewScroll.Content = layoutOverview;
 
 			var list = new ListView() 
 			{
@@ -361,10 +383,10 @@ namespace WF.Player
 				ItemTemplate = new DataTemplate(typeof(GameMainCellView)),
 				HasUnevenRows = false,
 				RowHeight = 60,
-				IsVisible = false,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			};
+
 			list.SetBinding(ListView.IsVisibleProperty, GameMainViewModel.IsListVisiblePropertyName);
 			list.SetBinding(ListView.ItemsSourceProperty, GameMainViewModel.GameMainListPropertyName);
 			list.ItemSelected += (object sender, SelectedItemChangedEventArgs e) =>
@@ -395,8 +417,6 @@ namespace WF.Player
 				list.SelectedItem = null;
 			};
 
-			listLayout.Children.Add(list);
-
 			// Map view
 			var mapViewModel = new MapViewModel();
 
@@ -418,54 +438,15 @@ namespace WF.Player
 					VerticalOptions = LayoutOptions.FillAndExpand,
 				};
 
-			layout.Children.Add(listLayout);
+			layout.Children.Add(labelEmpty);
+			layout.Children.Add(overviewScroll);
+			layout.Children.Add(list);
 			layout.Children.Add(mapView);
 
-			#if __IOS__
-			// Dark grey line on iOS
-			var frame = new StackLayout () 
-				{
-					Padding = new Thickness(0, 0),
-					BackgroundColor = App.Colors.IsDarkTheme ? Color.FromRgb(0x26, 0x26, 0x26) : Color.FromRgb (0xAE, 0xAE, 0xAE),
-					HeightRequest = 0.5f,
-					HorizontalOptions = LayoutOptions.FillAndExpand,
-				};
+			grid.Children.Add(layout, 0, 0);
+			grid.Children.Add(bottomLayout, 0, 1);
 
-			layout.Children.Add(
-			frame);
-			//				Constraint.Constant(0),
-			//				Constraint.RelativeToParent((parent) => { return parent.Height - barHeight - 0.5f; }),
-			//				Constraint.RelativeToParent((parent) => { return parent.Width; }),
-			//				Constraint.Constant(0.5f));
-			#endif
-			layout.Children.Add(buttonLayout);
-
-			var contentLayout = new StackLayout() {
-				Orientation = StackOrientation.Vertical,
-			};
-			contentLayout.Children.Add(layout);
-			Content = contentLayout;
-
-
-//			BottomLayout.Children.Add(layoutBottomHori);
-		}
-
-		/// <summary>
-		/// Raises the appearing event.
-		/// </summary>
-		protected override void OnAppearing()
-		{
-			base.OnAppearing();
-
-//			this.SetBinding(GameMainView.TitleProperty, GameMainViewModel.TitelPropertyName);
-		}
-
-		/// <summary>
-		/// Raises the disappearing event.
-		/// </summary>
-		protected override void OnDisappearing()
-		{
-			base.OnDisappearing();
+			Content = grid;
 		}
 	}
 }
