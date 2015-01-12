@@ -34,8 +34,6 @@ namespace WF.Player
 		{
 			BindingContext = gameMessageboxViewModel;
 
-//			NavigationPage.SetHasBackButton(this, false);
-
 			App.GameNavigation.ShowBackButton = false;
 
 			#if __HTML__

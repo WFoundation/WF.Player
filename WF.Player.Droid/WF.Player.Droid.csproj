@@ -149,8 +149,6 @@
     <AndroidResource Include="Resources\drawable\IconAltitudeLight.png" />
     <AndroidResource Include="Resources\drawable\IconInventory.png" />
     <AndroidResource Include="Resources\drawable\IconMap.png" />
-    <AndroidResource Include="Resources\drawable\IconMenu.png" />
-    <AndroidResource Include="Resources\drawable\IconNumber.png" />
     <AndroidResource Include="Resources\drawable\IconPlay.png" />
     <AndroidResource Include="Resources\drawable\IconResume.png" />
     <AndroidResource Include="Resources\drawable\IconRouting.png" />
