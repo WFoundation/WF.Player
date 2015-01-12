@@ -639,6 +639,8 @@ namespace WF.Player
 				}
 
 				// Check if detail screen is shown with an object without container
+
+				// TODO: Koffer Cartridge: Wenn Loeffel -> reinlegen -> Regal, dann Loeffel nicht mehr im Inventory. Was dann?
 				if (!(activeObject is Task) && !(activeObject is Zone) && ((Thing)activeObject).Container == null)
 				{
 					if (!(App.GameNavigation.CurrentPage is GameMainView))

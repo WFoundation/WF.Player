@@ -162,6 +162,45 @@ namespace WF.Player.Droid
 			}
 		}
 
+		/// <Docs>The menu item that was selected.</Docs>
+		/// <returns>To be added.</returns>
+		/// <para tool="javadoc-to-mdoc">This hook is called whenever an item in your options menu is selected.
+		///  The default implementation simply returns false to have the normal
+		///  processing happen (calling the item's Runnable or sending a message to
+		///  its Handler as appropriate). You can use this method for any items
+		///  for which you would like to do processing without those other
+		///  facilities.</para>
+		/// <summary>
+		/// Raises the options item selected event.
+		/// </summary>
+		/// <param name="item">Item.</param>
+		public override bool OnOptionsItemSelected(Android.Views.IMenuItem item)
+		{
+			// Handle back button for list pages, because of own back buttons
+			if (App.GameNavigation != null)
+			{
+				// We ar in the game
+				if (App.GameNavigation.CurrentPage is GameMainView && item.ItemId == global::Android.Resource.Id.Home)
+				{
+					App.Game.ShowScreen(ScreenType.Last, null);
+
+					return true;
+				}
+
+				if (App.GameNavigation.CurrentPage is GameCheckLocationView && item.ItemId == global::Android.Resource.Id.Home)
+				{
+					// We are on the check location screen
+					// Remove active screen
+					App.GameNavigation.CurrentPage.Navigation.PopModalAsync();
+					App.GameNavigation = null;
+
+					return true;
+				}
+			}
+
+			return base.OnOptionsItemSelected(item);
+		}
+
 		public void Exit(int exitCode)
 		{
 			Intent intent = new Intent(Intent.ActionMain);

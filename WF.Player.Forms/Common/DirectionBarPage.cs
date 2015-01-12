@@ -119,12 +119,12 @@ namespace WF.Player
 
 			layoutDirection = new StackLayout() 
 			{
-//				VerticalOptions = LayoutOptions.FillAndExpand,
 				Padding = 0,
 			};
 
 			direction = new DirectionArrow() 
 			{
+				BackgroundColor = Color.Transparent, // This is mandatory for Android. If not, direction isn't drawn.
 				CircleColor = App.Colors.DirectionBackground,
 				ArrowColor = App.Colors.DirectionColor,
 				HeightRequest = DirectionSize,

@@ -62,7 +62,7 @@ namespace WF.Player
 			BindingContext = gameMainViewModel;
 
 			NavigationPage.SetBackButtonTitle(this, string.Empty);
-			NavigationPage.SetHasBackButton(this, false);
+//			NavigationPage.SetHasBackButton(this, false);
 
 			this.SetBinding(GameMainView.TitleProperty, GameMainViewModel.TitelPropertyName);
 

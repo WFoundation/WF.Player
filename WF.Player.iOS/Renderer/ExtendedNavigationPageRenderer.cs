@@ -131,7 +131,6 @@ namespace WF.Player.Controls.iOS
 		}
 
 		private void HandlePopped(object sender, NavigationEventArgs e)
-
 		{
 			var item = NavigationBar.Items.Last();
 

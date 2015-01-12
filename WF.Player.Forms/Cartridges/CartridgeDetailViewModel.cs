@@ -365,6 +365,7 @@ namespace WF.Player
 							{
 								BarBackgroundColor = App.Colors.Bar,
 								BarTextColor = App.Colors.BarText,
+								ShowBackButton = true,
 							};
 						App.Navigation.CurrentPage.Navigation.PushModalAsync(App.GameNavigation);
 
@@ -387,8 +388,11 @@ namespace WF.Player
 			{
 				return new Xamarin.Forms.Command((sender) =>
 					{
+						// Create check location page
+						var checkLocationPage = new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, null, App.Navigation.CurrentPage));
+
 						// Create a new navigation page for the game
-						App.GameNavigation = new ExtendedNavigationPage(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, null, App.Navigation.CurrentPage)), false)
+						App.GameNavigation = new ExtendedNavigationPage(checkLocationPage, false)
 							{
 								BarBackgroundColor = App.Colors.Bar,
 								BarTextColor = App.Colors.BarText,
@@ -396,8 +400,6 @@ namespace WF.Player
 							};
 
 						App.Navigation.CurrentPage.Navigation.PushModalAsync(App.GameNavigation);
-
-						App.GameNavigation.ShowBackButton = true;
 					});
 			}
 		}

@@ -34,9 +34,19 @@ namespace WF.Player.Droid
 			var element = (BasePage)Element;
 			var actionBar = ((Activity) Context).ActionBar;
 
-//			actionBar.SetHomeButtonEnabled (element.HasBackButton);			// Don't activate button behavior
-//			actionBar.SetDisplayHomeAsUpEnabled (element.HasBackButton);	// Don't show back arrow
-//			actionBar.SetDisplayShowHomeEnabled (element.HasBackButton);	// Don't show back arrow and icon
+			if (App.GameNavigation != null )
+			{
+				// Do this, because all other places are to late
+				if (App.GameNavigation.CurrentPage is GameCheckLocationView)
+				{
+					App.GameNavigation.ShowBackButton = true;
+					Invalidate();
+				}
+
+				actionBar.SetHomeButtonEnabled (App.GameNavigation.ShowBackButton);			// Don't activate button behavior
+				actionBar.SetDisplayHomeAsUpEnabled (App.GameNavigation.ShowBackButton);	// Don't show back arrow
+				actionBar.SetDisplayShowHomeEnabled (App.GameNavigation.ShowBackButton);	// Don't show back arrow and icon
+			}
 		}
 
 		protected override void OnElementChanged (ElementChangedEventArgs<Page> e)

@@ -29,6 +29,7 @@ namespace WF.Player.Controls.Droid
 	public class DirectionArrowRenderer : ViewRenderer
 	{
 		Paint _paintArrow;
+		Paint _paintUnknown;
 		Paint _paintCircle;
 		global::Android.Graphics.Path _pathArrow;
 		global::Android.Graphics.Path _pathUnknown;
@@ -48,6 +49,10 @@ namespace WF.Player.Controls.Droid
 			_paintArrow = new Paint (PaintFlags.AntiAlias);
 			_paintArrow.StrokeWidth = 0f;
 			_paintArrow.SetStyle (Paint.Style.FillAndStroke);
+
+			_paintUnknown = new Paint (PaintFlags.AntiAlias);
+			_paintUnknown.StrokeWidth = 10f;
+			_paintUnknown.SetStyle (Paint.Style.FillAndStroke);
 
 			UpdatePathInside ();
 
@@ -74,17 +79,21 @@ namespace WF.Player.Controls.Droid
 
 		public override void Draw (Canvas canvas)
 		{
+			this.Control.BringToFront();
+
 			base.Draw (canvas);
 
 			// Draw
 			canvas.DrawCircle (_centerX, _centerY, _centerX, _paintCircle);
-			if (((DirectionArrow)Element).IsInside || double.IsNegativeInfinity(((DirectionArrow)Element).Direction))
+			if (((DirectionArrow)Element).IsInside || double.IsPositiveInfinity(((DirectionArrow)Element).Direction))
 			{
+				// Inside
 				canvas.DrawPath(_pathInside, _paintArrow);
 			}
-			else if (double.IsPositiveInfinity(((DirectionArrow)Element).Direction))
+			else if (double.IsNegativeInfinity(((DirectionArrow)Element).Direction))
 			{
-				canvas.DrawPath(_pathUnknown, _paintArrow);
+				// Unknown position
+				canvas.DrawPath(_pathUnknown, _paintUnknown);
 			}
 			else if (_pathArrow != null)
 			{
@@ -155,6 +164,7 @@ namespace WF.Player.Controls.Droid
 		void UpdatePaintArrow ()
 		{
 			_paintArrow.Color = ((DirectionArrow)Element).ArrowColor.ToAndroid ();
+			_paintUnknown.Color = ((DirectionArrow)Element).ArrowColor.ToAndroid ();
 		}
 
 		void UpdatePaintCircle ()
@@ -238,11 +248,11 @@ namespace WF.Player.Controls.Droid
 			else
 				_pathUnknown.Reset ();
 
-			float x1 = _centerX + _size * 0.4f;
-			float x2 = _centerX - _size * 0.4f;
+			float x1 = _centerX + _size * 0.5f;
+			float x2 = _centerX - _size * 0.5f;
 
-			float y1 = _centerY + _size * 0.4f;
-			float y2 = _centerY - _size * 0.4f;
+			float y1 = _centerY + _size * 0.5f;
+			float y2 = _centerY - _size * 0.5f;
 
 			_pathUnknown.MoveTo(x1, y1);
 			_pathUnknown.LineTo(x2, y2);

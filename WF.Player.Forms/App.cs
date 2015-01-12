@@ -360,6 +360,7 @@ namespace WF.Player
 					BackgroundColor = App.Colors.Background,
 					BarTextColor = App.Colors.BarText,
 					BarBackgroundColor = App.Colors.Bar,
+					ShowBackButton = true,
 				};
 
 //			// Check for autosave file

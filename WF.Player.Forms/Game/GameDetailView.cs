@@ -36,7 +36,7 @@ namespace WF.Player
 		{
 			BindingContext = gameDetailViewModel;
 
-			NavigationPage.SetHasBackButton(this, true);
+//			NavigationPage.SetHasBackButton(this, true);
 
 			App.GameNavigation.ShowBackButton = true;
 
@@ -104,7 +104,7 @@ namespace WF.Player
 
 			scrollLayout.Content = layout;
 
-			((StackLayout)ContentLayout).Children.Add(scrollLayout);
+//			((StackLayout)ContentLayout).Children.Add(scrollLayout);
 
 			#endif
 		}
