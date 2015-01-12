@@ -611,7 +611,7 @@ namespace WF.Player
 					// Only delete MessageBox, if the next isn't a MessageBox
 					if (!(App.GameNavigation.CurrentPage is GameMainView))
 					{
-						// TODO: ShowBackButton?
+						ShouldShowBackButton();
 						App.GameNavigation.PopAsync();
 					}
 
@@ -630,7 +630,7 @@ namespace WF.Player
 				{
 					if (!(App.GameNavigation.CurrentPage is GameMainView))
 					{
-						// TODO: ShowBackButton?
+						ShouldShowBackButton();
 						App.GameNavigation.PopAsync();
 					}
 
@@ -643,7 +643,7 @@ namespace WF.Player
 				{
 					if (!(App.GameNavigation.CurrentPage is GameMainView))
 					{
-						// TODO: ShowBackButton?
+						ShouldShowBackButton();
 						App.GameNavigation.PopAsync();
 					}
 
@@ -680,17 +680,7 @@ namespace WF.Player
 
 						if (!(App.GameNavigation.CurrentPage is GameMainView))
 						{
-							// Check, if new page is main screen
-							if (App.GameNavigation.CurrentPage.Navigation.NavigationStack.Count > 1
-							    && App.GameNavigation.CurrentPage.Navigation.NavigationStack[App.GameNavigation.CurrentPage.Navigation.NavigationStack.Count - 2] is GameMainView
-							    && ((GameMainViewModel)((GameMainView)App.GameNavigation.CurrentPage.Navigation.NavigationStack[App.GameNavigation.CurrentPage.Navigation.NavigationStack.Count - 2]).BindingContext).ActiveScreen == ScreenType.Main)
-							{
-								App.GameNavigation.ShowBackButton = false;
-							}
-							else
-							{
-								App.GameNavigation.ShowBackButton = true;
-							}
+							ShouldShowBackButton();
 							App.GameNavigation.PopAsync();
 						}
 						else if (((GameMainViewModel)((GameMainView)App.GameNavigation.CurrentPage).BindingContext).ActiveScreen != ScreenType.Main)
@@ -779,6 +769,7 @@ namespace WF.Player
 						// Remove page (could only be a MessageBox or an Input)
 						if (!(App.GameNavigation.CurrentPage is GameMainView) && !(App.GameNavigation.CurrentPage is GameDetailView))
 						{
+							ShouldShowBackButton();
 							App.GameNavigation.PopAsync();
 
 							// Return and wait for popped event
@@ -848,6 +839,7 @@ namespace WF.Player
 							{
 								if (!(App.GameNavigation.CurrentPage is GameMainView))
 								{
+									ShouldShowBackButton();
 									App.GameNavigation.PopAsync();
 								}
 
@@ -898,6 +890,7 @@ namespace WF.Player
 							{
 								if (!(App.GameNavigation.CurrentPage is GameMainView))
 								{
+									ShouldShowBackButton();
 									App.GameNavigation.PopAsync();
 								}
 
@@ -951,6 +944,19 @@ namespace WF.Player
 			}
 
 			this.HandleScreenQueue();
+		}
+
+		static void ShouldShowBackButton()
+		{
+			// Check, if new page is main screen
+			if (App.GameNavigation.CurrentPage.Navigation.NavigationStack.Count > 1 && App.GameNavigation.CurrentPage.Navigation.NavigationStack[App.GameNavigation.CurrentPage.Navigation.NavigationStack.Count - 2] is GameMainView && ((GameMainViewModel)((GameMainView)App.GameNavigation.CurrentPage.Navigation.NavigationStack[App.GameNavigation.CurrentPage.Navigation.NavigationStack.Count - 2]).BindingContext).ActiveScreen == ScreenType.Main)
+			{
+				App.GameNavigation.ShowBackButton = false;
+			}
+			else
+			{
+				App.GameNavigation.ShowBackButton = true;
+			}
 		}
 
 		/// <summary>

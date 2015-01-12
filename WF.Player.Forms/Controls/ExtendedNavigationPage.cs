@@ -97,7 +97,7 @@ namespace WF.Player.Controls
 			{
 				showBackButton = value;
 
-				OnPropertyChanged("ShowBackButton");
+				Device.BeginInvokeOnMainThread(() => OnPropertyChanged("ShowBackButton"));
 			}
 		}
 
