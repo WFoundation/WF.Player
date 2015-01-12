@@ -1110,7 +1110,9 @@ namespace WF.Player
 
 			if (e.PropertyName.Equals("IsBusy") && App.GameNavigation != null && App.GameNavigation.CurrentPage != null)
 			{
-				App.GameNavigation.CurrentPage.IsBusy = this.engine.IsBusy;
+				// TODO: Test again in a higher version of Xamarin.Forms, because
+				// sometimes the busy indicator isn't cleared and works forever.
+				// App.GameNavigation.CurrentPage.IsBusy = this.engine.IsBusy;
 			}
 		}
 

@@ -641,6 +641,9 @@ namespace WF.Player
 
 			if (Position == null)
 			{
+				Direction = double.NegativeInfinity;
+				Distance = double.NegativeInfinity;
+
 				return;
 			}
 

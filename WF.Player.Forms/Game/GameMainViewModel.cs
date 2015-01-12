@@ -1163,6 +1163,16 @@ namespace WF.Player
 		{
 			if (Position == null)
 			{
+				// Set all directions to undefined, because we don't have a signal
+				if (IsYouSeeSelected)
+				{
+					foreach (var entry in GameMainList)
+					{
+						entry.Direction = double.NegativeInfinity;
+						entry.Distance = double.NegativeInfinity;
+					}
+				}
+
 				return;
 			}
 

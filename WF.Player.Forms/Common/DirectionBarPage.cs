@@ -31,12 +31,12 @@ namespace WF.Player
 		/// <summary>
 		/// Bindable property for direction.
 		/// </summary>
-		public static readonly BindableProperty DirectionProperty = BindableProperty.Create<DirectionBarPage, double>(p => p.Direction, double.PositiveInfinity);
+		public static readonly BindableProperty DirectionProperty = BindableProperty.Create<DirectionBarPage, double>(p => p.Direction, double.NegativeInfinity);
 
 		/// <summary>
 		/// The distance property.
 		/// </summary>
-		public static readonly BindableProperty DistanceProperty = BindableProperty.Create<DirectionBarPage, double>(p => p.Distance, double.NaN);
+		public static readonly BindableProperty DistanceProperty = BindableProperty.Create<DirectionBarPage, double>(p => p.Distance, double.NegativeInfinity);
 
 		/// <summary>
 		/// The distance text property.

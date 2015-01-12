@@ -70,7 +70,7 @@ namespace WF.Player.Controls.iOS
 			}
 
 			// Check, if we inside of the zone
-			if (double.IsNegativeInfinity(dv.Direction)) {
+			if (double.IsPositiveInfinity(dv.Direction)) {
 				// Draw circle, because we are here
 				using (var context = UIGraphics.GetCurrentContext ()) {
 					context.SetFillColor (dv.ArrowColor.ToCGColor ());
@@ -91,12 +91,12 @@ namespace WF.Player.Controls.iOS
 			}
 
 			// Check, if the direction is invalid
-			if (double.IsPositiveInfinity(dv.Direction)) {
+			if (double.IsNegativeInfinity(dv.Direction)) {
 				// Draw cross, because direction is invalid
 				using (var context = UIGraphics.GetCurrentContext()) {
 					context.SetFillColor(dv.ArrowColor.ToCGColor());
 					context.SetStrokeColor(dv.ArrowColor.ToCGColor());
-					context.SetLineWidth(12.0f);
+					context.SetLineWidth(0.1875f * width);
 					context.SetLineCap(CGLineCap.Round);
 					// Draw circle
 					using (CGPath path = new CGPath ()) {
