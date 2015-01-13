@@ -632,25 +632,27 @@ namespace WF.Player
 					{
 						ShouldShowBackButton();
 						App.GameNavigation.PopAsync();
-					}
 
-					// Return and wait for popped event
-					return;
+						// Return and wait for popped event
+						return;
+					}
 				}
 
-				// Check if detail screen is shown with an object without container
-
-				// TODO: Koffer Cartridge: Wenn Loeffel -> reinlegen -> Regal, dann Loeffel nicht mehr im Inventory. Was dann?
-				if (!(activeObject is Task) && !(activeObject is Zone) && ((Thing)activeObject).Container == null)
+				// Check if detail screen is visible with an object which isn't in You See or Inventory
+				if (!(activeObject is Task) && !(activeObject is Zone))
 				{
-					if (!(App.GameNavigation.CurrentPage is GameMainView))
+					// Check, if item or character is in You See or Inventory
+					if (!engine.VisibleInventory.Contains((Thing)activeObject) && !engine.VisibleObjects.Contains((Thing)activeObject))
 					{
-						ShouldShowBackButton();
-						App.GameNavigation.PopAsync();
-					}
+						if (!(App.GameNavigation.CurrentPage is GameMainView))
+						{
+							ShouldShowBackButton();
+							App.GameNavigation.PopAsync();
 
-					// Return and wait for popped event
-					return;
+							// Return and wait for popped event
+							return;
+						}
+					}
 				}
 			}
 

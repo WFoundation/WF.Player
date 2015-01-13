@@ -31,6 +31,7 @@ namespace WF.Player.Droid
 	[Activity (Label = "WF.Player", 
 //		MainLauncher = true, 
 //		Theme="@android:style/Theme.NoTitleBar", 
+		ScreenOrientation = global::Android.Content.PM.ScreenOrientation.Portrait,
 		ConfigurationChanges=global::Android.Content.PM.ConfigChanges.Orientation | global::Android.Content.PM.ConfigChanges.ScreenSize
 	)]
 	public class MainActivity : AndroidActivity

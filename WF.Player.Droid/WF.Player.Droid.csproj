@@ -79,26 +79,26 @@
     <Reference Include="Xamarin.Mobile">
       <HintPath>..\packages\Acr.XamForms.Mobile.1.5\lib\MonoAndroid\Xamarin.Mobile.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Platform.Android">
-      <HintPath>..\packages\Xamarin.Forms.1.3.0.6292\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="FormsViewGroup">
-      <HintPath>..\packages\Xamarin.Forms.1.3.0.6292\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Core">
-      <HintPath>..\packages\Xamarin.Forms.1.3.0.6292\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml">
-      <HintPath>..\packages\Xamarin.Forms.1.3.0.6292\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Maps.Android">
-      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.0.6292\lib\MonoAndroid10\Xamarin.Forms.Maps.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Maps">
-      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.0.6292\lib\MonoAndroid10\Xamarin.Forms.Maps.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.Android">
+      <HintPath>..\packages\Xamarin.Forms.1.3.1.6296\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="FormsViewGroup">
+      <HintPath>..\packages\Xamarin.Forms.1.3.1.6296\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.1.3.1.6296\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.1.3.1.6296\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps.Android">
+      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.1.6296\lib\MonoAndroid10\Xamarin.Forms.Maps.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps">
+      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.1.6296\lib\MonoAndroid10\Xamarin.Forms.Maps.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -147,8 +147,6 @@
     <AndroidResource Include="Resources\drawable\IconAccuracyLight.png" />
     <AndroidResource Include="Resources\drawable\IconAltitudeDark.png" />
     <AndroidResource Include="Resources\drawable\IconAltitudeLight.png" />
-    <AndroidResource Include="Resources\drawable\IconInventory.png" />
-    <AndroidResource Include="Resources\drawable\IconMap.png" />
     <AndroidResource Include="Resources\drawable\IconPlay.png" />
     <AndroidResource Include="Resources\drawable\IconResume.png" />
     <AndroidResource Include="Resources\drawable\IconRouting.png" />
@@ -200,9 +198,6 @@
     <AndroidResource Include="Resources\values-en\vernacular_strings.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\values\style.xml" />
-    <AndroidResource Include="Resources\drawable\IconOverview.png" />
-    <AndroidResource Include="Resources\drawable\IconLocation.png" />
-    <AndroidResource Include="Resources\drawable\IconTasks.png" />
     <AndroidResource Include="Resources\drawable-ldpi\IconMapCenter.png" />
     <AndroidResource Include="Resources\drawable-hdpi\IconMapCenter.png" />
     <AndroidResource Include="Resources\drawable-mdpi\IconMapCenter.png" />
@@ -223,11 +218,36 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\IconMapNorth.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\IconMapOrientation.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\IconMapType.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\IconLocation.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\IconLocation.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\IconLocation.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\IconLocation.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\IconLocation.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\IconMap.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\IconOverview.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\IconInventory.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\IconTasks.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\IconMap.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\IconOverview.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\IconInventory.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\IconTasks.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\IconMap.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\IconOverview.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\IconInventory.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\IconTasks.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\IconMap.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\IconOverview.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\IconInventory.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\IconTasks.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\IconMap.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\IconOverview.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\IconInventory.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\IconTasks.png" />
   </ItemGroup>
   <Import Project="..\WF.Player.Common\WF.Player.Common.projitems" Label="Shared" Condition="Exists('..\WF.Player.Common\WF.Player.Common.projitems')" />
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
-  <Import Project="..\packages\Xamarin.Forms.1.3.0.6292\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.3.0.6292\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.1.3.1.6296\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.3.1.6296\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <ItemGroup>
     <Folder Include="Renderer\" />
     <Folder Include="Services\" />

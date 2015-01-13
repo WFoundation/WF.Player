@@ -1,5 +1,5 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone von Dirk Weltz" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.MonoForAndroid_API_14" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Game/GameMessageboxView.cs">
     <Files>
       <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="30" Column="30" />

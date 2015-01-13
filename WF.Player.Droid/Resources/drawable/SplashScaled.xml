@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-	android:gravity="center"
-	android:scaleType="center"
+	android:layout_gravity="center"
+	android:scaleType="fitCenter"
 	android:src="@drawable/splash" />

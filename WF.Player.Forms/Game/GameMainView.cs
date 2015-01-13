@@ -330,6 +330,8 @@ namespace WF.Player
 					LineBreakMode = LineBreakMode.WordWrap,
 					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.8),
 					UseMarkdown = true,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.FillAndExpand,
 				};
 			labelOverviewInventory.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.InventoryOverviewContentPropertyName);
 
