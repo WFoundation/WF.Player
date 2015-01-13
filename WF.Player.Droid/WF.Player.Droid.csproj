@@ -155,7 +155,6 @@
     <AndroidResource Include="Resources\layout\PreferencesView.axml" />
     <AndroidResource Include="Resources\values\array.xml" />
     <AndroidResource Include="Resources\drawable\SplashScaled.xml" />
-    <AndroidResource Include="Resources\drawable\Splash.png" />
     <AndroidResource Include="Resources\drawable-ldpi\IconPlay.png" />
     <AndroidResource Include="Resources\drawable-mdpi\IconPlay.png" />
     <AndroidResource Include="Resources\drawable-hdpi\IconPlay.png" />
@@ -243,6 +242,10 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\IconOverview.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\IconInventory.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\IconTasks.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\Splash.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\Splash.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Splash.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Splash.9.png" />
   </ItemGroup>
   <Import Project="..\WF.Player.Common\WF.Player.Common.projitems" Label="Shared" Condition="Exists('..\WF.Player.Common\WF.Player.Common.projitems')" />
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />

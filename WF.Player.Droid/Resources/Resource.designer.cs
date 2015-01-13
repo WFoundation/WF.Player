@@ -1552,7 +1552,7 @@ namespace WF.Player.Droid
 			public const int powered_by_google_light = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int Splash = 2130837624;
+			public const int splash = 2130837624;
 			
 			// aapt resource value: 0x7f020079
 			public const int SplashScaled = 2130837625;
