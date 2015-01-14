@@ -991,7 +991,7 @@ namespace WF.Player
 			base.OnAppearing();
 
 			App.GPS.PositionChanged += OnPositionChanged;
-			App.GPS.HeadingChanged += OnPositionChanged;
+			App.GPS.HeadingChanged += OnHeadingChanged;
 
 			Refresh();
 		}
@@ -1003,7 +1003,7 @@ namespace WF.Player
 		{
 			base.OnDisappearing();
 
-			App.GPS.HeadingChanged -= OnPositionChanged;
+			App.GPS.HeadingChanged -= OnHeadingChanged;
 			App.GPS.PositionChanged -= OnPositionChanged;
 		}
 
@@ -1106,6 +1106,18 @@ namespace WF.Player
 			// Check, if there is something we should update 
 			if (e.What == "Property")
 			{
+				if (e.PropertyName == "Points")
+				{
+					var entry = GameMainList.FirstOrDefault(obj => obj.UIObject == e.UIObject);
+
+					if (entry != null)
+					{
+						entry.VectorToObject = null;
+
+						RefreshDirections(false);
+					}
+				}
+
 				var ret = false;
 
 				ret = ret || (e.PropertyName == "ActiveVisibleZones" && (IsYouSeeSelected || IsOverviewSelected));
@@ -1139,7 +1151,7 @@ namespace WF.Player
 
 			if (!IsOverviewVisible)
 			{
-				RefreshDirections();
+				RefreshDirections(true);
 			}
 		}
 
@@ -1153,13 +1165,26 @@ namespace WF.Player
 			Position = e.Position;
 			MapViewModel.Position = e.Position;
 
-			RefreshDirections();
+			RefreshDirections(true);
+		}
+
+		/// <summary>
+		/// Handles the position changed event.
+		/// </summary>
+		/// <param name="sender">Sender of event.</param>
+		/// <param name="e">Position changed event arguments.</param>
+		private void OnHeadingChanged(object sender, PositionEventArgs e)
+		{
+			Position = e.Position;
+			MapViewModel.Position = e.Position;
+
+			RefreshDirections(false);
 		}
 
 		/// <summary>
 		///  Update directions for all visible list entries
 		/// </summary>
-		private void RefreshDirections()
+		private void RefreshDirections(bool updateDirection)
 		{
 			if (Position == null)
 			{
@@ -1180,6 +1205,7 @@ namespace WF.Player
 			if (IsYouSeeSelected)
 			{
 				double heading = 0;
+
 				if (Position != null && Position.Heading != null)
 				{
 					// Show always to north
@@ -1191,12 +1217,15 @@ namespace WF.Player
 					// Do it only for entries with ObjectLocation
 					if (entry.UIObject.ObjectLocation != null)
 					{
-						// Calculate values for this thing
-						var vec = this.geoMathHelper.VectorToPoint(new ZonePoint(Position.Latitude, Position.Longitude, 0), entry.UIObject.ObjectLocation);
+						if (updateDirection || entry.VectorToObject == null)
+						{
+							// Calculate values for this thing
+							entry.VectorToObject = this.geoMathHelper.VectorToPoint(new ZonePoint(Position.Latitude, Position.Longitude, 0), entry.UIObject.ObjectLocation);
+						}
 
 						// Set values
-						entry.Direction = (double)((vec.Bearing + heading) % 360);
-						entry.Distance = vec.Distance.Value;
+						entry.Direction = (double)((entry.VectorToObject.Bearing + heading) % 360);
+						entry.Distance = entry.VectorToObject.Distance.Value;
 					}
 				}
 			}

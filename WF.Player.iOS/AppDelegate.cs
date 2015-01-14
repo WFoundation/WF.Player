@@ -248,25 +248,31 @@ namespace WF.Player.iOS
 
 			File.Copy (sourceFile, destFile);
 
-			Cartridge cart = new Cartridge(destFile);
-			CartridgeLoaders.LoadMetadata(new FileStream(destFile, FileMode.Open), cart);
+			// Update CartridgeStore
+			if (App.Navigation.CurrentPage is CartridgeListPage)
+			{
+				((CartridgeListPage)App.Navigation.CurrentPage).RefreshCommand.Execute(null);
+			}
+
+//			Cartridge cart = new Cartridge(destFile);
+//			CartridgeLoaders.LoadMetadata(new FileStream(destFile, FileMode.Open), cart);
 
 			// TODO
 			// If there was a cartridge with the same filename, than replace
-			if (fileExists) {
-			}
+//			if (fileExists) {
+//			}
 
-			if (window.RootViewController.PresentedViewController is UINavigationController && window.RootViewController.PresentedViewController == navCartSelect) {
-				// Now create a new list for cartridges
+//			if (window.RootViewController.PresentedViewController is UINavigationController && window.RootViewController.PresentedViewController == navCartSelect) {
+//				 Now create a new list for cartridges
 //				viewCartSelect = new CartridgeList(this);
 				// Add the cartridge view to the navigation controller
 				// (it'll be the top most screen)
-				navCartSelect.PopToRootViewController (true);
+//				navCartSelect.PopToRootViewController (true);
 //				navCartSelect.SetViewControllers(new UIViewController[] {(UIViewController)viewCartSelect}, false);
 				//				CartridgeDetail cartDetail = new CartridgeDetail(this);
 				//				((UINavigationController)window.RootViewController.PresentedViewController).PushViewController (cartDetail,true);
 				//				cartDetail.Cartridge = cart;
-			}
+//			}
 
 			return true;
 		}

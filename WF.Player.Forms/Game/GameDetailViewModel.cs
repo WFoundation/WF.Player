@@ -99,6 +99,11 @@ namespace WF.Player
 		private Position position;
 
 		/// <summary>
+		/// The location vector for direction to active object.
+		/// </summary>
+		private LocationVector vecDirection;
+
+		/// <summary>
 		/// The has direction.
 		/// </summary>
 		private bool hasDirection;
@@ -157,13 +162,15 @@ namespace WF.Player
 				if (this.activeObject == null) 
 				{
 					// If there isn't an active object, we don't need a update (problems with ShowScreen(Mainscreen) for "Catch me - if you can")
-					App.GPS.HeadingChanged -= HandlePositionChanged;
+					App.GPS.HeadingChanged -= HandleHeadingChanged;
 					App.GPS.PositionChanged -= HandlePositionChanged;
 					return;
 				}
 
 				// Add method to active object property changed events
 				this.activeObject.PropertyChanged += HandlePropertyChanged;
+
+				vecDirection = null;
 
 				// Update all views
 				NotifyPropertyChanged(NamePropertyName);
@@ -177,7 +184,7 @@ namespace WF.Player
 				#endif
 
 				UpdateHasDirection();
-				UpdateDirection();
+				UpdateDirection(true);
 				UpdateCommands();
 				}
 			}
@@ -442,12 +449,14 @@ namespace WF.Player
 			base.OnAppearing();
 
 			App.GPS.PositionChanged += HandlePositionChanged;
-			App.GPS.HeadingChanged += HandlePositionChanged;
+			App.GPS.HeadingChanged += HandleHeadingChanged;
 
 			if (this.activeObject != null)
 			{
 				this.activeObject.PropertyChanged += HandlePropertyChanged;
 			}
+
+			vecDirection = null;
 
 			NotifyPropertyChanged(NamePropertyName);
 
@@ -462,7 +471,7 @@ namespace WF.Player
 			NotifyPropertyChanged(HasDirectionPropertyName);
 
 			UpdateHasDirection();
-			UpdateDirection();
+			UpdateDirection(true);
 		}
 
 		/// <summary>
@@ -486,7 +495,7 @@ namespace WF.Player
 				this.activeObject.PropertyChanged -= HandlePropertyChanged;
 			}
 
-			App.GPS.HeadingChanged -= HandlePositionChanged;
+			App.GPS.HeadingChanged -= HandleHeadingChanged;
 			App.GPS.PositionChanged -= HandlePositionChanged;
 
 			base.OnDisappearing();
@@ -517,6 +526,12 @@ namespace WF.Player
 			if (e.PropertyName == "Container")
 			{
 				UpdateHasDirection();
+			}
+
+			// Points for Zone changed
+			if (e.PropertyName == "Points")
+			{
+				UpdateDirection(true);
 			}
 
 			#if __HTML__
@@ -553,7 +568,24 @@ namespace WF.Player
 
 			Position = e.Position;
 
-			UpdateDirection();
+			UpdateDirection(true);
+		}
+
+		/// <summary>
+		/// Handles the position changed event.
+		/// </summary>
+		/// <param name="sender">Sender of event.</param>
+		/// <param name="e">Position event arguments.</param>
+		private void HandleHeadingChanged(object sender, PositionEventArgs e)
+		{
+			if (this.activeObject == null)
+			{
+				return;
+			}
+
+			Position = e.Position;
+
+			UpdateDirection(false);
 		}
 
 		/// <summary>
@@ -632,7 +664,7 @@ namespace WF.Player
 		/// <summary>
 		///  Update direction for active object
 		/// </summary>
-		private void UpdateDirection()
+		private void UpdateDirection(bool updateDirection)
 		{
 			if (this.activeObject == null)
 			{
@@ -658,12 +690,15 @@ namespace WF.Player
 			// Do it only for entries with ObjectLocation
 			if (this.activeObject.ObjectLocation != null)
 			{
-				// Calculate values for this thing
-				var vec = this.geoMathHelper.VectorToPoint(new ZonePoint(Position.Latitude, Position.Longitude, 0), this.activeObject.ObjectLocation);
+				if (updateDirection || vecDirection == null)
+				{
+					// Calculate values for this thing
+					vecDirection = this.geoMathHelper.VectorToPoint(new ZonePoint(Position.Latitude, Position.Longitude, 0), this.activeObject.ObjectLocation);
+				}
 
 				// Set values
-				Direction = (double)((vec.Bearing + heading) % 360);
-				Distance = vec.Distance.Value;
+				Direction = (double)((vecDirection.Bearing + heading) % 360);
+				Distance = vecDirection.Distance.Value;
 			}
 		}
 

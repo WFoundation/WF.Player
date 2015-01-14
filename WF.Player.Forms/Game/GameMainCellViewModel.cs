@@ -186,7 +186,7 @@ namespace WF.Player
 			{
 				if (uiObject is Zone && ((Zone)uiObject).State == PlayerZoneState.Inside)
 				{
-					return double.NegativeInfinity;
+					return double.PositiveInfinity;
 				}
 				else
 				{
@@ -234,6 +234,12 @@ namespace WF.Player
 				SetProperty<double>(ref this.distance, value, DistancePropertyName);
 			}
 		}
+
+		#endregion
+
+		#region VectorToObject
+
+		public LocationVector VectorToObject;
 
 		#endregion
 
