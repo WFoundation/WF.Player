@@ -34,17 +34,15 @@ namespace WF.Player.iOS
 	// User Interface of the application, as well as listening (and optionally responding) to 
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
+	public partial class AppDelegate : FormsApplicationDelegate
 	{
 		// class-level declarations
 		UIWindow window;
 		UINavigationController navCartSelect;
-//		CartridgeList viewCartSelect;
-//		ScreenController screenCtrl;
 		NSObject observerSettings;
 
 		// Google Maps API Key for iOS
-		const string MapsApiKey = "AIzaSyCgldJMI1uFzqYWU7kEjRz_-kVkDRZxBN0";
+//		const string MapsApiKey = "AIzaSyCgldJMI1uFzqYWU7kEjRz_-kVkDRZxBN0";
 
 		// This method is invoked when the application has loaded and is ready to run. In this 
 		// method you should instantiate the window, load the UI into it and then make the window
@@ -101,7 +99,8 @@ namespace WF.Player.iOS
 				App.PathDatabase = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.LibraryDirectory, NSSearchPathDomain.User) [0].RelativePath;
 			}
 			else
-			{
+			{//			window.RootViewController = navCartSelect;
+				
 				App.PathCartridges = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 				App.PathDatabase = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + ".." + System.IO.Path.DirectorySeparatorChar + "Library";
 			}
@@ -119,7 +118,7 @@ namespace WF.Player.iOS
 			UIApplication.SharedApplication.IdleTimerDisabled = true;
 
 			// Set Google Maps API Key
-			MapServices.ProvideAPIKey (MapsApiKey);
+//			MapServices.ProvideAPIKey (MapsApiKey);
 
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
@@ -137,17 +136,10 @@ namespace WF.Player.iOS
 			// Init observer for changes of the settings
 			observerSettings = NSNotificationCenter.DefaultCenter.AddObserver((NSString)"NSUserDefaultsDidChangeNotification", DefaultsChanged);
 
-			// Set the root view controller on the window. The nav
-			// controller will handle the rest
-			// If you have defined a view, add it here:
-			// window.AddSubview (navigationController.View);
-//			window.RootViewController = navCartSelect;
-			window.RootViewController = App.GetMainPage ().CreateViewController ();
+			// Create Xamarin.Forms App and load the first page
+			LoadApplication(new App());
 
-			// make the window visible
-			window.MakeKeyAndVisible ();
-
-			return true;
+			return base.FinishedLaunching(app, options);
 		}
 
 		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
@@ -253,26 +245,6 @@ namespace WF.Player.iOS
 			{
 				((CartridgeListPage)App.Navigation.CurrentPage).RefreshCommand.Execute(null);
 			}
-
-//			Cartridge cart = new Cartridge(destFile);
-//			CartridgeLoaders.LoadMetadata(new FileStream(destFile, FileMode.Open), cart);
-
-			// TODO
-			// If there was a cartridge with the same filename, than replace
-//			if (fileExists) {
-//			}
-
-//			if (window.RootViewController.PresentedViewController is UINavigationController && window.RootViewController.PresentedViewController == navCartSelect) {
-//				 Now create a new list for cartridges
-//				viewCartSelect = new CartridgeList(this);
-				// Add the cartridge view to the navigation controller
-				// (it'll be the top most screen)
-//				navCartSelect.PopToRootViewController (true);
-//				navCartSelect.SetViewControllers(new UIViewController[] {(UIViewController)viewCartSelect}, false);
-				//				CartridgeDetail cartDetail = new CartridgeDetail(this);
-				//				((UINavigationController)window.RootViewController.PresentedViewController).PushViewController (cartDetail,true);
-				//				cartDetail.Cartridge = cart;
-//			}
 
 			return true;
 		}

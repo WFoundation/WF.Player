@@ -38,7 +38,7 @@ namespace WF.Player
 	/// <summary>
 	/// Forms app.
 	/// </summary>
-	public class App
+	public class App : Application
 	{
 		/// <summary>
 		/// The game model.
@@ -79,6 +79,15 @@ namespace WF.Player
 		/// Vibration interface for app.
 		/// </summary>
 		private static IVibration vibrate;
+
+		#region Constructor
+
+		public App() : base()
+		{
+			MainPage = GetMainPage();
+		}
+
+		#endregion
 
 		#region Properties
 
@@ -380,7 +389,6 @@ namespace WF.Player
 //				// We have a autosave file, so start this cartridge
 //				page.Navigation.PushAsync(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, cartridgeSave, App.CurrentPage)));
 //			}
-
 
 			return App.Navigation;
 		}
