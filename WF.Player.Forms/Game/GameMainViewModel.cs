@@ -15,8 +15,6 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using WF.Player.Controls;
-using Xamarin.Forms.Maps;
 
 namespace WF.Player
 {
@@ -29,6 +27,7 @@ namespace WF.Player
 	using WF.Player.Core.Utils;
 	using WF.Player.Services.Geolocation;
 	using Xamarin.Forms;
+	using Xamarin.Forms.Maps;
 
 	/// <summary>
 	/// Game main view model.
@@ -1033,8 +1032,6 @@ namespace WF.Player
 			// Notify user
 			App.Click();
 
-//			MapViewModel.Position = App.GPS.LastKnownPosition;
-
 			if (MapViewModel.Map.VisibleRegion == null)
 			{
 				if (App.GPS.LastKnownPosition != null)
@@ -1184,6 +1181,7 @@ namespace WF.Player
 		/// <summary>
 		///  Update directions for all visible list entries
 		/// </summary>
+		/// <param name="updateDirection">Flag, if direction should be calculated new.</param>
 		private void RefreshDirections(bool updateDirection)
 		{
 			if (Position == null)
@@ -1323,13 +1321,18 @@ namespace WF.Player
 		{
 			// Create content for You See on main screen
 			string content = string.Format("## {0}", Catalog.GetString("You See"));
+
 			if (YouSeeNumber > 0)
 			{
 				content = content + string.Format(" [{0}]", YouSeeNumber);
 			}
+
 			content = content + Environment.NewLine;
+
 			var listYouSee = this.gameModel.ActiveVisibleZones.Select(o => o.Name).ToList();
+
 			listYouSee.AddRange(this.gameModel.VisibleObjects.Select(o => o.Name).ToList());
+
 			if (listYouSee.Count > 0)
 			{
 				content = content + string.Join(", ", listYouSee);
@@ -1338,16 +1341,21 @@ namespace WF.Player
 			{
 				content = content + this.gameModel.Cartridge.EmptyYouSeeListText;
 			}
+
 			YouSeeOverviewContent = content;
 
 			// Create content for Inventory on main screen
 			content = string.Format("## {0}", Catalog.GetString("Inventory"));
+
 			if (InventoryNumber > 0)
 			{
 				content = content + string.Format(" [{0}]", InventoryNumber);
 			}
+
 			content = content + Environment.NewLine;
+
 			var listInventory = this.gameModel.VisibleInventory.Select(o => o.Name).ToList();
+
 			if (listInventory.Count > 0)
 			{
 				content = content + string.Join(", ", listInventory);
@@ -1356,16 +1364,21 @@ namespace WF.Player
 			{
 				content = content + this.gameModel.Cartridge.EmptyInventoryListText;
 			}
+
 			InventoryOverviewContent = content;
 
 			// Create content for Tasks on main screen
 			content = string.Format("## {0}", Catalog.GetString("Tasks"));
+
 			if (TasksNumber > 0)
 			{
 				content = content + string.Format(" [{0}]", TasksNumber);
 			}
+
 			content = content + Environment.NewLine;
+
 			var listTasks = this.gameModel.ActiveVisibleTasks.Select(o => o.Name).ToList();
+
 			if (listTasks.Count > 0)
 			{
 				content = content + string.Join(", ", listTasks);
@@ -1374,13 +1387,14 @@ namespace WF.Player
 			{
 				content = content + this.gameModel.Cartridge.EmptyTasksListText;
 			}
+
 			TasksOverviewContent = content;
 		}
 
 		/// <summary>
 		/// Refreshs the map.
 		/// </summary>
-		/// <param name="e">E.</param>
+		/// <param name="e">Event arguments.</param>
 		private void RefreshMap(DisplayChangedEventArgs e = null)
 		{
 			if (e == null)

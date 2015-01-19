@@ -55,6 +55,7 @@ namespace WF.Player
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.FillAndExpand,
 				};
+
 			webView.SetBinding(WebView.SourceProperty, GameDetailViewModel.HtmlSourcePropertyName);
 
 			((StackLayout)ContentLayout).Children.Add(webView);
@@ -73,7 +74,7 @@ namespace WF.Player
 				{
 					BackgroundColor = App.Colors.Background,
 					Orientation = StackOrientation.Vertical,
-					Padding = new Thickness(10, 10),
+					Padding = 10,
 					Spacing = 10,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.FillAndExpand,
@@ -83,20 +84,23 @@ namespace WF.Player
 				{
 					Aspect = Aspect.AspectFit,
 				};
+
 			image.SetBinding(Image.SourceProperty, GameDetailViewModel.ImageSourcePropertyName);
-			image.SetBinding(Image.IsVisibleProperty, GameDetailViewModel.HasImagePropertyName);
+			image.SetBinding(VisualElement.IsVisibleProperty, GameDetailViewModel.HasImagePropertyName);
 
 			layout.Children.Add(image);
 
 			var description = new ExtendedLabel() 
 				{
 					TextColor = App.Colors.Text,
-					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
+					FontSize = App.Prefs.TextSize,
+					FontFamily = App.Fonts.Normal.FontFamily,
 					XAlign = App.Prefs.TextAlignment,
 					UseMarkdown = App.Game.UseMarkdown,
 				};
-			description.SetBinding(ExtendedLabel.TextProperty, GameDetailViewModel.DescriptionPropertyName);
-			description.SetBinding(ExtendedLabel.IsVisibleProperty, GameDetailViewModel.HasDescriptionPropertyName);
+
+			description.SetBinding(Label.TextProperty, GameDetailViewModel.DescriptionPropertyName);
+			description.SetBinding(VisualElement.IsVisibleProperty, GameDetailViewModel.HasDescriptionPropertyName);
 
 			layout.Children.Add(description);
 

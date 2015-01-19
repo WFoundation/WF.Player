@@ -44,6 +44,7 @@ namespace WF.Player
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.FillAndExpand,
 				};
+
 			webView.SetBinding(WebView.SourceProperty, GameMessageboxViewModel.HtmlSourcePropertyName);
 
 			((StackLayout)ContentLayout).Children.Add(webView);
@@ -60,9 +61,8 @@ namespace WF.Player
 
 			var layout = new StackLayout() 
 				{
-//					BackgroundColor = App.Colors.Background,
 					Orientation = StackOrientation.Vertical,
-					Padding = new Thickness(10, 10),
+					Padding = 10,
 					Spacing = 10,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.FillAndExpand,
@@ -73,19 +73,20 @@ namespace WF.Player
 					Aspect = Aspect.AspectFit,
 				};
 			image.SetBinding(Image.SourceProperty, GameMessageboxViewModel.ImageSourcePropertyName);
-			image.SetBinding(Image.IsVisibleProperty, GameMessageboxViewModel.HasImagePropertyName);
+			image.SetBinding(VisualElement.IsVisibleProperty, GameMessageboxViewModel.HasImagePropertyName);
 
 			layout.Children.Add(image);
 
 			var description = new ExtendedLabel() 
 				{
 					TextColor = App.Colors.Text,
-					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
+					FontSize = App.Prefs.TextSize,
+					FontFamily = App.Fonts.Normal.FontFamily,
 					XAlign = App.Prefs.TextAlignment,
 					UseMarkdown = App.Game.UseMarkdown,
 				};
-			description.SetBinding(ExtendedLabel.TextProperty, GameMessageboxViewModel.TextPropertyName);
-			description.SetBinding(ExtendedLabel.IsVisibleProperty, GameMessageboxViewModel.HasTextPropertyName);
+			description.SetBinding(Label.TextProperty, GameMessageboxViewModel.TextPropertyName);
+			description.SetBinding(VisualElement.IsVisibleProperty, GameMessageboxViewModel.HasTextPropertyName);
 
 			layout.Children.Add(description);
 

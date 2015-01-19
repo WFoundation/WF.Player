@@ -46,6 +46,7 @@ namespace WF.Player
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			};
+
 			webView.SetBinding (WebView.SourceProperty, GameDetailViewModel.HtmlSourcePropertyName);
 			webView.SizeChanged += (object sender, EventArgs e) => {
 				webView.HeightRequest = 1;
@@ -69,6 +70,7 @@ namespace WF.Player
 					Padding = 10,
 					Spacing = 10,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.FillAndExpand,
 				};
 
 			var image = new ExtendedImage() 
@@ -77,7 +79,7 @@ namespace WF.Player
 				};
 
 			image.SetBinding(Image.SourceProperty, GameInputViewModel.ImageSourcePropertyName);
-			image.SetBinding(Image.IsVisibleProperty, GameInputViewModel.HasImagePropertyName);
+			image.SetBinding(VisualElement.IsVisibleProperty, GameInputViewModel.HasImagePropertyName);
 
 			layout.Children.Add(image);
 
@@ -90,8 +92,8 @@ namespace WF.Player
 					UseMarkdown = App.Game.UseMarkdown,
 				};
 
-			description.SetBinding(ExtendedLabel.TextProperty, GameInputViewModel.TextPropertyName);
-			description.SetBinding(ExtendedLabel.IsVisibleProperty, GameInputViewModel.HasTextPropertyName);
+			description.SetBinding(Label.TextProperty, GameInputViewModel.TextPropertyName);
+			description.SetBinding(VisualElement.IsVisibleProperty, GameInputViewModel.HasTextPropertyName);
 
 			layout.Children.Add(description);
 
@@ -120,7 +122,7 @@ namespace WF.Player
 
 			entry.SetBinding(Entry.TextProperty, GameInputViewModel.InputTextPropertyName, BindingMode.TwoWay);
 			entry.SetBinding(Entry.PlaceholderProperty, GameInputViewModel.PlaceholderPropertyName);
-			entry.SetBinding(Entry.IsVisibleProperty, GameInputViewModel.HasEntryPropertyName);
+			entry.SetBinding(VisualElement.IsVisibleProperty, GameInputViewModel.HasEntryPropertyName);
 
 			BottomEntry.Children.Add(entry);
 

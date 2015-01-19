@@ -269,9 +269,11 @@ namespace WF.Player
 				// Do this, because if not, than the layout process isn't started for the direction arrow
 				// and the direction arrow is placed mostly outside the screen
 				if (!HasImage && (this.activeObject == null || string.IsNullOrEmpty(this.activeObject.Description)))
+				{
 					return true;
+				}
 
-				return this.activeObject != null ? !string.IsNullOrEmpty(this.activeObject.Description) : false;
+				return this.activeObject != null && !string.IsNullOrEmpty(this.activeObject.Description);
 			}
 		}
 
@@ -293,11 +295,6 @@ namespace WF.Player
 				}
 
 				return App.Game.GetImageSourceForMedia(ActiveObject.Media);
-				// TODO: Remove
-//				return ImageSource.FromStream(() => 
-//					{
-//						return ActiveObject.Media != null ? new MemoryStream(ActiveObject.Media.Data) : null;
-//					});
 			}
 		}
 
@@ -664,6 +661,7 @@ namespace WF.Player
 		/// <summary>
 		///  Update direction for active object
 		/// </summary>
+		/// <param name="updateDirection">Flag, if the direction should be calculated new.</param>
 		private void UpdateDirection(bool updateDirection)
 		{
 			if (this.activeObject == null)
@@ -763,7 +761,7 @@ namespace WF.Player
 
 				sumTextWidth += 6 * (thing.ActiveCommands.Count - 1);
 
-				if (sumTextWidth > (view.BottomLayout.Width - 2 * 10) * Device.OnPlatform<float>(1.0f, 1.2f, 1.0f))
+				if (sumTextWidth > (view.BottomLayout.Width - (2 * 10)) * Device.OnPlatform<float>(1.0f, 1.2f, 1.0f))
 				{
 					// If there are more text than possible, display action menu
 					view.Buttons.Add(new ToolTextButton(Catalog.GetString("Actions"), new Xamarin.Forms.Command(HandleCommandsClicked)));

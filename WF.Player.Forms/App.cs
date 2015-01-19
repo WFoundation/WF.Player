@@ -82,6 +82,9 @@ namespace WF.Player
 
 		#region Constructor
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="WF.Player.App"/> class.
+		/// </summary>
 		public App() : base()
 		{
 			MainPage = GetMainPage();
@@ -391,6 +394,29 @@ namespace WF.Player
 //			}
 
 			return App.Navigation;
+		}
+
+		/// <summary>
+		/// Creates the styles for various views from the settings.
+		/// </summary>
+		public void CreateStyles()
+		{
+			// Get resource dictionary
+			var resources = Application.Current.Resources ?? new ResourceDictionary ();
+
+			// Create style for descriptions
+			var descriptionStyle = new Style (typeof(ExtendedLabel)) 
+				{
+					Setters = {
+						new Setter { Property = ExtendedLabel.TextColorProperty, Value = App.Colors.Text },
+						new Setter { Property = ExtendedLabel.FontSizeProperty, Value = App.Fonts.Normal.FontSize },
+						new Setter { Property = ExtendedLabel.XAlign, Value = App.Prefs.TextAlignment }
+				}
+			};
+
+			resources.Add ("DescriptionStyle", descriptionStyle);
+
+			Application.Current.Resources = resources;
 		}
 
 		public static async void CheckFolder()

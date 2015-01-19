@@ -20,10 +20,8 @@ namespace WF.Player
 {
 	using System;
 	using System.ComponentModel;
-	using System.IO;
 	using WF.Player.Core;
 	using Xamarin.Forms;
-	using Vernacular;
 
 	/// <summary>
 	/// Game main cell view model.
@@ -239,7 +237,11 @@ namespace WF.Player
 
 		#region VectorToObject
 
-		public LocationVector VectorToObject;
+		/// <summary>
+		/// Gets or sets the vector to object.
+		/// </summary>
+		/// <value>The vector to object.</value>
+		public LocationVector VectorToObject { get; set; }
 
 		#endregion
 

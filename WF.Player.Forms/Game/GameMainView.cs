@@ -15,7 +15,6 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Xamarin.Forms.Maps;
 
 namespace WF.Player
 {
@@ -100,27 +99,31 @@ namespace WF.Player
 
 			#endif
 
-			var grid = new Grid() {
-				RowSpacing = 0,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-			};
+			var grid = new Grid() 
+				{
+					RowSpacing = 0,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+				};
 
-			grid.RowDefinitions = new RowDefinitionCollection {
-				new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-				new RowDefinition { Height = 60 }
-			};
+			grid.RowDefinitions = new RowDefinitionCollection 
+				{
+					new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+					new RowDefinition { Height = 60 }
+				};
 
-			grid.ColumnDefinitions = new ColumnDefinitionCollection {
-				new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-			};
+			grid.ColumnDefinitions = new ColumnDefinitionCollection 
+				{
+					new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+				};
 
-			var bottomLayout = new StackLayout() {
-				Spacing = 0,
-				Orientation = StackOrientation.Vertical,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				VerticalOptions = LayoutOptions.Fill,
-			};
+			var bottomLayout = new StackLayout() 
+				{
+					Spacing = 0,
+					Orientation = StackOrientation.Vertical,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.Fill,
+				};
 
 			#if __IOS__
 
@@ -139,19 +142,20 @@ namespace WF.Player
 			TapGestureRecognizer tapRecognizer;
 
 			var buttonLayout = new StackLayout() 
-			{
-				BackgroundColor = App.Colors.Bar,
+				{
 					Orientation = StackOrientation.Horizontal,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				HeightRequest = 60, //72,
-				MinimumHeightRequest = 60, //72,
-			};
+					BackgroundColor = App.Colors.Bar,
+					HeightRequest = 60,
+					MinimumHeightRequest = 60,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+				};
 
 			// Overview button
 			this.buttonOverview = new GameToolBarButton("IconOverview.png") 
 				{
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
+
 			this.buttonOverview.Image.SetBinding(BadgeImage.SelectedProperty, GameMainViewModel.IsOverviewSelectedPropertyName);
 
 			tapRecognizer = new TapGestureRecognizer 
@@ -169,6 +173,7 @@ namespace WF.Player
 				{
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
+
 			this.buttonYouSee.Image.SetBinding(BadgeImage.SelectedProperty, GameMainViewModel.IsYouSeeSelectedPropertyName);
 			this.buttonYouSee.Image.SetBinding(BadgeImage.NumberProperty, GameMainViewModel.YouSeeNumberPropertyName);
 
@@ -187,6 +192,7 @@ namespace WF.Player
 				{
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
+
 			this.buttonInventory.Image.SetBinding(BadgeImage.SelectedProperty, GameMainViewModel.IsInventorySelectedPropertyName);
 			this.buttonInventory.Image.SetBinding(BadgeImage.NumberProperty, GameMainViewModel.InventoryNumberPropertyName);
 
@@ -205,6 +211,7 @@ namespace WF.Player
 				{
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
+
 			this.buttonTasks.Image.SetBinding(BadgeImage.SelectedProperty, GameMainViewModel.IsTasksSelectedPropertyName);
 			this.buttonTasks.Image.SetBinding(BadgeImage.NumberProperty, GameMainViewModel.TasksNumberPropertyName);
 
@@ -223,6 +230,7 @@ namespace WF.Player
 				{
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 				};
+
 			this.buttonMap.Image.SetBinding(BadgeImage.SelectedProperty, GameMainViewModel.IsMapSelectedPropertyName);
 
 			tapRecognizer = new TapGestureRecognizer 
@@ -246,15 +254,17 @@ namespace WF.Player
 				VerticalOptions = LayoutOptions.CenterAndExpand,
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
 			};
+
 			labelEmpty.SetBinding(Label.TextProperty, GameMainViewModel.EmptyListTextPropertyName);
-			labelEmpty.SetBinding(Label.IsVisibleProperty, GameMainViewModel.IsEmptyListTextVisiblePropertyName);
+			labelEmpty.SetBinding(VisualElement.IsVisibleProperty, GameMainViewModel.IsEmptyListTextVisiblePropertyName);
 
 			var overviewScroll = new ScrollView() 
 				{
 					VerticalOptions = LayoutOptions.FillAndExpand,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 				};
-			overviewScroll.SetBinding(ScrollView.IsVisibleProperty, GameMainViewModel.IsOverviewVisiblePropertyName);
+
+			overviewScroll.SetBinding(VisualElement.IsVisibleProperty, GameMainViewModel.IsOverviewVisiblePropertyName);
 
 			var layoutOverview = new StackLayout() 
 				{
@@ -294,7 +304,8 @@ namespace WF.Player
 					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.8),
 					UseMarkdown = true,
 				};
-			labelOverviewYouSee.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.YouSeeOverviewContentPropertyName);
+
+			labelOverviewYouSee.SetBinding(Label.TextProperty, GameMainViewModel.YouSeeOverviewContentPropertyName);
 
 			layoutOverviewYouSee.Children.Add(labelOverviewYouSee);
 
@@ -333,7 +344,8 @@ namespace WF.Player
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.FillAndExpand,
 				};
-			labelOverviewInventory.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.InventoryOverviewContentPropertyName);
+
+			labelOverviewInventory.SetBinding(Label.TextProperty, GameMainViewModel.InventoryOverviewContentPropertyName);
 
 			layoutOverviewInventory.Children.Add(labelOverviewInventory);
 
@@ -370,6 +382,7 @@ namespace WF.Player
 					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.8),
 					UseMarkdown = true,
 				};
+
 			labelOverviewTasks.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.TasksOverviewContentPropertyName);
 
 			layoutOverviewTasks.Children.Add(labelOverviewTasks);
@@ -388,8 +401,8 @@ namespace WF.Player
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			};
 
-			list.SetBinding(ListView.IsVisibleProperty, GameMainViewModel.IsListVisiblePropertyName);
-			list.SetBinding(ListView.ItemsSourceProperty, GameMainViewModel.GameMainListPropertyName);
+			list.SetBinding(VisualElement.IsVisibleProperty, GameMainViewModel.IsListVisiblePropertyName);
+			list.SetBinding(ItemsView<Cell>.ItemsSourceProperty, GameMainViewModel.GameMainListPropertyName);
 			list.ItemSelected += (object sender, SelectedItemChangedEventArgs e) =>
 			{
 				// Get selected MenuEntry
@@ -427,7 +440,7 @@ namespace WF.Player
 					VerticalOptions = LayoutOptions.FillAndExpand,
 				};
 
-			mapView.SetBinding(MapView.IsVisibleProperty, GameMainViewModel.IsMapSelectedPropertyName);
+			mapView.SetBinding(VisualElement.IsVisibleProperty, GameMainViewModel.IsMapSelectedPropertyName);
 
 			gameMainViewModel.MapViewModel = mapViewModel;
 

@@ -15,7 +15,6 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using WF.Player.Controls;
 
 namespace WF.Player
 {
@@ -220,17 +219,6 @@ namespace WF.Player
 		#endregion
 
 		#endregion
-
-		public override void OnAppearing()
-		{
-			base.OnAppearing();
-
-//			if (started)
-//			{
-//				started = false;
-//				App.Navigation.Navigation.PopAsync();
-//			}
-		}
 
 		#region Private Functions
 

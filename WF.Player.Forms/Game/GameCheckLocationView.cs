@@ -34,27 +34,26 @@ namespace WF.Player
 		{
 			BindingContext = viewModel;
 
-//			NavigationPage.SetHasBackButton(this, true);
-
 			Title = Catalog.GetString("GPS Check");
 
 			var layout = new StackLayout() 
-			{
-				Orientation = StackOrientation.Vertical,
-				Spacing = 10,
-				Padding = new Thickness(10, 10),
-				VerticalOptions = LayoutOptions.FillAndExpand,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-			};
+				{
+					Orientation = StackOrientation.Vertical,
+					Padding = 10,
+					Spacing = 10,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+				};
 
 			var label = new Label() 
-			{
-				Text = Catalog.GetString("For much fun with the cartridge, you should wait for a good accuracy of your GPS signal."),
-				TextColor = App.Colors.Text,
-				BackgroundColor = Color.Transparent,
-				LineBreakMode = LineBreakMode.WordWrap,
-				XAlign = App.Prefs.TextAlignment,
-				Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
+				{
+					Text = Catalog.GetString("For much fun with the cartridge, you should wait for a good accuracy of your GPS signal."),
+					TextColor = App.Colors.Text,
+					BackgroundColor = Color.Transparent,
+					LineBreakMode = LineBreakMode.WordWrap,
+					XAlign = App.Prefs.TextAlignment,
+					FontSize = App.Prefs.TextSize,
+					FontFamily = App.Fonts.Normal.FontFamily,
 			};
 
 			layout.Children.Add(label);
@@ -62,27 +61,33 @@ namespace WF.Player
 			layout.Spacing = 20;
 
 			var coordinates = new Label() 
-			{
-				Text = string.Format(Catalog.GetString("Current Coordinates\n{0}"), Catalog.GetString("Unknown")),
-				TextColor = App.Colors.Text,
-				BackgroundColor = Color.Transparent,
-				LineBreakMode = LineBreakMode.WordWrap,
-				XAlign = TextAlignment.Center,
-				Font = App.Fonts.Normal.WithAttributes(FontAttributes.Bold).WithSize(App.Prefs.TextSize),
-			};
+				{
+					Text = string.Format(Catalog.GetString("Current Coordinates\n{0}"), Catalog.GetString("Unknown")),
+					TextColor = App.Colors.Text,
+					BackgroundColor = Color.Transparent,
+					LineBreakMode = LineBreakMode.WordWrap,
+					XAlign = TextAlignment.Center,
+					FontSize = App.Prefs.TextSize,
+					FontFamily = App.Fonts.Normal.FontFamily,
+					FontAttributes = FontAttributes.Bold,
+				};
+
 			coordinates.SetBinding(Label.TextProperty, GameMainViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToLatLon(), Catalog.GetString("Current Coordinates\n{0}"));
 
 			layout.Children.Add(coordinates);
 
 			var accuracy = new Label() 
-			{
-				Text = string.Format(Catalog.GetString("Current Accuracy\n{0}"), Catalog.GetString("Unknown")),
-				TextColor = App.Colors.Text,
-				BackgroundColor = Color.Transparent,
-				LineBreakMode = LineBreakMode.WordWrap,
-				XAlign = TextAlignment.Center,
-				Font = App.Fonts.Normal.WithAttributes(FontAttributes.Bold).WithSize(App.Prefs.TextSize),
-			};
+				{
+					Text = string.Format(Catalog.GetString("Current Accuracy\n{0}"), Catalog.GetString("Unknown")),
+					TextColor = App.Colors.Text,
+					BackgroundColor = Color.Transparent,
+					LineBreakMode = LineBreakMode.WordWrap,
+					XAlign = TextAlignment.Center,
+					FontSize = App.Prefs.TextSize,
+					FontFamily = App.Fonts.Normal.FontFamily,
+					FontAttributes = FontAttributes.Bold,
+				};
+
 			accuracy.SetBinding(Label.TextProperty, GameMainViewModel.PositionPropertyName, BindingMode.OneWay, new ConverterToAccuracy(), Catalog.GetString("Current Accuracy\n{0}"));
 
 			layout.Children.Add(accuracy);
