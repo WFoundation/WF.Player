@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WF.Player.iOS", "WF.Player.
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WF.Player.Forms", "WF.Player.Forms\WF.Player.Forms.shproj", "{7AE73E08-8DCE-4DD9-AF94-C511A3609759}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WF.Player.Common", "WF.Player.Common\WF.Player.Common.shproj", "{71E135DE-23A0-4EA2-B157-80A602ACE496}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WF.Player.Droid", "WF.Player.Droid\WF.Player.Droid.csproj", "{638B34E5-073A-4480-A935-6F17E2CD8831}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WF.Player.Core.iOS", "WF.Player.Core\Core\WF.Player.Core.iOS.csproj", "{DFD85D7E-251B-4D9E-BF44-2F054386F46F}"

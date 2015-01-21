@@ -66,10 +66,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\ConverterToAltitudeVisibility.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\ConverterToHTML.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\DirectionState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\CartridgeSavegame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\CartridgeStore.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\CartridgeTag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Providers\CartridgeProviderSyncAbortEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Providers\CartridgeProviderSyncEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Providers\ICartridgeProvider.cs" />
@@ -97,6 +95,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeDetailMapView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\MapOrientation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DirectionInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFormsPlatformHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGeolocator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\PositionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\Position.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\GeolocationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\PositionEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\FormatCoordinates.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\UnitLength.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ICommonPlatformHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CartridgeTag.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />
@@ -115,5 +123,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Services\Utils\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.UserDialogs\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.Mobile\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Geolocation\" />
   </ItemGroup>
 </Project>

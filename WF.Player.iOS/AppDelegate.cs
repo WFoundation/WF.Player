@@ -27,6 +27,7 @@ using WF.Player.Core;
 using WF.Player.Core.Formats;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using WF.Player.iOS.Services.Core;
 
 namespace WF.Player.iOS
 {
@@ -87,24 +88,6 @@ namespace WF.Player.iOS
 
 			#endif
 
-			// Activate TestFlight
-//			MonoTouch.TestFlight.TestFlight.TakeOffThreadSafe(@"d8fc2051-04bd-4612-b83f-19786b749aab");
-
-			double version;
-			double.TryParse(UIDevice.CurrentDevice.SystemVersion, out version);
-
-			if (version >= 8)
-			{
-				App.PathCartridges = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User) [0].RelativePath;
-				App.PathDatabase = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.LibraryDirectory, NSSearchPathDomain.User) [0].RelativePath;
-			}
-			else
-			{//			window.RootViewController = navCartSelect;
-				
-				App.PathCartridges = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-				App.PathDatabase = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + ".." + System.IO.Path.DirectorySeparatorChar + "Library";
-			}
-
 			// Activate Vernacular Catalog
 			Catalog.Implementation = new ResourceCatalog 
 				{
@@ -137,7 +120,7 @@ namespace WF.Player.iOS
 			observerSettings = NSNotificationCenter.DefaultCenter.AddObserver((NSString)"NSUserDefaultsDidChangeNotification", DefaultsChanged);
 
 			// Create Xamarin.Forms App and load the first page
-			LoadApplication(new App());
+			LoadApplication(new App(new iOSPlatformHelper()));
 
 			return base.FinishedLaunching(app, options);
 		}

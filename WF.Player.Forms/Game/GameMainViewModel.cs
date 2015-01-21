@@ -192,7 +192,7 @@ namespace WF.Player
 		/// <summary>
 		/// The position.
 		/// </summary>
-		private Position position;
+		private WF.Player.Services.Geolocation.Position position;
 
 		/// <summary>
 		/// The game main list.
@@ -340,7 +340,7 @@ namespace WF.Player
 		/// Gets Position from the actual location.
 		/// </summary>
 		/// <value>The Position.</value>
-		public Position Position
+		public WF.Player.Services.Geolocation.Position Position
 		{
 			get
 			{
@@ -349,7 +349,7 @@ namespace WF.Player
 
 			internal set
 			{
-				SetProperty<Position>(ref this.position, value, PositionPropertyName);
+				SetProperty<WF.Player.Services.Geolocation.Position>(ref this.position, value, PositionPropertyName);
 			}
 		}
 

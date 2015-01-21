@@ -19,6 +19,7 @@
 namespace WF.Player.Services.Preferences
 {
 	using System;
+	using WF.Player.Common;
 	using Xamarin.Forms;
 
 	/// <summary>

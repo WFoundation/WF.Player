@@ -23,17 +23,48 @@ using MonoTouch.Foundation;
 using Xamarin.Forms;
 using WF.Player.Core.Engines;
 using Vernacular;
+using WF.Player.Interfaces;
 
 [assembly: Dependency(typeof(WF.Player.iOS.Services.Core.iOSPlatformHelper))]
 
 namespace WF.Player.iOS.Services.Core
 {
-	public class iOSPlatformHelper : IPlatformHelper
+	public class iOSPlatformHelper : IFormsPlatformHelper
 	{
+		/// <summary>
+		/// The root path for cartridge files, save files and log files.
+		/// </summary>
+		private string rootPath;
+
+		/// <summary>
+		/// The database path for the cartridge database.
+		/// </summary>
+		private string databasePath;
+
+		/// <summary>
+		/// The SQLite connection to database.
+		/// </summary>
+		private SQLite.Net.SQLiteConnection database;
+
 		#region Constructors
 
-		static iOSPlatformHelper()
+		public iOSPlatformHelper()
 		{
+			// Get rootPath for cartridge files, save files and log files
+			double version;
+			double.TryParse(UIDevice.CurrentDevice.SystemVersion, out version);
+
+			if (version >= 8)
+			{
+				rootPath = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User) [0].RelativePath;
+				databasePath = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.LibraryDirectory, NSSearchPathDomain.User) [0].RelativePath;
+			}
+			else
+			{
+				rootPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+				databasePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + ".." + System.IO.Path.DirectorySeparatorChar + "Library";
+			}
+
 			try
 			{
 				entryAssemblyVersion = Version.Parse(Assembly.GetExecutingAssembly().GetName().Version.ToString());
@@ -53,6 +84,69 @@ namespace WF.Player.iOS.Services.Core
 		#endregion
 
 		#region Properties
+
+		#region ICommonPlatformHelper Properties
+
+		/// <summary>
+		/// Gets the path for cartridge files, save files and log files.
+		/// </summary>
+		/// <value>The path for cartridge files.</value>
+		public string PathForFiles
+		{
+			get
+			{
+				return rootPath;
+			}
+		}
+
+		/// <summary>
+		/// Gets the path for database files.
+		/// </summary>
+		/// <value>The path for save files.</value>
+		public string PathForDatabase
+		{
+			get
+			{
+				return databasePath;
+			}
+		}
+
+		/// <summary>
+		/// Gets the path for database.
+		/// </summary>
+		/// <value>The path for database.</value>
+		public SQLite.Net.SQLiteConnection Database
+		{
+			get
+			{
+				if (databasePath == null)
+				{
+					throw new DirectoryNotFoundException("database");
+				}
+
+				if (database == null)
+				{
+					// Create a new database connection
+					var platform = new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
+
+					database = new SQLite.Net.SQLiteConnection(platform, Path.Combine(databasePath, "WF.Player.db3"));
+				}
+
+				return database;
+			}
+		}
+
+		public Stream StreamForDemoCartridge
+		{
+			get
+			{
+				return System.IO.File.OpenRead(Path.Combine("Assets", "Wherigo Tutorial.gwc"));
+			}
+		}
+
+		#endregion
+
+		#region ICorePlatformHelper Properties
 
 		public string CartridgeFolder
 		{
@@ -137,6 +231,8 @@ namespace WF.Player.iOS.Services.Core
 		{
 			get { return true; }
 		}
+
+		#endregion
 
 		#endregion
 

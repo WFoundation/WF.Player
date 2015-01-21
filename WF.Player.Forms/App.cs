@@ -15,11 +15,6 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using WF.Player.Core;
-using WF.Player.Core.Formats;
-using Acr.XamForms.Mobile;
-using PCLStorage;
-using WF.Player.Controls;
 
 namespace WF.Player
 {
@@ -27,8 +22,9 @@ namespace WF.Player
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
-	using Vernacular;
-	using WF.Player.Core.Live;
+	using PCLStorage;
+	using WF.Player.Controls;
+	using WF.Player.Interfaces;
 	using WF.Player.Models;
 	using WF.Player.Services.Device;
 	using WF.Player.Services.Geolocation;
@@ -80,13 +76,23 @@ namespace WF.Player
 		/// </summary>
 		private static IVibration vibrate;
 
+		/// <summary>
+		/// The platform helper.
+		/// </summary>
+		private IFormsPlatformHelper platformHelper;
+
 		#region Constructor
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WF.Player.App"/> class.
 		/// </summary>
-		public App() : base()
+		public App(IFormsPlatformHelper platformHelper) : base()
 		{
+			this.platformHelper = platformHelper;
+
+			PathCartridges = platformHelper.PathForFiles;
+			PathDatabase = platformHelper.PathForDatabase;
+
 			MainPage = GetMainPage();
 		}
 
@@ -218,19 +224,6 @@ namespace WF.Player
 				}
 
 				return chars;
-			}
-		}
-
-		/// <summary>
-		/// Gets the path for database.
-		/// </summary>
-		/// <value>The path for database.</value>
-		public static SQLite.SQLiteConnection Database
-		{
-			get
-			{
-				var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Library");
-				return new SQLite.SQLiteConnection(Path.Combine(path, "WF.Player.db3"));
 			}
 		}
 
@@ -410,7 +403,6 @@ namespace WF.Player
 					Setters = {
 						new Setter { Property = ExtendedLabel.TextColorProperty, Value = App.Colors.Text },
 						new Setter { Property = ExtendedLabel.FontSizeProperty, Value = App.Fonts.Normal.FontSize },
-						new Setter { Property = ExtendedLabel.XAlign, Value = App.Prefs.TextAlignment }
 				}
 			};
 
@@ -424,7 +416,7 @@ namespace WF.Player
 
 			// If there isn't any gwc file in the path,
 			// than copy Wherigo Tutorial to cartridges folder
-			var folder = new FileSystemFolder(PathCartridges);
+			var folder = new FileSystemFolder(PathForCartridges);
 
 			var files = await folder.GetFilesAsync(new System.Threading.CancellationToken());
 
