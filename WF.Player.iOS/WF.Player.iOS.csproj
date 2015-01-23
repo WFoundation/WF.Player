@@ -238,7 +238,6 @@
     <Compile Include="Services\Geolocation\GeolocationSingleUpdateDelegate.cs" />
     <Compile Include="Services\Geolocation\PositionExtensions.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="Services\Preferences\Preferences.cs" />
     <Compile Include="Game\ScreenMap.cs" />
     <Compile Include="Renderer\AccessoryCellRenderer.cs" />
     <Compile Include="Services\Core\iOSPlatformHelper.cs" />
@@ -261,6 +260,7 @@
     <Compile Include="Renderer\PullToRefreshListViewRenderer.cs" />
     <Compile Include="Bootstrap\MobileBootstrap.cs" />
     <Compile Include="Renderer\ExtendedNavigationPageRenderer.cs" />
+    <Compile Include="Services\Settings\Settings.cs" />
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -270,7 +270,6 @@
     <Folder Include="Services\" />
     <Folder Include="Services\Geolocation\" />
     <Folder Include="Settings.bundle\" />
-    <Folder Include="Services\Preferences\" />
     <Folder Include="Settings.bundle\Acknowledgements.xcassets\" />
     <Folder Include="Game\" />
     <Folder Include="Renderer\" />
@@ -284,6 +283,7 @@
     <Folder Include="Services\Acr.XamForms.UserDialogs.iOS\" />
     <Folder Include="Services\Acr.XamForms.Mobile.iOS\" />
     <Folder Include="Resources\en.lproj\" />
+    <Folder Include="Services\Settings\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sounds\tap.aif" />

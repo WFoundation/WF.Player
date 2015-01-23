@@ -18,6 +18,7 @@
 using WF.Player.Controls;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using WF.Player.Services.Settings;
 
 namespace WF.Player
 {
@@ -74,9 +75,9 @@ namespace WF.Player
 			// Only show settings, if device is Android
 			#if __ANDROID__
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Settings"), null, () =>
-					{
-						DependencyService.Get<IPreferencesView>().Show();
-					}, ToolbarItemOrder.Secondary));
+				{
+					DependencyService.Get<ISettingsView>().Show();
+				}, ToolbarItemOrder.Secondary));
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Quit"), null, () =>
 				{
 					((WF.Player.Droid.MainActivity)Forms.Context).Exit(0);

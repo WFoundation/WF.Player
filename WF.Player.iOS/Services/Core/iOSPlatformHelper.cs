@@ -24,6 +24,7 @@ using Xamarin.Forms;
 using WF.Player.Core.Engines;
 using Vernacular;
 using WF.Player.Interfaces;
+using WF.Player.Services.Settings;
 
 [assembly: Dependency(typeof(WF.Player.iOS.Services.Core.iOSPlatformHelper))]
 
@@ -64,6 +65,8 @@ namespace WF.Player.iOS.Services.Core
 				rootPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 				databasePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + ".." + System.IO.Path.DirectorySeparatorChar + "Library";
 			}
+
+			Settings.Current.AddOrUpdateValue<string>(Settings.CartridgePathKey, rootPath);
 
 			try
 			{

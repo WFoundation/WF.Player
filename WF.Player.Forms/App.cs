@@ -15,6 +15,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Services;
 
 namespace WF.Player
 {
@@ -26,9 +27,9 @@ namespace WF.Player
 	using WF.Player.Controls;
 	using WF.Player.Interfaces;
 	using WF.Player.Models;
+	using WF.Player.Services.Settings;
 	using WF.Player.Services.Device;
 	using WF.Player.Services.Geolocation;
-	using WF.Player.Services.Preferences;
 	using Xamarin.Forms;
 
 	/// <summary>
@@ -47,9 +48,9 @@ namespace WF.Player
 		private static IGeolocator gps;
 
 		/// <summary>
-		/// Preferences for app.
+		/// Settings for app.
 		/// </summary>
-		private static IPreferences prefs;
+		private static ISettings settings;
 
 		/// <summary>
 		/// Fonts for app.
@@ -163,18 +164,35 @@ namespace WF.Player
 		/// Gets the prefs.
 		/// </summary>
 		/// <value>The prefs.</value>
-		public static IPreferences Prefs
-		{
-			get
-			{
-				if (prefs == null)
-				{
-					prefs = DependencyService.Get<IPreferences>();
-				}
+//		public static IPreferences Prefs
+//		{
+//			get
+//			{
+//				if (prefs == null)
+//				{
+//					prefs = DependencyService.Get<IPreferences>();
+//				}
+//
+//				return prefs;
+//			}
+//		}
 
-				return prefs;
-			}
-		}
+		/// <summary>
+		/// Gets the settings of this app.
+		/// </summary>
+		/// <value>The settings.</value>
+//		public static ISettings Settings
+//		{
+//			get
+//			{
+//				if (settings == null)
+//				{
+//					settings = DependencyService.Get<ISettings>();
+//				}
+//
+//				return settings;
+//			}
+//		}
 
 		/// <summary>
 		/// Gets the fonts.
@@ -237,10 +255,10 @@ namespace WF.Player
 		{
 			get
 			{
-				string cartridgePath = App.Prefs.Get<string>(DefaultPreferences.CartridgePathKey);
+				string cartridgePath = Settings.Current.GetValueOrDefault<string>(Settings.CartridgePathKey);
 
 				// Did we find a path in the preferences?
-				if (!string.IsNullOrEmpty(cartridgePath))
+				if (!string.IsNullOrEmpty(cartridgePath) && FileSystem.Current.GetFolderFromPathAsync(cartridgePath) != null)
 				{
 					return cartridgePath;
 				}
@@ -276,7 +294,7 @@ namespace WF.Player
 				}
 
 				// There was no cartridge folder up to now, so create one
-				if (string.IsNullOrEmpty(cartridgePath))
+				if (string.IsNullOrEmpty(cartridgePath) && FileSystem.Current.GetFolderFromPathAsync(cartridgePath) != null)
 				{
 					cartridgePath = new Acr.XamForms.Mobile.IO.Directory(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath).CreateSubdirectory("WF.Player").FullName;
 				}
@@ -287,7 +305,7 @@ namespace WF.Player
 				#endif
 
 				// Save path
-				App.Prefs.Set<string>(DefaultPreferences.CartridgePathKey, cartridgePath);
+				Settings.Current.AddOrUpdateValue<string>(Settings.CartridgePathKey, cartridgePath);
 
 				return cartridgePath;
 			}
@@ -397,16 +415,22 @@ namespace WF.Player
 			// Get resource dictionary
 			var resources = Application.Current.Resources ?? new ResourceDictionary ();
 
-			// Create style for descriptions
-			var descriptionStyle = new Style (typeof(ExtendedLabel)) 
+			// Create style for normal texts
+			var normalStyle = new Style (typeof(ExtendedLabel)) 
 				{
 					Setters = {
 						new Setter { Property = ExtendedLabel.TextColorProperty, Value = App.Colors.Text },
-						new Setter { Property = ExtendedLabel.FontSizeProperty, Value = App.Fonts.Normal.FontSize },
-				}
-			};
+						new Setter { Property = ExtendedLabel.FontSizeProperty, Value = Settings.FontSize },
+						new Setter { Property = ExtendedLabel.FontFamilyProperty, Value = Settings.FontFamily },
+					}
+				};
 
-			resources.Add ("DescriptionStyle", descriptionStyle);
+			if (resources.ContainsKey("NormalStyle"))
+			{
+				resources.Remove("NormalStyle");
+			}
+
+			resources.Add ("NormalStyle", normalStyle);
 
 			Application.Current.Resources = resources;
 		}
@@ -452,7 +476,7 @@ namespace WF.Player
 				sound = DependencyService.Get<ISound>();
 			}
 				
-			if (sound != null && Prefs.Get<bool>(DefaultPreferences.FeedbackSoundKey))
+			if (sound != null && Settings.Current.GetValueOrDefault<bool>(Settings.FeedbackSoundKey))
 			{
 				sound.PlayKeyboardSound();
 			}
@@ -462,7 +486,7 @@ namespace WF.Player
 				vibrate = DependencyService.Get<IVibration>();
 			}
 
-			if (vibrate != null && Prefs.Get<bool>(DefaultPreferences.FeedbackVibrationKey))
+			if (vibrate != null && Settings.Current.GetValueOrDefault<bool>(Settings.FeedbackVibrationKey))
 			{
 				vibrate.Vibrate(150);
 			}

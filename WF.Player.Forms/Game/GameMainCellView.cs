@@ -15,6 +15,7 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Services.Settings;
 
 namespace WF.Player
 {
@@ -69,13 +70,14 @@ namespace WF.Player
 			this.icon.SetBinding(Image.IsVisibleProperty, GameMainCellViewModel.ShowIconPropertyName);
 
 			this.name = new Label() 
-			{
-				XAlign = TextAlignment.Start,
-				VerticalOptions = LayoutOptions.Center,
-				HorizontalOptions = LayoutOptions.StartAndExpand,
-				Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
-				TextColor = App.Colors.Text,
-			};
+				{
+					XAlign = TextAlignment.Start,
+					VerticalOptions = LayoutOptions.Center,
+					HorizontalOptions = LayoutOptions.StartAndExpand,
+					FontSize = Settings.FontSize,
+					FontFamily = Settings.FontFamily,
+					TextColor = App.Colors.Text,
+				};
 			this.name.SetBinding(Label.TextProperty, GameMainCellViewModel.NamePropertyName);
 
 			var vertLayout = new StackLayout() 

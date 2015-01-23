@@ -15,6 +15,7 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Services.Settings;
 
 namespace WF.Player
 {
@@ -51,9 +52,9 @@ namespace WF.Player
 					TextColor = App.Colors.Text,
 					BackgroundColor = Color.Transparent,
 					LineBreakMode = LineBreakMode.WordWrap,
-					XAlign = App.Prefs.TextAlignment,
-					FontSize = App.Prefs.TextSize,
-					FontFamily = App.Fonts.Normal.FontFamily,
+					XAlign = Settings.TextAlignment,
+					FontSize = Settings.FontSize,
+					FontFamily = Settings.FontFamily,
 			};
 
 			layout.Children.Add(label);
@@ -67,8 +68,8 @@ namespace WF.Player
 					BackgroundColor = Color.Transparent,
 					LineBreakMode = LineBreakMode.WordWrap,
 					XAlign = TextAlignment.Center,
-					FontSize = App.Prefs.TextSize,
-					FontFamily = App.Fonts.Normal.FontFamily,
+					FontSize = Settings.FontSize,
+					FontFamily = Settings.FontFamily,
 					FontAttributes = FontAttributes.Bold,
 				};
 
@@ -83,8 +84,8 @@ namespace WF.Player
 					BackgroundColor = Color.Transparent,
 					LineBreakMode = LineBreakMode.WordWrap,
 					XAlign = TextAlignment.Center,
-					FontSize = App.Prefs.TextSize,
-					FontFamily = App.Fonts.Normal.FontFamily,
+					FontSize = Settings.FontSize,
+					FontFamily = Settings.FontFamily,
 					FontAttributes = FontAttributes.Bold,
 				};
 

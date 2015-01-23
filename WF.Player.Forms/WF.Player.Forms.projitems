@@ -11,9 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TranslateExtension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Preferences\DefaultPreferences.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Preferences\IPreferences.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Preferences\PreferencesCommon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\ScreenType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\MapSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\ImageResize.cs" />
@@ -53,7 +50,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DirectionArrow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\GameToolBarButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BasePage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Preferences\IPreferencesView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\BadgeImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PinchScrollView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Device\IMeasure.cs" />
@@ -105,6 +101,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Enums\UnitLength.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ICommonPlatformHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\CartridgeTag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\ISettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\ISettingsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />
@@ -125,5 +124,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Services\Acr.XamForms.Mobile\" />
     <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Geolocation\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Settings\" />
   </ItemGroup>
 </Project>

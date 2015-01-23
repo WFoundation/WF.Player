@@ -26,10 +26,12 @@ namespace WF.Player.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::PCLStorage.Resource.String.ApplicationName = global::WF.Player.Droid.Resource.String.ApplicationName;
-			global::PCLStorage.Resource.String.Hello = global::WF.Player.Droid.Resource.String.Hello;
 			global::Acr.XamForms.Mobile.Droid.Resource.String.ApplicationName = global::WF.Player.Droid.Resource.String.ApplicationName;
 			global::Acr.XamForms.Mobile.Droid.Resource.String.Hello = global::WF.Player.Droid.Resource.String.Hello;
+			global::PCLStorage.Resource.String.ApplicationName = global::WF.Player.Droid.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::WF.Player.Droid.Resource.String.Hello;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::WF.Player.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::WF.Player.Droid.Resource.String.Hello;
 			global::WF.Player.Core.Resource.String.library_name = global::WF.Player.Droid.Resource.String.library_name;
 		}
 		

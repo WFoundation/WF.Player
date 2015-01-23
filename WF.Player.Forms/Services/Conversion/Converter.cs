@@ -16,6 +16,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using WF.Player.Common;
+using WF.Player.Services.Settings;
 
 namespace WF.Player
 {
@@ -39,7 +40,7 @@ namespace WF.Player
 		{
 			string unit = "m";
 
-			switch (App.Prefs.UnitLength)
+			switch (Settings.UnitLength)
 			{
 				case UnitLength.Feet:
 					unit = "ft";
@@ -65,7 +66,7 @@ namespace WF.Player
 			double lengthInUnits = NumberToConvertedLength(length);
 			string result = string.Empty;
 
-			switch (App.Prefs.UnitLength)
+			switch (Settings.UnitLength)
 			{
 				case UnitLength.Meter:
 					if (length < 1000.0)
@@ -173,7 +174,7 @@ namespace WF.Player
 		{
 			double value;
 
-			switch (App.Prefs.UnitLength) 
+			switch (Settings.UnitLength) 
 			{
 				case UnitLength.Feet:
 					value = length * 3.2808399;
@@ -202,7 +203,7 @@ namespace WF.Player
 			double doubleMin, doubleSec;
 			string result = string.Empty;
 
-			switch (App.Prefs.FormatCoordinates)
+			switch (Settings.FormatCoordinates)
 			{
 				case FormatCoordinates.Decimal:
 					result = string.Format("{0:" + format + ".00000}°", coord);

@@ -22,6 +22,7 @@ namespace WF.Player.iOS.Services.Device
 {
 	using MonoTouch.Foundation;
 	using MonoTouch.UIKit;
+	using WF.Player.Services.Settings;
 	using WF.Player.Services.Device;
 
 	public class Measure : IMeasure
@@ -33,7 +34,7 @@ namespace WF.Player.iOS.Services.Device
 		{
 			if (button == null) {
 				button = new UIButton();
-				button.Font = UIFont.SystemFontOfSize((float)App.Prefs.TextSize * 0.8f);
+				button.Font = UIFont.SystemFontOfSize(Settings.FontSize);
 			}
 
 			NSString nsText = new NSString(text);

@@ -15,11 +15,11 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Services.Settings;
 
 namespace WF.Player
 {
 	using System;
-	using WF.Player.Services.Preferences;
 	using Xamarin.Forms;
 
 	/// <summary>
@@ -27,11 +27,6 @@ namespace WF.Player
 	/// </summary>
 	public class Colors
 	{
-		/// <summary>
-		/// Preferences to use.
-		/// </summary>
-		private IPreferences prefs;
-
 		#region Constructor
 
 		/// <summary>
@@ -39,7 +34,6 @@ namespace WF.Player
 		/// </summary>
 		public Colors()
 		{
-			this.prefs = DependencyService.Get<IPreferences>();
 		}
 
 		#endregion
@@ -52,7 +46,7 @@ namespace WF.Player
 		{
 			get
 			{
-				if (this.prefs.Get<int>(DefaultPreferences.DisplayThemeKey) == 0)
+				if (Settings.Current.GetValueOrDefault<int>(Settings.DisplayThemeKey) == 0)
 				{
 					// Light theme
 					return false;

@@ -18,8 +18,7 @@
 
 namespace WF.Player
 {
-	using System;
-	using WF.Player.Services.Preferences;
+	using WF.Player.Services.Settings;
 	using Xamarin.Forms;
 
 	/// <summary>
@@ -27,11 +26,6 @@ namespace WF.Player
 	/// </summary>
 	public class Fonts
 	{
-		/// <summary>
-		/// Preferences to use.
-		/// </summary>
-		private IPreferences prefs;
-
 		#region Constructor
 
 		/// <summary>
@@ -39,7 +33,6 @@ namespace WF.Player
 		/// </summary>
 		public Fonts()
 		{
-			this.prefs = DependencyService.Get<IPreferences>();
 		}
 
 		#endregion
@@ -52,7 +45,7 @@ namespace WF.Player
 		{
 			get
 			{
-				return Font.SystemFontOfSize(this.prefs.TextSize * 1.5).WithAttributes(FontAttributes.Bold);
+				return Font.SystemFontOfSize(Settings.FontSize * 1.5).WithAttributes(FontAttributes.Bold);
 			}
 		}
 
@@ -64,7 +57,7 @@ namespace WF.Player
 		{
 			get
 			{
-				return Font.SystemFontOfSize(this.prefs.TextSize);
+				return Font.SystemFontOfSize(Settings.FontSize);
 			}
 		}
 
@@ -76,7 +69,7 @@ namespace WF.Player
 		{
 			get 
 			{
-				return Font.SystemFontOfSize(this.prefs.TextSize * 0.8);
+				return Font.SystemFontOfSize(Settings.FontSize * 0.8);
 			}
 		}
 	}

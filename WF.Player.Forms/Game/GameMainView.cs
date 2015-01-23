@@ -15,6 +15,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Services.Settings;
 
 namespace WF.Player
 {
@@ -246,13 +247,15 @@ namespace WF.Player
 			bottomLayout.Children.Add(buttonLayout);
 
 			var labelEmpty = new Label() 
-			{
-				Text = Catalog.GetString("Please wait..."),
-				BackgroundColor = Color.Transparent,
-				TextColor = App.Colors.Text,
-				Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize),
-				VerticalOptions = LayoutOptions.CenterAndExpand,
-				HorizontalOptions = LayoutOptions.CenterAndExpand,
+				{
+					Text = Catalog.GetString("Please wait..."),
+					BackgroundColor = Color.Transparent,
+					TextColor = App.Colors.Text,
+					FontAttributes = FontAttributes.Bold,
+					FontSize = Settings.FontSize * 1.5,
+					FontFamily = Settings.FontFamily,
+					VerticalOptions = LayoutOptions.CenterAndExpand,
+					HorizontalOptions = LayoutOptions.CenterAndExpand,
 			};
 
 			labelEmpty.SetBinding(Label.TextProperty, GameMainViewModel.EmptyListTextPropertyName);
@@ -301,7 +304,8 @@ namespace WF.Player
 			var labelOverviewYouSee = new ExtendedLabel() 
 				{
 					LineBreakMode = LineBreakMode.WordWrap,
-					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.8),
+					FontSize = Settings.FontSize * 0.8,
+					FontFamily = Settings.FontFamily,
 					UseMarkdown = true,
 				};
 
@@ -339,7 +343,8 @@ namespace WF.Player
 			var labelOverviewInventory = new ExtendedLabel() 
 				{
 					LineBreakMode = LineBreakMode.WordWrap,
-					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.8),
+					FontSize = Settings.FontSize,
+					FontFamily = Settings.FontFamily,
 					UseMarkdown = true,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.FillAndExpand,
@@ -379,7 +384,8 @@ namespace WF.Player
 			var labelOverviewTasks = new ExtendedLabel() 
 				{
 					LineBreakMode = LineBreakMode.WordWrap,
-					Font = App.Fonts.Normal.WithSize(App.Prefs.TextSize * 0.8),
+					FontSize = Settings.FontSize,
+					FontFamily = Settings.FontFamily,
 					UseMarkdown = true,
 				};
 

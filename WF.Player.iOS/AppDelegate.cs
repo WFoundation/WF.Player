@@ -28,6 +28,7 @@ using WF.Player.Core.Formats;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using WF.Player.iOS.Services.Core;
+using WF.Player.Services.Settings;
 
 namespace WF.Player.iOS
 {
@@ -236,6 +237,7 @@ namespace WF.Player.iOS
 
 		void DefaultsChanged(NSNotification obj)
 		{
+			Settings.Current.Changed();
 		}
 
 		#endregion

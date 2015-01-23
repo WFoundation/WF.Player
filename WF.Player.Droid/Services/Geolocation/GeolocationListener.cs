@@ -11,22 +11,21 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-using System;
-using System.Threading.Tasks;
-using Android.Locations;
-using Android.OS;
-using System.Threading;
-using System.Collections.Generic;
-using WF.Player.Services.Geolocation;
-using WF.Player.Services.Preferences;
-using Android.Views;
-using Android.Hardware;
-using Android.App;
-using Android.Runtime;
+using WF.Player.Services.Settings;
 
 namespace WF.Player.Droid.Services.Geolocation
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Threading;
+	using Android.App;
+	using Android.Hardware;
+	using Android.Locations;
+	using Android.OS;
+	using Android.Runtime;
+	using Android.Views;
+	using WF.Player.Services.Geolocation;
+
 	internal class GeolocationListener : Java.Lang.Object, ILocationListener, ISensorEventListener
 	{
 		// Base for time convertions from time in seconds since 1970-01-01 to DateTime
@@ -189,7 +188,8 @@ namespace WF.Player.Droid.Services.Geolocation
 				case SensorType.Orientation:
 					double azimuth = args.Values [0];
 					// Fix to true bearing
-					if (App.Prefs.Get<bool> (DefaultPreferences.SensorAzimuthKey)) {
+					if (Settings.Current.GetValueOrDefault<bool>(Settings.SensorAzimuthKey)) 
+					{
 						azimuth += Declination;
 					}
 					_azimuth = FilterValue (azimuth, _azimuth);
@@ -282,7 +282,7 @@ namespace WF.Player.Droid.Services.Geolocation
 		/// <returns>The filter value.</returns>
 		double GetFilterValue()
 		{
-			switch (App.Prefs.Get<int>(DefaultPreferences.SensorOrientationFilterKey))
+			switch (Settings.Current.GetValueOrDefault<int>(Settings.SensorOrientationFilterKey))
 			{
 				case 1: // PreferenceValues.VALUE_SENSORS_ORIENT_FILTER_LIGHT:
 					return 0.20;
@@ -298,8 +298,8 @@ namespace WF.Player.Droid.Services.Geolocation
 		{
 			double azimuth;
 
-			if (!App.Prefs.Get<bool>(DefaultPreferences.SensorHardwareCompassAutoChange) || (_lastLocation != null && _lastLocation.Speed < App.Prefs.Get<double>(DefaultPreferences.SensorHardwareCompassAutoChangeValue))) {
-				if (!App.Prefs.Get<bool>(DefaultPreferences.SensorHardwareCompass))
+			if (!Settings.Current.GetValueOrDefault<bool>(Settings.SensorHardwareCompassAutoChange) || (_lastLocation != null && _lastLocation.Speed < Settings.Current.GetValueOrDefault<double>(Settings.SensorHardwareCompassAutoChangeValue))) {
+				if (!Settings.Current.GetValueOrDefault<bool>(Settings.SensorHardwareCompass))
 					// Substract 90° because the bearing 0° is in direction east
 					azimuth = _lastSensorAzimuth;
 				else

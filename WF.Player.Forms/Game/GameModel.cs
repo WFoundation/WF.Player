@@ -15,6 +15,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Services.Settings;
 
 namespace WF.Player
 {
@@ -28,7 +29,6 @@ namespace WF.Player
 	using WF.Player.Models;
 	using WF.Player.Services.Device;
 	using WF.Player.Services.Geolocation;
-	using WF.Player.Services.Preferences;
 	using Xamarin.Forms;
 
 	/// <summary>
@@ -334,8 +334,8 @@ namespace WF.Player
 		{
 			var cs = this.Save("Autosave", true);
 
-			App.Prefs.Set<string>(DefaultPreferences.AutosaveGWSKey, cs.Filename);
-			App.Prefs.Set<string>(DefaultPreferences.AutosaveGWCKey, this.cartridgeTag.Cartridge.Filename);
+			Settings.Current.AddOrUpdateValue<string>(Settings.AutosaveGWSKey, cs.Filename);
+			Settings.Current.AddOrUpdateValue<string>(Settings.AutosaveGWCKey, this.cartridgeTag.Cartridge.Filename);
 		}
 
 		/// <summary>
@@ -343,12 +343,12 @@ namespace WF.Player
 		/// </summary>
 		public void AutoRemove()
 		{
-			if (string.IsNullOrEmpty(App.Prefs.Get<string>(DefaultPreferences.AutosaveGWSKey)))
+			if (string.IsNullOrEmpty(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey)))
 			{
 				return;
 			}
 
-			var filename = App.Prefs.Get<string>(DefaultPreferences.AutosaveGWSKey);
+			var filename = Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey);
 
 			// Delete files
 			var file = new Acr.XamForms.Mobile.IO.File(filename);
@@ -359,8 +359,8 @@ namespace WF.Player
 			}
 
 			// Delete entries in preferences
-			App.Prefs.Set<string>(DefaultPreferences.AutosaveGWSKey, string.Empty);
-			App.Prefs.Set<string>(DefaultPreferences.AutosaveGWCKey, string.Empty);
+			Settings.Current.Remove(Settings.AutosaveGWSKey);
+			Settings.Current.Remove(Settings.AutosaveGWCKey);
 		}
 
 		#endregion

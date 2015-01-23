@@ -15,6 +15,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Services.Settings;
 
 namespace WF.Player
 {
@@ -60,12 +61,14 @@ namespace WF.Player
 
 			// Header
 			var label = new Label 
-			{
-				XAlign = App.Prefs.TextAlignment,
-				VerticalOptions = LayoutOptions.Start,
-				HorizontalOptions = LayoutOptions.CenterAndExpand,
-				Font = App.Fonts.Header,
-				TextColor = App.Colors.Text,
+				{
+					XAlign = Settings.TextAlignment,
+					VerticalOptions = LayoutOptions.Start,
+					HorizontalOptions = LayoutOptions.CenterAndExpand,
+					FontSize = Settings.FontSize * 1.5,
+					FontFamily = Settings.FontFamily,
+					FontAttributes = FontAttributes.Bold,
+					TextColor = App.Colors.Text,
 			};
 
 			label.SetBinding(Label.TextProperty, CartridgeDetailViewModel.NamePropertyName);
@@ -74,12 +77,14 @@ namespace WF.Player
 
 			// Author
 			label = new Label 
-			{
-				XAlign = App.Prefs.TextAlignment,
-				VerticalOptions = LayoutOptions.Start,
-				HorizontalOptions = LayoutOptions.CenterAndExpand,
-				Font = App.Fonts.Small,
-				TextColor = App.Colors.Text,
+				{
+					XAlign = Settings.Current.GetValueOrDefault<TextAlignment>(Settings.TextAlignmentKey, TextAlignment.Start),
+					VerticalOptions = LayoutOptions.Start,
+					HorizontalOptions = LayoutOptions.CenterAndExpand,
+					FontSize = Settings.FontSize * 1.5,
+					FontFamily = Settings.FontFamily,
+					FontAttributes = FontAttributes.Bold,
+					TextColor = App.Colors.Text,
 			};
 
 			label.SetBinding(Label.TextProperty, CartridgeDetailViewModel.AuthorPropertyName);

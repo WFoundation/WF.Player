@@ -15,6 +15,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Services.Settings;
 
 namespace WF.Player
 {
@@ -366,7 +367,7 @@ border: none;
 
 			if (fontSize == -1)
 			{
-				fontSize = (int)App.Fonts.Normal.FontSize;
+				fontSize = Settings.FontSize;
 			}
 
 			html = "<style>" + DefaultStyle + "</style>" + html;
@@ -378,7 +379,7 @@ border: none;
 			html = html.Replace("-Font3-", ((int)(fontSize * 1.4)).ToString());
 			html = html.Replace("-Font4-", ((int)(fontSize * 1.8)).ToString());
 			html = html.Replace("-Font5-", ((int)(fontSize * 2.0)).ToString());
-			html = html.Replace("-TextAlign-", AlignmentToString(App.Prefs.TextAlignment));
+			html = html.Replace("-TextAlign-", AlignmentToString(Settings.TextAlignment));
 			html = html.Replace("-TextColor-", ColorToHTML(App.Colors.Text));
 			html = html.Replace("-BackgroundColor-", ColorToHTML(App.Colors.Background));
 
@@ -405,7 +406,7 @@ border: none;
 
 			if (fontSize == -1)
 			{
-				fontSize = (int)App.Fonts.Normal.FontSize;
+				fontSize = Settings.FontSize;
 			}
 
 			html = "<style>" + DefaultStyle + "</style>" + html;
@@ -417,7 +418,7 @@ border: none;
 			html = html.Replace("-Font3-", ((int)(fontSize * 1.4)).ToString());
 			html = html.Replace("-Font4-", ((int)(fontSize * 1.8)).ToString());
 			html = html.Replace("-Font5-", ((int)(fontSize * 2.0)).ToString());
-			html = html.Replace("-TextAlign-", AlignmentToString(App.Prefs.TextAlignment));
+			html = html.Replace("-TextAlign-", AlignmentToString(Settings.TextAlignment));
 			html = html.Replace("-TextColor-", ColorToHTML(App.Colors.Text));
 			html = html.Replace("-BackgroundColor-", ColorToHTML(App.Colors.Background));
 
@@ -472,11 +473,11 @@ border: none;
 			code.AppendFormat("	color: #{0};", ColorToHTML(App.Colors.Text));
 			code.AppendFormat("	background-color: #{0};", ColorToHTML(App.Colors.Background));
 			code.Append("	font-family: sans-serif;");
-			code.AppendFormat("	font-size: {0}px;", App.Prefs.TextSize);
+			code.AppendFormat("	font-size: {0}px;", Settings.FontSize);
 			code.Append("}");
 			code.Append("img{");
 
-			switch (App.Prefs.ImageResize)
+			switch (Settings.ImageResize)
 			{
 				case ImageResize.NoResize:
 					break;
@@ -499,7 +500,7 @@ border: none;
 			// If there is a media, insert it
 			if (media != null)
 			{
-				code.AppendFormat("<div align=\"{0}\">", AlignmentToString(App.Prefs.ImageAlignment));
+				code.AppendFormat("<div align=\"{0}\">", AlignmentToString(Settings.ImageAlignment));
 				code.Append("<img src=\"data:;base64," + System.Convert.ToBase64String(media.Data) + "\">");
 				code.Append("</div>");
 			}
@@ -513,7 +514,7 @@ border: none;
 			// If there is text, insert it
 			if (!string.IsNullOrEmpty(text))
 			{
-				code.AppendFormat("<div align=\"{0}\">", AlignmentToString(App.Prefs.TextAlignment));
+				code.AppendFormat("<div align=\"{0}\">", AlignmentToString(Settings.TextAlignment));
 				code.Append(text.Replace("<", "&lt;").Replace(">", "&gt;").Replace("\n", "<br>"));
 			}
 

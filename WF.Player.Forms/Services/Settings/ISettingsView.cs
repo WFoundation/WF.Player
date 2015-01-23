@@ -1,6 +1,6 @@
-﻿// <copyright file="IPreferencesView.cs" company="Wherigo Foundation">
-// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
-// Copyright (C) 2012-2014  Dirk Weltz (mail@wfplayer.com)
+﻿// <copyright file="ISettingsView.cs" company="Wherigo Foundation">
+//   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
+//   Copyright (C) 2012-2015  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
 
 // This program is free software: you can redistribute it and/or modify
@@ -18,12 +18,10 @@
 
 namespace WF.Player
 {
-	using System;
-
 	/// <summary>
 	/// Interface for methods to show preferences settings dialog.
 	/// </summary>
-	public interface IPreferencesView
+	public interface ISettingsView
 	{
 		/// <summary>
 		/// Show Preferences Screen.

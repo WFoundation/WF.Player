@@ -15,6 +15,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Services.Settings;
 
 namespace WF.Player.Controls
 {
@@ -57,7 +58,7 @@ namespace WF.Player.Controls
 			if (sizeRequest.Request.Width > 0 && sizeRequest.Request.Height > 0)
 			{
 				// Now we have the real size of the image
-				if (App.Prefs.ImageResize == ImageResize.NoResize)
+				if (Settings.ImageResize == ImageResize.NoResize)
 				{
 					// We don't have to resize the image
 					Aspect = Aspect.AspectFit;
@@ -65,7 +66,7 @@ namespace WF.Player.Controls
 					return sizeRequest;
 				}
 
-				if (App.Prefs.ImageResize == ImageResize.ShrinkWidth && sizeRequest.Request.Width > widthConstraint)
+				if (Settings.ImageResize == ImageResize.ShrinkWidth && sizeRequest.Request.Width > widthConstraint)
 				{
 					// Images, which are bigger than width should be shrinked
 					Aspect = Aspect.AspectFill;
@@ -78,7 +79,7 @@ namespace WF.Player.Controls
 					return sizeRequest;
 				}
 
-				if (App.Prefs.ImageResize == ImageResize.ResizeWidth)
+				if (Settings.ImageResize == ImageResize.ResizeWidth)
 				{
 					// Images, which are smaller/bigger than width should be inflated/shrinked
 					Aspect = Aspect.AspectFill;
@@ -91,7 +92,7 @@ namespace WF.Player.Controls
 					return sizeRequest;
 				}
 
-				if (App.Prefs.ImageResize == ImageResize.ResizeHeight)
+				if (Settings.ImageResize == ImageResize.ResizeHeight)
 				{
 					// Images, which are heighter than half of the screen should be shrinked
 					Aspect = Aspect.AspectFit;
