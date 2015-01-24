@@ -1,4 +1,4 @@
-﻿// <copyright file="ExtendedMapRenderer.cs" company="Wherigo Foundation">
+// <copyright file="ExtendedMapRenderer.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 //   Copyright (C) 2012-2014  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
@@ -20,9 +20,9 @@ using Xamarin.Forms.Maps;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Xamarin.Forms;
-using MonoTouch.CoreLocation;
+using CoreLocation;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using WF.Player.Core;
 
 [assembly: Xamarin.Forms.ExportRendererAttribute (typeof (WF.Player.Controls.ExtendedMap), typeof (WF.Player.Controls.iOS.ExtendedMapRenderer))]
@@ -30,8 +30,8 @@ using WF.Player.Core;
 namespace WF.Player.Controls.iOS
 {
 	using System;
-	using MonoTouch.MapKit;
-	using MonoTouch.UIKit;
+	using MapKit;
+	using UIKit;
 	using Xamarin.Forms.Platform.iOS;
 
 	public class ExtendedMapRenderer : ViewRenderer <ExtendedMap, MKMapView>
@@ -39,7 +39,7 @@ namespace WF.Player.Controls.iOS
 		MKMapView nativeMap;
 		MKPolygonRenderer polygonRenderer;
 		List<MKPolygon> polygons;
-		List<MKAnnotation> polygonNames;
+		List<IMKAnnotation> polygonNames;
 //		List<Android.Gms.Maps.Model.Marker> points;
 
 		public ExtendedMapRenderer()
@@ -55,7 +55,7 @@ namespace WF.Player.Controls.iOS
 				return;
 			}
 
-			base.SetNativeControl(new MKMapView(RectangleF.Empty));
+			base.SetNativeControl(new MKMapView(CGRect.Empty));
 
 			ExtendedMap mapModel = (ExtendedMap)base.Element;
 			MKMapView mkMapView = (MKMapView)base.Control;
@@ -154,9 +154,9 @@ namespace WF.Player.Controls.iOS
 
 					polygons = null;
 
-					foreach (var annotation in Control.Annotations)
+					foreach (IMKAnnotation annotation in Control.Annotations)
 					{
-						if (annotation is MKPointAnnotation && polygonNames.Contains((MKAnnotation)annotation))
+						if (annotation is MKPointAnnotation && polygonNames.Contains(annotation))
 						{
 							map.RemoveAnnotation(annotation);
 						}
@@ -194,15 +194,16 @@ namespace WF.Player.Controls.iOS
 					if (z.Label != null && z.Label.Point != null)
 					{
 						var polygonName = new MKPointAnnotation() {
-							Coordinate = new CLLocationCoordinate2D(z.Label.Point.Latitude, z.Label.Point.Longitude),
 							Title = z.Label.Name,
 						};
 
-						map.AddAnnotationObject(polygonName);
+						polygonName.SetCoordinate(new CLLocationCoordinate2D(z.Label.Point.Latitude, z.Label.Point.Longitude));
+
+						map.AddAnnotation(polygonName);
 
 						if (polygonNames == null)
 						{
-							polygonNames = new List<MKAnnotation>();
+							polygonNames = new List<IMKAnnotation>();
 						}
 
 						polygonNames.Add(polygonName);
@@ -294,17 +295,22 @@ namespace WF.Player.Controls.iOS
 
 		private void UpdatePins()
 		{
-			((MKMapView)base.Control).RemoveAnnotations(((MKMapView)base.Control).Annotations);
+			var mapViewControl = ((MKMapView)base.Control);
+
+			mapViewControl.RemoveAnnotations(mapViewControl.Annotations);
 
 			IList<Pin> pins = ((Map)base.Element).Pins;
 
 			foreach(Pin current in pins)
 			{
-				((MKMapView)base.Control).AddAnnotation(new MKPointAnnotation {
-					Coordinate = new CLLocationCoordinate2D(current.Position.Latitude, current.Position.Longitude),
+				var pin = new MKPointAnnotation {
 					Title = current.Label,
 					Subtitle = current.Address ?? string.Empty,
-				});
+				};
+
+				pin.SetCoordinate(new CLLocationCoordinate2D(current.Position.Latitude, current.Position.Longitude));
+
+				mapViewControl.AddAnnotation(pin);
 			}
 		}
 

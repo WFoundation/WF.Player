@@ -15,7 +15,6 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using WF.Player.Services.Settings;
 
 namespace WF.Player
 {
@@ -29,6 +28,7 @@ namespace WF.Player
 	using WF.Player.Models;
 	using WF.Player.Services.Device;
 	using WF.Player.Services.Geolocation;
+	using WF.Player.Services.Settings;
 	using Xamarin.Forms;
 
 	/// <summary>
@@ -341,7 +341,7 @@ namespace WF.Player
 		/// <summary>
 		/// Delete autosave information and file.
 		/// </summary>
-		public void AutoRemove()
+		public async void AutoRemove()
 		{
 			if (string.IsNullOrEmpty(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey)))
 			{
@@ -351,11 +351,11 @@ namespace WF.Player
 			var filename = Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey);
 
 			// Delete files
-			var file = new Acr.XamForms.Mobile.IO.File(filename);
+			var file = File.Exists(filename);
 
-			if (file.Exists)
+			if (File.Exists(filename))
 			{
-				file.Delete();
+				File.Delete(filename);
 			}
 
 			// Delete entries in preferences

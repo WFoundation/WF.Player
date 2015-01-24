@@ -1,4 +1,4 @@
-﻿// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
+// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 // Copyright (C) 2012-2014  Dirk Weltz <mail@wfplayer.com>
 //
 // This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 namespace WF.Player.iOS
 {
 	using System;
-	using MonoTouch.UIKit;
+	using UIKit;
 	using Xamarin.Forms;
 	using Xamarin.Forms.Platform.iOS;
 

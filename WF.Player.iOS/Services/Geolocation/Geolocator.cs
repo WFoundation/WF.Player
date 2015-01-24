@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2011-2013, Xamarin Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,11 +15,11 @@
 //
 
 using System;
-using MonoTouch.CoreLocation;
+using CoreLocation;
 using System.Threading.Tasks;
 using System.Threading;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using Xamarin.Forms;
 using WF.Player.Services.Geolocation;
 using Vernacular;
@@ -236,7 +236,7 @@ namespace WF.Player.iOS.Services.Geolocation
 			CLLocationManager m = null;
 			new NSObject().InvokeOnMainThread (() => m = new CLLocationManager());
 
-			if (m.RespondsToSelector (new MonoTouch.ObjCRuntime.Selector("requestWhenInUseAuthorization")))
+			if (m.RespondsToSelector (new ObjCRuntime.Selector("requestWhenInUseAuthorization")))
 			{
 				m.RequestWhenInUseAuthorization ();
 			} 
@@ -311,7 +311,7 @@ namespace WF.Player.iOS.Services.Geolocation
 			if (location.Speed > -1)
 				p.Speed = location.Speed;
 
-			p.Timestamp = new DateTimeOffset (location.Timestamp);
+			p.Timestamp = new DateTimeOffset (location.Timestamp.ToDateTime());
 
 			this._position = p;
 
@@ -320,9 +320,9 @@ namespace WF.Player.iOS.Services.Geolocation
 			location.Dispose();
 		}
 
-		private void OnFailed (object sender, MonoTouch.Foundation.NSErrorEventArgs e)
+		private void OnFailed (object sender, Foundation.NSErrorEventArgs e)
 		{
-			if ((CLError)e.Error.Code == CLError.Network)
+			if ((CLError)(int)e.Error.Code == CLError.Network)
 				OnPositionError (new PositionErrorEventArgs (GeolocationError.PositionUnavailable));
 		}
 

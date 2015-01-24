@@ -1,4 +1,4 @@
-﻿// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
+// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 // Copyright (C) 2012-2014  Dirk Weltz <mail@wfplayer.com>
 //
 // This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@ using Xamarin.Forms.Platform.iOS;
 using Xamarin.Forms;
 using WF.Player.Controls;
 using WF.Player.Controls.iOS;
-using MonoTouch.UIKit;
+using UIKit;
 
 [assembly: ExportRendererAttribute (typeof (AccessoryCell), typeof (AccessoryCellRenderer))]
 
@@ -31,7 +31,7 @@ namespace WF.Player.Controls.iOS
 		{
 			var cell = base.GetCell(item, reusableCell, tv);
 
-			cell.Accessory = MonoTouch.UIKit.UITableViewCellAccessory.DisclosureIndicator;
+			cell.Accessory = UIKit.UITableViewCellAccessory.DisclosureIndicator;
 			cell.BackgroundColor = UIColor.Clear;
 
 			return cell;

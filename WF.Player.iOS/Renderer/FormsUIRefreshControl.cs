@@ -1,5 +1,5 @@
-﻿using System;
-using MonoTouch.UIKit;
+using System;
+using UIKit;
 using Xamarin.Forms;
 
 namespace WF.Player.Controls.iOS
@@ -51,7 +51,7 @@ namespace WF.Player.Controls.iOS
 					return;
 				}
 
-				this.AttributedTitle = new MonoTouch.Foundation.NSAttributedString(message);
+				this.AttributedTitle = new Foundation.NSAttributedString(message);
 			}
 		}
 

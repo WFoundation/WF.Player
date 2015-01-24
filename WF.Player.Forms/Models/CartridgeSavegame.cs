@@ -1,4 +1,4 @@
-﻿// <copyright file="CartridgeSavegame.cs" company="Wherigo Foundation">
+// <copyright file="CartridgeSavegame.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 //   Copyright (C) 2012-2014  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
@@ -20,7 +20,6 @@ namespace WF.Player.Models
 {
 	using System;
 	using System.IO;
-	using System.IO.IsolatedStorage;
 	using System.Runtime.Serialization;
 	using WF.Player.Core;
 	using WF.Player.Core.Formats;
@@ -121,7 +120,7 @@ namespace WF.Player.Models
 		/// </summary>
 		public void RemoveFromStore()
 		{
-			var file = new Acr.XamForms.Mobile.IO.File(Path.Combine(App.PathForSavegames, this.Filename));
+			var file = new FileInfo(Path.Combine(App.PathForSavegames, this.Filename));
 
 			if (file.Exists)
 			{

@@ -1,4 +1,4 @@
-﻿// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
+// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 // Copyright (C) 2012-2014  Dirk Weltz <mail@wfplayer.com>
 //
 // This program is free software: you can redistribute it and/or modify
@@ -18,10 +18,10 @@ using System;
 using Xamarin.Forms;
 using WF.Player.Services.Device;
 using WF.Player.Core;
-using MonoTouch.Foundation;
-using MonoTouch.AVFoundation;
-using MonoTouch.AudioToolbox;
-using MonoTouch.UIKit;
+using Foundation;
+using AVFoundation;
+using AudioToolbox;
+using UIKit;
 
 [assembly: Dependency(typeof(WF.Player.iOS.Services.Device.Sound))]
 

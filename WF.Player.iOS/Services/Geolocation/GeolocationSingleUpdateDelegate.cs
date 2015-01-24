@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2011-2013, Xamarin Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
 //
 
 using System;
-using MonoTouch.CoreLocation;
+using CoreLocation;
 using System.Threading.Tasks;
 using System.Threading;
 using WF.Player.Services.Geolocation;
@@ -70,9 +70,9 @@ namespace WF.Player.iOS.Services.Geolocation
 			}
 		}
 
-		public override void Failed (CLLocationManager manager, MonoTouch.Foundation.NSError error)
+		public override void Failed (CLLocationManager manager, Foundation.NSError error)
 		{
-			switch ((CLError)error.Code)
+			switch ((CLError)(int)error.Code)
 			{
 			case CLError.Network:
 				StopListening();	
@@ -100,7 +100,7 @@ namespace WF.Player.iOS.Services.Geolocation
 			this.position.Latitude = newLocation.Coordinate.Latitude;
 			this.position.Longitude = newLocation.Coordinate.Longitude;
 			this.position.Speed = newLocation.Speed;
-			this.position.Timestamp = new DateTimeOffset (newLocation.Timestamp);
+			this.position.Timestamp = new DateTimeOffset (newLocation.Timestamp.ToDateTime());
 
 			this.haveLocation = true;
 

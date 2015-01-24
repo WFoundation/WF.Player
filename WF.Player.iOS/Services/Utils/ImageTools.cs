@@ -1,4 +1,4 @@
-﻿// <copyright file="ImageTools.cs" company="Wherigo Foundation">
+// <copyright file="ImageTools.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 //   Copyright (C) 2012-2014  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
@@ -19,10 +19,10 @@
 namespace WF.Player.iOS.Services.Utils
 {
 	using System;
-	using System.Drawing;
-	using MonoTouch.CoreGraphics;
-	using MonoTouch.Foundation;
-	using MonoTouch.UIKit;
+	using CoreGraphics;
+	using CoreGraphics;
+	using Foundation;
+	using UIKit;
 	using WF.Player.Services.Utils;
 
 	/// <summary>
@@ -62,7 +62,7 @@ namespace WF.Player.iOS.Services.Utils
 				return null;
 			}
 
-			UIGraphics.BeginImageContext(new System.Drawing.SizeF(reqWidth, reqHeight));
+			UIGraphics.BeginImageContext(new CGSize(reqWidth, reqHeight));
 
 			CGContext context = UIGraphics.GetCurrentContext();
 			context.InterpolationQuality = CGInterpolationQuality.None;
@@ -70,7 +70,7 @@ namespace WF.Player.iOS.Services.Utils
 			context.TranslateCTM(0, reqHeight);
 			context.ScaleCTM(1f, -1f);
 
-			context.DrawImage(new RectangleF(0, 0, reqWidth, reqHeight), image.CGImage);
+			context.DrawImage(new CGRect(0, 0, reqWidth, reqHeight), image.CGImage);
 
 			image.Dispose();
 			image = null;

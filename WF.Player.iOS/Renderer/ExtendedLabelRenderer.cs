@@ -1,4 +1,4 @@
-﻿// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
+// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 // Copyright (C) 2012-2014  Dirk Weltz <mail@wfplayer.com>
 //
 // This program is free software: you can redistribute it and/or modify
@@ -19,8 +19,8 @@ using Xamarin.Forms.Platform.iOS;
 using Xamarin.Forms;
 using WF.Player.Controls;
 using WF.Player.Controls.iOS;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 [assembly: ExportRendererAttribute (typeof (ExtendedLabel), typeof (ExtendedLabelRenderer))]
 
@@ -63,7 +63,7 @@ namespace WF.Player.Controls.iOS
 				var html = ((ExtendedLabel)Element).TextExt + Environment.NewLine;
 
 				NSString htmlString = new NSString(html); 
-				NSData htmlData = htmlString.DataUsingEncoding(NSStringEncoding.UTF8); 
+				NSData htmlData = htmlString.Encode(NSStringEncoding.UTF8); 
 
 				NSAttributedString attrStr = new NSAttributedString(htmlData, attr, out dict, ref nsError);
 
@@ -84,7 +84,7 @@ namespace WF.Player.Controls.iOS
 				// Only do this, if we have a valid width
 				if (width != -1)
 				{
-					var rect = Control.AttributedText.GetBoundingRect(new System.Drawing.SizeF(width, float.MaxValue), NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading, null);
+					var rect = Control.AttributedText.GetBoundingRect(new CoreGraphics.CGSize(width, float.MaxValue), NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading, null);
 
 					if (rect.Height != ((ExtendedLabel)Element).Height)
 					{

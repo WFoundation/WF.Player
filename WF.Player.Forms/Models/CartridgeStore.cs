@@ -201,11 +201,10 @@ namespace WF.Player.Models
 		/// <param name="asyncEachCartridge">If set to <c>true</c> async each cartridge.</param>
 		private void SyncFromStoreCore(bool asyncEachCartridge)
 		{
-			// Opens the storage.
-			var dir = new Acr.XamForms.Mobile.IO.Directory(App.PathForCartridges);
-
 			// Imports all GWC files from the directory.
-			foreach (var file in dir.Files.Where((f) => f.Extension.EndsWith("gwc", StringComparison.InvariantCultureIgnoreCase)))
+			var files = new DirectoryInfo(App.PathForCartridges).GetFiles();
+
+			foreach (var file in files.Where((f) => f.Extension.EndsWith("gwc", StringComparison.InvariantCultureIgnoreCase)))
 			{
 				var filename = file.FullName;
 
@@ -316,7 +315,7 @@ namespace WF.Player.Models
 			Cartridge cart = new Cartridge(filename);
 
 			// Loads the cartridge.
-			var file = new Acr.XamForms.Mobile.IO.File(Path.Combine(App.PathForCartridges, filename));
+			var file = new FileInfo(Path.Combine(App.PathForCartridges, filename));
 
 			// File exist check.
 			if (!file.Exists)
@@ -400,7 +399,7 @@ namespace WF.Player.Models
 			// Gets the cartridge this savegame is associated with.
 			bool isAborted = false;
 			WF.Player.Core.Formats.GWS.Metadata saveMetadata = null;
-			var file = new Acr.XamForms.Mobile.IO.File(Path.Combine(App.PathForSavegames, filename));
+			var file = new FileInfo(Path.Combine(App.PathForSavegames, filename));
 
 			// File exist check.
 			if (!file.Exists)
@@ -553,7 +552,7 @@ namespace WF.Player.Models
 				}
 
 				// Deletes the file in the store.
-				var file = new Acr.XamForms.Mobile.IO.File(Path.Combine(App.PathForCartridges, filename));
+				var file = new FileInfo(Path.Combine(App.PathForCartridges, filename));
 
 				if (file.Exists)
 				{

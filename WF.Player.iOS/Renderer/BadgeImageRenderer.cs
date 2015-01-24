@@ -1,4 +1,4 @@
-﻿// // <copyright file="BadgeImageRenderer.cs" company="Wherigo Foundation">
+// // <copyright file="BadgeImageRenderer.cs" company="Wherigo Foundation">
 // //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 // //   Copyright (C) 2012-2014  Dirk Weltz (mail@wfplayer.com)
 // // </copyright>
@@ -18,14 +18,14 @@
 //
 using System;
 using Xamarin.Forms.Platform.iOS;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 using Xamarin.Forms;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
+using CoreGraphics;
 using WF.Player.Controls;
 using WF.Player.Controls.iOS;
-using MonoTouch.CoreImage;
+using CoreImage;
 
 [assembly: ExportRendererAttribute (typeof (BadgeImage), typeof (BadgeImageRenderer))]
 
@@ -68,7 +68,7 @@ namespace WF.Player.Controls.iOS
 		{
 			UIImage newImage;
 			string number = ((BadgeImage)Element).Number.ToString();
-			SizeF size = new SizeF(image.Size.Width, image.Size.Height);
+			CGSize size = new CGSize(image.Size.Width, image.Size.Height);
 
 			// Begin a graphics context of sufficient size
 			UIGraphics.BeginImageContextWithOptions(size, false, 0f);
@@ -76,14 +76,14 @@ namespace WF.Player.Controls.iOS
 			// Draw original image into the context
 			if (((BadgeImage)Element).Selected)
 			{
-				image.Draw(new PointF(0, 0));
+				image.Draw(new CGPoint(0, 0));
 			}
 			else
 			{
 				// Found at http://iosdevelopertips.com/graphics/convert-an-image-uiimage-to-grayscale.html
 
 				// Create image rectangle with current image width/height
-				RectangleF imageRect = new RectangleF(new PointF(0, 0), new SizeF(image.Size.Width * image.CurrentScale, image.Size.Width * image.CurrentScale));
+				CGRect imageRect = new CGRect(new CGPoint(0, 0), new CGSize(image.Size.Width * image.CurrentScale, image.Size.Width * image.CurrentScale));
 
 				// Grayscale color space
 				CGColorSpace colorSpace = CGColorSpace.CreateDeviceGray();
@@ -124,7 +124,7 @@ namespace WF.Player.Controls.iOS
 				grayImage.Dispose();
 				mask.Dispose();
 
-				grayScaleImage.Draw(new PointF(0, 0));
+				grayScaleImage.Draw(new CGPoint(0, 0));
 			}
 
 			// Get the context for CoreGraphics
@@ -156,7 +156,7 @@ namespace WF.Player.Controls.iOS
 					float left = (float)(size.Width - badgeWidth);
 					float top = 0; //(float)(size.Height - badgeHeight);
 
-					using (UIBezierPath path = UIBezierPath.FromRoundedRect(new RectangleF(left, top, badgeWidth, badgeHeight), UIRectCorner.AllCorners, new System.Drawing.SizeF(10, 10))) 
+					using (UIBezierPath path = UIBezierPath.FromRoundedRect(new CGRect(left, top, badgeWidth, badgeHeight), UIRectCorner.AllCorners, new CGSize(10, 10))) 
 					{
 						var color = ((BadgeImage)Element).Selected ? Color.Red.ToCGColor() : Color.FromRgb(192, 192, 192).ToCGColor();
 
@@ -168,7 +168,7 @@ namespace WF.Player.Controls.iOS
 						context.DrawPath(CGPathDrawingMode.FillStroke);
 					}
 
-					text.DrawString(new PointF(left + (badgeWidth - textSize.Width) / 2f, top), attr);
+					text.DrawString(new CGPoint(left + (badgeWidth - textSize.Width) / 2f, top), attr);
 
 					// Restore saved state of context
 					context.RestoreState();

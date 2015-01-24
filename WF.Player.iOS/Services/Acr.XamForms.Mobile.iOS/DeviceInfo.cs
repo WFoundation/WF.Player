@@ -1,6 +1,6 @@
-﻿using System;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
+using System;
+using ObjCRuntime;
+using UIKit;
 using Xamarin.Forms;
 using Acr.XamForms.Mobile.iOS;
 

@@ -247,8 +247,8 @@ namespace WF.Player.Models
 		public bool RemoveLogFile(string filename)
 		{
 			// Get path for savegames
-			var dir = new Acr.XamForms.Mobile.IO.Directory(App.PathForLogs);
-			var file = dir.Files.SingleOrDefault((f) => f.Name.StartsWith(filename));
+			var dir = new DirectoryInfo(App.PathForLogs);
+			var file = dir.GetFiles().SingleOrDefault((f) => f.Name.StartsWith(filename, StringComparison.InvariantCulture));
 			if (file != null)
 			{
 				file.Delete();
@@ -265,11 +265,11 @@ namespace WF.Player.Models
 		{
 			List<CartridgeSavegame> savegames = new List<CartridgeSavegame>();
 			// Get path for savegames
-			var dir = new Acr.XamForms.Mobile.IO.Directory(App.PathForSavegames);
+			var dir = new DirectoryInfo(App.PathForSavegames);
 			// Get cartridge filename without extension
 			var cartFilename = Path.GetFileNameWithoutExtension(Cartridge.Filename);
 			// Get all files, which start with the same string as cartridge filename and end with gws
-			var files = dir.Files.Where((f) => f.FullName.StartsWith(cartFilename, StringComparison.InvariantCultureIgnoreCase) && f.FullName.EndsWith(".gws", StringComparison.InvariantCultureIgnoreCase));
+			var files = dir.GetFiles().Where((f) => f.FullName.StartsWith(cartFilename, StringComparison.InvariantCultureIgnoreCase) && f.FullName.EndsWith(".gws", StringComparison.InvariantCultureIgnoreCase));
 			// For each file, imports its metadata.
 			foreach (var file in files)
 			{

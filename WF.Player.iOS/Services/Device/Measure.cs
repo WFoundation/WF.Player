@@ -20,8 +20,8 @@
 
 namespace WF.Player.iOS.Services.Device
 {
-	using MonoTouch.Foundation;
-	using MonoTouch.UIKit;
+	using Foundation;
+	using UIKit;
 	using WF.Player.Services.Settings;
 	using WF.Player.Services.Device;
 
@@ -38,7 +38,7 @@ namespace WF.Player.iOS.Services.Device
 			}
 
 			NSString nsText = new NSString(text);
-			return nsText.GetSizeUsingAttributes(new UIStringAttributes() { Font = UIFont.SystemFontOfSize(textSize) }).Width + button.ContentEdgeInsets.Left + button.ContentEdgeInsets.Right;
+			return (float)nsText.GetSizeUsingAttributes(new UIStringAttributes() { Font = UIFont.SystemFontOfSize(textSize) }).Width + (float)button.ContentEdgeInsets.Left + (float)button.ContentEdgeInsets.Right;
 		}
 	}
 }

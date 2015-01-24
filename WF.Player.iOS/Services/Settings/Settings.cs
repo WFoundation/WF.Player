@@ -22,7 +22,7 @@
 namespace WF.Player.iOS.Services
 {
 	using System;
-	using MonoTouch.Foundation;
+	using Foundation;
 	using WF.Player.Services.Settings;
 
 	/// <summary>

@@ -3,13 +3,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{4B63E07B-7E0B-49C3-933C-1EA067FE7CBD}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>WF.Player.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>WFPlayeriOS</AssemblyName>
     <ReleaseVersion>0.6</ReleaseVersion>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,6 +71,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <BuildIpa>true</BuildIpa>
     <IpaPackageName>WF.Player</IpaPackageName>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <Optimize>true</Optimize>
@@ -84,7 +87,7 @@
     <IpaPackageName>WFPlayer</IpaPackageName>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>full</DebugType>
@@ -97,59 +100,48 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
     <Reference Include="GoogleMaps">
       <HintPath>..\Libraries\GoogleMaps.dll</HintPath>
-    </Reference>
-    <Reference Include="HockeyApp.iOS">
-      <HintPath>..\Components\hockeyappios-3.5.5.1\lib\ios\HockeyApp.iOS.dll</HintPath>
-    </Reference>
-    <Reference Include="Acr.XamForms.Mobile">
-      <HintPath>..\packages\Acr.XamForms.Mobile.1.5\lib\MonoTouch\Acr.XamForms.Mobile.dll</HintPath>
-    </Reference>
-    <Reference Include="Acr.XamForms.Mobile.iOS">
-      <HintPath>..\packages\Acr.XamForms.Mobile.1.5\lib\MonoTouch\Acr.XamForms.Mobile.iOS.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Mobile">
-      <HintPath>..\packages\Acr.XamForms.Mobile.1.5\lib\MonoTouch\Xamarin.Mobile.dll</HintPath>
     </Reference>
     <Reference Include="Vernacular.Catalog.XamarinForms">
       <HintPath>..\Libraries\Vernacular.Catalog.XamarinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Platform.iOS.Classic">
-      <HintPath>..\packages\Xamarin.Forms.1.3.0.6292\lib\MonoTouch10\Xamarin.Forms.Platform.iOS.Classic.dll</HintPath>
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="HockeyApp.iOS">
+      <HintPath>..\Components\hockeyappios-3.5.5.2\lib\ios-unified\HockeyApp.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.iOS">
+      <HintPath>..\packages\Xamarin.Forms.1.3.2.6299-pre1\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core">
-      <HintPath>..\packages\Xamarin.Forms.1.3.0.6292\lib\MonoTouch10\Xamarin.Forms.Core.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Forms.1.3.2.6299-pre1\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
-      <HintPath>..\packages\Xamarin.Forms.1.3.0.6292\lib\MonoTouch10\Xamarin.Forms.Xaml.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Forms.1.3.2.6299-pre1\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Maps.iOS.Classic">
-      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.0.6292\lib\MonoTouch10\Xamarin.Forms.Maps.iOS.Classic.dll</HintPath>
+    <Reference Include="Xamarin.Forms.Maps.iOS">
+      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.2.6299-pre1\lib\Xamarin.iOS10\Xamarin.Forms.Maps.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Maps">
-      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.0.6292\lib\MonoTouch10\Xamarin.Forms.Maps.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.2.6299-pre1\lib\Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
     </Reference>
     <Reference Include="SQLite.Net">
       <HintPath>..\packages\SQLite.Net-PCL.2.5\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
     </Reference>
-    <Reference Include="SQLite.Net.Platform.XamarinIOS">
-      <HintPath>..\packages\SQLite.Net.Platform.XamarinIOS.2.5\lib\monotouch\SQLite.Net.Platform.XamarinIOS.dll</HintPath>
+    <Reference Include="SQLite.Net.Platform.XamarinIOS.Unified">
+      <HintPath>..\packages\SQLite.Net.Platform.XamarinIOS.2.5\lib\Xamarin.iOS10\SQLite.Net.Platform.XamarinIOS.Unified.dll</HintPath>
     </Reference>
     <Reference Include="PCLStorage">
-      <HintPath>..\packages\PCLStorage.1.0.2\lib\monotouch\PCLStorage.dll</HintPath>
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
     </Reference>
     <Reference Include="PCLStorage.Abstractions">
-      <HintPath>..\packages\PCLStorage.1.0.2\lib\monotouch\PCLStorage.Abstractions.dll</HintPath>
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -258,14 +250,13 @@
     <Compile Include="Renderer\ExtendedMapRenderer.cs" />
     <Compile Include="Renderer\FormsUIRefreshControl.cs" />
     <Compile Include="Renderer\PullToRefreshListViewRenderer.cs" />
-    <Compile Include="Bootstrap\MobileBootstrap.cs" />
     <Compile Include="Renderer\ExtendedNavigationPageRenderer.cs" />
     <Compile Include="Services\Settings\Settings.cs" />
+    <Compile Include="Services\Extensions\ExtensionDateTime.cs" />
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
-  <Import Project="..\packages\Xamarin.Forms.1.3.0.6292\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.3.0.6292\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Forms.1.3.2.6299-pre1\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.3.2.6299-pre1\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Services\Geolocation\" />
@@ -284,6 +275,7 @@
     <Folder Include="Services\Acr.XamForms.Mobile.iOS\" />
     <Folder Include="Resources\en.lproj\" />
     <Folder Include="Services\Settings\" />
+    <Folder Include="Services\Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sounds\tap.aif" />
@@ -297,7 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="hockeyappios">
-      <Version>3.5.5.1</Version>
+      <Version>3.5.5.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

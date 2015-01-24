@@ -18,7 +18,7 @@
 
 namespace WF.Player.iOS
 {
-	using MonoTouch.UIKit;
+	using UIKit;
 
 	public class Application
 	{

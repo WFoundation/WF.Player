@@ -1,4 +1,4 @@
-﻿// <copyright file="PinchScrollViewRenderer.cs" company="Wherigo Foundation">
+// <copyright file="PinchScrollViewRenderer.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 //   Copyright (C) 2012-2014  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
@@ -18,7 +18,7 @@
 
 using System;
 using Xamarin.Forms.Platform.iOS;
-using MonoTouch.UIKit;
+using UIKit;
 using Xamarin.Forms;
 using WF.Player.Controls;
 using WF.Player.Controls.iOS;
@@ -32,7 +32,7 @@ namespace WF.Player.Controls.iOS
 		/// <summary>
 		/// The zoom scale.
 		/// </summary>
-		private float zoomScale = 1;
+		private nfloat zoomScale = 1;
 
 		protected override void OnElementChanged(VisualElementChangedEventArgs e)
 		{
@@ -41,7 +41,7 @@ namespace WF.Player.Controls.iOS
 			if (e.OldElement == null) {
 				this.MaximumZoomScale = 4f;
 				this.MinimumZoomScale = 1f;
-				this.ViewForZoomingInScrollView += (UIScrollView sv) => { return this.Subviews[0]; };
+				this.ViewForZoomingInScrollView += (UIScrollView sv) => this.Subviews[0];
 				this.DidZoom += UpdateZoom;
 			}
 		}

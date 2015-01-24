@@ -23,7 +23,6 @@ namespace WF.Player
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
-	using PCLStorage;
 	using WF.Player.Controls;
 	using WF.Player.Interfaces;
 	using WF.Player.Models;
@@ -258,7 +257,7 @@ namespace WF.Player
 				string cartridgePath = Settings.Current.GetValueOrDefault<string>(Settings.CartridgePathKey);
 
 				// Did we find a path in the preferences?
-				if (!string.IsNullOrEmpty(cartridgePath) && FileSystem.Current.GetFolderFromPathAsync(cartridgePath) != null)
+				if (!string.IsNullOrEmpty(cartridgePath) && Directory.Exists(cartridgePath) != null)
 				{
 					return cartridgePath;
 				}
@@ -266,37 +265,35 @@ namespace WF.Player
 				// We now start the first time, so get correct path and copy tutorial
 
 				#if __ANDROID__
-				// Get path to default external storage
-				var extPath = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
-
-				// Get all directories in default external storage
-				var extDir = new Acr.XamForms.Mobile.IO.Directory(extPath);
+				// Get path to default external storage and get all directories in this default external storage
+				var extDirs = Directory.GetDirectories(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath);
 
 				// Look for the default WF.Player directory
-				foreach (var entry in extDir.Directories)
+				foreach (var entry in extDirs)
 				{
-					if (entry.Name.Equals("WF.Player"))
+					if (entry.EndsWith("WF.Player", StringComparison.InvariantCultureIgnoreCase))
 					{
-						cartridgePath = entry.FullName;
+						cartridgePath = entry;
 					}
 				}
 
 				// If we don't find an entry, than there is perhaps a WhereYouGo directory
 				if (string.IsNullOrEmpty(cartridgePath))
 				{
-					foreach (var entry in extDir.Directories)
+					foreach (var entry in extDirs)
 					{
-						if (entry.Name.Equals("WhereYouGo"))
+						if (entry.EndsWith("WhereYouGo", StringComparison.InvariantCultureIgnoreCase))
 						{
-							cartridgePath = entry.FullName;
+							cartridgePath = entry;
 						}
 					}
 				}
 
 				// There was no cartridge folder up to now, so create one
-				if (string.IsNullOrEmpty(cartridgePath) && FileSystem.Current.GetFolderFromPathAsync(cartridgePath) != null)
+				if (string.IsNullOrEmpty(cartridgePath) && !Directory.Exists(cartridgePath))
 				{
-					cartridgePath = new Acr.XamForms.Mobile.IO.Directory(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath).CreateSubdirectory("WF.Player").FullName;
+					cartridgePath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, "WF.Player");
+					Directory.CreateDirectory(cartridgePath);
 				}
 				#endif
 				#if __IOS__
@@ -319,17 +316,14 @@ namespace WF.Player
 		{
 			get
 			{
-				var folderCartridges = new FileSystemFolder(PathCartridges);
+				var logsFolder = Path.Combine(PathCartridges, "Logs");
 
-				folderCartridges.GetFoldersAsync(new System.Threading.CancellationToken()).ContinueWith((task) =>
-					{
-						if (!task.Result.Any((file) => file.Name.Equals("Logs")))
-						{
-							folderCartridges.CreateFolderAsync("Logs", CreationCollisionOption.OpenIfExists, new System.Threading.CancellationToken()).Wait();
-						}
-					});
+				if (!Directory.Exists(logsFolder))
+				{
+					Directory.CreateDirectory(logsFolder);
+				}
 
-				return Path.Combine(PathCartridges, "Logs");
+				return logsFolder;
 			}
 		}
 
@@ -342,23 +336,24 @@ namespace WF.Player
 			get
 			{
 				var cartridgePath = PathForCartridges;
-				var cartridgeDir = new Acr.XamForms.Mobile.IO.Directory(cartridgePath);
-				Acr.XamForms.Mobile.IO.IDirectory savegameDir = null;
-
-				foreach (var dir in new Acr.XamForms.Mobile.IO.Directory(cartridgePath).Directories)
-				{
-					if (dir.Name.ToLower().Equals("savegames"))
-					{
-						savegameDir = dir;
-					}
-				}
-
-				if (savegameDir == null)
-				{
-					savegameDir = cartridgeDir.CreateSubdirectory("Savegames");
-				}
-
-				return savegameDir.FullName;
+//				var cartridgeDir = new Acr.XamForms.Mobile.IO.Directory(cartridgePath);
+//				Acr.XamForms.Mobile.IO.IDirectory savegameDir = null;
+//
+//				foreach (var dir in new Acr.XamForms.Mobile.IO.Directory(cartridgePath).Directories)
+//				{
+//					if (dir.Name.ToLower().Equals("savegames"))
+//					{
+//						savegameDir = dir;
+//					}
+//				}
+//
+//				if (savegameDir == null)
+//				{
+//					savegameDir = cartridgeDir.CreateSubdirectory("Savegames");
+//				}
+//
+//				return savegameDir.FullName;
+				return cartridgePath;
 			}
 		}
 
@@ -437,24 +432,20 @@ namespace WF.Player
 
 		public static async void CheckFolder()
 		{
-
 			// If there isn't any gwc file in the path,
 			// than copy Wherigo Tutorial to cartridges folder
-			var folder = new FileSystemFolder(PathForCartridges);
+			var files = Directory.GetFiles(PathForCartridges);
 
-			var files = await folder.GetFilesAsync(new System.Threading.CancellationToken());
-
-			if (!files.Any((file) => Path.GetExtension(file.Name).EndsWith("gwc", StringComparison.InvariantCultureIgnoreCase)))
+			if (!files.Any((file) => Path.GetExtension(file).EndsWith("gwc", StringComparison.InvariantCultureIgnoreCase)))
 			{
 				#if __ANDROID__
 				using (var input = Forms.Context.Assets.Open("Wherigo Tutorial.gwc"))
 				#endif
 				#if __IOS__
-				using (var input = System.IO.File.OpenRead(Path.Combine("Assets", "Wherigo Tutorial.gwc")))
+				using (var input = File.OpenRead(Path.Combine("Assets", "Wherigo Tutorial.gwc")))
 				#endif
 				{
-					var file = await new FileSystemFolder(PathCartridges).CreateFileAsync("Wherigo Tutorial.gwc", CreationCollisionOption.ReplaceExisting, new System.Threading.CancellationToken());
-					var output = await file.OpenAsync(PCLStorage.FileAccess.ReadAndWrite, new System.Threading.CancellationToken());
+					var output = new FileStream(Path.Combine(PathCartridges, "Wherigo Tutorial.gwc"),FileMode.Create);
 
 					input.CopyTo(output);
 

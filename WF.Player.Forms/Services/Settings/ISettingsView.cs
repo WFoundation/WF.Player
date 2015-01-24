@@ -1,4 +1,4 @@
-﻿// <copyright file="ISettingsView.cs" company="Wherigo Foundation">
+// <copyright file="ISettingsView.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 //   Copyright (C) 2012-2015  Dirk Weltz (mail@wfplayer.com)
 // </copyright>

@@ -1,4 +1,4 @@
-﻿// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
+// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 // Copyright (C) 2012-2014  Dirk Weltz <mail@wfplayer.com>
 //
 // This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@ using Xamarin.Forms;
 using WF.Player;
 using WF.Player.iOS;
 using Xamarin.Forms.Platform.iOS;
-using MonoTouch.UIKit;
+using UIKit;
 
 [assembly: ExportRendererAttribute (typeof (CustomWebView), typeof (CustomWebViewRenderer))]
 
@@ -42,7 +42,7 @@ namespace WF.Player.iOS
 			}
 
 			// Set new size for the UIWebView. Only set width, height is correct.
-			Frame = new System.Drawing.RectangleF (0, 0, UIScreen.MainScreen.Bounds.Width, Frame.Height);
+			Frame = new CoreGraphics.CGRect (0, 0, UIScreen.MainScreen.Bounds.Width, Frame.Height);
 
 			var webView = this;
 

@@ -37,6 +37,8 @@ namespace WF.Player
 
 			Title = Catalog.GetString("GPS Check");
 
+			NavigationPage.SetHasBackButton(this, false);
+
 			var layout = new StackLayout() 
 				{
 					Orientation = StackOrientation.Vertical,

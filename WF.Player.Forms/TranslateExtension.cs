@@ -1,4 +1,4 @@
-﻿
+
 // Found at https://gist.github.com/conceptdev/47986fd40c2f9a8b390a
 //
 // To insert it into XAML do the following

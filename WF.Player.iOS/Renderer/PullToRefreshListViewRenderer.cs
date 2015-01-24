@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using WF.Player.Controls.iOS;
 using WF.Player.Controls;
-using MonoTouch.UIKit;
+using UIKit;
 
 [assembly:ExportRendererAttribute(typeof(PullToRefreshListView), typeof(PullToRefreshListViewRenderer))]
 

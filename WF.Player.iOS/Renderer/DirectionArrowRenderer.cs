@@ -1,4 +1,4 @@
-﻿// /// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
+// /// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 // /// Copyright (C) 2012-2014  Dirk Weltz <mail@wfplayer.com>
 // ///
 // /// This program is free software: you can redistribute it and/or modify
@@ -18,9 +18,9 @@
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using MonoTouch.UIKit;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using CoreGraphics;
+using CoreGraphics;
 using WF.Player.Controls;
 using WF.Player.Controls.iOS;
 using System.Collections.Generic;
@@ -31,7 +31,7 @@ namespace WF.Player.Controls.iOS
 {
 	public class DirectionArrowRenderer : ViewRenderer
 	{
-		public override void Draw (System.Drawing.RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			DirectionArrow dv = (DirectionArrow)Element;
 
@@ -40,7 +40,7 @@ namespace WF.Player.Controls.iOS
 			float width;
 			float height;
 
-			width = height = Math.Min (Bounds.Width, Bounds.Height);
+			width = height = (float)Math.Min(Bounds.Width, Bounds.Height);
 
 			float centerX = width / 2.0f;
 			float centerY = height / 2.0f;
@@ -101,20 +101,20 @@ namespace WF.Player.Controls.iOS
 					// Draw circle
 					using (CGPath path = new CGPath ()) {
 						// Draw cross
-						var points = new List<PointF>(2);
+						var points = new List<CGPoint>(2);
 
-						points.Add(new PointF(centerX - centerX * 0.4f, centerY - centerY * 0.4f));
-						points.Add(new PointF(centerX + centerX * 0.4f, centerY + centerY * 0.4f));
+						points.Add(new CGPoint(centerX - centerX * 0.4f, centerY - centerY * 0.4f));
+						points.Add(new CGPoint(centerX + centerX * 0.4f, centerY + centerY * 0.4f));
 
 						path.AddLines(points.ToArray());
 
 						path.CloseSubpath ();
 						context.AddPath (path);
 
-						points = new List<PointF>(2);
+						points = new List<CGPoint>(2);
 
-						points.Add(new PointF(centerX - centerX * 0.4f, centerY + centerY * 0.4f));
-						points.Add(new PointF(centerX + centerX * 0.4f, centerY - centerY * 0.4f));
+						points.Add(new CGPoint(centerX - centerX * 0.4f, centerY + centerY * 0.4f));
+						points.Add(new CGPoint(centerX + centerX * 0.4f, centerY - centerY * 0.4f));
 
 						path.AddLines(points.ToArray());
 
@@ -140,10 +140,10 @@ namespace WF.Player.Controls.iOS
 			double rad3 = (direction + 180.0 - 30.0) / 180.0 * Math.PI; 
 			double rad4 = (direction + 180.0) / 180.0 * Math.PI; 
 
-			PointF p1 = new PointF((float) (centerX + size * Math.Sin (rad1)), (float) (centerY + size * Math.Cos (rad1)));
-			PointF p2 = new PointF((float) (centerX + size * Math.Sin (rad2)), (float) (centerY + size * Math.Cos (rad2)));
-			PointF p3 = new PointF((float) (centerX + size * Math.Sin (rad3)), (float) (centerY + size * Math.Cos (rad3)));
-			PointF p4 = new PointF((float) (centerX + sizeSmall * Math.Sin (rad4)), (float) (centerY + sizeSmall * Math.Cos (rad4)));
+			CGPoint p1 = new CGPoint((float) (centerX + size * Math.Sin (rad1)), (float) (centerY + size * Math.Cos (rad1)));
+			CGPoint p2 = new CGPoint((float) (centerX + size * Math.Sin (rad2)), (float) (centerY + size * Math.Cos (rad2)));
+			CGPoint p3 = new CGPoint((float) (centerX + size * Math.Sin (rad3)), (float) (centerY + size * Math.Cos (rad3)));
+			CGPoint p4 = new CGPoint((float) (centerX + sizeSmall * Math.Sin (rad4)), (float) (centerY + sizeSmall * Math.Cos (rad4)));
 
 			using (var context = UIGraphics.GetCurrentContext ()) {
 
@@ -154,7 +154,7 @@ namespace WF.Player.Controls.iOS
 					context.SetStrokeColor (dv.ArrowColor.ToCGColor ()); //1f, 0, 0, 1);
 					context.SetFillColor (dv.ArrowColor.ToCGColor ());
 
-					path.AddLines (new PointF[] { p1, p2, p4 });
+					path.AddLines (new CGPoint[] { p1, p2, p4 });
 					path.CloseSubpath ();
 
 					context.AddPath (path);
@@ -168,7 +168,7 @@ namespace WF.Player.Controls.iOS
 					context.SetStrokeColor (dv.ArrowColor.ToCGColor ());
 					context.SetFillColor (dv.ArrowColor.ToCGColor ()); // was 0.5f
 				
-					path.AddLines (new PointF[] { p1, p3, p4 });
+					path.AddLines (new CGPoint[] { p1, p3, p4 });
 					path.CloseSubpath ();
 
 					context.AddPath (path);

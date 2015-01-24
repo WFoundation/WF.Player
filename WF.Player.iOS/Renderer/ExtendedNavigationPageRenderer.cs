@@ -1,4 +1,4 @@
-﻿// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
+// WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 // Copyright (C) 2012-2014  Dirk Weltz <mail@wfplayer.com>
 //
 // This program is free software: you can redistribute it and/or modify
@@ -18,9 +18,9 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using WF.Player.iOS;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
+using CoreGraphics;
 using System.Linq;
 
 [assembly: ExportRendererAttribute(typeof(WF.Player.Controls.ExtendedNavigationPage), typeof(WF.Player.Controls.iOS.ExtendedNavigationPageRenderer))]
@@ -48,11 +48,11 @@ namespace WF.Player.Controls.iOS
 			UIImage image;
 
 			// Create image
-			SizeF size = new SizeF(1, 1);
+			CGSize size = new CGSize(1, 1);
 			UIGraphics.BeginImageContext(size);
 			using (CGContext context = UIGraphics.GetCurrentContext()) {
 				context.SetFillColor(App.Colors.Bar.ToCGColor());
-				context.FillRect(new RectangleF(0, 0, size.Width, size.Height));
+				context.FillRect(new CGRect(0, 0, size.Width, size.Height));
 				image = UIGraphics.GetImageFromCurrentImageContext();
 			}
 			UIGraphics.EndImageContext();
@@ -185,7 +185,7 @@ namespace WF.Player.Controls.iOS
 
 			var button = UIButton.FromType(UIButtonType.System);
 
-			button.Bounds = new RectangleF(0, 0, icon.Size.Width, icon.Size.Height);
+			button.Bounds = new CGRect(0, 0, icon.Size.Width, icon.Size.Height);
 			button.SetImage(icon, UIControlState.Normal);
 			button.ImageEdgeInsets = new UIEdgeInsets(0.5f, -8, -0.5f, 8);
 

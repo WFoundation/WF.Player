@@ -18,8 +18,8 @@
 using System;
 using System.IO;
 using System.Reflection;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 using Xamarin.Forms;
 using WF.Player.Core.Engines;
 using Vernacular;
