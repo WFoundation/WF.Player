@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Acr.XamForms.UserDialogs.iOS;
+using WF.Player.Services.UserDialogs.iOS;
 using UIKit;
 using Xamarin.Forms;
 
@@ -13,7 +13,7 @@ namespace WF.Player.Services.UserDialogs.iOS
 
 		public override void ActionSheet(ActionSheetConfig config)
 		{
-			Device.BeginInvokeOnMainThread(() =>
+			Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
 				{
 					var action = new UIActionSheet(config.Title);
 					config.Options.ToList().ForEach(x => action.AddButton(x.Text));
@@ -37,7 +37,7 @@ namespace WF.Player.Services.UserDialogs.iOS
 
 		public override void Alert(AlertConfig config)
 		{
-			Device.BeginInvokeOnMainThread(() =>
+			Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
 				{
 					var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, null, config.OkText);
 					if (config.OnOk != null)
@@ -50,7 +50,7 @@ namespace WF.Player.Services.UserDialogs.iOS
 
 		public override void Confirm(ConfirmConfig config)
 		{
-			Device.BeginInvokeOnMainThread(() =>
+			Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
 				{
 					var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText);
 					dlg.Clicked += (s, e) =>
@@ -117,7 +117,7 @@ namespace WF.Player.Services.UserDialogs.iOS
 
 		public override void Prompt(PromptConfig config)
 		{
-			Device.BeginInvokeOnMainThread(() =>
+			Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
 				{
 					var result = new PromptResult();
 					var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText) {

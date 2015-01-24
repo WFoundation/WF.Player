@@ -2,7 +2,7 @@ using System;
 using ObjCRuntime;
 using UIKit;
 using Xamarin.Forms;
-using Acr.XamForms.Mobile.iOS;
+using WF.Player.Services.Mobile.iOS;
 
 [assembly: Dependency(typeof(DeviceInfo))]
 
