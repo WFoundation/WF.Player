@@ -4,11 +4,10 @@ using Android.Content.PM;
 using Android.Content.Res;
 using Android.Telephony;
 using Xamarin.Forms;
-using Acr.XamForms.Mobile.Droid;
 
-[assembly: Dependency(typeof(DeviceInfo))]
+[assembly: Dependency(typeof(WF.Player.Services.Mobile.Droid.DeviceInfo))]
 
-namespace Acr.XamForms.Mobile.Droid 
+namespace WF.Player.Services.Mobile.Droid 
 {
 	public class DeviceInfo : IDeviceInfo 
 	{

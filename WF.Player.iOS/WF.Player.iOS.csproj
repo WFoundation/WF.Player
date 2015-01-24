@@ -245,14 +245,14 @@
     <Compile Include="Services\Device\Measure.cs" />
     <Compile Include="Services\Utils\ImageTools.cs" />
     <Compile Include="Renderer\ExtendedLabelRenderer.cs" />
-    <Compile Include="Services\Acr.XamForms.UserDialogs.iOS\UserDialogService.cs" />
-    <Compile Include="Services\Acr.XamForms.Mobile.iOS\DeviceInfo.cs" />
     <Compile Include="Renderer\ExtendedMapRenderer.cs" />
     <Compile Include="Renderer\FormsUIRefreshControl.cs" />
     <Compile Include="Renderer\PullToRefreshListViewRenderer.cs" />
     <Compile Include="Renderer\ExtendedNavigationPageRenderer.cs" />
     <Compile Include="Services\Settings\Settings.cs" />
     <Compile Include="Services\Extensions\ExtensionDateTime.cs" />
+    <Compile Include="Services\Mobile\DeviceInfo.cs" />
+    <Compile Include="Services\UserDialogs\UserDialogService.cs" />
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -271,11 +271,11 @@
     <Folder Include="Assets\" />
     <Folder Include="Services\Utils\" />
     <Folder Include="Resources\de.lproj\" />
-    <Folder Include="Services\Acr.XamForms.UserDialogs.iOS\" />
-    <Folder Include="Services\Acr.XamForms.Mobile.iOS\" />
     <Folder Include="Resources\en.lproj\" />
     <Folder Include="Services\Settings\" />
     <Folder Include="Services\Extensions\" />
+    <Folder Include="Services\Mobile\" />
+    <Folder Include="Services\UserDialogs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sounds\tap.aif" />

@@ -20,7 +20,7 @@ namespace WF.Player
 {
 	using System;
 	using System.IO;
-	using Acr.XamForms.UserDialogs;
+	using WF.Player.Services.UserDialogs;
 	using Vernacular;
 	using WF.Player.Core;
 	using WF.Player.Core.Utils;

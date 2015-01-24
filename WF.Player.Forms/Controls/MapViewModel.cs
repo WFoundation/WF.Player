@@ -15,16 +15,16 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Vernacular;
-using Acr.XamForms.UserDialogs;
+using WF.Player.Services.UserDialogs;
 
 namespace WF.Player
 {
 	using System;
 	using System.Windows.Input;
+	using Vernacular;
+	using WF.Player.Controls;
 	using Xamarin.Forms;
 	using Xamarin.Forms.Maps;
-	using WF.Player.Controls;
 
 	public class MapViewModel : BaseViewModel
 	{
@@ -37,6 +37,8 @@ namespace WF.Player
 		private ExtendedMap map;
 
 		private MapSpan visibleRegion;
+
+		private WF.Player.Core.ZonePoint startingLocation;
 
 		/// <summary>
 		/// The position.
@@ -99,7 +101,42 @@ namespace WF.Player
 			}
 		}
 
-		public WF.Player.Core.ZonePoint StartingLocation { get; set; }
+		public WF.Player.Core.ZonePoint StartingLocation
+		{ 
+			get
+			{
+				return startingLocation; 
+			}
+
+			set
+			{
+				if (startingLocation != value)
+				{
+					startingLocation = value;
+
+					if (map != null)
+					{
+						Pin pin;
+
+						if (map.Pins.Count > 0)
+						{
+							pin = map.Pins[0];
+						}
+						else
+						{
+							pin = new Pin();
+						}
+
+						pin.Label = Catalog.GetString("Starting Location");
+						pin.Position = new Position(startingLocation.Latitude, startingLocation.Longitude);
+
+						map.Pins.Add(pin);
+
+						map.VisibleRegion = MapSpan.FromCenterAndRadius(pin.Position, Xamarin.Forms.Maps.Distance.FromMeters(1000));
+					}
+				}
+			}
+		}
 
 		public MapOrientation MapOrientation 
 		{ 
@@ -197,7 +234,7 @@ namespace WF.Player
 		{
 			App.Click();
 
-			var cfg = new Acr.XamForms.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Focus on"));
+			var cfg = new WF.Player.Services.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Focus on"));
 
 			if (App.Game != null)
 			{
@@ -223,9 +260,9 @@ namespace WF.Player
 				}
 			}
 
-			cfg.Cancel = new Acr.XamForms.UserDialogs.ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
+			cfg.Cancel = new WF.Player.Services.UserDialogs.ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 
-			DependencyService.Get<Acr.XamForms.UserDialogs.IUserDialogService>().ActionSheet(cfg);
+			DependencyService.Get<WF.Player.Services.UserDialogs.IUserDialogService>().ActionSheet(cfg);
 		}
 
 		private void HandleCenterLocation()
@@ -310,7 +347,7 @@ namespace WF.Player
 			cfg.Add(Vernacular.Catalog.GetString("Hybrid"), () => HandleMapTypeSelection(MapType.Hybrid));
 			cfg.Cancel = new ActionSheetOption(Vernacular.Catalog.GetString("Cancel"), App.Click);
 
-			DependencyService.Get<Acr.XamForms.UserDialogs.IUserDialogService>().ActionSheet(cfg);
+			DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
 		}
 
 		private void ButtonOrientationPressed(object o)

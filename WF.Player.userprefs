@@ -1,81 +1,33 @@
 ﻿<Properties StartupItem="WF.Player.Droid/WF.Player.Droid.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Core/Core/Engines/Engine.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.0123456789ABCDEF" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Game/GameMainView.cs">
     <Files>
       <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="26" Column="26" />
-      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/App.cs" Line="24" Column="24" />
+      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="42" Column="42" />
+      <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="26" Column="26" />
+      <File FileName="WF.Player.Forms/App.cs" Line="29" Column="29" />
       <File FileName="WF.Player.iOS/AppDelegate.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Core/iOSPlatformHelper.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Services/Core/iOSPlatformHelper.cs" Line="28" Column="28" />
       <File FileName="WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Core/Core/Formats/GWS.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Core/Core/Input.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/WherigoHelper.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/WherigoObject.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/Threading/JobQueue.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Models/CartridgeStore.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Interfaces/IFormsPlatformHelper.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Models/CartridgeTag.cs" Line="30" Column="30" />
-      <File FileName="WF.Player.Forms/Enums/FormatCoordinates.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Enums/DirectionState.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Enums/UnitLength.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Device/Measure.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Settings/Settings.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Services/Settings/Settings.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/Settings/ISettings.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/Settings/Settings.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailDescriptionView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameCheckLocationView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameDetailView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMessageboxView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameInputView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMainCellView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/Conversion/Converter.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Controls/ExtendedImage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Controls/ExtendedLabel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Renderer/CustomButtonRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/Resources/Fonts.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/Resources/Colors.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Models/ICommonPlatformHelper.cs" Line="5" Column="5" />
-      <File FileName="WF.Player.Droid/MainActivity.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Services/Geolocation/GeolocationListener.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameDetailViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Common/BaseViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Geolocation/Geolocator.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Geolocation/GeolocationSingleUpdateDelegate.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Extensions/ExtensionDateTime.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/DirectionArrowRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/PinchScrollViewRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Acr.XamForms.UserDialogs.iOS/UserDialogService.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/ExtendedMapRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Models/CartridgeSavegame.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/Engines/iOSPlatformHelper.cs" Line="12" Column="12" />
-      <File FileName="WF.Player.Core/Eluant/Eluant/LuaRuntime.cs" Line="28" Column="28" />
-      <File FileName="WF.Player.Core/Eluant/Eluant/MemoryConstrainedLuaRuntime.cs" Line="29" Column="29" />
-      <File FileName="WF.Player.Core/Core/Properties/AssemblyInfo.cs" Line="12" Column="12" />
-      <File FileName="WF.Player.Core/Core/Engines/Engine.cs" Line="25" Column="25" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Eluant.iOS" expanded="True" selected="True" />
-          <Node name="WF.Player.Core.iOS" expanded="True">
-            <Node name="Engines" expanded="True" />
-            <Node name="Properties" expanded="True" />
-          </Node>
-          <Node name="WF.Player.iOS" expanded="True">
+          <Node name="WF.Player.Droid" expanded="True">
             <Node name="ComponentReferenceFolder" expanded="True" />
             <Node name="Packages" expanded="True" />
+            <Node name="Assets" expanded="True" />
+            <Node name="Properties" expanded="True" />
+            <Node name="Services" expanded="True" />
+          </Node>
+          <Node name="WF.Player.iOS" expanded="True">
             <Node name="Services" expanded="True">
-              <Node name="Acr.XamForms.Mobile.iOS" expanded="True" />
-              <Node name="Acr.XamForms.UserDialogs.iOS" expanded="True" />
-              <Node name="Core" expanded="True" />
+              <Node name="Mobile" expanded="True">
+                <Node name="DeviceInfo.cs" selected="True" />
+              </Node>
+              <Node name="UserDialogs" expanded="True" />
             </Node>
           </Node>
         </State>

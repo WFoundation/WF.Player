@@ -6,7 +6,7 @@ using Acr.XamForms.Mobile.iOS;
 
 [assembly: Dependency(typeof(DeviceInfo))]
 
-namespace Acr.XamForms.Mobile.iOS {
+namespace WF.Player.Services.Mobile.iOS {
 
 	public class DeviceInfo : IDeviceInfo 
 	{

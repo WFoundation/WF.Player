@@ -58,23 +58,6 @@ namespace WF.Player
 					BindingContext = mapViewModel,
 				};
 
-			if (mapViewModel.Map.VisibleRegion == null)
-			{
-				if (App.GPS.LastKnownPosition != null)
-				{
-					mapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
-				}
-				else
-				{
-					mapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(0, 0), Xamarin.Forms.Maps.Distance.FromMeters(1000));
-				}
-			}
-
-			if (!viewModel.IsPlayAnywhere)
-			{
-				mapViewModel.StartingLocation = viewModel.StartingLocation;
-			}
-
 			((StackLayout)ContentLayout).Children.Add(mapView);
 		}
 
@@ -87,10 +70,28 @@ namespace WF.Player
 		{
 			base.OnAppearing();
 
-			mapViewModel.Position = App.GPS.LastKnownPosition;
-
 			App.GPS.PositionChanged += OnPositionChanged;
 
+			if (mapViewModel.Map.VisibleRegion == null)
+			{
+				if (App.GPS.LastKnownPosition != null)
+				{
+					mapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+				}
+				else
+				{
+					mapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(0, 0), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+				}
+
+				if (!((CartridgeDetailViewModel)BindingContext).IsPlayAnywhere)
+				{
+					mapViewModel.StartingLocation = ((CartridgeDetailViewModel)BindingContext).StartingLocation;
+					mapViewModel.Position = new WF.Player.Services.Geolocation.Position(mapViewModel.StartingLocation.Latitude, mapViewModel.StartingLocation.Longitude);
+					mapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(mapViewModel.StartingLocation.Latitude, mapViewModel.StartingLocation.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+				}
+			}
+
+//			mapViewModel.Position = App.GPS.LastKnownPosition;
 		}
 
 		/// <summary>

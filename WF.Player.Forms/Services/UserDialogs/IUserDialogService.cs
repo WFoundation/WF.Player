@@ -1,9 +1,9 @@
 using System;
 
-namespace Acr.XamForms.UserDialogs {
-
-    public interface IUserDialogService {
-
+namespace WF.Player.Services.UserDialogs 
+{
+    public interface IUserDialogService 
+	{
         void Alert(AlertConfig config);
         void ActionSheet(ActionSheetConfig config);
         

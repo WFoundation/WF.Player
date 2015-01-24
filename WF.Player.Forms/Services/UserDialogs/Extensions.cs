@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
-namespace Acr.XamForms.UserDialogs {
+namespace WF.Player.Services.UserDialogs {
     
     public static class Extensions {
 

@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 [assembly: Dependency(typeof(UserDialogService))]
 
-namespace Acr.XamForms.UserDialogs.iOS
+namespace WF.Player.Services.UserDialogs.iOS
 {
 	public class UserDialogService : AbstractUserDialogService
 	{

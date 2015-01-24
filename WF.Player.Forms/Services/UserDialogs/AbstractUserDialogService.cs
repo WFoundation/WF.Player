@@ -1,7 +1,5 @@
-using System;
-
-
-namespace Acr.XamForms.UserDialogs {
+namespace WF.Player.Services.UserDialogs 
+{
 
     public abstract class AbstractUserDialogService : IUserDialogService {
         

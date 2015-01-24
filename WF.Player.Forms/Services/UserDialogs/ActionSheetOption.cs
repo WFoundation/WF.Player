@@ -1,6 +1,6 @@
 using System;
 
-namespace Acr.XamForms.UserDialogs {
+namespace WF.Player.Services.UserDialogs {
 
     public class ActionSheetOption {
 

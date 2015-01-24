@@ -20,11 +20,9 @@ using WF.Player.Droid.Services.Core;
 
 namespace WF.Player.Droid
 {
-	using System;
 	using Android.App;
 	using Android.Content;
 	using Android.OS;
-	using Android.Preferences;
 	using Vernacular;
 	using Xamarin.Forms.Platform.Android;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Vernacular;
 
 
-namespace Acr.XamForms.UserDialogs {
+namespace WF.Player.Services.UserDialogs {
     
     public class ActionSheetConfig {
 

@@ -21,7 +21,7 @@ namespace WF.Player
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using Acr.XamForms.UserDialogs;
+	using WF.Player.Services.UserDialogs;
 	using Vernacular;
 	using WF.Player.Core;
 	using WF.Player.Core.Utils;

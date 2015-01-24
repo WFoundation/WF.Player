@@ -1,6 +1,4 @@
-using System;
-
-namespace Acr.XamForms.Mobile 
+namespace WF.Player.Services.Mobile 
 {
 	public interface IDeviceInfo 
 	{

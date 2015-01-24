@@ -2,7 +2,7 @@ using System;
 using Vernacular;
 
 
-namespace Acr.XamForms.UserDialogs {
+namespace WF.Player.Services.UserDialogs {
     
     public class AlertConfig {
 

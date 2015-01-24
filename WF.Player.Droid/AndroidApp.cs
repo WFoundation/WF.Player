@@ -21,7 +21,6 @@ namespace WF.Player.Droid
 	using System;
 	using Android.App;
 	using Android.Runtime;
-	using System.Threading.Tasks;
 
 	/// <summary>
 	/// Android app.
