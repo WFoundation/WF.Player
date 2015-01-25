@@ -131,6 +131,7 @@ namespace WF.Player
 
 			var button = new Button 
 				{
+					BackgroundColor = Color.Transparent,
 					Text = Catalog.GetString("Ok"),
 					TextColor = App.Colors.Tint,
 					#if __IOS__
