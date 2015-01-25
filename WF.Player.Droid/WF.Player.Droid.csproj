@@ -39,6 +39,7 @@
     <ConsolePause>false</ConsolePause>
     <DefineConstants>__HOCKEYAPP__</DefineConstants>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
+    <DebugType>full</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
