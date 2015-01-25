@@ -343,7 +343,7 @@ namespace WF.Player
 			var labelOverviewInventory = new ExtendedLabel() 
 				{
 					LineBreakMode = LineBreakMode.WordWrap,
-					FontSize = Settings.FontSize,
+					FontSize = Settings.FontSize * 0.8,
 					FontFamily = Settings.FontFamily,
 					UseMarkdown = true,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -384,7 +384,7 @@ namespace WF.Player
 			var labelOverviewTasks = new ExtendedLabel() 
 				{
 					LineBreakMode = LineBreakMode.WordWrap,
-					FontSize = Settings.FontSize,
+					FontSize = Settings.FontSize * 0.8,
 					FontFamily = Settings.FontFamily,
 					UseMarkdown = true,
 				};

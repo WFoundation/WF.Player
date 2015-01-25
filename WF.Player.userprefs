@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
+﻿<Properties StartupItem="WF.Player.Droid/WF.Player.Droid.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.1" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Core/Eluant/Eluant/iOS/AssemblyInfo.cs">
     <Files>
