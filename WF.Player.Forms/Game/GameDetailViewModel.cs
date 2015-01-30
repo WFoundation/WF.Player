@@ -123,9 +123,10 @@ namespace WF.Player
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WF.Player.GameDetailViewModel"/> class.
 		/// </summary>
-		public GameDetailViewModel()
+		public GameDetailViewModel(UIObject activeObject = null)
 		{
 			this.geoMathHelper = new GeoMathHelper();
+			this.activeObject = activeObject;
 
 			Position = App.GPS.LastKnownPosition;
 		}

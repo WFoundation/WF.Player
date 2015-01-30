@@ -1,9 +1,9 @@
-﻿<Properties StartupItem="WF.Player.Droid/WF.Player.Droid.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.0123456789ABCDEF" />
+﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Ad-Hoc|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Game/GameMainView.cs">
     <Files>
-      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="6" Column="6" />
+      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="121" Column="121" />
+      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="42" Column="42" />
       <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/App.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/AppDelegate.cs" Line="1" Column="1" />
@@ -13,13 +13,18 @@
       <File FileName="WF.Player.Core/Core/Input.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Services/Mobile/DeviceInfo.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Services/UserDialogs/UserDialogService.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Eluant/Eluant/iOS/AssemblyInfo.cs" Line="78" Column="78" />
+      <File FileName="WF.Player.Droid/MainActivity.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Common/BottomBarPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Common/DirectionBarPage.cs" Line="9" Column="9" />
+      <File FileName="WF.Player.Forms/Game/GameInputView.cs" Line="3" Column="3" />
+      <File FileName="WF.Player.Forms/Game/GameDetailView.cs" Line="42" Column="42" />
+      <File FileName="WF.Player.Forms/Game/GameDetailViewModel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameInputViewModel.cs" Line="23" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/Common/DirectionBarPage.cs" line="244" column="1" />
-      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/Common/DirectionBarPage.cs" line="226" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>

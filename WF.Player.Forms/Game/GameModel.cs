@@ -801,7 +801,7 @@ namespace WF.Player
 						else
 						{
 							// Create new detail screen, if there isn't one
-							this.gameDetailView = this.gameDetailView ?? new GameDetailView(new GameDetailViewModel());
+							this.gameDetailView = this.gameDetailView ?? new GameDetailView(new GameDetailViewModel((UIObject)screen.Object));
 
 							// Set active object
 							((GameDetailViewModel)this.gameDetailView.BindingContext).ActiveObject = (UIObject)screen.Object;

@@ -307,6 +307,8 @@ namespace WF.Player
 					FontSize = Settings.FontSize * 0.8,
 					FontFamily = Settings.FontFamily,
 					UseMarkdown = true,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.Fill,
 				};
 
 			labelOverviewYouSee.SetBinding(Label.TextProperty, GameMainViewModel.YouSeeOverviewContentPropertyName);
@@ -347,7 +349,7 @@ namespace WF.Player
 					FontFamily = Settings.FontFamily,
 					UseMarkdown = true,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
-					VerticalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.Fill,
 				};
 
 			labelOverviewInventory.SetBinding(Label.TextProperty, GameMainViewModel.InventoryOverviewContentPropertyName);
@@ -387,6 +389,8 @@ namespace WF.Player
 					FontSize = Settings.FontSize * 0.8,
 					FontFamily = Settings.FontFamily,
 					UseMarkdown = true,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.Fill,
 				};
 
 			labelOverviewTasks.SetBinding(ExtendedLabel.TextProperty, GameMainViewModel.TasksOverviewContentPropertyName);
