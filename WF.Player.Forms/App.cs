@@ -16,6 +16,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using WF.Player.Services;
+using WF.Player.Services.UserDialogs;
+using Vernacular;
+using WF.Player.Core;
+using System.Diagnostics;
 
 namespace WF.Player
 {
@@ -158,40 +162,6 @@ namespace WF.Player
 				return gps;
 			}
 		}
-
-		/// <summary>
-		/// Gets the prefs.
-		/// </summary>
-		/// <value>The prefs.</value>
-//		public static IPreferences Prefs
-//		{
-//			get
-//			{
-//				if (prefs == null)
-//				{
-//					prefs = DependencyService.Get<IPreferences>();
-//				}
-//
-//				return prefs;
-//			}
-//		}
-
-		/// <summary>
-		/// Gets the settings of this app.
-		/// </summary>
-		/// <value>The settings.</value>
-//		public static ISettings Settings
-//		{
-//			get
-//			{
-//				if (settings == null)
-//				{
-//					settings = DependencyService.Get<ISettings>();
-//				}
-//
-//				return settings;
-//			}
-//		}
 
 		/// <summary>
 		/// Gets the fonts.
@@ -381,23 +351,24 @@ namespace WF.Player
 					ShowBackButton = true,
 				};
 
-//			// Check for autosave file
-//			var dir = new Acr.XamForms.Mobile.IO.Directory(App.PathForSavegames);
-//			var gwsFilename = dir.Files.First((f) => f.Name.Equals("autosave.gws")).FullName;
-//
-//			if (gwsFilename != null)
-//			{
-//				var gwsMetadata = GWS.LoadMetadata(new FileStream(gwsFilename, FileMode.Open));
-//				var gwcFilename = gwsMetadata.CartridgeName;
-//
-//				var cartridgeTag = new CartridgeTag(new Cartridge(filename.FullName));
-//				var cartridgeSave = new CartridgeSavegame();
-//
-//				cartridgeSave.
-//
-//				// We have a autosave file, so start this cartridge
-//				page.Navigation.PushAsync(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, cartridgeSave, App.CurrentPage)));
-//			}
+			// Check for autosave file
+			var gwsFilename = Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey);
+			var gwcFilename = Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWCKey);
+
+			if (!string.IsNullOrEmpty(gwsFilename) && !string.IsNullOrEmpty(gwcFilename))
+			{
+				HandleAutosave();
+			}
+			else
+			{
+				// If an auto save file exists, delete it
+				var filename = Path.Combine(App.PathForSavegames, "autosave.gws");
+
+				if (File.Exists(filename))
+				{
+					File.Delete(filename);
+				}
+			}
 
 			return App.Navigation;
 		}
@@ -430,7 +401,7 @@ namespace WF.Player
 			Application.Current.Resources = resources;
 		}
 
-		public static async void CheckFolder()
+		public static void CheckFolder()
 		{
 			// If there isn't any gwc file in the path,
 			// than copy Wherigo Tutorial to cartridges folder
@@ -487,8 +458,12 @@ namespace WF.Player
 
 		#region Events
 
-		public static void EnterBackground()
+		protected override void OnSleep()
 		{
+			Console.WriteLine("OnSleep");
+
+			base.OnSleep();
+
 			// Is there a game running?
 			if (App.Game != null && App.Game.GameState == WF.Player.Core.Engines.EngineGameState.Playing)
 			{
@@ -500,8 +475,12 @@ namespace WF.Player
 			}
 		}
 
-		public static void EnterForeground()
+		protected override void OnResume()
 		{
+			Console.WriteLine("OnResume");
+
+			base.OnResume();
+
 			if (App.Game != null)
 			{
 				// Delete autosave information
@@ -510,6 +489,55 @@ namespace WF.Player
 				// And resume game
 				App.Game.Resume();
 			}
+		}
+
+		#endregion
+
+		#region Private Methods
+
+		private static async void HandleAutosave()
+		{
+			var gwcFilename = Path.Combine(App.PathForCartridges, Path.GetFileName(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWCKey)));
+			var gwsFilename = Path.Combine(App.PathForSavegames, Path.GetFileName(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey)));
+
+			if (!File.Exists(gwsFilename) || !File.Exists(gwcFilename))
+			{
+				// Remove settings
+				Settings.Current.Remove(Settings.AutosaveGWCKey);
+				Settings.Current.Remove(Settings.AutosaveGWSKey);
+
+				return;
+			}
+
+			bool result = await DependencyService.Get<IUserDialogService>().ConfirmAsync(Catalog.GetString("There is an automatical savefile from a cartridge you played before. Would you resume this last game?"), Catalog.GetString("Automatical savefile"), Catalog.GetString("Yes"), Catalog.GetString("No"));
+
+			if (result)
+			{
+				var cartridge = new Cartridge(gwcFilename);
+				var cartridgeTag = new CartridgeTag(cartridge);
+				var cartridgeSavegame = CartridgeSavegame.FromStore(cartridgeTag, gwsFilename);
+
+				// We have a autosave file, so start this cartridge
+
+				// Create a new navigation page for the game
+				App.GameNavigation = new ExtendedNavigationPage(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, cartridgeSavegame, App.Navigation.CurrentPage)), false) {
+					BarBackgroundColor = App.Colors.Bar,
+					BarTextColor = App.Colors.BarText,
+					ShowBackButton = true,
+				};
+				App.Navigation.CurrentPage.Navigation.PushModalAsync(App.GameNavigation);
+
+				App.GameNavigation.ShowBackButton = true;
+			}
+			else
+			{
+				// Remove file from directory
+				File.Delete(gwsFilename);
+			}
+
+			// Remove settings
+			Settings.Current.Remove(Settings.AutosaveGWCKey);
+			Settings.Current.Remove(Settings.AutosaveGWSKey);
 		}
 
 		#endregion

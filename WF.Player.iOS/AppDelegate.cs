@@ -139,7 +139,9 @@ namespace WF.Player.iOS
 			// TODO: Delete
 			Console.WriteLine ("DidEnterBackground");
 
-			App.EnterBackground();
+			base.DidEnterBackground(application);
+
+			//			((App)App.Current).OnSleep();
 
 //			// Save game before going into background
 //			if (screenCtrl != null && screenCtrl.Engine != null && screenCtrl.Engine.GameState == WF.Player.Core.Engines.EngineGameState.Playing) {
@@ -157,7 +159,9 @@ namespace WF.Player.iOS
 			// TODO: Delete
 			Console.WriteLine ("WillEnterForeground");
 
-			App.EnterForeground();
+			base.WillEnterForeground(application);
+
+//			((App)App.Current).OnResume();
 
 //			if (screenCtrl != null && screenCtrl.Engine != null && screenCtrl.Engine.GameState == WF.Player.Core.Engines.EngineGameState.Paused) {
 //				// Resume engine, so we continue
@@ -169,6 +173,8 @@ namespace WF.Player.iOS
 		{
 			// TODO: Delete
 			Console.WriteLine ("OnResignActivation");
+
+			base.OnResignActivation(application);
 
 //			// Save game before going into background
 //			if (screenCtrl != null && screenCtrl.Engine != null && screenCtrl.Engine.GameState == WF.Player.Core.Engines.EngineGameState.Playing) {
@@ -184,6 +190,8 @@ namespace WF.Player.iOS
 			// TODO: Delete
 			Console.WriteLine ("OnActivated");
 
+			base.OnActivated(application);
+
 //			if (screenCtrl != null && screenCtrl.Engine != null && screenCtrl.Engine.GameState == WF.Player.Core.Engines.EngineGameState.Paused) {
 //				// Resume engine, so we continue
 //				screenCtrl.Engine.Resume ();
@@ -194,6 +202,8 @@ namespace WF.Player.iOS
 		{
 			// TODO: Delete
 			Console.WriteLine ("ReceiveMemoryWarning");
+
+			base.ReceiveMemoryWarning(application);
 
 			GC.Collect();
 

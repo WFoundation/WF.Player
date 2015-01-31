@@ -209,13 +209,13 @@ namespace WF.Player.Models
 				var filename = file.FullName;
 
 				// Check filename
-				if (!Regex.IsMatch(file.FullName, @"[-](\d{14}).gwc"))
-				{
-					// New file, so convert file name
-					// Append date and time of first time, this file is checked
-					filename = Path.Combine(App.PathForCartridges, string.Format("{0}-{1:yyyyMMddhhmmss}.gwc", Path.GetFileNameWithoutExtension(file.FullName), DateTime.Now.ToUniversalTime()));
-					file.MoveTo(filename);
-				}
+//				if (!Regex.IsMatch(file.FullName, @"[-](\d{14}).gwc"))
+//				{
+//					// New file, so convert file name
+//					// Append date and time of first time, this file is checked
+//					filename = Path.Combine(App.PathForCartridges, string.Format("{0}-{1:yyyyMMddhhmmss}.gwc", Path.GetFileNameWithoutExtension(file.FullName), DateTime.Now.ToUniversalTime()));
+//					file.MoveTo(filename);
+//				}
 
 				// Accept the GWC.
 				if (asyncEachCartridge)

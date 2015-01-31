@@ -302,9 +302,15 @@ namespace WF.Player
 
 			// Create a new savegame name for this cartridge tag
 			var cs = new CartridgeSavegame(this.cartridgeTag);
+			var filename = cs.Filename;
+
+			if (autosaving)
+			{
+				filename = Path.Combine(App.PathForSavegames, "autosaving.gws");
+			}
 
 			// Save game
-			this.engine.Save(new FileStream(cs.Filename, FileMode.Create), name);
+			this.engine.Save(new FileStream(filename, FileMode.Create), name);
 
 			// Add savegame, which is now in store, to cartridge tag
 			if (!autosaving)
@@ -343,18 +349,16 @@ namespace WF.Player
 		/// <summary>
 		/// Delete autosave information and file.
 		/// </summary>
-		public async void AutoRemove()
+		public void AutoRemove()
 		{
 			if (string.IsNullOrEmpty(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey)))
 			{
 				return;
 			}
 
-			var filename = Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey);
+			var filename = Path.Combine(App.PathForSavegames, Path.GetFileName(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey)));
 
 			// Delete files
-			var file = File.Exists(filename);
-
 			if (File.Exists(filename))
 			{
 				File.Delete(filename);
