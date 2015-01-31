@@ -436,7 +436,7 @@ namespace WF.Player
 			// than copy Wherigo Tutorial to cartridges folder
 			var files = Directory.GetFiles(PathForCartridges);
 
-			if (!files.Any((file) => Path.GetExtension(file).EndsWith("gwc", StringComparison.InvariantCultureIgnoreCase)))
+			if (files == null || !files.Any((file) => Path.GetExtension(file).EndsWith("gwc", StringComparison.InvariantCultureIgnoreCase)))
 			{
 				#if __ANDROID__
 				using (var input = Forms.Context.Assets.Open("Wherigo Tutorial.gwc"))

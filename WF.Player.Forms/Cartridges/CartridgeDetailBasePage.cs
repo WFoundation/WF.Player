@@ -29,6 +29,11 @@ namespace WF.Player
 	/// </summary>
 	public class CartridgeDetailBasePage : DirectionBarPage
 	{
+		/// <summary>
+		/// The button resume.
+		/// </summary>
+		private ToolIconButton buttonResume;
+
 		#region Constructor
 
 		/// <summary>
@@ -42,7 +47,7 @@ namespace WF.Player
 			// Show empty string as back button title (default "Back" would be null as string)
 			NavigationPage.SetBackButtonTitle(this, string.Empty);
 
-			var buttonResume = new ToolIconButton("IconResume.png", viewModel.ResumeCommand);
+			buttonResume = new ToolIconButton("IconResume.png", viewModel.ResumeCommand);
 			var buttonStart = new ToolIconButton("IconPlay.png", viewModel.StartCommand);
 
 			// Activate bottom items if it isn't a play anywhere cartridge
@@ -61,19 +66,14 @@ namespace WF.Player
 				DirectionLayout.IsVisible = true;
 				DirectionSpaceLayout.IsVisible = true;
 			}
-
-			// Exists a save file
-			// TODO
-			if (false)
-			{
-				buttonResume.IsEnabled = true;
-			}
-			else
-			{
-				buttonResume.IsEnabled = false;
-			}
 		}
 
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+
+			buttonResume.Button.IsVisible = ((CartridgeDetailViewModel)BindingContext).HasSaveFile;
+		}
 		#endregion
 	}
 }

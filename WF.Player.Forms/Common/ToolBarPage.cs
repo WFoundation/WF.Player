@@ -269,7 +269,14 @@ namespace WF.Player
 			{
 				if (Button != null)
 				{
-					return Button.IsEnabled;
+					if (Command != null)
+					{
+						return Command.CanExecute(null);
+					}
+					else
+					{
+						return Button.IsEnabled;
+					}
 				}
 				else
 				{

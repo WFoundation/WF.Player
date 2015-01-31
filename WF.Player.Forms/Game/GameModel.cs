@@ -247,19 +247,21 @@ namespace WF.Player
 			// Create Engine
 			await this.CreateEngine(this.cartridgeTag.Cartridge);
 
-			// If there is a valid savefile, than open it
-			if (savegame != null && File.Exists(Path.Combine(App.PathForSavegames, savegame.Filename)))
-			{
-				this.engine.Restore(new FileStream(savegame.Filename, FileMode.Open));
-			}
-
 			// Init for position
 			var pos = App.GPS.LastKnownPosition ?? new Position(0, 0);
 			this.engine.RefreshLocation(pos.Latitude, pos.Longitude, pos.Altitude ?? 0, pos.Accuracy ?? double.NaN);
 
 			App.GPS.PositionChanged += this.OnPositionChanged;
 
-			await System.Threading.Tasks.Task.Run(() => this.engine.Start());
+			// If there is a valid savefile, than open it
+			if (savegame != null && File.Exists(Path.Combine(App.PathForSavegames, savegame.Filename)))
+			{
+				await System.Threading.Tasks.Task.Run(() => this.engine.Restore(new FileStream(savegame.Filename, FileMode.Open)));
+			}
+			else
+			{
+				await System.Threading.Tasks.Task.Run(() => this.engine.Start());
+			}
 
 			App.GameNavigation.CurrentPage.IsBusy = false;
 		}

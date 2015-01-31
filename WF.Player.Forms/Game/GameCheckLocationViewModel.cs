@@ -196,9 +196,6 @@ namespace WF.Player
 						var gameMainViewModel = new GameMainViewModel(App.Game);
 						var gameMainView = new GameMainView(gameMainViewModel);
 
-						// Remove check location from screen 
-//						App.Navigation.PopAsync(false);
-
 						// Push main view to screen
 						App.GameNavigation.ShowBackButton = false;
 						await App.GameNavigation.PushAsync(gameMainView, false);

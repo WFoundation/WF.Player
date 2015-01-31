@@ -72,7 +72,7 @@ namespace WF.Player.iOS
 				//Authenticate (there are other authentication options)
 				manager.Authenticator.AuthenticateInstallation ();
 
-				//Rethrow any unhandled .NET exceptions as native iOS 
+				// Rethrow any unhandled .NET exceptions as native iOS 
 				// exceptions so the stack traces appear nicely in HockeyApp
 				AppDomain.CurrentDomain.UnhandledException += (sender, e) => 
 					HockeyApp.Setup.ThrowExceptionAsNative(e.ExceptionObject);

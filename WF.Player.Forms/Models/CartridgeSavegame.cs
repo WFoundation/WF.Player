@@ -138,7 +138,7 @@ namespace WF.Player.Models
 		{
 			// TODO
 			// If cartridge don't allow multiple save files, than return default name
-			if (false)
+			if (true)
 			{
 				return string.Format(
 					"{0}.gws",

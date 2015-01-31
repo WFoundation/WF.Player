@@ -54,6 +54,11 @@ namespace WF.Player
 		public const string IsPlayAnywherePropertyName = "IsPlayAnywhere";
 
 		/// <summary>
+		/// The name of the has save file property.
+		/// </summary>
+		public const string HasSaveFilePropertyName = "HasSaveFile";
+
+		/// <summary>
 		/// The name of the poster source property.
 		/// </summary>
 		public const string PosterSourcePropertyName = "PosterSource";
@@ -202,6 +207,18 @@ namespace WF.Player
 			get
 			{
 				return cartridgeTag.Cartridge.IsPlayAnywhere;
+			}
+		}
+
+		/// <summary>
+		/// Gets a value indicating whether this cartridge has a save file.
+		/// </summary>
+		/// <value><c>true</c> if this cartridge has a save file; otherwise, <c>false</c>.</value>
+		public bool HasSaveFile
+		{ 
+			get
+			{ 
+				return File.Exists(cartridgeTag.Cartridge.SaveFilename); 
 			}
 		}
 
@@ -358,7 +375,7 @@ namespace WF.Player
 			{
 				return new Xamarin.Forms.Command((sender) =>
 					{
-						CartridgeSavegame cs = null;
+						CartridgeSavegame cs = CartridgeSavegame.FromStore(cartridgeTag, cartridgeTag.Cartridge.SaveFilename);
 
 						// Create a new navigation page for the game
 						App.GameNavigation = new ExtendedNavigationPage(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, cs, App.Navigation.CurrentPage)), false)
