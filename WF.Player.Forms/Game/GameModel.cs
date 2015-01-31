@@ -306,7 +306,7 @@ namespace WF.Player
 
 			if (autosaving)
 			{
-				filename = Path.Combine(App.PathForSavegames, "autosaving.gws");
+				filename = Path.Combine(App.PathForSavegames, "autosave.gws");
 			}
 
 			// Save game

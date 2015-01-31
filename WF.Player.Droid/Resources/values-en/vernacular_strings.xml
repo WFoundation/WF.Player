@@ -5,6 +5,7 @@
   <string formatted="false" name="Vernacular_P0_Alignmentoftext">Alignment of text</string>
   <string formatted="false" name="Vernacular_P0_Attributes">Attributes</string>
   <string formatted="false" name="Vernacular_P0_Autochange">Auto change</string>
+  <string formatted="false" name="Vernacular_P0_Automaticalsavefile">Automatical savefile</string>
   <string formatted="false" name="Vernacular_P0_Blue">Blue</string>
   <string formatted="false" name="Vernacular_P0_Both">Both</string>
   <string formatted="false" name="Vernacular_P0_By">By</string>
@@ -91,6 +92,7 @@
   <string formatted="false" name="Vernacular_P0_Text">Text</string>
   <string formatted="false" name="Vernacular_P0_Theme">Theme</string>
   <string formatted="false" name="Vernacular_P0_Themeforthisapp40onlyupdatedafterarestartoftheapp41">Theme for this app (only updated after a restart of the app)</string>
+  <string formatted="false" name="Vernacular_P0_Thereisanautomaticalsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">There is an automatical savefile from a cartridge you played before. Would you resume this last game?</string>
   <string formatted="false" name="Vernacular_P0_Unknown">Unknown</string>
   <string formatted="false" name="Vernacular_P0_Usehardwarecompass">Use hardware compass</string>
   <string formatted="false" name="Vernacular_P0_Usehardwarecompassformaprotationandcompassscreen46BearingfromGPS40betterforcar41willbeusedifdisabled46">Use hardware compass for map rotation and compass screen. Bearing from GPS (better for car) will be used if disabled.</string>

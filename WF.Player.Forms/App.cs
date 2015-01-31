@@ -420,7 +420,10 @@ namespace WF.Player
 
 					input.CopyTo(output);
 
-					if (App.Navigation.CurrentPage is CartridgeListPage)
+					output.Flush();
+					output.Close();
+
+					if (App.Navigation != null && App.Navigation.CurrentPage is CartridgeListPage)
 					{
 						((CartridgeListPage)App.Navigation.CurrentPage).RefreshCommand.Execute(null);
 					}

@@ -48,12 +48,16 @@ namespace WF.Player
 			NavigationPage.SetBackButtonTitle(this, string.Empty);
 
 			buttonResume = new ToolIconButton("IconResume.png", viewModel.ResumeCommand);
+
 			var buttonStart = new ToolIconButton("IconPlay.png", viewModel.StartCommand);
 
 			// Activate bottom items if it isn't a play anywhere cartridge
 			if (viewModel.IsPlayAnywhere)
 			{
 				Buttons.Add(buttonResume);
+
+				buttonResume.Button.IsVisible = ((CartridgeDetailViewModel)BindingContext).HasSaveFile;
+
 				Buttons.Add(buttonStart);
 				DirectionLayout.IsVisible = false;
 				DirectionSpaceLayout.IsVisible = false;
@@ -62,6 +66,9 @@ namespace WF.Player
 			{
 				Buttons.Add(new ToolIconButton("IconRouting.png", viewModel.RoutingCommand));
 				Buttons.Add(buttonResume);
+
+				buttonResume.Button.IsVisible = ((CartridgeDetailViewModel)BindingContext).HasSaveFile;
+
 				Buttons.Add(buttonStart);
 				DirectionLayout.IsVisible = true;
 				DirectionSpaceLayout.IsVisible = true;
