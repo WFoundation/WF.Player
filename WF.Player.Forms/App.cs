@@ -474,7 +474,10 @@ namespace WF.Player
 				App.Game.AutoSave();
 
 				// And pause the game
-				App.Game.Pause();
+				if (App.Game.GameState == WF.Player.Core.Engines.EngineGameState.Playing)
+				{
+					App.Game.Pause();
+				}
 			}
 		}
 
@@ -490,7 +493,10 @@ namespace WF.Player
 				App.Game.AutoRemove();
 
 				// And resume game
-				App.Game.Resume();
+				if (App.Game.GameState != WF.Player.Core.Engines.EngineGameState.Playing)
+				{
+					App.Game.Resume();
+				}
 			}
 		}
 
@@ -512,7 +518,7 @@ namespace WF.Player
 				return;
 			}
 
-			bool result = await DependencyService.Get<IUserDialogService>().ConfirmAsync(Catalog.GetString("There is an automatical savefile from a cartridge you played before. Would you resume this last game?"), Catalog.GetString("Automatical savefile"), Catalog.GetString("Yes"), Catalog.GetString("No"));
+			bool result = await DependencyService.Get<IUserDialogService>().ConfirmAsync(Catalog.GetString("There is an automatic savefile from a cartridge you played before. Would you resume this last game?"), Catalog.GetString("Automatical savefile"), Catalog.GetString("Yes"), Catalog.GetString("No"));
 
 			if (result)
 			{

@@ -93,6 +93,7 @@
   <string formatted="false" name="Vernacular_P0_Theme">Theme</string>
   <string formatted="false" name="Vernacular_P0_Themeforthisapp40onlyupdatedafterarestartoftheapp41">Theme für diese App (wird erst nach einem Neustart vollständig angezeigt)</string>
   <string formatted="false" name="Vernacular_P0_Thereisanautomaticalsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">Es gibt eine automatische Sicherungsdatei der zuletzt gespielten Cartridge. Möchtest Du diese weiterspielen?</string>
+  <string formatted="false" name="Vernacular_P0_Thereisanautomaticsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">Es gibt eine automatische Sicherungsdatei der zuletzt gespielten Cartridge. Möchtest Du diese weiterspielen?</string>
   <string formatted="false" name="Vernacular_P0_Unknown">Unbekannt</string>
   <string formatted="false" name="Vernacular_P0_Usehardwarecompass">Hardware Kompass verwenden</string>
   <string formatted="false" name="Vernacular_P0_Usehardwarecompassformaprotationandcompassscreen46BearingfromGPS40betterforcar41willbeusedifdisabled46">Hardware Kompass für Kartenrotation und Kompassseite benutzen. Ansonsten wir die Peilung des GPS benutzt (besser für Autos).</string>

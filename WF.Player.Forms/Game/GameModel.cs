@@ -342,7 +342,7 @@ namespace WF.Player
 		{
 			var cs = this.Save("Autosave", true);
 
-			Settings.Current.AddOrUpdateValue<string>(Settings.AutosaveGWSKey, cs.Filename);
+			Settings.Current.AddOrUpdateValue<string>(Settings.AutosaveGWSKey, Path.Combine(App.PathForSavegames, "autosave.gws"));
 			Settings.Current.AddOrUpdateValue<string>(Settings.AutosaveGWCKey, this.cartridgeTag.Cartridge.Filename);
 		}
 

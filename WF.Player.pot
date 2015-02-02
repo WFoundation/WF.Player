@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"PO-Revision-Date: 2015-01-31 21:52+01\n"
+"PO-Revision-Date: 2015-02-02 20:01+01\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -423,6 +423,10 @@ msgstr "Theme"
 #: ./WF.Player.Droid/Resources/values/strings.xml:14
 msgid "Theme for this app (only updated after a restart of the app)"
 msgstr "Theme for this app (only updated after a restart of the app)"
+
+#: WF.Player.Forms/App.cs:521
+msgid "There is an automatic savefile from a cartridge you played before. Would you resume this last game?"
+msgstr "There is an automatic savefile from a cartridge you played before. Would you resume this last game?"
 
 #: WF.Player.Forms/App.cs:515
 msgid "There is an automatical savefile from a cartridge you played before. Would you resume this last game?"

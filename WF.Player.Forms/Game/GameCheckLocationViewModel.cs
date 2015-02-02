@@ -187,6 +187,8 @@ namespace WF.Player
 			{
 				return new Xamarin.Forms.Command(async (sender) =>
 					{
+						IsBusy = true;
+
 						App.GPS.PositionChanged -= OnPositionChanged;
 
 						// Create GameModel

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WF.Player\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-01-31 21:54+0100\n"
+"PO-Revision-Date: 2015-02-02 20:02+0100\n"
 "Last-Translator: Dirk Weltz <web@weltz-online.de>\n"
 "Language-Team: Wherigo Foundation <info@wfplayer.com>\n"
 "Language: de\n"
@@ -439,6 +439,14 @@ msgstr "Theme"
 msgid "Theme for this app (only updated after a restart of the app)"
 msgstr ""
 "Theme für diese App (wird erst nach einem Neustart vollständig angezeigt)"
+
+#: WF.Player.Forms/App.cs:521
+msgid ""
+"There is an automatic savefile from a cartridge you played before. Would you "
+"resume this last game?"
+msgstr ""
+"Es gibt eine automatische Sicherungsdatei der zuletzt gespielten Cartridge. "
+"Möchtest Du diese weiterspielen?"
 
 #: WF.Player.Forms/App.cs:515
 msgid ""
