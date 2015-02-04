@@ -74,15 +74,31 @@ namespace WF.Player
 
 			// Only show settings, if device is Android
 			#if __ANDROID__
+
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Settings"), null, () =>
 				{
 					DependencyService.Get<ISettingsView>().Show();
 				}, ToolbarItemOrder.Secondary));
+			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Feedback"), null, () =>
+				HockeyApp.FeedbackManager.ShowFeedbackActivity(Forms.Context), 
+				ToolbarItemOrder.Secondary));
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Quit"), null, () =>
 				{
 					((WF.Player.Droid.MainActivity)Forms.Context).Exit(0);
 				}, ToolbarItemOrder.Secondary));
 
+			#endif
+
+			#if __IOS__
+
+//			var toolbarMenu = new ToolbarItem(Catalog.GetString("Menu"), null, () => { //"IconMenu.png", () => {
+//				App.Click();
+//				var cfg = new WF.Player.Services.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Main Menu"));
+//				cfg.Add(Catalog.GetString("Feedback"), () => HockeyApp.BITHockeyManager.SharedHockeyManager.FeedbackManager.ShowFeedbackListView());
+//				cfg.Cancel = new WF.Player.Services.UserDialogs.ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
+//				DependencyService.Get<WF.Player.Services.UserDialogs.IUserDialogService>().ActionSheet(cfg);
+//			});
+//			this.ToolbarItems.Add (toolbarMenu);
 
 			#endif
 
@@ -189,8 +205,7 @@ namespace WF.Player
 			}
 
 			IsBusy = true;
-
-			cartridges.Clear ();
+			cartridges.Clear();
 			cartridges.SyncFromStore();
 
 			IsBusy = false;

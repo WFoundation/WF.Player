@@ -15,6 +15,8 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System.Threading.Tasks;
+using Android.Content;
 
 namespace WF.Player.Droid
 {
@@ -54,7 +56,37 @@ namespace WF.Player.Droid
 		public override void OnCreate ()
 		{
 			base.OnCreate();
+
+			#if __HOCKEYAPP__
+
+			// Handle the events and Save the Managed Exceptions to HockeyApp       
+//			AppDomain.CurrentDomain.UnhandledException += (sender, e) => HockeyApp.ManagedExceptionHandler.SaveException (e.ExceptionObject);
+			// Changes are from http://tiku.io/questions/1060463/unusable-component-hockeyapp-for-android-xamarin-component-store
+			AndroidEnvironment.UnhandledExceptionRaiser += (sender, e) => HockeyApp.ManagedExceptionHandler.SaveException(e.Exception);
+			Java.Lang.Thread.DefaultUncaughtExceptionHandler = new UnCaughtExceptionHandler(this);
+			TaskScheduler.UnobservedTaskException += (sender, e) => HockeyApp.ManagedExceptionHandler.SaveException (e.Exception);
+
+			#endif
 		}
 	}
+
+	#if __HOCKEYAPP__
+
+	class UnCaughtExceptionHandler : Java.Lang.Object, Java.Lang.Thread.IUncaughtExceptionHandler
+	{
+		readonly Context context;
+
+		public UnCaughtExceptionHandler(Context context)
+		{
+			this.context = context;
+		}
+
+		public void UncaughtException(Java.Lang.Thread thread, Java.Lang.Throwable ex)
+		{
+			HockeyApp.ManagedExceptionHandler.SaveException(ex);
+		}
+	}
+
+	#endif
 }
 

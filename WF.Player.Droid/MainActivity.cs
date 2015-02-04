@@ -17,6 +17,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using WF.Player.Services.Settings;
 using WF.Player.Droid.Services.Core;
+using Android.Runtime;
 
 namespace WF.Player.Droid
 {
@@ -27,13 +28,29 @@ namespace WF.Player.Droid
 	using Xamarin.Forms.Platform.Android;
 
 	[Activity (Label = "WF.Player", 
-		ScreenOrientation = global::Android.Content.PM.ScreenOrientation.Portrait,
-		ConfigurationChanges=global::Android.Content.PM.ConfigChanges.Orientation | global::Android.Content.PM.ConfigChanges.ScreenSize
+	ScreenOrientation = global::Android.Content.PM.ScreenOrientation.Portrait,
+	ConfigurationChanges=global::Android.Content.PM.ConfigChanges.Orientation | global::Android.Content.PM.ConfigChanges.ScreenSize
 	)]
 	public class MainActivity : FormsApplicationActivity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
+			#if __HOCKEYAPP__
+
+			//Register the Update Manager
+			HockeyApp.UpdateManager.Register (this, "acc974c814cad87cf7e01b8e8c4d5ece");
+
+			// Register the Feedback Manager
+			HockeyApp.FeedbackManager.Register (this, "acc974c814cad87cf7e01b8e8c4d5ece");
+
+			#endif
+
+			#if __INSIGHTS__
+
+			Xamarin.Insights.Initialize("7cc331e1fae1f21a7646fb5df552ff8213bd8bc9", this);
+
+			#endif
+
 			// Init Xamarin.Forms
 			Xamarin.Forms.Forms.Init (this, bundle);
 			Xamarin.FormsMaps.Init(this, bundle);
@@ -49,20 +66,7 @@ namespace WF.Player.Droid
 
 			base.OnCreate (bundle);
 
-			Catalog.Implementation = new AndroidCatalog (Resources, typeof (Resource.String));
-
-			#if __HOCKEYAPP__
-
-			//Register to with the Update Manager
-			HockeyApp.UpdateManager.Register (this, "acc974c814cad87cf7e01b8e8c4d5ece");
-
-			#endif
-
-			#if __INSIGHTS__
-
-			Xamarin.Insights.Initialize("7cc331e1fae1f21a7646fb5df552ff8213bd8bc9", this);
-
-			#endif
+			Catalog.Implementation = new AndroidCatalog(Resources, typeof (Resource.String));
 
 			App.PathCartridges = App.PathForCartridges;
 			App.PathDatabase = App.PathForCartridges;
@@ -210,4 +214,3 @@ namespace WF.Player.Droid
 		}
 	}
 }
-
