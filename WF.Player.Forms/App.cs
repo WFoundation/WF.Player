@@ -238,6 +238,7 @@ namespace WF.Player
 				// Get path to default external storage and get all directories in this default external storage
 				var extDirs = Directory.GetDirectories(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath);
 
+
 				// Look for the default WF.Player directory
 				foreach (var entry in extDirs)
 				{

@@ -18,6 +18,7 @@
 using WF.Player.Services.Settings;
 using WF.Player.Droid.Services.Core;
 using Android.Runtime;
+using WF.Player.Controls;
 
 namespace WF.Player.Droid
 {
@@ -141,9 +142,15 @@ namespace WF.Player.Droid
 				return;
 			}
 
-			if (App.Navigation != null && App.Navigation.CurrentPage is CartridgeListPage)
+			if (App.Navigation != null && App.Navigation.CurrentPage is CartridgeListPage && App.Navigation.Navigation.ModalStack.Count == 1)
 			{
+				// We are on the main page
 				Exit(0);
+			}
+
+			if (App.Navigation != null && App.Navigation.CurrentPage is CartridgeListPage && App.Navigation.Navigation.ModalStack.Count == 2 && ((ExtendedNavigationPage)App.Navigation.Navigation.ModalStack[1]).CurrentPage is CartridgeFolderSelectionPage)
+			{
+				base.OnBackPressed();
 			}
 
 			// Go one page back
@@ -155,7 +162,15 @@ namespace WF.Player.Droid
 					return;
 				}
 
-				App.Game.ShowScreen(ScreenType.Last, null);
+				if (App.Game == null)
+				{
+					// Game isn't running, so we are on the check  location page
+					App.Navigation.PopModalAsync();
+				}
+				else
+				{
+					App.Game.ShowScreen(ScreenType.Last, null);
+				}
 			}
 			else
 			{

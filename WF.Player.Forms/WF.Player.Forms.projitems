@@ -104,6 +104,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\IUserDialogService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\PromptConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\PromptResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeFolderSelectionPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />

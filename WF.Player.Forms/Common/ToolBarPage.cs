@@ -166,12 +166,12 @@ namespace WF.Player
 			if (sumWidth > BottomLayout.Width - padding.Left - padding.Right)
 			{
 				// Buttons are wider than possible space (could only happen with Messagebox), so change width of column according to space
-				colDefs.Add(new ColumnDefinition { Width = new GridLength((BottomLayout.Width - padding.Left - padding.Right) * Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[0].Button.Text)) / sumWidth, GridUnitType.Absolute) }); // Width = GridLength.Auto }); // 
+				colDefs.Add(new ColumnDefinition { Width = new GridLength((BottomLayout.Width - padding.Left - padding.Right) * Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[0].Button.Text)) / sumWidth, GridUnitType.Absolute) });
 			}
 			else
 			{
 				// Set coulmn width to real size of button
-				colDefs.Add(new ColumnDefinition { Width = new GridLength(Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[0].Button.Text)), GridUnitType.Absolute) }); // Width = GridLength.Auto }); // 
+				colDefs.Add(new ColumnDefinition { Width = new GridLength(Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[0].Button.Text)), GridUnitType.Absolute) });
 			}
 
 			// Set layout of first button
@@ -180,7 +180,7 @@ namespace WF.Player
 			// Set width (autosize) and layout of all buttons between first and last
 			for (int i = 1; i < buttons.Count-1; i++)
 			{
-				colDefs.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); // Width = GridLength.Auto }); // 
+				colDefs.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 				buttons[i].Button.HorizontalOptions = LayoutOptions.CenterAndExpand;
 			}
 

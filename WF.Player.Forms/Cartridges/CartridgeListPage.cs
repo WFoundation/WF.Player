@@ -79,6 +79,17 @@ namespace WF.Player
 				{
 					DependencyService.Get<ISettingsView>().Show();
 				}, ToolbarItemOrder.Secondary));
+			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Path"), null, () =>
+				{
+					// Show folder selection page
+					App.Navigation.Navigation.PushModalAsync(new ExtendedNavigationPage(new CartridgeFolderSelectionPage(App.PathForCartridges, UpdateCartridges), true)
+						{
+							BackgroundColor = App.Colors.Background,
+							BarTextColor = App.Colors.BarText,
+							BarBackgroundColor = App.Colors.Bar,
+							ShowBackButton = true,
+						});
+				}, ToolbarItemOrder.Secondary));
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Feedback"), null, () =>
 				HockeyApp.FeedbackManager.ShowFeedbackActivity(Forms.Context), 
 				ToolbarItemOrder.Secondary));
@@ -86,6 +97,7 @@ namespace WF.Player
 				{
 					((WF.Player.Droid.MainActivity)Forms.Context).Exit(0);
 				}, ToolbarItemOrder.Secondary));
+
 
 			#endif
 
@@ -196,6 +208,12 @@ namespace WF.Player
 		#endregion
 
 		#region Private Functions
+
+		private void UpdateCartridges()
+		{
+			cartridges.Clear();
+			cartridges.SyncFromStore();
+		}
 
 		private async Task ExecuteRefreshCommand()
 		{

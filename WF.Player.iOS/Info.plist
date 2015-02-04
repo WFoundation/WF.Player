@@ -71,6 +71,6 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>You should activate GPS for WF.Player</string>
 	<key>CFBundleVersion</key>
-	<string>18</string>
+	<string>19</string>
 </dict>
 </plist>
