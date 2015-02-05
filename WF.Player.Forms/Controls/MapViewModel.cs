@@ -116,23 +116,7 @@ namespace WF.Player
 
 					if (map != null)
 					{
-						Pin pin;
-
-						if (map.Pins.Count > 0)
-						{
-							pin = map.Pins[0];
-						}
-						else
-						{
-							pin = new Pin();
-						}
-
-						pin.Label = Catalog.GetString("Starting Location");
-						pin.Position = new Position(startingLocation.Latitude, startingLocation.Longitude);
-
-						map.Pins.Add(pin);
-
-						map.VisibleRegion = MapSpan.FromCenterAndRadius(pin.Position, Xamarin.Forms.Maps.Distance.FromMeters(1000));
+						map.VisibleRegion = MapSpan.FromCenterAndRadius(new Position(startingLocation.Latitude, startingLocation.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
 					}
 				}
 			}
@@ -215,6 +199,40 @@ namespace WF.Player
 			get
 			{
 				return new Command(ButtonOrientationPressed);
+			}
+		}
+
+		#endregion
+
+		#region Methods
+
+		public Pin AddPin(WF.Player.Core.ZonePoint pos, string name = null, string description = null)
+		{
+			Pin pin = null;
+
+			if (map != null)
+			{
+				pin = new Pin();
+
+				pin.Label = name;
+				pin.Address = description;
+				pin.Type = PinType.Place;
+				pin.Position = new Position(pos.Latitude, pos.Longitude);
+
+				map.Pins.Add(pin);
+			}
+
+			return pin;
+		}
+
+		public void RemovePin(Pin pin)
+		{
+			if (map != null)
+			{
+				if (map.Pins.Contains(pin))
+				{
+					map.Pins.Remove(pin);
+				}
 			}
 		}
 

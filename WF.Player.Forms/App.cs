@@ -480,6 +480,13 @@ namespace WF.Player
 					App.Game.Pause();
 				}
 			}
+
+			// Deactivate GPS when app leaves screen
+			if (gps.IsListening)
+			{
+				gps.StopListening();
+			}
+
 		}
 
 		protected override void OnResume()
@@ -487,6 +494,9 @@ namespace WF.Player
 			Console.WriteLine("OnResume");
 
 			base.OnResume();
+
+			// Start listening when app is on screen
+			gps.StartListening(500, 2.0, true);
 
 			if (App.Game != null)
 			{

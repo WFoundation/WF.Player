@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
+﻿<Properties StartupItem="WF.Player.Droid/WF.Player.Droid.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Droid/MainActivity.cs">
     <Files>

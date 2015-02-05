@@ -54,6 +54,7 @@ namespace WF.Player.Controls.Droid
 				nativeMap.UiSettings.ScrollGesturesEnabled = true;
 				nativeMap.UiSettings.ZoomGesturesEnabled = true;
 				nativeMap.UiSettings.CompassEnabled = true;
+				nativeMap.UiSettings.MapToolbarEnabled = false;
 			}
 		}
 

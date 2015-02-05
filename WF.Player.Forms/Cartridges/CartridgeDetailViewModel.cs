@@ -235,6 +235,18 @@ namespace WF.Player
 		}
 
 		/// <summary>
+		/// Gets the starting location description.
+		/// </summary>
+		/// <value>The starting location.</value>
+		public string StartingLocationDescription
+		{
+			get
+			{
+				return cartridgeTag.Cartridge.StartingDescription;
+			}
+		}
+
+		/// <summary>
 		/// Gets the poster of cartridge.
 		/// </summary>
 		/// <value>The poster.</value>

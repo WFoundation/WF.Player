@@ -125,7 +125,7 @@ namespace WF.Player.iOS
 
 		public override void WillTerminate(UIApplication uiApplication)
 		{
-			NSNotificationCenter.DefaultCenter.RemoveObserver(observerSettings):
+			NSNotificationCenter.DefaultCenter.RemoveObserver(observerSettings);
 
 			base.WillTerminate(uiApplication);
 		}
