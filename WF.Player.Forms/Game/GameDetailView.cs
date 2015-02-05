@@ -113,5 +113,20 @@ namespace WF.Player
 		}
 
 		#endregion
+
+		#region Events
+
+		/// <summary>
+		/// Handle back button pressed event.
+		/// </summary>
+		/// <returns>True, because back button should be ignored.</returns>
+		protected override bool OnBackButtonPressed()
+		{
+			App.Game.ShowScreen(ScreenType.Last, null);
+
+			return true;
+		}
+
+		#endregion
 	}
 }

@@ -164,5 +164,18 @@ namespace WF.Player
 		public PinchScrollView ScrollLayout { get; private set; }
 
 		#endregion
+
+		#region Events
+
+		/// <summary>
+		/// Handle back button pressed event.
+		/// </summary>
+		/// <returns>True, because back button should be ignored.</returns>
+		protected override bool OnBackButtonPressed()
+		{
+			return true;
+		}
+
+		#endregion
 	}
 }

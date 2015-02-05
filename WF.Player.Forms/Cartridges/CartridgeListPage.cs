@@ -95,7 +95,7 @@ namespace WF.Player
 				ToolbarItemOrder.Secondary));
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Quit"), null, () =>
 				{
-					((WF.Player.Droid.MainActivity)Forms.Context).Exit(0);
+					DependencyService.Get<IExit>().ExitApp(0);
 				}, ToolbarItemOrder.Secondary));
 
 
@@ -203,6 +203,18 @@ namespace WF.Player
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
+		}
+
+		/// <summary>
+		/// Handle back button pressed event on devices, that have one.
+		/// </summary>
+		/// <returns>True, because the back button pressed event is handled.</returns>
+		/// <remarks>This is the first page, so exit app when going back.</remarks>
+		protected override bool OnBackButtonPressed()
+		{
+			DependencyService.Get<IExit>().ExitApp(0);
+
+			return true;
 		}
 
 		#endregion

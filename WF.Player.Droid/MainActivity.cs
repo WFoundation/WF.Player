@@ -131,54 +131,6 @@ namespace WF.Player.Droid
 			base.OnPause ();
 		}
 
-		public override void OnBackPressed()
-		{
-			// We are on the GameMainView, so we want to go back until main screen, 
-			// but we should leave the game only by quit.
-			if (App.GameNavigation != null && App.GameNavigation.CurrentPage is GameMainView)
-			{
-				App.Game.ShowScreen(ScreenType.Main, null);
-
-				return;
-			}
-
-			if (App.Navigation != null && App.Navigation.CurrentPage is CartridgeListPage && App.Navigation.Navigation.ModalStack.Count == 1)
-			{
-				// We are on the main page
-				Exit(0);
-			}
-
-			if (App.Navigation != null && App.Navigation.CurrentPage is CartridgeListPage && App.Navigation.Navigation.ModalStack.Count == 2 && ((ExtendedNavigationPage)App.Navigation.Navigation.ModalStack[1]).CurrentPage is CartridgeFolderSelectionPage)
-			{
-				base.OnBackPressed();
-			}
-
-			// Go one page back
-			if (App.GameNavigation != null)
-			{
-				// We are in the "in the game" navigation
-				if (App.GameNavigation.CurrentPage is GameInputView || App.GameNavigation.CurrentPage is GameMessageboxView)
-				{
-					return;
-				}
-
-				if (App.Game == null)
-				{
-					// Game isn't running, so we are on the check  location page
-					App.Navigation.PopModalAsync();
-				}
-				else
-				{
-					App.Game.ShowScreen(ScreenType.Last, null);
-				}
-			}
-			else
-			{
-				// We are in the "out of game" navigation
-				App.Navigation.PopAsync();
-			}
-		}
-
 		/// <Docs>The menu item that was selected.</Docs>
 		/// <returns>To be added.</returns>
 		/// <para tool="javadoc-to-mdoc">This hook is called whenever an item in your options menu is selected.
@@ -216,16 +168,6 @@ namespace WF.Player.Droid
 			}
 
 			return base.OnOptionsItemSelected(item);
-		}
-
-		public void Exit(int exitCode)
-		{
-			Intent intent = new Intent(Intent.ActionMain);
-			intent.AddCategory(Intent.CategoryHome);
-			intent.SetFlags(ActivityFlags.ClearTop);
-			StartActivity(intent);
-			Finish();
-			System.Environment.Exit(exitCode);
 		}
 	}
 }

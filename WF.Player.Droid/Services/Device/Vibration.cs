@@ -14,16 +14,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using Xamarin.Forms;
-using Android.OS;
-using Android.Content;
-using WF.Player.Services.Device;
-
-[assembly: Dependency(typeof(WF.Player.Droid.Services.Device.Vibration))]
+[assembly: Xamarin.Forms.Dependency(typeof(WF.Player.Droid.Services.Device.Vibration))]
 
 namespace WF.Player.Droid.Services.Device
 {
+	using Xamarin.Forms;
+	using Android.OS;
+	using Android.Content;
+	using WF.Player.Services.Device;
+
 	public class Vibration : IVibration
 	{
 		/// <summary>

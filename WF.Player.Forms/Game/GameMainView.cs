@@ -472,5 +472,18 @@ namespace WF.Player
 
 			Content = grid;
 		}
+
+		/// <summary>
+		/// Handle back button pressed event on devices, that have one.
+		/// </summary>
+		/// <returns>True, because the back button pressed event is handled.</returns>
+		/// <remarks>We are on the GameMainView, so we want to go back until main screen, 
+		/// but we should leave the game only by quit.</remarks>
+		protected override bool OnBackButtonPressed()
+		{
+			App.Game.ShowScreen(ScreenType.Main, null);
+
+			return true;
+		}
 	}
 }

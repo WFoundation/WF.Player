@@ -111,5 +111,18 @@ namespace WF.Player
 			Buttons[0].Button.SetBinding(Button.TextProperty, GameCheckLocationViewModel.ButtonTextPropertyName);
 			Buttons[0].Button.SetBinding(Button.TextColorProperty, GameCheckLocationViewModel.ButtonTextColorPropertyName);
 		}
+
+		#region Events
+
+		/// <summary>
+		/// Handle back button pressed event.
+		/// </summary>
+		/// <returns>True, because back button should be ignored.</returns>
+		protected override bool OnBackButtonPressed()
+		{
+			return base.OnBackButtonPressed();
+		}
+
+		#endregion
 	}
 }
