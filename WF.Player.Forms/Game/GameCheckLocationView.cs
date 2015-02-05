@@ -16,6 +16,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using WF.Player.Services.Settings;
+using WF.Player.Services.Device;
 
 namespace WF.Player
 {
@@ -111,18 +112,5 @@ namespace WF.Player
 			Buttons[0].Button.SetBinding(Button.TextProperty, GameCheckLocationViewModel.ButtonTextPropertyName);
 			Buttons[0].Button.SetBinding(Button.TextColorProperty, GameCheckLocationViewModel.ButtonTextColorPropertyName);
 		}
-
-		#region Events
-
-		/// <summary>
-		/// Handle back button pressed event.
-		/// </summary>
-		/// <returns>True, because back button should be ignored.</returns>
-		protected override bool OnBackButtonPressed()
-		{
-			return base.OnBackButtonPressed();
-		}
-
-		#endregion
 	}
 }

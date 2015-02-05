@@ -20,8 +20,8 @@
 
 namespace WF.Player.Droid.Services.Device
 {
-	using System;
 	using Android.Content;
+	using WF.Player.Services.Device;
 	using Xamarin.Forms;
 
 	public class Exit : IExit

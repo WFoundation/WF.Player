@@ -15,15 +15,15 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using WF.Player.Controls;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using WF.Player.Services.Settings;
 
 namespace WF.Player
 {
+	using System.ComponentModel;
+	using System.Threading.Tasks;
 	using Vernacular;
+	using WF.Player.Controls;
 	using WF.Player.Models;
+	using WF.Player.Services.Device;
 	using Xamarin.Forms;
 
 	/// <summary>

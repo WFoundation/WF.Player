@@ -254,6 +254,7 @@
     <Compile Include="Services\Extensions\ExtensionDateTime.cs" />
     <Compile Include="Services\Mobile\DeviceInfo.cs" />
     <Compile Include="Services\UserDialogs\UserDialogService.cs" />
+    <Compile Include="Services\Device\Screen.cs" />
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

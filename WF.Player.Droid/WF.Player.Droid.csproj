@@ -131,6 +131,7 @@
     <Compile Include="Services\Mobile\DeviceInfo.cs" />
     <Compile Include="Services\UserDialogs\UserDialogService.cs" />
     <Compile Include="Services\Device\Exit.cs" />
+    <Compile Include="Services\Device\Screen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -1,4 +1,4 @@
-﻿// <copyright file="IExit.cs" company="Wherigo Foundation">
+﻿// <copyright file="Screen.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 //   Copyright (C) 2012-2015  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
@@ -16,17 +16,29 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace WF.Player.Services.Device
+[assembly: Xamarin.Forms.Dependency(typeof(WF.Player.Droid.Services.Device.Screen))]
+
+namespace WF.Player.Droid.Services.Device
 {
+	using WF.Player.Services.Device;
+
 	/// <summary>
-	/// Interface for exit the app.
+	/// Screen implementation.
 	/// </summary>
-	public interface IExit
+	public class Screen : IScreen
 	{
-		/// <summary>
-		/// Exit the running app with exitCode.
-		/// </summary>
-		/// <param name="exitCode">Exit code.</param>
-		void ExitApp(int exitCode);
+		#region IScreen implementation
+
+		///<summary>
+		///Sets the screen to always the on.
+		///</summary>
+		///<param name="flag">If set to <c>true</c>, than the screen is always on.</param>
+		public void AlwaysOn(bool flag)
+		{
+			((MainActivity)Xamarin.Forms.Forms.Context).Window.DecorView.KeepScreenOn = flag;
+		}
+
+		#endregion
 	}
 }
+

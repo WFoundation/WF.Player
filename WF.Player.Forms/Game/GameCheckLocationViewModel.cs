@@ -20,6 +20,7 @@ namespace WF.Player
 {
 	using Vernacular;
 	using WF.Player.Models;
+	using WF.Player.Services.Device;
 	using WF.Player.Services.Geolocation;
 	using Xamarin.Forms;
 

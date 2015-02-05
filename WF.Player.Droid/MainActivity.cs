@@ -74,8 +74,6 @@ namespace WF.Player.Droid
 
 			// Create Xamarin.Forms App and load the first page
 			LoadApplication(new App(new AndroidPlatformHelper()));
-
-			this.Window.DecorView.KeepScreenOn = true;
 		}
 
 		/// <summary>

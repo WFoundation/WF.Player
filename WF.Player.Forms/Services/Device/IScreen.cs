@@ -1,4 +1,4 @@
-﻿// <copyright file="IExit.cs" company="Wherigo Foundation">
+﻿// <copyright file="IScreen.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 //   Copyright (C) 2012-2015  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
@@ -12,21 +12,22 @@
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-//
+
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace WF.Player.Services.Device
 {
 	/// <summary>
-	/// Interface for exit the app.
+	/// Interface for screen.
 	/// </summary>
-	public interface IExit
+	public interface IScreen
 	{
 		/// <summary>
-		/// Exit the running app with exitCode.
+		/// Sets the screen to always the on.
 		/// </summary>
-		/// <param name="exitCode">Exit code.</param>
-		void ExitApp(int exitCode);
+		/// <param name="flag">If set to <c>true</c>, than the screen is always on.</param>
+		void AlwaysOn(bool flag);
 	}
 }
+

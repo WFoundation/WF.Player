@@ -15,6 +15,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Services.Device;
 
 namespace WF.Player
 {
@@ -246,6 +247,9 @@ namespace WF.Player
 			this.geoMathHelper = new GeoMathHelper();
 
 			Position = App.GPS.LastKnownPosition;
+
+			// Deactivate always on behavior of screen
+			DependencyService.Get<IScreen>().AlwaysOn(true);
 
 			this.gameModel.DisplayChanged += OnDisplayChanged;
 
@@ -931,6 +935,9 @@ namespace WF.Player
 
 									App.Game = null;
 
+									// Deactivate always on behavior of screen
+									DependencyService.Get<IScreen>().AlwaysOn(false);
+
 									// Remove active screen
 									App.GameNavigation.CurrentPage.Navigation.PopModalAsync();
 									App.GameNavigation = null;
@@ -945,6 +952,9 @@ namespace WF.Player
 					this.gameModel.Stop();
 
 					App.Game = null;
+
+					// Deactivate always on behavior of screen
+					DependencyService.Get<IScreen>().AlwaysOn(false);
 
 					// Remove active screen
 					App.GameNavigation.CurrentPage.Navigation.PopModalAsync();

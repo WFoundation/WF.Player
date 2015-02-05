@@ -39,8 +39,8 @@ namespace WF.Player.iOS
 	public partial class AppDelegate : FormsApplicationDelegate
 	{
 		// class-level declarations
-		UIWindow window;
-		UINavigationController navCartSelect;
+//		UIWindow window;
+//		UINavigationController navCartSelect;
 		NSObject observerSettings;
 
 		// Google Maps API Key for iOS
@@ -98,14 +98,11 @@ namespace WF.Player.iOS
 					},
 				};
 
-			// Screen always on when app is running
-			UIApplication.SharedApplication.IdleTimerDisabled = true;
-
 			// Set Google Maps API Key
 //			MapServices.ProvideAPIKey (MapsApiKey);
 
 			// create a new window instance based on the screen size
-			window = new UIWindow (UIScreen.MainScreen.Bounds);
+//			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
 			// Start Xamarin.Forms
 			Xamarin.Forms.Forms.Init ();
@@ -115,7 +112,7 @@ namespace WF.Player.iOS
 			UIBarButtonItem.Appearance.TintColor = App.Colors.Bar.ToUIColor();
 
 			// Create NavigationControlls
-			navCartSelect = new UINavigationController();
+//			navCartSelect = new UINavigationController();
 
 			// Init observer for changes of the settings
 			observerSettings = NSNotificationCenter.DefaultCenter.AddObserver((NSString)"NSUserDefaultsDidChangeNotification", DefaultsChanged);
@@ -126,78 +123,16 @@ namespace WF.Player.iOS
 			return base.FinishedLaunching(app, options);
 		}
 
-		/// <Docs>Reference to the UIApplication that invoked this delegate method.</Docs>
-		/// <remarks>Application are allocated approximately 5 seconds to complete this method. Application developers should use this
-		/// time to save user data and tasks, and remove sensitive information from the screen.</remarks>
-		/// <altmember cref="M:MonoTouch.UIKit.UIApplicationDelegate.WillEnterForeground"></altmember>
+		public override void WillTerminate(UIApplication uiApplication)
+		{
+			NSNotificationCenter.DefaultCenter.RemoveObserver(observerSettings):
+
+			base.WillTerminate(uiApplication);
+		}
 		/// <summary>
-		/// Dids the enter background.
+		/// Receives the memory warning.
 		/// </summary>
 		/// <param name="application">Application.</param>
-		public override void DidEnterBackground (UIApplication application)
-		{
-			// TODO: Delete
-			Console.WriteLine ("DidEnterBackground");
-
-			base.DidEnterBackground(application);
-
-			//			((App)App.Current).OnSleep();
-
-//			// Save game before going into background
-//			if (screenCtrl != null && screenCtrl.Engine != null && screenCtrl.Engine.GameState == WF.Player.Core.Engines.EngineGameState.Playing) {
-//				// Save game automatically
-//				Console.WriteLine ("Start Save");
-//				screenCtrl.Engine.Save (new FileStream (screenCtrl.Engine.Cartridge.SaveFilename, FileMode.Create));
-//				Console.WriteLine ("Ende Save");
-//				// Pause engine until we have focus again
-//				screenCtrl.Engine.Pause ();
-//			}
-		}
-
-		public override void WillEnterForeground(UIApplication application)
-		{
-			// TODO: Delete
-			Console.WriteLine ("WillEnterForeground");
-
-			base.WillEnterForeground(application);
-
-//			((App)App.Current).OnResume();
-
-//			if (screenCtrl != null && screenCtrl.Engine != null && screenCtrl.Engine.GameState == WF.Player.Core.Engines.EngineGameState.Paused) {
-//				// Resume engine, so we continue
-//				screenCtrl.Engine.Resume ();
-//			}
-		}
-
-		public override void OnResignActivation(UIApplication application)
-		{
-			// TODO: Delete
-			Console.WriteLine ("OnResignActivation");
-
-			base.OnResignActivation(application);
-
-//			// Save game before going into background
-//			if (screenCtrl != null && screenCtrl.Engine != null && screenCtrl.Engine.GameState == WF.Player.Core.Engines.EngineGameState.Playing) {
-//				// Save game automatically
-//				screenCtrl.Engine.Save (new FileStream (screenCtrl.Engine.Cartridge.SaveFilename, FileMode.Create));
-//				// Pause engine until we have focus again
-//				screenCtrl.Engine.Pause ();
-//			}
-		}
-
-		public override void OnActivated(UIApplication application)
-		{
-			// TODO: Delete
-			Console.WriteLine ("OnActivated");
-
-			base.OnActivated(application);
-
-//			if (screenCtrl != null && screenCtrl.Engine != null && screenCtrl.Engine.GameState == WF.Player.Core.Engines.EngineGameState.Paused) {
-//				// Resume engine, so we continue
-//				screenCtrl.Engine.Resume ();
-//			}
-		}
-
 		public override void ReceiveMemoryWarning (UIApplication application)
 		{
 			// TODO: Delete
