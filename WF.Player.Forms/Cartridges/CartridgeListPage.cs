@@ -120,20 +120,20 @@ namespace WF.Player
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			};
 
-			list = new PullToRefreshListView() 
-			{
-				BackgroundColor = App.Colors.Background,
-				RowHeight = Device.OnPlatform<int>(104, 60, 60),
-				ItemsSource = cartridges,
-				ItemTemplate = new DataTemplate(typeof(TextCell)),
-				Message = Catalog.GetString("Loading..."),
-				RefreshCommand = this.RefreshCommand,
-			};
-			list.SetBinding<CartridgeListPage> (PullToRefreshListView.IsRefreshingProperty, vm => vm.IsBusy);
+			var listCellHeight = (int)(((DependencyService.Get<IScreen>().Width * 0.25) - 20) * 1.25 + 30);
 
-			list.ItemTemplate.SetBinding(TextCell.TextProperty, CartridgeStore.CartridgeNamePropertyName);
-			list.ItemTemplate.SetBinding(TextCell.TextColorProperty, "TextColor");
-			list.ItemTemplate.SetBinding(TextCell.DetailProperty, CartridgeStore.CartridgeAuthorNamePropertyName);
+			list = new PullToRefreshListView() 
+				{
+					BackgroundColor = App.Colors.Background,
+					RowHeight = Device.OnPlatform<int>(110, 120, 120),
+					HasUnevenRows = false,
+					ItemsSource = cartridges,
+					ItemTemplate = new DataTemplate(typeof(CartridgeListCell)), //TextCell)),
+					Message = Catalog.GetString("Loading..."),
+					RefreshCommand = this.RefreshCommand,
+			};
+
+			list.SetBinding<CartridgeListPage> (PullToRefreshListView.IsRefreshingProperty, vm => vm.IsBusy);
 			list.ItemSelected += async (sender, e) =>
 			{
 				if (e.SelectedItem == null)

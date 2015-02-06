@@ -30,11 +30,8 @@ namespace WF.Player.Controls.Droid
 		{
 			base.OnElementChanged(e);
 
-			if (e.OldElement == null)
-			{
-				// The first time OnElementPropertyChanged isn't called for Text, so call it by ourselfs
-				OnElementPropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Text"));
-			}
+			// The first time OnElementPropertyChanged isn't called for Text, so call it by ourselfs
+			OnElementPropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Text"));
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

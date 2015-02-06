@@ -95,6 +95,13 @@ namespace WF.Player
 			this.cartridgeTag = tag;
 			this.savegame = savegame;
 
+			// Is GPS running?
+			if (!App.GPS.IsListening)
+			{
+				// Start listening when app is on screen
+				App.GPS.StartListening(500, 2.0, true);
+			}
+
 			App.GPS.PositionChanged += OnPositionChanged;
 			Position = App.GPS.LastKnownPosition;
 		}

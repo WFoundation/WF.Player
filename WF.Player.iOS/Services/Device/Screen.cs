@@ -20,6 +20,7 @@
 
 namespace WF.Player.iOS.Services.Device
 {
+	using System;
 	using UIKit;
 	using WF.Player.Services.Device;
 
@@ -28,7 +29,40 @@ namespace WF.Player.iOS.Services.Device
 	/// </summary>
 	public class Screen : IScreen
 	{
+		private readonly Lazy<int> height;
+		private readonly Lazy<int> width;
+
+		public Screen()
+		{
+			this.height = new Lazy<int>(() => (int)UIScreen.MainScreen.Bounds.Height);
+			this.width = new Lazy<int>(() => (int)UIScreen.MainScreen.Bounds.Width);
+		}
+
 		#region IScreen implementation
+
+		/// <summary>
+		/// Gets the height of screen.
+		/// </summary>
+		/// <value>The height.</value>
+		public int Height
+		{
+			get
+			{
+				return this.height.Value;
+			}
+		}
+
+		/// <summary>
+		/// Gets the width of screen.
+		/// </summary>
+		/// <value>The width.</value>
+		public int Width 
+		{
+			get 
+			{ 
+				return this.width.Value;
+			}
+		}
 
 		///<summary>
 		///Sets the screen to always the on.

@@ -444,6 +444,13 @@ namespace WF.Player
 		/// </summary>
 		public override void OnAppearing()
 		{
+			// Is GPS running?
+			if (!App.GPS.IsListening)
+			{
+				// Start listening when app is on screen
+				App.GPS.StartListening(500, 2.0, true);
+			}
+
 			App.GPS.PositionChanged += HandlePositionChanged;
 			App.GPS.HeadingChanged += HandlePositionChanged;
 		}

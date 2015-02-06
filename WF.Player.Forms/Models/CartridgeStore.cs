@@ -46,6 +46,21 @@ namespace WF.Player.Models
 		/// </summary>
 		public const string CartridgeAuthorNamePropertyName = "Cartridge.AuthorName";
 
+		/// <summary>
+		/// The name of the cartridge poster source property.
+		/// </summary>
+		public const string CartridgePosterPropertyName = "Cartridge.Poster";
+
+		/// <summary>
+		/// The version of the cartridge property.
+		/// </summary>
+		public const string CartridgeVersionPropertyName = "Cartridge.Version";
+
+		/// <summary>
+		/// The activity type of the cartridge property.
+		/// </summary>
+		public const string CartridgeActivityTypePropertyName = "Cartridge.ActivityType";
+
 		#region Members
 
 		/// <summary>

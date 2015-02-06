@@ -81,7 +81,7 @@ namespace WF.Player
 					XAlign = Settings.Current.GetValueOrDefault<TextAlignment>(Settings.TextAlignmentKey, TextAlignment.Start),
 					VerticalOptions = LayoutOptions.Start,
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
-					FontSize = Settings.FontSize * 1.5,
+					FontSize = Settings.FontSize * 1.2,
 					FontFamily = Settings.FontFamily,
 					FontAttributes = FontAttributes.Bold,
 					TextColor = App.Colors.Text,

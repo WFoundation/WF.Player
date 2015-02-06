@@ -20,6 +20,8 @@
 
 namespace WF.Player.Droid.Services.Device
 {
+	using Android.Content.Res;
+	using System;
 	using WF.Player.Services.Device;
 
 	/// <summary>
@@ -27,7 +29,46 @@ namespace WF.Player.Droid.Services.Device
 	/// </summary>
 	public class Screen : IScreen
 	{
+		private readonly Lazy<int> height;
+		private readonly Lazy<int> width;
+
+		public Screen()
+		{
+			this.height = new Lazy<int>(() => {
+				var d = Resources.System.DisplayMetrics;
+				return (int)(d.HeightPixels / d.Density);
+			});
+			this.width = new Lazy<int>(() => {
+				var d = Resources.System.DisplayMetrics;
+				return (int)(d.WidthPixels / d.Density);
+			});
+		}
+
 		#region IScreen implementation
+
+		/// <summary>
+		/// Gets the height of screen.
+		/// </summary>
+		/// <value>The height.</value>
+		public int Height 
+		{
+			get 
+			{ 
+				return this.height.Value;
+			}
+		}
+
+		/// <summary>
+		/// Gets the width of screen.
+		/// </summary>
+		/// <value>The width.</value>
+		public int Width 
+		{
+			get 
+			{ 
+				return this.width.Value;
+			}
+		}
 
 		///<summary>
 		///Sets the screen to always the on.

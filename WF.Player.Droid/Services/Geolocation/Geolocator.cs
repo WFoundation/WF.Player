@@ -25,6 +25,7 @@ using Java.Lang;
 using Xamarin.Forms;
 using WF.Player.Services.Geolocation;
 using WF.Player.Droid.Services.Geolocation;
+using WF.Player.Services.Settings;
 
 [assembly: Dependency(typeof (Geolocator))]
 
@@ -124,13 +125,22 @@ namespace WF.Player.Droid.Services.Geolocation
 
 		public void StartListening(uint minTime, double minDistance, bool includeHeading)
 		{
+			// Get last known position from settings
+			_lastPosition = _lastPosition ?? new Position();
+
+			_lastPosition.Latitude = Settings.Current.GetValueOrDefault<double>(Settings.LastKnownPositionLatitudeKey);
+			_lastPosition.Longitude = Settings.Current.GetValueOrDefault<double>(Settings.LastKnownPositionLongitudeKey);
+			_lastPosition.Altitude = Settings.Current.GetValueOrDefault<double>(Settings.LastKnownPositionAltitudeKey);
+
 			if (minTime < 0)
 				throw new ArgumentOutOfRangeException("minTime");
 			if (minDistance < 0)
 				throw new ArgumentOutOfRangeException("minDistance");
 
 			if (IsListening)
-				throw new InvalidOperationException("This Geolocator is already listening");
+			{
+				return;
+			}
 
 			_listener = new GeolocationListener(_locManager, TimeSpan.FromMilliseconds(minTime), _providers);
 			_listener.PositionChanged += OnPositionChanged;
@@ -156,13 +166,22 @@ namespace WF.Player.Droid.Services.Geolocation
 			if (_listener == null)
 				return;
 
-			if (_listener != null) {
-				_listener.PositionChanged -= OnPositionChanged;
-				_listener.PositionError -= OnPositionError;
-				_listener.OrientationChanged -= OnHeadingChanged;
-				for (int i = 0; i < _providers.Length; ++i)
-					_locManager.RemoveUpdates (_listener);
-				_listener = null;
+			_listener.PositionChanged -= OnPositionChanged;
+			_listener.PositionError -= OnPositionError;
+			_listener.OrientationChanged -= OnHeadingChanged;
+			for (int i = 0; i < _providers.Length; ++i)
+			{
+				_locManager.RemoveUpdates(_listener);
+			}
+
+			_listener = null;
+
+			// Save last known position for later
+			if (this._lastPosition != null)
+			{
+				Settings.Current.AddOrUpdateValue(Settings.LastKnownPositionLatitudeKey, this._lastPosition.Latitude);
+				Settings.Current.AddOrUpdateValue(Settings.LastKnownPositionLongitudeKey, this._lastPosition.Longitude);
+				Settings.Current.AddOrUpdateValue(Settings.LastKnownPositionAltitudeKey, this._lastPosition.Altitude);
 			}
 		}
 

@@ -125,6 +125,21 @@ namespace WF.Player.Services.Settings
 		// Sensors
 
 		/// <summary>
+		/// Key for last known position latitude.
+		/// </summary>
+		public const string LastKnownPositionLatitudeKey = "LastKnownPositionLatitude";
+
+		/// <summary>
+		/// Key for last known position longitude.
+		/// </summary>
+		public const string LastKnownPositionLongitudeKey = "LastKnownPositionLongitude";
+
+		/// <summary>
+		/// Key for last known position altitude.
+		/// </summary>
+		public const string LastKnownPositionAltitudeKey = "LastKnownPositionAltitude";
+
+		/// <summary>
 		/// Key for azimuth of sensor.
 		/// </summary>
 		public const string SensorAzimuthKey = "SensorAzimuth";

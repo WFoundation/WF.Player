@@ -37,7 +37,7 @@
             android:entryValues="@array/text_alignment_value"
             android:defaultValue="1"
             android:dialogTitle="@string/pref_text_alignment" />
-        <WF.Player.Droid.Preferences.EditFloatPreference
+        <WF.Player.Droid.Preferences.EditIntPreference
             android:id="@+id/text_size"
             android:key="TextSize"
             android:title="@string/pref_text_size"

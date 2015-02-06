@@ -23,6 +23,7 @@ using UIKit;
 using Xamarin.Forms;
 using WF.Player.Services.Geolocation;
 using Vernacular;
+using WF.Player.Services.Settings;
 
 [assembly: Dependency(typeof(WF.Player.iOS.Services.Geolocation.Geolocator))]
 
@@ -179,6 +180,13 @@ namespace WF.Player.iOS.Services.Geolocation
 		/// <param name="includeHeading">Should the Geolocator update process update heading too.</param>
 		public void StartListening (uint minTime, double minDistance, bool includeHeading)
 		{
+			// Get last known position from settings
+			_position = _position ?? new Position();
+
+			_position.Latitude = Settings.Current.GetValueOrDefault<double>(Settings.LastKnownPositionLatitudeKey);
+			_position.Longitude = Settings.Current.GetValueOrDefault<double>(Settings.LastKnownPositionLongitudeKey);
+			_position.Altitude = Settings.Current.GetValueOrDefault<double>(Settings.LastKnownPositionAltitudeKey);
+
 			if (minTime < 0)
 				throw new ArgumentOutOfRangeException ("minTime");
 			if (minDistance < 0)
@@ -219,6 +227,15 @@ namespace WF.Player.iOS.Services.Geolocation
 				this.manager.StopUpdatingHeading ();
 
 			this.manager.StopUpdatingLocation ();
+
+			// Save last known position for later
+			if (this._position != null)
+			{
+				Settings.Current.AddOrUpdateValue(Settings.LastKnownPositionLatitudeKey, this._position.Latitude);
+				Settings.Current.AddOrUpdateValue(Settings.LastKnownPositionLongitudeKey, this._position.Longitude);
+				Settings.Current.AddOrUpdateValue(Settings.LastKnownPositionAltitudeKey, this._position.Altitude);
+			}
+
 			this._position = null;
 
 			NSNotificationCenter.DefaultCenter.RemoveObserver (_observer);

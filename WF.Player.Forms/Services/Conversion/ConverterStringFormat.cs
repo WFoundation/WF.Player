@@ -1,4 +1,4 @@
-﻿// <copyright file="IScreen.cs" company="Wherigo Foundation">
+﻿// <copyright file="ConverterStringFormat.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 //   Copyright (C) 2012-2015  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
@@ -12,34 +12,34 @@
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace WF.Player.Services.Device
+namespace WF.Player
 {
-	/// <summary>
-	/// Interface for screen.
-	/// </summary>
-	public interface IScreen
+	using System;
+	using Xamarin.Forms;
+
+	public class ConverterStringFormat : IValueConverter
 	{
-		/// <summary>
-		/// Gets the width of screen.
-		/// </summary>
-		/// <value>The width.</value>
-		int Width { get; }
+		#region IValueConverter implementation
 
-		/// <summary>
-		/// Gets the height of screen.
-		/// </summary>
-		/// <value>The height.</value>
-		int Height { get; }
+		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		{
+			return string.Format((string)parameter, value);
+		}
 
-		/// <summary>
-		/// Sets the screen to always the on.
-		/// </summary>
-		/// <param name="flag">If set to <c>true</c>, than the screen is always on.</param>
-		void AlwaysOn(bool flag);
+		public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		public ConverterStringFormat()
+		{
+		}
 	}
 }
 

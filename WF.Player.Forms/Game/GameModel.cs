@@ -285,7 +285,10 @@ namespace WF.Player
 			if (this.engine != null)
 			{
 				var pos = App.GPS.LastKnownPosition;
-				this.engine.RefreshLocation(pos.Latitude, pos.Longitude, pos.Altitude ?? 0, pos.Accuracy ?? double.NaN);
+				if (pos != null)
+				{
+					this.engine.RefreshLocation(pos.Latitude, pos.Longitude, pos.Altitude ?? 0, pos.Accuracy ?? double.NaN);
+				}
 				this.engine.Resume();
 			}
 		}
