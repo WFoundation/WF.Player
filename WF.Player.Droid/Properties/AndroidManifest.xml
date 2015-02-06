@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.wf.player.android" android:versionName="0.6" android:versionCode="19">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.wf.player.android" android:versionName="0.6" android:versionCode="20">
 	<uses-sdk android:minSdkVersion="15" />
 	<application android:label="WF.Player" android:icon="@drawable/Icon">
 		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyC1QmMjAaTJPqVgATBh9EcUBAMGK2kZNro" />

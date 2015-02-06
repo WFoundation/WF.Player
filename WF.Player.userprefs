@@ -1,8 +1,8 @@
-﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Game/GameModel.cs">
+﻿<Properties StartupItem="WF.Player.Droid/WF.Player.Droid.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Ad-Hoc|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Cartridges/CartridgeDetailPage.cs">
     <Files>
-      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="3" Column="3" />
+      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="87" Column="87" />
       <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/App.cs" Line="1" Column="1" />
@@ -13,32 +13,25 @@
       <File FileName="WF.Player.iOS/Services/Mobile/DeviceInfo.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Services/UserDialogs/UserDialogService.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Common/BottomBarPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Common/DirectionBarPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameInputView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameDetailView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameDetailViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameInputViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailDescriptionView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailBasePage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Models/CartridgeTag.cs" Line="17" Column="17" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="55" Column="55" />
+      <File FileName="WF.Player.Forms/Models/CartridgeStore.cs" Line="44" Column="44" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeListCell.cs" Line="160" Column="160" />
+      <File FileName="WF.Player.Core/Core/Cartridge.cs" Line="50" Column="50" />
+      <File FileName="WF.Player.Core/Core/Formats/GWC.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Services/Conversion/ConverterMediaToImageSource.cs" Line="42" Column="42" />
+      <File FileName="WF.Player.Forms/Services/Conversion/ConverterStringFormat.cs" Line="50" Column="50" />
+      <File FileName="WF.Player.Droid/Services/Settings/Settings.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailPage.cs" Line="32" Column="32" />
+      <File FileName="WF.Player.Forms/Services/Settings/Settings.cs" Line="4" Column="4" />
+      <File FileName="WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" Line="25" Column="25" />
+      <File FileName="WF.Player.Droid/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/Device/IScreen.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Services/Device/Screen.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Device/Screen.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Services/Geolocation/Geolocator.cs" Line="9" Column="9" />
       <File FileName="WF.Player.Forms/Game/GameCheckLocationViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameCheckLocationView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/Conversion/ConverterToAccuracy.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailMapView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Controls/MapViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Renderer/ExtendedMapRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeListCell.cs" Line="74" Column="74" />
-      <File FileName="WF.Player.Forms/Game/GameMainCellView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="3" Column="3" />
-      <File FileName="WF.Player.Forms/Game/GameMainCellViewModel.cs" Line="33" Column="33" />
-      <File FileName="WF.Player.Forms/Models/CartridgeStore.cs" Line="38" Column="38" />
-      <File FileName="WF.Player.Forms/Models/CartridgeTag.cs" Line="15" Column="15" />
-      <File FileName="WF.Player.Core/Core/Cartridge.cs" Line="2" Column="2" />
-      <File FileName="WF.Player.Forms/Services/Conversion/Converter.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailBasePage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
