@@ -20,9 +20,10 @@ namespace WF.Player
 {
 	using System;
 	using System.IO;
-	using WF.Player.Services.UserDialogs;
 	using Vernacular;
 	using WF.Player.Core;
+	using WF.Player.Services.BarCode;
+	using WF.Player.Services.UserDialogs;
 	using Xamarin.Forms;
 
 	/// <summary>
@@ -74,6 +75,11 @@ namespace WF.Player
 		/// The name of the input text property.
 		/// </summary>
 		public const string InputTextPropertyName = "InputText";
+
+		/// <summary>
+		/// The name of the scanner clicked property.
+		/// </summary>
+		public const string ScannerClickedPropertyName = "ScannerClicked";
 
 		/// <summary>
 		/// The name of the button clicked property.
@@ -301,7 +307,7 @@ namespace WF.Player
 		{ 
 			get
 			{ 
-				return Catalog.GetString("Write your input here...");
+				return Catalog.GetString("Write input here...", "A short text, because of size. If it is to long, than entry filed hides Ok button");
 			}
 		}
 
@@ -318,6 +324,22 @@ namespace WF.Player
 			get
 			{
 				return new Xamarin.Forms.Command((param) => HandleButtonClicked(this));
+			}
+		}
+
+		#endregion
+
+		#region ButtonClicked
+
+		/// <summary>
+		/// Gets the scanner clicked command.
+		/// </summary>
+		/// <value>The button clicked command.</value>
+		public Xamarin.Forms.Command ScannerClicked
+		{
+			get
+			{
+				return new Xamarin.Forms.Command((param) => HandleScannerClicked(this));
 			}
 		}
 
@@ -363,7 +385,7 @@ namespace WF.Player
 		/// <summary>
 		/// Handles the click of the button.
 		/// </summary>
-		/// <param name="sender">Sender iof event.</param>
+		/// <param name="sender">Sender of event.</param>
 		private void HandleButtonClicked(object sender)
 		{
 			// Get active view
@@ -406,6 +428,29 @@ namespace WF.Player
 				DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
 			}
 		}
+
+		/// <summary>
+		/// Handles the scanner click.
+		/// </summary>
+		/// <param name="sender">Sender of event.</param>
+		private async void HandleScannerClicked(object sender)
+		{
+			App.Click();
+
+			var scanner = DependencyService.Get<IBarCodeScanner>();
+			var config = new BarCodeReadConfiguration();
+
+			config.CancelText = Catalog.GetString("Cancel");
+			config.FlashlightText = Catalog.GetString("Flash");
+
+			var result = await scanner.Read(config, System.Threading.CancellationToken.None);
+
+			if (result.Success) 
+			{
+				InputText = result.Code;
+			}
+		}
+
 
 		/// <summary>
 		/// Called when the user has selected an answer from the multiple choice question.

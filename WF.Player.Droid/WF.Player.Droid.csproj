@@ -97,6 +97,12 @@
     <Reference Include="Xamarin.Forms.Maps">
       <HintPath>..\packages\Xamarin.Forms.Maps.1.3.3.6321-pre2\lib\MonoAndroid10\Xamarin.Forms.Maps.dll</HintPath>
     </Reference>
+    <Reference Include="zxing.monoandroid">
+      <HintPath>..\packages\ZXing.Net.Mobile.1.4.7.1\lib\MonoAndroid\zxing.monoandroid.dll</HintPath>
+    </Reference>
+    <Reference Include="ZXing.Net.Mobile">
+      <HintPath>..\packages\ZXing.Net.Mobile.1.4.7.1\lib\MonoAndroid\ZXing.Net.Mobile.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -132,6 +138,7 @@
     <Compile Include="Services\UserDialogs\UserDialogService.cs" />
     <Compile Include="Services\Device\Exit.cs" />
     <Compile Include="Services\Device\Screen.cs" />
+    <Compile Include="Services\BarCode\BarCodeScanner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -192,12 +199,6 @@
     <AndroidResource Include="Resources\drawable\IconEmpty.png" />
     <AndroidResource Include="Resources\values-de\strings.xml" />
     <AndroidResource Include="Resources\values-de\vernacular_strings.xml" />
-    <AndroidResource Include="Resources\values-en\strings.xml">
-      <Link>Resources\values\strings.xml</Link>
-    </AndroidResource>
-    <AndroidResource Include="Resources\values-en\vernacular_strings.xml">
-      <Link>Resources\values\vernacular_strings.xml</Link>
-    </AndroidResource>
     <AndroidResource Include="Resources\values\style.xml" />
     <AndroidResource Include="Resources\drawable-ldpi\IconMapCenter.png" />
     <AndroidResource Include="Resources\drawable-hdpi\IconMapCenter.png" />
@@ -248,6 +249,15 @@
     <AndroidResource Include="Resources\drawable-mdpi\Splash.9.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\Splash.9.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Splash.9.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\IconScan.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\IconScan.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\IconScan.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\IconScan.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\IconScan.png" />
+    <AndroidResource Include="Resources\values-en\vernacular_strings.xml" />
+    <AndroidResource Include="Resources\values\strings.xml">
+      <Link>Resources\values-en\strings.xml</Link>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
@@ -268,6 +278,7 @@
     <Folder Include="Services\Settings\" />
     <Folder Include="Services\Mobile\" />
     <Folder Include="Services\UserDialogs\" />
+    <Folder Include="Services\BarCode\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidNativeLibrary Include="lib\armeabi\liblua5.1.so" />
@@ -286,6 +297,10 @@
   <ItemGroup>
     <XamarinComponentReference Include="hockeyappandroid">
       <Version>3.0.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="zxing.net.mobile">
+      <Version>1.4.7.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

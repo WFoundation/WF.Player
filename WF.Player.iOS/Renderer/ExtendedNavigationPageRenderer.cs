@@ -72,6 +72,8 @@ namespace WF.Player.Controls.iOS
 		{
 			base.OnElementChanged(e);
 
+			((ExtendedNavigationPage)Element).ViewController = this.ViewController;
+
 			animation = ((ExtendedNavigationPage)Element).Animation;
 
 			if (!animation)

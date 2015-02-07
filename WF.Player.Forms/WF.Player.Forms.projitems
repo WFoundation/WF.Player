@@ -110,6 +110,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeListCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\ConverterMediaToImageSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Conversion\ConverterStringFormat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BarCode\BarCodeReadConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BarCode\BarCodeFormat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BarCode\BarCodeResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BarCode\IBarCodeScanner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />
@@ -131,5 +135,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Services\Settings\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mobile\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\UserDialogs\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\BarCode\" />
   </ItemGroup>
 </Project>

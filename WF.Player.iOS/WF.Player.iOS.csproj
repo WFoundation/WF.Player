@@ -144,6 +144,12 @@
     <Reference Include="SQLite.Net.Platform.XamarinIOS.Unified">
       <HintPath>..\packages\SQLite.Net.Platform.XamarinIOS.2.5.1\lib\Xamarin.iOS10\SQLite.Net.Platform.XamarinIOS.Unified.dll</HintPath>
     </Reference>
+    <Reference Include="ZXing.Net.Mobile">
+      <HintPath>..\Components\zxing.net.mobile-1.4.7.2\lib\ios-unified\ZXing.Net.Mobile.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.ios">
+      <HintPath>..\Components\zxing.net.mobile-1.4.7.2\lib\ios-unified\zxing.ios.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -219,6 +225,9 @@
     <BundleResource Include="Resources\IconBack%402x.png" />
     <BundleResource Include="Resources\IconBack%403x.png" />
     <BundleResource Include="Resources\IconBack.png" />
+    <BundleResource Include="Resources\IconScan.png" />
+    <BundleResource Include="Resources\IconScan%402x.png" />
+    <BundleResource Include="Resources\IconScan%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -255,6 +264,8 @@
     <Compile Include="Services\Mobile\DeviceInfo.cs" />
     <Compile Include="Services\UserDialogs\UserDialogService.cs" />
     <Compile Include="Services\Device\Screen.cs" />
+    <Compile Include="Services\BarCode\BarCodeScanner.cs" />
+    <Compile Include="Services\BarCode\BarCodeScannerOverlay.cs" />
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -278,6 +289,7 @@
     <Folder Include="Services\Extensions\" />
     <Folder Include="Services\Mobile\" />
     <Folder Include="Services\UserDialogs\" />
+    <Folder Include="Services\BarCode\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sounds\tap.aif" />
@@ -292,6 +304,10 @@
   <ItemGroup>
     <XamarinComponentReference Include="hockeyappios">
       <Version>3.5.5.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="zxing.net.mobile">
+      <Version>1.4.7.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

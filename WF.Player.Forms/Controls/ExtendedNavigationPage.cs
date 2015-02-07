@@ -84,6 +84,8 @@ namespace WF.Player.Controls
 
 		#region Properties
 
+		public object ViewController { get; set; }
+
 		public bool Animation { get; private set; }
 
 		public bool ShowBackButton
