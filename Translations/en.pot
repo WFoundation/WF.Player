@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-02-02 20:03+0100\n"
+"PO-Revision-Date: 2015-02-07 21:25+0100\n"
 "Last-Translator: Dirk Weltz <web@weltz-online.de>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -17,31 +17,23 @@ msgstr ""
 msgid "Actions"
 msgstr "Actions"
 
-#: WF.Player.Droid/Resources/values/strings.xml:19
-msgid "Alignment"
-msgstr "Alignment"
-
-#: WF.Player.Droid/Resources/values/strings.xml:20
-msgid "Alignment of text"
-msgstr "Alignment of text"
+#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:155
+msgid "Activity: {0}"
+msgstr "Activity: {0}"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:109
 msgid "Attributes"
 msgstr "Attributes"
 
-#: WF.Player.Droid/Resources/values/strings.xml:40
-msgid "Auto change"
-msgstr "Auto change"
+#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:129
+msgid "Author:  {0}"
+msgstr "Author:  {0}"
 
 msgid "Automatical savefile"
 msgstr "Automatical savefile"
 
-#: WF.Player.Droid/Resources/values/strings.xml:17
-msgid "Blue"
-msgstr "Blue"
-
-#: WF.Player.Forms/Controls/MapViewModel.cs:244
-#: WF.Player.Forms/Controls/MapViewModel.cs:253
+#: WF.Player.Forms/Controls/MapViewModel.cs:262
+#: WF.Player.Forms/Controls/MapViewModel.cs:271
 msgid "Both"
 msgstr "Both"
 
@@ -51,9 +43,11 @@ msgstr "By"
 
 #: WF.Player.Forms/Game/GameDetailViewModel.cs:608
 #: WF.Player.Forms/Game/GameDetailViewModel.cs:645
-#: WF.Player.Forms/Game/GameInputViewModel.cs:404
-#: WF.Player.Forms/Controls/MapViewModel.cs:263
-#: WF.Player.Forms/Controls/MapViewModel.cs:348
+#: WF.Player.Forms/Game/GameInputViewModel.cs:426
+#: WF.Player.Forms/Game/GameInputViewModel.cs:443
+#: WF.Player.Forms/Controls/MapViewModel.cs:281
+#: WF.Player.Forms/Controls/MapViewModel.cs:366
+#: WF.Player.Forms/Cartridges/CartridgeFolderSelectionPage.cs:108
 #: WF.Player.Forms/Game/GameMainView.cs:75
 msgid "Cancel"
 msgstr "Cancel"
@@ -62,22 +56,18 @@ msgstr "Cancel"
 msgid "Cartridges"
 msgstr "Cartridges"
 
-#: WF.Player.Droid/Resources/values/strings.xml:22
-msgid "Center align"
-msgstr "Center align"
-
-#: WF.Player.Forms/Game/GameInputViewModel.cs:392
-#: WF.Player.Forms/Game/GameInputViewModel.cs:459
+#: WF.Player.Forms/Game/GameInputViewModel.cs:414
+#: WF.Player.Forms/Game/GameInputViewModel.cs:509
 msgid "Choose"
 msgstr "Choose"
 
-#: WF.Player.Forms/Game/GameMainViewModel.cs:919
-#: WF.Player.Forms/Game/GameMainViewModel.cs:960
+#: WF.Player.Forms/Game/GameMainViewModel.cs:923
+#: WF.Player.Forms/Game/GameMainViewModel.cs:970
 msgid "Comment Savefile"
 msgstr "Comment Savefile"
 
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:84
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:94
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:85
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:95
 msgid ""
 "Current Accuracy\n"
 "{0}"
@@ -85,8 +75,8 @@ msgstr ""
 "Current Accuracy\n"
 "{0}"
 
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:68
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:78
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:69
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:79
 msgid ""
 "Current Coordinates\n"
 "{0}"
@@ -94,14 +84,10 @@ msgstr ""
 "Current Coordinates\n"
 "{0}"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:242
-#: WF.Player.Forms/Controls/MapViewModel.cs:251
+#: WF.Player.Forms/Controls/MapViewModel.cs:260
+#: WF.Player.Forms/Controls/MapViewModel.cs:269
 msgid "Current Location"
 msgstr "Current Location"
-
-#: WF.Player.Droid/Resources/values/strings.xml:15
-msgid "Dark"
-msgstr "Dark"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:107
 #: WF.Player.Forms/Cartridges/CartridgeDetailDescriptionView.cs:41
@@ -117,43 +103,19 @@ msgstr "Details"
 msgid "E"
 msgstr "E"
 
-#: WF.Player.Droid/Resources/values/strings.xml:8
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:93
 msgid "Feedback"
 msgstr "Feedback"
 
-#: WF.Player.Droid/Resources/values/strings.xml:47
-msgid ""
-"Filter applied to orientation. Stronger filter cause slower reactions, but "
-"fluent movement."
-msgstr ""
-"Filter applied to orientation. Stronger filter cause slower reactions, but "
-"fluent movement."
+#: WF.Player.Forms/Game/GameInputViewModel.cs:444
+msgid "Flash"
+msgstr "Light"
 
-#: WF.Player.Droid/Resources/values/strings.xml:28
-msgid "Focus"
-msgstr "Focus"
-
-#: WF.Player.Droid/Resources/values/strings.xml:29
-msgid "Focus input field when dialog appears"
-msgstr "Focus input field when dialog appears"
-
-#: WF.Player.Forms/Controls/MapViewModel.cs:237
+#: WF.Player.Forms/Controls/MapViewModel.cs:255
 msgid "Focus on"
 msgstr "Focus on"
 
-#: WF.Player.Droid/Resources/values/strings.xml:25
-msgid "Font size of dialog text"
-msgstr "Font size of dialog text"
-
-#: WF.Player.Droid/Resources/values/strings.xml:26
-msgid "Font size of text in sp. Default is 18."
-msgstr "Font size of text in sp. Default is 18."
-
-#: WF.Player.Droid/Resources/values/strings.xml:24
-msgid "Fontsize"
-msgstr "Fontsize"
-
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:53
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:54
 msgid ""
 "For much fun with the cartridge, you should wait for a good accuracy of your "
 "GPS signal."
@@ -165,27 +127,15 @@ msgstr ""
 msgid "Game Menu"
 msgstr "Game Menu"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:243
+#: WF.Player.Forms/Controls/MapViewModel.cs:261
 msgid "Gamefield"
 msgstr "Gamefield"
 
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:38
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:39
 msgid "GPS Check"
 msgstr "GPS Check"
 
-#: WF.Player.Droid/Resources/values/strings.xml:36
-msgid "Half height of screen"
-msgstr "Half height of screen"
-
-#: WF.Player.Droid/Resources/values/strings.xml:51
-msgid "Heavy filter"
-msgstr "Heavy filter"
-
-#: WF.Player.Droid/Resources/values/strings.xml:3
-msgid "Hello World, Click Me!"
-msgstr "Hello World, Click Me!"
-
-#: WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs:314
+#: WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs:326
 #: WF.Player.Forms/Services/Conversion/ConverterToDistance.cs:45
 msgid "Here"
 msgstr "Here"
@@ -194,47 +144,27 @@ msgstr "Here"
 msgid "History"
 msgstr "History"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:347
+#: WF.Player.Forms/Controls/MapViewModel.cs:365
 msgid "Hybrid"
 msgstr "Hybrid"
-
-#: WF.Player.Droid/Resources/values/strings.xml:45
-msgid "If enabled use true bearing. Otherwise use magnetic bearing."
-msgstr "If enabled use true bearing. Otherwise use magnetic bearing."
-
-#: WF.Player.Droid/Resources/values/strings.xml:30
-msgid "Image"
-msgstr "Image"
-
-#: WF.Player.Droid/Resources/values/strings.xml:27
-msgid "Input"
-msgstr "Input"
 
 #: WF.Player.Forms/Controls/DirectionArrow.cs:143
 #: WF.Player.Forms/Data/DirectionInfo.cs:109
 msgid "Inside"
 msgstr "Inside"
 
-#: WF.Player.Forms/Game/GameMainViewModel.cs:215
-#: WF.Player.Forms/Game/GameMainViewModel.cs:629
-#: WF.Player.Forms/Game/GameMainViewModel.cs:1348
+#: WF.Player.Forms/Game/GameMainViewModel.cs:216
+#: WF.Player.Forms/Game/GameMainViewModel.cs:633
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1358
 msgid "Inventory"
 msgstr "Inventory"
 
-#: WF.Player.Droid/Resources/values/strings.xml:21
-msgid "Left align"
-msgstr "Left align"
-
-#: WF.Player.Droid/Resources/values/strings.xml:16
+#: WF.Player.Forms/Game/GameInputViewModel.cs:444
 msgid "Light"
 msgstr "Light"
 
-#: WF.Player.Droid/Resources/values/strings.xml:49
-msgid "Light filter"
-msgstr "Light filter"
-
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:101
-#: WF.Player.Forms/Game/GameMainViewModel.cs:660
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:132
+#: WF.Player.Forms/Game/GameMainViewModel.cs:664
 msgid "Loading..."
 msgstr "Loading..."
 
@@ -243,18 +173,14 @@ msgid "Logs"
 msgstr "Logs"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:112
-#: WF.Player.Forms/Game/GameMainViewModel.cs:639
+#: WF.Player.Forms/Game/GameMainViewModel.cs:643
 #: WF.Player.Forms/Cartridges/CartridgeDetailMapView.cs:44
 msgid "Map"
 msgstr "Map"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:344
+#: WF.Player.Forms/Controls/MapViewModel.cs:362
 msgid "Maptype"
 msgstr "Maptype"
-
-#: WF.Player.Droid/Resources/values/strings.xml:50
-msgid "Medium filter"
-msgstr "Medium filter"
 
 #: WF.Player.Forms/Game/GameMainView.cs:70
 msgid "Menu"
@@ -265,6 +191,15 @@ msgstr "Menu"
 msgid "N"
 msgstr "N"
 
+#: WF.Player.Forms/Cartridges/CartridgeFolderSelectionPage.cs:56
+#: WF.Player.Forms/Cartridges/CartridgeFolderSelectionPage.cs:61
+msgid "New folder"
+msgstr "New folder"
+
+#: WF.Player.Forms/Cartridges/CartridgeFolderSelectionPage.cs:60
+msgid "New folder name"
+msgstr "New folder name"
+
 msgid "No"
 msgstr "No"
 
@@ -272,25 +207,17 @@ msgstr "No"
 msgid "No description available"
 msgstr "No description available"
 
-#: WF.Player.Droid/Resources/values/strings.xml:48
-msgid "No filter"
-msgstr "No filter"
-
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:202
-#: WF.Player.Forms/Game/GameMainViewModel.cs:215
+#: WF.Player.Forms/Game/GameMainViewModel.cs:216
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:181
 msgid "No items"
 msgstr "No items"
 
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:207
-#: WF.Player.Forms/Game/GameMainViewModel.cs:220
+#: WF.Player.Forms/Game/GameMainViewModel.cs:221
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:186
 msgid "No new tasks"
 msgstr "No new tasks"
-
-#: WF.Player.Droid/Resources/values/strings.xml:33
-msgid "No resize"
-msgstr "No resize"
 
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:217
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:196
@@ -298,7 +225,7 @@ msgid "Nothing available"
 msgstr "Nothing availible"
 
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:197
-#: WF.Player.Forms/Game/GameMainViewModel.cs:210
+#: WF.Player.Forms/Game/GameMainViewModel.cs:211
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:176
 msgid "Nothing of interest"
 msgstr "Nothing of interest"
@@ -310,66 +237,54 @@ msgstr "Nowhere to go"
 
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:192
 #: WF.Player.Forms/Game/GameDetailViewModel.cs:652
-#: WF.Player.Forms/Game/GameInputView.cs:135
+#: WF.Player.Forms/Game/GameInputView.cs:148
 #: WF.Player.Forms/Services/Resources/Texts.cs:36
 #: WF.Player.Forms/Services/UserDialogs/AlertConfig.cs:16
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:171
 msgid "Ok"
 msgstr "Ok"
 
-#: WF.Player.Droid/Resources/values/strings.xml:46
-msgid "Orientation filter"
-msgstr "Orientation filter"
-
-#: WF.Player.Forms/Game/GameMainViewModel.cs:619
+#: WF.Player.Forms/Game/GameMainViewModel.cs:623
 msgid "Overview"
 msgstr "Overview"
 
-#: WF.Player.Droid/Resources/values/strings.xml:10
-msgid "Play a sound each time a button is pressed"
-msgstr "Play a sound each time a button is pressed"
+#: WF.Player.Forms/Cartridges/CartridgeFolderSelectionPage.cs:145
+msgid "Parent directory"
+msgstr "Parent directory"
+
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:82
+msgid "Path"
+msgstr "Path"
 
 #: WF.Player.Forms/Game/GameMainView.cs:251
 msgid "Please wait..."
 msgstr "Please wait..."
 
-#: WF.Player.Forms/Game/GameMainViewModel.cs:918
-#: WF.Player.Forms/Game/GameMainViewModel.cs:959
+#: WF.Player.Forms/Game/GameMainViewModel.cs:922
+#: WF.Player.Forms/Game/GameMainViewModel.cs:969
 msgid "Provide a comment to identify this savefile"
 msgstr "Provide a comment to identify this savefile"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:81
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:96
 #: WF.Player.Forms/Game/GameMainView.cs:92
 #: WF.Player.Forms/Game/GameMainView.cs:95
-#: WF.Player.Forms/Game/GameMainViewModel.cs:908
+#: WF.Player.Forms/Game/GameMainViewModel.cs:912
 #: WF.Player.Forms/Game/GameMainView.cs:74
 msgid "Quit"
 msgstr "Quit"
-
-#: WF.Player.Droid/Resources/values/strings.xml:31
-msgid "Resize"
-msgstr "Resize"
-
-#: WF.Player.Droid/Resources/values/strings.xml:32
-msgid "Resize image when displaying"
-msgstr "Resize image when displaying"
-
-#: WF.Player.Droid/Resources/values/strings.xml:23
-msgid "Right align"
-msgstr "Right align"
 
 #. South
 #: WF.Player.Forms/Services/Conversion/Converter.cs:148
 msgid "S"
 msgstr "S"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:346
+#: WF.Player.Forms/Controls/MapViewModel.cs:364
 msgid "Satellite"
 msgstr "Satellite"
 
 #: WF.Player.Forms/Game/GameMainView.cs:84
 #: WF.Player.Forms/Game/GameMainView.cs:87
-#: WF.Player.Forms/Game/GameMainViewModel.cs:955
+#: WF.Player.Forms/Game/GameMainViewModel.cs:965
 #: WF.Player.Forms/Game/GameMainView.cs:73
 msgid "Save"
 msgstr "Save"
@@ -377,64 +292,39 @@ msgstr "Save"
 msgid "Save Game"
 msgstr "Save Game"
 
-#: WF.Player.Droid/Resources/values/strings.xml:37
-msgid "Sensors"
-msgstr "Sensors"
+#: WF.Player.Forms/Cartridges/CartridgeFolderSelectionPage.cs:107
+msgid "Select"
+msgstr "Select"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:77
-#: WF.Player.Droid/Resources/values/strings.xml:7
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:78
 msgid "Settings"
 msgstr "Settings"
 
-#: WF.Player.Droid/Resources/values/strings.xml:34
-msgid "Shrink to width of screen"
-msgstr "Shrink to width of screen"
-
-#: WF.Player.Droid/Resources/values/strings.xml:9
-msgid "Sound"
-msgstr "Sound"
-
-#: WF.Player.Droid/Resources/values/strings.xml:42
-msgid "Speed value"
-msgstr "Speed value"
-
-#: WF.Player.Forms/Game/GameCheckLocationViewModel.cs:140
+#: WF.Player.Forms/Game/GameCheckLocationViewModel.cs:148
 msgid "Start"
 msgstr "Start"
 
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:109
-#: WF.Player.Forms/Game/GameCheckLocationViewModel.cs:144
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:110
+#: WF.Player.Forms/Game/GameCheckLocationViewModel.cs:152
 msgid "Start anyway"
 msgstr "Start anyway"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:130
-#: WF.Player.Forms/Controls/MapViewModel.cs:252
+#: WF.Player.Forms/Controls/MapViewModel.cs:270
+#: WF.Player.Forms/Cartridges/CartridgeDetailMapView.cs:89
 msgid "Starting Location"
 msgstr "Starting Location"
 
-#: WF.Player.Forms/Controls/MapViewModel.cs:345
+#: WF.Player.Forms/Controls/MapViewModel.cs:363
 msgid "Street"
 msgstr "Street"
 
-#: WF.Player.Forms/Game/GameMainViewModel.cs:220
-#: WF.Player.Forms/Game/GameMainViewModel.cs:634
-#: WF.Player.Forms/Game/GameMainViewModel.cs:1371
+#: WF.Player.Forms/Game/GameMainViewModel.cs:221
+#: WF.Player.Forms/Game/GameMainViewModel.cs:638
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1381
 msgid "Tasks"
 msgstr "Tasks"
 
-#: WF.Player.Droid/Resources/values/strings.xml:18
-msgid "Text"
-msgstr "Text"
-
-#: WF.Player.Droid/Resources/values/strings.xml:13
-msgid "Theme"
-msgstr "Theme"
-
-#: WF.Player.Droid/Resources/values/strings.xml:14
-msgid "Theme for this app (only updated after a restart of the app)"
-msgstr "Theme for this app (only updated after a restart of the app)"
-
-#: WF.Player.Forms/App.cs:521
+#: WF.Player.Forms/App.cs:535
 msgid ""
 "There is an automatic savefile from a cartridge you played before. Would you "
 "resume this last game?"
@@ -442,89 +332,196 @@ msgstr ""
 "There is an automatic savefile from a cartridge you played before. Would you "
 "resume this last game?"
 
-#: WF.Player.Forms/App.cs:515
-msgid ""
-"There is an automatical savefile from a cartridge you played before. Would "
-"you resume this last game?"
-msgstr ""
-"There is an automatic savefile from a cartridge you played before. Would you "
-"resume this last game?"
-
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:68
-#: WF.Player.Forms/Game/GameCheckLocationView.cs:84
-#: WF.Player.Forms/Game/GameInputViewModel.cs:464
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:69
+#: WF.Player.Forms/Game/GameCheckLocationView.cs:85
+#: WF.Player.Forms/Game/GameInputViewModel.cs:514
 msgid "Unknown"
 msgstr "Unknown"
 
-#: WF.Player.Droid/Resources/values/strings.xml:38
-msgid "Use hardware compass"
-msgstr "Use hardware compass"
-
-#: WF.Player.Droid/Resources/values/strings.xml:39
-msgid ""
-"Use hardware compass for map rotation and compass screen. Bearing from GPS "
-"(better for car) will be used if disabled."
-msgstr ""
-"Use hardware compass for map rotation and compass screen. Bearing from GPS "
-"(better for car) will be used if disabled."
-
-#: WF.Player.Droid/Resources/values/strings.xml:41
-msgid ""
-"Use source for bearing defined by \"Use hardware compass\" settings for low "
-"speed. For high speed use bearing from GPS."
-msgstr ""
-"Use source for bearing defined by \"Use hardware compass\" settings for low "
-"speed. For high speed use bearing from GPS."
-
-#: WF.Player.Droid/Resources/values/strings.xml:44
-msgid "Use true bearing"
-msgstr "Use true bearing"
-
-#: WF.Player.Droid/Resources/values/strings.xml:43
-msgid ""
-"Value that define which source for bearing will be used (low speed below "
-"this value, high speed above this value)."
-msgstr ""
-"Value that define which source for bearing will be used (low speed below "
-"this value, high speed above this value)."
-
-#: WF.Player.Droid/Resources/values/strings.xml:11
-msgid "Vibrate"
-msgstr "Vibrate"
-
-#: WF.Player.Droid/Resources/values/strings.xml:12
-msgid "Vibrate each time a button is pressed"
-msgstr "Vibrate each time a button is pressed"
+#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:142
+msgid "Version: {0}"
+msgstr "Version: {0}"
 
 #. West
 #: WF.Player.Forms/Services/Conversion/Converter.cs:158
 msgid "W"
 msgstr "W"
 
-#: WF.Player.Droid/Resources/values/strings.xml:4
-msgid "WF.Player.Android"
-msgstr "WF.Player.Android"
-
-#: WF.Player.Droid/Resources/values/strings.xml:35
-msgid "Width of screen"
-msgstr "Width of screen"
-
-#: WF.Player.Forms/Game/GameMainViewModel.cs:910
+#: WF.Player.Forms/Game/GameMainViewModel.cs:914
 msgid "Would you like to save the current game?"
 msgstr "Would you like to save the current game?"
 
-#: WF.Player.Forms/Game/GameInputViewModel.cs:304
-msgid "Write your input here..."
-msgstr "Write your input here..."
+#. A short text, because of size. If it is to long, than entry filed hides Ok button
+#: WF.Player.Forms/Game/GameInputViewModel.cs:310
+msgid "Write input here..."
+msgstr "Write input here..."
 
 msgid "Yes"
 msgstr "Yes"
 
-#: WF.Player.Forms/Game/GameMainViewModel.cs:210
-#: WF.Player.Forms/Game/GameMainViewModel.cs:624
-#: WF.Player.Forms/Game/GameMainViewModel.cs:1323
+#: WF.Player.Forms/Game/GameMainViewModel.cs:211
+#: WF.Player.Forms/Game/GameMainViewModel.cs:628
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1333
 msgid "You See"
 msgstr "You See"
+
+#~ msgid "Alignment"
+#~ msgstr "Alignment"
+
+#~ msgid "Alignment of text"
+#~ msgstr "Alignment of text"
+
+#~ msgid "Auto change"
+#~ msgstr "Auto change"
+
+#~ msgid "Blue"
+#~ msgstr "Blue"
+
+#~ msgid "Center align"
+#~ msgstr "Center align"
+
+#~ msgid "Dark"
+#~ msgstr "Dark"
+
+#~ msgid ""
+#~ "Filter applied to orientation. Stronger filter cause slower reactions, "
+#~ "but fluent movement."
+#~ msgstr ""
+#~ "Filter applied to orientation. Stronger filter cause slower reactions, "
+#~ "but fluent movement."
+
+#~ msgid "Focus"
+#~ msgstr "Focus"
+
+#~ msgid "Focus input field when dialog appears"
+#~ msgstr "Focus input field when dialog appears"
+
+#~ msgid "Font size of dialog text"
+#~ msgstr "Font size of dialog text"
+
+#~ msgid "Font size of text in sp. Default is 18."
+#~ msgstr "Font size of text in sp. Default is 18."
+
+#~ msgid "Fontsize"
+#~ msgstr "Fontsize"
+
+#~ msgid "Half height of screen"
+#~ msgstr "Half height of screen"
+
+#~ msgid "Heavy filter"
+#~ msgstr "Heavy filter"
+
+#~ msgid "Hello World, Click Me!"
+#~ msgstr "Hello World, Click Me!"
+
+#~ msgid "If enabled use true bearing. Otherwise use magnetic bearing."
+#~ msgstr "If enabled use true bearing. Otherwise use magnetic bearing."
+
+#~ msgid "Image"
+#~ msgstr "Image"
+
+#~ msgid "Input"
+#~ msgstr "Input"
+
+#~ msgid "Left align"
+#~ msgstr "Left align"
+
+#~ msgid "Light filter"
+#~ msgstr "Light filter"
+
+#~ msgid "Medium filter"
+#~ msgstr "Medium filter"
+
+#~ msgid "No filter"
+#~ msgstr "No filter"
+
+#~ msgid "No resize"
+#~ msgstr "No resize"
+
+#~ msgid "Orientation filter"
+#~ msgstr "Orientation filter"
+
+#~ msgid "Play a sound each time a button is pressed"
+#~ msgstr "Play a sound each time a button is pressed"
+
+#~ msgid "Resize"
+#~ msgstr "Resize"
+
+#~ msgid "Resize image when displaying"
+#~ msgstr "Resize image when displaying"
+
+#~ msgid "Right align"
+#~ msgstr "Right align"
+
+#~ msgid "Sensors"
+#~ msgstr "Sensors"
+
+#~ msgid "Shrink to width of screen"
+#~ msgstr "Shrink to width of screen"
+
+#~ msgid "Sound"
+#~ msgstr "Sound"
+
+#~ msgid "Speed value"
+#~ msgstr "Speed value"
+
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#~ msgid "Theme"
+#~ msgstr "Theme"
+
+#~ msgid "Theme for this app (only updated after a restart of the app)"
+#~ msgstr "Theme for this app (only updated after a restart of the app)"
+
+#~ msgid ""
+#~ "There is an automatical savefile from a cartridge you played before. "
+#~ "Would you resume this last game?"
+#~ msgstr ""
+#~ "There is an automatic savefile from a cartridge you played before. Would "
+#~ "you resume this last game?"
+
+#~ msgid "Use hardware compass"
+#~ msgstr "Use hardware compass"
+
+#~ msgid ""
+#~ "Use hardware compass for map rotation and compass screen. Bearing from "
+#~ "GPS (better for car) will be used if disabled."
+#~ msgstr ""
+#~ "Use hardware compass for map rotation and compass screen. Bearing from "
+#~ "GPS (better for car) will be used if disabled."
+
+#~ msgid ""
+#~ "Use source for bearing defined by \"Use hardware compass\" settings for "
+#~ "low speed. For high speed use bearing from GPS."
+#~ msgstr ""
+#~ "Use source for bearing defined by \"Use hardware compass\" settings for "
+#~ "low speed. For high speed use bearing from GPS."
+
+#~ msgid "Use true bearing"
+#~ msgstr "Use true bearing"
+
+#~ msgid ""
+#~ "Value that define which source for bearing will be used (low speed below "
+#~ "this value, high speed above this value)."
+#~ msgstr ""
+#~ "Value that define which source for bearing will be used (low speed below "
+#~ "this value, high speed above this value)."
+
+#~ msgid "Vibrate"
+#~ msgstr "Vibrate"
+
+#~ msgid "Vibrate each time a button is pressed"
+#~ msgstr "Vibrate each time a button is pressed"
+
+#~ msgid "WF.Player.Android"
+#~ msgstr "WF.Player.Android"
+
+#~ msgid "Width of screen"
+#~ msgstr "Width of screen"
+
+#~ msgid "Write your input here..."
+#~ msgstr "Write your input here..."
 
 #~ msgid "No map available"
 #~ msgstr "No map available"

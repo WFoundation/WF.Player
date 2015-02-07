@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string formatted="false" name="Vernacular_P0_Actions">Aktionen</string>
-  <string formatted="false" name="Vernacular_P0_Alignment">Ausrichtung</string>
-  <string formatted="false" name="Vernacular_P0_Alignmentoftext">Ausrichtung des Textes</string>
+  <string formatted="false" name="Vernacular_P0_Activity581230125">Art: {0}</string>
   <string formatted="false" name="Vernacular_P0_Attributes">Attribute</string>
-  <string formatted="false" name="Vernacular_P0_Autochange">Automatischer Wechsel</string>
+  <string formatted="false" name="Vernacular_P0_Author581230125">Autor: {0}</string>
   <string formatted="false" name="Vernacular_P0_Automaticalsavefile">Automatische Sicherungsdatei</string>
-  <string formatted="false" name="Vernacular_P0_Blue">Blau</string>
   <string formatted="false" name="Vernacular_P0_Both">Beides</string>
   <string formatted="false" name="Vernacular_P0_By">Von</string>
   <string formatted="false" name="Vernacular_P0_Cancel">Abbruch</string>
   <string formatted="false" name="Vernacular_P0_Cartridges">Cartridges</string>
-  <string formatted="false" name="Vernacular_P0_Centeralign">Zentrieren</string>
   <string formatted="false" name="Vernacular_P0_Choose">Wählen</string>
   <string formatted="false" name="Vernacular_P0_CommentSavefile">Kommentar Sicherungsdatei</string>
   <string formatted="false" name="Vernacular_P0_CurrentAccuracy101230125">Aktuelle Genauigkeit
@@ -19,94 +16,61 @@
   <string formatted="false" name="Vernacular_P0_CurrentCoordinates101230125">Aktuelle Koordinaten
 {0}</string>
   <string formatted="false" name="Vernacular_P0_CurrentLocation">Aktuelle Position</string>
-  <string formatted="false" name="Vernacular_P0_Dark">Dunkel</string>
   <string formatted="false" name="Vernacular_P0_Description">Beschreibung</string>
   <string formatted="false" name="Vernacular_P0_Details">Details</string>
   <string formatted="false" name="Vernacular_P0_E">O</string>
   <string formatted="false" name="Vernacular_P0_Feedback">Rückmeldung</string>
-  <string formatted="false" name="Vernacular_P0_Filterappliedtoorientation46Strongerfiltercauseslowerreactions44butfluentmovement46">Filter für die Orientierung. Stärkerer Filter führt zu langsameren Reaktionen, aber flüssigeren Bewegungen.</string>
-  <string formatted="false" name="Vernacular_P0_Focus">Fokus</string>
-  <string formatted="false" name="Vernacular_P0_Focusinputfieldwhendialogappears">Eingabefeld fokussieren wenn Dialog erscheint</string>
+  <string formatted="false" name="Vernacular_P0_Flash">Licht</string>
   <string formatted="false" name="Vernacular_P0_Focuson">Fokussieren auf</string>
-  <string formatted="false" name="Vernacular_P0_Fontsize">Zeichengröße</string>
-  <string formatted="false" name="Vernacular_P0_Fontsizeofdialogtext">Buchstabengröße von Dialogtext</string>
-  <string formatted="false" name="Vernacular_P0_Fontsizeoftextinsp46Defaultis1846">Buchstabengröße von Text in sp. Vorgabe ist 18.</string>
   <string formatted="false" name="Vernacular_P0_Formuchfunwiththecartridge44youshouldwaitforagoodaccuracyofyourGPSsignal46">Bevor Du die Cartridge startest, solltest Du warten, bis Du ein gutes Satellitensignal hast.</string>
   <string formatted="false" name="Vernacular_P0_Gamefield">Spielfeld</string>
   <string formatted="false" name="Vernacular_P0_GameMenu">Spielmenü</string>
   <string formatted="false" name="Vernacular_P0_GPSCheck">GPS Überprüfung</string>
-  <string formatted="false" name="Vernacular_P0_Halfheightofscreen">Halbe Höhe des Bildschirmes</string>
-  <string formatted="false" name="Vernacular_P0_Heavyfilter">Starker Filter</string>
-  <string formatted="false" name="Vernacular_P0_HelloWorld44ClickMe33">Hallo, drücke mich!</string>
   <string formatted="false" name="Vernacular_P0_Here">Hier</string>
   <string formatted="false" name="Vernacular_P0_History">Verlauf</string>
   <string formatted="false" name="Vernacular_P0_Hybrid">Hybrid</string>
-  <string formatted="false" name="Vernacular_P0_Ifenabledusetruebearing46Otherwiseusemagneticbearing46">Wenn angewählt, dann benutze wahre Peilung. Ansonsten benutze magnetische Peilung.</string>
-  <string formatted="false" name="Vernacular_P0_Image">Bild</string>
-  <string formatted="false" name="Vernacular_P0_Input">Eingabe</string>
   <string formatted="false" name="Vernacular_P0_Inside">Innerhalb</string>
   <string formatted="false" name="Vernacular_P0_Inventory">Inventar</string>
-  <string formatted="false" name="Vernacular_P0_Leftalign">Links ausgerichtet</string>
   <string formatted="false" name="Vernacular_P0_Light">Hell</string>
-  <string formatted="false" name="Vernacular_P0_Lightfilter">Leichter Filter</string>
   <string formatted="false" name="Vernacular_P0_Loading464646">Laden…</string>
   <string formatted="false" name="Vernacular_P0_Logs">Logs</string>
   <string formatted="false" name="Vernacular_P0_Map">Karte</string>
   <string formatted="false" name="Vernacular_P0_Maptype">Kartenart</string>
-  <string formatted="false" name="Vernacular_P0_Mediumfilter">Mittlerer Filter</string>
   <string formatted="false" name="Vernacular_P0_Menu">﻿Menü</string>
   <string formatted="false" name="Vernacular_P0_N">N</string>
+  <string formatted="false" name="Vernacular_P0_Newfolder">Neuer Ordner</string>
+  <string formatted="false" name="Vernacular_P0_Newfoldername">Name des neuen Ordners</string>
   <string formatted="false" name="Vernacular_P0_No">Nein</string>
   <string formatted="false" name="Vernacular_P0_Nodescriptionavailable">Keine Beschreibung vorhanden</string>
-  <string formatted="false" name="Vernacular_P0_Nofilter">Kein Filter</string>
   <string formatted="false" name="Vernacular_P0_Noitems">Keine Gegenstände</string>
   <string formatted="false" name="Vernacular_P0_Nonewtasks">Keine neuen Aufgaben</string>
-  <string formatted="false" name="Vernacular_P0_Noresize">Keine Größenänderung</string>
   <string formatted="false" name="Vernacular_P0_Nothingavailable">Nichts verfügbar</string>
   <string formatted="false" name="Vernacular_P0_Nothingofinterest">Nichts von Interesse</string>
   <string formatted="false" name="Vernacular_P0_Nowheretogo">Keine Orte</string>
   <string formatted="false" name="Vernacular_P0_Ok">Ok</string>
-  <string formatted="false" name="Vernacular_P0_Orientationfilter">Orientierungsfilter</string>
   <string formatted="false" name="Vernacular_P0_Overview">Überblick</string>
-  <string formatted="false" name="Vernacular_P0_Playasoundeachtimeabuttonispressed">Spiele jedesmal, wenn eine Taste gedrückt wird, einen Ton</string>
+  <string formatted="false" name="Vernacular_P0_Parentdirectory">Übergeordnetes Verzeichnis</string>
+  <string formatted="false" name="Vernacular_P0_Path">Pfad</string>
   <string formatted="false" name="Vernacular_P0_Pleasewait464646">Bitte warten…</string>
   <string formatted="false" name="Vernacular_P0_Provideacommenttoidentifythissavefile">Bitte gib einen Kommentar für diese Sicherungsdatei ein, damit Du sie später wieder zuordnen kannst.</string>
   <string formatted="false" name="Vernacular_P0_Quit">Beenden</string>
-  <string formatted="false" name="Vernacular_P0_Resize">Größenänderung</string>
-  <string formatted="false" name="Vernacular_P0_Resizeimagewhendisplaying">Größenänderung des Bildes beim Anzeigen</string>
-  <string formatted="false" name="Vernacular_P0_Rightalign">Rechts ausrichten</string>
   <string formatted="false" name="Vernacular_P0_S">S</string>
   <string formatted="false" name="Vernacular_P0_Satellite">Satellit</string>
   <string formatted="false" name="Vernacular_P0_Save">Sichern</string>
   <string formatted="false" name="Vernacular_P0_SaveGame">Spiel sichern</string>
-  <string formatted="false" name="Vernacular_P0_Sensors">Sensoren</string>
+  <string formatted="false" name="Vernacular_P0_Select">Auswählen</string>
   <string formatted="false" name="Vernacular_P0_Settings">Einstellungen</string>
-  <string formatted="false" name="Vernacular_P0_Shrinktowidthofscreen">Auf die Größe des Bildschirms verkleinern</string>
-  <string formatted="false" name="Vernacular_P0_Sound">Klang</string>
-  <string formatted="false" name="Vernacular_P0_Speedvalue">Geschwindigkeitswert</string>
   <string formatted="false" name="Vernacular_P0_Start">Start</string>
   <string formatted="false" name="Vernacular_P0_Startanyway">Trotzdem starten</string>
   <string formatted="false" name="Vernacular_P0_StartingLocation">Startpunkt</string>
   <string formatted="false" name="Vernacular_P0_Street">Standard</string>
   <string formatted="false" name="Vernacular_P0_Tasks">Aufgaben</string>
-  <string formatted="false" name="Vernacular_P0_Text">Text</string>
-  <string formatted="false" name="Vernacular_P0_Theme">Theme</string>
-  <string formatted="false" name="Vernacular_P0_Themeforthisapp40onlyupdatedafterarestartoftheapp41">Theme für diese App (wird erst nach einem Neustart vollständig angezeigt)</string>
-  <string formatted="false" name="Vernacular_P0_Thereisanautomaticalsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">Es gibt eine automatische Sicherungsdatei der zuletzt gespielten Cartridge. Möchtest Du diese weiterspielen?</string>
   <string formatted="false" name="Vernacular_P0_Thereisanautomaticsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">Es gibt eine automatische Sicherungsdatei der zuletzt gespielten Cartridge. Möchtest Du diese weiterspielen?</string>
   <string formatted="false" name="Vernacular_P0_Unknown">Unbekannt</string>
-  <string formatted="false" name="Vernacular_P0_Usehardwarecompass">Hardware Kompass verwenden</string>
-  <string formatted="false" name="Vernacular_P0_Usehardwarecompassformaprotationandcompassscreen46BearingfromGPS40betterforcar41willbeusedifdisabled46">Hardware Kompass für Kartenrotation und Kompassseite benutzen. Ansonsten wir die Peilung des GPS benutzt (besser für Autos).</string>
-  <string formatted="false" name="Vernacular_P0_Usesourceforbearingdefinedby34Usehardwarecompass34settingsforlowspeed46ForhighspeedusebearingfromGPS46">Benutze als Quelle für die Peilung bei niedrigen Geschwindigkeiten den unter "Hardware Kompass verwenden" eingestellten Wert. Nutze für hohe Geschwindigkeiten die Peilung des GPS.</string>
-  <string formatted="false" name="Vernacular_P0_Usetruebearing">Benutze wahre Peilung</string>
-  <string formatted="false" name="Vernacular_P0_Valuethatdefinewhichsourceforbearingwillbeused40lowspeedbelowthisvalue44highspeedabovethisvalue4146">Wert der angibt, welche Quelle für die Peilung benutzt wird (niedrige Geschwindigkeit unter diesem Wert, hohe Geschwindigkeit über diesem Wert).</string>
-  <string formatted="false" name="Vernacular_P0_Vibrate">Vibrieren</string>
-  <string formatted="false" name="Vernacular_P0_Vibrateeachtimeabuttonispressed">Vibriere jedesmal, wenn ein Knopf gedrückt wird</string>
+  <string formatted="false" name="Vernacular_P0_Version581230125">Version: {0}</string>
   <string formatted="false" name="Vernacular_P0_W">W</string>
-  <string formatted="false" name="Vernacular_P0_WF46Player46Android">WF.Player.Android</string>
-  <string formatted="false" name="Vernacular_P0_Widthofscreen">Breite des Bildschirms</string>
   <string formatted="false" name="Vernacular_P0_Wouldyouliketosavethecurrentgame63">Möchtest Du das aktuelle Spiel vor dem Beenden sichern?</string>
-  <string formatted="false" name="Vernacular_P0_Writeyourinputhere464646">Schreibe hier Deine Antwort…</string>
+  <string formatted="false" name="Vernacular_P0_Writeinputhere464646">Antwort…</string>
   <string formatted="false" name="Vernacular_P0_Yes">Ja</string>
   <string formatted="false" name="Vernacular_P0_YouSee">Umgebung</string>
 </resources>

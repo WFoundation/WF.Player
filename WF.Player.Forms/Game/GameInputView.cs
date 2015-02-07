@@ -106,12 +106,27 @@ namespace WF.Player
 
 			#endif
 
-			BottomEntry = new StackLayout 
+			var scanner = new Image 
 				{
-					Orientation = StackOrientation.Horizontal,
-					HorizontalOptions = LayoutOptions.FillAndExpand,
-					Padding = Device.OnPlatform(6, 2, 2),
+					BackgroundColor = Color.Transparent,
+					Source = "IconScan.png",
+					Aspect = Aspect.AspectFit,
+					#if __IOS__
+//					WidthRequest = 42,
+//					FontSize = 20,
+//					FontFamily = Settings.FontFamily,
+					#endif
+					HorizontalOptions = LayoutOptions.Start,
+					VerticalOptions = LayoutOptions.Center,
 				};
+
+			var tapRecognizer = new TapGestureRecognizer 
+				{
+					Command = ((GameInputViewModel)BindingContext).ScannerClicked,
+					NumberOfTapsRequired = 1
+				};
+
+			scanner.GestureRecognizers.Add(tapRecognizer);
 
 			var entry = new Entry 
 				{
@@ -127,8 +142,6 @@ namespace WF.Player
 			entry.SetBinding(Entry.PlaceholderProperty, GameInputViewModel.PlaceholderPropertyName);
 			entry.SetBinding(VisualElement.IsVisibleProperty, GameInputViewModel.HasEntryPropertyName);
 
-			BottomEntry.Children.Add(entry);
-
 			var button = new Button 
 				{
 					BackgroundColor = Color.Transparent,
@@ -138,14 +151,22 @@ namespace WF.Player
 					FontSize = 20,
 					FontFamily = Settings.FontFamily,
 					#endif
-					HorizontalOptions = LayoutOptions.FillAndExpand,
+					HorizontalOptions = LayoutOptions.End,
 					VerticalOptions = LayoutOptions.Center,
 				};
 
 			button.SetBinding(Button.CommandProperty, GameInputViewModel.ButtonClickedPropertyName); 
 
-			BottomEntry.Children.Add(button);
-		}
+//			BottomEntry.Children.Add(button);
+
+			BottomEntry = new StackLayout 
+				{
+					Orientation = StackOrientation.Horizontal,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					Padding = Device.OnPlatform(new Thickness(6, 6, 6, 6), new Thickness(6, 2, 2, 2), 2),
+					Children = {scanner, entry, button },
+				};
+			}
 
 		#endregion
 
