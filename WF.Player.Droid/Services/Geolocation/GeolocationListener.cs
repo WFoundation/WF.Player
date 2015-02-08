@@ -298,7 +298,7 @@ namespace WF.Player.Droid.Services.Geolocation
 		{
 			double azimuth;
 
-			if (!Settings.Current.GetValueOrDefault<bool>(Settings.SensorHardwareCompassAutoChange) || (_lastLocation != null && _lastLocation.Speed < Settings.Current.GetValueOrDefault<double>(Settings.SensorHardwareCompassAutoChangeValue))) {
+			if (!Settings.Current.GetValueOrDefault<bool>(Settings.SensorHardwareCompassAutoChange) || (_lastLocation != null && _lastLocation.Speed < Settings.Current.GetValueOrDefault<float>(Settings.SensorHardwareCompassAutoChangeValue))) {
 				if (!Settings.Current.GetValueOrDefault<bool>(Settings.SensorHardwareCompass))
 					// Substract 90° because the bearing 0° is in direction east
 					azimuth = _lastSensorAzimuth;

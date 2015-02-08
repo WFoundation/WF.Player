@@ -159,6 +159,22 @@ namespace WF.Player
 			grid.Children.Add(layoutDetail, 1, 2, 1, 2);
 
 			View = grid;
+
+			var update = new MenuItem 
+				{
+					Text = Catalog.GetString("Update"),
+					IsDestructive = false,
+				};
+
+			ContextActions.Add(update);
+
+			var delete = new MenuItem 
+				{
+					Text = Catalog.GetString("Delete"),
+					IsDestructive = true,
+				};
+
+			ContextActions.Add(delete);
 		}
 	}
 }
