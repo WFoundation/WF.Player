@@ -254,10 +254,10 @@
     <AndroidResource Include="Resources\drawable-hdpi\IconScan.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\IconScan.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\IconScan.png" />
-    <AndroidResource Include="Resources\values-en\vernacular_strings.xml" />
     <AndroidResource Include="Resources\values\strings.xml">
-      <Link>Resources\values-en\strings.xml</Link>
+      <Link>Resources\values\strings.xml</Link>
     </AndroidResource>
+    <AndroidResource Include="Resources\values\vernacular_strings.xml" />
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
@@ -274,7 +274,6 @@
     <Folder Include="Preferences\" />
     <Folder Include="Services\Utils\" />
     <Folder Include="Resources\values-de\" />
-    <Folder Include="Resources\values-en\" />
     <Folder Include="Services\Settings\" />
     <Folder Include="Services\Mobile\" />
     <Folder Include="Services\UserDialogs\" />
