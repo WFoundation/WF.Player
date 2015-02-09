@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.0123456789ABCDEF" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Services/Conversion/ConverterStringFormat.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Game/GameMainViewModel.cs">
     <Files>
       <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
@@ -25,7 +25,6 @@
       <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailPage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Services/Settings/Settings.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/Services/Geolocation/Geolocator.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameCheckLocationViewModel.cs" Line="1" Column="1" />
@@ -34,6 +33,14 @@
       <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/Renderer/ExtendedNavigationPageRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/MainActivity.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Services/Device/Measure.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Services/Device/IMeasure.cs" Line="43" Column="43" />
+      <File FileName="WF.Player.Forms/Common/ToolBarPage.cs" Line="31" Column="31" />
+      <File FileName="WF.Player.Forms/Game/GameDetailViewModel.cs" Line="18" Column="18" />
+      <File FileName="WF.Player.Forms/Game/GameMessageboxViewModel.cs" Line="56" Column="56" />
+      <File FileName="WF.Player.Droid/Renderer/ExtendedButtonRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Services/Device/Measure.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Renderer/ExtendedMapRenderer.cs" Line="41" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
