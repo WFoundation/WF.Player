@@ -20,9 +20,9 @@
 
 namespace WF.Player.iOS.Services.Device
 {
+	using System;
 	using Foundation;
 	using UIKit;
-	using WF.Player.Services.Settings;
 	using WF.Player.Services.Device;
 
 	public class Measure : IMeasure
@@ -30,16 +30,21 @@ namespace WF.Player.iOS.Services.Device
 		private static UIButton button;
 		private const float textSize = 20f;
 
-		public float ButtonTextSize(string text)
+		#region IMeasure implementation
+
+		public float ButtonTextSize(string text, double fontSize)
 		{
 			if (button == null) {
 				button = new UIButton();
-				button.Font = UIFont.SystemFontOfSize(Settings.FontSize);
+				button.Font = UIFont.SystemFontOfSize((nfloat)fontSize);
 			}
 
 			NSString nsText = new NSString(text);
+
 			return (float)nsText.GetSizeUsingAttributes(new UIStringAttributes() { Font = UIFont.SystemFontOfSize(textSize) }).Width + (float)button.ContentEdgeInsets.Left + (float)button.ContentEdgeInsets.Right;
 		}
+
+		#endregion
 	}
 }
 

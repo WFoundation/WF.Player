@@ -269,6 +269,7 @@ namespace WF.Player
 			var view = (GameMessageboxView)App.GameNavigation.CurrentPage;
 
 			view.Buttons.Clear();
+			view.OverflowMenuText = Catalog.GetString("Choose");
 
 			if (this.messagebox != null) 
 			{

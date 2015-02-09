@@ -737,11 +737,6 @@ namespace WF.Player
 				return;
 			}
 
-			// Get active view
-			var view = (GameDetailView)App.GameNavigation.CurrentPage;
-
-			view.Buttons.Clear();
-
 			if (this.activeObject is Thing)
 			{
 				Thing thing = (Thing)this.activeObject;
@@ -752,28 +747,15 @@ namespace WF.Player
 					return;
 				}
 
-				// Calculate width of all text for the commands
-				double sumTextWidth = 0;
+				// Get active view
+				var view = (GameDetailView)App.GameNavigation.CurrentPage;
+
+				view.Buttons.Clear();
+				view.OverflowMenuText = Catalog.GetString("Actions");
 
 				foreach (WF.Player.Core.Command c in thing.ActiveCommands)
 				{
-					sumTextWidth += Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(c.Text));
-				}
-
-				sumTextWidth += 6 * (thing.ActiveCommands.Count - 1);
-
-				if (sumTextWidth > (view.BottomLayout.Width - (2 * 10)) * Device.OnPlatform<float>(1.0f, 1.2f, 1.0f))
-				{
-					// If there are more text than possible, display action menu
-					view.Buttons.Add(new ToolTextButton(Catalog.GetString("Actions"), new Xamarin.Forms.Command(HandleCommandsClicked)));
-					return;
-				}
-				else
-				{
-					foreach (WF.Player.Core.Command c in thing.ActiveCommands)
-					{
-						view.Buttons.Add(new ToolTextButton(c.Text, new Xamarin.Forms.Command(() => ExecuteCommand(c))));
-					}
+					view.Buttons.Add(new ToolTextButton(c.Text, new Xamarin.Forms.Command(() => ExecuteCommand(c))));
 				}
 			}
 		}

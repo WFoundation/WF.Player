@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="WF.Player.Droid/WF.Player.Droid.csproj">
+﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.0123456789ABCDEF" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Services/Conversion/ConverterStringFormat.cs">
     <Files>

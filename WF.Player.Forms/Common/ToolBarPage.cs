@@ -15,11 +15,14 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Services.UserDialogs;
+using Vernacular;
 
 namespace WF.Player
 {
 	using System;
 	using System.Collections.ObjectModel;
+	using WF.Player.Controls;
 	using WF.Player.Services.Device;
 	using Xamarin.Forms;
 
@@ -61,26 +64,41 @@ namespace WF.Player
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the overflow menu text.
+		/// </summary>
+		/// <value>The overflow menu text.</value>
+		public string OverflowMenuText { get; set; }
+
 		#endregion
 
 		/// <summary>
 		/// Handles the collection changed.
 		/// </summary>
+		/// <remarks>
+		/// The bottom could only have one sort of buttons: text or icons.
+		/// If there are more buttons with text than the bottom could hold, than the overflow menu is shown.
+		/// </remarks>
 		/// <param name="sender">Sender of event.</param>
 		/// <param name="e">Collection changed event arguments.</param>
 		private void HandleCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 			BottomLayout.Children.Clear();
 
+			var textLayout = new StackLayout() {
+				Orientation = StackOrientation.Horizontal,
+				HorizontalOptions = LayoutOptions.Fill,
+			};
+
 			foreach (ToolButton t in buttons)
 			{
 				if (t is ToolTextButton)
 				{
-					var button = new Button() 
+					var button = new ExtendedButton() 
 					{
 						Text = (t is ToolTextButton) ? ((ToolTextButton)t).Text : null,
 						TextColor = App.Colors.Tint,
-						Image = (t is ToolIconButton) ? ((ToolIconButton)t).Icon : null,
+						Image = null,
 						HorizontalOptions = LayoutOptions.FillAndExpand,
 						BackgroundColor = Color.Transparent,
 						Command = new Command((parameter) => KeyClick(t.Command, parameter)),
@@ -98,11 +116,15 @@ namespace WF.Player
 					{
 						BottomLayout.Children.Add(button);
 					}
+					else
+					{
+						textLayout.Children.Add(button);
+					}
 				}
 
 				if (t is ToolIconButton)
 				{
-					var button = new Button() 
+					var button = new ExtendedButton() 
 					{
 						Text = (t is ToolTextButton) ? ((ToolTextButton)t).Text : null,
 						TextColor = App.Colors.Tint,
@@ -134,81 +156,135 @@ namespace WF.Player
 				// We only have one button, so set width to maximum width 
 				BottomLayout.Padding = padding;
 				buttons[0].Button.WidthRequest = BottomLayout.Width - padding.Left - padding.Right;
+
 				return;
 			}
 
-			// So, now we know, that we have more than one text button, so calc correct size for buttons
+			// So, now we know, that we have more than one text button.
 
+			// Check, if all buttons fit into the bottom grid.
 			double sumWidth = 0;
 
 			// Get width of all buttons
 			for (int i = 0; i < buttons.Count; i++)
 			{
-				sumWidth += Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[i].Button.Text));
+				sumWidth += ((ToolTextButton)buttons[i]).TextWidth;
 			}
 
-			// Substract spacing between
-			sumWidth -= spacing * (buttons.Count - 1);
+			// Add spacing between
+			sumWidth += spacing * (buttons.Count - 1);
 
-			// Create grid for buttons
-			Grid grid = new Grid() {
-				VerticalOptions = LayoutOptions.FillAndExpand,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				RowDefinitions = {
-					new RowDefinition { Height = GridLength.Auto },
-				},
-				ColumnSpacing = spacing,
-			};
-
-			// Create columns for buttons
-			var colDefs = new ColumnDefinitionCollection();
-
-			if (sumWidth > BottomLayout.Width - padding.Left - padding.Right)
+			// Now check, if all buttons want fit into the bottom line
+			if (sumWidth > DependencyService.Get<IScreen>().Width - padding.Left - padding.Right)
 			{
-				// Buttons are wider than possible space (could only happen with Messagebox), so change width of column according to space
-				colDefs.Add(new ColumnDefinition { Width = new GridLength((BottomLayout.Width - padding.Left - padding.Right) * Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[0].Button.Text)) / sumWidth, GridUnitType.Absolute) });
+				// No. There are more buttons than space, so create an extra menu
+
+				// Create button for extra menu
+				var button = new ExtendedButton() 
+					{
+						Text = OverflowMenuText,
+						TextColor = App.Colors.Tint,
+						Image = null,
+						HorizontalOptions = LayoutOptions.FillAndExpand,
+						BackgroundColor = Color.Transparent,
+						Command = new Command(HandleOverflowMenuClick),
+						#if __IOS__
+						Font = Font.SystemFontOfSize(20),
+						#endif
+					};
+
+				BottomLayout.Children.Add(button);
 			}
 			else
 			{
-				// Set coulmn width to real size of button
-				colDefs.Add(new ColumnDefinition { Width = new GridLength(Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[0].Button.Text)), GridUnitType.Absolute) });
+				// Yes. All buttons should fit into the bottom line.
+
+				// Create grid for buttons
+				Grid grid = new Grid() {
+					VerticalOptions = LayoutOptions.FillAndExpand,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					RowDefinitions = {
+						new RowDefinition { Height = GridLength.Auto },
+					},
+					ColumnSpacing = 0, //spacing,
+				};
+
+				// Create columns for buttons
+				var colDefs = new ColumnDefinitionCollection();
+
+//				if (sumWidth > BottomLayout.Width - padding.Left - padding.Right)
+//				{
+//					// Buttons are wider than possible space (could only happen with Messagebox), so change width of column according to space
+//					colDefs.Add(new ColumnDefinition { Width = new GridLength((BottomLayout.Width - padding.Left - padding.Right) * Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[0].Button.Text, buttons[0].Button.FontSize)) / sumWidth, GridUnitType.Absolute) });
+//				}
+//				else
+//				{
+					// Set coulmn width to real size of button
+				colDefs.Add(new ColumnDefinition { Width = new GridLength(((ToolTextButton)buttons[0]).TextWidth + padding.Left + padding.Right, GridUnitType.Absolute) });
+//				}
+
+				// Set layout of first button
+				buttons[0].Button.HorizontalOptions = LayoutOptions.StartAndExpand;
+
+				// Set width (autosize) and layout of all buttons between first and last
+				for (int i = 1; i < buttons.Count - 1; i++)
+				{
+					colDefs.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); //((ToolTextButton)buttons[i]).TextWidth + padding.Left + padding.Right, GridUnitType.Absolute) });
+					buttons[i].Button.HorizontalOptions = LayoutOptions.CenterAndExpand;
+				}
+
+				if (buttons.Count == 2)
+				{
+					var width2 = ((ToolTextButton)buttons[1]).TextWidth;
+					// If we only have two buttons, than set width to autosize
+					colDefs.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); // Width = GridLength.Auto }); // 
+					buttons[buttons.Count-1].Button.HorizontalOptions = LayoutOptions.EndAndExpand;
+				}
+				else
+				{
+					// If we have more than 2 buttons, than set width to real size of button
+					colDefs.Add(new ColumnDefinition { Width = new GridLength(((ToolTextButton)buttons[buttons.Count-1]).TextWidth + padding.Left + padding.Right, GridUnitType.Absolute) }); // Width = GridLength.Auto }); // 
+					buttons[buttons.Count-1].Button.HorizontalOptions = LayoutOptions.EndAndExpand;
+				}
+
+				// Set column definitions for the buttons
+				grid.ColumnDefinitions = colDefs;
+
+				// Add all buttons to the grid
+				for (int i = 0; i < buttons.Count; i++)
+				{
+//					grid.Children.Add(new BoxView() {BackgroundColor = Color.FromRgb(i*64, i*64, i*64),}, i, 0);
+					grid.Children.Add(buttons[i].Button, i, 0);
+				}
+
+				// Add grid to BottomLayout
+				BottomLayout.Padding = padding;
+				BottomLayout.Children.Add(grid);
 			}
+		}
 
-			// Set layout of first button
-			buttons[0].Button.HorizontalOptions = LayoutOptions.StartAndExpand;
+		/// <summary>
+		/// Clicked on button.
+		/// </summary>
+		/// <param name="command">Command to execute.</param>
+		/// <param name="parameter">Parameter for command.</param>
+		private void HandleOverflowMenuClick(object parameter)
+		{
+			// Play any sound, if allowed
+			App.Click();
 
-			// Set width (autosize) and layout of all buttons between first and last
-			for (int i = 1; i < buttons.Count-1; i++)
+			// Create overflow menu
+			// Now show a list with all active commands
+			var cfg = new ActionSheetConfig().SetTitle(OverflowMenuText);
+
+			foreach (var b in buttons)
 			{
-				colDefs.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-				buttons[i].Button.HorizontalOptions = LayoutOptions.CenterAndExpand;
+				cfg.Add(b.Button.Text, () => KeyClick(b.Command, b.Button.Text));
 			}
 
-			if (buttons.Count == 2)
-			{
-				// If we only have two buttons, than set width to autosize
-				colDefs.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); // Width = GridLength.Auto }); // 
-				buttons[buttons.Count - 1].Button.HorizontalOptions = LayoutOptions.EndAndExpand;
-			}
-			else
-			{
-				// If we have more than 2 buttons, than set width to real size of button
-				colDefs.Add(new ColumnDefinition { Width = new GridLength(Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[buttons.Count - 1].Button.Text)), GridUnitType.Absolute) }); // Width = GridLength.Auto }); // 
-				buttons[buttons.Count - 1].Button.HorizontalOptions = LayoutOptions.EndAndExpand;
-			}
+			cfg.Cancel = new ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 
-			// Set column definitions for the buttons
-			grid.ColumnDefinitions = colDefs;
-
-			// Add all buttons to the grid
-			for (int i = 0; i < buttons.Count; i++)
-			{
-				grid.Children.Add(buttons[i].Button, i, 0);
-			}
-
-			// Add grid to BottomLayout
-			BottomLayout.Padding = padding;
-			BottomLayout.Children.Add(grid);
+			DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
 		}
 
 		/// <summary>
@@ -251,7 +327,7 @@ namespace WF.Player
 		/// Gets or sets the button view.
 		/// </summary>
 		/// <value>The button.</value>
-		public Button Button { get; set; }
+		public ExtendedButton Button { get; set; }
 
 		/// <summary>
 		/// Gets the command.
@@ -301,6 +377,8 @@ namespace WF.Player
 	/// </summary>
 	public class ToolTextButton : ToolButton
 	{
+		private int textWidth;
+
 		#region Constructor
 
 		/// <summary>
@@ -322,6 +400,14 @@ namespace WF.Player
 		/// </summary>
 		/// <value>The text.</value>
 		public string Text { get; internal set; }
+
+		public int TextWidth
+		{ 
+			get
+			{
+				return (int)Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(Button.Text, Button.FontSize));
+			}
+		}
 
 		#endregion
 	}

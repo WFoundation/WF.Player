@@ -22,18 +22,18 @@ using WF.Player.Droid;
 using Xamarin.Forms.Platform.Android;
 using Android.Graphics;
 
-[assembly: ExportRendererAttribute (typeof (Button), typeof (CustomButtonRenderer))]
+[assembly: ExportRendererAttribute (typeof (WF.Player.Controls.ExtendedButton), typeof (WF.Player.Controls.Droid.ExtendedButtonRenderer))]
 
-namespace WF.Player.Droid
+namespace WF.Player.Controls.Droid
 {
-	public class CustomButtonRenderer : ButtonRenderer
+	public class ExtendedButtonRenderer : ButtonRenderer
 	{
 		int _viewWidth;
 		int _viewHeight;
 		float _textBaseline;
 		Paint _textPaint;
 
-		public CustomButtonRenderer()
+		public ExtendedButtonRenderer()
 		{
 		}
 
@@ -56,7 +56,6 @@ namespace WF.Player.Droid
 			base.OnElementChanged(e);
 
 			Control.SetSingleLine(true);
-			Control.Ellipsize = global::Android.Text.TextUtils.TruncateAt.End;
 			Control.SetPadding(10, Control.PaddingTop, 10, Control.PaddingBottom);
 
 			_textPaint = Control.Paint;
@@ -74,19 +73,28 @@ namespace WF.Player.Droid
 			_viewHeight = h;
 
 			// first determine font point size
-			AdjustTextSize();
+//			AdjustTextSize();
 		}
 
-		void AdjustTextSize() 
+		private Rect CalcTextSize()
 		{
 			if (((Button)Element).Font.FontSize != 0)
 				_textPaint.TextSize = (float)((Button)Element).Font.FontSize;
 
+			// Set text to normal width
 			_textPaint.TextScaleX = 1.0f;
+
 			Rect bounds = new Rect();
 
 			// Ask the paint for the bounding rect if it were to draw this text
 			_textPaint.GetTextBounds(((Button)Element).Text, 0, ((Button)Element).Text.Length, bounds);
+
+			return bounds;
+		}
+
+		void AdjustTextSize() 
+		{
+			var bounds = CalcTextSize();
 
 			// Get the height of text that would have been produced
 			int textHeight = bounds.Bottom - bounds.Top;

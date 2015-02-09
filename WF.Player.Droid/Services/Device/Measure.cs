@@ -21,24 +21,32 @@
 namespace WF.Player.Droid.Services.Device
 {
 	using System;
-	using Xamarin.Forms;
-	using WF.Player.Services.Device;
+	using Android.Content.Res;
 	using Android.Graphics;
+	using WF.Player.Services.Device;
+	using Xamarin.Forms;
 
 	public class Measure : IMeasure
 	{
 		static global::Android.Widget.Button _button;
 
-		public float ButtonTextSize(string text)
+		public float ButtonTextSize(string text, double fontSize)
 		{
 			if (_button == null) {
 				_button = new global::Android.Widget.Button(Forms.Context);
 				_button.SetPadding(10, _button.PaddingTop, 10, _button.PaddingBottom);
+//				_button.SetPadding(0, _button.PaddingTop, 0, _button.PaddingBottom);
+
+			}
+
+			if (fontSize != 0)
+			{
+				_button.TextSize = (float)fontSize;
 			}
 
 			var bounds = new Rect();
 			_button.Paint.GetTextBounds(text, 0, text.Length, bounds);
-			return bounds.Right - bounds.Left + _button.PaddingLeft + _button.PaddingRight;
+			return (bounds.Left + bounds.Width() + _button.PaddingLeft + _button.PaddingRight) / Resources.System.DisplayMetrics.Density;
 		}
 	}
 }

@@ -114,6 +114,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\BarCode\BarCodeFormat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BarCode\BarCodeResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BarCode\IBarCodeScanner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />

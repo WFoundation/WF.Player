@@ -1,6 +1,6 @@
-// <copyright file="IMeasure.cs" company="Wherigo Foundation">
+﻿// <copyright file="ExtendedButton.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
-//   Copyright (C) 2012-2014  Dirk Weltz (mail@wfplayer.com)
+//   Copyright (C) 2012-2015  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
 
 // This program is free software: you can redistribute it and/or modify
@@ -16,19 +16,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace WF.Player.Services.Device
+namespace WF.Player.Controls
 {
-	/// <summary>
-	/// Interface for measurement of different objects.
-	/// </summary>
-	public interface IMeasure
+	using Xamarin.Forms;
+
+	public class ExtendedButton : Button
 	{
-		/// <summary>
-		/// Calculates size of text on a Button.
-		/// </summary>
-		/// <returns>Size of text.</returns>
-		/// <param name="text">Text for calculation.</param>
-		/// <param name="fontSize">Size of font.</param>
-		float ButtonTextSize(string text, double fontSize);
 	}
 }
+

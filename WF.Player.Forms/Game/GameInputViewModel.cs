@@ -456,7 +456,7 @@ namespace WF.Player
 		/// Called when the user has selected an answer from the multiple choice question.
 		/// </summary>
 		/// <param name="result">Result of the multiple choice question.</param>
-		private void MultipleChoiceSelected(string result)
+		private void MultipleChoiceSelected(object result)
 		{
 			Device.BeginInvokeOnMainThread(() =>
 				{
@@ -467,7 +467,7 @@ namespace WF.Player
 					App.Game.ShowScreen(ScreenType.Last, null);
 
 					// Handle input of dialog
-					this.input.GiveResult(result);
+					this.input.GiveResult((string)result);
 				});
 		}
 
@@ -499,18 +499,29 @@ namespace WF.Player
 				return;
 			}
 
-			if (this.input.InputType == InputType.MultipleChoice)
-			{
-				text = Catalog.GetString("Choose");
-			}
-
+			// Show unknown button and nothing else
 			if (this.input.InputType == InputType.Unknown)
 			{
-				text = Catalog.GetString("Unknown");
+				view.Buttons.Clear();
+				view.Buttons.Add(new ToolTextButton(Catalog.GetString("Unknown"), new Xamarin.Forms.Command(() => {
+					App.Game.ShowScreen(ScreenType.Last, null);
+					this.input.GiveResult(null);})));
+
+				return;
 			}
 
-			view.Buttons.Clear();
-			view.Buttons.Add(new ToolTextButton(text, new Xamarin.Forms.Command(HandleButtonClicked)));
+			// For multiple choice add all items to bottom layout
+			if (this.input.InputType == InputType.MultipleChoice)
+			{
+				view.OverflowMenuText = Catalog.GetString("Choose");
+
+				view.Buttons.Clear();
+
+				foreach (var c in this.input.Choices)
+				{
+					view.Buttons.Add(new ToolTextButton(c, new Xamarin.Forms.Command((param) => { MultipleChoiceSelected(param); })));
+				}
+			}
 		}
 
 		#endregion

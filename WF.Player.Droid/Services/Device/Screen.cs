@@ -47,7 +47,7 @@ namespace WF.Player.Droid.Services.Device
 		#region IScreen implementation
 
 		/// <summary>
-		/// Gets the height of screen.
+		/// Gets the height of screen in dpi (unit of XF).
 		/// </summary>
 		/// <value>The height.</value>
 		public int Height 
@@ -59,7 +59,7 @@ namespace WF.Player.Droid.Services.Device
 		}
 
 		/// <summary>
-		/// Gets the width of screen.
+		/// Gets the width of screen in dpi (unit of XF).
 		/// </summary>
 		/// <value>The width.</value>
 		public int Width 
