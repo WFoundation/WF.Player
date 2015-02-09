@@ -27,7 +27,7 @@ namespace WF.Player
 
 		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
-			return string.Format((string)parameter, value);
+			return string.Format((string)parameter, value ?? string.Empty);
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
