@@ -284,7 +284,7 @@ namespace WF.Player
 
 			cfg.Cancel = new ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 
-			DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
+			UserDialogs.Instance.ActionSheet(cfg);
 		}
 
 		/// <summary>

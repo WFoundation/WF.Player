@@ -15,10 +15,6 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using WF.Player.Services.Settings;
-using WF.Player.Droid.Services.Core;
-using Android.Runtime;
-using WF.Player.Controls;
 
 namespace WF.Player.Droid
 {
@@ -26,6 +22,9 @@ namespace WF.Player.Droid
 	using Android.Content;
 	using Android.OS;
 	using Vernacular;
+	using WF.Player.Droid.Services.Core;
+	using WF.Player.Services.Settings;
+	using WF.Player.Services.UserDialogs;
 	using Xamarin.Forms.Platform.Android;
 
 	[Activity (Label = "WF.Player", 
@@ -55,6 +54,8 @@ namespace WF.Player.Droid
 			// Init Xamarin.Forms
 			Xamarin.Forms.Forms.Init (this, bundle);
 			Xamarin.FormsMaps.Init(this, bundle);
+
+			UserDialogs.Init(this);
 
 			if (Settings.IsDarkTheme) 
 			{

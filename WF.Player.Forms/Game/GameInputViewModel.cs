@@ -270,7 +270,7 @@ namespace WF.Player
 		{ 
 			get
 			{ 
-				return this.input != null && this.input.InputType == InputType.Text; 
+				return this.input != null && this.input.InputType == WF.Player.Core.InputType.Text; 
 			}
 		}
 
@@ -391,13 +391,13 @@ namespace WF.Player
 			// Get active view
 			var view = (GameInputView)App.GameNavigation.CurrentPage;
 
-			if (this.input.InputType == InputType.Unknown)
+			if (this.input.InputType == WF.Player.Core.InputType.Unknown)
 			{
 				App.Game.ShowScreen(ScreenType.Last, null);
 				this.input.GiveResult(null);
 			}
 
-			if (this.input.InputType == InputType.Text)
+			if (this.input.InputType == WF.Player.Core.InputType.Text)
 			{
 				// Click for button
 				App.Click();
@@ -409,7 +409,7 @@ namespace WF.Player
 				this.input.GiveResult(inputText);
 			}
 
-			if (this.input.InputType == InputType.MultipleChoice)
+			if (this.input.InputType == WF.Player.Core.InputType.MultipleChoice)
 			{
 				var cfg = new ActionSheetConfig().SetTitle(Catalog.GetString("Choose"));
 
@@ -425,7 +425,7 @@ namespace WF.Player
 
 				cfg.Cancel = new ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 
-				DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
+				UserDialogs.Instance.ActionSheet(cfg);
 			}
 		}
 
@@ -491,7 +491,7 @@ namespace WF.Player
 
 			string text = string.Empty;
 
-			if (this.input.InputType == InputType.Text)
+			if (this.input.InputType == WF.Player.Core.InputType.Text)
 			{
 				view.BottomLayout.Children.Clear();
 				view.BottomLayout.Children.Add(view.BottomEntry);
@@ -500,7 +500,7 @@ namespace WF.Player
 			}
 
 			// Show unknown button and nothing else
-			if (this.input.InputType == InputType.Unknown)
+			if (this.input.InputType == WF.Player.Core.InputType.Unknown)
 			{
 				view.Buttons.Clear();
 				view.Buttons.Add(new ToolTextButton(Catalog.GetString("Unknown"), new Xamarin.Forms.Command(() => {
@@ -511,7 +511,7 @@ namespace WF.Player
 			}
 
 			// For multiple choice add all items to bottom layout
-			if (this.input.InputType == InputType.MultipleChoice)
+			if (this.input.InputType == WF.Player.Core.InputType.MultipleChoice)
 			{
 				view.OverflowMenuText = Catalog.GetString("Choose");
 

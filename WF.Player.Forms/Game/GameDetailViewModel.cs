@@ -607,7 +607,7 @@ namespace WF.Player
 
 			cfg.Cancel = new ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 
-			DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
+			UserDialogs.Instance.ActionSheet(cfg);
 		}
 
 		/// <summary>
@@ -644,12 +644,12 @@ namespace WF.Player
 
 					cfg.Cancel = new ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 
-					DependencyService.Get<IUserDialogService>().ActionSheet(cfg);
+					UserDialogs.Instance.ActionSheet(cfg);
 				} 
 				else 
 				{
 					// There are no target for this command
-					await DependencyService.Get<IUserDialogService>().AlertAsync(command.EmptyTargetListText, command.Text, Catalog.GetString("Ok"));
+					await UserDialogs.Instance.AlertAsync(command.EmptyTargetListText, command.Text, Catalog.GetString("Ok"));
 					App.Click();
 				}
 			} 

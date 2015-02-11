@@ -1,161 +1,277 @@
-using System;
-using System.Linq;
-using WF.Player.Services.UserDialogs.iOS;
-using UIKit;
-using Xamarin.Forms;
+[assembly: Xamarin.Forms.Dependency(typeof(WF.Player.iOS.Services.UserDialogs.UserDialogService))]
 
-[assembly: Dependency(typeof(UserDialogService))]
-
-namespace WF.Player.Services.UserDialogs.iOS
+namespace WF.Player.iOS.Services.UserDialogs
 {
-	public class UserDialogService : AbstractUserDialogService
+	using System;
+	using System.Linq;
+	using CoreGraphics;
+	using UIKit;
+	using Vernacular;
+	using WF.Player.Services.UserDialogs;
+	using Xamarin.Forms;
+
+	public class UserDialogService : AbstractUserDialogs
 	{
+		public override void Alert(AlertConfig config)
+		{
+			UIApplication.SharedApplication.InvokeOnMainThread(() =>
+				{
+					if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+					{
+						var alert = UIAlertController.Create(config.Title ?? String.Empty, config.Message, UIAlertControllerStyle.Alert);
+						alert.AddAction(UIAlertAction.Create(Catalog.GetString("Ok"), UIAlertActionStyle.Default, x =>
+								{
+									if (config.OnOk != null)
+										config.OnOk();
+								}));
+						this.Present(alert);
+					}
+					else
+					{
+						var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, null, config.OkText);
+						if (config.OnOk != null)
+							dlg.Clicked += (s, e) => config.OnOk();
+						dlg.Show();
+					}
+				});
+		}
 
 		public override void ActionSheet(ActionSheetConfig config)
 		{
-			Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+			if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+			{
+				var sheet = UIAlertController.Create(config.Title ?? String.Empty, String.Empty, UIAlertControllerStyle.ActionSheet);
+				config
+					.Options
+					.ToList()
+					.ForEach(x => this.AddActionSheetOption(x, sheet, UIAlertActionStyle.Default));
+				if (config.Destructive != null)
+					this.AddActionSheetOption(config.Destructive, sheet, UIAlertActionStyle.Destructive);
+				if (config.Cancel != null)
+					this.AddActionSheetOption(config.Cancel, sheet, UIAlertActionStyle.Cancel);
+				this.Present(sheet);
+			}
+			else
+			{
+				var view = this.GetTopView();
+				var action = new UIActionSheet(config.Title);
+				config.Options.ToList().ForEach(x => action.AddButton(x.Text));
+				if (config.Destructive != null)
 				{
-					var action = new UIActionSheet(config.Title);
-					config.Options.ToList().ForEach(x => action.AddButton(x.Text));
-					if (config.Cancel != null)
-					{
-						action.AddButton(config.Cancel.Text);
-						action.CancelButtonIndex = config.Options.Count;
-					}
-					action.Clicked += (sender, btn) =>
-					{
-						if (btn != null && btn.ButtonIndex == config.Options.Count && config.Cancel != null && config.Cancel.Action != null)
-							config.Cancel.Action();
-						if (btn != null && btn.ButtonIndex >= 0 && btn.ButtonIndex < config.Options.Count)
-							config.Options[(int)btn.ButtonIndex].Action();
-					};
-					var view = GetTopView();
-					action.ShowInView(view);
-				});
-		}
-
-
-		public override void Alert(AlertConfig config)
-		{
-			Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+					action.AddButton(config.Destructive.Text);
+					action.DestructiveButtonIndex = config.Options.Count + 1;
+				}
+				if (config.Cancel != null)
 				{
-					var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, null, config.OkText);
-					if (config.OnOk != null)
-						dlg.Clicked += (s, e) => config.OnOk();
-                
-					dlg.Show();
-				});
+					action.AddButton(config.Cancel.Text);
+					action.CancelButtonIndex = config.Options.Count + 2;
+				}
+				action.Dismissed += (sender, btn) =>
+				{
+					if (btn.ButtonIndex == action.DestructiveButtonIndex)
+						config.Destructive.TryExecute();
+					else if (btn.ButtonIndex == action.CancelButtonIndex)
+						config.Cancel.TryExecute();
+					else if (btn.ButtonIndex > -1)
+						config.Options[(int)btn.ButtonIndex].TryExecute();
+				};
+				action.ShowInView(view);
+			}
 		}
-
 
 		public override void Confirm(ConfirmConfig config)
 		{
-			Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+			UIApplication.SharedApplication.InvokeOnMainThread(() =>
 				{
-					var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText);
-					dlg.Clicked += (s, e) =>
+					if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
 					{
-						var ok = (dlg.CancelButtonIndex != e.ButtonIndex);
-						config.OnConfirm(ok);
-					};
-					dlg.Show();
+						var dlg = UIAlertController.Create(config.Title ?? String.Empty, config.Message, UIAlertControllerStyle.Alert);
+						dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x => config.OnConfirm(true)));
+						dlg.AddAction(UIAlertAction.Create(config.CancelText, UIAlertActionStyle.Default, x => config.OnConfirm(false)));
+						this.Present(dlg);
+					}
+					else
+					{
+						var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText);
+						dlg.Clicked += (s, e) =>
+						{
+							var ok = ((int)dlg.CancelButtonIndex != (int)e.ButtonIndex);
+							config.OnConfirm(ok);
+						};
+						dlg.Show();
+					}
 				});
 		}
 
-
-		//public override void DateTimePrompt(DateTimePromptConfig config) {
-		//    var sheet = new ActionSheetDatePicker {
-		//        Title = config.Title,
-		//        DoneText = config.OkText
-		//    };
-
-		//    switch (config.SelectionType) {
-                
-		//        case DateTimeSelectionType.Date:
-		//            sheet.DatePicker.Mode = UIDatePickerMode.Date;
-		//            break;
-
-		//        case DateTimeSelectionType.Time:
-		//            sheet.DatePicker.Mode = UIDatePickerMode.Time;
-		//            break;
-
-		//        case DateTimeSelectionType.DateTime:
-		//            sheet.DatePicker.Mode = UIDatePickerMode.DateAndTime;
-		//            break;
-		//    }
-            
-		//    if (config.MinValue != null)
-		//        sheet.DatePicker.MinimumDate = config.MinValue.Value;
-
-		//    if (config.MaxValue != null)
-		//        sheet.DatePicker.MaximumDate = config.MaxValue.Value;
-
-		//    sheet.DateTimeSelected += (sender, args) => {
-		//        // TODO: stop adjusting date/time
-		//        config.OnResult(new DateTimePromptResult(sheet.DatePicker.Date));
-		//    };
-
-		//    var top = Utils.GetTopView();
-		//    sheet.Show(top);
-		//    //sheet.DatePicker.MinuteInterval
-		//}
-
-
-		//public override void DurationPrompt(DurationPromptConfig config) {
-		//    var sheet = new ActionSheetDatePicker {
-		//        Title = config.Title,
-		//        DoneText = config.OkText
-		//    };
-		//    sheet.DatePicker.Mode = UIDatePickerMode.CountDownTimer;
-
-		//    sheet.DateTimeSelected += (sender, args) => config.OnResult(new DurationPromptResult(args.TimeOfDay));
-
-		//    var top = Utils.GetTopView();
-		//    sheet.Show(top);
-		//}
-
+		public override void Login(LoginConfig config)
+		{
+			UITextField txtUser = null;
+			UITextField txtPass = null;
+			UIApplication.SharedApplication.InvokeOnMainThread(() =>
+				{
+					if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+					{
+						var dlg = UIAlertController.Create(config.Title ?? String.Empty, config.Message, UIAlertControllerStyle.Alert);
+						dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x => config.OnResult(new LoginResult(txtUser.Text, txtPass.Text, true))));
+						dlg.AddAction(UIAlertAction.Create(config.CancelText, UIAlertActionStyle.Default, x => config.OnResult(new LoginResult(txtUser.Text, txtPass.Text, false))));
+						dlg.AddTextField(x =>
+							{
+								txtUser = x;
+								x.Placeholder = config.LoginPlaceholder;
+								x.Text = config.LoginValue ?? String.Empty;
+							});
+						dlg.AddTextField(x =>
+							{
+								txtPass = x;
+								x.Placeholder = config.PasswordPlaceholder;
+								x.SecureTextEntry = true;
+							});
+						this.Present(dlg);
+					}
+					else
+					{
+						var dlg = new UIAlertView { AlertViewStyle = UIAlertViewStyle.LoginAndPasswordInput };
+						txtUser = dlg.GetTextField(0);
+						txtPass = dlg.GetTextField(1);
+						txtUser.Placeholder = config.LoginPlaceholder;
+						txtUser.Text = config.LoginValue ?? String.Empty;
+						txtPass.Placeholder = config.PasswordPlaceholder;
+						dlg.Clicked += (s, e) =>
+						{
+							var ok = ((int)dlg.CancelButtonIndex != (int)e.ButtonIndex);
+							config.OnResult(new LoginResult(txtUser.Text, txtPass.Text, ok));
+						};
+						dlg.Show();
+					}
+				});
+		}
 
 		public override void Prompt(PromptConfig config)
 		{
-			Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+			UIApplication.SharedApplication.InvokeOnMainThread(() =>
 				{
 					var result = new PromptResult();
-					var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText) {
-						AlertViewStyle = config.IsSecure
-                        ? UIAlertViewStyle.SecureTextInput 
-                        : UIAlertViewStyle.PlainTextInput
-					};
-					var txt = dlg.GetTextField(0);
-					txt.SecureTextEntry = config.IsSecure;
-					txt.Placeholder = config.Placeholder;
-
-					//UITextView = editable
-					dlg.Clicked += (s, e) =>
+					if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
 					{
-						result.Ok = (dlg.CancelButtonIndex != e.ButtonIndex);
-						result.Text = txt.Text;
-						config.OnResult(result);
-					};
-					dlg.Show();
+						var dlg = UIAlertController.Create(config.Title ?? String.Empty, config.Message, UIAlertControllerStyle.Alert);
+						UITextField txt = null;
+						dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x =>
+								{
+									result.Ok = true;
+									result.Text = txt.Text.Trim();
+									config.OnResult(result);
+								}));
+						dlg.AddAction(UIAlertAction.Create(config.CancelText, UIAlertActionStyle.Default, x =>
+								{
+									result.Ok = false;
+									result.Text = txt.Text.Trim();
+									config.OnResult(result);
+								}));
+						dlg.AddTextField(x =>
+							{
+								this.SetInputType(x, config.InputType);
+								x.Placeholder = config.Placeholder ?? String.Empty;
+								txt = x;
+							});
+						this.Present(dlg);
+					}
+					else
+					{
+						var isPassword = config.InputType == InputType.Password;
+						var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText) {
+							AlertViewStyle = isPassword
+								? UIAlertViewStyle.SecureTextInput
+								: UIAlertViewStyle.PlainTextInput
+						};
+						var txt = dlg.GetTextField(0);
+						this.SetInputType(txt, config.InputType);
+						txt.Placeholder = config.Placeholder;
+						dlg.Clicked += (s, e) =>
+						{
+							result.Ok = ((int)dlg.CancelButtonIndex != (int)e.ButtonIndex);
+							result.Text = txt.Text.Trim();
+							config.OnResult(result);
+						};
+						dlg.Show();
+					}
 				});
 		}
 
-		private UIWindow GetTopWindow() 
+		protected virtual void AddActionSheetOption(ActionSheetOption opt, UIAlertController controller, UIAlertActionStyle style)
 		{
-			return UIApplication
-				.SharedApplication
+			controller.AddAction(UIAlertAction.Create(opt.Text, style, x => opt.TryExecute()));
+		}
+
+		protected override INetworkIndicator CreateNetworkIndicator()
+		{
+			return new NetworkIndicator();
+		}
+
+		protected virtual void Present(UIAlertController controller)
+		{
+			UIApplication.SharedApplication.InvokeOnMainThread(() =>
+				{
+					var top = this.GetTopViewController();
+					var po = controller.PopoverPresentationController;
+					if (po != null)
+					{
+						po.SourceView = top.View;
+						var h = (top.View.Frame.Height / 2) - 400;
+						var v = (top.View.Frame.Width / 2) - 300;
+						po.SourceRect = new CGRect(v, h, 0, 0);
+						po.PermittedArrowDirections = UIPopoverArrowDirection.Any;
+					}
+					top.PresentViewController(controller, true, null);
+				});
+		}
+
+		protected virtual void SetInputType(UITextField txt, InputType inputType)
+		{
+			switch (inputType)
+			{
+				case InputType.Email:
+					txt.KeyboardType = UIKeyboardType.EmailAddress;
+					break;
+				case InputType.Number:
+					txt.KeyboardType = UIKeyboardType.NumberPad;
+					break;
+				case InputType.Password:
+					txt.SecureTextEntry = true;
+					break;
+				default :
+					txt.KeyboardType = UIKeyboardType.Default;
+					break;
+			}
+		}
+
+		protected virtual UIWindow GetTopWindow()
+		{
+			return UIApplication.SharedApplication
 				.Windows
 				.Reverse()
 				.FirstOrDefault(x =>
-					(float) x.WindowLevel == (float)UIWindowLevel.Normal &&
-					!x.Hidden
-					);
+					x.WindowLevel == UIWindowLevel.Normal &&
+				!x.Hidden
+			);
 		}
 
-		private UIView GetTopView()
+		protected virtual UIView GetTopView()
 		{
-			return GetTopWindow().Subviews.Last();
+			return this.GetTopWindow().Subviews.Last();
 		}
 
+		protected virtual UIViewController GetTopViewController()
+		{
+			var root = this.GetTopWindow().RootViewController;
+			var tabs = root as UITabBarController;
+			if (tabs != null)
+				return tabs.SelectedViewController;
+			var nav = root as UINavigationController;
+			if (nav != null)
+				return nav.VisibleViewController;
+			if (root.PresentedViewController != null)
+				return root.PresentedViewController;
+			return root;
+		}
 	}
 }

@@ -532,7 +532,7 @@ namespace WF.Player
 				return;
 			}
 
-			bool result = await DependencyService.Get<IUserDialogService>().ConfirmAsync(Catalog.GetString("There is an automatic savefile from a cartridge you played before. Would you resume this last game?"), Catalog.GetString("Automatical savefile"), Catalog.GetString("Yes"), Catalog.GetString("No"));
+			bool result = await UserDialogs.Instance.ConfirmAsync(Catalog.GetString("There is an automatic savefile from a cartridge you played before. Would you resume this last game?"), Catalog.GetString("Automatical savefile"), Catalog.GetString("Yes"), Catalog.GetString("No"));
 
 			if (result)
 			{

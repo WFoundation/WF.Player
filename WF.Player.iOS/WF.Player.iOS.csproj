@@ -266,6 +266,7 @@
     <Compile Include="Services\Device\Screen.cs" />
     <Compile Include="Services\BarCode\BarCodeScanner.cs" />
     <Compile Include="Services\BarCode\BarCodeScannerOverlay.cs" />
+    <Compile Include="Services\UserDialogs\NetworkIndicator.cs" />
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

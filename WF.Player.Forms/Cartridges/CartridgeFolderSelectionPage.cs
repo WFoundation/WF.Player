@@ -72,7 +72,7 @@ namespace WF.Player
 									}
 								});
 						};
-					DependencyService.Get<IUserDialogService>().Prompt(cfg);
+					UserDialogs.Instance.Prompt(cfg);
 				}, ToolbarItemOrder.Secondary));
 
 			var cell = new DataTemplate(typeof(TextCell));

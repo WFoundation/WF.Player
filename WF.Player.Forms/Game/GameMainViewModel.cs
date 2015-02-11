@@ -911,7 +911,7 @@ namespace WF.Player
 
 			if (action == Catalog.GetString("Quit"))
 			{
-				bool result = await DependencyService.Get<IUserDialogService>().ConfirmAsync(Catalog.GetString("Would you like to save the current game?"), Catalog.GetString("Save Game"), Catalog.GetString("Yes"), Catalog.GetString("No"));
+				bool result = await UserDialogs.Instance.ConfirmAsync(Catalog.GetString("Would you like to save the current game?"), Catalog.GetString("Save Game"), Catalog.GetString("Yes"), Catalog.GetString("No"));
 
 				App.Click();
 
@@ -944,7 +944,7 @@ namespace WF.Player
 								}
 							});
 					};
-					DependencyService.Get<IUserDialogService>().Prompt(cfg);
+					UserDialogs.Instance.Prompt(cfg);
 				}
 				else
 				{
@@ -979,7 +979,7 @@ namespace WF.Player
 								}
 							});
 					};
-				DependencyService.Get<IUserDialogService>().Prompt(cfg);
+				UserDialogs.Instance.Prompt(cfg);
 			}
 		}
 

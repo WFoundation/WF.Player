@@ -95,13 +95,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\ISettingsView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Mobile\IDeviceInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\AbstractUserDialogService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\ActionSheetConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\ActionSheetOption.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\AlertConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\ConfirmConfig.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\Extensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\IUserDialogService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\PromptConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\PromptResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeFolderSelectionPage.cs" />
@@ -115,6 +112,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\BarCode\BarCodeResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BarCode\IBarCodeScanner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\InputType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\AbstractUserDialogs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\LoginConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\LoginResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\IUserDialogs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\INetworkIndicator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\UserDialogs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />

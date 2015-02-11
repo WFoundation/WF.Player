@@ -139,6 +139,8 @@
     <Compile Include="Services\Device\Screen.cs" />
     <Compile Include="Services\BarCode\BarCodeScanner.cs" />
     <Compile Include="Renderer\ExtendedButtonRenderer.cs" />
+    <Compile Include="Services\UserDialogs\NetworkIndicator.cs" />
+    <Compile Include="Services\UserDialogs\ActivityMonitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

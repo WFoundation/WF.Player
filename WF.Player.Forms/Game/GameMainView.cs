@@ -73,7 +73,7 @@ namespace WF.Player
 				cfg.Add(Catalog.GetString("Save"), () => ((GameMainViewModel)BindingContext).HandleMenuAction(this, Catalog.GetString("Save")));
 				cfg.Add(Catalog.GetString("Quit"), () => ((GameMainViewModel)BindingContext).HandleMenuAction(this, Catalog.GetString("Quit")));
 				cfg.Cancel = new WF.Player.Services.UserDialogs.ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
-				DependencyService.Get<WF.Player.Services.UserDialogs.IUserDialogService>().ActionSheet(cfg);
+				DependencyService.Get<WF.Player.Services.UserDialogs.IUserDialogs>().ActionSheet(cfg);
 			});
 			this.ToolbarItems.Add (toolbarMenu);
 
