@@ -47,7 +47,7 @@ namespace WF.Player
 			// Show empty string as back button title (default "Back" would be null as string)
 			NavigationPage.SetBackButtonTitle(this, string.Empty);
 
-			buttonResume = new ToolIconButton("IconResume.png", viewModel.ResumeCommand);
+			buttonResume = new ToolIconButton("IconResume.png", viewModel.ResumeCommand, false);
 
 			var buttonStart = new ToolIconButton("IconPlay.png", viewModel.StartCommand);
 
@@ -59,6 +59,7 @@ namespace WF.Player
 				buttonResume.Button.IsVisible = ((CartridgeDetailViewModel)BindingContext).HasSaveFile;
 
 				Buttons.Add(buttonStart);
+
 				DirectionLayout.IsVisible = false;
 				DirectionSpaceLayout.IsVisible = false;
 			}
@@ -70,6 +71,7 @@ namespace WF.Player
 				buttonResume.Button.IsVisible = ((CartridgeDetailViewModel)BindingContext).HasSaveFile;
 
 				Buttons.Add(buttonStart);
+
 				DirectionLayout.IsVisible = true;
 				DirectionSpaceLayout.IsVisible = true;
 			}

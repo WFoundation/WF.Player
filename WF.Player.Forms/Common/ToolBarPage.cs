@@ -95,18 +95,19 @@ namespace WF.Player
 				if (t is ToolTextButton)
 				{
 					var button = new ExtendedButton() 
-					{
-						Text = (t is ToolTextButton) ? ((ToolTextButton)t).Text : null,
-						TextColor = App.Colors.Tint,
-						Image = null,
-						HorizontalOptions = LayoutOptions.FillAndExpand,
-						BackgroundColor = Color.Transparent,
-						Command = new Command((parameter) => KeyClick(t.Command, parameter)),
-						CommandParameter = (t is ToolTextButton) ? ((ToolTextButton)t).Text : null,
-						#if __IOS__
-						Font = Font.SystemFontOfSize(20),
-						#endif
-					};
+						{
+							Text = (t is ToolTextButton) ? ((ToolTextButton)t).Text : null,
+							TextColor = App.Colors.Tint,
+							Image = null,
+							HorizontalOptions = LayoutOptions.FillAndExpand,
+							BackgroundColor = Color.Transparent,
+							Command = new Command((parameter) => KeyClick(t.Command, parameter)),
+							CommandParameter = (t is ToolTextButton) ? ((ToolTextButton)t).Text : null,
+							#if __IOS__
+							Font = Font.SystemFontOfSize(20),
+							#endif
+							IsVisible = t.IsVisibleAtStartup,
+						};
 
 					// Save for later use
 					t.Button = button;
@@ -125,15 +126,16 @@ namespace WF.Player
 				if (t is ToolIconButton)
 				{
 					var button = new ExtendedButton() 
-					{
-						Text = (t is ToolTextButton) ? ((ToolTextButton)t).Text : null,
-						TextColor = App.Colors.Tint,
-						Image = (t is ToolIconButton) ? ((ToolIconButton)t).Icon : null,
-						HorizontalOptions = Device.OnPlatform<LayoutOptions>(LayoutOptions.FillAndExpand, LayoutOptions.CenterAndExpand, LayoutOptions.FillAndExpand),
-						BackgroundColor = Color.Transparent,
-						Command = new Command((parameter) => KeyClick(t.Command, parameter)),
-						CommandParameter = (t is ToolIconButton) ? ((ToolIconButton)t).Icon : null,
-					};
+						{
+							Text = (t is ToolTextButton) ? ((ToolTextButton)t).Text : null,
+							TextColor = App.Colors.Tint,
+							Image = (t is ToolIconButton) ? ((ToolIconButton)t).Icon : null,
+							HorizontalOptions = Device.OnPlatform<LayoutOptions>(LayoutOptions.FillAndExpand, LayoutOptions.CenterAndExpand, LayoutOptions.FillAndExpand),
+							BackgroundColor = Color.Transparent,
+							Command = new Command((parameter) => KeyClick(t.Command, parameter)),
+							CommandParameter = (t is ToolIconButton) ? ((ToolIconButton)t).Icon : null,
+							IsVisible = t.IsVisibleAtStartup,
+						};
 
 					// Save for later use
 					t.Button = button;
@@ -212,16 +214,7 @@ namespace WF.Player
 				// Create columns for buttons
 				var colDefs = new ColumnDefinitionCollection();
 
-//				if (sumWidth > BottomLayout.Width - padding.Left - padding.Right)
-//				{
-//					// Buttons are wider than possible space (could only happen with Messagebox), so change width of column according to space
-//					colDefs.Add(new ColumnDefinition { Width = new GridLength((BottomLayout.Width - padding.Left - padding.Right) * Math.Ceiling(DependencyService.Get<IMeasure>().ButtonTextSize(buttons[0].Button.Text, buttons[0].Button.FontSize)) / sumWidth, GridUnitType.Absolute) });
-//				}
-//				else
-//				{
-					// Set coulmn width to real size of button
 				colDefs.Add(new ColumnDefinition { Width = new GridLength(((ToolTextButton)buttons[0]).TextWidth + padding.Left + padding.Right, GridUnitType.Absolute) });
-//				}
 
 				// Set layout of first button
 				buttons[0].Button.HorizontalOptions = LayoutOptions.StartAndExpand;
@@ -313,10 +306,11 @@ namespace WF.Player
 		/// Initializes a new instance of the <see cref="WF.Player.ToolButton"/> class.
 		/// </summary>
 		/// <param name="command">Command to execute.</param>
-		public ToolButton(Command command)
+		public ToolButton(Command command, bool isVisibleAtStartup = true)
 		{
 			Button = null;
 			Command = command;
+			IsVisibleAtStartup = isVisibleAtStartup;
 		}
 
 		#endregion
@@ -336,38 +330,10 @@ namespace WF.Player
 		public Command Command { get; internal set; }
 
 		/// <summary>
-		/// Gets or sets a value indicating whether this button is enabled.
+		/// Gets or sets a value indicating whether this button is visible at startup or not.
 		/// </summary>
 		/// <value><c>true</c> if this instance is enabled; otherwise, <c>false</c>.</value>
-		public bool IsEnabled
-		{ 
-			get
-			{
-				if (Button != null)
-				{
-					if (Command != null)
-					{
-						return Command.CanExecute(null);
-					}
-					else
-					{
-						return Button.IsEnabled;
-					}
-				}
-				else
-				{
-					return false;
-				}
-			}
-
-			set
-			{ 
-				if (Button != null)
-				{
-					Button.IsEnabled = value; 
-				}
-			} 
-		}
+		public bool IsVisibleAtStartup { get; private set; }
 
 		#endregion
 	}
@@ -386,7 +352,7 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="text">Text of button.</param>
 		/// <param name="command">Command to execute.</param>
-		public ToolTextButton(string text, Command command) : base(command)
+		public ToolTextButton(string text, Command command, bool isVisibleAtStartup = true) : base(command, isVisibleAtStartup)
 		{
 			Text = text;
 		}
@@ -424,7 +390,7 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="icon">Icon of button.</param>
 		/// <param name="command">Command to execute.</param>
-		public ToolIconButton(string icon, Command command) : base(command)
+		public ToolIconButton(string icon, Command command, bool isVisibleAtStartup = true) : base(command, isVisibleAtStartup)
 		{
 			Icon = icon;
 		}
