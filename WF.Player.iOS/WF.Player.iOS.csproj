@@ -73,6 +73,8 @@
     <BuildIpa>true</BuildIpa>
     <IpaPackageName>WF.Player</IpaPackageName>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <Optimize>true</Optimize>

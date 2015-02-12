@@ -303,8 +303,8 @@ namespace WF.Player
 			}
 
 			IsBusy = true;
-			cartridges.Clear();
-			cartridges.SyncFromStore();
+
+			UpdateCartridges();
 
 			IsBusy = false;
 		}
