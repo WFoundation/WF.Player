@@ -56,15 +56,16 @@ namespace WF.Player.iOS.Services.UserDialogs
 				var view = this.GetTopView();
 				var action = new UIActionSheet(config.Title);
 				config.Options.ToList().ForEach(x => action.AddButton(x.Text));
+				var count = config.Options.Count;
 				if (config.Destructive != null)
 				{
 					action.AddButton(config.Destructive.Text);
-					action.DestructiveButtonIndex = config.Options.Count + 1;
+					action.DestructiveButtonIndex = ++count;
 				}
 				if (config.Cancel != null)
 				{
 					action.AddButton(config.Cancel.Text);
-					action.CancelButtonIndex = config.Options.Count + 2;
+					action.CancelButtonIndex = ++count;
 				}
 				action.Dismissed += (sender, btn) =>
 				{

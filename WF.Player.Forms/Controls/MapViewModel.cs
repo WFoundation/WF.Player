@@ -280,7 +280,7 @@ namespace WF.Player
 
 			cfg.Cancel = new WF.Player.Services.UserDialogs.ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 
-			DependencyService.Get<WF.Player.Services.UserDialogs.IUserDialogs>().ActionSheet(cfg);
+			UserDialogs.Instance.ActionSheet(cfg);
 		}
 
 		private void HandleCenterLocation()

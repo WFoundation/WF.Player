@@ -1127,6 +1127,7 @@ namespace WF.Player
 
 				var ret = false;
 
+				ret = ret || (e.PropertyName == "State" && (IsYouSeeSelected || IsOverviewSelected));
 				ret = ret || (e.PropertyName == "ActiveVisibleZones" && (IsYouSeeSelected || IsOverviewSelected));
 				ret = ret || (e.PropertyName == "VisibleObjects" && (IsYouSeeSelected || IsOverviewSelected));
 				ret = ret || (e.PropertyName == "VisibleInventory" && (IsInventorySelected || IsOverviewSelected));

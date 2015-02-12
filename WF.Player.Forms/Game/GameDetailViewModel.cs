@@ -180,6 +180,7 @@ namespace WF.Player
 				NotifyPropertyChanged(HtmlSourcePropertyName);
 				#else
 				NotifyPropertyChanged(DescriptionPropertyName);
+				NotifyPropertyChanged(HasDescriptionPropertyName);
 				NotifyPropertyChanged(ImageSourcePropertyName);
 				NotifyPropertyChanged(HasImagePropertyName);
 				#endif
@@ -462,6 +463,7 @@ namespace WF.Player
 			NotifyPropertyChanged(HtmlSourcePropertyName);
 			#else
 			NotifyPropertyChanged(DescriptionPropertyName);
+			NotifyPropertyChanged(HasDescriptionPropertyName);
 			NotifyPropertyChanged(HasImagePropertyName);
 			NotifyPropertyChanged(ImageSourcePropertyName);
 			#endif
@@ -741,18 +743,22 @@ namespace WF.Player
 			{
 				Thing thing = (Thing)this.activeObject;
 
+				// Get active view
+				var view = (GameDetailView)App.GameNavigation.CurrentPage;
+
+				// Clear all buttons
+				view.Buttons.Clear();
+
 				// If there isn't a command, we are ready
 				if (thing.ActiveCommands.Count == 0)
 				{
 					return;
 				}
 
-				// Get active view
-				var view = (GameDetailView)App.GameNavigation.CurrentPage;
-
-				view.Buttons.Clear();
+				// We have actions, so set the overflow menu text
 				view.OverflowMenuText = Catalog.GetString("Actions");
 
+				// Add all commands. Each command creates one button.
 				foreach (WF.Player.Core.Command c in thing.ActiveCommands)
 				{
 					view.Buttons.Add(new ToolTextButton(c.Text, new Xamarin.Forms.Command(() => ExecuteCommand(c))));
