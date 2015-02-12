@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="WF.Player.Droid/WF.Player.Droid.csproj">
+﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.1" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Game/GameMainCellView.cs">
     <Files>

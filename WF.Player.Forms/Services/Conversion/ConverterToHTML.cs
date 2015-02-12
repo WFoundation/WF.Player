@@ -360,6 +360,11 @@ border: none;
 		/// <param name="media">Media object.</param>
 		public static string FromText(string text, Media media = null, int fontSize = -1)
 		{
+			if (text == null)
+			{
+				return string.Empty;
+			}
+
 			var html = text.Replace("<", "&lt;").Replace(">", "&gt;").Replace("\n", "<br>");
 
 			// Add style to html code

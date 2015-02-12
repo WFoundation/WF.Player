@@ -60,12 +60,12 @@ namespace WF.Player.iOS.Services.UserDialogs
 				if (config.Destructive != null)
 				{
 					action.AddButton(config.Destructive.Text);
-					action.DestructiveButtonIndex = ++count;
+					action.DestructiveButtonIndex = count++;
 				}
 				if (config.Cancel != null)
 				{
 					action.AddButton(config.Cancel.Text);
-					action.CancelButtonIndex = ++count;
+					action.CancelButtonIndex = count++;
 				}
 				action.Dismissed += (sender, btn) =>
 				{
