@@ -352,25 +352,6 @@ namespace WF.Player
 					ShowBackButton = true,
 				};
 
-			// Check for autosave file
-			var gwsFilename = Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey);
-			var gwcFilename = Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWCKey);
-
-			if (!string.IsNullOrEmpty(gwsFilename) && !string.IsNullOrEmpty(gwcFilename))
-			{
-				HandleAutosave();
-			}
-			else
-			{
-				// If an auto save file exists, delete it
-				var filename = Path.Combine(App.PathForSavegames, "autosave.gws");
-
-				if (File.Exists(filename))
-				{
-					File.Delete(filename);
-				}
-			}
-
 			return App.Navigation;
 		}
 
@@ -512,55 +493,6 @@ namespace WF.Player
 					App.Game.Resume();
 				}
 			}
-		}
-
-		#endregion
-
-		#region Private Methods
-
-		private static async void HandleAutosave()
-		{
-			var gwcFilename = Path.Combine(App.PathForCartridges, Path.GetFileName(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWCKey)));
-			var gwsFilename = Path.Combine(App.PathForSavegames, Path.GetFileName(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey)));
-
-			if (!File.Exists(gwsFilename) || !File.Exists(gwcFilename))
-			{
-				// Remove settings
-				Settings.Current.Remove(Settings.AutosaveGWCKey);
-				Settings.Current.Remove(Settings.AutosaveGWSKey);
-
-				return;
-			}
-
-			bool result = await UserDialogs.Instance.ConfirmAsync(Catalog.GetString("There is an automatic savefile from a cartridge you played before. Would you resume this last game?"), Catalog.GetString("Automatical savefile"), Catalog.GetString("Yes"), Catalog.GetString("No"));
-
-			if (result)
-			{
-				var cartridge = new Cartridge(gwcFilename);
-				var cartridgeTag = new CartridgeTag(cartridge);
-				var cartridgeSavegame = CartridgeSavegame.FromStore(cartridgeTag, gwsFilename);
-
-				// We have a autosave file, so start this cartridge
-
-				// Create a new navigation page for the game
-				App.GameNavigation = new ExtendedNavigationPage(new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, cartridgeSavegame, App.Navigation.CurrentPage)), false) {
-					BarBackgroundColor = App.Colors.Bar,
-					BarTextColor = App.Colors.BarText,
-					ShowBackButton = true,
-				};
-				App.Navigation.CurrentPage.Navigation.PushModalAsync(App.GameNavigation);
-
-				App.GameNavigation.ShowBackButton = true;
-			}
-			else
-			{
-				// Remove file from directory
-				File.Delete(gwsFilename);
-			}
-
-			// Remove settings
-			Settings.Current.Remove(Settings.AutosaveGWCKey);
-			Settings.Current.Remove(Settings.AutosaveGWSKey);
 		}
 
 		#endregion

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string formatted="false" name="Vernacular_P0_Actions">Actions</string>
+  <string formatted="false" name="Vernacular_P0_Activity581230125">Activité: {0}</string>
+  <string formatted="false" name="Vernacular_P0_Attributes">Attributs</string>
+  <string formatted="false" name="Vernacular_P0_Author581230125">Auteur: {0}</string>
+  <string formatted="false" name="Vernacular_P0_Automaticalsavefile">Savefile automatique</string>
+  <string formatted="false" name="Vernacular_P0_Both">Les deux</string>
+  <string formatted="false" name="Vernacular_P0_By">Par</string>
+  <string formatted="false" name="Vernacular_P0_Cancel">Annuler</string>
+  <string formatted="false" name="Vernacular_P0_Cartridges">Cartouches</string>
+  <string formatted="false" name="Vernacular_P0_Choose">Choisir</string>
+  <string formatted="false" name="Vernacular_P0_CommentSavefile">Commentaire Savefile</string>
+  <string formatted="false" name="Vernacular_P0_CurrentAccuracy101230125">Précision actuel
+{0}</string>
+  <string formatted="false" name="Vernacular_P0_CurrentCoordinates101230125">Coordonnées actuelles
+{0}</string>
+  <string formatted="false" name="Vernacular_P0_CurrentLocation">Position actuelle</string>
+  <string formatted="false" name="Vernacular_P0_Description">Description</string>
+  <string formatted="false" name="Vernacular_P0_Details">Détails</string>
+  <string formatted="false" name="Vernacular_P0_E">E</string>
+  <string formatted="false" name="Vernacular_P0_Feedback">Commentaire</string>
+  <string formatted="false" name="Vernacular_P0_Flash">Éclair</string>
+  <string formatted="false" name="Vernacular_P0_Focuson">Mise au point sur</string>
+  <string formatted="false" name="Vernacular_P0_Formuchfunwiththecartridge44youshouldwaitforagoodaccuracyofyourGPSsignal46">Pour beaucoup de plaisir avec la cartouche, vous devez attendre une bonne précision de votre signal GPS.</string>
+  <string formatted="false" name="Vernacular_P0_Gamefield">Gamefield</string>
+  <string formatted="false" name="Vernacular_P0_GameMenu">Menu de jeu</string>
+  <string formatted="false" name="Vernacular_P0_GPSCheck">GPS Vérifier</string>
+  <string formatted="false" name="Vernacular_P0_Here">Ici</string>
+  <string formatted="false" name="Vernacular_P0_History">Historique</string>
+  <string formatted="false" name="Vernacular_P0_Hybrid">Hybride</string>
+  <string formatted="false" name="Vernacular_P0_Inside">À l\'intérieur</string>
+  <string formatted="false" name="Vernacular_P0_Inventory">Inventaire</string>
+  <string formatted="false" name="Vernacular_P0_Light">Light</string>
+  <string formatted="false" name="Vernacular_P0_Loading464646">Chargement …</string>
+  <string formatted="false" name="Vernacular_P0_Logs">Logs</string>
+  <string formatted="false" name="Vernacular_P0_Map">Carte</string>
+  <string formatted="false" name="Vernacular_P0_Maptype">MapType</string>
+  <string formatted="false" name="Vernacular_P0_Menu">Menu</string>
+  <string formatted="false" name="Vernacular_P0_N">N</string>
+  <string formatted="false" name="Vernacular_P0_Newfolder">Nouveau dossier</string>
+  <string formatted="false" name="Vernacular_P0_Newfoldername">Nouveau nom de dossier</string>
+  <string formatted="false" name="Vernacular_P0_No">Non</string>
+  <string formatted="false" name="Vernacular_P0_Nodescriptionavailable">Aucune description disponible</string>
+  <string formatted="false" name="Vernacular_P0_Noitems">Aucun élément</string>
+  <string formatted="false" name="Vernacular_P0_Nonewtasks">Aucune tâche.</string>
+  <string formatted="false" name="Vernacular_P0_Nothingavailable">Rien de disponible</string>
+  <string formatted="false" name="Vernacular_P0_Nothingofinterest">Rien d&amp;#39;intérêt</string>
+  <string formatted="false" name="Vernacular_P0_Nowheretogo">Aucune cachette</string>
+  <string formatted="false" name="Vernacular_P0_Ok">OK</string>
+  <string formatted="false" name="Vernacular_P0_Overview">résumé </string>
+  <string formatted="false" name="Vernacular_P0_Parentdirectory">Dossier parent</string>
+  <string formatted="false" name="Vernacular_P0_Path">Chemin</string>
+  <string formatted="false" name="Vernacular_P0_Pleasewait464646">Veuillez patienter…</string>
+  <string formatted="false" name="Vernacular_P0_Provideacommenttoidentifythissavefile">Fournir un commentaire pour identifier ce savefile</string>
+  <string formatted="false" name="Vernacular_P0_Quit">Quitter</string>
+  <string formatted="false" name="Vernacular_P0_S">S</string>
+  <string formatted="false" name="Vernacular_P0_Satellite">Satellite</string>
+  <string formatted="false" name="Vernacular_P0_Save">Sauvegarde</string>
+  <string formatted="false" name="Vernacular_P0_SaveGame">Sauvegarde</string>
+  <string formatted="false" name="Vernacular_P0_Select">Sélectionner</string>
+  <string formatted="false" name="Vernacular_P0_Settings">Paramètres</string>
+  <string formatted="false" name="Vernacular_P0_Start">Début</string>
+  <string formatted="false" name="Vernacular_P0_Startanyway">Début de toute façon</string>
+  <string formatted="false" name="Vernacular_P0_StartingLocation">Point de départ</string>
+  <string formatted="false" name="Vernacular_P0_Street">Rue</string>
+  <string formatted="false" name="Vernacular_P0_Tasks">Tâches</string>
+  <string formatted="false" name="Vernacular_P0_Thereisanautomaticsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">Il y\'a un savefile automatique d&amp;#39;une cartouche vous avez joué avant. Voulez-vous reprendre ce dernier match?</string>
+  <string formatted="false" name="Vernacular_P0_Unknown">Inconnu</string>
+  <string formatted="false" name="Vernacular_P0_Version581230125">Version: {0}</string>
+  <string formatted="false" name="Vernacular_P0_W">W</string>
+  <string formatted="false" name="Vernacular_P0_Wouldyouliketosavethecurrentgame63">Voulez-vous enregistrer le jeu en cours?</string>
+  <string formatted="false" name="Vernacular_P0_Writeinputhere464646">Entrée…</string>
+  <string formatted="false" name="Vernacular_P0_Yes">Oui</string>
+  <string formatted="false" name="Vernacular_P0_YouSee">Tu vois</string>
+</resources>

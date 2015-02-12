@@ -24,12 +24,12 @@ mono ../Vernacular/Vernacular.Tool/bin/Debug/Vernacular.exe \
 # German
 mono ../Vernacular/Vernacular.Tool/bin/Debug/Vernacular.exe \
   --input=./Translations/de.po \
-  --generator=ios ˙
-  --output=./WF.Player.iOS/Resources/de.lproj/Localizable.strings ˙
+  --generator=ios \
+  --output=./WF.Player.iOS/Resources/de.lproj/Localizable.strings \
   --verbose
 # French
 mono ../Vernacular/Vernacular.Tool/bin/Debug/Vernacular.exe \
   --input=./Translations/fr.po \
-  --generator=ios ˙
-  --output=./WF.Player.iOS/Resources/fr.lproj/Localizable.strings ˙
+  --generator=ios \
+  --output=./WF.Player.iOS/Resources/fr.lproj/Localizable.strings \
   --verbose

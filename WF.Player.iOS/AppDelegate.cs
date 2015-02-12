@@ -29,6 +29,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using WF.Player.iOS.Services.Core;
 using WF.Player.Services.Settings;
+using WF.Player.Services.UserDialogs;
 
 namespace WF.Player.iOS
 {
@@ -108,6 +109,8 @@ namespace WF.Player.iOS
 			Xamarin.Forms.Forms.Init ();
 			Xamarin.FormsMaps.Init();
 
+			UserDialogs.Init();
+
 			// Set default color for NavigationButtons
 			UIBarButtonItem.Appearance.TintColor = App.Colors.Bar.ToUIColor();
 
@@ -137,8 +140,6 @@ namespace WF.Player.iOS
 		{
 			// TODO: Delete
 			Console.WriteLine ("ReceiveMemoryWarning");
-
-			base.ReceiveMemoryWarning(application);
 
 			GC.Collect();
 

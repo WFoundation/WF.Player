@@ -15,12 +15,17 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Android.App;
-using WF.Player.Droid.Services.UserDialogs;
 
 namespace WF.Player.Services.UserDialogs
 {
 	using System;
+	#if __ANDROID__
+	using Android.App;
+	using WF.Player.Droid.Services.UserDialogs;
+	#endif
+	#if __IOS__
+	using WF.Player.iOS.Services.UserDialogs;
+	#endif
 
 	public static class UserDialogs
 	{
@@ -45,10 +50,10 @@ namespace WF.Player.Services.UserDialogs
 		#else
 		public static void Init() 
 		{
-			#if __PLATFORM__
 			if (Instance == null)
-				Instance = new UserDialogsImpl();
-			#endif
+			{
+				Instance = new UserDialogService();
+			}
 		}
 		#endif
 		public static IUserDialogs Instance { get; set; }
