@@ -153,11 +153,22 @@ namespace WF.Player
 			Thickness padding = new Thickness(10, 0);
 			double spacing = 6;
 
+			// Get max size of bottom
+			var maxWidth = (BottomLayout.Width == -1 ? DependencyService.Get<IScreen>().Width : BottomLayout.Width) - padding.Left - padding.Right;
+
 			if (buttons.Count == 1)
 			{
 				// We only have one button, so set width to maximum width 
 				BottomLayout.Padding = padding;
 				buttons[0].Button.WidthRequest = BottomLayout.Width - padding.Left - padding.Right;
+
+				if (((ToolTextButton)buttons[0]).TextWidth > maxWidth)
+				{
+					// Text is wider than maxWidth, so scale font
+					var fontSize = ((ToolTextButton)buttons[0]).Button.FontSize * maxWidth / ((ToolTextButton)buttons[0]).TextWidth - 1;
+
+					((ToolTextButton)buttons[0]).Button.FontSize = fontSize > 14 ? fontSize : 14;
+				}
 
 				return;
 			}
@@ -177,7 +188,7 @@ namespace WF.Player
 			sumWidth += spacing * (buttons.Count - 1);
 
 			// Now check, if all buttons want fit into the bottom line
-			if (sumWidth > DependencyService.Get<IScreen>().Width - padding.Left - padding.Right)
+			if (sumWidth > maxWidth)
 			{
 				// No. There are more buttons than space, so create an extra menu
 
@@ -214,7 +225,7 @@ namespace WF.Player
 				// Create columns for buttons
 				var colDefs = new ColumnDefinitionCollection();
 
-				colDefs.Add(new ColumnDefinition { Width = new GridLength(((ToolTextButton)buttons[0]).TextWidth + padding.Left + padding.Right, GridUnitType.Absolute) });
+				colDefs.Add(new ColumnDefinition { Width = new GridLength(((ToolTextButton)buttons[0]).TextWidth, GridUnitType.Absolute) });
 
 				// Set layout of first button
 				buttons[0].Button.HorizontalOptions = LayoutOptions.StartAndExpand;
@@ -228,15 +239,15 @@ namespace WF.Player
 
 				if (buttons.Count == 2)
 				{
-					var width2 = ((ToolTextButton)buttons[1]).TextWidth;
-					// If we only have two buttons, than set width to autosize
+					// If we only have two buttons, than add an empty col with autosize width
 					colDefs.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); // Width = GridLength.Auto }); // 
+					colDefs.Add(new ColumnDefinition { Width = new GridLength(((ToolTextButton)buttons[buttons.Count-1]).TextWidth, GridUnitType.Absolute) }); // Width = GridLength.Auto }); // 
 					buttons[buttons.Count-1].Button.HorizontalOptions = LayoutOptions.EndAndExpand;
 				}
 				else
 				{
 					// If we have more than 2 buttons, than set width to real size of button
-					colDefs.Add(new ColumnDefinition { Width = new GridLength(((ToolTextButton)buttons[buttons.Count-1]).TextWidth + padding.Left + padding.Right, GridUnitType.Absolute) }); // Width = GridLength.Auto }); // 
+					colDefs.Add(new ColumnDefinition { Width = new GridLength(((ToolTextButton)buttons[buttons.Count-1]).TextWidth, GridUnitType.Absolute) }); // Width = GridLength.Auto }); // 
 					buttons[buttons.Count-1].Button.HorizontalOptions = LayoutOptions.EndAndExpand;
 				}
 
@@ -244,10 +255,18 @@ namespace WF.Player
 				grid.ColumnDefinitions = colDefs;
 
 				// Add all buttons to the grid
+				var index = 0;
+
 				for (int i = 0; i < buttons.Count; i++)
 				{
-//					grid.Children.Add(new BoxView() {BackgroundColor = Color.FromRgb(i*64, i*64, i*64),}, i, 0);
-					grid.Children.Add(buttons[i].Button, i, 0);
+					if (buttons.Count == 2 && i == 1)
+					{
+						// Add empty col
+						index++;
+					}
+
+//					grid.Children.Add(new BoxView() { BackgroundColor = Color.FromRgb(i * 64, i * 64, i * 64), }, i + index, 0);
+					grid.Children.Add(buttons[i].Button, i + index, 0);
 				}
 
 				// Add grid to BottomLayout

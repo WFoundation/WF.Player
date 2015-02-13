@@ -34,9 +34,8 @@ namespace WF.Player.Droid.Services.Device
 		{
 			if (_button == null) {
 				_button = new global::Android.Widget.Button(Forms.Context);
-				_button.SetPadding(10, _button.PaddingTop, 10, _button.PaddingBottom);
-//				_button.SetPadding(0, _button.PaddingTop, 0, _button.PaddingBottom);
-
+//				_button.SetPadding(10, _button.PaddingTop, 10, _button.PaddingBottom);
+				_button.SetPadding(0, _button.PaddingTop, 0, _button.PaddingBottom);
 			}
 
 			if (fontSize != 0)
@@ -44,9 +43,15 @@ namespace WF.Player.Droid.Services.Device
 				_button.TextSize = (float)fontSize;
 			}
 
+			var widgetPadding = 8;
 			var bounds = new Rect();
+
+			_button.Text = text;
 			_button.Paint.GetTextBounds(text, 0, text.Length, bounds);
-			return (bounds.Left + bounds.Width() + _button.PaddingLeft + _button.PaddingRight) / Resources.System.DisplayMetrics.Density;
+
+			// Add two times the widgetPadding of 8 dp, because the button has this min size and than resize to the next multi of 8.
+			// http://developer.android.com/guide/practices/ui_guidelines/widget_design.html
+			return (float)Math.Ceiling((bounds.Width() / Resources.System.DisplayMetrics.Density + _button.PaddingLeft + _button.PaddingRight + 2 * widgetPadding) / 8) * 8;
 		}
 	}
 }

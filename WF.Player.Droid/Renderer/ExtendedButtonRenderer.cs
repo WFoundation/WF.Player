@@ -22,7 +22,7 @@ using WF.Player.Droid;
 using Xamarin.Forms.Platform.Android;
 using Android.Graphics;
 
-[assembly: ExportRendererAttribute (typeof (WF.Player.Controls.ExtendedButton), typeof (WF.Player.Controls.Droid.ExtendedButtonRenderer))]
+[assembly: ExportRendererAttribute(typeof(WF.Player.Controls.ExtendedButton), typeof(WF.Player.Controls.Droid.ExtendedButtonRenderer))]
 
 namespace WF.Player.Controls.Droid
 {
@@ -56,7 +56,7 @@ namespace WF.Player.Controls.Droid
 			base.OnElementChanged(e);
 
 			Control.SetSingleLine(true);
-			Control.SetPadding(10, Control.PaddingTop, 10, Control.PaddingBottom);
+			Control.SetPadding(0, Control.PaddingTop, 0, Control.PaddingBottom);
 
 			_textPaint = Control.Paint;
 		}

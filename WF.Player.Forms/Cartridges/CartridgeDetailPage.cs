@@ -116,6 +116,7 @@ namespace WF.Player
 
 			var list = new ListView() 
 				{
+					BackgroundColor = App.Colors.Background,
 					ItemsSource = listSource,
 					HeightRequest = listSource.Count * 44,
 				};
