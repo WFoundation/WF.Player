@@ -119,6 +119,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\IUserDialogs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\INetworkIndicator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\UserDialogs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\SettingsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\MultiCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\SelectionPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\CheckCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />
@@ -141,5 +145,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mobile\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\UserDialogs\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\BarCode\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Settings\" />
   </ItemGroup>
 </Project>
