@@ -123,6 +123,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Settings\MultiCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\SelectionPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\CheckCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\ExtensionsImageAlignment.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />

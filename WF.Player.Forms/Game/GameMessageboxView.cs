@@ -74,6 +74,7 @@ namespace WF.Player
 			var image = new ExtendedImage() 
 				{
 					Aspect = Aspect.AspectFit,
+					HorizontalOptions = Settings.ImageAlignment.ToLayoutOptions(),
 				};
 			image.SetBinding(Image.SourceProperty, GameMessageboxViewModel.ImageSourcePropertyName);
 			image.SetBinding(VisualElement.IsVisibleProperty, GameMessageboxViewModel.HasImagePropertyName);

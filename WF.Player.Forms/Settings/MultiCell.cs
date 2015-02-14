@@ -31,7 +31,7 @@ namespace WF.Player.SettingsPage
 		private Label detail;
 		private Label current;
 
-		public MultiCell()
+		public MultiCell(bool hasDetails = false)
 		{
 //			Height = 180;
 
@@ -46,7 +46,7 @@ namespace WF.Player.SettingsPage
 					ColumnDefinitions = new ColumnDefinitionCollection
 						{
 							#if __IOS__
-							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
 							#endif
 							#if __ANDROID__
 							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) },
@@ -60,9 +60,14 @@ namespace WF.Player.SettingsPage
 						},
 				};
 
+			if (!hasDetails)
+			{
+				// If we don't have any details, than delete row for details
+				grid.RowDefinitions.RemoveAt(1);
+			}
+
 			text = new Label {
-				Text = "Sound",
-				TextColor = Color.Black,
+				TextColor = App.Colors.Text,
 				FontSize = 17,
 				FontFamily = Font.Default.FontFamily,
 				HorizontalOptions = LayoutOptions.Start,
@@ -70,25 +75,27 @@ namespace WF.Player.SettingsPage
 
 			grid.Children.Add(text, 0, 0);
 
-			detail = new Label {
-				Text = "This is the description\nwith two lines.",
-				TextColor = Color.Gray,
-				LineBreakMode = LineBreakMode.WordWrap,
-				FontSize = 12,
-				FontFamily = Font.Default.FontFamily,
-				HorizontalOptions = LayoutOptions.Start,
-				VerticalOptions = LayoutOptions.Start,
-			};
+			if (hasDetails)
+			{
+				detail = new Label {
+					TextColor = Color.Gray,
+					LineBreakMode = LineBreakMode.WordWrap,
+					FontSize = 12,
+					FontFamily = Font.Default.FontFamily,
+					HorizontalOptions = LayoutOptions.Start,
+					VerticalOptions = LayoutOptions.Start,
+					IsVisible = false,
+				};
 
-			#if __IOS__
-			grid.Children.Add(detail, 0, 1);
-			#endif
-			#if __ANDROID__
-			grid.Children.Add(detail, 0, 2, 1, 2);
-			#endif
+				#if __IOS__
+				grid.Children.Add(detail, 0, 1);
+				#endif
+				#if __ANDROID__
+				grid.Children.Add(detail, 0, 2, 1, 2);
+				#endif
+			}
 
 			current = new Label {
-				Text = "Current value",
 				TextColor = Color.Gray,
 				LineBreakMode = LineBreakMode.TailTruncation,
 				FontSize = 17,
@@ -98,7 +105,14 @@ namespace WF.Player.SettingsPage
 			};
 
 			#if __IOS__
-			grid.Children.Add(current, 1, 2, 0, 2);
+			if (hasDetails)
+			{
+				grid.Children.Add(current, 1, 2, 0, 2);
+			}
+			else
+			{
+				grid.Children.Add(current, 1, 2, 0, 1);
+			}
 			#endif
 			#if __ANDROID__
 			grid.Children.Add(current, 1, 2, 0, 1);
@@ -130,6 +144,11 @@ namespace WF.Player.SettingsPage
 			set
 			{
 				detail.Text = value;
+
+				if (!string.IsNullOrEmpty(detail.Text))
+				{
+					detail.IsVisible = true;
+				}
 			}
 		}
 
@@ -138,6 +157,8 @@ namespace WF.Player.SettingsPage
 		public int DefaultValue { get; set; }
 
 		public string[] Items { get; set; }
+
+		public string[] ShortItems { get; set; }
 
 		protected override void OnAppearing()
 		{
@@ -177,7 +198,14 @@ namespace WF.Player.SettingsPage
 
 		public void Update()
 		{
-			current.Text = Items[Settings.Current.GetValueOrDefault<int>(Key, DefaultValue)];
+			if (ShortItems != null)
+			{
+				current.Text = ShortItems[Settings.Current.GetValueOrDefault<int>(Key, DefaultValue)];
+			}
+			else
+			{
+				current.Text = Items[Settings.Current.GetValueOrDefault<int>(Key, DefaultValue)];
+			}
 		}
 	}
 }

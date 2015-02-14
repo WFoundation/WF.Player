@@ -15,6 +15,7 @@
 // 
 // 	You should have received a copy of the GNU Lesser General Public License
 // 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Services.Settings;
 
 namespace WF.Player
 {
@@ -322,11 +323,11 @@ namespace WF.Player
 				{
 					if (!string.IsNullOrEmpty(ActiveObject.Markdown))
 					{
-						result.Html = ConverterToHtml.FromMarkdown(ActiveObject.Markdown, ActiveObject.Media);
+						result.Html = ConverterToHtml.FromMarkdown(ActiveObject.Markdown, Settings.TextAlignment, ActiveObject.Media);
 					}
 					else
 					{
-						result.Html = ConverterToHtml.FromText(ActiveObject.Description, ActiveObject.Media);
+						result.Html = ConverterToHtml.FromText(ActiveObject.Description, Settings.TextAlignment, ActiveObject.Media);
 					}
 				}
 

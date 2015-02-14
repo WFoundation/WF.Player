@@ -29,22 +29,73 @@ namespace WF.Player.SettingsPage
 		{
 			Title = Catalog.GetString("Settings");
 
-			var cellImageResize = new MultiCell {
-				Text = Catalog.GetString("Resizing"),
-				Detail = Catalog.GetString("Resizing of images"),
+			var cellTheme = new MultiCell {
+				Text = Catalog.GetString("Theme"),
+//				Detail = Catalog.GetString("Theme of display"),
 				Items = new string[] { 
-					Catalog.GetString("Don't resize"), 
-					Catalog.GetString("Shrink only"),
-					Catalog.GetString("Resize to screen width"),
-					Catalog.GetString("Resize to max. half height"),
+					Catalog.GetString("Light"), 
+					Catalog.GetString("Dark"),
 				},
-				Key = Settings.ImageResizeKey,
-				DefaultValue = (int)Settings.DefaultImageResize,
+				Key = Settings.DisplayThemeKey,
+				DefaultValue = (int)0,
 			};
+
+			var sectionTheme = new TableSection(Catalog.GetString("Appearance")) 
+				{
+					cellTheme,
+				};
+
+			var cellTextAlignment = new MultiCell {
+				Text = Catalog.GetString("Alignment"),
+//				Detail = Catalog.GetString("Alignment of text"),
+				Items = new string[] { 
+					Catalog.GetString("Left"), 
+					Catalog.GetString("Center"),
+					Catalog.GetString("Right"),
+				},
+				Key = Settings.TextAlignmentKey,
+				DefaultValue = (int)Settings.DefaultTextAlignment,
+			};
+
+			var cellTextSize = new EntryCell 
+				{
+					Label = Catalog.GetString("Textsize"),
+					LabelColor = App.Colors.Text,
+					Keyboard = Keyboard.Numeric,
+					Text = Settings.Current.GetValueOrDefault<float>(Settings.TextSizeKey, Settings.DefaultFontSize).ToString(),
+					XAlign = TextAlignment.End,
+				};
+
+			cellTextSize.Completed += (object sender, EventArgs e) =>
+				{
+					float value;
+
+					if (float.TryParse(((EntryCell)sender).Text, out value))
+					{
+						Settings.Current.AddOrUpdateValue<float>(Settings.TextSizeKey, value);
+					}
+				};
+			cellTextSize.PropertyChanged += (object sender, System.ComponentModel.PropertyChangedEventArgs e) => {
+				if (e.PropertyName == "Text")
+				{
+					float value;
+
+					if (float.TryParse(((EntryCell)sender).Text, out value))
+					{
+						Settings.Current.AddOrUpdateValue<float>(Settings.TextSizeKey, value);
+					}
+				}
+			};
+
+			var sectionText = new TableSection(Catalog.GetString("Text")) 
+				{
+					cellTextAlignment,
+					cellTextSize,
+				};
 
 			var cellImageAlignment = new MultiCell {
 				Text = Catalog.GetString("Alignment"),
-				Detail = Catalog.GetString("Alignment of images"),
+//				Detail = Catalog.GetString("Alignment of images"),
 				Items = new string[] { 
 					Catalog.GetString("Left"), 
 					Catalog.GetString("Center"),
@@ -54,10 +105,29 @@ namespace WF.Player.SettingsPage
 				DefaultValue = (int)Settings.DefaultImageAlignment,
 			};
 
+			var cellImageResize = new MultiCell {
+				Text = Catalog.GetString("Resizing"),
+//				Detail = Catalog.GetString("Resizing of images"),
+				Items = new string[] { 
+					Catalog.GetString("Don't resize"), 
+					Catalog.GetString("Shrink only"),
+					Catalog.GetString("Resize to screen width"),
+					Catalog.GetString("Resize to max. half height"),
+				},
+				ShortItems = new string[] { 
+					Catalog.GetString("Don't resize"), 
+					Catalog.GetString("Shrink only"),
+					Catalog.GetString("Screen width"),
+					Catalog.GetString("Max. half height"),
+				},
+				Key = Settings.ImageResizeKey,
+				DefaultValue = (int)Settings.DefaultImageResize,
+			};
+
 			var sectionImages = new TableSection(Catalog.GetString("Images")) 
 				{
-					cellImageResize,
 					cellImageAlignment,
+					cellImageResize,
 				};
 
 			var cellFeedbackSound = new SwitchCell 
@@ -84,6 +154,8 @@ namespace WF.Player.SettingsPage
 
 			var tableRoot = new TableRoot(Catalog.GetString("Settings")) 
 				{
+					sectionTheme,
+					sectionText,
 					sectionImages,
 					sectionFeedback,
 				};
@@ -124,6 +196,17 @@ namespace WF.Player.SettingsPage
 
 			Content = tableView;
 		}
+
+//		float value;
+//
+//		if (float.TryParse(entry.Text, out value))
+//		{
+//			return value;
+//		}
+//		else
+//		{
+//			return 0;
+//		}
 
 		void HandleTapped (object sender, EventArgs e)
 		{
