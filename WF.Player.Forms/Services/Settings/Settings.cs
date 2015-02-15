@@ -176,6 +176,8 @@ namespace WF.Player.Services.Settings
 
 		public static UnitLength DefaultUnitLength = UnitLength.Meter;
 
+		public static UnitLength DefaultUnitAltitude = UnitLength.Meter;
+
 		public static FormatCoordinates DefaultFormatCoordinates = FormatCoordinates.DecimalMinutes;
 
 		public static ImageResize DefaultImageResize = ImageResize.NoResize;

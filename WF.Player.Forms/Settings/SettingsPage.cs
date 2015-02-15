@@ -28,6 +28,7 @@ namespace WF.Player.SettingsPage
 		public SettingsPage()
 		{
 			Title = Catalog.GetString("Settings");
+			BackgroundColor = App.Colors.Background;
 
 			var cellTheme = new MultiCell {
 				Text = Catalog.GetString("Theme"),
@@ -59,7 +60,7 @@ namespace WF.Player.SettingsPage
 
 			var cellTextSize = new EntryCell 
 				{
-					Label = Catalog.GetString("Textsize"),
+					Label = Catalog.GetString("Size"),
 					LabelColor = App.Colors.Text,
 					Keyboard = Keyboard.Numeric,
 					Text = Settings.Current.GetValueOrDefault<float>(Settings.TextSizeKey, Settings.DefaultFontSize).ToString(),
@@ -152,65 +153,70 @@ namespace WF.Player.SettingsPage
 					cellFeedbackVibration,
 				};
 
+			var cellUnitDegrees = new MultiCell {
+				Text = Catalog.GetString("Degrees"),
+				//				Detail = Catalog.GetString("Resizing of images"),
+				Items = new string[] { 
+					Catalog.GetString("Decimal degrees (9.07538°)"), 
+					Catalog.GetString("Decimal minutes (9° 04.523')"),
+					Catalog.GetString("Decimal seconds (9° 04' 31.38\")"),
+				},
+				ShortItems = new string[] { 
+					Catalog.GetString("Decimal degrees"), 
+					Catalog.GetString("Decimal minutes"),
+					Catalog.GetString("Decimal seconds"),
+				},
+				Key = Settings.FormatCoordinatesKey,
+				DefaultValue = (int)Settings.DefaultFormatCoordinates,
+			};
+
+			var cellUnitAltitude = new MultiCell {
+				Text = Catalog.GetString("Altitude"),
+				//				Detail = Catalog.GetString("Resizing of images"),
+				Items = new string[] { 
+					Catalog.GetString("Meter"), 
+					Catalog.GetString("Feet"),
+				},
+				Key = Settings.UnitAltitudeKey,
+				DefaultValue = (int)Settings.DefaultUnitAltitude,
+			};
+
+			var cellUnitLength = new MultiCell {
+				Text = Catalog.GetString("Length"),
+				//				Detail = Catalog.GetString("Resizing of images"),
+				Items = new string[] { 
+					Catalog.GetString("Meter"), 
+					Catalog.GetString("Feet"),
+				},
+				Key = Settings.UnitLengthKey,
+				DefaultValue = (int)Settings.DefaultUnitLength,
+			};
+
+			var sectionUnits = new TableSection(Catalog.GetString("Units")) 
+				{
+					cellUnitDegrees,
+					cellUnitAltitude,
+					cellUnitLength,
+				};
+
 			var tableRoot = new TableRoot(Catalog.GetString("Settings")) 
 				{
 					sectionTheme,
 					sectionText,
 					sectionImages,
 					sectionFeedback,
+					sectionUnits,
 				};
-
-//			Content = new TableView {
-//				Intent = TableIntent.Settings,
-//				Root = new TableRoot("Table Title") {
-//					new TableSection("Section 1 Title") {
-//						new TextCell {
-//							Text = "TextCell Text",
-//							Detail = "TextCell Detail"
-//						},
-//						new EntryCell {
-//							Label = "EntryCell:",
-//							Placeholder = "default keyboard",
-//							Keyboard = Keyboard.Default
-//						}
-//					},
-//					new TableSection("Section 2 Title") {
-//						new EntryCell {
-//							Label = "Another EntryCell:",
-//							Placeholder = "phone keyboard",
-//							Keyboard = Keyboard.Telephone
-//						},
-//						new SwitchCell {
-//							Text = "SwitchCell:"
-//						}
-//					}
-//				}
-//			};
 
 			var tableView = new TableView() 
 				{
+					BackgroundColor = App.Colors.Background,
 					Intent = TableIntent.Settings,
 					Root = tableRoot,
 					HasUnevenRows = true,
 				};
 
 			Content = tableView;
-		}
-
-//		float value;
-//
-//		if (float.TryParse(entry.Text, out value))
-//		{
-//			return value;
-//		}
-//		else
-//		{
-//			return 0;
-//		}
-
-		void HandleTapped (object sender, EventArgs e)
-		{
-
 		}
 	}
 }
