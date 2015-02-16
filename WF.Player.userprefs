@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone von Dirk Weltz" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Settings/SettingsPage.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/App.cs">
     <Files>
       <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
@@ -8,30 +8,30 @@
       <File FileName="WF.Player.Forms/App.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/AppDelegate.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Services/Mobile/DeviceInfo.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Settings/SettingsPage.cs" Line="34" Column="34" />
-      <File FileName="WF.Player.Forms/Settings/MultiCell.cs" Line="43" Column="43" />
+      <File FileName="WF.Player.Forms/Settings/SettingsPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Settings/MultiCell.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Settings/SelectionPage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Common/ToolBarPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="4" Column="4" />
       <File FileName="WF.Player.Forms/Settings/CheckCell.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Renderer/CheckCellRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/Services/UserDialogs/UserDialogService.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Settings.bundle/Root.plist" />
       <File FileName="WF.Player.iOS/Settings.bundle/Display.plist" />
-      <File FileName="WF.Player.Forms/Controls/ExtendedLabel.cs" Line="52" Column="52" />
-      <File FileName="WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" Line="73" Column="73" />
-      <File FileName="WF.Player.Forms/Game/GameDetailViewModel.cs" Line="94" Column="94" />
-      <File FileName="WF.Player.Forms/Game/GameMessageboxViewModel.cs" Line="86" Column="86" />
-      <File FileName="WF.Player.Forms/Game/GameInputViewModel.cs" Line="82" Column="82" />
-      <File FileName="WF.Player.Forms/Game/GameDetailView.cs" Line="67" Column="67" />
-      <File FileName="WF.Player.Forms/Game/GameInputView.cs" Line="67" Column="67" />
-      <File FileName="WF.Player.Forms/Game/GameMessageboxView.cs" Line="67" Column="67" />
-      <File FileName="WF.Player.Forms/Utils/ExtensionsImageAlignment.cs" Line="19" Column="19" />
+      <File FileName="WF.Player.Forms/Services/Settings/Settings.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Settings/FolderSelectionPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameCheckLocationView.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Renderer/ExtendedNavigationPageRenderer.cs" Line="36" Column="36" />
+      <File FileName="WF.Player.Forms/Controls/ExtendedNavigationPage.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/Common/DirectionBarPage.cs" line="244" column="1" />
+      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.iOS/Renderer/ExtendedNavigationPageRenderer.cs" line="172" column="1" />
+      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.iOS/Renderer/ExtendedNavigationPageRenderer.cs" line="188" column="1" />
+      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.iOS/Renderer/ExtendedNavigationPageRenderer.cs" line="123" column="1" />
+      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.iOS/Renderer/ExtendedNavigationPageRenderer.cs" line="73" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>

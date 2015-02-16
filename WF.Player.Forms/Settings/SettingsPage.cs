@@ -25,6 +25,8 @@ namespace WF.Player.SettingsPage
 {
 	public class SettingsPage : ContentPage
 	{
+		private TextCell cellPath;
+
 		public SettingsPage()
 		{
 			Title = Catalog.GetString("Settings");
@@ -199,6 +201,26 @@ namespace WF.Player.SettingsPage
 					cellUnitLength,
 				};
 
+			#if __ANDROID__
+
+			cellPath = new TextCell {
+				Text = Catalog.GetString("Path for cartridges"),
+				Detail = Settings.Current.GetValueOrDefault<string>(Settings.CartridgePathKey, null),
+			};
+
+			cellPath.Command = new Command((sender) =>
+				App.Navigation.Navigation.PushAsync(new FolderSelectionPage(Settings.Current.GetValueOrDefault<string>(Settings.CartridgePathKey, null), () =>
+						{
+							cellPath.Detail = Settings.Current.GetValueOrDefault<string>(Settings.CartridgePathKey, null);
+						})));
+
+			var sectionPath = new TableSection(Catalog.GetString("Path")) 
+				{
+					cellPath,
+				};
+
+			#endif
+
 			var tableRoot = new TableRoot(Catalog.GetString("Settings")) 
 				{
 					sectionTheme,
@@ -206,6 +228,9 @@ namespace WF.Player.SettingsPage
 					sectionImages,
 					sectionFeedback,
 					sectionUnits,
+					#if __ANDROID__
+					sectionPath,
+					#endif
 				};
 
 			var tableView = new TableView() 

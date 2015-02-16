@@ -26,9 +26,9 @@ using WF.Player.Services.Settings;
 using WF.Player.Services.UserDialogs;
 using WF.Player.Models;
 
-namespace WF.Player
+namespace WF.Player.SettingsPage
 {
-	public class CartridgeFolderSelectionPage : ToolBarPage
+	public class FolderSelectionPage : ToolBarPage
 	{
 		private string path;
 		private Action updateAction;
@@ -46,7 +46,7 @@ namespace WF.Player
 			public string Path { get; set; }
 		}
 
-		public CartridgeFolderSelectionPage(string path, Action updateAction) : base()
+		public FolderSelectionPage(string path, Action updateAction) : base()
 		{
 			this.path = path;
 			this.updateAction = updateAction;

@@ -19,6 +19,7 @@ using WF.Player.Services.Settings;
 using System.IO;
 using WF.Player.Services.UserDialogs;
 using WF.Player.Core;
+using System;
 
 namespace WF.Player
 {
@@ -81,20 +82,21 @@ namespace WF.Player
 
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Settings"), null, () =>
 				{
+					App.Navigation.Popped += HandleSettingsClosed;
 					App.Navigation.Navigation.PushAsync(new SettingsPage.SettingsPage());
 //					DependencyService.Get<ISettingsView>().Show();
 				}, ToolbarItemOrder.Secondary));
-			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Path"), null, () =>
-				{
-					// Show folder selection page
-					App.Navigation.Navigation.PushModalAsync(new ExtendedNavigationPage(new CartridgeFolderSelectionPage(App.PathForCartridges, UpdateCartridges), true)
-						{
-							BackgroundColor = App.Colors.Background,
-							BarTextColor = App.Colors.BarText,
-							BarBackgroundColor = App.Colors.Bar,
-							ShowBackButton = true,
-						});
-				}, ToolbarItemOrder.Secondary));
+//			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Path"), null, () =>
+//				{
+//					// Show folder selection page
+//					App.Navigation.Navigation.PushModalAsync(new ExtendedNavigationPage(new CartridgeFolderSelectionPage(App.PathForCartridges, UpdateCartridges), true)
+//						{
+//							BackgroundColor = App.Colors.Background,
+//							BarTextColor = App.Colors.BarText,
+//							BarBackgroundColor = App.Colors.Bar,
+//							ShowBackButton = true,
+//						});
+//				}, ToolbarItemOrder.Secondary));
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Feedback"), null, () =>
 				HockeyApp.FeedbackManager.ShowFeedbackActivity(Forms.Context), 
 				ToolbarItemOrder.Secondary));
@@ -110,6 +112,7 @@ namespace WF.Player
 
 			var toolbarMenu = new ToolbarItem(Catalog.GetString("Menu"), null, () => { //"IconMenu.png", () => {
 				App.Click();
+				App.Navigation.Popped += HandleSettingsClosed;
 				App.Navigation.Navigation.PushAsync(new SettingsPage.SettingsPage());
 //				var cfg = new WF.Player.Services.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Main Menu"));
 //				cfg.Add(Catalog.GetString("Settings"), () => App.Navigation.Navigation.PushAsync(new SettingsPage.SettingsPage()));
@@ -122,10 +125,10 @@ namespace WF.Player
 			#endif
 
 			layout = new StackLayout() 
-			{
-				BackgroundColor = Color.White,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-			};
+				{
+					BackgroundColor = App.Colors.Background,
+					VerticalOptions = LayoutOptions.FillAndExpand,
+				};
 
 			var listCellHeight = (int)(((DependencyService.Get<IScreen>().Width * 0.25) - 20) * 1.25 + 30);
 
@@ -196,7 +199,7 @@ namespace WF.Player
 		{
 			get 
 			{ 
-				return refreshCommand ?? (refreshCommand = new Command (async ()=> await ExecuteRefreshCommand())); 
+				return refreshCommand ?? (refreshCommand = new Command(ExecuteRefreshCommand)); 
 			}
 		}
 
@@ -292,13 +295,23 @@ namespace WF.Player
 			Settings.Current.Remove(Settings.AutosaveGWSKey);
 		}
 
+		public void HandleSettingsClosed(object sender, EventArgs args)
+		{
+			App.Navigation.Popped -= HandleSettingsClosed;
+
+			layout.BackgroundColor = App.Colors.Background;
+			list.BackgroundColor = App.Colors.Background;
+
+			UpdateCartridges();
+		}
+
 		private void UpdateCartridges()
 		{
 			cartridges.Clear();
 			cartridges.SyncFromStore();
 		}
 
-		private async Task ExecuteRefreshCommand()
+		private void ExecuteRefreshCommand()
 		{
 			if (IsBusy)
 			{

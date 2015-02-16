@@ -352,6 +352,9 @@ namespace WF.Player
 					ShowBackButton = true,
 				};
 
+//			((ExtendedNavigationPage)App.Navigation).BackgroundColor = App.Colors.Bar;
+//			((ExtendedNavigationPage)App.Navigation).BarTextColor = App.Colors.BarText;
+
 			return App.Navigation;
 		}
 

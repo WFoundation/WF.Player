@@ -20,8 +20,8 @@ using Xamarin.Forms.Platform.iOS;
 using WF.Player.iOS;
 using UIKit;
 using CoreGraphics;
-using CoreGraphics;
 using System.Linq;
+using WF.Player.Services.Settings;
 
 [assembly: ExportRendererAttribute(typeof(WF.Player.Controls.ExtendedNavigationPage), typeof(WF.Player.Controls.iOS.ExtendedNavigationPageRenderer))]
 
@@ -41,31 +41,26 @@ namespace WF.Player.Controls.iOS
 		{
 			base.ViewDidLoad();
 
-			// TODO
-			// Color of navigation bar should change, if the settings are changed
-
-			// Create a one color background image
-			UIImage image;
-
-			// Create image
-			CGSize size = new CGSize(1, 1);
-			UIGraphics.BeginImageContext(size);
-			using (CGContext context = UIGraphics.GetCurrentContext()) {
-				context.SetFillColor(App.Colors.Bar.ToCGColor());
-				context.FillRect(new CGRect(0, 0, size.Width, size.Height));
-				image = UIGraphics.GetImageFromCurrentImageContext();
-			}
-			UIGraphics.EndImageContext();
-
-			// Set values for the NavigationBar
-			NavigationBar.TintColor = App.Colors.Tint.ToUIColor();
-			NavigationBar.SetBackgroundImage(image, UIBarMetrics.Default);
-			NavigationBar.BarStyle = App.Colors.IsDarkTheme ? UIBarStyle.Black : UIBarStyle.Default;
-
 			if (!animation)
 			{
 				CreateBackButton();
 			}
+
+			UpdateColors();
+		}
+
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			// Use this for the right side navigation bar buttons
+//			UIBarButtonItem.Appearance.TintColor = App.Colors.Tint.ToUIColor();
+//			// Use this for the left side navigation bar buttons
+//			NavigationBar.TintColor = App.Colors.Tint.ToUIColor();
+
+//			NavigationBar.BarStyle = Settings.IsDarkTheme ? UIBarStyle.Black : UIBarStyle.Default;
+
+			UpdateColors();
 		}
 
 		protected override void OnElementChanged(VisualElementChangedEventArgs e)
@@ -76,9 +71,10 @@ namespace WF.Player.Controls.iOS
 
 			animation = ((ExtendedNavigationPage)Element).Animation;
 
+			((NavigationPage)Element).PropertyChanged += OnElementPropertyChanged;
+
 			if (!animation)
 			{
-				((NavigationPage)Element).PropertyChanged += OnElementPropertyChanged;
 				((NavigationPage)Element).Pushed += HandlePushed;
 				((NavigationPage)Element).Popped += HandlePopped;
 			}
@@ -105,20 +101,21 @@ namespace WF.Player.Controls.iOS
 					item.LeftBarButtonItem = null;
 				}
 			}
+
+			if (e.PropertyName == "CurrentPage")
+			{
+				// Is it the first page
+				if (((ExtendedNavigationPage)Element).CurrentPage is CartridgeListPage)
+				{
+					// Set values for the NavigationBar
+					UpdateColors();
+				}
+			}
 		}
 
 		private void HandlePushed(object sender, NavigationEventArgs e)
 		{
 			var item = NavigationBar.Items.Last();
-
-			// Do this, because Xamarin.Forms don't set the TintColor for the first time correct.
-			foreach (var navBarItem in NavigationBar.Items)
-			{
-				foreach (var navBarRightItem in navBarItem.RightBarButtonItems)
-				{
-					navBarRightItem.TintColor = App.Colors.Tint.ToUIColor();
-				}
-			}
 
 			if (((ExtendedNavigationPage)Element).ShowBackButton)
 			{
@@ -213,6 +210,16 @@ namespace WF.Player.Controls.iOS
 			}
 
 			base.Dispose(disposing);
+		}
+
+		private void UpdateColors()
+		{
+			// Set background
+			((ExtendedNavigationPage)Element).BackgroundColor = App.Colors.Background;
+			((ExtendedNavigationPage)Element).BarTextColor = App.Colors.BarText;
+			NavigationBar.BarTintColor = App.Colors.Bar.ToUIColor();
+			// Use this for the left side navigation bar buttons
+			NavigationBar.TintColor = App.Colors.Tint.ToUIColor();
 		}
 	}
 }

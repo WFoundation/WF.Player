@@ -101,7 +101,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\ConfirmConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\PromptConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\PromptResult.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeFolderSelectionPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Device\IExit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Device\IScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeListCell.cs" />
@@ -124,6 +123,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Settings\SelectionPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\CheckCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\ExtensionsImageAlignment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\FolderSelectionPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />
