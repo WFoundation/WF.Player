@@ -343,6 +343,8 @@ namespace WF.Player
 			var cartridges = new CartridgeStore();
 			cartridges.SyncFromStore();
 
+			Settings.Current.AddOrUpdateValue<int>(Settings.TextSizeKey, 20);
+
 			// Create content page for cartridge list
 			App.Navigation = new ExtendedNavigationPage(new CartridgeListPage(cartridges), true) 
 				{

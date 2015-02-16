@@ -113,12 +113,11 @@ namespace WF.Player
 			var toolbarMenu = new ToolbarItem(Catalog.GetString("Menu"), null, () => { //"IconMenu.png", () => {
 				App.Click();
 				App.Navigation.Popped += HandleSettingsClosed;
-				App.Navigation.Navigation.PushAsync(new SettingsPage.SettingsPage());
-//				var cfg = new WF.Player.Services.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Main Menu"));
-//				cfg.Add(Catalog.GetString("Settings"), () => App.Navigation.Navigation.PushAsync(new SettingsPage.SettingsPage()));
-//				cfg.Add(Catalog.GetString("Feedback"), () => HockeyApp.BITHockeyManager.SharedHockeyManager.FeedbackManager.ShowFeedbackListView());
-//				cfg.Cancel = new WF.Player.Services.UserDialogs.ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
-//				UserDialogs.Instance.ActionSheet(cfg);
+				var cfg = new WF.Player.Services.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Main Menu"));
+				cfg.Add(Catalog.GetString("Settings"), () => App.Navigation.Navigation.PushAsync(new SettingsPage.SettingsPage()));
+				cfg.Add(Catalog.GetString("Feedback"), () => HockeyApp.BITHockeyManager.SharedHockeyManager.FeedbackManager.ShowFeedbackListView());
+				cfg.Cancel = new WF.Player.Services.UserDialogs.ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
+				UserDialogs.Instance.ActionSheet(cfg);
 			});
 			this.ToolbarItems.Add (toolbarMenu);
 
@@ -298,6 +297,10 @@ namespace WF.Player
 		public void HandleSettingsClosed(object sender, EventArgs args)
 		{
 			App.Navigation.Popped -= HandleSettingsClosed;
+
+			App.Navigation.BackgroundColor = App.Colors.Background;
+			App.Navigation.BarTextColor = App.Colors.BarText;
+			App.Navigation.BarBackgroundColor = App.Colors.Bar;
 
 			layout.BackgroundColor = App.Colors.Background;
 			list.BackgroundColor = App.Colors.Background;

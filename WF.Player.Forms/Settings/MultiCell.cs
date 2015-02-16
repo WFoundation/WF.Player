@@ -38,7 +38,7 @@ namespace WF.Player.SettingsPage
 			var grid = new Grid 
 				{
 					BackgroundColor = App.Colors.Background,
-					Padding = Device.OnPlatform<Thickness>(new Thickness(0, 10, 10, 10), new Thickness(18, 10, 10, 10), new Thickness(0, 10, 10, 10)),
+					Padding = Device.OnPlatform<Thickness>(new Thickness(0, 10, 10, 10), new Thickness(18, 10, 18, 10), new Thickness(0, 10, 10, 10)),
 					RowSpacing = 6,
 					HorizontalOptions = LayoutOptions.Fill,
 					VerticalOptions = LayoutOptions.Fill,
@@ -68,7 +68,7 @@ namespace WF.Player.SettingsPage
 
 			text = new Label {
 				TextColor = App.Colors.Text,
-				FontSize = 17,
+				FontSize = Device.OnPlatform<int>(17, 14, 17),
 				FontFamily = Font.Default.FontFamily,
 				HorizontalOptions = LayoutOptions.Start,
 			};

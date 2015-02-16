@@ -26,11 +26,21 @@ namespace WF.Player.SettingsPage
 	public class SettingsPage : ContentPage
 	{
 		private TextCell cellPath;
+		private Color textColor;
+		private Color backgroundColor;
 
 		public SettingsPage()
 		{
 			Title = Catalog.GetString("Settings");
 			BackgroundColor = App.Colors.Background;
+
+			// Save for later use
+			// Do this, because color could change while handling with settings :)
+			textColor = App.Colors.Text;
+			backgroundColor = App.Colors.Background;
+
+			NavigationPage.SetTitleIcon(this, "HomeIcon.png");
+			NavigationPage.SetBackButtonTitle(this, string.Empty);
 
 			var cellTheme = new MultiCell {
 				Text = Catalog.GetString("Theme"),
@@ -65,27 +75,27 @@ namespace WF.Player.SettingsPage
 					Label = Catalog.GetString("Size"),
 					LabelColor = App.Colors.Text,
 					Keyboard = Keyboard.Numeric,
-					Text = Settings.Current.GetValueOrDefault<float>(Settings.TextSizeKey, Settings.DefaultFontSize).ToString(),
+					Text = Settings.Current.GetValueOrDefault<int>(Settings.TextSizeKey, Settings.DefaultFontSize).ToString(),
 					XAlign = TextAlignment.End,
 				};
 
 			cellTextSize.Completed += (object sender, EventArgs e) =>
 				{
-					float value;
+					int value;
 
-					if (float.TryParse(((EntryCell)sender).Text, out value))
+					if (int.TryParse(((EntryCell)sender).Text, out value))
 					{
-						Settings.Current.AddOrUpdateValue<float>(Settings.TextSizeKey, value);
+						Settings.Current.AddOrUpdateValue<int>(Settings.TextSizeKey, value);
 					}
 				};
 			cellTextSize.PropertyChanged += (object sender, System.ComponentModel.PropertyChangedEventArgs e) => {
 				if (e.PropertyName == "Text")
 				{
-					float value;
+					int value;
 
-					if (float.TryParse(((EntryCell)sender).Text, out value))
+					if (int.TryParse(((EntryCell)sender).Text, out value))
 					{
-						Settings.Current.AddOrUpdateValue<float>(Settings.TextSizeKey, value);
+						Settings.Current.AddOrUpdateValue<int>(Settings.TextSizeKey, value);
 					}
 				}
 			};
@@ -205,14 +215,16 @@ namespace WF.Player.SettingsPage
 
 			cellPath = new TextCell {
 				Text = Catalog.GetString("Path for cartridges"),
+				TextColor = App.Colors.Text,
 				Detail = Settings.Current.GetValueOrDefault<string>(Settings.CartridgePathKey, null),
+				DetailColor = Color.Gray,
 			};
 
 			cellPath.Command = new Command((sender) =>
 				App.Navigation.Navigation.PushAsync(new FolderSelectionPage(Settings.Current.GetValueOrDefault<string>(Settings.CartridgePathKey, null), () =>
 						{
 							cellPath.Detail = Settings.Current.GetValueOrDefault<string>(Settings.CartridgePathKey, null);
-						})));
+					}, textColor, backgroundColor)));
 
 			var sectionPath = new TableSection(Catalog.GetString("Path")) 
 				{

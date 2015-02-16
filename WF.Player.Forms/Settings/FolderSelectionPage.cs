@@ -28,7 +28,7 @@ using WF.Player.Models;
 
 namespace WF.Player.SettingsPage
 {
-	public class FolderSelectionPage : ToolBarPage
+	public class FolderSelectionPage : ContentPage
 	{
 		private string path;
 		private Action updateAction;
@@ -46,12 +46,15 @@ namespace WF.Player.SettingsPage
 			public string Path { get; set; }
 		}
 
-		public FolderSelectionPage(string path, Action updateAction) : base()
+		public FolderSelectionPage(string path, Action updateAction, Color textColor, Color backgroundColor) : base()
 		{
 			this.path = path;
 			this.updateAction = updateAction;
 
 			Title = path;
+
+			NavigationPage.SetTitleIcon(this, "HomeIcon.png");
+			NavigationPage.SetBackButtonTitle(this, string.Empty);
 
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("New folder"), null, () =>
 				{
@@ -76,11 +79,11 @@ namespace WF.Player.SettingsPage
 				}, ToolbarItemOrder.Secondary));
 
 			var cell = new DataTemplate(typeof(TextCell));
-			cell.SetValue(TextCell.TextColorProperty, Color.Black); //App.Colors.Text);
+			cell.SetValue(TextCell.TextColorProperty, textColor);
 			cell.SetBinding(TextCell.TextProperty, "Name");
 
 			list = new ListView() {
-//				BackgroundColor = Color.Yellow,
+				BackgroundColor = backgroundColor,
 				RowHeight = 50,
 				HasUnevenRows = false,
 				ItemTemplate = cell,
@@ -92,45 +95,46 @@ namespace WF.Player.SettingsPage
 			list.ItemTapped += (object sender, ItemTappedEventArgs e) => {
 				var pathItem = ((PathItem)e.Item);
 				this.path = pathItem.Path;
+
+				Settings.Current.AddOrUpdateValue<string>(Settings.CartridgePathKey, this.path);
+
+				if(updateAction != null)
+				{
+					updateAction();
+				}
+
 				UpdateDirectories();
 			};
 
-			((StackLayout)ContentLayout).Children.Add(list);
+//			((StackLayout)ContentLayout).Children.Add(list);
+			Content = list;
 
 			UpdateDirectories();
 		}
 
-		protected override void OnAppearing()
-		{
-			base.OnAppearing();
+//		protected override bool OnBackButtonPressed()
+//		{
+//			App.Navigation.Navigation.PopModalAsync();
+//
+//			return true;
+//		}
 
-			Buttons.Add(new ToolTextButton(Catalog.GetString("Select"), new Command(SelectCommand)));
-			Buttons.Add(new ToolTextButton(Catalog.GetString("Cancel"), new Command(CancelCommand)));
-		}
+//		private void SelectCommand()
+//		{
+//			Settings.Current.AddOrUpdateValue<string>(Settings.CartridgePathKey, path);
+//
+//			if (updateAction != null)
+//			{
+//				updateAction();
+//			}
+//
+//			App.Navigation.Navigation.PopAsync();
+//		}
 
-		protected override bool OnBackButtonPressed()
-		{
-			CancelCommand();
-
-			return true;
-		}
-
-		private void SelectCommand()
-		{
-			Settings.Current.AddOrUpdateValue<string>(Settings.CartridgePathKey, path);
-
-			if (updateAction != null)
-			{
-				updateAction();
-			}
-
-			App.Navigation.Navigation.PopModalAsync();
-		}
-
-		private void CancelCommand()
-		{
-			App.Navigation.Navigation.PopModalAsync();
-		}
+//		private void CancelCommand()
+//		{
+//			App.Navigation.Navigation.PopModalAsync();
+//		}
 
 		private void UpdateDirectories()
 		{

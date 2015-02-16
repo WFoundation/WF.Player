@@ -46,6 +46,9 @@ namespace WF.Player.SettingsPage
 
 			Title = Catalog.GetString(title);
 
+			NavigationPage.SetTitleIcon(this, "HomeIcon.png");
+			NavigationPage.SetBackButtonTitle(this, string.Empty);
+
 			section = new TableSection();
 
 			var active = Settings.Current.GetValueOrDefault<int>(key, defaultValue);
