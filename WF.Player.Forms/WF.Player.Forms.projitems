@@ -124,6 +124,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Settings\CheckCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\ExtensionsImageAlignment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\FolderSelectionPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\AboutPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />

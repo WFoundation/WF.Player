@@ -17,7 +17,7 @@ namespace WF.Player.Services.UserDialogs
 
 		public ConfirmConfig()
 		{
-			this.OkText = Catalog.GetString("OK");
+			this.OkText = Catalog.GetString("Ok");
 			this.CancelText = Catalog.GetString("Cancel");
 		}
 

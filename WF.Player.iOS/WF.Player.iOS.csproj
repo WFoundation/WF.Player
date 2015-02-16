@@ -155,11 +155,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="Settings.bundle\Root.plist" />
-    <BundleResource Include="Settings.bundle\de.lproj\Root.strings" />
-    <BundleResource Include="Settings.bundle\Localisation.plist" />
-    <BundleResource Include="Settings.bundle\Display.plist" />
-    <BundleResource Include="Settings.bundle\Acknowledge.plist" />
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Icon-60%402x.png" />
@@ -243,7 +238,6 @@
     <Compile Include="Services\Geolocation\GeolocationSingleUpdateDelegate.cs" />
     <Compile Include="Services\Geolocation\PositionExtensions.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="Game\ScreenMap.cs" />
     <Compile Include="Renderer\AccessoryCellRenderer.cs" />
     <Compile Include="Services\Core\iOSPlatformHelper.cs" />
     <Compile Include="Services\Device\Sound.cs" />
@@ -279,8 +273,6 @@
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Services\Geolocation\" />
-    <Folder Include="Settings.bundle\" />
-    <Folder Include="Settings.bundle\Acknowledgements.xcassets\" />
     <Folder Include="Game\" />
     <Folder Include="Renderer\" />
     <Folder Include="Services\Core\" />

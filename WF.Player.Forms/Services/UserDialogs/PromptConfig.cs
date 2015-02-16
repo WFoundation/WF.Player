@@ -22,7 +22,7 @@ namespace WF.Player.Services.UserDialogs
 
 		public PromptConfig() 
 		{
-			this.OkText = Catalog.GetString("OK");
+			this.OkText = Catalog.GetString("Ok");
 			this.CancelText = Catalog.GetString("Cancel");
 		}
 		//public static PromptConfig Create(string message, Action<PromptResult> onResult) {

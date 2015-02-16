@@ -42,7 +42,7 @@ namespace WF.Player.Services.UserDialogs
 		public LoginConfig()
 		{
 			this.Title = Catalog.GetString("Login");
-			this.OkText = Catalog.GetString("OK");
+			this.OkText = Catalog.GetString("Ok");
 			this.CancelText = Catalog.GetString("Cancel");
 			this.LoginPlaceholder = Catalog.GetString("User Name");
 			this.PasswordPlaceholder = Catalog.GetString("Password");

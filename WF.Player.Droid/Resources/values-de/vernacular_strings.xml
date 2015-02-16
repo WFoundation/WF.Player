@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <string formatted="false" name="Vernacular_P0_About">Über</string>
   <string formatted="false" name="Vernacular_P0_Actions">Aktionen</string>
   <string formatted="false" name="Vernacular_P0_Activity581230125">Art: {0}</string>
+  <string formatted="false" name="Vernacular_P0_Alignment">Ausrichtung</string>
+  <string formatted="false" name="Vernacular_P0_Altitude">Höhe</string>
+  <string formatted="false" name="Vernacular_P0_Appearance">Aussehen</string>
   <string formatted="false" name="Vernacular_P0_Attributes">Attribute</string>
   <string formatted="false" name="Vernacular_P0_Author581230125">Autor: {0}</string>
   <string formatted="false" name="Vernacular_P0_Automaticalsavefile">Automatische Sicherungsdatei</string>
@@ -9,17 +13,33 @@
   <string formatted="false" name="Vernacular_P0_By">Von</string>
   <string formatted="false" name="Vernacular_P0_Cancel">Abbruch</string>
   <string formatted="false" name="Vernacular_P0_Cartridges">Cartridges</string>
+  <string formatted="false" name="Vernacular_P0_Center">Zentrieren</string>
   <string formatted="false" name="Vernacular_P0_Choose">Wählen</string>
   <string formatted="false" name="Vernacular_P0_CommentSavefile">Kommentar Sicherungsdatei</string>
+  <string formatted="false" name="Vernacular_P0_Copyrightby10WherigoFoundation10DirkWeltz10BriceClocher">Copyright by
+Wherigo Foundation
+Dirk Weltz
+Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_CurrentAccuracy101230125">Aktuelle Genauigkeit
 {0}</string>
   <string formatted="false" name="Vernacular_P0_CurrentCoordinates101230125">Aktuelle Koordinaten
 {0}</string>
   <string formatted="false" name="Vernacular_P0_CurrentLocation">Aktuelle Position</string>
+  <string formatted="false" name="Vernacular_P0_Dark">Dunkel</string>
+  <string formatted="false" name="Vernacular_P0_Decimaldegrees">Dezimalgrad</string>
+  <string formatted="false" name="Vernacular_P0_Decimaldegrees409460753817641">Dezimalgrad (9,07538°)</string>
+  <string formatted="false" name="Vernacular_P0_Decimalminutes">Dezimaleminuten</string>
+  <string formatted="false" name="Vernacular_P0_Decimalminutes40917604465233941">Dezimaleminuten (9° 04.523\')</string>
+  <string formatted="false" name="Vernacular_P0_Decimalseconds">Dezimalsekunden</string>
+  <string formatted="false" name="Vernacular_P0_Decimalseconds40917604393146383441">Dezimalsekunden (9° 04\' 31,38")</string>
+  <string formatted="false" name="Vernacular_P0_Degrees">Grad</string>
+  <string formatted="false" name="Vernacular_P0_Delete">Löschen</string>
   <string formatted="false" name="Vernacular_P0_Description">Beschreibung</string>
   <string formatted="false" name="Vernacular_P0_Details">Details</string>
+  <string formatted="false" name="Vernacular_P0_Don39tresize">Keine Größenänderung</string>
   <string formatted="false" name="Vernacular_P0_E">O</string>
   <string formatted="false" name="Vernacular_P0_Feedback">Rückmeldung</string>
+  <string formatted="false" name="Vernacular_P0_Feet">Feet</string>
   <string formatted="false" name="Vernacular_P0_Flash">Licht</string>
   <string formatted="false" name="Vernacular_P0_Focuson">Fokussieren auf</string>
   <string formatted="false" name="Vernacular_P0_Formuchfunwiththecartridge44youshouldwaitforagoodaccuracyofyourGPSsignal46">Bevor Du die Cartridge startest, solltest Du warten, bis Du ein gutes Satellitensignal hast.</string>
@@ -29,14 +49,20 @@
   <string formatted="false" name="Vernacular_P0_Here">Hier</string>
   <string formatted="false" name="Vernacular_P0_History">Verlauf</string>
   <string formatted="false" name="Vernacular_P0_Hybrid">Hybrid</string>
+  <string formatted="false" name="Vernacular_P0_Images">Bilder</string>
   <string formatted="false" name="Vernacular_P0_Inside">Innerhalb</string>
   <string formatted="false" name="Vernacular_P0_Inventory">Inventar</string>
+  <string formatted="false" name="Vernacular_P0_Left">Links</string>
+  <string formatted="false" name="Vernacular_P0_Length">Länge</string>
   <string formatted="false" name="Vernacular_P0_Light">Hell</string>
   <string formatted="false" name="Vernacular_P0_Loading464646">Laden…</string>
+  <string formatted="false" name="Vernacular_P0_Login">Einloggen</string>
   <string formatted="false" name="Vernacular_P0_Logs">Logs</string>
   <string formatted="false" name="Vernacular_P0_Map">Karte</string>
   <string formatted="false" name="Vernacular_P0_Maptype">Kartenart</string>
+  <string formatted="false" name="Vernacular_P0_Max46halfheight">Max. halbe Höhe</string>
   <string formatted="false" name="Vernacular_P0_Menu">﻿Menü</string>
+  <string formatted="false" name="Vernacular_P0_Meter">Meter</string>
   <string formatted="false" name="Vernacular_P0_N">N</string>
   <string formatted="false" name="Vernacular_P0_Newfolder">Neuer Ordner</string>
   <string formatted="false" name="Vernacular_P0_Newfoldername">Name des neuen Ordners</string>
@@ -48,27 +74,46 @@
   <string formatted="false" name="Vernacular_P0_Nothingofinterest">Nichts von Interesse</string>
   <string formatted="false" name="Vernacular_P0_Nowheretogo">Keine Orte</string>
   <string formatted="false" name="Vernacular_P0_Ok">Ok</string>
+  <string formatted="false" name="Vernacular_P0_OK">OK</string>
   <string formatted="false" name="Vernacular_P0_Overview">Überblick</string>
   <string formatted="false" name="Vernacular_P0_Parentdirectory">Übergeordnetes Verzeichnis</string>
+  <string formatted="false" name="Vernacular_P0_Password">Passwort</string>
   <string formatted="false" name="Vernacular_P0_Path">Pfad</string>
+  <string formatted="false" name="Vernacular_P0_Pathforcartridges">Pfad für Cartridges</string>
   <string formatted="false" name="Vernacular_P0_Pleasewait464646">Bitte warten…</string>
   <string formatted="false" name="Vernacular_P0_Provideacommenttoidentifythissavefile">Bitte gib einen Kommentar für diese Sicherungsdatei ein, damit Du sie später wieder zuordnen kannst.</string>
   <string formatted="false" name="Vernacular_P0_Quit">Beenden</string>
+  <string formatted="false" name="Vernacular_P0_Resizetomax46halfheight">Anpassen an max. halbe Höhe des Bildschirmes</string>
+  <string formatted="false" name="Vernacular_P0_Resizetoscreenwidth">Anpassen auf Bildschirmbreite</string>
+  <string formatted="false" name="Vernacular_P0_Resizing">Ändern der Größe</string>
+  <string formatted="false" name="Vernacular_P0_Right">Rechts</string>
   <string formatted="false" name="Vernacular_P0_S">S</string>
   <string formatted="false" name="Vernacular_P0_Satellite">Satellit</string>
   <string formatted="false" name="Vernacular_P0_Save">Sichern</string>
   <string formatted="false" name="Vernacular_P0_SaveGame">Spiel sichern</string>
+  <string formatted="false" name="Vernacular_P0_Screenwidth">Bildschirmbreite</string>
   <string formatted="false" name="Vernacular_P0_Select">Auswählen</string>
   <string formatted="false" name="Vernacular_P0_Settings">Einstellungen</string>
+  <string formatted="false" name="Vernacular_P0_Shrinkonly">Nur verkleinern</string>
+  <string formatted="false" name="Vernacular_P0_Size">Größe</string>
+  <string formatted="false" name="Vernacular_P0_Sound">Klang</string>
   <string formatted="false" name="Vernacular_P0_Start">Start</string>
   <string formatted="false" name="Vernacular_P0_Startanyway">Trotzdem starten</string>
   <string formatted="false" name="Vernacular_P0_StartingLocation">Startpunkt</string>
   <string formatted="false" name="Vernacular_P0_Street">Standard</string>
   <string formatted="false" name="Vernacular_P0_Tasks">Aufgaben</string>
+  <string formatted="false" name="Vernacular_P0_Text">Text</string>
+  <string formatted="false" name="Vernacular_P0_Theme">Theme</string>
   <string formatted="false" name="Vernacular_P0_Thereisanautomaticsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">Es gibt eine automatische Sicherungsdatei der zuletzt gespielten Cartridge. Möchtest Du diese weiterspielen?</string>
+  <string formatted="false" name="Vernacular_P0_Units">Einheiten</string>
   <string formatted="false" name="Vernacular_P0_Unknown">Unbekannt</string>
+  <string formatted="false" name="Vernacular_P0_Update">Aktualisieren</string>
+  <string formatted="false" name="Vernacular_P0_UserName">Benutzername</string>
   <string formatted="false" name="Vernacular_P0_Version581230125">Version: {0}</string>
+  <string formatted="false" name="Vernacular_P0_Vibration">Vibration</string>
   <string formatted="false" name="Vernacular_P0_W">W</string>
+  <string formatted="false" name="Vernacular_P0_WF46Player">WF.Player</string>
+  <string formatted="false" name="Vernacular_P0_WF46Player46Android">WF.Player.Android</string>
   <string formatted="false" name="Vernacular_P0_Wouldyouliketosavethecurrentgame63">Möchtest Du das aktuelle Spiel vor dem Beenden sichern?</string>
   <string formatted="false" name="Vernacular_P0_Writeinputhere464646">Antwort…</string>
   <string formatted="false" name="Vernacular_P0_Yes">Ja</string>

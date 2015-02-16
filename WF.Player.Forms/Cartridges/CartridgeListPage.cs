@@ -86,8 +86,9 @@ namespace WF.Player
 					App.Navigation.Navigation.PushAsync(new SettingsPage.SettingsPage());
 //					DependencyService.Get<ISettingsView>().Show();
 				}, ToolbarItemOrder.Secondary));
-//			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Path"), null, () =>
-//				{
+			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("About"), null, () =>
+				{
+					App.Navigation.Navigation.PushAsync(new SettingsPage.AboutPage());
 //					// Show folder selection page
 //					App.Navigation.Navigation.PushModalAsync(new ExtendedNavigationPage(new CartridgeFolderSelectionPage(App.PathForCartridges, UpdateCartridges), true)
 //						{
@@ -95,8 +96,8 @@ namespace WF.Player
 //							BarTextColor = App.Colors.BarText,
 //							BarBackgroundColor = App.Colors.Bar,
 //							ShowBackButton = true,
-//						});
-//				}, ToolbarItemOrder.Secondary));
+//						};
+				}, ToolbarItemOrder.Secondary));
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Feedback"), null, () =>
 				HockeyApp.FeedbackManager.ShowFeedbackActivity(Forms.Context), 
 				ToolbarItemOrder.Secondary));
@@ -115,6 +116,7 @@ namespace WF.Player
 				App.Navigation.Popped += HandleSettingsClosed;
 				var cfg = new WF.Player.Services.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Main Menu"));
 				cfg.Add(Catalog.GetString("Settings"), () => App.Navigation.Navigation.PushAsync(new SettingsPage.SettingsPage()));
+				cfg.Add(Catalog.GetString("About"), () => App.Navigation.Navigation.PushAsync(new SettingsPage.AboutPage()));
 				cfg.Add(Catalog.GetString("Feedback"), () => HockeyApp.BITHockeyManager.SharedHockeyManager.FeedbackManager.ShowFeedbackListView());
 				cfg.Cancel = new WF.Player.Services.UserDialogs.ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 				UserDialogs.Instance.ActionSheet(cfg);
