@@ -20,6 +20,7 @@ using System.IO;
 using WF.Player.Services.UserDialogs;
 using WF.Player.Core;
 using System;
+using System.Linq;
 
 namespace WF.Player
 {
@@ -298,16 +299,19 @@ namespace WF.Player
 
 		public void HandleSettingsClosed(object sender, EventArgs args)
 		{
-			App.Navigation.Popped -= HandleSettingsClosed;
+			if (sender is ExtendedNavigationPage && ((ExtendedNavigationPage)sender).CurrentPage is CartridgeListPage)
+			{
+				App.Navigation.Popped -= HandleSettingsClosed;
 
-			App.Navigation.BackgroundColor = App.Colors.Background;
-			App.Navigation.BarTextColor = App.Colors.BarText;
-			App.Navigation.BarBackgroundColor = App.Colors.Bar;
+				App.Navigation.BackgroundColor = App.Colors.Background;
+				App.Navigation.BarTextColor = App.Colors.BarText;
+				App.Navigation.BarBackgroundColor = App.Colors.Bar;
 
-			layout.BackgroundColor = App.Colors.Background;
-			list.BackgroundColor = App.Colors.Background;
+				layout.BackgroundColor = App.Colors.Background;
+				list.BackgroundColor = App.Colors.Background;
 
-			UpdateCartridges();
+				UpdateCartridges();
+			}
 		}
 
 		private void UpdateCartridges()
