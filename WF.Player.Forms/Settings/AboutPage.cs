@@ -64,24 +64,26 @@ namespace WF.Player.SettingsPage
 //
 			var copyright = new ExtendedLabel 
 				{
-					Text = Catalog.GetString("Copyright by\nWherigo Foundation\nDirk Weltz\nBrice Clocher"),
+					Text = Catalog.GetString("Copyright by  \nWherigo Foundation  \nDirk Weltz  \nBrice Clocher"),
 					TextColor = App.Colors.Text,
 					FontSize = Settings.FontSize * 0.8,
 					LineBreakMode = LineBreakMode.WordWrap,
 					XAlign = TextAlignment.Center,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.Fill,
+					UseMarkdown = true,
 				};
 
 			var version = new ExtendedLabel 
 				{
-					Text = Catalog.Format("Version\n{0}", ((App)App.Current).PlatformHelper.ClientVersion),
+					Text = Catalog.Format("Version  \n{0}", ((App)App.Current).PlatformHelper.ClientVersion),
 					TextColor = App.Colors.Text,
 					FontSize = Settings.FontSize,
 					LineBreakMode = LineBreakMode.WordWrap,
 					XAlign = TextAlignment.Center,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.Fill,
+					UseMarkdown = true,
 				};
 
 			var layout = new StackLayout 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WF.Player\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-02-16 21:29+0100\n"
+"PO-Revision-Date: 2015-02-17 19:59+0100\n"
 "Last-Translator: Dirk Weltz <web@weltz-online.de>\n"
 "Language-Team: Wherigo Foundation <info@wfplayer.com>\n"
 "Language: de\n"
@@ -13,8 +13,9 @@ msgstr ""
 "X-Generator: Poedit 1.7.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:89
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:90
 #: WF.Player.Forms/Settings/AboutPage.cs:31
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:120
 msgid "About"
 msgstr "Über"
 
@@ -29,18 +30,14 @@ msgstr "Art: {0}"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:62
 #: WF.Player.Forms/Settings/SettingsPage.cs:110
-#: WF.Player.Forms/Settings/SettingsPage.cs:52
-#: WF.Player.Forms/Settings/SettingsPage.cs:100
 msgid "Alignment"
 msgstr "Ausrichtung"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:186
-#: WF.Player.Forms/Settings/SettingsPage.cs:176
 msgid "Altitude"
 msgstr "Höhe"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:56
-#: WF.Player.Forms/Settings/SettingsPage.cs:46
 msgid "Appearance"
 msgstr "Aussehen"
 
@@ -74,19 +71,17 @@ msgstr "Von"
 #: WF.Player.Forms/Services/UserDialogs/ConfirmConfig.cs:21
 #: WF.Player.Forms/Services/UserDialogs/PromptConfig.cs:26
 #: WF.Player.Forms/Services/UserDialogs/LoginConfig.cs:46
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:122
 #: WF.Player.Forms/Game/GameMainView.cs:75
-#: WF.Player.Forms/Settings/FolderSelectionPage.cs:108
 msgid "Cancel"
 msgstr "Abbruch"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:75
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:76
 msgid "Cartridges"
 msgstr "Cartridges"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:66
 #: WF.Player.Forms/Settings/SettingsPage.cs:114
-#: WF.Player.Forms/Settings/SettingsPage.cs:56
-#: WF.Player.Forms/Settings/SettingsPage.cs:104
 msgid "Center"
 msgstr "Zentrieren"
 
@@ -107,11 +102,7 @@ msgid ""
 "Wherigo Foundation\n"
 "Dirk Weltz\n"
 "Brice Clocher"
-msgstr ""
-"Copyright by\n"
-"Wherigo Foundation\n"
-"Dirk Weltz\n"
-"Brice Clocher"
+msgstr "Copyright by\\nWherigo Foundation\\nDirk Weltz\\nBrice Clocher"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:85
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:95
@@ -137,42 +128,34 @@ msgid "Current Location"
 msgstr "Aktuelle Position"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:50
-#: WF.Player.Forms/Settings/SettingsPage.cs:40
 msgid "Dark"
 msgstr "Dunkel"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:177
-#: WF.Player.Forms/Settings/SettingsPage.cs:167
 msgid "Decimal degrees"
 msgstr "Dezimalgrad"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:172
-#: WF.Player.Forms/Settings/SettingsPage.cs:162
 msgid "Decimal degrees (9.07538°)"
 msgstr "Dezimalgrad (9,07538°)"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:178
-#: WF.Player.Forms/Settings/SettingsPage.cs:168
 msgid "Decimal minutes"
-msgstr "Dezimaleminuten"
+msgstr "Dezimalminuten"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:173
-#: WF.Player.Forms/Settings/SettingsPage.cs:163
 msgid "Decimal minutes (9° 04.523')"
-msgstr "Dezimaleminuten (9° 04.523')"
+msgstr "Dezimalminuten (9° 04.523')"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:179
-#: WF.Player.Forms/Settings/SettingsPage.cs:169
 msgid "Decimal seconds"
 msgstr "Dezimalsekunden"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:174
-#: WF.Player.Forms/Settings/SettingsPage.cs:164
 msgid "Decimal seconds (9° 04' 31.38\")"
 msgstr "Dezimalsekunden (9° 04' 31,38\")"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:169
-#: WF.Player.Forms/Settings/SettingsPage.cs:159
 msgid "Degrees"
 msgstr "Grad"
 
@@ -191,8 +174,6 @@ msgstr "Details"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:125
 #: WF.Player.Forms/Settings/SettingsPage.cs:131
-#: WF.Player.Forms/Settings/SettingsPage.cs:115
-#: WF.Player.Forms/Settings/SettingsPage.cs:121
 msgid "Don't resize"
 msgstr "Keine Größenänderung"
 
@@ -201,16 +182,14 @@ msgstr "Keine Größenänderung"
 msgid "E"
 msgstr "O"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:101
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:102
 #: WF.Player.Forms/Settings/SettingsPage.cs:162
-#: WF.Player.Forms/Settings/SettingsPage.cs:152
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:121
 msgid "Feedback"
 msgstr "Rückmeldung"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:190
 #: WF.Player.Forms/Settings/SettingsPage.cs:201
-#: WF.Player.Forms/Settings/SettingsPage.cs:180
-#: WF.Player.Forms/Settings/SettingsPage.cs:191
 msgid "Feet"
 msgstr "Feet"
 
@@ -256,7 +235,6 @@ msgid "Hybrid"
 msgstr "Hybrid"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:140
-#: WF.Player.Forms/Settings/SettingsPage.cs:130
 msgid "Images"
 msgstr "Bilder"
 
@@ -273,24 +251,19 @@ msgstr "Inventar"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:65
 #: WF.Player.Forms/Settings/SettingsPage.cs:113
-#: WF.Player.Forms/Settings/SettingsPage.cs:55
-#: WF.Player.Forms/Settings/SettingsPage.cs:103
 msgid "Left"
 msgstr "Links"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:197
-#: WF.Player.Forms/Settings/SettingsPage.cs:187
 msgid "Length"
 msgstr "Länge"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:49
-#: WF.Player.Forms/Settings/SettingsPage.cs:39
 msgid "Light"
 msgstr "Hell"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:143
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:144
 #: WF.Player.Forms/Game/GameMainViewModel.cs:664
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:142
 msgid "Loading..."
 msgstr "Laden..."
 
@@ -301,6 +274,10 @@ msgstr "Einloggen"
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:115
 msgid "Logs"
 msgstr "Logs"
+
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:118
+msgid "Main Menu"
+msgstr "Hauptmenü"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:112
 #: WF.Player.Forms/Game/GameMainViewModel.cs:643
@@ -313,19 +290,16 @@ msgid "Maptype"
 msgstr "Kartenart"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:134
-#: WF.Player.Forms/Settings/SettingsPage.cs:124
 msgid "Max. half height"
 msgstr "Max. halbe Höhe"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:113
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:115
 #: WF.Player.Forms/Game/GameMainView.cs:70
 msgid "Menu"
 msgstr "﻿Menü"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:189
 #: WF.Player.Forms/Settings/SettingsPage.cs:200
-#: WF.Player.Forms/Settings/SettingsPage.cs:179
-#: WF.Player.Forms/Settings/SettingsPage.cs:190
 msgid "Meter"
 msgstr "Meter"
 
@@ -336,13 +310,10 @@ msgstr "N"
 
 #: WF.Player.Forms/Settings/FolderSelectionPage.cs:59
 #: WF.Player.Forms/Settings/FolderSelectionPage.cs:64
-#: WF.Player.Forms/Settings/FolderSelectionPage.cs:56
-#: WF.Player.Forms/Settings/FolderSelectionPage.cs:61
 msgid "New folder"
 msgstr "Neuer Ordner"
 
 #: WF.Player.Forms/Settings/FolderSelectionPage.cs:63
-#: WF.Player.Forms/Settings/FolderSelectionPage.cs:60
 msgid "New folder name"
 msgstr "Name des neuen Ordners"
 
@@ -390,24 +361,17 @@ msgstr "Keine Orte"
 #: WF.Player.Forms/Services/UserDialogs/ConfirmConfig.cs:20
 #: WF.Player.Forms/Services/UserDialogs/PromptConfig.cs:25
 #: WF.Player.Forms/Services/UserDialogs/LoginConfig.cs:45
-#: WF.Player.Forms/Settings/MultiCell.cs:192
+#: WF.Player.Forms/Settings/MultiCell.cs:188
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:171
 #: WF.Player.iOS/Services/UserDialogs/UserDialogService.cs:22
 msgid "Ok"
 msgstr "Ok"
-
-#: WF.Player.Forms/Services/UserDialogs/ConfirmConfig.cs:20
-#: WF.Player.Forms/Services/UserDialogs/PromptConfig.cs:25
-#: WF.Player.Forms/Services/UserDialogs/LoginConfig.cs:45
-msgid "OK"
-msgstr ""
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:623
 msgid "Overview"
 msgstr "Überblick"
 
 #: WF.Player.Forms/Settings/FolderSelectionPage.cs:149
-#: WF.Player.Forms/Settings/FolderSelectionPage.cs:145
 msgid "Parent directory"
 msgstr "Übergeordnetes Verzeichnis"
 
@@ -434,7 +398,7 @@ msgstr ""
 "Bitte gib einen Kommentar für diese Sicherungsdatei ein, damit Du sie später "
 "wieder zuordnen kannst."
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:104
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:105
 #: WF.Player.Forms/Game/GameMainView.cs:92
 #: WF.Player.Forms/Game/GameMainView.cs:95
 #: WF.Player.Forms/Game/GameMainViewModel.cs:912
@@ -443,24 +407,19 @@ msgid "Quit"
 msgstr "Beenden"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:128
-#: WF.Player.Forms/Settings/SettingsPage.cs:118
 msgid "Resize to max. half height"
 msgstr "Anpassen an max. halbe Höhe des Bildschirmes"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:127
-#: WF.Player.Forms/Settings/SettingsPage.cs:117
 msgid "Resize to screen width"
 msgstr "Anpassen auf Bildschirmbreite"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:122
-#: WF.Player.Forms/Settings/SettingsPage.cs:112
 msgid "Resizing"
-msgstr "Ändern der Größe"
+msgstr "Größe"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:67
 #: WF.Player.Forms/Settings/SettingsPage.cs:115
-#: WF.Player.Forms/Settings/SettingsPage.cs:57
-#: WF.Player.Forms/Settings/SettingsPage.cs:105
 msgid "Right"
 msgstr "Rechts"
 
@@ -484,36 +443,26 @@ msgid "Save Game"
 msgstr "Spiel sichern"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:133
-#: WF.Player.Forms/Settings/SettingsPage.cs:123
 msgid "Screen width"
 msgstr "Bildschirmbreite"
 
-#: WF.Player.Forms/Settings/FolderSelectionPage.cs:107
-msgid "Select"
-msgstr "Auswählen"
-
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:83
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:84
 #: WF.Player.Forms/Settings/SettingsPage.cs:34
 #: WF.Player.Forms/Settings/SettingsPage.cs:236
-#: WF.Player.Forms/Settings/SettingsPage.cs:32
-#: WF.Player.Forms/Settings/SettingsPage.cs:224
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:119
 msgid "Settings"
 msgstr "Einstellungen"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:126
 #: WF.Player.Forms/Settings/SettingsPage.cs:132
-#: WF.Player.Forms/Settings/SettingsPage.cs:116
-#: WF.Player.Forms/Settings/SettingsPage.cs:122
 msgid "Shrink only"
 msgstr "Nur verkleinern"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:75
-#: WF.Player.Forms/Settings/SettingsPage.cs:65
 msgid "Size"
 msgstr "Größe"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:148
-#: WF.Player.Forms/Settings/SettingsPage.cs:138
 msgid "Sound"
 msgstr "Klang"
 
@@ -542,17 +491,14 @@ msgid "Tasks"
 msgstr "Aufgaben"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:103
-#: WF.Player.Forms/Settings/SettingsPage.cs:93
 msgid "Text"
 msgstr "Text"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:46
-#: WF.Player.Forms/Settings/SettingsPage.cs:36
 msgid "Theme"
-msgstr "Theme"
+msgstr "Oberfläche"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:268
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:267
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:269
 msgid ""
 "There is an automatic savefile from a cartridge you played before. Would you "
 "resume this last game?"
@@ -561,7 +507,6 @@ msgstr ""
 "Möchtest Du diese weiterspielen?"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:207
-#: WF.Player.Forms/Settings/SettingsPage.cs:197
 msgid "Units"
 msgstr "Einheiten"
 
@@ -584,7 +529,6 @@ msgid "Version: {0}"
 msgstr "Version: {0}"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:156
-#: WF.Player.Forms/Settings/SettingsPage.cs:146
 msgid "Vibration"
 msgstr "Vibration"
 
@@ -619,6 +563,9 @@ msgstr "Ja"
 #: WF.Player.Forms/Game/GameMainViewModel.cs:1334
 msgid "You See"
 msgstr "Umgebung"
+
+#~ msgid "Select"
+#~ msgstr "Auswählen"
 
 #~ msgid "Alignment of text"
 #~ msgstr "Ausrichtung des Textes"

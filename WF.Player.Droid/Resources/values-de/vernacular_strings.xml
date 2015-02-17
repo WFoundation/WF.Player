@@ -16,10 +16,7 @@
   <string formatted="false" name="Vernacular_P0_Center">Zentrieren</string>
   <string formatted="false" name="Vernacular_P0_Choose">Wählen</string>
   <string formatted="false" name="Vernacular_P0_CommentSavefile">Kommentar Sicherungsdatei</string>
-  <string formatted="false" name="Vernacular_P0_Copyrightby10WherigoFoundation10DirkWeltz10BriceClocher">Copyright by
-Wherigo Foundation
-Dirk Weltz
-Brice Clocher</string>
+  <string formatted="false" name="Vernacular_P0_Copyrightby10WherigoFoundation10DirkWeltz10BriceClocher">Copyright by\nWherigo Foundation\nDirk Weltz\nBrice Clocher</string>
   <string formatted="false" name="Vernacular_P0_CurrentAccuracy101230125">Aktuelle Genauigkeit
 {0}</string>
   <string formatted="false" name="Vernacular_P0_CurrentCoordinates101230125">Aktuelle Koordinaten
@@ -28,8 +25,8 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Dark">Dunkel</string>
   <string formatted="false" name="Vernacular_P0_Decimaldegrees">Dezimalgrad</string>
   <string formatted="false" name="Vernacular_P0_Decimaldegrees409460753817641">Dezimalgrad (9,07538°)</string>
-  <string formatted="false" name="Vernacular_P0_Decimalminutes">Dezimaleminuten</string>
-  <string formatted="false" name="Vernacular_P0_Decimalminutes40917604465233941">Dezimaleminuten (9° 04.523\')</string>
+  <string formatted="false" name="Vernacular_P0_Decimalminutes">Dezimalminuten</string>
+  <string formatted="false" name="Vernacular_P0_Decimalminutes40917604465233941">Dezimalminuten (9° 04.523\')</string>
   <string formatted="false" name="Vernacular_P0_Decimalseconds">Dezimalsekunden</string>
   <string formatted="false" name="Vernacular_P0_Decimalseconds40917604393146383441">Dezimalsekunden (9° 04\' 31,38")</string>
   <string formatted="false" name="Vernacular_P0_Degrees">Grad</string>
@@ -58,6 +55,7 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Loading464646">Laden…</string>
   <string formatted="false" name="Vernacular_P0_Login">Einloggen</string>
   <string formatted="false" name="Vernacular_P0_Logs">Logs</string>
+  <string formatted="false" name="Vernacular_P0_MainMenu">Hauptmenü</string>
   <string formatted="false" name="Vernacular_P0_Map">Karte</string>
   <string formatted="false" name="Vernacular_P0_Maptype">Kartenart</string>
   <string formatted="false" name="Vernacular_P0_Max46halfheight">Max. halbe Höhe</string>
@@ -74,7 +72,6 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Nothingofinterest">Nichts von Interesse</string>
   <string formatted="false" name="Vernacular_P0_Nowheretogo">Keine Orte</string>
   <string formatted="false" name="Vernacular_P0_Ok">Ok</string>
-  <string formatted="false" name="Vernacular_P0_OK">OK</string>
   <string formatted="false" name="Vernacular_P0_Overview">Überblick</string>
   <string formatted="false" name="Vernacular_P0_Parentdirectory">Übergeordnetes Verzeichnis</string>
   <string formatted="false" name="Vernacular_P0_Password">Passwort</string>
@@ -85,14 +82,13 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Quit">Beenden</string>
   <string formatted="false" name="Vernacular_P0_Resizetomax46halfheight">Anpassen an max. halbe Höhe des Bildschirmes</string>
   <string formatted="false" name="Vernacular_P0_Resizetoscreenwidth">Anpassen auf Bildschirmbreite</string>
-  <string formatted="false" name="Vernacular_P0_Resizing">Ändern der Größe</string>
+  <string formatted="false" name="Vernacular_P0_Resizing">Größe</string>
   <string formatted="false" name="Vernacular_P0_Right">Rechts</string>
   <string formatted="false" name="Vernacular_P0_S">S</string>
   <string formatted="false" name="Vernacular_P0_Satellite">Satellit</string>
   <string formatted="false" name="Vernacular_P0_Save">Sichern</string>
   <string formatted="false" name="Vernacular_P0_SaveGame">Spiel sichern</string>
   <string formatted="false" name="Vernacular_P0_Screenwidth">Bildschirmbreite</string>
-  <string formatted="false" name="Vernacular_P0_Select">Auswählen</string>
   <string formatted="false" name="Vernacular_P0_Settings">Einstellungen</string>
   <string formatted="false" name="Vernacular_P0_Shrinkonly">Nur verkleinern</string>
   <string formatted="false" name="Vernacular_P0_Size">Größe</string>
@@ -103,7 +99,7 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Street">Standard</string>
   <string formatted="false" name="Vernacular_P0_Tasks">Aufgaben</string>
   <string formatted="false" name="Vernacular_P0_Text">Text</string>
-  <string formatted="false" name="Vernacular_P0_Theme">Theme</string>
+  <string formatted="false" name="Vernacular_P0_Theme">Oberfläche</string>
   <string formatted="false" name="Vernacular_P0_Thereisanautomaticsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">Es gibt eine automatische Sicherungsdatei der zuletzt gespielten Cartridge. Möchtest Du diese weiterspielen?</string>
   <string formatted="false" name="Vernacular_P0_Units">Einheiten</string>
   <string formatted="false" name="Vernacular_P0_Unknown">Unbekannt</string>

@@ -45,12 +45,7 @@ namespace WF.Player.SettingsPage
 //					HeightRequest = 80,
 					ColumnDefinitions = new ColumnDefinitionCollection
 						{
-							#if __IOS__
-							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-							#endif
-							#if __ANDROID__
 							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) },
-							#endif
 							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }
 						},
 					RowDefinitions = new RowDefinitionCollection
@@ -68,6 +63,7 @@ namespace WF.Player.SettingsPage
 
 			text = new Label {
 				TextColor = App.Colors.Text,
+				LineBreakMode = LineBreakMode.NoWrap,
 				FontSize = Device.OnPlatform<int>(17, 14, 17),
 				FontFamily = Font.Default.FontFamily,
 				HorizontalOptions = LayoutOptions.Start,
@@ -98,7 +94,7 @@ namespace WF.Player.SettingsPage
 			current = new Label {
 				TextColor = Color.Gray,
 				LineBreakMode = LineBreakMode.TailTruncation,
-				FontSize = 17,
+				FontSize = Device.OnPlatform<int>(17, 14, 17),
 				FontFamily = Font.Default.FontFamily,
 				HorizontalOptions = LayoutOptions.End,
 				VerticalOptions = Device.OnPlatform<LayoutOptions>(LayoutOptions.Center, LayoutOptions.Start, LayoutOptions.Center),

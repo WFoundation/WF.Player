@@ -58,6 +58,7 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Loading464646">Chargement …</string>
   <string formatted="false" name="Vernacular_P0_Login">Connexion</string>
   <string formatted="false" name="Vernacular_P0_Logs">Logs</string>
+  <string formatted="false" name="Vernacular_P0_MainMenu">Menu Principal</string>
   <string formatted="false" name="Vernacular_P0_Map">Carte</string>
   <string formatted="false" name="Vernacular_P0_Maptype">MapType</string>
   <string formatted="false" name="Vernacular_P0_Max46halfheight">Max. demi-hauteur</string>
@@ -74,7 +75,6 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Nothingofinterest">Rien d&amp;#39;intérêt</string>
   <string formatted="false" name="Vernacular_P0_Nowheretogo">Aucune cachette</string>
   <string formatted="false" name="Vernacular_P0_Ok">OK</string>
-  <string formatted="false" name="Vernacular_P0_OK">OK</string>
   <string formatted="false" name="Vernacular_P0_Overview">résumé </string>
   <string formatted="false" name="Vernacular_P0_Parentdirectory">Dossier parent</string>
   <string formatted="false" name="Vernacular_P0_Password">Mot de passe</string>
@@ -92,7 +92,6 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Save">Sauvegarde</string>
   <string formatted="false" name="Vernacular_P0_SaveGame">Sauvegarde</string>
   <string formatted="false" name="Vernacular_P0_Screenwidth">Lignage de trame</string>
-  <string formatted="false" name="Vernacular_P0_Select">Sélectionner</string>
   <string formatted="false" name="Vernacular_P0_Settings">Paramètres</string>
   <string formatted="false" name="Vernacular_P0_Shrinkonly">Rétrécir uniquement</string>
   <string formatted="false" name="Vernacular_P0_Size">Taille</string>
