@@ -1,4 +1,4 @@
-﻿// <copyright file="LoginConfig.cs" company="Wherigo Foundation">
+﻿// <copyright file="MultiCellRenderer.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 //   Copyright (C) 2012-2015  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
@@ -16,36 +16,23 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace WF.Player.Services.UserDialogs
+[assembly: Xamarin.Forms.ExportRendererAttribute (typeof (WF.Player.SettingsPage.MultiCell), typeof (WF.Player.SettingsPage.iOS.MultiCellRenderer))]
+
+namespace WF.Player.SettingsPage.iOS
 {
-	using System;
-	using Vernacular;
+	using UIKit;
+	using Xamarin.Forms;
+	using Xamarin.Forms.Platform.iOS;
 
-	public class LoginConfig
+	public class MultiCellRenderer : ViewCellRenderer
 	{
-		public string Title { get; set; }
-
-		public string Message { get; set; }
-
-		public string OkText { get; set; }
-
-		public string CancelText { get; set; }
-
-		public string LoginValue { get; set; }
-
-		public string LoginPlaceholder { get; set; }
-
-		public string PasswordPlaceholder { get; set; }
-
-		public Action<LoginResult> OnResult { get; set; }
-
-		public LoginConfig()
+		public override UITableViewCell GetCell(Cell item, UITableViewCell reusableCell, UITableView tv)
 		{
-			this.Title = Catalog.GetString("Login");
-			this.OkText = Catalog.GetString("Ok");
-			this.CancelText = Catalog.GetString("Cancel");
-			this.LoginPlaceholder = Catalog.GetString("User Name");
-			this.PasswordPlaceholder = Catalog.GetString("Password");
+			var cell = base.GetCell(item, reusableCell, tv);
+
+			cell.Accessory = UIKit.UITableViewCellAccessory.DisclosureIndicator;
+
+			return cell;
 		}
 	}
 }

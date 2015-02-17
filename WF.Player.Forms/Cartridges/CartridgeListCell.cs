@@ -35,6 +35,7 @@ namespace WF.Player
 		public CartridgeListCell()
 		{
 			var grid = new Grid() {
+				BackgroundColor = App.Colors.Background,
 				Padding = new Thickness(10, 10),
 				ColumnSpacing = 10,
 				ColumnDefinitions = new ColumnDefinitionCollection(),

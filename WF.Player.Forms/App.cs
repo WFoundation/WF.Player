@@ -80,11 +80,6 @@ namespace WF.Player
 		/// </summary>
 		private static IVibration vibrate;
 
-		/// <summary>
-		/// The platform helper.
-		/// </summary>
-		private IFormsPlatformHelper platformHelper;
-
 		#region Constructor
 
 		/// <summary>
@@ -92,7 +87,7 @@ namespace WF.Player
 		/// </summary>
 		public App(IFormsPlatformHelper platformHelper) : base()
 		{
-			this.platformHelper = platformHelper;
+			PlatformHelper = platformHelper;
 
 			PathCartridges = platformHelper.PathForFiles;
 			PathDatabase = platformHelper.PathForDatabase;
@@ -103,6 +98,11 @@ namespace WF.Player
 		#endregion
 
 		#region Properties
+
+		/// <summary>
+		/// The platform helper.
+		/// </summary>
+		public IFormsPlatformHelper PlatformHelper { get; private set; }
 
 		/// <summary>
 		/// The documents path.
@@ -343,6 +343,8 @@ namespace WF.Player
 			var cartridges = new CartridgeStore();
 			cartridges.SyncFromStore();
 
+			Settings.Current.AddOrUpdateValue<int>(Settings.TextSizeKey, 20);
+
 			// Create content page for cartridge list
 			App.Navigation = new ExtendedNavigationPage(new CartridgeListPage(cartridges), true) 
 				{
@@ -351,6 +353,9 @@ namespace WF.Player
 					BarBackgroundColor = App.Colors.Bar,
 					ShowBackButton = true,
 				};
+
+//			((ExtendedNavigationPage)App.Navigation).BackgroundColor = App.Colors.Bar;
+//			((ExtendedNavigationPage)App.Navigation).BarTextColor = App.Colors.BarText;
 
 			return App.Navigation;
 		}

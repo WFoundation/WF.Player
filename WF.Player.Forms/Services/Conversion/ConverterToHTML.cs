@@ -358,7 +358,7 @@ border: none;
 		/// <returns>Text converted to HTML.</returns>
 		/// <param name="text">Original text.</param>
 		/// <param name="media">Media object.</param>
-		public static string FromText(string text, Media media = null, int fontSize = -1)
+		public static string FromText(string text, TextAlignment textAlignment, Media media = null, int fontSize = -1)
 		{
 			if (text == null)
 			{
@@ -384,7 +384,7 @@ border: none;
 			html = html.Replace("-Font3-", ((int)(fontSize * 1.4)).ToString());
 			html = html.Replace("-Font4-", ((int)(fontSize * 1.8)).ToString());
 			html = html.Replace("-Font5-", ((int)(fontSize * 2.0)).ToString());
-			html = html.Replace("-TextAlign-", AlignmentToString(Settings.TextAlignment));
+			html = html.Replace("-TextAlign-", AlignmentToString(textAlignment));
 			html = html.Replace("-TextColor-", ColorToHTML(App.Colors.Text));
 			html = html.Replace("-BackgroundColor-", ColorToHTML(App.Colors.Background));
 
@@ -399,7 +399,7 @@ border: none;
 		/// <returns>Markdown converted to HTML.</returns>
 		/// <param name="markdown">Text with markdown.</param>
 		/// <param name="media">Media object.</param>
-		public static string FromMarkdown(string markdown, Media media = null, int fontSize = -1)
+		public static string FromMarkdown(string markdown, TextAlignment textAlignment, Media media = null, int fontSize = -1)
 		{
 //			markdown.Replace("<", "&lt;").Replace(">", "&gt;").Replace("\n", "<br>");
 
@@ -423,7 +423,7 @@ border: none;
 			html = html.Replace("-Font3-", ((int)(fontSize * 1.4)).ToString());
 			html = html.Replace("-Font4-", ((int)(fontSize * 1.8)).ToString());
 			html = html.Replace("-Font5-", ((int)(fontSize * 2.0)).ToString());
-			html = html.Replace("-TextAlign-", AlignmentToString(Settings.TextAlignment));
+			html = html.Replace("-TextAlign-", AlignmentToString(textAlignment));
 			html = html.Replace("-TextColor-", ColorToHTML(App.Colors.Text));
 			html = html.Replace("-BackgroundColor-", ColorToHTML(App.Colors.Background));
 
@@ -460,7 +460,7 @@ border: none;
 		/// <returns>String converted and docorated as HTML.</returns>
 		/// <param name="text">Text to convert.</param>
 		/// <param name="media">Media object.</param>
-		public static string ConvertStringToHTML(string text, Media media = null)
+		public static string ConvertStringToHTML(string text, TextAlignment textAlignment, Media media = null)
 		{
 			var code = new StringBuilder();
 			return text;
@@ -519,7 +519,7 @@ border: none;
 			// If there is text, insert it
 			if (!string.IsNullOrEmpty(text))
 			{
-				code.AppendFormat("<div align=\"{0}\">", AlignmentToString(Settings.TextAlignment));
+				code.AppendFormat("<div align=\"{0}\">", AlignmentToString(textAlignment));
 				code.Append(text.Replace("<", "&lt;").Replace(">", "&gt;").Replace("\n", "<br>"));
 			}
 

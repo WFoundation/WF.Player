@@ -82,26 +82,26 @@
     <Reference Include="ZXing.Net.Mobile">
       <HintPath>..\packages\ZXing.Net.Mobile.1.4.7.1\lib\MonoAndroid\ZXing.Net.Mobile.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Platform.Android">
-      <HintPath>..\packages\Xamarin.Forms.1.3.3.6323\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="FormsViewGroup">
-      <HintPath>..\packages\Xamarin.Forms.1.3.3.6323\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Core">
-      <HintPath>..\packages\Xamarin.Forms.1.3.3.6323\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml">
-      <HintPath>..\packages\Xamarin.Forms.1.3.3.6323\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Maps.Android">
-      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.3.6323\lib\MonoAndroid10\Xamarin.Forms.Maps.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Maps">
-      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.3.6323\lib\MonoAndroid10\Xamarin.Forms.Maps.dll</HintPath>
-    </Reference>
     <Reference Include="GooglePlayServicesLib">
       <HintPath>..\packages\Xamarin.GooglePlayServices.22.0.0.1\lib\MonoAndroid41\GooglePlayServicesLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.Android">
+      <HintPath>..\packages\Xamarin.Forms.1.3.4.6332\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="FormsViewGroup">
+      <HintPath>..\packages\Xamarin.Forms.1.3.4.6332\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.1.3.4.6332\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.1.3.4.6332\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps.Android">
+      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.4.6332\lib\MonoAndroid10\Xamarin.Forms.Maps.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps">
+      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.4.6332\lib\MonoAndroid10\Xamarin.Forms.Maps.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -116,11 +116,6 @@
     <Compile Include="Services\Device\Vibration.cs" />
     <Compile Include="Services\Routing\Routing.cs" />
     <Compile Include="Renderer\BasePageRenderer.cs" />
-    <Compile Include="Preferences\FloatListPreference.cs" />
-    <Compile Include="Preferences\IntListPreference.cs" />
-    <Compile Include="Preferences\PreferencesActivity.cs" />
-    <Compile Include="Preferences\EditIntPreference.cs" />
-    <Compile Include="Preferences\EditFloatPreference.cs" />
     <Compile Include="Splash.cs" />
     <Compile Include="Renderer\DirectionArrowRenderer.cs" />
     <Compile Include="Renderer\BadgeImageRenderer.cs" />
@@ -132,7 +127,6 @@
     <Compile Include="Services\Utils\ExtensionZonePoint.cs" />
     <Compile Include="Renderer\ExtendedNavigationPageRenderer.cs" />
     <Compile Include="Services\Settings\Settings.cs" />
-    <Compile Include="Services\Settings\SettingsView.cs" />
     <Compile Include="Services\Mobile\DeviceInfo.cs" />
     <Compile Include="Services\UserDialogs\UserDialogService.cs" />
     <Compile Include="Services\Device\Exit.cs" />
@@ -149,7 +143,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
     <AndroidResource Include="Resources\drawable\IconAccuracyDark.png" />
     <AndroidResource Include="Resources\drawable\IconAccuracyLight.png" />
@@ -160,8 +153,6 @@
     <AndroidResource Include="Resources\drawable\IconRouting.png" />
     <AndroidResource Include="Resources\drawable\IconSmall.png" />
     <AndroidResource Include="Resources\drawable\HomeIcon.png" />
-    <AndroidResource Include="Resources\layout\PreferencesView.axml" />
-    <AndroidResource Include="Resources\values\array.xml" />
     <AndroidResource Include="Resources\drawable\SplashScaled.xml" />
     <AndroidResource Include="Resources\drawable-ldpi\IconPlay.png" />
     <AndroidResource Include="Resources\drawable-mdpi\IconPlay.png" />
@@ -265,7 +256,7 @@
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
-  <Import Project="..\packages\Xamarin.Forms.1.3.3.6323\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.3.3.6323\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.1.3.4.6332\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.3.4.6332\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <ItemGroup>
     <Folder Include="Renderer\" />
     <Folder Include="Services\" />
@@ -275,7 +266,6 @@
     <Folder Include="Resources\drawable-hdpi\" />
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
-    <Folder Include="Preferences\" />
     <Folder Include="Services\Utils\" />
     <Folder Include="Resources\values-de\" />
     <Folder Include="Services\Settings\" />
@@ -283,6 +273,7 @@
     <Folder Include="Services\UserDialogs\" />
     <Folder Include="Services\BarCode\" />
     <Folder Include="Resources\values-fr\" />
+    <Folder Include="Resources\layout\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidNativeLibrary Include="lib\armeabi\liblua5.1.so" />

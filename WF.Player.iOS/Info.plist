@@ -72,5 +72,7 @@
 	<string>You should activate GPS for WF.Player</string>
 	<key>CFBundleVersion</key>
 	<string>26</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

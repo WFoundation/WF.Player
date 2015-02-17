@@ -1,4 +1,4 @@
-﻿// <copyright file="LoginConfig.cs" company="Wherigo Foundation">
+﻿// <copyright file="ExtensionsImageAlignment.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 //   Copyright (C) 2012-2015  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
@@ -16,36 +16,32 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace WF.Player.Services.UserDialogs
+
+namespace WF.Player
 {
-	using System;
-	using Vernacular;
+	using Xamarin.Forms;
 
-	public class LoginConfig
+	public static class ExtensionsImageAlignment
 	{
-		public string Title { get; set; }
-
-		public string Message { get; set; }
-
-		public string OkText { get; set; }
-
-		public string CancelText { get; set; }
-
-		public string LoginValue { get; set; }
-
-		public string LoginPlaceholder { get; set; }
-
-		public string PasswordPlaceholder { get; set; }
-
-		public Action<LoginResult> OnResult { get; set; }
-
-		public LoginConfig()
+		public static LayoutOptions ToLayoutOptions(this TextAlignment align)
 		{
-			this.Title = Catalog.GetString("Login");
-			this.OkText = Catalog.GetString("Ok");
-			this.CancelText = Catalog.GetString("Cancel");
-			this.LoginPlaceholder = Catalog.GetString("User Name");
-			this.PasswordPlaceholder = Catalog.GetString("Password");
+			var result = LayoutOptions.Center;
+
+			switch(align)
+			{
+				case TextAlignment.Start:
+					result = LayoutOptions.Start;
+					break;
+				case TextAlignment.Center:
+					result = LayoutOptions.Center;
+					break;
+				case TextAlignment.End:
+					result = LayoutOptions.End;
+					break;
+			}
+
+			return result;
 		}
 	}
 }
+

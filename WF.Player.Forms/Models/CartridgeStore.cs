@@ -200,14 +200,16 @@ namespace WF.Player.Models
 		/// </summary>
 		public void SyncFromStore()
 		{
-			BackgroundWorker bw = new BackgroundWorker();
+			// TODO: Removed, because of a problem with iOS. Update of list always crashes. So do it synchron.
 
-			bw.DoWork += (o, e) =>
-			{
+//			BackgroundWorker bw = new BackgroundWorker();
+//
+//			bw.DoWork += (o, e) =>
+//			{
 				SyncFromStoreCore(false);
-			};
-
-			bw.RunWorkerAsync();
+//			};
+//
+//			bw.RunWorkerAsync();
 		}
 
 		/// <summary>
@@ -384,11 +386,14 @@ namespace WF.Player.Models
 				newCC = new CartridgeTag(cart);
 
 				// Adds the context to the store.
-				lock (syncRoot)
-				{
-					this.Add(newCC);
-					RaiseCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, newCC));
-				}
+				Device.BeginInvokeOnMainThread(() =>
+					{
+						lock (syncRoot)
+						{
+							this.Add(newCC);
+							RaiseCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, newCC));
+						}
+					});
 			}
 
 			// Refreshes the progress.

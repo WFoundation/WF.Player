@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 ﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone von Dirk Weltz" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Common/ToolBarPage.cs">
+=======
+﻿<Properties StartupItem="WF.Player.Droid/WF.Player.Droid.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Cartridges/CartridgeListPage.cs">
+>>>>>>> Settings
     <Files>
       <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="1" Column="1" />
+<<<<<<< HEAD
       <File FileName="WF.Player.Forms/App.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="23" Column="23" />
       <File FileName="WF.Player.iOS/AppDelegate.cs" Line="1" Column="1" />
@@ -30,6 +37,22 @@
       <File FileName="WF.Player.Forms/Common/ToolBarPage.cs" Line="101" Column="101" />
       <File FileName="WF.Player.Droid/Services/Device/Measure.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/Renderer/ExtendedButtonRenderer.cs" Line="1" Column="1" />
+=======
+      <File FileName="WF.Player.Forms/App.cs" Line="6" Column="6" />
+      <File FileName="WF.Player.iOS/AppDelegate.cs" Line="62" Column="62" />
+      <File FileName="WF.Player.Forms/Settings/SettingsPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Settings/MultiCell.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Settings/SelectionPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Services/Settings/Settings.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Settings/FolderSelectionPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameCheckLocationView.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="3" Column="3" />
+      <File FileName="WF.Player.Forms/Models/CartridgeStore.cs" Line="102" Column="102" />
+      <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Renderer/FormsUIRefreshControl.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Renderer/ExtendedNavigationPageRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs" Line="9" Column="9" />
+>>>>>>> Settings
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

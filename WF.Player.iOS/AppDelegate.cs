@@ -102,20 +102,15 @@ namespace WF.Player.iOS
 			// Set Google Maps API Key
 //			MapServices.ProvideAPIKey (MapsApiKey);
 
-			// create a new window instance based on the screen size
-//			window = new UIWindow (UIScreen.MainScreen.Bounds);
-
 			// Start Xamarin.Forms
 			Xamarin.Forms.Forms.Init ();
 			Xamarin.FormsMaps.Init();
 
 			UserDialogs.Init();
 
-			// Set default color for NavigationButtons
-			UIBarButtonItem.Appearance.TintColor = App.Colors.Bar.ToUIColor();
-
-			// Create NavigationControlls
-//			navCartSelect = new UINavigationController();
+			// create a new window instance based on the screen size
+//			var window = new UIWindow (UIScreen.MainScreen.Bounds);
+			UIApplication.SharedApplication.SetStatusBarHidden(false, false);
 
 			// Init observer for changes of the settings
 			observerSettings = NSNotificationCenter.DefaultCenter.AddObserver((NSString)"NSUserDefaultsDidChangeNotification", DefaultsChanged);

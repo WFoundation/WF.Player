@@ -101,7 +101,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\ConfirmConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\PromptConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\PromptResult.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeFolderSelectionPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Device\IExit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Device\IScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cartridges\CartridgeListCell.cs" />
@@ -119,6 +118,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\IUserDialogs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\INetworkIndicator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserDialogs\UserDialogs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\SettingsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\MultiCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\SelectionPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\CheckCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\ExtensionsImageAlignment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\FolderSelectionPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\AboutPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />
@@ -141,5 +147,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mobile\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\UserDialogs\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\BarCode\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Settings\" />
   </ItemGroup>
 </Project>
