@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Cartridges/CartridgeListPage.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone von Dirk Weltz" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Common/ToolBarPage.cs">
     <Files>
       <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
@@ -24,18 +24,12 @@
       <File FileName="WF.Player.Forms/Controls/MapViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Cartridges/CartridgeFolderSelectionPage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/Services/UserDialogs/UserDialogService.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/UserDialogs/UserDialogService.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Services/UserDialogs/UserDialogService.cs" Line="13" Column="13" />
       <File FileName="WF.Player.Forms/Services/UserDialogs/UserDialogs.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/MainActivity.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Common/ToolBarPage.cs" Line="85" Column="85" />
-      <File FileName="WF.Player.iOS/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameDetailViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/UserDialogs/IUserDialogs.cs" Line="3" Column="3" />
-      <File FileName="WF.Player.Forms/Game/GameMainCellView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/Conversion/ConverterToHTML.cs" Line="25" Column="25" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailBasePage.cs" Line="34" Column="34" />
+      <File FileName="WF.Player.Forms/Common/ToolBarPage.cs" Line="101" Column="101" />
+      <File FileName="WF.Player.Droid/Services/Device/Measure.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Renderer/ExtendedButtonRenderer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

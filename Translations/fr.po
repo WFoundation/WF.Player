@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2015-02-09 12:31+0100\n"
+"PO-Revision-Date: 2015-02-12 23:17+0100\n"
 "Last-Translator: Dirk Weltz <web@weltz-online.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgstr "Choisir"
 #: WF.Player.Forms/Game/GameMainViewModel.cs:923
 #: WF.Player.Forms/Game/GameMainViewModel.cs:970
 msgid "Comment Savefile"
-msgstr "Commentaire Savefile"
+msgstr "Commentairede sauvegarde"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:85
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:95
@@ -263,7 +263,7 @@ msgstr "Veuillez patienter..."
 #: WF.Player.Forms/Game/GameMainViewModel.cs:922
 #: WF.Player.Forms/Game/GameMainViewModel.cs:969
 msgid "Provide a comment to identify this savefile"
-msgstr "Fournir un commentaire pour identifier ce savefile"
+msgstr "Fournir un commentaire pour identifier cette sauvegarde."
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:96
 #: WF.Player.Forms/Game/GameMainView.cs:92
