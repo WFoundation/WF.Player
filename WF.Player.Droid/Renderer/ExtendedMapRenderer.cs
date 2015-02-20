@@ -28,7 +28,7 @@ namespace WF.Player.Controls.Droid
 	using Xamarin.Forms;
 	using Xamarin.Forms.Platform.Android;
 
-	public class ExtendedMapRenderer : MapRenderer
+	public class ExtendedMapRenderer : MapRenderer, IOnMapReadyCallback
 	{
 		Android.Gms.Maps.GoogleMap nativeMap;
 		List<Android.Gms.Maps.Model.Polygon> polygons;
@@ -46,16 +46,19 @@ namespace WF.Player.Controls.Droid
 			if (e.OldElement == null)
 			{
 				// First time init
-				nativeMap = ((Android.Gms.Maps.MapView)Control).Map;
-
-				nativeMap.MyLocationEnabled = true;
-				nativeMap.UiSettings.ZoomControlsEnabled = false;
-				nativeMap.UiSettings.MyLocationButtonEnabled = false;
-				nativeMap.UiSettings.ScrollGesturesEnabled = true;
-				nativeMap.UiSettings.ZoomGesturesEnabled = true;
-				nativeMap.UiSettings.CompassEnabled = true;
-				nativeMap.UiSettings.MapToolbarEnabled = false;
+				((MapView)Control).GetMapAsync(this);
 			}
+		}
+
+		public void OnMapReady(GoogleMap googleMap)
+		{
+//			googleMap.MyLocationEnabled = true;
+			googleMap.UiSettings.ZoomControlsEnabled = false;
+			googleMap.UiSettings.MyLocationButtonEnabled = false;
+			googleMap.UiSettings.ScrollGesturesEnabled = true;
+			googleMap.UiSettings.ZoomGesturesEnabled = true;
+			googleMap.UiSettings.CompassEnabled = true;
+			googleMap.UiSettings.MapToolbarEnabled = false;
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

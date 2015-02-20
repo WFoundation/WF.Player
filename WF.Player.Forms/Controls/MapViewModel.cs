@@ -391,6 +391,11 @@ namespace WF.Player
 		/// </summary>
 		private static void CalculateBoundingCoordinates (MapSpan region)
 		{
+			if (region == null)
+			{
+				return;
+			}
+
 			// WARNING: I haven't tested the correctness of this exhaustively!
 			var center = region.Center;
 			var halfheightDegrees = region.LatitudeDegrees / 2;
