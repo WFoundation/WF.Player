@@ -1066,6 +1066,7 @@ namespace WF.Player
 		{
 			NotifyPropertyChanged(TitelPropertyName);
 			NotifyPropertyChanged(IsListVisiblePropertyName);
+			Console.WriteLine(string.Format("NotifyPropertyChange(IsOverviewVisible) with IsOverviewVisible={0}", this.IsOverviewVisible));
 			NotifyPropertyChanged(IsOverviewVisiblePropertyName);
 
 			if (this.activeScreen != ScreenType.Main && this.activeScreen != ScreenType.Map)
@@ -1076,6 +1077,11 @@ namespace WF.Player
 
 			if (this.activeScreen == ScreenType.Main || this.activeScreen == ScreenType.Map)
 			{
+//				if (this.ActiveScreen == ScreenType.Main && App.GameNavigation.CurrentPage is GameMainView)
+//				{
+//					((GameMainView)App.GameNavigation.CurrentPage).overviewScroll.IsVisible = IsOverviewVisible;
+//				}
+
 				NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
 			}
 		}

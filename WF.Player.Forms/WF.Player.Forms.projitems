@@ -125,6 +125,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\ExtensionsImageAlignment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\FolderSelectionPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\AboutPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Device\ILanguageSetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\" />

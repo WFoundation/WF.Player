@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string formatted="false" name="Vernacular_P0_About">Lisätietoja</string>
+  <string formatted="false" name="Vernacular_P0_Actions">Toiminnot</string>
+  <string formatted="false" name="Vernacular_P0_Activity581230125">Toiminta: {0}</string>
+  <string formatted="false" name="Vernacular_P0_Alignment">Tasaus</string>
+  <string formatted="false" name="Vernacular_P0_Altitude">Korkeus</string>
+  <string formatted="false" name="Vernacular_P0_Appearance">Ulkoasu</string>
+  <string formatted="false" name="Vernacular_P0_Attributes">Attribuutit</string>
+  <string formatted="false" name="Vernacular_P0_Author581230125">Tekijä: {0}</string>
+  <string formatted="false" name="Vernacular_P0_Automaticalsavefile">Automaattinen tallennus</string>
+  <string formatted="false" name="Vernacular_P0_Both">Molemmat</string>
+  <string formatted="false" name="Vernacular_P0_By">Tekijä</string>
+  <string formatted="false" name="Vernacular_P0_Cancel">Peruuta</string>
+  <string formatted="false" name="Vernacular_P0_Cartridges">Kasetit</string>
+  <string formatted="false" name="Vernacular_P0_Center">Keskitetty</string>
+  <string formatted="false" name="Vernacular_P0_Choose">Valitse</string>
+  <string formatted="false" name="Vernacular_P0_CommentSavefile">Kommentoi tallennustiedostoa</string>
+  <string formatted="false" name="Vernacular_P0_Copyrightby10WherigoFoundation10DirkWeltz10BriceClocher">Copyright by 
+Wherigo Foundation 
+Dirk Weltz 
+Brice Clocher</string>
+  <string formatted="false" name="Vernacular_P0_CurrentAccuracy101230125">Nykyinen tarkkuus
+ {0}</string>
+  <string formatted="false" name="Vernacular_P0_CurrentCoordinates101230125">Nykyiset koordinaatit
+ {0}</string>
+  <string formatted="false" name="Vernacular_P0_CurrentLocation">Nykyinen sijainti</string>
+  <string formatted="false" name="Vernacular_P0_Dark">Tumma</string>
+  <string formatted="false" name="Vernacular_P0_Decimaldegrees">Desimaaliasteet</string>
+  <string formatted="false" name="Vernacular_P0_Decimaldegrees409460753817641">Desimaaliasteet (9.07538°)</string>
+  <string formatted="false" name="Vernacular_P0_Decimalminutes">Desimaaliminuutit</string>
+  <string formatted="false" name="Vernacular_P0_Decimalminutes40917604465233941">Desimaaliminuutit (9° 04.523\')</string>
+  <string formatted="false" name="Vernacular_P0_Decimalseconds">Desimaalisekunnit</string>
+  <string formatted="false" name="Vernacular_P0_Decimalseconds40917604393146383441">Desimaalisekunnit (9° 04\' 31.38")</string>
+  <string formatted="false" name="Vernacular_P0_Default">Oletusarvo</string>
+  <string formatted="false" name="Vernacular_P0_Degrees">Astetta</string>
+  <string formatted="false" name="Vernacular_P0_Delete">Poista</string>
+  <string formatted="false" name="Vernacular_P0_Description">Kuvaus</string>
+  <string formatted="false" name="Vernacular_P0_Details">Tiedot</string>
+  <string formatted="false" name="Vernacular_P0_Don39tresize">Älä muuta kuvan kokoa</string>
+  <string formatted="false" name="Vernacular_P0_E">E</string>
+  <string formatted="false" name="Vernacular_P0_English">Englanti</string>
+  <string formatted="false" name="Vernacular_P0_Feedback">Palaute</string>
+  <string formatted="false" name="Vernacular_P0_Feet">Jalkaa</string>
+  <string formatted="false" name="Vernacular_P0_Finnish">Suomeksi</string>
+  <string formatted="false" name="Vernacular_P0_Flash">Flash</string>
+  <string formatted="false" name="Vernacular_P0_Focuson">Keskittyä</string>
+  <string formatted="false" name="Vernacular_P0_Formuchfunwiththecartridge44youshouldwaitforagoodaccuracyofyourGPSsignal46">Parhaan kokemuksen takaamiseksi sinun täytyy odottaa GPS-signaalin tarkkuuden paranemista</string>
+  <string formatted="false" name="Vernacular_P0_French">Ranskaksi</string>
+  <string formatted="false" name="Vernacular_P0_Gamefield">Pelialue</string>
+  <string formatted="false" name="Vernacular_P0_GameMenu">Peli-valikko</string>
+  <string formatted="false" name="Vernacular_P0_German">Saksaksi</string>
+  <string formatted="false" name="Vernacular_P0_GPSCheck">GPS:n tarkistus</string>
+  <string formatted="false" name="Vernacular_P0_Here">Tässä</string>
+  <string formatted="false" name="Vernacular_P0_History">Historia</string>
+  <string formatted="false" name="Vernacular_P0_Hybrid">Hybridi</string>
+  <string formatted="false" name="Vernacular_P0_Images">Kuvat</string>
+  <string formatted="false" name="Vernacular_P0_Inside">Sisällä</string>
+  <string formatted="false" name="Vernacular_P0_Inventory">Inventaario</string>
+  <string formatted="false" name="Vernacular_P0_Language">Kieli</string>
+  <string formatted="false" name="Vernacular_P0_Left">Vasen</string>
+  <string formatted="false" name="Vernacular_P0_Length">Pituus</string>
+  <string formatted="false" name="Vernacular_P0_Light">Vaalea</string>
+  <string formatted="false" name="Vernacular_P0_Loading464646">Ladataan…</string>
+  <string formatted="false" name="Vernacular_P0_Login">Kirjaudu sisään</string>
+  <string formatted="false" name="Vernacular_P0_Logs">Logit</string>
+  <string formatted="false" name="Vernacular_P0_MainMenu">Päävalikko</string>
+  <string formatted="false" name="Vernacular_P0_Map">Kartta</string>
+  <string formatted="false" name="Vernacular_P0_Maptype">Karttatyyppi</string>
+  <string formatted="false" name="Vernacular_P0_Max46halfheight">Max. puoli korkeus</string>
+  <string formatted="false" name="Vernacular_P0_Menu">Valikko</string>
+  <string formatted="false" name="Vernacular_P0_Meter">Metri</string>
+  <string formatted="false" name="Vernacular_P0_N">N</string>
+  <string formatted="false" name="Vernacular_P0_Newfolder">Uusi kansio</string>
+  <string formatted="false" name="Vernacular_P0_Newfoldername">Uuden kansion nimi</string>
+  <string formatted="false" name="Vernacular_P0_No">Ei</string>
+  <string formatted="false" name="Vernacular_P0_Nodescriptionavailable">Ei kuvausta saatavilla</string>
+  <string formatted="false" name="Vernacular_P0_Noitems">Ei esineitä</string>
+  <string formatted="false" name="Vernacular_P0_Nonewtasks">Ei uusia tehtäviä</string>
+  <string formatted="false" name="Vernacular_P0_Nothingavailable">Ei mitään saatavilla</string>
+  <string formatted="false" name="Vernacular_P0_Nothingofinterest">Ei mitään kiinnostavaa</string>
+  <string formatted="false" name="Vernacular_P0_Nowheretogo">Ei kohdetta mihin mennä</string>
+  <string formatted="false" name="Vernacular_P0_Ok">OK</string>
+  <string formatted="false" name="Vernacular_P0_Overview">Yleiskatsaus</string>
+  <string formatted="false" name="Vernacular_P0_Parentdirectory">Ylätason hakemisto</string>
+  <string formatted="false" name="Vernacular_P0_Password">Salasana</string>
+  <string formatted="false" name="Vernacular_P0_Path">Polku</string>
+  <string formatted="false" name="Vernacular_P0_Pathforcartridges">Hakemistopolku kasetteihin</string>
+  <string formatted="false" name="Vernacular_P0_Pleasewait464646">Odota hetki…</string>
+  <string formatted="false" name="Vernacular_P0_Provideacommenttoidentifythissavefile">Anna kommentti tallennustiedoston tunnistamiseksi</string>
+  <string formatted="false" name="Vernacular_P0_Quit">Lopeta</string>
+  <string formatted="false" name="Vernacular_P0_Resizetomax46halfheight">Sovita puoleen ruudun korkeudesta</string>
+  <string formatted="false" name="Vernacular_P0_Resizetoscreenwidth">Sovita ruudun leveyteen</string>
+  <string formatted="false" name="Vernacular_P0_Resizing">Koon muuttaminen</string>
+  <string formatted="false" name="Vernacular_P0_Right">Oikea</string>
+  <string formatted="false" name="Vernacular_P0_S">S</string>
+  <string formatted="false" name="Vernacular_P0_Satellite">Satelliitti</string>
+  <string formatted="false" name="Vernacular_P0_Save">Tallenna</string>
+  <string formatted="false" name="Vernacular_P0_SaveGame">Tallenna peli</string>
+  <string formatted="false" name="Vernacular_P0_Screenwidth">Koko ruudun leveys</string>
+  <string formatted="false" name="Vernacular_P0_Settings">Asetukset</string>
+  <string formatted="false" name="Vernacular_P0_Shrinkonly">Vain pienennä</string>
+  <string formatted="false" name="Vernacular_P0_Size">Koko</string>
+  <string formatted="false" name="Vernacular_P0_Sound">Äänet</string>
+  <string formatted="false" name="Vernacular_P0_Start">Aloita</string>
+  <string formatted="false" name="Vernacular_P0_Startanyway">Aloita kuitenkin</string>
+  <string formatted="false" name="Vernacular_P0_StartingLocation">Lähtöpaikka</string>
+  <string formatted="false" name="Vernacular_P0_Street">Katu</string>
+  <string formatted="false" name="Vernacular_P0_Tasks">Tehtävät</string>
+  <string formatted="false" name="Vernacular_P0_Text">Teksti</string>
+  <string formatted="false" name="Vernacular_P0_Theme">Teema</string>
+  <string formatted="false" name="Vernacular_P0_Thereisanautomaticsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">Kasetista löytyi automaattisesti tallennettu tilanne aiemmalta pelikerralta. Haluatko jatkaa tätä edellistä peliä?</string>
+  <string formatted="false" name="Vernacular_P0_Units">Yksiköt</string>
+  <string formatted="false" name="Vernacular_P0_Unknown">Tuntematon</string>
+  <string formatted="false" name="Vernacular_P0_Update">Päivitä</string>
+  <string formatted="false" name="Vernacular_P0_UserName">Käyttäjätunnus:</string>
+  <string formatted="false" name="Vernacular_P0_Version581230125">Versio: {0}</string>
+  <string formatted="false" name="Vernacular_P0_Vibration">Värinä</string>
+  <string formatted="false" name="Vernacular_P0_W">W</string>
+  <string formatted="false" name="Vernacular_P0_WF46Player">WF.Player</string>
+  <string formatted="false" name="Vernacular_P0_WF46Player46Android">WF.Player.Android</string>
+  <string formatted="false" name="Vernacular_P0_Wouldyouliketosavethecurrentgame63">Haluatko tallentaa nykyisen pelin?</string>
+  <string formatted="false" name="Vernacular_P0_Writeinputhere464646">Kirjoita tähän…</string>
+  <string formatted="false" name="Vernacular_P0_Yes">Kyllä</string>
+  <string formatted="false" name="Vernacular_P0_YouSee">Näet</string>
+</resources>

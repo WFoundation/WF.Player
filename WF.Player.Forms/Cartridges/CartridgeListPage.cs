@@ -85,19 +85,10 @@ namespace WF.Player
 				{
 					App.Navigation.Popped += HandleSettingsClosed;
 					App.Navigation.Navigation.PushAsync(new SettingsPage.SettingsPage());
-//					DependencyService.Get<ISettingsView>().Show();
 				}, ToolbarItemOrder.Secondary));
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("About"), null, () =>
 				{
 					App.Navigation.Navigation.PushAsync(new SettingsPage.AboutPage());
-//					// Show folder selection page
-//					App.Navigation.Navigation.PushModalAsync(new ExtendedNavigationPage(new CartridgeFolderSelectionPage(App.PathForCartridges, UpdateCartridges), true)
-//						{
-//							BackgroundColor = App.Colors.Background,
-//							BarTextColor = App.Colors.BarText,
-//							BarBackgroundColor = App.Colors.Bar,
-//							ShowBackButton = true,
-//						};
 				}, ToolbarItemOrder.Secondary));
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Feedback"), null, () =>
 				HockeyApp.FeedbackManager.ShowFeedbackActivity(Forms.Context), 
@@ -106,7 +97,6 @@ namespace WF.Player
 				{
 					DependencyService.Get<IExit>().ExitApp(0);
 				}, ToolbarItemOrder.Secondary));
-
 
 			#endif
 
@@ -309,6 +299,27 @@ namespace WF.Player
 
 				layout.BackgroundColor = App.Colors.Background;
 				list.BackgroundColor = App.Colors.Background;
+
+				// Update language
+				DependencyService.Get<ILanguageSetter>().Update();
+
+				// Update all texts
+				Title = Catalog.GetString("Cartridges");
+
+				#if __ANDROID__
+
+				this.ToolbarItems[0].Text = Catalog.GetString("Settings");
+				this.ToolbarItems[1].Text = Catalog.GetString("About");
+				this.ToolbarItems[2].Text = Catalog.GetString("Feedback");
+				this.ToolbarItems[3].Text = Catalog.GetString("Quit");
+
+				#endif
+
+				#if __IOS__
+
+				this.ToolbarItems[0].Text = Catalog.GetString("Menu");
+
+				#endif
 
 				UpdateCartridges();
 			}

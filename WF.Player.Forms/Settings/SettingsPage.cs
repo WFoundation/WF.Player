@@ -211,6 +211,34 @@ namespace WF.Player.SettingsPage
 					cellUnitLength,
 				};
 
+			var languages = new string[] {
+				string.Empty,
+				"en",
+				"fi",
+				"fr",
+				"de"
+			};
+
+			var cellLanguage = new MultiCell {
+				Text = Catalog.GetString("Language"),
+				//				Detail = Catalog.GetString("Resizing of images"),
+				Items = new string[] { 
+					Catalog.GetString("Default"), 
+					Catalog.GetString("English"), 
+					Catalog.GetString("Finnish"),
+					Catalog.GetString("French"),
+					Catalog.GetString("German"),
+				},
+				Values = languages,
+				Key = Settings.LanguageKey,
+				DefaultValue = Array.IndexOf(languages, Settings.LanguageKey) < 0 ? 0 : Array.IndexOf(languages, Settings.LanguageKey),
+			};
+
+			var sectionLanguage = new TableSection(Catalog.GetString("Language")) 
+				{
+					cellLanguage,
+				};
+
 			#if __ANDROID__
 
 			cellPath = new TextCell {
@@ -240,6 +268,7 @@ namespace WF.Player.SettingsPage
 					sectionImages,
 					sectionFeedback,
 					sectionUnits,
+					sectionLanguage,
 					#if __ANDROID__
 					sectionPath,
 					#endif

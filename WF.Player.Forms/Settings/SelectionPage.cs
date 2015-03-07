@@ -51,7 +51,17 @@ namespace WF.Player.SettingsPage
 
 			section = new TableSection();
 
-			var active = Settings.Current.GetValueOrDefault<int>(key, defaultValue);
+			var active = 0;
+
+			if (cell.Values == null)
+			{
+				active = Settings.Current.GetValueOrDefault<int>(key, defaultValue);
+			}
+			else
+			{
+				active = Array.IndexOf(cell.Values, Settings.Current.GetValueOrDefault<string>(key, cell.Values[defaultValue]));
+				active = active < 0 ? 0 : active;
+			}
 
 			cells = new CheckCell[items.Length];
 
@@ -88,13 +98,31 @@ namespace WF.Player.SettingsPage
 
 		void HandleTapped (object sender, EventArgs e)
 		{
-			var oldActive = Settings.Current.GetValueOrDefault<int>(key, defaultValue);
+			var oldActive = 0;
+
+			if (cell.Values == null)
+			{
+				oldActive = Settings.Current.GetValueOrDefault<int>(key, defaultValue);
+			}
+			else
+			{
+				oldActive = Array.IndexOf(cell.Values, Settings.Current.GetValueOrDefault<string>(key, cell.Values[defaultValue]));
+				oldActive = oldActive < 0 ? 0 : oldActive;
+			}
+
 			var newActive = ((CheckCell)sender).Index;
 
 			cells[oldActive].Checkmark = false;
 			cells[newActive].Checkmark = true;
 
-			Settings.Current.AddOrUpdateValue<int>(key, newActive);
+			if (cell.Values == null)
+			{
+				Settings.Current.AddOrUpdateValue<int>(key, newActive);
+			}
+			else
+			{
+				Settings.Current.AddOrUpdateValue<string>(key, cell.Values[newActive]);
+			}
 
 			cell.Update();
 		}

@@ -15,6 +15,10 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using Android.Content.Res;
+using Android.Util;
+using Xamarin.Forms;
+using WF.Player.Services.Device;
 
 namespace WF.Player.Droid
 {
@@ -68,7 +72,25 @@ namespace WF.Player.Droid
 
 			base.OnCreate (bundle);
 
-			Catalog.Implementation = new AndroidCatalog(Resources, typeof (Resource.String));
+
+			// Update language
+			DependencyService.Get<ILanguageSetter>().Update();
+
+//			if (!string.IsNullOrEmpty(Settings.Current.GetValueOrDefault<string>(Settings.LanguageKey, string.Empty)))
+//			{
+//				Resources standardResources = this.Resources;
+//				AssetManager assets = standardResources.Assets;
+//				DisplayMetrics metrics = standardResources.DisplayMetrics;
+//				Configuration config = new Configuration(standardResources.Configuration);
+//				config.Locale = new Java.Util.Locale(Settings.Current.GetValueOrDefault<string>(Settings.LanguageKey, string.Empty));
+//				Resources defaultResources = new Resources(assets, metrics, config);
+//
+//				Catalog.Implementation = new AndroidCatalog(defaultResources, typeof(Resource.String));
+//			}
+//			else
+//			{
+//				Catalog.Implementation = new AndroidCatalog(Resources, typeof(Resource.String));
+//			}
 
 			App.PathCartridges = App.PathForCartridges;
 			App.PathDatabase = App.PathForCartridges;

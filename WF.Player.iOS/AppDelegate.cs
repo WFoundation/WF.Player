@@ -16,23 +16,20 @@
 /// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /// 
 
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Google.Maps;
-using Foundation;
-using UIKit;
-using Vernacular;
-using WF.Player.Core;
-using WF.Player.Core.Formats;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
-using WF.Player.iOS.Services.Core;
-using WF.Player.Services.Settings;
-using WF.Player.Services.UserDialogs;
-
 namespace WF.Player.iOS
 {
+	using System;
+	using System.IO;
+	using System.Threading.Tasks;
+	using Foundation;
+	using UIKit;
+	using WF.Player.iOS.Services.Core;
+	using WF.Player.Services.Device;
+	using WF.Player.Services.Settings;
+	using WF.Player.Services.UserDialogs;
+	using Xamarin.Forms;
+	using Xamarin.Forms.Platform.iOS;
+
 	// The UIApplicationDelegate for the application. This class is responsible for launching the 
 	// User Interface of the application, as well as listening (and optionally responding) to 
 	// application events from iOS.
@@ -90,23 +87,40 @@ namespace WF.Player.iOS
 
 			#endif
 
-			// Activate Vernacular Catalog
-			Catalog.Implementation = new ResourceCatalog 
-				{
-					GetResourceById = id => {
-						var resource = 	NSBundle.MainBundle.LocalizedString(id, null);
-						return resource == id ? null : resource;
-					},
-				};
-
-			// Set Google Maps API Key
-//			MapServices.ProvideAPIKey (MapsApiKey);
-
 			// Start Xamarin.Forms
 			Xamarin.Forms.Forms.Init ();
 			Xamarin.FormsMaps.Init();
 
 			UserDialogs.Init();
+
+			// Set language
+			DependencyService.Get<ILanguageSetter>().Update();
+
+//			// Check if a language is in the preferences that we have
+//			var prefLang = NSUserDefaults.StandardUserDefaults.ArrayForKey("AppleLanguages")[0].ToString();
+//			var settingsLang = Settings.Current.GetValueOrDefault<string>(Settings.LanguageKey, string.Empty);
+//
+//			var lang = string.IsNullOrEmpty(settingsLang) ? prefLang : settingsLang;
+//
+//			// We don't want to have english as default language, because it is the development language
+//			if (!lang.Equals("en") && Array.IndexOf(NSBundle.MainBundle.Localizations, lang) >= 0)
+//			{
+//				langBundle = NSBundle.FromPath(NSBundle.MainBundle.PathForResource(lang, "lproj"));
+//			}
+//
+//			// Activate Vernacular Catalog
+//			Catalog.Implementation = new ResourceCatalog 
+//				{
+//					GetResourceById = id => {
+//						if (langBundle == null)
+//							return null;
+//						var resource = 	langBundle.LocalizedString(id, null);
+//						return resource == id ? null : resource;
+//					},
+//				};
+
+			// Set Google Maps API Key
+//			MapServices.ProvideAPIKey (MapsApiKey);
 
 			// create a new window instance based on the screen size
 //			var window = new UIWindow (UIScreen.MainScreen.Bounds);

@@ -135,6 +135,7 @@
     <Compile Include="Renderer\ExtendedButtonRenderer.cs" />
     <Compile Include="Services\UserDialogs\NetworkIndicator.cs" />
     <Compile Include="Services\UserDialogs\ActivityMonitor.cs" />
+    <Compile Include="Services\Device\LanguageSetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -253,6 +254,8 @@
     <AndroidResource Include="Resources\values\vernacular_strings.xml" />
     <AndroidResource Include="Resources\values-fr\strings.xml" />
     <AndroidResource Include="Resources\values-fr\vernacular_strings.xml" />
+    <AndroidResource Include="Resources\values-fi\strings.xml" />
+    <AndroidResource Include="Resources\values-fi\vernacular_strings.xml" />
   </ItemGroup>
   <Import Project="..\WF.Player.Forms\WF.Player.Forms.projitems" Label="Shared" Condition="Exists('..\WF.Player.Forms\WF.Player.Forms.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
@@ -274,6 +277,7 @@
     <Folder Include="Services\BarCode\" />
     <Folder Include="Resources\values-fr\" />
     <Folder Include="Resources\layout\" />
+    <Folder Include="Resources\values-fi\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidNativeLibrary Include="lib\armeabi\liblua5.1.so" />

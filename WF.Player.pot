@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"PO-Revision-Date: 2015-02-17 20:05+01\n"
+"PO-Revision-Date: 2015-03-07 21:00+01\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,9 +10,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Vernacular"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:90
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:89
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:312
 #: WF.Player.Forms/Settings/AboutPage.cs:31
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:120
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:110
 msgid "About"
 msgstr "About"
 
@@ -68,12 +69,13 @@ msgstr "By"
 #: WF.Player.Forms/Services/UserDialogs/ConfirmConfig.cs:21
 #: WF.Player.Forms/Services/UserDialogs/PromptConfig.cs:26
 #: WF.Player.Forms/Services/UserDialogs/LoginConfig.cs:46
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:122
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:112
 #: WF.Player.Forms/Game/GameMainView.cs:75
 msgid "Cancel"
 msgstr "Cancel"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:76
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:307
 msgid "Cartridges"
 msgstr "Cartridges"
 
@@ -103,18 +105,6 @@ msgstr ""
 "Copyright by  \n"
 "Wherigo Foundation  \n"
 "Dirk Weltz  \n"
-"Brice Clocher"
-
-#: WF.Player.Forms/Settings/AboutPage.cs:67
-msgid ""
-"Copyright by\n"
-"Wherigo Foundation\n"
-"Dirk Weltz\n"
-"Brice Clocher"
-msgstr ""
-"Copyright by\n"
-"Wherigo Foundation\n"
-"Dirk Weltz\n"
 "Brice Clocher"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:85
@@ -168,6 +158,10 @@ msgstr "Decimal seconds"
 msgid "Decimal seconds (9° 04' 31.38\")"
 msgstr "Decimal seconds (9° 04' 31.38\")"
 
+#: WF.Player.Forms/Settings/SettingsPage.cs:226
+msgid "Default"
+msgstr "Default"
+
 #: WF.Player.Forms/Settings/SettingsPage.cs:169
 msgid "Degrees"
 msgstr "Degrees"
@@ -195,9 +189,14 @@ msgstr "Don't resize"
 msgid "E"
 msgstr "E"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:102
+#: WF.Player.Forms/Settings/SettingsPage.cs:227
+msgid "English"
+msgstr "English"
+
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:93
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:313
 #: WF.Player.Forms/Settings/SettingsPage.cs:162
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:121
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:111
 msgid "Feedback"
 msgstr "Feedback"
 
@@ -205,6 +204,10 @@ msgstr "Feedback"
 #: WF.Player.Forms/Settings/SettingsPage.cs:201
 msgid "Feet"
 msgstr "Feet"
+
+#: WF.Player.Forms/Settings/SettingsPage.cs:228
+msgid "Finnish"
+msgstr "Finnish"
 
 #: WF.Player.Forms/Game/GameInputViewModel.cs:445
 msgid "Flash"
@@ -218,6 +221,10 @@ msgstr "Focus on"
 msgid "For much fun with the cartridge, you should wait for a good accuracy of your GPS signal."
 msgstr "For much fun with the cartridge, you should wait for a good accuracy of your GPS signal."
 
+#: WF.Player.Forms/Settings/SettingsPage.cs:229
+msgid "French"
+msgstr "French"
+
 #: WF.Player.Forms/Game/GameMainView.cs:72
 msgid "Game Menu"
 msgstr "Game Menu"
@@ -225,6 +232,10 @@ msgstr "Game Menu"
 #: WF.Player.Forms/Controls/MapViewModel.cs:261
 msgid "Gamefield"
 msgstr "Gamefield"
+
+#: WF.Player.Forms/Settings/SettingsPage.cs:230
+msgid "German"
+msgstr "German"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:39
 msgid "GPS Check"
@@ -254,9 +265,14 @@ msgstr "Inside"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:216
 #: WF.Player.Forms/Game/GameMainViewModel.cs:633
-#: WF.Player.Forms/Game/GameMainViewModel.cs:1359
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1365
 msgid "Inventory"
 msgstr "Inventory"
+
+#: WF.Player.Forms/Settings/SettingsPage.cs:223
+#: WF.Player.Forms/Settings/SettingsPage.cs:237
+msgid "Language"
+msgstr "Language"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:65
 #: WF.Player.Forms/Settings/SettingsPage.cs:113
@@ -271,7 +287,7 @@ msgstr "Length"
 msgid "Light"
 msgstr "Light"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:144
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:134
 #: WF.Player.Forms/Game/GameMainViewModel.cs:664
 msgid "Loading..."
 msgstr "Loading..."
@@ -284,7 +300,7 @@ msgstr "Login"
 msgid "Logs"
 msgstr "Logs"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:118
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:108
 msgid "Main Menu"
 msgstr "Main Menu"
 
@@ -302,7 +318,8 @@ msgstr "Maptype"
 msgid "Max. half height"
 msgstr "Max. half height"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:115
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:105
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:320
 #: WF.Player.Forms/Game/GameMainView.cs:70
 msgid "Menu"
 msgstr "Menu"
@@ -370,7 +387,7 @@ msgstr "Nowhere to go"
 #: WF.Player.Forms/Services/UserDialogs/ConfirmConfig.cs:20
 #: WF.Player.Forms/Services/UserDialogs/PromptConfig.cs:25
 #: WF.Player.Forms/Services/UserDialogs/LoginConfig.cs:45
-#: WF.Player.Forms/Settings/MultiCell.cs:188
+#: WF.Player.Forms/Settings/MultiCell.cs:209
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:171
 #: WF.Player.iOS/Services/UserDialogs/UserDialogService.cs:22
 msgid "Ok"
@@ -388,14 +405,15 @@ msgstr "Parent directory"
 msgid "Password"
 msgstr "Password"
 
-#: WF.Player.Forms/Settings/SettingsPage.cs:229
+#: WF.Player.Forms/Settings/SettingsPage.cs:257
 msgid "Path"
 msgstr "Path"
 
-#: WF.Player.Forms/Settings/SettingsPage.cs:217
+#: WF.Player.Forms/Settings/SettingsPage.cs:245
 msgid "Path for cartridges"
 msgstr "Path for cartridges"
 
+#: WF.Player.Forms/Game/GameMainView.cs:254
 #: WF.Player.Forms/Game/GameMainView.cs:251
 msgid "Please wait..."
 msgstr "Please wait..."
@@ -405,9 +423,10 @@ msgstr "Please wait..."
 msgid "Provide a comment to identify this savefile"
 msgstr "Provide a comment to identify this savefile"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:105
-#: WF.Player.Forms/Game/GameMainView.cs:92
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:96
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:314
 #: WF.Player.Forms/Game/GameMainView.cs:95
+#: WF.Player.Forms/Game/GameMainView.cs:98
 #: WF.Player.Forms/Game/GameMainViewModel.cs:912
 #: WF.Player.Forms/Game/GameMainView.cs:74
 msgid "Quit"
@@ -439,8 +458,8 @@ msgstr "S"
 msgid "Satellite"
 msgstr "Satellite"
 
-#: WF.Player.Forms/Game/GameMainView.cs:84
 #: WF.Player.Forms/Game/GameMainView.cs:87
+#: WF.Player.Forms/Game/GameMainView.cs:90
 #: WF.Player.Forms/Game/GameMainViewModel.cs:965
 #: WF.Player.Forms/Game/GameMainView.cs:73
 msgid "Save"
@@ -454,9 +473,10 @@ msgid "Screen width"
 msgstr "Screen width"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:84
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:311
 #: WF.Player.Forms/Settings/SettingsPage.cs:34
-#: WF.Player.Forms/Settings/SettingsPage.cs:236
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:119
+#: WF.Player.Forms/Settings/SettingsPage.cs:264
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:109
 msgid "Settings"
 msgstr "Settings"
 
@@ -493,7 +513,7 @@ msgstr "Street"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:221
 #: WF.Player.Forms/Game/GameMainViewModel.cs:638
-#: WF.Player.Forms/Game/GameMainViewModel.cs:1382
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1388
 msgid "Tasks"
 msgstr "Tasks"
 
@@ -505,7 +525,7 @@ msgstr "Text"
 msgid "Theme"
 msgstr "Theme"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:269
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:259
 msgid "There is an automatic savefile from a cartridge you played before. Would you resume this last game?"
 msgstr "There is an automatic savefile from a cartridge you played before. Would you resume this last game?"
 
@@ -563,6 +583,6 @@ msgstr "Yes"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:211
 #: WF.Player.Forms/Game/GameMainViewModel.cs:628
-#: WF.Player.Forms/Game/GameMainViewModel.cs:1334
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1340
 msgid "You See"
 msgstr "You See"

@@ -156,6 +156,8 @@ namespace WF.Player.SettingsPage
 
 		public string[] ShortItems { get; set; }
 
+		public string[] Values { get; set; }
+
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
@@ -177,9 +179,28 @@ namespace WF.Player.SettingsPage
 
 			var builder = new Android.App.AlertDialog.Builder(Forms.Context);
 
+			int checkedItem;
+
+			if (Values == null)
+			{
+				checkedItem = Settings.Current.GetValueOrDefault<int>(Key, DefaultValue);
+			}
+			else
+			{
+				checkedItem = Array.IndexOf(Values, Settings.Current.GetValueOrDefault<string>(Key, Values[DefaultValue]));
+				checkedItem = checkedItem < 0 ? 0 : checkedItem;
+			}
+
 			builder.SetTitle(text.Text);
-			builder.SetSingleChoiceItems(Items, Settings.Current.GetValueOrDefault<int>(Key, DefaultValue), (sender, args) => { 
-				Settings.Current.AddOrUpdateValue<int>(Key, args.Which);
+			builder.SetSingleChoiceItems(Items, checkedItem, (sender, args) => { 
+				if (Values == null)
+				{
+					Settings.Current.AddOrUpdateValue<int>(Key, args.Which);
+				}
+				else
+				{
+					Settings.Current.AddOrUpdateValue<string>(Key, Values[args.Which]);
+				}
 				Update(); 
 			});
 
@@ -194,14 +215,19 @@ namespace WF.Player.SettingsPage
 
 		public void Update()
 		{
-			if (ShortItems != null)
+			int entry = DefaultValue;
+
+			if (Values == null)
 			{
-				current.Text = ShortItems[Settings.Current.GetValueOrDefault<int>(Key, DefaultValue)];
+				entry = Settings.Current.GetValueOrDefault<int>(Key, DefaultValue);
 			}
 			else
 			{
-				current.Text = Items[Settings.Current.GetValueOrDefault<int>(Key, DefaultValue)];
+				entry = Array.IndexOf(Values, Settings.Current.GetValueOrDefault<string>(Key, Values[DefaultValue]));
+				entry = entry < 0 ? DefaultValue : entry;
 			}
+
+			current.Text = ShortItems != null ? ShortItems[entry] : Items[entry];
 		}
 	}
 }

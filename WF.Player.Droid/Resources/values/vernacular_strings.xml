@@ -16,9 +16,14 @@
   <string formatted="false" name="Vernacular_P0_Center">Center</string>
   <string formatted="false" name="Vernacular_P0_Choose">Choose</string>
   <string formatted="false" name="Vernacular_P0_CommentSavefile">Comment Savefile</string>
-  <string formatted="false" name="Vernacular_P0_Copyrightby10WherigoFoundation10DirkWeltz10BriceClocher">Copyright by\nWherigo Foundation\nDirk Weltz\nBrice Clocher</string>
-  <string formatted="false" name="Vernacular_P0_CurrentAccuracy101230125">Current Accuracy\n{0}</string>
-  <string formatted="false" name="Vernacular_P0_CurrentCoordinates101230125">Current Coordinates\n{0}</string>
+  <string formatted="false" name="Vernacular_P0_Copyrightby10WherigoFoundation10DirkWeltz10BriceClocher">Copyright by  
+Wherigo Foundation  
+Dirk Weltz  
+Brice Clocher</string>
+  <string formatted="false" name="Vernacular_P0_CurrentAccuracy101230125">Current Accuracy
+{0}</string>
+  <string formatted="false" name="Vernacular_P0_CurrentCoordinates101230125">Current Coordinates
+{0}</string>
   <string formatted="false" name="Vernacular_P0_CurrentLocation">Current Location</string>
   <string formatted="false" name="Vernacular_P0_Dark">Dark</string>
   <string formatted="false" name="Vernacular_P0_Decimaldegrees">Decimal degrees</string>
@@ -27,18 +32,23 @@
   <string formatted="false" name="Vernacular_P0_Decimalminutes40917604465233941">Decimal minutes (9° 04.523\')</string>
   <string formatted="false" name="Vernacular_P0_Decimalseconds">Decimal seconds</string>
   <string formatted="false" name="Vernacular_P0_Decimalseconds40917604393146383441">Decimal seconds (9° 04\' 31.38")</string>
+  <string formatted="false" name="Vernacular_P0_Default">Default</string>
   <string formatted="false" name="Vernacular_P0_Degrees">Degrees</string>
   <string formatted="false" name="Vernacular_P0_Delete">Delete</string>
   <string formatted="false" name="Vernacular_P0_Description">Description</string>
   <string formatted="false" name="Vernacular_P0_Details">Details</string>
   <string formatted="false" name="Vernacular_P0_Don39tresize">Don\'t resize</string>
   <string formatted="false" name="Vernacular_P0_E">E</string>
+  <string formatted="false" name="Vernacular_P0_English">English</string>
   <string formatted="false" name="Vernacular_P0_Feedback">Feedback</string>
   <string formatted="false" name="Vernacular_P0_Feet">Feet</string>
+  <string formatted="false" name="Vernacular_P0_Finnish">Finnish</string>
   <string formatted="false" name="Vernacular_P0_Flash">Flash</string>
   <string formatted="false" name="Vernacular_P0_Focuson">Focus on</string>
   <string formatted="false" name="Vernacular_P0_Formuchfunwiththecartridge44youshouldwaitforagoodaccuracyofyourGPSsignal46">For much fun with the cartridge, you should wait for a good accuracy of your GPS signal.</string>
+  <string formatted="false" name="Vernacular_P0_French">French</string>
   <string formatted="false" name="Vernacular_P0_Gamefield">Gamefield</string>
+  <string formatted="false" name="Vernacular_P0_German">German</string>
   <string formatted="false" name="Vernacular_P0_GPSCheck">GPS Check</string>
   <string formatted="false" name="Vernacular_P0_Here">Here</string>
   <string formatted="false" name="Vernacular_P0_History">History</string>
@@ -46,6 +56,7 @@
   <string formatted="false" name="Vernacular_P0_Images">Images</string>
   <string formatted="false" name="Vernacular_P0_Inside">Inside</string>
   <string formatted="false" name="Vernacular_P0_Inventory">Inventory</string>
+  <string formatted="false" name="Vernacular_P0_Language">Language</string>
   <string formatted="false" name="Vernacular_P0_Left">Left</string>
   <string formatted="false" name="Vernacular_P0_Length">Length</string>
   <string formatted="false" name="Vernacular_P0_Light">Light</string>

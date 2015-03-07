@@ -1,4 +1,4 @@
-﻿// <copyright file="ConverterStringFormat.cs" company="Wherigo Foundation">
+﻿// <copyright file="ILanguage.cs" company="Wherigo Foundation">
 //   WF.Player - A Wherigo Player which use the Wherigo Foundation Core.
 //   Copyright (C) 2012-2015  Dirk Weltz (mail@wfplayer.com)
 // </copyright>
@@ -16,30 +16,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace WF.Player
+namespace WF.Player.Services.Device
 {
-	using System;
-	using Xamarin.Forms;
-
-	public class ConverterStringFormat : IValueConverter
+	/// <summary>
+	/// Language interface to change language while app is running.
+	/// </summary>
+	public interface ILanguageSetter
 	{
-		#region IValueConverter implementation
-
-		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-		{
-			return parameter == null ? value.ToString() : string.Format((string)parameter, value ?? string.Empty);
-		}
-
-		public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-		{
-			throw new NotImplementedException();
-		}
-
-		#endregion
-
-		public ConverterStringFormat()
-		{
-		}
+		/// <summary>
+		/// Update the selected language.
+		/// </summary>
+		void Update();
 	}
 }
 

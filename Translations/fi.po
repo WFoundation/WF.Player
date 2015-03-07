@@ -1,66 +1,65 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WF.Player\n"
+"Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-03-07 21:01+0100\n"
+"PO-Revision-Date: 2015-03-07 21:03+0100\n"
 "Last-Translator: Dirk Weltz <web@weltz-online.de>\n"
-"Language-Team: Wherigo Foundation <info@wfplayer.com>\n"
-"Language: de\n"
+"Language-Team: \n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.7.4\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:89
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:312
 #: WF.Player.Forms/Settings/AboutPage.cs:31
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:110
 msgid "About"
-msgstr "Über"
+msgstr "Lisätietoja"
 
 #: WF.Player.Forms/Game/GameDetailViewModel.cs:599
 #: WF.Player.Forms/Game/GameDetailViewModel.cs:760
 msgid "Actions"
-msgstr "Aktionen"
+msgstr "Toiminnot"
 
 #: WF.Player.Forms/Cartridges/CartridgeListCell.cs:156
 msgid "Activity: {0}"
-msgstr "Art: {0}"
+msgstr "Toiminta: {0}"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:62
 #: WF.Player.Forms/Settings/SettingsPage.cs:110
 msgid "Alignment"
-msgstr "Ausrichtung"
+msgstr "Tasaus"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:186
 msgid "Altitude"
-msgstr "Höhe"
+msgstr "Korkeus"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:56
 msgid "Appearance"
-msgstr "Aussehen"
+msgstr "Ulkoasu"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:109
 msgid "Attributes"
-msgstr "Attribute"
+msgstr "Attribuutit"
 
 #: WF.Player.Forms/Cartridges/CartridgeListCell.cs:130
 msgid "Author:  {0}"
-msgstr "Autor: {0}"
+msgstr "Tekijä: {0}"
 
 msgid "Automatical savefile"
-msgstr "Automatische Sicherungsdatei"
+msgstr "Automaattinen tallennus"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:262
 #: WF.Player.Forms/Controls/MapViewModel.cs:271
 msgid "Both"
-msgstr "Beides"
+msgstr "Molemmat"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs:195
 msgid "By"
-msgstr "Von"
+msgstr "Tekijä"
 
 #: WF.Player.Forms/Common/ToolBarPage.cs:297
 #: WF.Player.Forms/Game/GameDetailViewModel.cs:611
@@ -75,28 +74,28 @@ msgstr "Von"
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:112
 #: WF.Player.Forms/Game/GameMainView.cs:75
 msgid "Cancel"
-msgstr "Abbruch"
+msgstr "Peruuta"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:76
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:307
 msgid "Cartridges"
-msgstr "Cartridges"
+msgstr "Kasetit"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:66
 #: WF.Player.Forms/Settings/SettingsPage.cs:114
 msgid "Center"
-msgstr "Zentrieren"
+msgstr "Keskitetty"
 
 #: WF.Player.Forms/Game/GameMessageboxViewModel.cs:273
 #: WF.Player.Forms/Game/GameInputViewModel.cs:415
 #: WF.Player.Forms/Game/GameInputViewModel.cs:517
 msgid "Choose"
-msgstr "Wählen"
+msgstr "Valitse"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:923
 #: WF.Player.Forms/Game/GameMainViewModel.cs:970
 msgid "Comment Savefile"
-msgstr "Kommentar Sicherungsdatei"
+msgstr "Kommentoi tallennustiedostoa"
 
 #: WF.Player.Forms/Settings/AboutPage.cs:67
 msgid ""
@@ -105,9 +104,9 @@ msgid ""
 "Dirk Weltz  \n"
 "Brice Clocher"
 msgstr ""
-"Copyright by  \n"
-"Wherigo Foundation  \n"
-"Dirk Weltz  \n"
+"Copyright by \n"
+"Wherigo Foundation \n"
+"Dirk Weltz \n"
 "Brice Clocher"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:85
@@ -116,8 +115,8 @@ msgid ""
 "Current Accuracy\n"
 "{0}"
 msgstr ""
-"Aktuelle Genauigkeit\n"
-"{0}"
+"Nykyinen tarkkuus\n"
+" {0}"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:69
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:79
@@ -125,216 +124,216 @@ msgid ""
 "Current Coordinates\n"
 "{0}"
 msgstr ""
-"Aktuelle Koordinaten\n"
-"{0}"
+"Nykyiset koordinaatit\n"
+" {0}"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:260
 #: WF.Player.Forms/Controls/MapViewModel.cs:269
 msgid "Current Location"
-msgstr "Aktuelle Position"
+msgstr "Nykyinen sijainti"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:50
 msgid "Dark"
-msgstr "Dunkel"
+msgstr "Tumma"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:177
 msgid "Decimal degrees"
-msgstr "Dezimalgrad"
+msgstr "Desimaaliasteet"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:172
 msgid "Decimal degrees (9.07538°)"
-msgstr "Dezimalgrad (9,07538°)"
+msgstr "Desimaaliasteet (9.07538°)"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:178
 msgid "Decimal minutes"
-msgstr "Dezimalminuten"
+msgstr "Desimaaliminuutit"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:173
 msgid "Decimal minutes (9° 04.523')"
-msgstr "Dezimalminuten (9° 04.523')"
+msgstr "Desimaaliminuutit (9° 04.523')"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:179
 msgid "Decimal seconds"
-msgstr "Dezimalsekunden"
+msgstr "Desimaalisekunnit"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:174
 msgid "Decimal seconds (9° 04' 31.38\")"
-msgstr "Dezimalsekunden (9° 04' 31,38\")"
+msgstr "Desimaalisekunnit (9° 04' 31.38\")"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:226
 msgid "Default"
-msgstr "Vorgabe"
+msgstr "Oletusarvo"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:169
 msgid "Degrees"
-msgstr "Grad"
+msgstr "Astetta"
 
 #: WF.Player.Forms/Cartridges/CartridgeListCell.cs:174
 msgid "Delete"
-msgstr "Löschen"
+msgstr "Poista"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:107
 #: WF.Player.Forms/Cartridges/CartridgeDetailDescriptionView.cs:41
 msgid "Description"
-msgstr "Beschreibung"
+msgstr "Kuvaus"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:108
 msgid "Details"
-msgstr "Details"
+msgstr "Tiedot"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:125
 #: WF.Player.Forms/Settings/SettingsPage.cs:131
 msgid "Don't resize"
-msgstr "Keine Größenänderung"
+msgstr "Älä muuta kuvan kokoa"
 
 #. East
 #: WF.Player.Forms/Services/Conversion/Converter.cs:158
 msgid "E"
-msgstr "O"
+msgstr "E"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:227
 msgid "English"
-msgstr "Englisch"
+msgstr "Englanti"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:93
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:313
 #: WF.Player.Forms/Settings/SettingsPage.cs:162
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:111
 msgid "Feedback"
-msgstr "Rückmeldung"
+msgstr "Palaute"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:190
 #: WF.Player.Forms/Settings/SettingsPage.cs:201
 msgid "Feet"
-msgstr "Feet"
+msgstr "Jalkaa"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:228
 msgid "Finnish"
-msgstr "Finnisch"
+msgstr "Suomeksi"
 
 #: WF.Player.Forms/Game/GameInputViewModel.cs:445
 msgid "Flash"
-msgstr "Licht"
+msgstr "Flash"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:255
 msgid "Focus on"
-msgstr "Fokussieren auf"
+msgstr "Keskittyä"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:54
 msgid ""
 "For much fun with the cartridge, you should wait for a good accuracy of your "
 "GPS signal."
 msgstr ""
-"Bevor Du die Cartridge startest, solltest Du warten, bis Du ein gutes "
-"Satellitensignal hast."
+"Parhaan kokemuksen takaamiseksi sinun täytyy odottaa GPS-signaalin "
+"tarkkuuden paranemista"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:229
 msgid "French"
-msgstr "Französisch"
+msgstr "Ranskaksi"
 
 #: WF.Player.Forms/Game/GameMainView.cs:72
 msgid "Game Menu"
-msgstr "Spielmenü"
+msgstr "Peli-valikko"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:261
 msgid "Gamefield"
-msgstr "Spielfeld"
+msgstr "Pelialue"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:230
 msgid "German"
-msgstr "Deutsch"
+msgstr "Saksaksi"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:39
 msgid "GPS Check"
-msgstr "GPS Überprüfung"
+msgstr "GPS:n tarkistus"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs:326
 #: WF.Player.Forms/Services/Conversion/ConverterToDistance.cs:45
 msgid "Here"
-msgstr "Hier"
+msgstr "Tässä"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:114
 msgid "History"
-msgstr "Verlauf"
+msgstr "Historia"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:365
 msgid "Hybrid"
-msgstr "Hybrid"
+msgstr "Hybridi"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:140
 msgid "Images"
-msgstr "Bilder"
+msgstr "Kuvat"
 
 #: WF.Player.Forms/Controls/DirectionArrow.cs:143
 #: WF.Player.Forms/Data/DirectionInfo.cs:109
 msgid "Inside"
-msgstr "Innerhalb"
+msgstr "Sisällä"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:216
 #: WF.Player.Forms/Game/GameMainViewModel.cs:633
 #: WF.Player.Forms/Game/GameMainViewModel.cs:1365
 msgid "Inventory"
-msgstr "Inventar"
+msgstr "Inventaario"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:223
 #: WF.Player.Forms/Settings/SettingsPage.cs:237
 msgid "Language"
-msgstr "Sprache"
+msgstr "Kieli"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:65
 #: WF.Player.Forms/Settings/SettingsPage.cs:113
 msgid "Left"
-msgstr "Links"
+msgstr "Vasen"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:197
 msgid "Length"
-msgstr "Länge"
+msgstr "Pituus"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:49
 msgid "Light"
-msgstr "Hell"
+msgstr "Vaalea"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:134
 #: WF.Player.Forms/Game/GameMainViewModel.cs:664
 msgid "Loading..."
-msgstr "Laden..."
+msgstr "Ladataan..."
 
 #: WF.Player.Forms/Services/UserDialogs/LoginConfig.cs:44
 msgid "Login"
-msgstr "Einloggen"
+msgstr "Kirjaudu sisään"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:115
 msgid "Logs"
-msgstr "Logs"
+msgstr "Logit"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:108
 msgid "Main Menu"
-msgstr "Hauptmenü"
+msgstr "Päävalikko"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:112
 #: WF.Player.Forms/Game/GameMainViewModel.cs:643
 #: WF.Player.Forms/Cartridges/CartridgeDetailMapView.cs:44
 msgid "Map"
-msgstr "Karte"
+msgstr "Kartta"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:362
 msgid "Maptype"
-msgstr "Kartenart"
+msgstr "Karttatyyppi"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:134
 msgid "Max. half height"
-msgstr "Max. halbe Höhe"
+msgstr "Max. puoli korkeus"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:105
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:320
 #: WF.Player.Forms/Game/GameMainView.cs:70
 msgid "Menu"
-msgstr "﻿Menü"
+msgstr "Valikko"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:189
 #: WF.Player.Forms/Settings/SettingsPage.cs:200
 msgid "Meter"
-msgstr "Meter"
+msgstr "Metri"
 
 #. North
 #: WF.Player.Forms/Services/Conversion/Converter.cs:148
@@ -344,47 +343,47 @@ msgstr "N"
 #: WF.Player.Forms/Settings/FolderSelectionPage.cs:59
 #: WF.Player.Forms/Settings/FolderSelectionPage.cs:64
 msgid "New folder"
-msgstr "Neuer Ordner"
+msgstr "Uusi kansio"
 
 #: WF.Player.Forms/Settings/FolderSelectionPage.cs:63
 msgid "New folder name"
-msgstr "Name des neuen Ordners"
+msgstr "Uuden kansion nimi"
 
 #: WF.Player.Forms/Services/UserDialogs/ConfirmConfig.cs:34
 msgid "No"
-msgstr "Nein"
+msgstr "Ei"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs:182
 msgid "No description available"
-msgstr "Keine Beschreibung vorhanden"
+msgstr "Ei kuvausta saatavilla"
 
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:202
 #: WF.Player.Forms/Game/GameMainViewModel.cs:216
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:181
 msgid "No items"
-msgstr "Keine Gegenstände"
+msgstr "Ei esineitä"
 
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:207
 #: WF.Player.Forms/Game/GameMainViewModel.cs:221
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:186
 msgid "No new tasks"
-msgstr "Keine neuen Aufgaben"
+msgstr "Ei uusia tehtäviä"
 
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:217
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:196
 msgid "Nothing available"
-msgstr "Nichts verfügbar"
+msgstr "Ei mitään saatavilla"
 
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:197
 #: WF.Player.Forms/Game/GameMainViewModel.cs:211
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:176
 msgid "Nothing of interest"
-msgstr "Nichts von Interesse"
+msgstr "Ei mitään kiinnostavaa"
 
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:212
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:191
 msgid "Nowhere to go"
-msgstr "Keine Orte"
+msgstr "Ei kohdetta mihin mennä"
 
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:192
 #: WF.Player.Forms/Game/GameDetailViewModel.cs:655
@@ -398,39 +397,37 @@ msgstr "Keine Orte"
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:171
 #: WF.Player.iOS/Services/UserDialogs/UserDialogService.cs:22
 msgid "Ok"
-msgstr "Ok"
+msgstr "OK"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:623
 msgid "Overview"
-msgstr "Überblick"
+msgstr "Yleiskatsaus"
 
 #: WF.Player.Forms/Settings/FolderSelectionPage.cs:149
 msgid "Parent directory"
-msgstr "Übergeordnetes Verzeichnis"
+msgstr "Ylätason hakemisto"
 
 #: WF.Player.Forms/Services/UserDialogs/LoginConfig.cs:48
 msgid "Password"
-msgstr "Passwort"
+msgstr "Salasana"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:257
 msgid "Path"
-msgstr "Pfad"
+msgstr "Polku"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:245
 msgid "Path for cartridges"
-msgstr "Pfad für Cartridges"
+msgstr "Hakemistopolku kasetteihin"
 
 #: WF.Player.Forms/Game/GameMainView.cs:254
 #: WF.Player.Forms/Game/GameMainView.cs:251
 msgid "Please wait..."
-msgstr "Bitte warten..."
+msgstr "Odota hetki..."
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:922
 #: WF.Player.Forms/Game/GameMainViewModel.cs:969
 msgid "Provide a comment to identify this savefile"
-msgstr ""
-"Bitte gib einen Kommentar für diese Sicherungsdatei ein, damit Du sie später "
-"wieder zuordnen kannst."
+msgstr "Anna kommentti tallennustiedoston tunnistamiseksi"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:96
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:314
@@ -439,24 +436,24 @@ msgstr ""
 #: WF.Player.Forms/Game/GameMainViewModel.cs:912
 #: WF.Player.Forms/Game/GameMainView.cs:74
 msgid "Quit"
-msgstr "Beenden"
+msgstr "Lopeta"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:128
 msgid "Resize to max. half height"
-msgstr "Anpassen an max. halbe Höhe des Bildschirmes"
+msgstr "Sovita puoleen ruudun korkeudesta"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:127
 msgid "Resize to screen width"
-msgstr "Anpassen auf Bildschirmbreite"
+msgstr "Sovita ruudun leveyteen"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:122
 msgid "Resizing"
-msgstr "Größe"
+msgstr "Koon muuttaminen"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:67
 #: WF.Player.Forms/Settings/SettingsPage.cs:115
 msgid "Right"
-msgstr "Rechts"
+msgstr "Oikea"
 
 #. South
 #: WF.Player.Forms/Services/Conversion/Converter.cs:148
@@ -465,21 +462,21 @@ msgstr "S"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:364
 msgid "Satellite"
-msgstr "Satellit"
+msgstr "Satelliitti"
 
 #: WF.Player.Forms/Game/GameMainView.cs:87
 #: WF.Player.Forms/Game/GameMainView.cs:90
 #: WF.Player.Forms/Game/GameMainViewModel.cs:965
 #: WF.Player.Forms/Game/GameMainView.cs:73
 msgid "Save"
-msgstr "Sichern"
+msgstr "Tallenna"
 
 msgid "Save Game"
-msgstr "Spiel sichern"
+msgstr "Tallenna peli"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:133
 msgid "Screen width"
-msgstr "Bildschirmbreite"
+msgstr "Koko ruudun leveys"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:84
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:311
@@ -487,86 +484,86 @@ msgstr "Bildschirmbreite"
 #: WF.Player.Forms/Settings/SettingsPage.cs:264
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:109
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr "Asetukset"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:126
 #: WF.Player.Forms/Settings/SettingsPage.cs:132
 msgid "Shrink only"
-msgstr "Nur verkleinern"
+msgstr "Vain pienennä"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:75
 msgid "Size"
-msgstr "Größe"
+msgstr "Koko"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:148
 msgid "Sound"
-msgstr "Klang"
+msgstr "Äänet"
 
 #: WF.Player.Forms/Game/GameCheckLocationViewModel.cs:148
 msgid "Start"
-msgstr "Start"
+msgstr "Aloita"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:110
 #: WF.Player.Forms/Game/GameCheckLocationViewModel.cs:152
 msgid "Start anyway"
-msgstr "Trotzdem starten"
+msgstr "Aloita kuitenkin"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:270
 #: WF.Player.Forms/Cartridges/CartridgeDetailMapView.cs:89
 msgid "Starting Location"
-msgstr "Startpunkt"
+msgstr "Lähtöpaikka"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:363
 msgid "Street"
-msgstr "Standard"
+msgstr "Katu"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:221
 #: WF.Player.Forms/Game/GameMainViewModel.cs:638
 #: WF.Player.Forms/Game/GameMainViewModel.cs:1388
 msgid "Tasks"
-msgstr "Aufgaben"
+msgstr "Tehtävät"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:103
 msgid "Text"
-msgstr "Text"
+msgstr "Teksti"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:46
 msgid "Theme"
-msgstr "Oberfläche"
+msgstr "Teema"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:259
 msgid ""
 "There is an automatic savefile from a cartridge you played before. Would you "
 "resume this last game?"
 msgstr ""
-"Es gibt eine automatische Sicherungsdatei der zuletzt gespielten Cartridge. "
-"Möchtest Du diese weiterspielen?"
+"Kasetista löytyi automaattisesti tallennettu tilanne aiemmalta pelikerralta. "
+"Haluatko jatkaa tätä edellistä peliä?"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:207
 msgid "Units"
-msgstr "Einheiten"
+msgstr "Yksiköt"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:69
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:85
 #: WF.Player.Forms/Game/GameInputViewModel.cs:507
 msgid "Unknown"
-msgstr "Unbekannt"
+msgstr "Tuntematon"
 
 #: WF.Player.Forms/Cartridges/CartridgeListCell.cs:166
 msgid "Update"
-msgstr "Aktualisieren"
+msgstr "Päivitä"
 
 #: WF.Player.Forms/Services/UserDialogs/LoginConfig.cs:47
 msgid "User Name"
-msgstr "Benutzername"
+msgstr "Käyttäjätunnus:"
 
 #: WF.Player.Forms/Cartridges/CartridgeListCell.cs:143
 msgid "Version: {0}"
-msgstr "Version: {0}"
+msgstr "Versio: {0}"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:156
 msgid "Vibration"
-msgstr "Vibration"
+msgstr "Värinä"
 
 #. West
 #: WF.Player.Forms/Services/Conversion/Converter.cs:158
@@ -583,186 +580,30 @@ msgstr "WF.Player.Android"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:914
 msgid "Would you like to save the current game?"
-msgstr "Möchtest Du das aktuelle Spiel vor dem Beenden sichern?"
+msgstr "Haluatko tallentaa nykyisen pelin?"
 
 #. A short text, because of size. If it is to long, than entry filed hides Ok button
 #: WF.Player.Forms/Game/GameInputViewModel.cs:311
 msgid "Write input here..."
-msgstr "Antwort..."
+msgstr "Kirjoita tähän..."
 
 #: WF.Player.Forms/Services/UserDialogs/ConfirmConfig.cs:33
 msgid "Yes"
-msgstr "Ja"
+msgstr "Kyllä"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:211
 #: WF.Player.Forms/Game/GameMainViewModel.cs:628
 #: WF.Player.Forms/Game/GameMainViewModel.cs:1340
 msgid "You See"
-msgstr "Umgebung"
+msgstr "Näet"
 
 #~ msgid ""
 #~ "Copyright by\n"
 #~ "Wherigo Foundation\n"
 #~ "Dirk Weltz\n"
 #~ "Brice Clocher"
-#~ msgstr "Copyright by\\nWherigo Foundation\\nDirk Weltz\\nBrice Clocher"
-
-#~ msgid "Select"
-#~ msgstr "Auswählen"
-
-#~ msgid "Alignment of text"
-#~ msgstr "Ausrichtung des Textes"
-
-#~ msgid "Auto change"
-#~ msgstr "Automatischer Wechsel"
-
-#~ msgid "Blue"
-#~ msgstr "Blau"
-
-#~ msgid "Center align"
-#~ msgstr "Zentrieren"
-
-#~ msgid ""
-#~ "Filter applied to orientation. Stronger filter cause slower reactions, "
-#~ "but fluent movement."
 #~ msgstr ""
-#~ "Filter für die Orientierung. Stärkerer Filter führt zu langsameren "
-#~ "Reaktionen, aber flüssigeren Bewegungen."
-
-#~ msgid "Focus"
-#~ msgstr "Fokus"
-
-#~ msgid "Focus input field when dialog appears"
-#~ msgstr "Eingabefeld fokussieren wenn Dialog erscheint"
-
-#~ msgid "Font size of dialog text"
-#~ msgstr "Buchstabengröße von Dialogtext"
-
-#~ msgid "Font size of text in sp. Default is 18."
-#~ msgstr "Buchstabengröße von Text in sp. Vorgabe ist 18."
-
-#~ msgid "Fontsize"
-#~ msgstr "Zeichengröße"
-
-#~ msgid "Half height of screen"
-#~ msgstr "Halbe Höhe des Bildschirmes"
-
-#~ msgid "Heavy filter"
-#~ msgstr "Starker Filter"
-
-#~ msgid "Hello World, Click Me!"
-#~ msgstr "Hallo, drücke mich!"
-
-#~ msgid "If enabled use true bearing. Otherwise use magnetic bearing."
-#~ msgstr ""
-#~ "Wenn angewählt, dann benutze wahre Peilung. Ansonsten benutze magnetische "
-#~ "Peilung."
-
-#~ msgid "Image"
-#~ msgstr "Bild"
-
-#~ msgid "Input"
-#~ msgstr "Eingabe"
-
-#~ msgid "Left align"
-#~ msgstr "Links ausgerichtet"
-
-#~ msgid "Light filter"
-#~ msgstr "Leichter Filter"
-
-#~ msgid "Medium filter"
-#~ msgstr "Mittlerer Filter"
-
-#~ msgid "No filter"
-#~ msgstr "Kein Filter"
-
-#~ msgid "No resize"
-#~ msgstr "Keine Größenänderung"
-
-#~ msgid "Orientation filter"
-#~ msgstr "Orientierungsfilter"
-
-#~ msgid "Play a sound each time a button is pressed"
-#~ msgstr "Spiele jedesmal, wenn eine Taste gedrückt wird, einen Ton"
-
-#~ msgid "Resize"
-#~ msgstr "Größenänderung"
-
-#~ msgid "Resize image when displaying"
-#~ msgstr "Größenänderung des Bildes beim Anzeigen"
-
-#~ msgid "Right align"
-#~ msgstr "Rechts ausrichten"
-
-#~ msgid "Sensors"
-#~ msgstr "Sensoren"
-
-#~ msgid "Shrink to width of screen"
-#~ msgstr "Auf die Größe des Bildschirms verkleinern"
-
-#~ msgid "Speed value"
-#~ msgstr "Geschwindigkeitswert"
-
-#~ msgid "Theme for this app (only updated after a restart of the app)"
-#~ msgstr ""
-#~ "Theme für diese App (wird erst nach einem Neustart vollständig angezeigt)"
-
-#~ msgid "Use hardware compass"
-#~ msgstr "Hardware Kompass verwenden"
-
-#~ msgid ""
-#~ "Use hardware compass for map rotation and compass screen. Bearing from "
-#~ "GPS (better for car) will be used if disabled."
-#~ msgstr ""
-#~ "Hardware Kompass für Kartenrotation und Kompassseite benutzen. Ansonsten "
-#~ "wir die Peilung des GPS benutzt (besser für Autos)."
-
-#~ msgid ""
-#~ "Use source for bearing defined by \"Use hardware compass\" settings for "
-#~ "low speed. For high speed use bearing from GPS."
-#~ msgstr ""
-#~ "Benutze als Quelle für die Peilung bei niedrigen Geschwindigkeiten den "
-#~ "unter \"Hardware Kompass verwenden\" eingestellten Wert. Nutze für hohe "
-#~ "Geschwindigkeiten die Peilung des GPS."
-
-#~ msgid "Use true bearing"
-#~ msgstr "Benutze wahre Peilung"
-
-#~ msgid ""
-#~ "Value that define which source for bearing will be used (low speed below "
-#~ "this value, high speed above this value)."
-#~ msgstr ""
-#~ "Wert der angibt, welche Quelle für die Peilung benutzt wird (niedrige "
-#~ "Geschwindigkeit unter diesem Wert, hohe Geschwindigkeit über diesem Wert)."
-
-#~ msgid "Vibrate"
-#~ msgstr "Vibrieren"
-
-#~ msgid "Vibrate each time a button is pressed"
-#~ msgstr "Vibriere jedesmal, wenn ein Knopf gedrückt wird"
-
-#~ msgid "Width of screen"
-#~ msgstr "Breite des Bildschirms"
-
-#~ msgid ""
-#~ "There is an automatical savefile from a cartridge you played before. "
-#~ "Would you resume this last game?"
-#~ msgstr ""
-#~ "Es gibt eine automatische Sicherungsdatei der zuletzt gespielten "
-#~ "Cartridge. Möchtest Du diese weiterspielen?"
-
-#~ msgid "Write your input here..."
-#~ msgstr "Antwort..."
-
-#~ msgid ""
-#~ "There is an automatical savefile from before. Would you resume this last "
-#~ "game?"
-#~ msgstr ""
-#~ "Es gibt eine automatische Sicherungsdatei von der zuletzt gespielten "
-#~ "Cartridge. Möchtest Du dieses Partridge weiterspielen?"
-
-#~ msgid "No map available"
-#~ msgstr "Keine Karte vorhanden"
-
-#~ msgid "unknown"
-#~ msgstr "unbekannt"
+#~ "Copyright by\n"
+#~ "Wherigo Foundation\n"
+#~ "Dirk Weltz\n"
+#~ "Brice Clocher"
