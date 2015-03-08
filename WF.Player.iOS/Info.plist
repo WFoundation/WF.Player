@@ -73,6 +73,6 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleVersion</key>
-	<string>30</string>
+	<string>31</string>
 </dict>
 </plist>
