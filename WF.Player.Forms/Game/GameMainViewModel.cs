@@ -1066,7 +1066,6 @@ namespace WF.Player
 		{
 			NotifyPropertyChanged(TitelPropertyName);
 			NotifyPropertyChanged(IsListVisiblePropertyName);
-			Console.WriteLine(string.Format("NotifyPropertyChange(IsOverviewVisible) with IsOverviewVisible={0}", this.IsOverviewVisible));
 			NotifyPropertyChanged(IsOverviewVisiblePropertyName);
 
 			if (this.activeScreen != ScreenType.Main && this.activeScreen != ScreenType.Map)

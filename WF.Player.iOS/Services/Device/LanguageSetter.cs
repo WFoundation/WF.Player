@@ -51,6 +51,11 @@ namespace WF.Player.iOS.Services.Device
 			{
 				langBundle = NSBundle.FromPath(NSBundle.MainBundle.PathForResource(lang, "lproj"));
 			}
+			else
+			{
+				// We want to use the default language
+				langBundle = null;
+			}
 
 			// Activate Vernacular Catalog
 			Catalog.Implementation = new ResourceCatalog 
