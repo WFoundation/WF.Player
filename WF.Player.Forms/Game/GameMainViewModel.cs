@@ -1065,6 +1065,7 @@ namespace WF.Player
 		private void OnLayoutChanged()
 		{
 			NotifyPropertyChanged(TitelPropertyName);
+			NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
 			NotifyPropertyChanged(IsListVisiblePropertyName);
 			NotifyPropertyChanged(IsOverviewVisiblePropertyName);
 
@@ -1076,11 +1077,6 @@ namespace WF.Player
 
 			if (this.activeScreen == ScreenType.Main || this.activeScreen == ScreenType.Map)
 			{
-//				if (this.ActiveScreen == ScreenType.Main && App.GameNavigation.CurrentPage is GameMainView)
-//				{
-//					((GameMainView)App.GameNavigation.CurrentPage).overviewScroll.IsVisible = IsOverviewVisible;
-//				}
-
 				NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
 			}
 		}
@@ -1133,6 +1129,7 @@ namespace WF.Player
 				var ret = false;
 
 				ret = ret || (e.PropertyName == "State" && (IsYouSeeSelected || IsOverviewSelected));
+				ret = ret || (e.PropertyName == "Active" && (IsYouSeeSelected || IsOverviewSelected));
 				ret = ret || (e.PropertyName == "ActiveVisibleZones" && (IsYouSeeSelected || IsOverviewSelected));
 				ret = ret || (e.PropertyName == "VisibleObjects" && (IsYouSeeSelected || IsOverviewSelected));
 				ret = ret || (e.PropertyName == "VisibleInventory" && (IsInventorySelected || IsOverviewSelected));
@@ -1315,7 +1312,11 @@ namespace WF.Player
 					o.ShowDirection = hasDirections && (o.UIObject.ObjectLocation != null || o.UIObject is Zone);
 				}
 
-				this.gameMainList = listItems;
+				this.gameMainList.Clear();
+				this.gameMainList.AddRange(listItems);
+
+				NotifyPropertyChanged(IsListVisiblePropertyName);
+				NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
 				NotifyPropertyChanged(GameMainListPropertyName);
 			}
 		}
