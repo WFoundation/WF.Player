@@ -38,7 +38,7 @@ namespace WF.Player.SettingsPage
 			var grid = new Grid 
 				{
 					BackgroundColor = App.Colors.Background,
-					Padding = Device.OnPlatform<Thickness>(new Thickness(0, 10, 10, 10), new Thickness(18, 10, 18, 10), new Thickness(0, 10, 10, 10)),
+					Padding = Device.OnPlatform<Thickness>(new Thickness(16, 10, 10, 10), new Thickness(18, 10, 18, 10), new Thickness(0, 10, 10, 10)),
 					RowSpacing = 6,
 					HorizontalOptions = LayoutOptions.Fill,
 					VerticalOptions = LayoutOptions.Fill,

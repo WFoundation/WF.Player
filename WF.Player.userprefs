@@ -1,9 +1,9 @@
 ﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.0516ea5a3444c9c3" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Game/GameMainViewModel.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone von Dirk Weltz" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Game/GameModel.cs">
     <Files>
-      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="111" Column="111" />
+      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="48" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/App.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/AppDelegate.cs" Line="1" Column="1" />
@@ -21,7 +21,7 @@
       <File FileName="WF.Player.Droid/Services/Settings/Settings.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Services/Device/ILanguageSetter.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Services/Device/IMeasure.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Device/LanguageSetter.cs" Line="43" Column="43" />
+      <File FileName="WF.Player.iOS/Services/Device/LanguageSetter.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Services/Device/Measure.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/Services/Device/LanguageSetter.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/Services/Device/Measure.cs" Line="1" Column="1" />

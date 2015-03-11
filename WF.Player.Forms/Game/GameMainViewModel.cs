@@ -1312,8 +1312,7 @@ namespace WF.Player
 					o.ShowDirection = hasDirections && (o.UIObject.ObjectLocation != null || o.UIObject is Zone);
 				}
 
-				this.gameMainList.Clear();
-				this.gameMainList.AddRange(listItems);
+				this.gameMainList = listItems;
 
 				NotifyPropertyChanged(IsListVisiblePropertyName);
 				NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);

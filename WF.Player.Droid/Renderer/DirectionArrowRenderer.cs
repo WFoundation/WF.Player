@@ -213,29 +213,30 @@ namespace WF.Player.Controls.Droid
 			else
 				_pathInside.Reset ();
 
-			float x1 = _centerX + _size / 1.41f;
-			float x2 = _centerX + _size / 2.82f;
-			float x3 = _centerX - _size / 2.82f;
-			float x4 = _centerX - _size / 1.41f;
-
-			float y1 = _centerY + _size / 1.41f;
-			float y2 = _centerY + _size / 2.82f;
-			float y3 = _centerY - _size / 2.82f;
-			float y4 = _centerY - _size / 1.41f;
-
-			_pathInside.MoveTo (x1, y2);
-			_pathInside.LineTo (x2, y1);
-			_pathInside.LineTo (_centerX, y2);
-			_pathInside.LineTo (x3, y1);
-			_pathInside.LineTo (x4, y2);
-			_pathInside.LineTo (x3, _centerY);
-			_pathInside.LineTo (x4, y3);
-			_pathInside.LineTo (x3, y4);
-			_pathInside.LineTo (_centerX, y3);
-			_pathInside.LineTo (x2, y4);
-			_pathInside.LineTo (x1, y3);
-			_pathInside.LineTo (x2, _centerY);
-			_pathInside.LineTo (x1, y2);
+			_pathInside.AddCircle(_centerX, _centerY, _size * 0.5f, Path.Direction.Cw);
+//			float x1 = _centerX + _size / 1.41f;
+//			float x2 = _centerX + _size / 2.82f;
+//			float x3 = _centerX - _size / 2.82f;
+//			float x4 = _centerX - _size / 1.41f;
+//
+//			float y1 = _centerY + _size / 1.41f;
+//			float y2 = _centerY + _size / 2.82f;
+//			float y3 = _centerY - _size / 2.82f;
+//			float y4 = _centerY - _size / 1.41f;
+//
+//			_pathInside.MoveTo (x1, y2);
+//			_pathInside.LineTo (x2, y1);
+//			_pathInside.LineTo (_centerX, y2);
+//			_pathInside.LineTo (x3, y1);
+//			_pathInside.LineTo (x4, y2);
+//			_pathInside.LineTo (x3, _centerY);
+//			_pathInside.LineTo (x4, y3);
+//			_pathInside.LineTo (x3, y4);
+//			_pathInside.LineTo (_centerX, y3);
+//			_pathInside.LineTo (x2, y4);
+//			_pathInside.LineTo (x1, y3);
+//			_pathInside.LineTo (x2, _centerY);
+//			_pathInside.LineTo (x1, y2);
 		}
 
 		void UpdatePathUnknown()

@@ -247,7 +247,6 @@ namespace WF.Player
 			// Create Engine
 			await this.CreateEngine(this.cartridgeTag.Cartridge);
 
-			// Init for position
 			var pos = App.GPS.LastKnownPosition ?? new Position(0, 0);
 			this.engine.RefreshLocation(pos.Latitude, pos.Longitude, pos.Altitude ?? 0, pos.Accuracy ?? double.NaN);
 
@@ -407,6 +406,7 @@ namespace WF.Player
 		/// <param name="e">Inventory changed event arguments.</param>
 		public void OnInventoryChanged(object sender, InventoryChangedEventArgs e)
 		{
+			this.RaiseDisplayChanged("VisibleInventory");
 		}
 
 		/// <summary>
@@ -416,6 +416,7 @@ namespace WF.Player
 		/// <param name="e">Zone state changed event args.</param>
 		public void OnZoneStateChanged(object sender, ZoneStateChangedEventArgs e)
 		{
+			this.RaiseDisplayChanged("ActiveVisibleZones");
 		}
 
 		/// <summary>

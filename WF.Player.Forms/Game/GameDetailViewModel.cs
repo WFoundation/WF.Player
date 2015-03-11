@@ -681,6 +681,15 @@ namespace WF.Player
 				return;
 			}
 
+			// Do it only for zones, where we are inside
+			if (this.activeObject is Zone && ((Zone)this.activeObject).State == PlayerZoneState.Inside)
+			{
+				Direction = double.PositiveInfinity;
+				Distance = double.PositiveInfinity;
+
+				return;
+			}
+
 			double heading = 0;
 
 			if (Position.Heading != null)
@@ -690,7 +699,7 @@ namespace WF.Player
 			}
 
 			// Do it only for entries with ObjectLocation
-			if (this.activeObject.ObjectLocation != null)
+			if (this.activeObject is Zone || this.activeObject.ObjectLocation != null)
 			{
 				if (updateDirection || vecDirection == null)
 				{
@@ -717,6 +726,15 @@ namespace WF.Player
 			if (this.activeObject is Task)
 			{
 				HasDirection = false;
+
+				return;
+			}
+
+			if (this.activeObject is Zone)
+			{
+				HasDirection = true;
+
+				return;
 			}
 
 			if (this.activeObject is Thing)
