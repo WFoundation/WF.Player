@@ -758,15 +758,18 @@ namespace WF.Player
 				return;
 			}
 
+			// Clear all buttons
+
+			// Get active view
+			var view = (GameDetailView)App.GameNavigation.CurrentPage;
+
+			// Clear all buttons
+			view.Buttons.Clear();
+
+			// If there are commands, than create buttons
 			if (this.activeObject is Thing)
 			{
 				Thing thing = (Thing)this.activeObject;
-
-				// Get active view
-				var view = (GameDetailView)App.GameNavigation.CurrentPage;
-
-				// Clear all buttons
-				view.Buttons.Clear();
 
 				// If there isn't a command, we are ready
 				if (thing.ActiveCommands.Count == 0)
