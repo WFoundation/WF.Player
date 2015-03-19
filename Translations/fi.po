@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-03-07 21:03+0100\n"
+"PO-Revision-Date: 2015-03-19 19:25+0100\n"
 "Last-Translator: Dirk Weltz <web@weltz-online.de>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.7.5\n"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:89
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:312
@@ -20,7 +20,8 @@ msgid "About"
 msgstr "Lisätietoja"
 
 #: WF.Player.Forms/Game/GameDetailViewModel.cs:599
-#: WF.Player.Forms/Game/GameDetailViewModel.cs:760
+#: WF.Player.Forms/Game/GameDetailViewModel.cs:781
+#: WF.Player.Forms/Game/GameDetailViewModel.cs:778
 msgid "Actions"
 msgstr "Toiminnot"
 
@@ -271,7 +272,7 @@ msgstr "Sisällä"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:216
 #: WF.Player.Forms/Game/GameMainViewModel.cs:633
-#: WF.Player.Forms/Game/GameMainViewModel.cs:1365
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1364
 msgid "Inventory"
 msgstr "Inventaario"
 
@@ -293,6 +294,10 @@ msgstr "Pituus"
 msgid "Light"
 msgstr "Vaalea"
 
+#: WF.Player.Forms/Game/GameModel.cs:1151
+msgid "Line {0}: {1}"
+msgstr "Rivi {0}: {1}"
+
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:134
 #: WF.Player.Forms/Game/GameMainViewModel.cs:664
 msgid "Loading..."
@@ -305,6 +310,10 @@ msgstr "Kirjaudu sisään"
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:115
 msgid "Logs"
 msgstr "Logit"
+
+#: WF.Player.Forms/Game/GameModel.cs:1170
+msgid "Lua error"
+msgstr "Lua virhe"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:108
 msgid "Main Menu"
@@ -419,7 +428,11 @@ msgstr "Polku"
 msgid "Path for cartridges"
 msgstr "Hakemistopolku kasetteihin"
 
-#: WF.Player.Forms/Game/GameMainView.cs:254
+#. Part of the error message
+#: WF.Player.Forms/Game/GameModel.cs:1164
+msgid "Please make a screenshot and send it to the cartridge author."
+msgstr ""
+
 #: WF.Player.Forms/Game/GameMainView.cs:251
 msgid "Please wait..."
 msgstr "Odota hetki..."
@@ -431,8 +444,8 @@ msgstr "Anna kommentti tallennustiedoston tunnistamiseksi"
 
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:96
 #: WF.Player.Forms/Cartridges/CartridgeListPage.cs:314
+#: WF.Player.Forms/Game/GameMainView.cs:92
 #: WF.Player.Forms/Game/GameMainView.cs:95
-#: WF.Player.Forms/Game/GameMainView.cs:98
 #: WF.Player.Forms/Game/GameMainViewModel.cs:912
 #: WF.Player.Forms/Game/GameMainView.cs:74
 msgid "Quit"
@@ -464,8 +477,8 @@ msgstr "S"
 msgid "Satellite"
 msgstr "Satelliitti"
 
+#: WF.Player.Forms/Game/GameMainView.cs:84
 #: WF.Player.Forms/Game/GameMainView.cs:87
-#: WF.Player.Forms/Game/GameMainView.cs:90
 #: WF.Player.Forms/Game/GameMainViewModel.cs:965
 #: WF.Player.Forms/Game/GameMainView.cs:73
 msgid "Save"
@@ -519,13 +532,18 @@ msgstr "Katu"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:221
 #: WF.Player.Forms/Game/GameMainViewModel.cs:638
-#: WF.Player.Forms/Game/GameMainViewModel.cs:1388
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1387
 msgid "Tasks"
 msgstr "Tehtävät"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:103
 msgid "Text"
 msgstr "Teksti"
+
+#. Part of the error message
+#: WF.Player.Forms/Game/GameModel.cs:1167
+msgid "The cartridge now stops."
+msgstr ""
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:46
 msgid "Theme"
@@ -591,9 +609,14 @@ msgstr "Kirjoita tähän..."
 msgid "Yes"
 msgstr "Kyllä"
 
+#. Part of the error message
+#: WF.Player.Forms/Game/GameModel.cs:1158
+msgid "You encountered an Lua error in the cartridge '{0}'."
+msgstr ""
+
 #: WF.Player.Forms/Game/GameMainViewModel.cs:211
 #: WF.Player.Forms/Game/GameMainViewModel.cs:628
-#: WF.Player.Forms/Game/GameMainViewModel.cs:1340
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1339
 msgid "You See"
 msgstr "Näet"
 

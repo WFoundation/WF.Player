@@ -60,9 +60,11 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Left">Left</string>
   <string formatted="false" name="Vernacular_P0_Length">Length</string>
   <string formatted="false" name="Vernacular_P0_Light">Light</string>
+  <string formatted="false" name="Vernacular_P0_Line1230125581231125">Line {0}: {1}</string>
   <string formatted="false" name="Vernacular_P0_Loading464646">Loading…</string>
   <string formatted="false" name="Vernacular_P0_Login">Login</string>
   <string formatted="false" name="Vernacular_P0_Logs">Logs</string>
+  <string formatted="false" name="Vernacular_P0_Luaerror">Lua error</string>
   <string formatted="false" name="Vernacular_P0_Map">Map</string>
   <string formatted="false" name="Vernacular_P0_Maptype">Maptype</string>
   <string formatted="false" name="Vernacular_P0_Max46halfheight">Max. half height</string>
@@ -83,6 +85,7 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Password">Password</string>
   <string formatted="false" name="Vernacular_P0_Path">Path</string>
   <string formatted="false" name="Vernacular_P0_Pathforcartridges">Path for cartridges</string>
+  <string formatted="false" name="Vernacular_P0_Pleasemakeascreenshotandsendittothecartridgeauthor46">Please make a screenshot and send it to the cartridge author.</string>
   <string formatted="false" name="Vernacular_P0_Pleasewait464646">Please wait…</string>
   <string formatted="false" name="Vernacular_P0_Provideacommenttoidentifythissavefile">Provide a comment to identify this savefile</string>
   <string formatted="false" name="Vernacular_P0_Quit">Quit</string>
@@ -105,6 +108,7 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Street">Street</string>
   <string formatted="false" name="Vernacular_P0_Tasks">Tasks</string>
   <string formatted="false" name="Vernacular_P0_Text">Text</string>
+  <string formatted="false" name="Vernacular_P0_Thecartridgenowstops46">The cartridge now stops.</string>
   <string formatted="false" name="Vernacular_P0_Theme">Theme</string>
   <string formatted="false" name="Vernacular_P0_Thereisanautomaticsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">There is an automatic savefile from a cartridge you played before. Would you resume this last game?</string>
   <string formatted="false" name="Vernacular_P0_Units">Units</string>
@@ -119,5 +123,6 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Wouldyouliketosavethecurrentgame63">Would you like to save the current game?</string>
   <string formatted="false" name="Vernacular_P0_Writeinputhere464646">Write input here…</string>
   <string formatted="false" name="Vernacular_P0_Yes">Yes</string>
+  <string formatted="false" name="Vernacular_P0_YouencounteredanLuaerrorinthecartridge3912301253946">You encountered an Lua error in the cartridge \'{0}\'.</string>
   <string formatted="false" name="Vernacular_P0_YouSee">You See</string>
 </resources>

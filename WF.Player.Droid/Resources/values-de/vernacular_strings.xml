@@ -61,9 +61,11 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Left">Links</string>
   <string formatted="false" name="Vernacular_P0_Length">Länge</string>
   <string formatted="false" name="Vernacular_P0_Light">Hell</string>
+  <string formatted="false" name="Vernacular_P0_Line1230125581231125">Zeile {0}: {1}</string>
   <string formatted="false" name="Vernacular_P0_Loading464646">Laden…</string>
   <string formatted="false" name="Vernacular_P0_Login">Einloggen</string>
   <string formatted="false" name="Vernacular_P0_Logs">Logs</string>
+  <string formatted="false" name="Vernacular_P0_Luaerror">Lua Fehler</string>
   <string formatted="false" name="Vernacular_P0_MainMenu">Hauptmenü</string>
   <string formatted="false" name="Vernacular_P0_Map">Karte</string>
   <string formatted="false" name="Vernacular_P0_Maptype">Kartenart</string>
@@ -86,6 +88,7 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Password">Passwort</string>
   <string formatted="false" name="Vernacular_P0_Path">Pfad</string>
   <string formatted="false" name="Vernacular_P0_Pathforcartridges">Pfad für Cartridges</string>
+  <string formatted="false" name="Vernacular_P0_Pleasemakeascreenshotandsendittothecartridgeauthor46">Bitte mache ein Bildschirmfoto und sende es an den Autor der Cartridge.</string>
   <string formatted="false" name="Vernacular_P0_Pleasewait464646">Bitte warten…</string>
   <string formatted="false" name="Vernacular_P0_Provideacommenttoidentifythissavefile">Bitte gib einen Kommentar für diese Sicherungsdatei ein, damit Du sie später wieder zuordnen kannst.</string>
   <string formatted="false" name="Vernacular_P0_Quit">Beenden</string>
@@ -108,6 +111,7 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Street">Standard</string>
   <string formatted="false" name="Vernacular_P0_Tasks">Aufgaben</string>
   <string formatted="false" name="Vernacular_P0_Text">Text</string>
+  <string formatted="false" name="Vernacular_P0_Thecartridgenowstops46">Die Cartridge wird nun beendet.</string>
   <string formatted="false" name="Vernacular_P0_Theme">Oberfläche</string>
   <string formatted="false" name="Vernacular_P0_Thereisanautomaticsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">Es gibt eine automatische Sicherungsdatei der zuletzt gespielten Cartridge. Möchtest Du diese weiterspielen?</string>
   <string formatted="false" name="Vernacular_P0_Units">Einheiten</string>
@@ -122,5 +126,6 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Wouldyouliketosavethecurrentgame63">Möchtest Du das aktuelle Spiel vor dem Beenden sichern?</string>
   <string formatted="false" name="Vernacular_P0_Writeinputhere464646">Antwort…</string>
   <string formatted="false" name="Vernacular_P0_Yes">Ja</string>
+  <string formatted="false" name="Vernacular_P0_YouencounteredanLuaerrorinthecartridge3912301253946">Du bist auf einen Lua Fehler in der Cartridge \'{0}\' gestoßen.</string>
   <string formatted="false" name="Vernacular_P0_YouSee">Umgebung</string>
 </resources>

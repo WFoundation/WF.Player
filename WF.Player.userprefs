@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
+﻿<Properties StartupItem="WF.Player.Droid/WF.Player.Droid.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Ad-Hoc|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone von Dirk Weltz" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Settings/SettingsPage.cs">
     <Files>

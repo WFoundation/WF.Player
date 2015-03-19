@@ -15,6 +15,9 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using WF.Player.Services.UserDialogs;
+using Vernacular;
+using System.Text.RegularExpressions;
 
 namespace WF.Player
 {
@@ -1036,6 +1039,7 @@ namespace WF.Player
 			this.engine.ShowStatusTextRequested += this.OnShowStatusText;
 			this.engine.StopSoundsRequested += this.OnStopSound;
 			this.engine.PropertyChanged += this.OnPropertyChanged;
+			this.engine.CartridgeCrashed += this.OnCartridgeCrashed;
 
 			// Open logFile first time
 			this.logFile = this.cartridgeTag.CreateLogFile();
@@ -1133,6 +1137,43 @@ namespace WF.Player
 				// sometimes the busy indicator isn't cleared and works forever.
 				// App.GameNavigation.CurrentPage.IsBusy = this.engine.IsBusy;
 			}
+		}
+
+		private async void OnCartridgeCrashed(object sender, CrashEventArgs e)
+		{
+			string error = string.Empty;
+
+			Regex regex = new Regex(@".*lua:(\d+):(.*)");
+			Match match = regex.Match(e.ExceptionObject.InnerException.Message);
+
+			if (match.Success)
+			{
+				error = string.Format(Catalog.GetString("Line {0}: {1}"), match.Groups[1].Value, match.Groups[2].Value.Trim());
+			}
+			else
+			{
+				error = e.ExceptionObject.InnerException.Message;
+			}
+
+			string message = string.Format(Catalog.GetString("You encountered an Lua error in the cartridge '{0}'.", "Part of the error message"), this.Cartridge.Name);
+			message += System.Environment.NewLine;
+			message += System.Environment.NewLine;
+			message += error;
+			message += System.Environment.NewLine;
+			message += System.Environment.NewLine;
+			message += Catalog.GetString("Please make a screenshot and send it to the cartridge author.", "Part of the error message");
+			message += System.Environment.NewLine;
+			message += System.Environment.NewLine;
+			message += Catalog.GetString("The cartridge now stops.", "Part of the error message");
+
+			// Display alert message
+			await UserDialogs.Instance.AlertAsync(message, Catalog.GetString("Lua error"));
+
+			// Close log file
+			this.DestroyEngine();
+
+			// Leave game
+			App.GameNavigation.CurrentPage.Navigation.PopModalAsync();
 		}
 
 		#endregion

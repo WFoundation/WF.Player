@@ -34,12 +34,14 @@ namespace WF.Player.Droid.Services.Device
 		///<param name="exitCode">Exit code.</param>
 		public void ExitApp(int exitCode)
 		{
-			Intent intent = new Intent(Intent.ActionMain);
-			intent.AddCategory(Intent.CategoryHome);
-			intent.SetFlags(ActivityFlags.ClearTop);
-			Forms.Context.StartActivity(intent);
+//			Intent intent = new Intent(Intent.ActionMain);
+//			intent.AddCategory(Intent.CategoryHome);
+//			intent.SetFlags(ActivityFlags.ClearTop);
+//			Forms.Context.StartActivity(intent);
 			((MainActivity)Forms.Context).Finish();
 			System.Environment.Exit(exitCode);
+			// Kill process
+//			Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
 		}
 
 		#endregion

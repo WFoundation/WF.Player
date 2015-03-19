@@ -61,9 +61,11 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Left">Gauche</string>
   <string formatted="false" name="Vernacular_P0_Length">Longueur</string>
   <string formatted="false" name="Vernacular_P0_Light">Light</string>
+  <string formatted="false" name="Vernacular_P0_Line1230125581231125">Ligne {0}: {1}</string>
   <string formatted="false" name="Vernacular_P0_Loading464646">Chargement …</string>
   <string formatted="false" name="Vernacular_P0_Login">Connexion</string>
   <string formatted="false" name="Vernacular_P0_Logs">Logs</string>
+  <string formatted="false" name="Vernacular_P0_Luaerror">Erreur Lua</string>
   <string formatted="false" name="Vernacular_P0_MainMenu">Menu Principal</string>
   <string formatted="false" name="Vernacular_P0_Map">Carte</string>
   <string formatted="false" name="Vernacular_P0_Maptype">MapType</string>
@@ -122,5 +124,9 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Wouldyouliketosavethecurrentgame63">Voulez-vous enregistrer le jeu en cours?</string>
   <string formatted="false" name="Vernacular_P0_Writeinputhere464646">Entrée…</string>
   <string formatted="false" name="Vernacular_P0_Yes">Oui</string>
+  <string formatted="false" name="Vernacular_P0_YouencounteredanLuaerrorinthecartridge391230125394610123112510Pleasemakeascreenshotandsendittothecartridgeauthor4610Thecartridgenowstops46">You encountered an Lua error in the cartridge \'{0}\'.
+{1}
+Please make a screenshot and send it to the cartridge author.
+The cartridge now stops.</string>
   <string formatted="false" name="Vernacular_P0_YouSee">Tu vois</string>
 </resources>

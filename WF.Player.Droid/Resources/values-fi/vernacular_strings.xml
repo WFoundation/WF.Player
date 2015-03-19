@@ -61,9 +61,11 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Left">Vasen</string>
   <string formatted="false" name="Vernacular_P0_Length">Pituus</string>
   <string formatted="false" name="Vernacular_P0_Light">Vaalea</string>
+  <string formatted="false" name="Vernacular_P0_Line1230125581231125">Rivi {0}: {1}</string>
   <string formatted="false" name="Vernacular_P0_Loading464646">Ladataan…</string>
   <string formatted="false" name="Vernacular_P0_Login">Kirjaudu sisään</string>
   <string formatted="false" name="Vernacular_P0_Logs">Logit</string>
+  <string formatted="false" name="Vernacular_P0_Luaerror">Lua virhe</string>
   <string formatted="false" name="Vernacular_P0_MainMenu">Päävalikko</string>
   <string formatted="false" name="Vernacular_P0_Map">Kartta</string>
   <string formatted="false" name="Vernacular_P0_Maptype">Karttatyyppi</string>
@@ -86,6 +88,7 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Password">Salasana</string>
   <string formatted="false" name="Vernacular_P0_Path">Polku</string>
   <string formatted="false" name="Vernacular_P0_Pathforcartridges">Hakemistopolku kasetteihin</string>
+  <string formatted="false" name="Vernacular_P0_Pleasemakeascreenshotandsendittothecartridgeauthor46">Please make a screenshot and send it to the cartridge author.</string>
   <string formatted="false" name="Vernacular_P0_Pleasewait464646">Odota hetki…</string>
   <string formatted="false" name="Vernacular_P0_Provideacommenttoidentifythissavefile">Anna kommentti tallennustiedoston tunnistamiseksi</string>
   <string formatted="false" name="Vernacular_P0_Quit">Lopeta</string>
@@ -108,6 +111,7 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Street">Katu</string>
   <string formatted="false" name="Vernacular_P0_Tasks">Tehtävät</string>
   <string formatted="false" name="Vernacular_P0_Text">Teksti</string>
+  <string formatted="false" name="Vernacular_P0_Thecartridgenowstops46">The cartridge now stops.</string>
   <string formatted="false" name="Vernacular_P0_Theme">Teema</string>
   <string formatted="false" name="Vernacular_P0_Thereisanautomaticsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">Kasetista löytyi automaattisesti tallennettu tilanne aiemmalta pelikerralta. Haluatko jatkaa tätä edellistä peliä?</string>
   <string formatted="false" name="Vernacular_P0_Units">Yksiköt</string>
@@ -122,5 +126,6 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Wouldyouliketosavethecurrentgame63">Haluatko tallentaa nykyisen pelin?</string>
   <string formatted="false" name="Vernacular_P0_Writeinputhere464646">Kirjoita tähän…</string>
   <string formatted="false" name="Vernacular_P0_Yes">Kyllä</string>
+  <string formatted="false" name="Vernacular_P0_YouencounteredanLuaerrorinthecartridge3912301253946">You encountered an Lua error in the cartridge \'{0}\'.</string>
   <string formatted="false" name="Vernacular_P0_YouSee">Näet</string>
 </resources>
