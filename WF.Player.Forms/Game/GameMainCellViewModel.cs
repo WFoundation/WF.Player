@@ -68,6 +68,8 @@ namespace WF.Player
 		/// </summary>
 		public const string ShowDirectionPropertyName = "ShowDirection";
 
+		public const string MinimumRowHeightPropertyName = "MinimumRowHeight";
+
 		/// <summary>
 		/// The color.
 		/// </summary>
@@ -303,6 +305,18 @@ namespace WF.Player
 		/// </summary>
 		/// <value><c>true</c> if show direction; otherwise, <c>false</c>.</value>
 		public bool ShowDirection { get; set; }
+
+		#endregion
+
+		#region MinimumRowHeight
+
+		public int MinimumRowHeight
+		{
+			get
+			{
+				return ShowIcon ? 60 : 50;
+			}
+		}
 
 		#endregion
 

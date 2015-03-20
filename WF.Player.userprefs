@@ -1,40 +1,26 @@
-﻿<Properties StartupItem="WF.Player.Droid/WF.Player.Droid.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Ad-Hoc|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone von Dirk Weltz" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Forms/Settings/SettingsPage.cs">
+﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.2" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Droid/Services/Device/Exit.cs">
     <Files>
-      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="262" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="1320" Column="5" />
-      <File FileName="WF.Player.Forms/App.cs" Line="95" Column="4" />
+      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1158" Column="108" />
+      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="95" Column="49" />
+      <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="915" Column="1" />
+      <File FileName="WF.Player.Forms/App.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/AppDelegate.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Settings/SettingsPage.cs" Line="77" Column="1" />
-      <File FileName="WF.Player.Forms/Settings/MultiCell.cs" Line="41" Column="61" />
+      <File FileName="WF.Player.Forms/Settings/MultiCell.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Settings/SelectionPage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Services/Settings/Settings.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Settings/FolderSelectionPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="98" Column="33" />
       <File FileName="WF.Player.Forms/Models/CartridgeStore.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Renderer/FormsUIRefreshControl.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Renderer/ExtendedNavigationPageRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/MainActivity.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Services/Settings/Settings.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/Device/ILanguageSetter.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Services/Device/IMeasure.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Device/LanguageSetter.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Services/Device/Measure.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Services/Device/LanguageSetter.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Services/Device/Measure.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/Engines/Engine.cs" Line="1081" Column="1" />
-      <File FileName="WF.Player.Droid/Services/Geolocation/GeolocationListener.cs" Line="185" Column="1" />
-      <File FileName="WF.Player.Droid/Services/Geolocation/Geolocator.cs" Line="206" Column="1" />
-      <File FileName="WF.Player.Droid/Renderer/DirectionArrowRenderer.cs" Line="216" Column="57" />
-      <File FileName="WF.Player.iOS/Renderer/DirectionArrowRenderer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameDetailViewModel.cs" Line="700" Column="4" />
-      <File FileName="WF.Player.Core/Core/Utils/GeoMathHelper.cs" Line="309" Column="3" />
-      <File FileName="WF.Player.Forms/Game/GameCheckLocationViewModel.cs" Line="221" Column="26" />
-      <File FileName="WF.Player.Forms/Data/ObservableObject.cs" Line="68" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/ExtendedLabelRenderer.cs" Line="68" Column="1" />
+      <File FileName="WF.Player.Core/Core/Engines/Engine.cs" Line="216" Column="67" />
+      <File FileName="WF.Player.Droid/Resources/values-de/vernacular_strings.xml" Line="127" Column="38" />
+      <File FileName="WF.Player.Droid/Services/Device/Exit.cs" Line="39" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

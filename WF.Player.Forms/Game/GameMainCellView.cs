@@ -53,7 +53,7 @@ namespace WF.Player
 				{
 					BackgroundColor = Color.Transparent,
 					Orientation = StackOrientation.Horizontal,
-					Spacing = 10,
+					Spacing = 5,
 					Padding = new Thickness(10, 0, 0, 0),
 					VerticalOptions = LayoutOptions.FillAndExpand,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -69,11 +69,21 @@ namespace WF.Player
 			this.icon.SetBinding(Image.SourceProperty, GameMainCellViewModel.IconSourcePropertyName);
 			this.icon.SetBinding(Image.IsVisibleProperty, GameMainCellViewModel.ShowIconPropertyName);
 
+			var iconFrame = new Frame() 
+				{
+					WidthRequest = 0,
+					HasShadow = false,
+					Padding = new Thickness(0, 5),
+				};
+
+			iconFrame.SetBinding(Frame.HeightRequestProperty, GameMainCellViewModel.MinimumRowHeightPropertyName);
+
 			this.name = new Label() 
 				{
 					XAlign = TextAlignment.Start,
 					VerticalOptions = LayoutOptions.Center,
 					HorizontalOptions = LayoutOptions.StartAndExpand,
+					MinimumHeightRequest = 50,
 					FontSize = Settings.FontSize,
 					FontFamily = Settings.FontFamily,
 					TextColor = App.Colors.Text,
@@ -86,7 +96,7 @@ namespace WF.Player
 				Orientation = StackOrientation.Vertical,
 				Spacing = 5,
 				Padding = new Thickness(10, 5),
-				VerticalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.End, //FillAndExpand,
 				HorizontalOptions = LayoutOptions.End,
 			};
 			vertLayout.SetBinding(StackLayout.IsVisibleProperty, GameMainCellViewModel.ShowDirectionPropertyName);
@@ -115,6 +125,7 @@ namespace WF.Player
 			vertLayout.Children.Add(distance);
 
 			this.horiLayout.Children.Add(this.icon);
+			this.horiLayout.Children.Add(iconFrame);
 			this.horiLayout.Children.Add(this.name);
 			this.horiLayout.Children.Add(vertLayout);
 
