@@ -100,7 +100,7 @@ namespace WF.Player
 			// Dark grey line on iOS
 			var lineLayout = new BoxView() 
 			{
-				BackgroundColor = App.Colors.IsDarkTheme ? Color.FromRgb(0x26, 0x26, 0x26) : Color.FromRgb (0xAE, 0xAE, 0xAE),
+				BackgroundColor = App.Colors.SeparatorLine,
 				HeightRequest = 0.5f,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 			};

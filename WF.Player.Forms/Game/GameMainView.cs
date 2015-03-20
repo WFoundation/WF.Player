@@ -407,7 +407,7 @@ namespace WF.Player
 				BackgroundColor = Color.Transparent,
 				ItemTemplate = new DataTemplate(typeof(GameMainCellView)),
 				HasUnevenRows = true,
-//				RowHeight = 60,
+				SeparatorColor = App.Colors.SeparatorLine,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			};

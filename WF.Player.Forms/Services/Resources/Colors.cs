@@ -165,7 +165,7 @@ namespace WF.Player
 		/// <summary>
 		/// Gets the background color for buttons.
 		/// </summary>
-		/// <value>The background buttons.</value>
+		/// <value>The background buttons color.</value>
 		public Color BackgroundButtons
 		{
 			get
@@ -179,6 +179,18 @@ namespace WF.Player
 				{
 					return Color.FromRgb(0x80, 0x80, 0x80);
 				}
+			}
+		}
+
+		/// <summary>
+		/// Gets the separator line color.
+		/// </summary>
+		/// <value>The separator line color.</value>
+		public Color SeparatorLine
+		{
+			get
+			{
+				return this.IsDarkTheme ? Color.FromRgb(0x26, 0x26, 0x26) : Color.FromRgb(0xAE, 0xAE, 0xAE);
 			}
 		}
 
