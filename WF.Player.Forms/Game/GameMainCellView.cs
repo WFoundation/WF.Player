@@ -71,7 +71,7 @@ namespace WF.Player
 
 			var iconFrame = new Frame() 
 				{
-					WidthRequest = 0,
+					WidthRequest = 1,
 					HasShadow = false,
 					Padding = new Thickness(0, 5),
 				};

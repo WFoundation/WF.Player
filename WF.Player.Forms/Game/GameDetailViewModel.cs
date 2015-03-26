@@ -519,7 +519,7 @@ namespace WF.Player
 			}
 
 			// Commands are changed
-			if (e.PropertyName == "ActiveCommands")
+			if (e.PropertyName == "Commands" || e.PropertyName == "ActiveCommands")
 			{
 				UpdateCommands();
 			}

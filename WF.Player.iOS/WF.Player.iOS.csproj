@@ -259,7 +259,6 @@
     <Compile Include="Renderer\ExtendedLabelRenderer.cs" />
     <Compile Include="Renderer\ExtendedMapRenderer.cs" />
     <Compile Include="Renderer\FormsUIRefreshControl.cs" />
-    <Compile Include="Renderer\PullToRefreshListViewRenderer.cs" />
     <Compile Include="Renderer\ExtendedNavigationPageRenderer.cs" />
     <Compile Include="Services\Settings\Settings.cs" />
     <Compile Include="Services\Extensions\ExtensionDateTime.cs" />

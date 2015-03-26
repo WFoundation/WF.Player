@@ -87,10 +87,10 @@ namespace WF.Player
 				#if __HTML__
 				NotifyPropertyChanged(HtmlSourcePropertyName);
 				#else
-				NotifyPropertyChanged(TextPropertyName);
 				NotifyPropertyChanged(HasTextPropertyName);
-				NotifyPropertyChanged(ImageSourcePropertyName);
+				NotifyPropertyChanged(TextPropertyName);
 				NotifyPropertyChanged(HasImagePropertyName);
+				NotifyPropertyChanged(ImageSourcePropertyName);
 				#endif
 
 				UpdateCommands();
@@ -214,6 +214,7 @@ namespace WF.Player
 			#if __HTML__
 			NotifyPropertyChanged(HtmlSourcePropertyName);
 			#else
+			NotifyPropertyChanged(HasTextPropertyName);
 			NotifyPropertyChanged(TextPropertyName);
 			NotifyPropertyChanged(HasImagePropertyName);
 			NotifyPropertyChanged(ImageSourcePropertyName);

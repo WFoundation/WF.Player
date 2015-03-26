@@ -50,7 +50,7 @@ namespace WF.Player
 		/// <summary>
 		/// The list.
 		/// </summary>
-		private PullToRefreshListView list;
+		private ListView list;
 
 		/// <summary>
 		/// The refresh command.
@@ -124,18 +124,19 @@ namespace WF.Player
 
 			var listCellHeight = (int)(((DependencyService.Get<IScreen>().Width * 0.25) - 20) * 1.25 + 30);
 
-			list = new PullToRefreshListView() 
+			list = new ListView() 
 				{
 					BackgroundColor = App.Colors.Background,
 					RowHeight = Device.OnPlatform<int>(110, 120, 120),
 					HasUnevenRows = false,
+					SeparatorColor = App.Colors.SeparatorLine,
 					ItemsSource = cartridges,
-					ItemTemplate = new DataTemplate(typeof(CartridgeListCell)), //TextCell)),
-					Message = Catalog.GetString("Loading..."),
+					ItemTemplate = new DataTemplate(typeof(CartridgeListCell)),
+					IsPullToRefreshEnabled = true,
 					RefreshCommand = this.RefreshCommand,
 			};
 
-			list.SetBinding<CartridgeListPage> (PullToRefreshListView.IsRefreshingProperty, vm => vm.IsBusy);
+//			list.SetBinding<CartridgeListPage> (ListView.IsRefreshingProperty, vm => vm.IsBusy);
 			list.ItemSelected += async (sender, e) =>
 			{
 				if (e.SelectedItem == null)
@@ -335,6 +336,7 @@ namespace WF.Player
 		{
 			if (IsBusy)
 			{
+				list.IsRefreshing = false;
 				return;
 			}
 
@@ -343,6 +345,8 @@ namespace WF.Player
 			UpdateCartridges();
 
 			IsBusy = false;
+
+			list.EndRefresh();
 		}
 
 		#endregion

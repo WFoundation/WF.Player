@@ -88,6 +88,7 @@ namespace WF.Player
 					FontFamily = Settings.FontFamily,
 					XAlign = Settings.TextAlignment,
 					UseMarkdown = App.Game.UseMarkdown,
+					VerticalOptions = LayoutOptions.StartAndExpand,
 				};
 			description.SetBinding(Label.TextProperty, GameMessageboxViewModel.TextPropertyName);
 			description.SetBinding(VisualElement.IsVisibleProperty, GameMessageboxViewModel.HasTextPropertyName);

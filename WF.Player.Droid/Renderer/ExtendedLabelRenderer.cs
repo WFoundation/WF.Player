@@ -38,6 +38,9 @@ namespace WF.Player.Controls.Droid
 		{
 			if (e.PropertyName.Equals("Text") && Control != null)
 			{
+				// Do this to calc correct height
+				base.OnElementPropertyChanged(sender, e);
+
 				var html = ((ExtendedLabel)Element).TextExt;
 				var formattedText = global::Android.Text.Html.FromHtml(html);
 				var end = formattedText.Length();

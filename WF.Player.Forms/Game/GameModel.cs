@@ -403,6 +403,19 @@ namespace WF.Player
 		}
 
 		/// <summary>
+		/// Raises the command changed event.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">Object event args.</param>
+		public void OnCommandChanged(object sender, ObjectEventArgs<WF.Player.Core.Command> e)
+		{
+			if (e.Object.Owner is UIObject)
+			{
+				this.RaiseDisplayChanged("Property", (UIObject)e.Object.Owner, "Commands");
+			}
+		}
+
+		/// <summary>
 		/// Raises the inventory changed event.
 		/// </summary>
 		/// <param name="sender">Sender of event.</param>
@@ -1026,6 +1039,7 @@ namespace WF.Player
 
 			// Set all events for engine
 			this.engine.AttributeChanged += this.OnAttributeChanged;
+			this.engine.CommandChanged += this.OnCommandChanged;
 			this.engine.InventoryChanged += this.OnInventoryChanged;
 			this.engine.ZoneStateChanged += this.OnZoneStateChanged;
 			this.engine.CartridgeCompleted += this.OnCartridgeComplete;
@@ -1053,9 +1067,17 @@ namespace WF.Player
 		/// </summary>
 		private void DestroyEngine()
 		{
+			// Stop sound
+			if (this.sound != null)
+			{
+				this.sound.StopSound();
+			}
+
+			// Stop engine
 			if (this.engine != null)
 			{
 				this.engine.AttributeChanged -= this.OnAttributeChanged;
+				this.engine.CommandChanged -= this.OnCommandChanged;
 				this.engine.InventoryChanged -= this.OnInventoryChanged;
 				this.engine.ZoneStateChanged -= this.OnZoneStateChanged;
 				this.engine.CartridgeCompleted -= this.OnCartridgeComplete;
