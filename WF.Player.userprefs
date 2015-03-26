@@ -1,8 +1,8 @@
-﻿<Properties StartupItem="WF.Player.Droid/WF.Player.Droid.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.0516ea5a3444c9c3" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Droid/Renderer/ExtendedLabelRenderer.cs">
+﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Ad-Hoc|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone von Dirk Weltz" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Droid/Renderer/ExtendedButtonRenderer.cs">
     <Files>
-      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="607" Column="33" />
+      <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/App.cs" Line="1" Column="1" />
@@ -12,11 +12,11 @@
       <File FileName="WF.Player.Forms/Settings/SelectionPage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Services/Settings/Settings.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Settings/FolderSelectionPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="350" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Models/CartridgeStore.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Renderer/FormsUIRefreshControl.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/Engines/Engine.cs" Line="1369" Column="1" />
+      <File FileName="WF.Player.Core/Core/Engines/Engine.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/Resources/values-de/vernacular_strings.xml" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/Services/Device/Exit.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainCellView.cs" Line="1" Column="1" />
@@ -25,13 +25,17 @@
       <File FileName="WF.Player.iOS/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Common/BottomBarPage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Services/Resources/Colors.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMessageboxView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMessageboxViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Renderer/ExtendedLabelRenderer.cs" Line="51" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameMessageboxView.cs" Line="82" Column="31" />
+      <File FileName="WF.Player.Forms/Game/GameMessageboxViewModel.cs" Line="217" Column="1" />
+      <File FileName="WF.Player.Droid/Renderer/ExtendedLabelRenderer.cs" Line="41" Column="38" />
       <File FileName="WF.Player.Forms/Data/ObservableObject.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameDetailViewModel.cs" Line="516" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameDetailViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Core/Core/Events.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Services/Geolocation/Geolocator.cs" Line="206" Column="1" />
+      <File FileName="WF.Player.Droid/Services/Geolocation/Geolocator.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameDetailView.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Common/ToolBarPage.cs" Line="180" Column="4" />
+      <File FileName="WF.Player.Forms/Controls/ExtendedButton.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Renderer/ExtendedButtonRenderer.cs" Line="59" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
