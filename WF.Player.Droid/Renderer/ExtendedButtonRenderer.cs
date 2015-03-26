@@ -56,7 +56,15 @@ namespace WF.Player.Controls.Droid
 			base.OnElementChanged(e);
 
 			Control.SetSingleLine(true);
-			Control.SetPadding(0, Control.PaddingTop, 0, Control.PaddingBottom);
+
+			if (((ExtendedButton)e.NewElement).Image != null)
+			{
+				Control.Gravity = Android.Views.GravityFlags.Center;
+			}
+			else
+			{
+				Control.SetPadding(0, Control.PaddingTop, 0, Control.PaddingBottom);
+			}
 
 			_textPaint = Control.Paint;
 		}
