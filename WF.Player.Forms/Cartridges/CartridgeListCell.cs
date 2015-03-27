@@ -23,6 +23,7 @@ using WF.Player.Models;
 using WF.Player.Services.Settings;
 using Vernacular;
 using WF.Player.Controls;
+using WF.Player.Services.UserDialogs;
 
 namespace WF.Player
 {
@@ -167,15 +168,33 @@ namespace WF.Player
 					IsDestructive = false,
 				};
 
-			ContextActions.Add(update);
+//			ContextActions.Add(update);
 
 			var delete = new MenuItem 
 				{
 					Text = Catalog.GetString("Delete"),
 					IsDestructive = true,
+					Command = new Command(DeleteCommand),
+					CommandParameter = this,
 				};
 
 			ContextActions.Add(delete);
+		}
+
+		public async void DeleteCommand(object sender)
+		{
+			var cartridgeTag = (CartridgeTag)((CartridgeListCell)sender).BindingContext;
+
+			App.Click();
+
+			bool result = await UserDialogs.Instance.ConfirmAsync(string.Format(Catalog.GetString("Do you really want to delete the cartridge '{0}'?"), cartridgeTag.Cartridge.Name), Catalog.GetString("Delete Cartridge"), Catalog.GetString("Yes"), Catalog.GetString("No"));
+
+			App.Click();
+
+			if (result)
+			{
+				cartridgeTag.Remove();
+			}
 		}
 	}
 }

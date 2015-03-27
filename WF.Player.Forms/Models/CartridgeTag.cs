@@ -30,6 +30,7 @@ namespace WF.Player.Models
 	public class CartridgeTag : INotifyPropertyChanged
 	{
 		#region Constants
+
 		/// <summary>
 		/// The width of the small thumbnail minimum.
 		/// </summary>
@@ -46,8 +47,11 @@ namespace WF.Player.Models
 		/// The poster cache filename.
 		/// </summary>
 		private const string PosterCacheFilename = "poster.jpg";
+
 		#endregion
+
 		#region Fields
+
 		/// <summary>
 		/// The thumbnail.
 		/// </summary>
@@ -60,8 +64,11 @@ namespace WF.Player.Models
 		/// The savegames.
 		/// </summary>
 		private List<CartridgeSavegame> savegames;
+
 		#endregion
+
 		#region Constructors
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WF.Player.Models.CartridgeTag"/> class from cartridge meta data.
 		/// </summary>
@@ -77,14 +84,20 @@ namespace WF.Player.Models
 			// Add savegames
 			this.ImportSavegames();
 		}
+
 		#endregion
+
 		#region Events
+
 		/// <summary>
 		/// Occurs when property changed.
 		/// </summary>
 		public event PropertyChangedEventHandler PropertyChanged;
+
 		#endregion
+
 		#region Properties
+
 		/// <summary>
 		/// Gets the Cartridge object.
 		/// </summary>The width of the small thumbnail minimum.
@@ -172,8 +185,39 @@ namespace WF.Player.Models
 				return App.Colors.Text;
 			}
 		}
+
 		#endregion
+
+		#region Cartridge
+
+		public void Remove()
+		{
+			var cartridgeFile = Cartridge.Filename;
+			var cartridgeSave = Cartridge.SaveFilename;
+			var cartridgeLog = Cartridge.LogFilename;
+
+			if (File.Exists(cartridgeLog))
+			{
+				File.Delete(cartridgeLog);
+			}
+
+			if (File.Exists(cartridgeSave))
+			{
+				File.Delete(cartridgeSave);
+			}
+
+			if (File.Exists(cartridgeFile))
+			{
+				File.Delete(cartridgeFile);
+			}
+
+			this.RaisePropertyChanged("Removed");
+		}
+
+		#endregion
+
 		#region Savegames
+
 		/// <summary>
 		/// Exports a savegame to the isolated storage and adds it to this tag.
 		/// </summary>
@@ -218,8 +262,11 @@ namespace WF.Player.Models
 		{
 			return this.Savegames.SingleOrDefault(cs => cs.Metadata.SaveName == name);
 		}
+
 		#endregion
+
 		#region Logs
+
 		/// <summary>
 		/// Creates a new log file for this cartridge tag.
 		/// </summary>
@@ -256,8 +303,11 @@ namespace WF.Player.Models
 			}
 			return false;
 		}
+
 		#endregion
+
 		#region Private Functions
+
 		/// <summary>
 		/// Imports the savegames.
 		/// </summary>
@@ -293,7 +343,9 @@ namespace WF.Player.Models
 			this.savegames = savegames;
 			this.RaisePropertyChanged("Savegames");
 		}
+
 		#endregion
+
 		/// <summary>
 		/// Raises the property changed.
 		/// </summary>

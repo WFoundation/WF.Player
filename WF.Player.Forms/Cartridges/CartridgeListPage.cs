@@ -71,6 +71,15 @@ namespace WF.Player
 		public CartridgeListPage(CartridgeStore store)
 		{
 			this.cartridges = store;
+
+			this.cartridges.CollectionChanged += HandleCartridgesCollectionChanged;
+
+			// If the store is empty, than update it
+			if (this.cartridges.Count == 0)
+			{
+				UpdateCartridges();
+			}
+
 			this.BindingContext = this;
 
 			Title = Catalog.GetString("Cartridges");
@@ -323,6 +332,14 @@ namespace WF.Player
 				#endif
 
 				UpdateCartridges();
+			}
+		}
+
+		private void HandleCartridgesCollectionChanged (object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+			if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+			{
+				cartridges.Remove((CartridgeTag)e.OldItems[0]);
 			}
 		}
 

@@ -385,6 +385,8 @@ namespace WF.Player.Models
 				// The cartridge does not exist in the store yet. Creates an entry for it.
 				newCC = new CartridgeTag(cart);
 
+				newCC.PropertyChanged += HandlePropertyChanged;
+
 				// Adds the context to the store.
 				Device.BeginInvokeOnMainThread(() =>
 					{
@@ -402,6 +404,14 @@ namespace WF.Player.Models
 			// Returns the new cartridge context or null if the operation
 			// was aborted.
 			return newCC;
+		}
+
+		private void HandlePropertyChanged (object sender, PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == "Removed")
+			{
+				RaiseCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, (CartridgeTag)sender));
+			}
 		}
 
 		/// <summary>

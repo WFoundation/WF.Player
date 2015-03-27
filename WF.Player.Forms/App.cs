@@ -339,9 +339,8 @@ namespace WF.Player
 		public static Page GetMainPage()
 		{
 			CheckFolder();
-Settings.Current.Remove(Settings.FormatCoordinatesKey);
+
 			var cartridges = new CartridgeStore();
-			cartridges.SyncFromStore();
 
 			Settings.Current.AddOrUpdateValue<int>(Settings.TextSizeKey, 20);
 
