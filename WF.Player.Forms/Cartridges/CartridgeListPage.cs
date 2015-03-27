@@ -62,6 +62,11 @@ namespace WF.Player
 		/// </summary>
 		private bool isBusy;
 
+		/// <summary>
+		/// The sync flag for cartridges.
+		/// </summary>
+		private object syncCartridges = new object();
+
 		#region Constructor
 
 		/// <summary>
@@ -189,6 +194,7 @@ namespace WF.Player
 
 				isBusy = value;
 				list.IsRefreshing = value;
+
 				HandlePropertyChanged ("IsBusy");
 			}
 		}
@@ -345,8 +351,11 @@ namespace WF.Player
 
 		private void UpdateCartridges()
 		{
-			cartridges.Clear();
-			cartridges.SyncFromStore();
+			lock (syncCartridges)
+			{
+				cartridges.Clear();
+				cartridges.SyncFromStore();
+			}
 		}
 
 		private void ExecuteRefreshCommand()

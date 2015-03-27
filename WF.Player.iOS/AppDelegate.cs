@@ -182,7 +182,7 @@ namespace WF.Player.iOS
 			// Update CartridgeStore
 			if (App.Navigation.CurrentPage is CartridgeListPage)
 			{
-				((CartridgeListPage)App.Navigation.CurrentPage).RefreshCommand.Execute(null);
+				Device.BeginInvokeOnMainThread(() => ((CartridgeListPage)App.Navigation.CurrentPage).RefreshCommand.Execute(null));
 			}
 
 			return true;
