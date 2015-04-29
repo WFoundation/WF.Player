@@ -1,19 +1,17 @@
 ﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Ad-Hoc|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone von Dirk Weltz" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Droid/Renderer/ExtendedButtonRenderer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.2" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Droid/Properties/AndroidManifest.xml">
     <Files>
       <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/App.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/AppDelegate.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="95" Column="50" />
+      <File FileName="WF.Player.Forms/Game/GameMainViewModel.cs" Line="907" Column="3" />
+      <File FileName="WF.Player.Forms/App.cs" Line="344" Column="1" />
+      <File FileName="WF.Player.iOS/AppDelegate.cs" Line="185" Column="119" />
       <File FileName="WF.Player.Forms/Settings/SettingsPage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Settings/MultiCell.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Settings/SelectionPage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Services/Settings/Settings.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Settings/FolderSelectionPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Models/CartridgeStore.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Main.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Renderer/FormsUIRefreshControl.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Core/Core/Engines/Engine.cs" Line="1" Column="1" />
@@ -25,17 +23,20 @@
       <File FileName="WF.Player.iOS/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Common/BottomBarPage.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Services/Resources/Colors.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Game/GameMessageboxView.cs" Line="82" Column="31" />
-      <File FileName="WF.Player.Forms/Game/GameMessageboxViewModel.cs" Line="217" Column="1" />
-      <File FileName="WF.Player.Droid/Renderer/ExtendedLabelRenderer.cs" Line="41" Column="38" />
+      <File FileName="WF.Player.Forms/Game/GameMessageboxView.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Game/GameMessageboxViewModel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Data/ObservableObject.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameDetailViewModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Core/Core/Events.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Droid/Services/Geolocation/Geolocator.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameDetailView.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Forms/Common/ToolBarPage.cs" Line="180" Column="4" />
-      <File FileName="WF.Player.Forms/Controls/ExtendedButton.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Droid/Renderer/ExtendedButtonRenderer.cs" Line="59" Column="1" />
+      <File FileName="WF.Player.Forms/Common/ToolBarPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="85" Column="23" />
+      <File FileName="WF.Player.Forms/Models/CartridgeStore.cs" Line="209" Column="5" />
+      <File FileName="WF.Player.Droid/AndroidApp.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/MainActivity.cs" Line="104" Column="7" />
+      <File FileName="WF.Player.Droid/Properties/AndroidManifest.xml" Line="14" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -43,6 +44,7 @@
       <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/Common/DirectionBarPage.cs" line="244" column="1" />
       <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Core/Eluant/Eluant/LuaNative.cs" line="222" column="1" />
       <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Core/Eluant/Eluant/ObjectBinding/BasicLuaBinder.cs" line="111" column="1" />
+      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Droid/MainActivity.cs" line="107" column="38" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>

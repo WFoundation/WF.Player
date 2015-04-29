@@ -97,6 +97,17 @@ namespace WF.Player.Droid
 
 			// Create Xamarin.Forms App and load the first page
 			LoadApplication(new App(new AndroidPlatformHelper()));
+
+			// Has intent informations for a file to open
+			string action = this.Intent.Action;
+
+			if (action == Intent.ActionView)
+			{
+				var uriData = this.Intent.Data;
+				var uriPath = uriData.EncodedPath;
+				// now you call whatever function your app uses 
+				// to consume the txt file whose location you now know 
+			}
 		}
 
 		/// <summary>
