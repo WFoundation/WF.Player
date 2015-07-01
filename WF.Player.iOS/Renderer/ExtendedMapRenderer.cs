@@ -93,6 +93,11 @@ namespace WF.Player.Controls.iOS
 
 			this.UpdatePins();
 
+			if (mkMapView.Delegate != null)
+			{
+				mkMapView.Delegate = null;
+			}
+
 			mkMapView.Delegate = new MapDelegate();
 		}
 

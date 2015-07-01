@@ -35,6 +35,7 @@ namespace WF.Player.Droid
 	ScreenOrientation = global::Android.Content.PM.ScreenOrientation.Portrait,
 	ConfigurationChanges=global::Android.Content.PM.ConfigChanges.Orientation | global::Android.Content.PM.ConfigChanges.ScreenSize
 	)]
+	[IntentFilter(new string[] { Intent.ActionView }, Categories = new string[] { Intent.CategoryDefault })]
 	public class MainActivity : FormsApplicationActivity
 	{
 		protected override void OnCreate (Bundle bundle)

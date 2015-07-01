@@ -379,21 +379,23 @@ namespace WF.Player.iOS.Services.Geolocation
 		{
 			double realHeading = heading;
 
-			switch (_orientation) {
-				case UIDeviceOrientation.Portrait:
-					break;
-				case UIDeviceOrientation.PortraitUpsideDown:
-					realHeading = realHeading + 180.0f;
-					break;
-				case UIDeviceOrientation.LandscapeLeft:
-					realHeading = realHeading + 90.0f;
-					break;
-				case UIDeviceOrientation.LandscapeRight:
-					realHeading = realHeading - 90.0f;
-					break;
-				default:
-					break;
-			}
+			// Don't do this, because device orientation is set to portrait, 
+			// but device orientation changes when rotating device.
+//			switch (_orientation) {
+//				case UIDeviceOrientation.Portrait:
+//					break;
+//				case UIDeviceOrientation.PortraitUpsideDown:
+//					realHeading = realHeading + 180.0f;
+//					break;
+//				case UIDeviceOrientation.LandscapeLeft:
+//					realHeading = realHeading + 90.0f;
+//					break;
+//				case UIDeviceOrientation.LandscapeRight:
+//					realHeading = realHeading - 90.0f;
+//					break;
+//				default:
+//					break;
+//			}
 	
 			while (realHeading < 0)
 				realHeading += 360.0;
