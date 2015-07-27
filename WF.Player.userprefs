@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.iOS/Renderer/ExtendedLabelRenderer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone von Dirk Weltz" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Core/Core/Data/Lua/SafeLua.cs">
     <Files>
       <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
@@ -24,7 +24,7 @@
       <File FileName="WF.Player.Core/Core/Data/Lua/LuaDataContainer.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Core/Eluant/Eluant/LuaRuntime.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Core/Core/Data/IDataProvider.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/Data/Lua/SafeLua.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Core/Data/Lua/SafeLua.cs" Line="301" Column="9" />
       <File FileName="WF.Player.Core/Core/Data/Lua/LuaDataFactory.cs" Line="1" Column="1" />
       <File FileName="WF.Player.iOS/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
     </Files>
@@ -36,7 +36,7 @@
       <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Core/Eluant/Eluant/ObjectBinding/BasicLuaBinder.cs" line="111" column="1" />
       <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Droid/MainActivity.cs" line="108" column="38" />
       <Breakpoint conditionExpression="s.Length == 256" file="/Entwicklung/WF.Player/WF.Player.Core/Core/Formats/GWS.cs" line="640" column="1" />
-      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Core/Eluant/Eluant/LuaRuntime.cs" line="1570" column="1" />
+      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Core/Core/Formats/GWS.cs" line="623" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>

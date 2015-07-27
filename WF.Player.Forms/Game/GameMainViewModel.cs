@@ -1065,7 +1065,6 @@ namespace WF.Player
 		private void OnLayoutChanged()
 		{
 			NotifyPropertyChanged(TitelPropertyName);
-			NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
 			NotifyPropertyChanged(IsListVisiblePropertyName);
 			NotifyPropertyChanged(IsOverviewVisiblePropertyName);
 
@@ -1092,9 +1091,6 @@ namespace WF.Player
 			{
 				e = new DisplayChangedEventArgs();
 			}
-
-			// TODO: Remove
-//			Console.WriteLine("{0}: {1}", e.What, e.PropertyName);
 
 			// If GameState change, update the main screen
 			if (e.What == "GameState" && gameModel.GameState == WF.Player.Core.Engines.EngineGameState.Playing)
@@ -1314,8 +1310,7 @@ namespace WF.Player
 
 				this.gameMainList = listItems;
 
-				NotifyPropertyChanged(IsListVisiblePropertyName);
-				NotifyPropertyChanged(IsEmptyListTextVisiblePropertyName);
+				// Change content of list
 				NotifyPropertyChanged(GameMainListPropertyName);
 			}
 		}
