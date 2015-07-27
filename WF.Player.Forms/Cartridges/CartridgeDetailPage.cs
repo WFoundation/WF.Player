@@ -105,20 +105,21 @@ namespace WF.Player
 			var listSource = new List<MenuEntry>();
 
 			listSource.Add(new MenuEntry(Catalog.GetString("Description"), App.Colors.Text, HandleDescriptionClicked));
-			listSource.Add(new MenuEntry(Catalog.GetString("Details"), App.Colors.Text, HandleDetailsClicked));
-			listSource.Add(new MenuEntry(Catalog.GetString("Attributes"), App.Colors.Text, HandleAttributesClicked));
+//			listSource.Add(new MenuEntry(Catalog.GetString("Details"), App.Colors.Text, HandleDetailsClicked));
+//			listSource.Add(new MenuEntry(Catalog.GetString("Attributes"), App.Colors.Text, HandleAttributesClicked));
 			if (!viewModel.IsPlayAnywhere)
 			{
 				listSource.Add(new MenuEntry(Catalog.GetString("Map"), App.Colors.Text, HandleMapClicked));
 			}
-			listSource.Add(new MenuEntry(Catalog.GetString("History"), App.Colors.Text, HandleHistoryClicked));
-			listSource.Add(new MenuEntry(Catalog.GetString("Logs"), App.Colors.Text, HandleLogsClicked));
+//			listSource.Add(new MenuEntry(Catalog.GetString("History"), App.Colors.Text, HandleHistoryClicked));
+//			listSource.Add(new MenuEntry(Catalog.GetString("Logs"), App.Colors.Text, HandleLogsClicked));
 
 			var list = new ListView() 
 				{
 					BackgroundColor = App.Colors.Background,
 					ItemsSource = listSource,
 					HeightRequest = listSource.Count * 44,
+					SeparatorVisibility = SeparatorVisibility.None,
 				};
 
 			var cell = new DataTemplate(typeof(AccessoryCell));
