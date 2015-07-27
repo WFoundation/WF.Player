@@ -61,6 +61,10 @@ namespace WF.Player.Models
 		/// </summary>
 		private ImageSource poster;
 		/// <summary>
+		/// The icon.
+		/// </summary>
+		private ImageSource icon;
+		/// <summary>
 		/// The savegames.
 		/// </summary>
 		private List<CartridgeSavegame> savegames;
@@ -135,6 +139,24 @@ namespace WF.Player.Models
 				{
 					this.poster = value;
 					this.RaisePropertyChanged("Poster");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets the cached poster image for the Cartridge.
+		/// </summary>
+		public ImageSource Icon
+		{
+			get
+			{
+				return this.icon == null ? this.poster : this.icon;
+			}
+			private set
+			{
+				if (this.icon != value)
+				{
+					this.icon = value;
+					this.RaisePropertyChanged("Icon");
 				}
 			}
 		}

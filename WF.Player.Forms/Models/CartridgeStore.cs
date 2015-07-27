@@ -52,6 +52,11 @@ namespace WF.Player.Models
 		public const string CartridgePosterPropertyName = "Cartridge.Poster";
 
 		/// <summary>
+		/// The name of the cartridge poster source property.
+		/// </summary>
+		public const string CartridgeIconPropertyName = "Cartridge.Icon";
+
+		/// <summary>
 		/// The version of the cartridge property.
 		/// </summary>
 		public const string CartridgeVersionPropertyName = "Cartridge.Version";

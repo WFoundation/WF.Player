@@ -66,9 +66,11 @@ namespace WF.Player
 					Aspect = Aspect.AspectFit,
 					HorizontalOptions = LayoutOptions.CenterAndExpand,
 					VerticalOptions = LayoutOptions.StartAndExpand,
+					WidthRequest = 48,
+					HeightRequest = 48,
 				};
 
-			imagePoster.SetBinding(Image.SourceProperty, CartridgeStore.CartridgePosterPropertyName, BindingMode.Default, convMediaToImageSource);
+			imagePoster.SetBinding(Image.SourceProperty, CartridgeStore.CartridgeIconPropertyName, BindingMode.Default, convMediaToImageSource);
 
 			grid.Children.Add(imagePoster, 0, 1, 0, 2);
 

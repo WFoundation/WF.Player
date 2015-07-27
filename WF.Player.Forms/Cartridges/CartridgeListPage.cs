@@ -100,13 +100,13 @@ namespace WF.Player
 					App.Navigation.Popped += HandleSettingsClosed;
 					App.Navigation.Navigation.PushAsync(new SettingsPage.SettingsPage());
 				}, ToolbarItemOrder.Secondary));
+			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Feedback"), null, () =>
+				HockeyApp.FeedbackManager.ShowFeedbackActivity(Forms.Context), 
+				ToolbarItemOrder.Secondary));
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("About"), null, () =>
 				{
 					App.Navigation.Navigation.PushAsync(new SettingsPage.AboutPage());
 				}, ToolbarItemOrder.Secondary));
-			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Feedback"), null, () =>
-				HockeyApp.FeedbackManager.ShowFeedbackActivity(Forms.Context), 
-				ToolbarItemOrder.Secondary));
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Quit"), null, () =>
 				{
 					DependencyService.Get<IExit>().ExitApp(0);
@@ -121,8 +121,8 @@ namespace WF.Player
 				App.Navigation.Popped += HandleSettingsClosed;
 				var cfg = new WF.Player.Services.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Main Menu"));
 				cfg.Add(Catalog.GetString("Settings"), () => App.Navigation.Navigation.PushAsync(new SettingsPage.SettingsPage()));
-				cfg.Add(Catalog.GetString("About"), () => App.Navigation.Navigation.PushAsync(new SettingsPage.AboutPage()));
 				cfg.Add(Catalog.GetString("Feedback"), () => HockeyApp.BITHockeyManager.SharedHockeyManager.FeedbackManager.ShowFeedbackListView());
+				cfg.Add(Catalog.GetString("About"), () => App.Navigation.Navigation.PushAsync(new SettingsPage.AboutPage()));
 				cfg.Cancel = new WF.Player.Services.UserDialogs.ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 				UserDialogs.Instance.ActionSheet(cfg);
 			});
