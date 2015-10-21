@@ -48,10 +48,10 @@ msgstr "Attributs"
 
 #: WF.Player.Forms/Cartridges/CartridgeListCell.cs:130
 msgid "Author:  {0}"
-msgstr "Auteur: {0}"
+msgstr "Auteur : {0}"
 
 msgid "Automatical savefile"
-msgstr "Savefile automatique"
+msgstr "Sauvegarde automatique"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:262
 #: WF.Player.Forms/Controls/MapViewModel.cs:271
@@ -96,7 +96,7 @@ msgstr "Choisir"
 #: WF.Player.Forms/Game/GameMainViewModel.cs:923
 #: WF.Player.Forms/Game/GameMainViewModel.cs:970
 msgid "Comment Savefile"
-msgstr "Commentairede sauvegarde"
+msgstr "Commentaire de sauvegarde"
 
 #: WF.Player.Forms/Settings/AboutPage.cs:67
 msgid ""
@@ -116,7 +116,7 @@ msgid ""
 "Current Accuracy\n"
 "{0}"
 msgstr ""
-"Précision actuel\n"
+"Précision actuelle\n"
 "{0}"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:69
@@ -163,7 +163,7 @@ msgstr "Secondes décimales (9° 04' 31,38\")"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:226
 msgid "Default"
-msgstr "Default"
+msgstr "Par défaut"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:169
 msgid "Degrees"
@@ -206,7 +206,7 @@ msgstr "Commentaire"
 #: WF.Player.Forms/Settings/SettingsPage.cs:190
 #: WF.Player.Forms/Settings/SettingsPage.cs:201
 msgid "Feet"
-msgstr "Feet"
+msgstr "Pied"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:228
 msgid "Finnish"
@@ -225,7 +225,7 @@ msgid ""
 "For much fun with the cartridge, you should wait for a good accuracy of your "
 "GPS signal."
 msgstr ""
-"Pour beaucoup de plaisir avec la cartouche, vous devez attendre une bonne "
+"Pour plus de plaisir avec la cartouche, vous devriez attendre une bonne "
 "précision de votre signal GPS."
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:229
@@ -234,11 +234,11 @@ msgstr "Français"
 
 #: WF.Player.Forms/Game/GameMainView.cs:72
 msgid "Game Menu"
-msgstr "Menu de jeu"
+msgstr "Menu du jeu"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:261
 msgid "Gamefield"
-msgstr "Gamefield"
+msgstr "Terrain de jeu"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:230
 msgid "German"
@@ -246,7 +246,7 @@ msgstr "Allemand"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:39
 msgid "GPS Check"
-msgstr "GPS Vérifier"
+msgstr "Vérification du GPS"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs:326
 #: WF.Player.Forms/Services/Conversion/ConverterToDistance.cs:45
@@ -279,7 +279,7 @@ msgstr "Inventaire"
 #: WF.Player.Forms/Settings/SettingsPage.cs:223
 #: WF.Player.Forms/Settings/SettingsPage.cs:237
 msgid "Language"
-msgstr "Language"
+msgstr "Langue"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:65
 #: WF.Player.Forms/Settings/SettingsPage.cs:113
@@ -292,7 +292,7 @@ msgstr "Longueur"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:49
 msgid "Light"
-msgstr "Light"
+msgstr "Clair"
 
 #: WF.Player.Forms/Game/GameModel.cs:1151
 msgid "Line {0}: {1}"
@@ -327,7 +327,7 @@ msgstr "Carte"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:362
 msgid "Maptype"
-msgstr "MapType"
+msgstr "Type de carte"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:134
 msgid "Max. half height"
@@ -376,7 +376,7 @@ msgstr "Aucun élément"
 #: WF.Player.Forms/Game/GameMainViewModel.cs:221
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:186
 msgid "No new tasks"
-msgstr "Aucune tâche."
+msgstr "Aucune tâche"
 
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:217
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:196
@@ -387,7 +387,7 @@ msgstr "Rien de disponible"
 #: WF.Player.Forms/Game/GameMainViewModel.cs:211
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:176
 msgid "Nothing of interest"
-msgstr "Rien d&#39;intérêt"
+msgstr "Rien d'intéressant"
 
 #: WF.Player.Droid/Services/Core/AndroidPlatformHelper.cs:212
 #: WF.Player.iOS/Services/Core/iOSPlatformHelper.cs:191
@@ -410,7 +410,7 @@ msgstr "OK"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:623
 msgid "Overview"
-msgstr "résumé "
+msgstr "Résumé"
 
 #: WF.Player.Forms/Settings/FolderSelectionPage.cs:149
 msgid "Parent directory"
@@ -431,7 +431,7 @@ msgstr "Chemin d'accès pour les cartouches"
 #. Part of the error message
 #: WF.Player.Forms/Game/GameModel.cs:1164
 msgid "Please make a screenshot and send it to the cartridge author."
-msgstr ""
+msgstr "Faites une capture d'écran et envoyez la à l'auteur de la cartouche"
 
 #: WF.Player.Forms/Game/GameMainView.cs:251
 msgid "Please wait..."
@@ -482,10 +482,10 @@ msgstr "Satellite"
 #: WF.Player.Forms/Game/GameMainViewModel.cs:965
 #: WF.Player.Forms/Game/GameMainView.cs:73
 msgid "Save"
-msgstr "Sauvegarde"
+msgstr "Sauvegarder"
 
 msgid "Save Game"
-msgstr "Sauvegarde"
+msgstr "Sauvegarder le jeu"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:133
 msgid "Screen width"
@@ -543,7 +543,7 @@ msgstr "Texte"
 #. Part of the error message
 #: WF.Player.Forms/Game/GameModel.cs:1167
 msgid "The cartridge now stops."
-msgstr ""
+msgstr "La cartouche est arrêté"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:46
 msgid "Theme"
@@ -554,8 +554,8 @@ msgid ""
 "There is an automatic savefile from a cartridge you played before. Would you "
 "resume this last game?"
 msgstr ""
-"Il y'a un savefile automatique d&#39;une cartouche vous avez joué avant. "
-"Voulez-vous reprendre ce dernier match?"
+"Il y a un fichier de sauvegarde automatique de la cartouche vous avez joué avant. "
+"Voulez-vous reprendre cette sauvegarde ?"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:207
 msgid "Units"
@@ -577,7 +577,7 @@ msgstr "Identifiant"
 
 #: WF.Player.Forms/Cartridges/CartridgeListCell.cs:143
 msgid "Version: {0}"
-msgstr "Version: {0}"
+msgstr "Version : {0}"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:156
 msgid "Vibration"
@@ -598,7 +598,7 @@ msgstr "WF.Player.Android"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:914
 msgid "Would you like to save the current game?"
-msgstr "Voulez-vous enregistrer le jeu en cours?"
+msgstr "Voulez-vous enregistrer le jeu en cours ?"
 
 #. A short text, because of size. If it is to long, than entry filed hides Ok button
 #: WF.Player.Forms/Game/GameInputViewModel.cs:311
@@ -612,13 +612,13 @@ msgstr "Oui"
 #. Part of the error message
 #: WF.Player.Forms/Game/GameModel.cs:1158
 msgid "You encountered an Lua error in the cartridge '{0}'."
-msgstr ""
+msgstr "Vous avez trouvé une erreur Lua dans la cartouche '{0}' "
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:211
 #: WF.Player.Forms/Game/GameMainViewModel.cs:628
 #: WF.Player.Forms/Game/GameMainViewModel.cs:1339
 msgid "You See"
-msgstr "Tu vois"
+msgstr "Vous voyez"
 
 #~ msgid ""
 #~ "Copyright by\n"
@@ -644,10 +644,10 @@ msgstr "Tu vois"
 #~ msgstr "Bleu"
 
 #~ msgid "Center align"
-#~ msgstr "Centre aligner"
+#~ msgstr "Aligner au centre"
 
 #~ msgid "Fontsize"
-#~ msgstr "FontSize"
+#~ msgstr "Taille de la police"
 
 #~ msgid "Half height of screen"
 #~ msgstr "Demi hauteur d'écran"
