@@ -519,7 +519,7 @@ msgstr "Début"
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:110
 #: WF.Player.Forms/Game/GameCheckLocationViewModel.cs:152
 msgid "Start anyway"
-msgstr "Début de toute façon"
+msgstr "Commencer quand même"
 
 #: WF.Player.Forms/Controls/MapViewModel.cs:270
 #: WF.Player.Forms/Cartridges/CartridgeDetailMapView.cs:89
@@ -612,7 +612,7 @@ msgstr "Oui"
 #. Part of the error message
 #: WF.Player.Forms/Game/GameModel.cs:1158
 msgid "You encountered an Lua error in the cartridge '{0}'."
-msgstr "Vous avez trouvé une erreur Lua dans la cartouche '{0}' "
+msgstr "Vous avez rencontré une erreur Lua dans la cartouche '{0}'."
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:211
 #: WF.Player.Forms/Game/GameMainViewModel.cs:628
