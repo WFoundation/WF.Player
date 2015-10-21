@@ -206,7 +206,7 @@ msgstr "Commentaire"
 #: WF.Player.Forms/Settings/SettingsPage.cs:190
 #: WF.Player.Forms/Settings/SettingsPage.cs:201
 msgid "Feet"
-msgstr "Pied"
+msgstr "Pieds"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:228
 msgid "Finnish"
