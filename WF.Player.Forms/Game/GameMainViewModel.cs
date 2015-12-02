@@ -1311,6 +1311,7 @@ namespace WF.Player
 				this.gameMainList = listItems;
 
 				// Change content of list
+				NotifyPropertyChanged(IsListVisiblePropertyName);
 				NotifyPropertyChanged(GameMainListPropertyName);
 			}
 		}

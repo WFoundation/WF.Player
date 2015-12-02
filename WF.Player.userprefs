@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="WF.Player.iOS/WF.Player.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone von Dirk Weltz" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WF.Player.Core/Core/Data/Lua/SafeLua.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.9.1" />
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="WF.Player.Forms/Game/GameModel.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Forms/Game/GameMainView.cs" Line="1" Column="1" />
@@ -16,28 +16,28 @@
       <File FileName="WF.Player.iOS/Renderer/FormsUIRefreshControl.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Core/Core/Engines/Engine.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Core/Core/Formats/GWS.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Eluant/Eluant/LuaNative.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Core/Eluant/Eluant/LuaTable.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/UIObject.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/WherigoObject.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/Data/IDataContainer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/Data/Lua/LuaDataContainer.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Eluant/Eluant/LuaRuntime.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/Data/IDataProvider.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.Core/Core/Data/Lua/SafeLua.cs" Line="301" Column="9" />
+      <File FileName="WF.Player.Core/Core/Data/Lua/LuaDataContainer.cs" Line="75" Column="41" />
+      <File FileName="WF.Player.Core/Core/Data/Lua/SafeLua.cs" Line="1" Column="1" />
       <File FileName="WF.Player.Core/Core/Data/Lua/LuaDataFactory.cs" Line="1" Column="1" />
-      <File FileName="WF.Player.iOS/Renderer/ExtendedLabelRenderer.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.iOS/Services/Geolocation/Geolocator.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Services/Geolocation/Geolocator.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Core/Utils/GeoMathHelper.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeListPage.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Forms/Cartridges/CartridgeDetailViewModel.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Core/Formats/GWC.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Core/Engines/AndroidPlatformHelper.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Core/ZonePoint.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Services/Geolocation/GeolocationListener.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Droid/Services/Settings/Settings.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Eluant/Eluant/LuaNative.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Core/Data/Lua/LuaDataProvider.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Eluant/Eluant/LuaRuntime.cs" Line="1" Column="1" />
+      <File FileName="WF.Player.Core/Eluant/Eluant/LuaString.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Forms/Common/DirectionBarPage.cs" line="244" column="1" />
-      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Core/Eluant/Eluant/LuaNative.cs" line="222" column="1" />
-      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Core/Eluant/Eluant/ObjectBinding/BasicLuaBinder.cs" line="111" column="1" />
-      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Droid/MainActivity.cs" line="108" column="38" />
-      <Breakpoint conditionExpression="s.Length == 256" file="/Entwicklung/WF.Player/WF.Player.Core/Core/Formats/GWS.cs" line="640" column="1" />
-      <Breakpoint file="/Entwicklung/WF.Player/WF.Player.Core/Core/Formats/GWS.cs" line="623" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="WF.Player.Forms/Game/GameModel.cs" line="589" offsetX="667" offsetY="8820" expression="App.GameNavigation.stack._array" liveUpdate="False" />

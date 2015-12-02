@@ -607,8 +607,9 @@ namespace WF.Player
 		private void HandleScreenQueue()
 		{
 			// If we are no longer playing
-			if (this.engine == null || (this.engine.GameState != EngineGameState.Playing && this.engine.GameState != EngineGameState.Starting))
+			if (this.engine == null || (this.engine.GameState != EngineGameState.Playing && this.engine.GameState != EngineGameState.Starting && this.engine.GameState != EngineGameState.Restoring))
 			{
+				Console.WriteLine(this.engine.GameState.ToString());
 				return;
 			}
 
@@ -692,6 +693,8 @@ namespace WF.Player
 
 			// Get next screen to display
 			var screen = this.screenQueue.Peek();
+
+			Console.WriteLine(screen.ToString());
 
 			switch (screen.ScreenType)
 			{
