@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <string formatted="false" name="Vernacular_P0___Copyrightby__10WherigoFoundation10DirkWeltz10BriceClocher10">__Copyright by__  
+Wherigo Foundation  
+Dirk Weltz  
+Brice Clocher
+</string>
+  <string formatted="false" name="Vernacular_P0___Credits__10Thisappusesthefollowingsoftwareorpartsofit">__Credits__
+This app uses the following software or parts of it</string>
+  <string formatted="false" name="Vernacular_P0___Eluant__10Copyrightbycdhowie">__Eluant__
+Copyright by cdhowie</string>
+  <string formatted="false" name="Vernacular_P0___Wherigo__10CopyrightbyGroundspeak44Inc46">__Wherigo__
+Copyright by Groundspeak, Inc.</string>
+  <string formatted="false" name="Vernacular_P0___Xamarin46iOS44Xamarin46AndroidandXamarin46Forms__10CopyrightbyXamarin44Inc46">__Xamarin.iOS, Xamarin.Android and Xamarin.Forms__
+Copyright by Xamarin, Inc.</string>
   <string formatted="false" name="Vernacular_P0_About">Lisätietoja</string>
   <string formatted="false" name="Vernacular_P0_Actions">Toiminnot</string>
   <string formatted="false" name="Vernacular_P0_Activity581230125">Toiminta: {0}</string>
   <string formatted="false" name="Vernacular_P0_Alignment">Tasaus</string>
   <string formatted="false" name="Vernacular_P0_Altitude">Korkeus</string>
   <string formatted="false" name="Vernacular_P0_Appearance">Ulkoasu</string>
-  <string formatted="false" name="Vernacular_P0_Attributes">Attribuutit</string>
   <string formatted="false" name="Vernacular_P0_Author581230125">Tekijä: {0}</string>
   <string formatted="false" name="Vernacular_P0_Automaticalsavefile">Automaattinen tallennus</string>
   <string formatted="false" name="Vernacular_P0_Both">Molemmat</string>
@@ -16,10 +28,6 @@
   <string formatted="false" name="Vernacular_P0_Center">Keskitetty</string>
   <string formatted="false" name="Vernacular_P0_Choose">Valitse</string>
   <string formatted="false" name="Vernacular_P0_CommentSavefile">Kommentoi tallennustiedostoa</string>
-  <string formatted="false" name="Vernacular_P0_Copyrightby10WherigoFoundation10DirkWeltz10BriceClocher">Copyright by 
-Wherigo Foundation 
-Dirk Weltz 
-Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_CurrentAccuracy101230125">Nykyinen tarkkuus
  {0}</string>
   <string formatted="false" name="Vernacular_P0_CurrentCoordinates101230125">Nykyiset koordinaatit
@@ -35,9 +43,10 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Default">Oletusarvo</string>
   <string formatted="false" name="Vernacular_P0_Degrees">Astetta</string>
   <string formatted="false" name="Vernacular_P0_Delete">Poista</string>
+  <string formatted="false" name="Vernacular_P0_DeleteCartridge">Delete Cartridge</string>
   <string formatted="false" name="Vernacular_P0_Description">Kuvaus</string>
-  <string formatted="false" name="Vernacular_P0_Details">Tiedot</string>
   <string formatted="false" name="Vernacular_P0_Don39tresize">Älä muuta kuvan kokoa</string>
+  <string formatted="false" name="Vernacular_P0_Doyoureallywanttodeletethecartridge3912301253963">Do you really want to delete the cartridge \'{0}\'?</string>
   <string formatted="false" name="Vernacular_P0_E">E</string>
   <string formatted="false" name="Vernacular_P0_English">Englanti</string>
   <string formatted="false" name="Vernacular_P0_Feedback">Palaute</string>
@@ -52,7 +61,6 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_German">Saksaksi</string>
   <string formatted="false" name="Vernacular_P0_GPSCheck">GPS:n tarkistus</string>
   <string formatted="false" name="Vernacular_P0_Here">Tässä</string>
-  <string formatted="false" name="Vernacular_P0_History">Historia</string>
   <string formatted="false" name="Vernacular_P0_Hybrid">Hybridi</string>
   <string formatted="false" name="Vernacular_P0_Images">Kuvat</string>
   <string formatted="false" name="Vernacular_P0_Inside">Sisällä</string>
@@ -64,7 +72,6 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Line1230125581231125">Rivi {0}: {1}</string>
   <string formatted="false" name="Vernacular_P0_Loading464646">Ladataan…</string>
   <string formatted="false" name="Vernacular_P0_Login">Kirjaudu sisään</string>
-  <string formatted="false" name="Vernacular_P0_Logs">Logit</string>
   <string formatted="false" name="Vernacular_P0_Luaerror">Lua virhe</string>
   <string formatted="false" name="Vernacular_P0_MainMenu">Päävalikko</string>
   <string formatted="false" name="Vernacular_P0_Map">Kartta</string>
@@ -121,7 +128,6 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Version581230125">Versio: {0}</string>
   <string formatted="false" name="Vernacular_P0_Vibration">Värinä</string>
   <string formatted="false" name="Vernacular_P0_W">W</string>
-  <string formatted="false" name="Vernacular_P0_WF46Player">WF.Player</string>
   <string formatted="false" name="Vernacular_P0_WF46Player46Android">WF.Player.Android</string>
   <string formatted="false" name="Vernacular_P0_Wouldyouliketosavethecurrentgame63">Haluatko tallentaa nykyisen pelin?</string>
   <string formatted="false" name="Vernacular_P0_Writeinputhere464646">Kirjoita tähän…</string>

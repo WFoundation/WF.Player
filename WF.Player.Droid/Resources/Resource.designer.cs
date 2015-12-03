@@ -4279,9 +4279,6 @@ namespace WF.Player.Droid
 			// aapt resource value: 0x7f0600c2
 			public const int Vernacular_P0_YouencounteredanLuaerrorinthecartridge3912301253946 = 2131099842;
 			
-			// aapt resource value: 0x7f0600c7
-			public const int Vernacular_P0_YouencounteredanLuaerrorinthecartridge391230125394610123112510Pleasemakeascreenshotandsendittothecartridgeauthor4610Thecartridgenowstops46 = 2131099847;
-			
 			// aapt resource value: 0x7f06000a
 			public const int abc_action_bar_home_description = 2131099658;
 			

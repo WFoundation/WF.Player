@@ -34,39 +34,22 @@ namespace WF.Player.SettingsPage
 			NavigationPage.SetTitleIcon(this, "HomeIcon.png");
 			NavigationPage.SetBackButtonTitle(this, string.Empty);
 
-			var headline = new ExtendedLabel 
+			var emptyline = new ExtendedLabel 
 				{
-					Text = Catalog.GetString("WF.Player"),
+					Text = Catalog.Format("\n"),
 					TextColor = App.Colors.Text,
-					FontAttributes = FontAttributes.Bold,
-					FontSize = Settings.FontSize * 2.8,
+					FontSize = Settings.FontSize * 1.4,
 					LineBreakMode = LineBreakMode.WordWrap,
 					XAlign = TextAlignment.Center,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.Fill,
 				};
 
-//			var platform = new ExtendedLabel 
-//				{
-//					#if __IOS__
-//					Text = Catalog.GetString("for iOS"),
-//					#endif
-//					#if __ANDROID__
-//					Text = Catalog.GetString("for Android"),
-//					#endif
-//					TextColor = App.Colors.Text,
-//					FontSize = Settings.FontSize * 1.2,
-//					LineBreakMode = LineBreakMode.WordWrap,
-//					XAlign = TextAlignment.Center,
-//					HorizontalOptions = LayoutOptions.FillAndExpand,
-//					VerticalOptions = LayoutOptions.Fill,
-//				};
-//
-			var copyright = new ExtendedLabel 
+			var headline = new ExtendedLabel 
 				{
-					Text = Catalog.GetString("Copyright by  \nWherigo Foundation  \nDirk Weltz  \nBrice Clocher"),
+					Text = Catalog.Format("# WF.Player  \nfor {0}", Device.OnPlatform("iOS", "Android", "WinPhone")),
 					TextColor = App.Colors.Text,
-					FontSize = Settings.FontSize * 0.8,
+					FontSize = Settings.FontSize * 1.4,
 					LineBreakMode = LineBreakMode.WordWrap,
 					XAlign = TextAlignment.Center,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -76,9 +59,70 @@ namespace WF.Player.SettingsPage
 
 			var version = new ExtendedLabel 
 				{
-					Text = Catalog.Format("Version  \n{0}", ((App)App.Current).PlatformHelper.ClientVersion),
+					Text = Catalog.Format("__Version__  \n{0}", ((App)App.Current).PlatformHelper.ClientVersion),
 					TextColor = App.Colors.Text,
 					FontSize = Settings.FontSize,
+					LineBreakMode = LineBreakMode.WordWrap,
+					XAlign = TextAlignment.Center,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.Fill,
+					UseMarkdown = true,
+				};
+
+			var copyright = new ExtendedLabel 
+				{
+					Text = Catalog.GetString("__Copyright by__  \nWherigo Foundation  \nDirk Weltz  \nBrice Clocher\n"),
+					TextColor = App.Colors.Text,
+					FontSize = Settings.FontSize * 1.0,
+					LineBreakMode = LineBreakMode.WordWrap,
+					XAlign = TextAlignment.Center,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.Fill,
+					UseMarkdown = true,
+				};
+
+			var credits = new ExtendedLabel 
+				{
+					Text = Catalog.GetString("__Credits__\nThis app uses the following software or parts of it"),
+					TextColor = App.Colors.Text,
+					FontSize = Settings.FontSize * 0.8,
+					FontAttributes = FontAttributes.Bold,
+					LineBreakMode = LineBreakMode.WordWrap,
+					XAlign = TextAlignment.Center,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.Fill,
+					UseMarkdown = true,
+				};
+			
+			var xamarin = new ExtendedLabel 
+				{
+					Text = Catalog.GetString("__Xamarin.iOS, Xamarin.Android and Xamarin.Forms__\nCopyright by Xamarin, Inc."),
+					TextColor = App.Colors.Text,
+					FontSize = Settings.FontSize * 0.6,
+					LineBreakMode = LineBreakMode.WordWrap,
+					XAlign = TextAlignment.Center,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.Fill,
+					UseMarkdown = true,
+				};
+
+			var cdhowie = new ExtendedLabel 
+				{
+					Text = Catalog.GetString("__Eluant__\nCopyright by cdhowie"),
+					TextColor = App.Colors.Text,
+					FontSize = Settings.FontSize * 0.6,
+					LineBreakMode = LineBreakMode.WordWrap,
+					XAlign = TextAlignment.Center,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+					VerticalOptions = LayoutOptions.Fill,
+					UseMarkdown = true,
+				};
+
+			var groundspeak = new ExtendedLabel 
+				{
+					Text = Catalog.GetString("__Wherigo__\nCopyright by Groundspeak, Inc."),
+					TextColor = App.Colors.Text,
+					FontSize = Settings.FontSize * 0.6,
 					LineBreakMode = LineBreakMode.WordWrap,
 					XAlign = TextAlignment.Center,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -91,14 +135,18 @@ namespace WF.Player.SettingsPage
 					Orientation = StackOrientation.Vertical,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.FillAndExpand,
-					Spacing = 20,
+					Spacing = 10,
 					Padding = 20,
 				};
 
 			layout.Children.Add(headline);
-//			layout.Children.Add(platform);
 			layout.Children.Add(version);
 			layout.Children.Add(copyright);
+			layout.Children.Add(emptyline);
+			layout.Children.Add(credits);
+			layout.Children.Add(xamarin);
+			layout.Children.Add(cdhowie);
+			layout.Children.Add(groundspeak);
 
 			Content = new ScrollView {
 				Content = layout,

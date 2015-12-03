@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <string formatted="false" name="Vernacular_P0___Copyrightby__10WherigoFoundation10DirkWeltz10BriceClocher10">__Copyright by__  
+Wherigo Foundation  
+Dirk Weltz  
+Brice Clocher
+</string>
+  <string formatted="false" name="Vernacular_P0___Credits__10Thisappusesthefollowingsoftwareorpartsofit">__Credits__
+This app uses the following software or parts of it</string>
+  <string formatted="false" name="Vernacular_P0___Eluant__10Copyrightbycdhowie">__Eluant__
+Copyright by cdhowie</string>
+  <string formatted="false" name="Vernacular_P0___Wherigo__10CopyrightbyGroundspeak44Inc46">__Wherigo__
+Copyright by Groundspeak, Inc.</string>
+  <string formatted="false" name="Vernacular_P0___Xamarin46iOS44Xamarin46AndroidandXamarin46Forms__10CopyrightbyXamarin44Inc46">__Xamarin.iOS, Xamarin.Android and Xamarin.Forms__
+Copyright by Xamarin, Inc.</string>
   <string formatted="false" name="Vernacular_P0_About">About</string>
   <string formatted="false" name="Vernacular_P0_Actions">Actions</string>
   <string formatted="false" name="Vernacular_P0_Activity581230125">Activity: {0}</string>
   <string formatted="false" name="Vernacular_P0_Alignment">Alignment</string>
   <string formatted="false" name="Vernacular_P0_Altitude">Altitude</string>
   <string formatted="false" name="Vernacular_P0_Appearance">Appearance</string>
-  <string formatted="false" name="Vernacular_P0_Attributes">Attributes</string>
   <string formatted="false" name="Vernacular_P0_Author581230125">Author:  {0}</string>
   <string formatted="false" name="Vernacular_P0_Automaticalsavefile">Automatical savefile</string>
   <string formatted="false" name="Vernacular_P0_Both">Both</string>
@@ -16,10 +28,6 @@
   <string formatted="false" name="Vernacular_P0_Center">Center</string>
   <string formatted="false" name="Vernacular_P0_Choose">Choose</string>
   <string formatted="false" name="Vernacular_P0_CommentSavefile">Comment Savefile</string>
-  <string formatted="false" name="Vernacular_P0_Copyrightby10WherigoFoundation10DirkWeltz10BriceClocher">Copyright by  
-Wherigo Foundation  
-Dirk Weltz  
-Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_CurrentAccuracy101230125">Current Accuracy
 {0}</string>
   <string formatted="false" name="Vernacular_P0_CurrentCoordinates101230125">Current Coordinates
@@ -35,9 +43,10 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Default">Default</string>
   <string formatted="false" name="Vernacular_P0_Degrees">Degrees</string>
   <string formatted="false" name="Vernacular_P0_Delete">Delete</string>
+  <string formatted="false" name="Vernacular_P0_DeleteCartridge">Delete Cartridge</string>
   <string formatted="false" name="Vernacular_P0_Description">Description</string>
-  <string formatted="false" name="Vernacular_P0_Details">Details</string>
   <string formatted="false" name="Vernacular_P0_Don39tresize">Don\'t resize</string>
+  <string formatted="false" name="Vernacular_P0_Doyoureallywanttodeletethecartridge3912301253963">Do you really want to delete the cartridge \'{0}\'?</string>
   <string formatted="false" name="Vernacular_P0_E">E</string>
   <string formatted="false" name="Vernacular_P0_English">English</string>
   <string formatted="false" name="Vernacular_P0_Feedback">Feedback</string>
@@ -51,7 +60,6 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_German">German</string>
   <string formatted="false" name="Vernacular_P0_GPSCheck">GPS Check</string>
   <string formatted="false" name="Vernacular_P0_Here">Here</string>
-  <string formatted="false" name="Vernacular_P0_History">History</string>
   <string formatted="false" name="Vernacular_P0_Hybrid">Hybrid</string>
   <string formatted="false" name="Vernacular_P0_Images">Images</string>
   <string formatted="false" name="Vernacular_P0_Inside">Inside</string>
@@ -63,7 +71,6 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Line1230125581231125">Line {0}: {1}</string>
   <string formatted="false" name="Vernacular_P0_Loading464646">Loading…</string>
   <string formatted="false" name="Vernacular_P0_Login">Login</string>
-  <string formatted="false" name="Vernacular_P0_Logs">Logs</string>
   <string formatted="false" name="Vernacular_P0_Luaerror">Lua error</string>
   <string formatted="false" name="Vernacular_P0_Map">Map</string>
   <string formatted="false" name="Vernacular_P0_Maptype">Maptype</string>
@@ -118,7 +125,6 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Version581230125">Version: {0}</string>
   <string formatted="false" name="Vernacular_P0_Vibration">Vibration</string>
   <string formatted="false" name="Vernacular_P0_W">W</string>
-  <string formatted="false" name="Vernacular_P0_WF46Player">WF.Player</string>
   <string formatted="false" name="Vernacular_P0_WF46Player46Android">WF.Player.Android</string>
   <string formatted="false" name="Vernacular_P0_Wouldyouliketosavethecurrentgame63">Would you like to save the current game?</string>
   <string formatted="false" name="Vernacular_P0_Writeinputhere464646">Write input here…</string>

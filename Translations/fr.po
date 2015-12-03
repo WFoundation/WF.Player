@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-03-19 19:25+0100\n"
+"PO-Revision-Date: 2015-12-03 09:33+0100\n"
 "Last-Translator: Dirk Weltz <web@weltz-online.de>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -10,22 +10,65 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.8.6\n"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:89
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:312
+#: WF.Player.Forms/Settings/AboutPage.cs:63
+msgid ""
+"__Copyright by__  \n"
+"Wherigo Foundation  \n"
+"Dirk Weltz  \n"
+"Brice Clocher\n"
+msgstr ""
+"__Copyright par__  \n"
+"Wherigo Foundation  \n"
+"Dirk Weltz  \n"
+"Brice Clocher\n"
+
+#: WF.Player.Forms/Settings/AboutPage.cs:75
+msgid ""
+"__Credits__\n"
+"This app uses the following software or parts of it"
+msgstr ""
+"__Credits__\n"
+"Cette application utilise la suite des Bibliothèques de logiciel de tiers"
+
+#: WF.Player.Forms/Settings/AboutPage.cs:100
+msgid ""
+"__Eluant__\n"
+"Copyright by cdhowie"
+msgstr ""
+"__Eluant__\n"
+"Copyright par cdhowie"
+
+#: WF.Player.Forms/Settings/AboutPage.cs:112
+msgid ""
+"__Wherigo__\n"
+"Copyright by Groundspeak, Inc."
+msgstr ""
+"__Wherigo__\n"
+"Copyright par Groundspeak, Inc."
+
+#: WF.Player.Forms/Settings/AboutPage.cs:88
+msgid ""
+"__Xamarin.iOS, Xamarin.Android and Xamarin.Forms__\n"
+"Copyright by Xamarin, Inc."
+msgstr ""
+"__Xamarin.iOS, Xamarin.Android et Xamarin.Forms__\n"
+"Copyright par Xamarin, Inc."
+
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:106
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:328
 #: WF.Player.Forms/Settings/AboutPage.cs:31
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:110
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:125
 msgid "About"
 msgstr "À propos"
 
 #: WF.Player.Forms/Game/GameDetailViewModel.cs:599
 #: WF.Player.Forms/Game/GameDetailViewModel.cs:781
-#: WF.Player.Forms/Game/GameDetailViewModel.cs:778
 msgid "Actions"
 msgstr "Actions"
 
-#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:156
+#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:159
 msgid "Activity: {0}"
 msgstr "Activité: {0}"
 
@@ -42,11 +85,7 @@ msgstr "Altitude"
 msgid "Appearance"
 msgstr "Apparence"
 
-#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:109
-msgid "Attributes"
-msgstr "Attributs"
-
-#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:130
+#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:133
 msgid "Author:  {0}"
 msgstr "Auteur : {0}"
 
@@ -72,13 +111,13 @@ msgstr "Par"
 #: WF.Player.Forms/Services/UserDialogs/ConfirmConfig.cs:21
 #: WF.Player.Forms/Services/UserDialogs/PromptConfig.cs:26
 #: WF.Player.Forms/Services/UserDialogs/LoginConfig.cs:46
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:112
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:126
 #: WF.Player.Forms/Game/GameMainView.cs:75
 msgid "Cancel"
 msgstr "Annuler"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:76
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:307
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:90
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:323
 msgid "Cartridges"
 msgstr "Cartouches"
 
@@ -87,7 +126,7 @@ msgstr "Cartouches"
 msgid "Center"
 msgstr "Centre"
 
-#: WF.Player.Forms/Game/GameMessageboxViewModel.cs:273
+#: WF.Player.Forms/Game/GameMessageboxViewModel.cs:274
 #: WF.Player.Forms/Game/GameInputViewModel.cs:415
 #: WF.Player.Forms/Game/GameInputViewModel.cs:517
 msgid "Choose"
@@ -97,18 +136,6 @@ msgstr "Choisir"
 #: WF.Player.Forms/Game/GameMainViewModel.cs:970
 msgid "Comment Savefile"
 msgstr "Commentaire de sauvegarde"
-
-#: WF.Player.Forms/Settings/AboutPage.cs:67
-msgid ""
-"Copyright by  \n"
-"Wherigo Foundation  \n"
-"Dirk Weltz  \n"
-"Brice Clocher"
-msgstr ""
-"Copyright by  \n"
-"Wherigo Foundation  \n"
-"Dirk Weltz  \n"
-"Brice Clocher"
 
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:85
 #: WF.Player.Forms/Game/GameCheckLocationView.cs:95
@@ -169,18 +196,21 @@ msgstr "Par défaut"
 msgid "Degrees"
 msgstr "Degrés"
 
-#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:174
+#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:177
 msgid "Delete"
 msgstr "Supprimer"
+
+msgid "Delete Cartridge"
+msgstr "Supprimer Cartouche"
 
 #: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:107
 #: WF.Player.Forms/Cartridges/CartridgeDetailDescriptionView.cs:41
 msgid "Description"
 msgstr "Description"
 
-#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:108
-msgid "Details"
-msgstr "Détails"
+#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:192
+msgid "Do you really want to delete the cartridge '{0}'?"
+msgstr "Voulez-vous vraiment supprimer la cartouche ‚{0}‘?"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:125
 #: WF.Player.Forms/Settings/SettingsPage.cs:131
@@ -196,10 +226,10 @@ msgstr "E"
 msgid "English"
 msgstr "Anglais"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:93
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:313
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:103
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:329
 #: WF.Player.Forms/Settings/SettingsPage.cs:162
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:111
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:124
 msgid "Feedback"
 msgstr "Commentaire"
 
@@ -253,10 +283,6 @@ msgstr "Vérification du GPS"
 msgid "Here"
 msgstr "Ici"
 
-#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:114
-msgid "History"
-msgstr "Historique"
-
 #: WF.Player.Forms/Controls/MapViewModel.cs:365
 msgid "Hybrid"
 msgstr "Hybride"
@@ -272,7 +298,7 @@ msgstr "À l'intérieur"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:216
 #: WF.Player.Forms/Game/GameMainViewModel.cs:633
-#: WF.Player.Forms/Game/GameMainViewModel.cs:1364
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1360
 msgid "Inventory"
 msgstr "Inventaire"
 
@@ -294,11 +320,10 @@ msgstr "Longueur"
 msgid "Light"
 msgstr "Clair"
 
-#: WF.Player.Forms/Game/GameModel.cs:1151
+#: WF.Player.Forms/Game/GameModel.cs:1176
 msgid "Line {0}: {1}"
 msgstr "Ligne {0}: {1}"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:134
 #: WF.Player.Forms/Game/GameMainViewModel.cs:664
 msgid "Loading..."
 msgstr "Chargement ..."
@@ -307,15 +332,11 @@ msgstr "Chargement ..."
 msgid "Login"
 msgstr "Connexion"
 
-#: WF.Player.Forms/Cartridges/CartridgeDetailPage.cs:115
-msgid "Logs"
-msgstr "Logs"
-
-#: WF.Player.Forms/Game/GameModel.cs:1170
+#: WF.Player.Forms/Game/GameModel.cs:1195
 msgid "Lua error"
 msgstr "Erreur Lua"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:108
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:122
 msgid "Main Menu"
 msgstr "Menu Principal"
 
@@ -333,8 +354,8 @@ msgstr "Type de carte"
 msgid "Max. half height"
 msgstr "Max. demi-hauteur"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:105
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:320
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:119
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:336
 #: WF.Player.Forms/Game/GameMainView.cs:70
 msgid "Menu"
 msgstr "Menu"
@@ -429,7 +450,7 @@ msgid "Path for cartridges"
 msgstr "Chemin d'accès pour les cartouches"
 
 #. Part of the error message
-#: WF.Player.Forms/Game/GameModel.cs:1164
+#: WF.Player.Forms/Game/GameModel.cs:1189
 msgid "Please make a screenshot and send it to the cartridge author."
 msgstr "Faites une capture d'écran et envoyez la à l'auteur de la cartouche"
 
@@ -442,8 +463,8 @@ msgstr "Veuillez patienter..."
 msgid "Provide a comment to identify this savefile"
 msgstr "Fournir un commentaire pour identifier cette sauvegarde."
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:96
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:314
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:110
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:330
 #: WF.Player.Forms/Game/GameMainView.cs:92
 #: WF.Player.Forms/Game/GameMainView.cs:95
 #: WF.Player.Forms/Game/GameMainViewModel.cs:912
@@ -491,11 +512,11 @@ msgstr "Sauvegarder le jeu"
 msgid "Screen width"
 msgstr "Lignage de trame"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:84
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:311
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:98
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:327
 #: WF.Player.Forms/Settings/SettingsPage.cs:34
 #: WF.Player.Forms/Settings/SettingsPage.cs:264
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:109
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:123
 msgid "Settings"
 msgstr "Paramètres"
 
@@ -532,7 +553,7 @@ msgstr "Rue"
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:221
 #: WF.Player.Forms/Game/GameMainViewModel.cs:638
-#: WF.Player.Forms/Game/GameMainViewModel.cs:1387
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1383
 msgid "Tasks"
 msgstr "Tâches"
 
@@ -541,7 +562,7 @@ msgid "Text"
 msgstr "Texte"
 
 #. Part of the error message
-#: WF.Player.Forms/Game/GameModel.cs:1167
+#: WF.Player.Forms/Game/GameModel.cs:1192
 msgid "The cartridge now stops."
 msgstr "La cartouche est arrêté"
 
@@ -549,13 +570,13 @@ msgstr "La cartouche est arrêté"
 msgid "Theme"
 msgstr "Thème"
 
-#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:259
+#: WF.Player.Forms/Cartridges/CartridgeListPage.cs:275
 msgid ""
 "There is an automatic savefile from a cartridge you played before. Would you "
 "resume this last game?"
 msgstr ""
-"Il y a un fichier de sauvegarde automatique de la cartouche vous avez joué avant. "
-"Voulez-vous reprendre cette sauvegarde ?"
+"Il y a un fichier de sauvegarde automatique de la cartouche vous avez joué "
+"avant. Voulez-vous reprendre cette sauvegarde ?"
 
 #: WF.Player.Forms/Settings/SettingsPage.cs:207
 msgid "Units"
@@ -567,7 +588,7 @@ msgstr "Unités"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:166
+#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:169
 msgid "Update"
 msgstr "Mettre à jour"
 
@@ -575,7 +596,7 @@ msgstr "Mettre à jour"
 msgid "User Name"
 msgstr "Identifiant"
 
-#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:143
+#: WF.Player.Forms/Cartridges/CartridgeListCell.cs:146
 msgid "Version: {0}"
 msgstr "Version : {0}"
 
@@ -587,10 +608,6 @@ msgstr "Vibration"
 #: WF.Player.Forms/Services/Conversion/Converter.cs:158
 msgid "W"
 msgstr "W"
-
-#: WF.Player.Forms/Settings/AboutPage.cs:39
-msgid "WF.Player"
-msgstr "WF.Player"
 
 #: WF.Player.Droid/Resources/values/strings.xml:3
 msgid "WF.Player.Android"
@@ -610,15 +627,41 @@ msgid "Yes"
 msgstr "Oui"
 
 #. Part of the error message
-#: WF.Player.Forms/Game/GameModel.cs:1158
+#: WF.Player.Forms/Game/GameModel.cs:1183
 msgid "You encountered an Lua error in the cartridge '{0}'."
 msgstr "Vous avez rencontré une erreur Lua dans la cartouche '{0}'."
 
 #: WF.Player.Forms/Game/GameMainViewModel.cs:211
 #: WF.Player.Forms/Game/GameMainViewModel.cs:628
-#: WF.Player.Forms/Game/GameMainViewModel.cs:1339
+#: WF.Player.Forms/Game/GameMainViewModel.cs:1335
 msgid "You See"
 msgstr "Vous voyez"
+
+#~ msgid "Attributes"
+#~ msgstr "Attributs"
+
+#~ msgid ""
+#~ "Copyright by  \n"
+#~ "Wherigo Foundation  \n"
+#~ "Dirk Weltz  \n"
+#~ "Brice Clocher"
+#~ msgstr ""
+#~ "Copyright by  \n"
+#~ "Wherigo Foundation  \n"
+#~ "Dirk Weltz  \n"
+#~ "Brice Clocher"
+
+#~ msgid "Details"
+#~ msgstr "Détails"
+
+#~ msgid "History"
+#~ msgstr "Historique"
+
+#~ msgid "Logs"
+#~ msgstr "Logs"
+
+#~ msgid "WF.Player"
+#~ msgstr "WF.Player"
 
 #~ msgid ""
 #~ "Copyright by\n"
