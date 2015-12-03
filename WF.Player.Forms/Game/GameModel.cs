@@ -694,8 +694,6 @@ namespace WF.Player
 			// Get next screen to display
 			var screen = this.screenQueue.Peek();
 
-			Console.WriteLine(screen.ToString());
-
 			switch (screen.ScreenType)
 			{
 				case ScreenType.Last:

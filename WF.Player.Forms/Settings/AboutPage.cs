@@ -140,6 +140,7 @@ namespace WF.Player.SettingsPage
 				};
 
 			layout.Children.Add(headline);
+			layout.Children.Add(emptyline);
 			layout.Children.Add(version);
 			layout.Children.Add(copyright);
 			layout.Children.Add(emptyline);
