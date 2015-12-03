@@ -7,20 +7,20 @@
   <string formatted="false" name="Vernacular_P0_Altitude">Altitude</string>
   <string formatted="false" name="Vernacular_P0_Appearance">Apparence</string>
   <string formatted="false" name="Vernacular_P0_Attributes">Attributs</string>
-  <string formatted="false" name="Vernacular_P0_Author581230125">Auteur: {0}</string>
-  <string formatted="false" name="Vernacular_P0_Automaticalsavefile">Savefile automatique</string>
+  <string formatted="false" name="Vernacular_P0_Author581230125">Auteur : {0}</string>
+  <string formatted="false" name="Vernacular_P0_Automaticalsavefile">Sauvegarde automatique</string>
   <string formatted="false" name="Vernacular_P0_Both">Les deux</string>
   <string formatted="false" name="Vernacular_P0_By">Par</string>
   <string formatted="false" name="Vernacular_P0_Cancel">Annuler</string>
   <string formatted="false" name="Vernacular_P0_Cartridges">Cartouches</string>
   <string formatted="false" name="Vernacular_P0_Center">Centre</string>
   <string formatted="false" name="Vernacular_P0_Choose">Choisir</string>
-  <string formatted="false" name="Vernacular_P0_CommentSavefile">Commentairede sauvegarde</string>
+  <string formatted="false" name="Vernacular_P0_CommentSavefile">Commentaire de sauvegarde</string>
   <string formatted="false" name="Vernacular_P0_Copyrightby10WherigoFoundation10DirkWeltz10BriceClocher">Copyright by  
 Wherigo Foundation  
 Dirk Weltz  
 Brice Clocher</string>
-  <string formatted="false" name="Vernacular_P0_CurrentAccuracy101230125">Précision actuel
+  <string formatted="false" name="Vernacular_P0_CurrentAccuracy101230125">Précision actuelle
 {0}</string>
   <string formatted="false" name="Vernacular_P0_CurrentCoordinates101230125">Coordonnées actuelles
 {0}</string>
@@ -32,7 +32,7 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Decimalminutes40917604465233941">Minutes décimales (9° 04.523\')</string>
   <string formatted="false" name="Vernacular_P0_Decimalseconds">Secondes décimales</string>
   <string formatted="false" name="Vernacular_P0_Decimalseconds40917604393146383441">Secondes décimales (9° 04\' 31,38")</string>
-  <string formatted="false" name="Vernacular_P0_Default">Default</string>
+  <string formatted="false" name="Vernacular_P0_Default">Par défaut</string>
   <string formatted="false" name="Vernacular_P0_Degrees">Degrés</string>
   <string formatted="false" name="Vernacular_P0_Delete">Supprimer</string>
   <string formatted="false" name="Vernacular_P0_Description">Description</string>
@@ -41,26 +41,26 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_E">E</string>
   <string formatted="false" name="Vernacular_P0_English">Anglais</string>
   <string formatted="false" name="Vernacular_P0_Feedback">Commentaire</string>
-  <string formatted="false" name="Vernacular_P0_Feet">Feet</string>
+  <string formatted="false" name="Vernacular_P0_Feet">Pieds</string>
   <string formatted="false" name="Vernacular_P0_Finnish">Finnois</string>
   <string formatted="false" name="Vernacular_P0_Flash">Éclair</string>
   <string formatted="false" name="Vernacular_P0_Focuson">Mise au point sur</string>
-  <string formatted="false" name="Vernacular_P0_Formuchfunwiththecartridge44youshouldwaitforagoodaccuracyofyourGPSsignal46">Pour beaucoup de plaisir avec la cartouche, vous devez attendre une bonne précision de votre signal GPS.</string>
+  <string formatted="false" name="Vernacular_P0_Formuchfunwiththecartridge44youshouldwaitforagoodaccuracyofyourGPSsignal46">Pour plus de plaisir avec la cartouche, vous devriez attendre une bonne précision de votre signal GPS.</string>
   <string formatted="false" name="Vernacular_P0_French">Français</string>
-  <string formatted="false" name="Vernacular_P0_Gamefield">Gamefield</string>
-  <string formatted="false" name="Vernacular_P0_GameMenu">Menu de jeu</string>
+  <string formatted="false" name="Vernacular_P0_Gamefield">Terrain de jeu</string>
+  <string formatted="false" name="Vernacular_P0_GameMenu">Menu du jeu</string>
   <string formatted="false" name="Vernacular_P0_German">Allemand</string>
-  <string formatted="false" name="Vernacular_P0_GPSCheck">GPS Vérifier</string>
+  <string formatted="false" name="Vernacular_P0_GPSCheck">Vérification du GPS</string>
   <string formatted="false" name="Vernacular_P0_Here">Ici</string>
   <string formatted="false" name="Vernacular_P0_History">Historique</string>
   <string formatted="false" name="Vernacular_P0_Hybrid">Hybride</string>
   <string formatted="false" name="Vernacular_P0_Images">Images</string>
   <string formatted="false" name="Vernacular_P0_Inside">À l\'intérieur</string>
   <string formatted="false" name="Vernacular_P0_Inventory">Inventaire</string>
-  <string formatted="false" name="Vernacular_P0_Language">Language</string>
+  <string formatted="false" name="Vernacular_P0_Language">Langue</string>
   <string formatted="false" name="Vernacular_P0_Left">Gauche</string>
   <string formatted="false" name="Vernacular_P0_Length">Longueur</string>
-  <string formatted="false" name="Vernacular_P0_Light">Light</string>
+  <string formatted="false" name="Vernacular_P0_Light">Clair</string>
   <string formatted="false" name="Vernacular_P0_Line1230125581231125">Ligne {0}: {1}</string>
   <string formatted="false" name="Vernacular_P0_Loading464646">Chargement …</string>
   <string formatted="false" name="Vernacular_P0_Login">Connexion</string>
@@ -68,7 +68,7 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Luaerror">Erreur Lua</string>
   <string formatted="false" name="Vernacular_P0_MainMenu">Menu Principal</string>
   <string formatted="false" name="Vernacular_P0_Map">Carte</string>
-  <string formatted="false" name="Vernacular_P0_Maptype">MapType</string>
+  <string formatted="false" name="Vernacular_P0_Maptype">Type de carte</string>
   <string formatted="false" name="Vernacular_P0_Max46halfheight">Max. demi-hauteur</string>
   <string formatted="false" name="Vernacular_P0_Menu">Menu</string>
   <string formatted="false" name="Vernacular_P0_Meter">Mètre</string>
@@ -78,16 +78,17 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_No">Non</string>
   <string formatted="false" name="Vernacular_P0_Nodescriptionavailable">Aucune description disponible</string>
   <string formatted="false" name="Vernacular_P0_Noitems">Aucun élément</string>
-  <string formatted="false" name="Vernacular_P0_Nonewtasks">Aucune tâche.</string>
+  <string formatted="false" name="Vernacular_P0_Nonewtasks">Aucune tâche</string>
   <string formatted="false" name="Vernacular_P0_Nothingavailable">Rien de disponible</string>
-  <string formatted="false" name="Vernacular_P0_Nothingofinterest">Rien d&amp;#39;intérêt</string>
+  <string formatted="false" name="Vernacular_P0_Nothingofinterest">Rien d\'intéressant</string>
   <string formatted="false" name="Vernacular_P0_Nowheretogo">Aucune cachette</string>
   <string formatted="false" name="Vernacular_P0_Ok">OK</string>
-  <string formatted="false" name="Vernacular_P0_Overview">résumé </string>
+  <string formatted="false" name="Vernacular_P0_Overview">Résumé</string>
   <string formatted="false" name="Vernacular_P0_Parentdirectory">Dossier parent</string>
   <string formatted="false" name="Vernacular_P0_Password">Mot de passe</string>
   <string formatted="false" name="Vernacular_P0_Path">Chemin</string>
   <string formatted="false" name="Vernacular_P0_Pathforcartridges">Chemin d\'accès pour les cartouches</string>
+  <string formatted="false" name="Vernacular_P0_Pleasemakeascreenshotandsendittothecartridgeauthor46">Faites une capture d\'écran et envoyez la à l\'auteur de la cartouche</string>
   <string formatted="false" name="Vernacular_P0_Pleasewait464646">Veuillez patienter…</string>
   <string formatted="false" name="Vernacular_P0_Provideacommenttoidentifythissavefile">Fournir un commentaire pour identifier cette sauvegarde.</string>
   <string formatted="false" name="Vernacular_P0_Quit">Quitter</string>
@@ -97,36 +98,34 @@ Brice Clocher</string>
   <string formatted="false" name="Vernacular_P0_Right">Droite</string>
   <string formatted="false" name="Vernacular_P0_S">S</string>
   <string formatted="false" name="Vernacular_P0_Satellite">Satellite</string>
-  <string formatted="false" name="Vernacular_P0_Save">Sauvegarde</string>
-  <string formatted="false" name="Vernacular_P0_SaveGame">Sauvegarde</string>
+  <string formatted="false" name="Vernacular_P0_Save">Sauvegarder</string>
+  <string formatted="false" name="Vernacular_P0_SaveGame">Sauvegarder le jeu</string>
   <string formatted="false" name="Vernacular_P0_Screenwidth">Lignage de trame</string>
   <string formatted="false" name="Vernacular_P0_Settings">Paramètres</string>
   <string formatted="false" name="Vernacular_P0_Shrinkonly">Rétrécir uniquement</string>
   <string formatted="false" name="Vernacular_P0_Size">Taille</string>
   <string formatted="false" name="Vernacular_P0_Sound">Son</string>
   <string formatted="false" name="Vernacular_P0_Start">Début</string>
-  <string formatted="false" name="Vernacular_P0_Startanyway">Début de toute façon</string>
+  <string formatted="false" name="Vernacular_P0_Startanyway">Commencer quand même</string>
   <string formatted="false" name="Vernacular_P0_StartingLocation">Point de départ</string>
   <string formatted="false" name="Vernacular_P0_Street">Rue</string>
   <string formatted="false" name="Vernacular_P0_Tasks">Tâches</string>
   <string formatted="false" name="Vernacular_P0_Text">Texte</string>
+  <string formatted="false" name="Vernacular_P0_Thecartridgenowstops46">La cartouche est arrêté</string>
   <string formatted="false" name="Vernacular_P0_Theme">Thème</string>
-  <string formatted="false" name="Vernacular_P0_Thereisanautomaticsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">Il y\'a un savefile automatique d&amp;#39;une cartouche vous avez joué avant. Voulez-vous reprendre ce dernier match?</string>
+  <string formatted="false" name="Vernacular_P0_Thereisanautomaticsavefilefromacartridgeyouplayedbefore46Wouldyouresumethislastgame63">Il y a un fichier de sauvegarde automatique de la cartouche vous avez joué avant. Voulez-vous reprendre cette sauvegarde ?</string>
   <string formatted="false" name="Vernacular_P0_Units">Unités</string>
   <string formatted="false" name="Vernacular_P0_Unknown">Inconnu</string>
   <string formatted="false" name="Vernacular_P0_Update">Mettre à jour</string>
   <string formatted="false" name="Vernacular_P0_UserName">Identifiant</string>
-  <string formatted="false" name="Vernacular_P0_Version581230125">Version: {0}</string>
+  <string formatted="false" name="Vernacular_P0_Version581230125">Version : {0}</string>
   <string formatted="false" name="Vernacular_P0_Vibration">Vibration</string>
   <string formatted="false" name="Vernacular_P0_W">W</string>
   <string formatted="false" name="Vernacular_P0_WF46Player">WF.Player</string>
   <string formatted="false" name="Vernacular_P0_WF46Player46Android">WF.Player.Android</string>
-  <string formatted="false" name="Vernacular_P0_Wouldyouliketosavethecurrentgame63">Voulez-vous enregistrer le jeu en cours?</string>
+  <string formatted="false" name="Vernacular_P0_Wouldyouliketosavethecurrentgame63">Voulez-vous enregistrer le jeu en cours ?</string>
   <string formatted="false" name="Vernacular_P0_Writeinputhere464646">Entrée…</string>
   <string formatted="false" name="Vernacular_P0_Yes">Oui</string>
-  <string formatted="false" name="Vernacular_P0_YouencounteredanLuaerrorinthecartridge391230125394610123112510Pleasemakeascreenshotandsendittothecartridgeauthor4610Thecartridgenowstops46">You encountered an Lua error in the cartridge \'{0}\'.
-{1}
-Please make a screenshot and send it to the cartridge author.
-The cartridge now stops.</string>
-  <string formatted="false" name="Vernacular_P0_YouSee">Tu vois</string>
+  <string formatted="false" name="Vernacular_P0_YouencounteredanLuaerrorinthecartridge3912301253946">Vous avez rencontré une erreur Lua dans la cartouche \'{0}\'.</string>
+  <string formatted="false" name="Vernacular_P0_YouSee">Vous voyez</string>
 </resources>
