@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -41,7 +41,55 @@
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <DebugType>full</DebugType>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug iOS|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug iOS\</OutputPath>
+    <DefineConstants>DEBUG;__HOCKEYAPP__</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug iPhone|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug iPhone\</OutputPath>
+    <DefineConstants>DEBUG;__HOCKEYAPP__</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug iPhoneSimulator|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug iPhoneSimulator\</OutputPath>
+    <DefineConstants>DEBUG;__HOCKEYAPP__</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugIOS|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugIOS\</OutputPath>
+    <DefineConstants>DEBUG;__HOCKEYAPP__</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -51,12 +99,6 @@
     </Reference>
     <Reference Include="HockeyApp.Android">
       <HintPath>..\Components\hockeyappandroid-3.0.2\lib\android\HockeyApp.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="PCLStorage">
-      <HintPath>..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.dll</HintPath>
-    </Reference>
-    <Reference Include="PCLStorage.Abstractions">
-      <HintPath>..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="zxing.monoandroid">
       <HintPath>..\packages\ZXing.Net.Mobile.1.4.7.1\lib\MonoAndroid\zxing.monoandroid.dll</HintPath>
@@ -208,6 +250,7 @@
     <Compile Include="Bootstrap\BarCodeServiceBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
@@ -331,37 +374,15 @@
   <Import Project="..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Renderer\" />
-    <Folder Include="Services\" />
-    <Folder Include="Services\Geolocation\" />
-    <Folder Include="Resources\drawable-ldpi\" />
-    <Folder Include="Resources\drawable-mdpi\" />
-    <Folder Include="Resources\drawable-hdpi\" />
-    <Folder Include="Resources\drawable-xhdpi\" />
-    <Folder Include="Resources\drawable-xxhdpi\" />
-    <Folder Include="Services\Utils\" />
-    <Folder Include="Resources\values-de\" />
-    <Folder Include="Services\Settings\" />
-    <Folder Include="Services\Mobile\" />
-    <Folder Include="Services\UserDialogs\" />
-    <Folder Include="Services\BarCode\" />
-    <Folder Include="Resources\values-fr\" />
     <Folder Include="Resources\layout\" />
-    <Folder Include="Resources\values-fi\" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidNativeLibrary Include="lib\armeabi\liblua5.1.so" />
-    <AndroidNativeLibrary Include="lib\armeabi-v7a\liblua5.1.so" />
-    <AndroidNativeLibrary Include="lib\x86\liblua5.1.so" />
+    <AndroidNativeLibrary Include="LuaLib\armeabi\liblua5.1.so" />
+    <AndroidNativeLibrary Include="LuaLib\armeabi-v7a\liblua5.1.so" />
+    <AndroidNativeLibrary Include="LuaLib\x86\liblua5.1.so" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Wherigo Tutorial.gwc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WF.Player.Core\Core\WF.Player.Core.Droid.csproj">
-      <Project>{47C98C7A-1A47-457B-9A22-6D621F344B56}</Project>
-      <Name>WF.Player.Core.Droid</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="hockeyappandroid">
@@ -372,5 +393,11 @@
       <Version>1.4.7.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WF.Player.Core\Core\WF.Player.Core.PCL.csproj">
+      <Project>{785d6e09-3bbe-4ddb-ab31-1bff6f3226c4}</Project>
+      <Name>WF.Player.Core.PCL</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

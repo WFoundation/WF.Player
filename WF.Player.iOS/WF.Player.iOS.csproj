@@ -24,11 +24,21 @@
     <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchDebug>true</MtouchDebug>
+    <MtouchDebug>True</MtouchDebug>
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>i386</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchSdkVersion>9.1</MtouchSdkVersion>
+    <MtouchProfiling>False</MtouchProfiling>
+    <MtouchFastDev>False</MtouchFastDev>
+    <MtouchExtraArgs>-cxx -gcc_flags "-L${TargetDir}/../../../LuaLib/ -llua5.1 -force_load ${TargetDir}/../../../LuaLib/liblua5.1.a"</MtouchExtraArgs>
+    <MtouchUseLlvm>False</MtouchUseLlvm>
+    <MtouchUseThumb>False</MtouchUseThumb>
+    <MtouchUseSGen>False</MtouchUseSGen>
+    <MtouchUseRefCounting>False</MtouchUseRefCounting>
+    <OptimizePNGs>True</OptimizePNGs>
+    <MtouchFloat32>False</MtouchFloat32>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -44,7 +54,17 @@
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>i386</MtouchArch>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchUseRefCounting>True</MtouchUseRefCounting>
+    <MtouchSdkVersion>9.1</MtouchSdkVersion>
+    <MtouchDebug>False</MtouchDebug>
+    <MtouchProfiling>False</MtouchProfiling>
+    <MtouchFastDev>False</MtouchFastDev>
+    <MtouchExtraArgs>-cxx -gcc_flags "-L${TargetDir}/../../../LuaLib/ -llua5.1 -force_load ${TargetDir}/../../../LuaLib/liblua5.1.a"</MtouchExtraArgs>
+    <MtouchUseLlvm>False</MtouchUseLlvm>
+    <MtouchUseThumb>False</MtouchUseThumb>
+    <MtouchUseSGen>False</MtouchUseSGen>
+    <OptimizePNGs>True</OptimizePNGs>
+    <MtouchFloat32>False</MtouchFloat32>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -95,6 +115,7 @@
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchExtraArgs>-cxx -gcc_flags "-L${TargetDir}/../../../LuaLib/ -llua5.1 -force_load ${TargetDir}/../../../LuaLib/liblua5.1.a"</MtouchExtraArgs>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <CodesignProvision>baf1cdc9-0bdb-4ab4-99e3-1ffe11747a35</CodesignProvision>
   </PropertyGroup>
@@ -110,6 +131,171 @@
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchExtraArgs>-cxx -gcc_flags "-L${TargetDir}/../../../LuaLib/ -llua5.1 -force_load ${TargetDir}/../../../LuaLib/liblua5.1.a"</MtouchExtraArgs>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug iPhone|iPhoneSimulator'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\iPhoneSimulator\Debug iPhone\</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;__HOCKEYAPP__</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <MtouchSdkVersion>9.1</MtouchSdkVersion>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchProfiling>False</MtouchProfiling>
+    <MtouchFastDev>False</MtouchFastDev>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchUseLlvm>False</MtouchUseLlvm>
+    <MtouchUseThumb>False</MtouchUseThumb>
+    <MtouchUseSGen>False</MtouchUseSGen>
+    <MtouchUseRefCounting>False</MtouchUseRefCounting>
+    <MtouchExtraArgs>-cxx -gcc_flags "-L${TargetDir}/../../../LuaLib/ -llua5.1 -force_load ${TargetDir}/../../../LuaLib/liblua5.1.a"</MtouchExtraArgs>
+    <OptimizePNGs>True</OptimizePNGs>
+    <MtouchFloat32>False</MtouchFloat32>
+    <MtouchI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug iPhone|iPhone'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\iPhone\Debug iPhone\</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;__MOBILE__;__IOS__;__HOCKEYAPP__</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <MtouchExtraArgs>-cxx -gcc_flags "-L${TargetDir}/../../../LuaLib/ -llua5.1 -force_load ${TargetDir}/../../../LuaLib/liblua5.1.a"</MtouchExtraArgs>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhoneSimulator'">
+    <MtouchSdkVersion>9.1</MtouchSdkVersion>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchDebug>False</MtouchDebug>
+    <MtouchProfiling>False</MtouchProfiling>
+    <MtouchFastDev>False</MtouchFastDev>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchUseLlvm>False</MtouchUseLlvm>
+    <MtouchUseThumb>False</MtouchUseThumb>
+    <MtouchUseSGen>False</MtouchUseSGen>
+    <MtouchUseRefCounting>False</MtouchUseRefCounting>
+    <OptimizePNGs>True</OptimizePNGs>
+    <MtouchFloat32>False</MtouchFloat32>
+    <MtouchExtraArgs>-cxx -gcc_flags "-L${TargetDir}/../../../LuaLib/ -llua5.1 -force_load ${TargetDir}/../../../LuaLib/liblua5.1.a"</MtouchExtraArgs>
+    <MtouchI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppStore|iPhoneSimulator'">
+    <MtouchSdkVersion>9.1</MtouchSdkVersion>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchDebug>False</MtouchDebug>
+    <MtouchProfiling>False</MtouchProfiling>
+    <MtouchFastDev>False</MtouchFastDev>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchUseLlvm>False</MtouchUseLlvm>
+    <MtouchUseThumb>False</MtouchUseThumb>
+    <MtouchUseSGen>False</MtouchUseSGen>
+    <MtouchUseRefCounting>False</MtouchUseRefCounting>
+    <OptimizePNGs>True</OptimizePNGs>
+    <MtouchFloat32>False</MtouchFloat32>
+    <MtouchExtraArgs>-cxx -gcc_flags "-L${TargetDir}/../../../LuaLib/ -llua5.1 -force_load ${TargetDir}/../../../LuaLib/liblua5.1.a"</MtouchExtraArgs>
+    <MtouchI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug iPhoneSimulator|iPhoneSimulator'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\iPhoneSimulator\Debug iPhoneSimulator\</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;__UNIFIED__;__MOBILE__;__IOS__;DEBUG;__HOCKEYAPP__</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <MtouchSdkVersion>
+    </MtouchSdkVersion>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchExtraArgs>-cxx -gcc_flags "-L${TargetDir}/../../../LuaLib/ -llua5.1 -force_load ${TargetDir}/../../../LuaLib/liblua5.1.a"</MtouchExtraArgs>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchProfiling>False</MtouchProfiling>
+    <MtouchFastDev>False</MtouchFastDev>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchUseLlvm>False</MtouchUseLlvm>
+    <MtouchUseThumb>False</MtouchUseThumb>
+    <MtouchUseSGen>False</MtouchUseSGen>
+    <MtouchUseRefCounting>False</MtouchUseRefCounting>
+    <OptimizePNGs>True</OptimizePNGs>
+    <MtouchFloat32>False</MtouchFloat32>
+    <MtouchI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug iPhoneSimulator|iPhone'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\iPhone\Debug iPhoneSimulator\</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;__UNIFIED__;__MOBILE__;__IOS__;DEBUG;__MOBILE__;__IOS__;__HOCKEYAPP__</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <MtouchSdkVersion>9.1</MtouchSdkVersion>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchDebug>False</MtouchDebug>
+    <MtouchProfiling>False</MtouchProfiling>
+    <MtouchFastDev>False</MtouchFastDev>
+    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchUseLlvm>False</MtouchUseLlvm>
+    <MtouchUseThumb>False</MtouchUseThumb>
+    <MtouchUseSGen>False</MtouchUseSGen>
+    <MtouchUseRefCounting>False</MtouchUseRefCounting>
+    <OptimizePNGs>True</OptimizePNGs>
+    <MtouchExtraArgs>-cxx -gcc_flags "-L${TargetDir}/../../../LuaLib/ -llua5.1 -force_load ${TargetDir}/../../../LuaLib/liblua5.1.a"</MtouchExtraArgs>
+    <MtouchFloat32>False</MtouchFloat32>
+    <MtouchI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugIOS|iPhoneSimulator'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\iPhoneSimulator\DebugIOS\</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;__HOCKEYAPP__</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <MtouchSdkVersion>9.1</MtouchSdkVersion>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchExtraArgs>-cxx -gcc_flags "-L${TargetDir}/../../../LuaLib/ -llua5.1 -force_load ${TargetDir}/../../../LuaLib/liblua5.1.a"</MtouchExtraArgs>
+    <MtouchDebug>False</MtouchDebug>
+    <MtouchProfiling>False</MtouchProfiling>
+    <MtouchFastDev>False</MtouchFastDev>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchUseLlvm>False</MtouchUseLlvm>
+    <MtouchUseThumb>False</MtouchUseThumb>
+    <MtouchUseSGen>False</MtouchUseSGen>
+    <MtouchUseRefCounting>False</MtouchUseRefCounting>
+    <OptimizePNGs>True</OptimizePNGs>
+    <MtouchFloat32>False</MtouchFloat32>
+    <MtouchI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugIOS|iPhone'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\iPhone\DebugIOS\</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;__MOBILE__;__IOS__;__HOCKEYAPP__</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <MtouchSdkVersion>9.1</MtouchSdkVersion>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchExtraArgs>-cxx -gcc_flags "-L${TargetDir}/../../../LuaLib/ -llua5.1 -force_load ${TargetDir}/../../../LuaLib/liblua5.1.a"</MtouchExtraArgs>
+    <MtouchDebug>False</MtouchDebug>
+    <MtouchProfiling>False</MtouchProfiling>
+    <MtouchFastDev>False</MtouchFastDev>
+    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchUseLlvm>False</MtouchUseLlvm>
+    <MtouchUseThumb>False</MtouchUseThumb>
+    <MtouchUseSGen>False</MtouchUseSGen>
+    <MtouchUseRefCounting>False</MtouchUseRefCounting>
+    <OptimizePNGs>True</OptimizePNGs>
+    <MtouchFloat32>False</MtouchFloat32>
+    <MtouchI18n />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -243,8 +429,10 @@
     <BundleResource Include="Resources\fi.lproj\Localizable.strings" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+    <Content Include="LuaLib\liblua5.1.a" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -287,34 +475,11 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="Services\Geolocation\" />
     <Folder Include="Game\" />
-    <Folder Include="Renderer\" />
-    <Folder Include="Services\Core\" />
-    <Folder Include="Services\Device\" />
-    <Folder Include="Services\Routing\" />
-    <Folder Include="Sounds\" />
-    <Folder Include="Assets\" />
-    <Folder Include="Services\Utils\" />
-    <Folder Include="Resources\de.lproj\" />
-    <Folder Include="Services\Settings\" />
-    <Folder Include="Services\Extensions\" />
-    <Folder Include="Services\Mobile\" />
-    <Folder Include="Services\UserDialogs\" />
-    <Folder Include="Services\BarCode\" />
-    <Folder Include="Resources\fr.lproj\" />
-    <Folder Include="Resources\fi.lproj\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sounds\tap.aif" />
     <Content Include="Assets\Wherigo Tutorial.gwc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WF.Player.Core\Core\WF.Player.Core.iOS.csproj">
-      <Project>{DFD85D7E-251B-4D9E-BF44-2F054386F46F}</Project>
-      <Name>WF.Player.Core.iOS</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="hockeyappios">
@@ -325,5 +490,11 @@
       <Version>1.4.7.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WF.Player.Core\Core\WF.Player.Core.PCL.csproj">
+      <Project>{785d6e09-3bbe-4ddb-ab31-1bff6f3226c4}</Project>
+      <Name>WF.Player.Core.PCL</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

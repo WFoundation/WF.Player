@@ -17,7 +17,6 @@
 using System;
 using Xamarin.Forms;
 using WF.Player.Services.Device;
-using WF.Player.Core;
 using Android.Media;
 using Android.Content;
 
@@ -33,7 +32,7 @@ namespace WF.Player.Droid.Services.Device
 		{
 		}
 
-		public async void PlaySound(Media media)
+		public async void PlaySound(WF.Player.Core.Media media)
 		{
 			if (media == null || media.Data == null || media.Data.Length == 0)
 				return;
