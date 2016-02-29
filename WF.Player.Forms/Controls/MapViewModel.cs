@@ -25,6 +25,7 @@ namespace WF.Player
 	using WF.Player.Controls;
 	using Xamarin.Forms;
 	using Xamarin.Forms.Maps;
+    using Plugin.Geolocator.Abstractions;
 
 	public class MapViewModel : BaseViewModel
 	{
@@ -43,12 +44,12 @@ namespace WF.Player
 		/// <summary>
 		/// The position.
 		/// </summary>
-		private WF.Player.Services.Geolocation.Position position;
+		private Plugin.Geolocator.Abstractions.Position position;
 
 		public MapViewModel()
 		{
 //			Position = App.GPS.LastKnownPosition;
-			visibleRegion = MapSpan.FromCenterAndRadius(new Position(0, 0), Distance.FromMeters(1000));
+			visibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(0, 0), Distance.FromMeters(1000));
 
 			MapOrientation = MapOrientation.NorthUp;
 		}
@@ -116,7 +117,7 @@ namespace WF.Player
 
 					if (map != null)
 					{
-						map.VisibleRegion = MapSpan.FromCenterAndRadius(new Position(startingLocation.Latitude, startingLocation.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+						map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(startingLocation.Latitude, startingLocation.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
 					}
 				}
 			}
@@ -159,7 +160,7 @@ namespace WF.Player
 		/// Gets Position from the actual location.
 		/// </summary>
 		/// <value>The Position.</value>
-		public WF.Player.Services.Geolocation.Position Position
+		public Plugin.Geolocator.Abstractions.Position Position
 		{
 			get
 			{
@@ -168,7 +169,7 @@ namespace WF.Player
 
 			internal set
 			{
-				SetProperty<WF.Player.Services.Geolocation.Position>(ref this.position, value, PositionPropertyName);
+				SetProperty<Plugin.Geolocator.Abstractions.Position>(ref this.position, value, PositionPropertyName);
 			}
 		}
 
@@ -217,7 +218,7 @@ namespace WF.Player
 				pin.Label = name;
 				pin.Address = description;
 				pin.Type = PinType.Place;
-				pin.Position = new Position(pos.Latitude, pos.Longitude);
+				pin.Position = new Xamarin.Forms.Maps.Position(pos.Latitude, pos.Longitude);
 
 				map.Pins.Add(pin);
 			}
@@ -285,13 +286,13 @@ namespace WF.Player
 
 		private void HandleCenterLocation()
 		{
-			if (App.GPS.LastKnownPosition != null)
+			if (App.LastKnownPosition != null)
 			{
-				visibleRegion = MapSpan.FromCenterAndRadius(new Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Distance.FromMeters(1000));
+				visibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.LastKnownPosition.Latitude, App.LastKnownPosition.Longitude), Distance.FromMeters(1000));
 			}
 			else
 			{
-				visibleRegion = MapSpan.FromCenterAndRadius(new Position(0, 0), Distance.FromMeters(1000));
+				visibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(0, 0), Distance.FromMeters(1000));
 			}
 
 			map.MoveToRegion(visibleRegion);
@@ -344,9 +345,9 @@ namespace WF.Player
 				bounds = new WF.Player.Core.CoordBounds(StartingLocation.Longitude, StartingLocation.Latitude, StartingLocation.Longitude, StartingLocation.Latitude);
 			}
 
-			if (App.GPS.LastKnownPosition != null)
+			if (App.LastKnownPosition != null)
 			{
-				bounds.Inflate(new WF.Player.Core.ZonePoint(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude, 0));
+				bounds.Inflate(new WF.Player.Core.ZonePoint(App.LastKnownPosition.Latitude, App.LastKnownPosition.Longitude, 0));
 			}
 
 			visibleRegion = new MapSpan(new Xamarin.Forms.Maps.Position(bounds.Center.Latitude, bounds.Center.Longitude), Math.Abs(bounds.Top - bounds.Bottom) * 1.1, Math.Abs(bounds.Right - bounds.Left) * 1.1);

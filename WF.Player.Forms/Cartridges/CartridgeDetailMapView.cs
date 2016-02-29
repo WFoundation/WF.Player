@@ -20,16 +20,17 @@ using WF.Player.Services.Geolocation;
 
 namespace WF.Player
 {
-	using System;
-	using Vernacular;
-	using WF.Player.Controls;
-	using WF.Player.Core;
-	using Xamarin.Forms;
+    using Plugin.Geolocator;
+    using System;
+    using Vernacular;
+    using WF.Player.Controls;
+    using WF.Player.Utils;
+    using Xamarin.Forms;
 
-	/// <summary>
-	/// Cartridge detail description view.
-	/// </summary>
-	public class CartridgeDetailMapView : CartridgeDetailBasePage
+    /// <summary>
+    /// Cartridge detail description view.
+    /// </summary>
+    public class CartridgeDetailMapView : CartridgeDetailBasePage
 	{
 		private MapViewModel mapViewModel;
 
@@ -48,7 +49,7 @@ namespace WF.Player
 
 			mapViewModel = new MapViewModel();
 
-			mapViewModel.Position = App.GPS.LastKnownPosition;
+			mapViewModel.Position = App.LastKnownPosition;
 
 			var mapView = new MapView(mapViewModel) 
 				{
@@ -70,13 +71,13 @@ namespace WF.Player
 		{
 			base.OnAppearing();
 
-			App.GPS.PositionChanged += OnPositionChanged;
+            CrossGeolocator.Current.PositionChanged += OnPositionChanged;
 
 			if (mapViewModel.Map.VisibleRegion == null)
 			{
-				if (App.GPS.LastKnownPosition != null)
+				if (App.LastKnownPosition != null)
 				{
-					mapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+					mapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.LastKnownPosition.Latitude, App.LastKnownPosition.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
 				}
 				else
 				{
@@ -88,7 +89,7 @@ namespace WF.Player
 					mapViewModel.StartingLocation = ((CartridgeDetailViewModel)BindingContext).StartingLocation;
 					mapViewModel.AddPin(((CartridgeDetailViewModel)BindingContext).StartingLocation, Catalog.GetString("Starting Location"), ((CartridgeDetailViewModel)BindingContext).StartingLocationDescription);
 
-					mapViewModel.Position = new WF.Player.Services.Geolocation.Position(mapViewModel.StartingLocation.Latitude, mapViewModel.StartingLocation.Longitude);
+					mapViewModel.Position = new Plugin.Geolocator.Abstractions.Position(mapViewModel.StartingLocation.ToPosition());
 					mapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(mapViewModel.StartingLocation.Latitude, mapViewModel.StartingLocation.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
 				}
 			}
@@ -96,22 +97,22 @@ namespace WF.Player
 //			mapViewModel.Position = App.GPS.LastKnownPosition;
 		}
 
-		/// <summary>
-		/// Raises the disappearing event.
-		/// </summary>
-		protected override void OnDisappearing()
+        /// <summary>
+        /// Raises the disappearing event.
+        /// </summary>
+        protected override void OnDisappearing()
 		{
 			base.OnDisappearing();
 
-			App.GPS.PositionChanged -= OnPositionChanged;
+			CrossGeolocator.Current.PositionChanged -= OnPositionChanged;
 		}
 
-		/// <summary>
-		/// Handles the position changed event.
-		/// </summary>
-		/// <param name="sender">Sender of event.</param>
-		/// <param name="e">Position changed event arguments.</param>
-		private void OnPositionChanged(object sender, PositionEventArgs e)
+        /// <summary>
+        /// Handles the position changed event.
+        /// </summary>
+        /// <param name="sender">Sender of event.</param>
+        /// <param name="e">Position changed event arguments.</param>
+        private void OnPositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
 		{
 			mapViewModel.Position = e.Position;
 		}

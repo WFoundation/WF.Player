@@ -33,7 +33,7 @@ namespace WF.Player
 		{
 			get
 			{
-				return Encoding.UTF8.GetString(new byte[] { 0xE2, 0x9C, 0x93 });    	// UTF-8 2713
+				return Encoding.UTF8.GetString(new byte[] { 0xE2, 0x9C, 0x93 }, 0, 3);    	// UTF-8 2713
 			}
 		}
 
@@ -44,7 +44,7 @@ namespace WF.Player
 		{
 			get
 			{
-				return Encoding.UTF8.GetString(new byte[] { 0xE2, 0x9C, 0x93 });    	// UTF-8 2713
+				return Encoding.UTF8.GetString(new byte[] { 0xE2, 0x9C, 0x93 }, 0, 3);    	// UTF-8 2713
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace WF.Player
 		{
 			get
 			{
-				return Encoding.UTF8.GetString(new byte[] { 0xE2, 0x9C, 0x97 });  	// UTF-8 2717
+				return Encoding.UTF8.GetString(new byte[] { 0xE2, 0x9C, 0x97 }, 0, 3);  	// UTF-8 2717
 			}
 		}
 
@@ -66,7 +66,7 @@ namespace WF.Player
 		{
 			get
 			{
-				return Encoding.UTF8.GetString(new byte[] { 0xE2, 0x88, 0x9E });  		// UTF-8 221E
+				return Encoding.UTF8.GetString(new byte[] { 0xE2, 0x88, 0x9E }, 0, 3);  		// UTF-8 221E
 			}
 		}
 
@@ -77,7 +77,7 @@ namespace WF.Player
 		{
 			get
 			{
-				return Encoding.UTF8.GetString(new byte[] { 0xE2, 0x9C, 0x93 });    		// UTF-8 2713
+				return Encoding.UTF8.GetString(new byte[] { 0xE2, 0x9C, 0x93 }, 0, 3);    		// UTF-8 2713
 			}
 		}
 	}

@@ -19,19 +19,23 @@ using WF.Player.Controls;
 
 namespace WF.Player
 {
-	using System;
-	using System.IO;
-	using Vernacular;
-	using WF.Player.Core;
-	using WF.Player.Core.Utils;
-	using WF.Player.Models;
-	using WF.Player.Services.Geolocation;
-	using Xamarin.Forms;
-
-	/// <summary>
-	/// Cartridge detail view model.
-	/// </summary>
-	public class CartridgeDetailViewModel : BaseViewModel
+    using Plugin.Compass;
+    using Plugin.Geolocator;
+    using Plugin.Geolocator.Abstractions;
+    using System;
+    using System.IO;
+    using Vernacular;
+    using WF.Player.Core;
+    using WF.Player.Core.Utils;
+    using WF.Player.Models;
+    using WF.Player.Utils;
+    using Xamarin.Forms;
+    using Plugin.Compass.Abstractions;
+    using Plugin.ExternalMaps;
+    using Common;    /// <summary>
+                     /// Cartridge detail view model.
+                     /// </summary>
+    public class CartridgeDetailViewModel : BaseViewModel
 	{
 		/// <summary>
 		/// The name of the name property.
@@ -128,6 +132,16 @@ namespace WF.Player
 		/// </summary>
 		private double distance;
 
+        /// <summary>
+        /// Bearing from actual position to cartridge
+        /// </summary>
+        private double bearing;
+
+        /// <summary>
+        /// Heading of the device 
+        /// </summary>
+        private double heading;
+
 		/// <summary>
 		/// The map view model.
 		/// </summary>
@@ -149,21 +163,23 @@ namespace WF.Player
 			Direction = double.NegativeInfinity;
 			Distance = double.NegativeInfinity;
 
-			if (App.GPS.LastKnownPosition != null)
+			if (App.LastKnownPosition != null)
 			{
-				HandlePositionChanged(this, new PositionEventArgs(App.GPS.LastKnownPosition));
+				HandlePositionChanged(this, new PositionEventArgs(App.LastKnownPosition));
 			}
+
+            CheckSavefiles();
 		}
 
-		#endregion
+        #endregion
 
-		#region Properties
+        #region Properties
 
-		/// <summary>
-		/// Gets the cartridge name.
-		/// </summary>
-		/// <value>The name.</value>
-		public string Name
+        /// <summary>
+        /// Gets the cartridge name.
+        /// </summary>
+        /// <value>The name.</value>
+        public string Name
 		{
 			get
 			{
@@ -210,17 +226,11 @@ namespace WF.Player
 			}
 		}
 
-		/// <summary>
-		/// Gets a value indicating whether this cartridge has a save file.
-		/// </summary>
-		/// <value><c>true</c> if this cartridge has a save file; otherwise, <c>false</c>.</value>
-		public bool HasSaveFile
-		{ 
-			get
-			{ 
-				return File.Exists(cartridgeTag.Cartridge.SaveFilename); 
-			}
-		}
+        /// <summary>
+        /// Gets a value indicating whether this cartridge has a save file.
+        /// </summary>
+        /// <value><c>true</c> if this cartridge has a save file; otherwise, <c>false</c>.</value>
+        public bool HasSaveFile;
 
 		/// <summary>
 		/// Gets the starting location.
@@ -363,12 +373,10 @@ namespace WF.Player
 		{
 			get
 			{
-				return new Xamarin.Forms.Command(() =>
+				return new Xamarin.Forms.Command(async () =>
 					{
-						// Cartridge location
-						var routing = DependencyService.Get<IRouting>();
-
-						routing.StartRouting(cartridgeTag.Cartridge.Name, new Position(cartridgeTag.Cartridge.StartingLocationLatitude, cartridgeTag.Cartridge.StartingLocationLongitude));
+                        // Cartridge location
+                        var success = await CrossExternalMaps.Current.NavigateTo(cartridgeTag.Cartridge.Name, cartridgeTag.Cartridge.StartingLocationLatitude, cartridgeTag.Cartridge.StartingLocationLongitude);
 					});
 			}
 		}
@@ -442,26 +450,30 @@ namespace WF.Player
 		/// <summary>
 		/// Raises the appearing event.
 		/// </summary>
-		public override void OnAppearing()
+		public override async void OnAppearing()
 		{
 			// Is GPS running?
-			if (!App.GPS.IsListening)
+			if (!CrossGeolocator.Current.IsListening)
 			{
-				// Start listening when app is on screen
-				App.GPS.StartListening(500, 2.0, true);
+                // Start listening when app is on screen
+                await CrossGeolocator.Current.StartListeningAsync(500, 2.0, true);
+                CrossCompass.Current.Start();
 			}
 
-			App.GPS.PositionChanged += HandlePositionChanged;
-			App.GPS.HeadingChanged += HandlePositionChanged;
+            CrossGeolocator.Current.PositionChanged += HandlePositionChanged;
+			CrossCompass.Current.CompassChanged += HandleHeadingChanged;
 		}
 
-		/// <summary>
-		/// Raises the disappearing event.
-		/// </summary>
-		public override void OnDisappearing()
+        /// <summary>
+        /// Raises the disappearing event.
+        /// </summary>
+        public override async void OnDisappearing()
 		{
-			App.GPS.HeadingChanged -= HandlePositionChanged;
-			App.GPS.PositionChanged -= HandlePositionChanged;
+            CrossCompass.Current.CompassChanged -= HandleHeadingChanged;
+            CrossGeolocator.Current.PositionChanged -= HandlePositionChanged;
+
+            CrossCompass.Current.Stop();
+            await CrossGeolocator.Current.StopListeningAsync();
 		}
 
 		#endregion
@@ -473,22 +485,28 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="sender">Sender of event.</param>
 		/// <param name="e">Position event arguments.</param>
-		private void HandlePositionChanged(object sender, WF.Player.Services.Geolocation.PositionEventArgs e)
+		private void HandlePositionChanged(object sender, PositionEventArgs e)
 		{
-			double heading = 0;
-
-			if (e.Position.Heading != null)
-			{
-				// Show always to north
-				heading = 360.0 - (double)e.Position.Heading;
-			}
-
 			var vec = geoMathHelper.VectorToPoint(new ZonePoint(e.Position.Latitude, e.Position.Longitude, 0), target);
 
-			Direction = (double)((vec.Bearing + heading) % 360);
+            bearing = vec.Bearing ?? 0;
+
+			Direction = (double)((bearing + heading) % 360);
 			Distance = vec.Distance.Value;
 		}
 
-		#endregion
-	}
+        private void HandleHeadingChanged(object sender, CompassChangedEventArgs e)
+        {
+            heading = e.Heading;
+
+            Direction = (double)((bearing + heading) % 360);
+        }
+
+        private async void CheckSavefiles()
+        {
+            HasSaveFile = await Storage.Current.FileExistsAsync(Path.Combine(App.PathForSavegames, cartridgeTag.Cartridge.SaveFilename));
+        }
+
+        #endregion
+    }
 }

@@ -1,0 +1,6 @@
+To compile Lua for Android with Android-NDK
+
+1. Install Android-NDK with dependencies (for example Cygwin for Windows)
+2. Open a command line and go to this directory
+3. Compile the libraries by <Android-NDK path>/ndk-build
+4. Ready compiled libraries are placed in directory libs

@@ -16,18 +16,20 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace WF.Player.Models
 {
-	using System;
-	using System.Collections.Generic;
-	using System.ComponentModel;
-	using System.IO;
-	using System.Linq;
-	using WF.Player.Core;
-	using WF.Player.Core.Formats;
-	using Xamarin.Forms;
-	/// <summary>
-	/// Provides a static metadata description and cache of a Cartridge.
-	/// </summary>
-	public class CartridgeTag : INotifyPropertyChanged
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.IO;
+    using System.Linq;
+    using WF.Player.Core;
+    using WF.Player.Core.Formats;
+    using Xamarin.Forms;
+    using PCLStorage;
+    using Common;
+    /// <summary>
+    /// Provides a static metadata description and cache of a Cartridge.
+    /// </summary>
+    public class CartridgeTag : INotifyPropertyChanged
 	{
 		#region Constants
 
@@ -212,26 +214,36 @@ namespace WF.Player.Models
 
 		#region Cartridge
 
-		public void Remove()
+		public async void Remove()
 		{
 			var cartridgeFile = Cartridge.Filename;
 			var cartridgeSave = Cartridge.SaveFilename;
 			var cartridgeLog = Cartridge.LogFilename;
 
-			if (File.Exists(cartridgeLog))
+            ExistenceCheckResult found;
+            IFile file;
+
+            found = await FileSystem.Current.LocalStorage.CheckExistsAsync(cartridgeLog);
+			if (found == ExistenceCheckResult.FileExists)
 			{
-				File.Delete(cartridgeLog);
+				file = await FileSystem.Current.LocalStorage.GetFileAsync(cartridgeLog);
+                await file.DeleteAsync();
+
 			}
 
-			if (File.Exists(cartridgeSave))
-			{
-				File.Delete(cartridgeSave);
-			}
+            found = await FileSystem.Current.LocalStorage.CheckExistsAsync(cartridgeSave);
+            if (found == ExistenceCheckResult.FileExists)
+            {
+                file = await FileSystem.Current.LocalStorage.GetFileAsync(cartridgeSave);
+                await file.DeleteAsync();
+            }
 
-			if (File.Exists(cartridgeFile))
-			{
-				File.Delete(cartridgeFile);
-			}
+            found = await FileSystem.Current.LocalStorage.CheckExistsAsync(cartridgeFile);
+            if (found == ExistenceCheckResult.FileExists)
+            {
+                file = await FileSystem.Current.LocalStorage.GetFileAsync(cartridgeFile);
+                await file.DeleteAsync();
+            }
 
 			this.RaisePropertyChanged("Removed");
 		}
@@ -300,13 +312,22 @@ namespace WF.Player.Models
 				"{0}.{1:yyyyMMddHHmmss}.gwl",
 				Path.GetFileNameWithoutExtension(Cartridge.Filename),
 				DateTime.Now.ToLocalTime());
-			// Create log path
-			if (!Directory.Exists(App.PathForLogs))
+            // Create log path
+            var found = PCLStorage.FileSystem.Current.LocalStorage.CheckExistsAsync(App.PathForLogs);
+            found.RunSynchronously();
+
+			if (found.Result == ExistenceCheckResult.NotFound)
 			{
-				Directory.CreateDirectory(App.PathForLogs);
+                var dir = PCLStorage.FileSystem.Current.LocalStorage.CreateFolderAsync(App.PathForLogs, CreationCollisionOption.ReplaceExisting);
+                dir.RunSynchronously();
 			}
-			// Creates a logger for this file.
-			return new GWL(new FileStream(Path.Combine(App.PathForLogs, filename), FileMode.Create));
+            // Creates a logger for this file.
+            var openFile = PCLStorage.FileSystem.Current.LocalStorage.CreateFileAsync(Path.Combine(App.PathForLogs, filename), CreationCollisionOption.ReplaceExisting);
+            openFile.RunSynchronously();
+            var file = openFile.Result.OpenAsync(PCLStorage.FileAccess.ReadAndWrite);
+            file.RunSynchronously();
+
+            return new GWL(file.Result);
 		}
 		/// <summary>
 		/// Removes the log file.
@@ -315,15 +336,25 @@ namespace WF.Player.Models
 		/// <param name="filename">Filename of log file to delete.</param>
 		public bool RemoveLogFile(string filename)
 		{
-			// Get path for savegames
-			var dir = new DirectoryInfo(App.PathForLogs);
-			var file = dir.GetFiles().SingleOrDefault((f) => f.Name.StartsWith(filename, StringComparison.InvariantCulture));
-			if (file != null)
-			{
-				file.Delete();
-				return true;
-			}
-			return false;
+			// Get path for logs
+			var dir = PCLStorage.FileSystem.Current.LocalStorage.GetFolderAsync(App.PathForLogs);
+            dir.RunSynchronously();
+
+            var files = dir.Result.GetFilesAsync();
+            files.RunSynchronously();
+
+            foreach(var file in files.Result)
+            {
+                if (file.Name.StartsWith(filename, StringComparison.OrdinalIgnoreCase))
+                {
+                    var deleteFile = PCLStorage.FileSystem.Current.LocalStorage.GetFileAsync(file.Name);
+                    deleteFile.RunSynchronously();
+
+                    deleteFile.Result.DeleteAsync().RunSynchronously();
+                }
+            }
+
+            return files.Result != null;
 		}
 
 		#endregion
@@ -333,21 +364,25 @@ namespace WF.Player.Models
 		/// <summary>
 		/// Imports the savegames.
 		/// </summary>
-		private void ImportSavegames()
+		private async void ImportSavegames()
 		{
 			List<CartridgeSavegame> savegames = new List<CartridgeSavegame>();
+
 			// Get path for savegames
-			var dir = new DirectoryInfo(App.PathForSavegames);
+			var dir = await PCLStorage.FileSystem.Current.GetFolderFromPathAsync(App.PathForSavegames);
+
 			// Get cartridge filename without extension
 			var cartFilename = Path.GetFileNameWithoutExtension(Cartridge.Filename);
-			// Get all files, which start with the same string as cartridge filename and end with gws
-			var files = dir.GetFiles().Where((f) => f.FullName.StartsWith(cartFilename, StringComparison.InvariantCultureIgnoreCase) && f.FullName.EndsWith(".gws", StringComparison.InvariantCultureIgnoreCase));
+
+            // Get all files, which start with the same string as cartridge filename and end with gws
+            var files = await PCLStorage.FileSystem.Current.LocalStorage.GetFilesAsync();
+
 			// For each file, imports its metadata.
-			foreach (var file in files)
+			foreach (var file in files.Where<IFile>((f) => f.Name.StartsWith(cartFilename, StringComparison.OrdinalIgnoreCase) && f.Name.EndsWith(".gws", StringComparison.OrdinalIgnoreCase)))
 			{
 				try
 				{
-					var cs = CartridgeSavegame.FromStore(this, file.FullName);
+					var cs = CartridgeSavegame.FromStore(this, file.Name);
 					// Only add savegame, if it belongs to this cartridge
 					if (cs.Metadata.CartridgeName == Cartridge.Name && cs.Metadata.CartridgeCreateDate == Cartridge.CreateDate)
 					{

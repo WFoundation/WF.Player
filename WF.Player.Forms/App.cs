@@ -16,29 +16,28 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using WF.Player.Services;
-using WF.Player.Services.UserDialogs;
 using Vernacular;
 using WF.Player.Core;
 using System.Diagnostics;
 
 namespace WF.Player
 {
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Linq;
-	using WF.Player.Controls;
-	using WF.Player.Interfaces;
-	using WF.Player.Models;
-	using WF.Player.Services.Settings;
-	using WF.Player.Services.Device;
-	using WF.Player.Services.Geolocation;
-	using Xamarin.Forms;
-
-	/// <summary>
-	/// Forms app.
-	/// </summary>
-	public class App : Application
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using WF.Player.Controls;
+    using WF.Player.Interfaces;
+    using WF.Player.Models;
+    using WF.Player.Services.Settings;
+    using WF.Player.Services.Device;
+    using Xamarin.Forms;
+    using Common;
+    using Plugin.Geolocator;
+    using Plugin.Geolocator.Abstractions;/// <summary>
+                                         /// Forms app.
+                                         /// </summary>
+    public class App : Application
 	{
 		/// <summary>
 		/// The game model.
@@ -92,6 +91,8 @@ namespace WF.Player
 			PathCartridges = platformHelper.PathForFiles;
 			PathDatabase = platformHelper.PathForDatabase;
 
+            CrossGeolocator.Current.DesiredAccuracy = 1.0;
+
 			MainPage = GetMainPage();
 		}
 
@@ -124,11 +125,16 @@ namespace WF.Player
 		/// </summary>
 		public static ExtendedNavigationPage GameNavigation;
 
-		/// <summary>
-		/// Gets or sets the game.
-		/// </summary>
-		/// <value>The game.</value>
-		public static GameModel Game
+        /// <summary>
+        /// Property for last known position of GPS
+        /// </summary>
+        public static Position LastKnownPosition;
+
+        /// <summary>
+        /// Gets or sets the game.
+        /// </summary>
+        /// <value>The game.</value>
+        public static GameModel Game
 		{
 			get
 			{
@@ -141,25 +147,6 @@ namespace WF.Player
 				{
 					gameModel = value;
 				}
-			}
-		}
-
-		/// <summary>
-		/// Gets the GP.
-		/// </summary>
-		/// <value>The GP.</value>
-		public static IGeolocator GPS
-		{
-			get
-			{
-				if (gps == null)
-				{
-					gps = DependencyService.Get<IGeolocator>();
-					gps.DesiredAccuracy = double.PositiveInfinity;
-					gps.StartListening(500, 2.0, true);
-				}
-
-				return gps;
 			}
 		}
 
@@ -214,119 +201,25 @@ namespace WF.Player
 			}
 		}
 
-		/// <summary>
-		/// Gets the cartridge path.
-		/// </summary>
-		/// <remarks>If there is no entry in the prefs up to now, the tutorial 
-		/// will be copied to the new selected place.</remarks>
-		/// <value>The cartridge path.</value>
-		public static string PathForCartridges
-		{
-			get
-			{
-				string cartridgePath = Settings.Current.GetValueOrDefault<string>(Settings.CartridgePathKey);
+        /// <summary>
+        /// Gets the cartridge path.
+        /// </summary>
+        /// <remarks>If there is no entry in the prefs up to now, the tutorial 
+        /// will be copied to the new selected place.</remarks>
+        /// <value>The cartridge path.</value>
+        public static string PathForCartridges;
 
-				// Did we find a path in the preferences?
-				if (!string.IsNullOrEmpty(cartridgePath) && Directory.Exists(cartridgePath) != null)
-				{
-					return cartridgePath;
-				}
+        /// <summary>
+        /// Gets the log path.
+        /// </summary>
+        /// <value>The log path.</value>
+        public static string PathForLogs;
 
-				// We now start the first time, so get correct path and copy tutorial
-
-				#if __ANDROID__
-				// Get path to default external storage and get all directories in this default external storage
-				var extDirs = Directory.GetDirectories(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath);
-
-
-				// Look for the default WF.Player directory
-				foreach (var entry in extDirs)
-				{
-					if (entry.EndsWith("WF.Player", StringComparison.InvariantCultureIgnoreCase))
-					{
-						cartridgePath = entry;
-					}
-				}
-
-				// If we don't find an entry, than there is perhaps a WhereYouGo directory
-				if (string.IsNullOrEmpty(cartridgePath))
-				{
-					foreach (var entry in extDirs)
-					{
-						if (entry.EndsWith("WhereYouGo", StringComparison.InvariantCultureIgnoreCase))
-						{
-							cartridgePath = entry;
-						}
-					}
-				}
-
-				// There was no cartridge folder up to now, so create one
-				if (string.IsNullOrEmpty(cartridgePath) && !Directory.Exists(cartridgePath))
-				{
-					cartridgePath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, "WF.Player");
-					Directory.CreateDirectory(cartridgePath);
-				}
-				#endif
-				#if __IOS__
-				// iOS have a default folder for the app
-				cartridgePath = PathCartridges;
-				#endif
-
-				// Save path
-				Settings.Current.AddOrUpdateValue<string>(Settings.CartridgePathKey, cartridgePath);
-
-				return cartridgePath;
-			}
-		}
-
-		/// <summary>
-		/// Gets the log path.
-		/// </summary>
-		/// <value>The log path.</value>
-		public static string PathForLogs
-		{
-			get
-			{
-				var logsFolder = Path.Combine(PathCartridges, "Logs");
-
-				if (!Directory.Exists(logsFolder))
-				{
-					Directory.CreateDirectory(logsFolder);
-				}
-
-				return logsFolder;
-			}
-		}
-
-		/// <summary>
+        /// <summary>
 		/// Gets the path for savegames.
 		/// </summary>
 		/// <value>The path for savegames.</value>
-		public static string PathForSavegames
-		{
-			get
-			{
-				var cartridgePath = PathForCartridges;
-//				var cartridgeDir = new Acr.XamForms.Mobile.IO.Directory(cartridgePath);
-//				Acr.XamForms.Mobile.IO.IDirectory savegameDir = null;
-//
-//				foreach (var dir in new Acr.XamForms.Mobile.IO.Directory(cartridgePath).Directories)
-//				{
-//					if (dir.Name.ToLower().Equals("savegames"))
-//					{
-//						savegameDir = dir;
-//					}
-//				}
-//
-//				if (savegameDir == null)
-//				{
-//					savegameDir = cartridgeDir.CreateSubdirectory("Savegames");
-//				}
-//
-//				return savegameDir.FullName;
-				return cartridgePath;
-			}
-		}
+		public static string PathForSavegames;
 
 		#endregion
 
@@ -387,33 +280,106 @@ namespace WF.Player
 			Application.Current.Resources = resources;
 		}
 
-		public static void CheckFolder()
+		public static async void CheckFolder()
 		{
-			// If there isn't any gwc file in the path,
-			// than copy Wherigo Tutorial to cartridges folder
-			var files = Directory.GetFiles(PathForCartridges);
+            // Set starting values for folders
+            string cartridgePath = Settings.Current.GetValueOrDefault<string>(Settings.CartridgePathKey);
 
-			if (files == null || !files.Any((file) => Path.GetExtension(file).EndsWith("gwc", StringComparison.InvariantCultureIgnoreCase)))
-			{
-				#if __ANDROID__
-				using (var input = Forms.Context.Assets.Open("Wherigo Tutorial.gwc"))
-				#endif
-				#if __IOS__
-				using (var input = File.OpenRead(Path.Combine("Assets", "Wherigo Tutorial.gwc")))
-				#endif
+            // Did we find a path in the preferences?
+            //if (!string.IsNullOrEmpty(cartridgePath))
+            //{
+            //    if (await Storage.Current.FileExists(cartridgePath))
+            //    {
+            //        App.PathForCartridges = cartridgePath;
+            //    }
+            //}
+
+            if (string.IsNullOrEmpty(App.PathForCartridges))
+            {
+                // We now start the first time, so get correct path and copy tutorial
+
+#if __ANDROID__
+				// Get path to default external storage and get all directories in this default external storage
+				var extDirs = Directory.GetDirectories(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath);
+
+
+				// Look for the default WF.Player directory
+				foreach (var entry in extDirs)
 				{
-					var output = new FileStream(Path.Combine(PathCartridges, "Wherigo Tutorial.gwc"),FileMode.Create);
-
-					input.CopyTo(output);
-
-					output.Flush();
-					output.Close();
-
-					if (App.Navigation != null && App.Navigation.CurrentPage is CartridgeListPage)
+					if (entry.EndsWith("WF.Player", StringComparison.InvariantCultureIgnoreCase))
 					{
-						((CartridgeListPage)App.Navigation.CurrentPage).RefreshCommand.Execute(null);
+						cartridgePath = entry;
 					}
 				}
+
+				// If we don't find an entry, than there is perhaps a WhereYouGo directory
+				if (string.IsNullOrEmpty(cartridgePath))
+				{
+					foreach (var entry in extDirs)
+					{
+						if (entry.EndsWith("WhereYouGo", StringComparison.InvariantCultureIgnoreCase))
+						{
+							cartridgePath = entry;
+						}
+					}
+				}
+
+				// There was no cartridge folder up to now, so create one
+				if (string.IsNullOrEmpty(cartridgePath) && !Directory.Exists(cartridgePath))
+				{
+					cartridgePath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, "WF.Player");
+					Directory.CreateDirectory(cartridgePath);
+				}
+#endif
+#if __IOS__
+				// iOS have a default folder for the app
+				cartridgePath = PathCartridges;
+#endif
+#if __WINPHONE8__
+                cartridgePath = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+#endif
+
+                // Now we have a valid cartridge path
+                App.PathForCartridges = cartridgePath;
+            }
+
+            App.PathForSavegames = App.PathForCartridges;
+            App.PathForLogs = App.PathForCartridges;
+
+            // Save for later use
+            Settings.Current.AddOrUpdateValue<string>(Settings.CartridgePathKey, App.PathForCartridges);
+
+            // If there isn't any gwc file in the path,
+            // than copy Wherigo Tutorial to cartridges folder
+            var dir = await PCLStorage.FileSystem.Current.GetFolderFromPathAsync(PathForCartridges);
+            var files = await dir.GetFilesAsync();
+
+			if (files == null || !files.Any((file) => Path.GetExtension(file.Name).EndsWith("gwc", StringComparison.OrdinalIgnoreCase)))
+			{
+#if __ANDROID__
+				using (var input = Forms.Context.Assets.Open("Wherigo Tutorial.gwc"))
+#endif
+#if __IOS__
+				using (var input = File.OpenRead(Path.Combine("Assets", "Wherigo Tutorial.gwc")))
+#endif
+#if __WINPHONE8__
+                Windows.Storage.StorageFile winFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Wherigo Tutorial.gwc"));
+                using (var input = await winFile.OpenStreamForReadAsync())
+#endif
+                {
+                    var file = await dir.CreateFileAsync("Wherigo Tutorial.gwc", PCLStorage.CreationCollisionOption.ReplaceExisting);
+                    var output = await file.OpenAsync(PCLStorage.FileAccess.ReadAndWrite);
+
+                    input.CopyTo(output);
+
+                    output.Flush();
+                    output.Dispose();
+
+                    if (App.Navigation != null && App.Navigation.CurrentPage is CartridgeListPage)
+                    {
+                        ((CartridgeListPage)App.Navigation.CurrentPage).RefreshCommand.Execute(null);
+                    }
+                }
 			}
 		}
 
@@ -443,13 +409,13 @@ namespace WF.Player
 			}
 		}
 
-		#endregion
+#endregion
 
-		#region Events
+#region Events
 
-		protected override void OnSleep()
+		protected override async void OnSleep()
 		{
-			Console.WriteLine("OnSleep");
+            System.Diagnostics.Debug.WriteLine("OnSleep");
 
 			base.OnSleep();
 
@@ -467,23 +433,23 @@ namespace WF.Player
 			}
 
 			// Deactivate GPS when app leaves screen
-			if (GPS.IsListening)
+			if (CrossGeolocator.Current.IsListening)
 			{
-				GPS.StopListening();
+                await CrossGeolocator.Current.StopListeningAsync();
 			}
 
 		}
 
-		protected override void OnResume()
+		protected override async void OnResume()
 		{
-			Console.WriteLine("OnResume");
+            System.Diagnostics.Debug.WriteLine("OnResume");
 
 			base.OnResume();
 
-			if (!GPS.IsListening)
+			if (!CrossGeolocator.Current.IsListening)
 			{
-				// Start listening when app is on screen
-				GPS.StartListening(500, 2.0, true);
+                // Start listening when app is on screen
+                await CrossGeolocator.Current.StartListeningAsync(500, 2.0, true);
 			}
 
 			if (App.Game != null)
@@ -499,6 +465,6 @@ namespace WF.Player
 			}
 		}
 
-		#endregion
+#endregion
 	}
 }

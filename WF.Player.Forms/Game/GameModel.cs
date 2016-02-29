@@ -21,23 +21,25 @@ using System.Text.RegularExpressions;
 
 namespace WF.Player
 {
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Threading;
-	using WF.Player.Core;
-	using WF.Player.Core.Engines;
-	using WF.Player.Core.Formats;
-	using WF.Player.Models;
-	using WF.Player.Services.Device;
-	using WF.Player.Services.Geolocation;
-	using WF.Player.Services.Settings;
-	using Xamarin.Forms;
+    using Common;
+    using Plugin.Geolocator;
+    using Plugin.Geolocator.Abstractions;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Threading;
+    using WF.Player.Core;
+    using WF.Player.Core.Engines;
+    using WF.Player.Core.Formats;
+    using WF.Player.Models;
+    using WF.Player.Services.Device;
+    using WF.Player.Services.Settings;
+    using Xamarin.Forms;
 
-	/// <summary>
-	/// Game model.
-	/// </summary>
-	public class GameModel
+    /// <summary>
+    /// Game model.
+    /// </summary>
+    public class GameModel
 	{
 		/// <summary>
 		/// The cartridge tag.
@@ -250,15 +252,16 @@ namespace WF.Player
 			// Create Engine
 			await this.CreateEngine(this.cartridgeTag.Cartridge);
 
-			var pos = App.GPS.LastKnownPosition ?? new Position(0, 0);
-			this.engine.RefreshLocation(pos.Latitude, pos.Longitude, pos.Altitude ?? 0, pos.Accuracy ?? double.NaN);
+			var pos = App.LastKnownPosition ?? new Position();
+			this.engine.RefreshLocation(pos.Latitude, pos.Longitude, pos.Altitude, pos.Accuracy);
 
-			App.GPS.PositionChanged += this.OnPositionChanged;
+            CrossGeolocator.Current.PositionChanged += this.OnPositionChanged;
 
-			// If there is a valid savefile, than open it
-			if (savegame != null && File.Exists(Path.Combine(App.PathForSavegames, savegame.Filename)))
+            // If there is a valid savefile, than open it
+            var stream = await Storage.Current.GetStreamForReading(Storage.Current.GetFullnameForSavegame(savegame.Filename));
+			if (stream != null)
 			{
-				await System.Threading.Tasks.Task.Run(() => this.engine.Restore(new FileStream(savegame.Filename, FileMode.Open)));
+				await System.Threading.Tasks.Task.Run(() => this.engine.Restore(stream));
 			}
 			else
 			{
@@ -286,10 +289,10 @@ namespace WF.Player
 		{
 			if (this.engine != null)
 			{
-				var pos = App.GPS.LastKnownPosition;
+				var pos = App.LastKnownPosition;
 				if (pos != null)
 				{
-					this.engine.RefreshLocation(pos.Latitude, pos.Longitude, pos.Altitude ?? 0, pos.Accuracy ?? double.NaN);
+					this.engine.RefreshLocation(pos.Latitude, pos.Longitude, pos.Altitude, pos.Accuracy);
 				}
 				this.engine.Resume();
 			}
@@ -311,11 +314,16 @@ namespace WF.Player
 
 			if (autosaving)
 			{
-				filename = Path.Combine(App.PathForSavegames, "autosave.gws");
+				filename = Storage.Current.GetFullnameForSavegame("autosave.gws");
 			}
 
-			// Save game
-			this.engine.Save(new FileStream(filename, FileMode.Create), name);
+            // Save game
+            var createFile = PCLStorage.FileSystem.Current.GetFileFromPathAsync(filename);
+            createFile.RunSynchronously();
+            var file = createFile.Result.OpenAsync(PCLStorage.FileAccess.ReadAndWrite);
+            file.RunSynchronously();
+
+			this.engine.Save(file.Result, name);
 
 			// Add savegame, which is now in store, to cartridge tag
 			if (!autosaving)
@@ -347,26 +355,29 @@ namespace WF.Player
 		{
 			var cs = this.Save("Autosave", true);
 
-			Settings.Current.AddOrUpdateValue<string>(Settings.AutosaveGWSKey, Path.Combine(App.PathForSavegames, "autosave.gws"));
+			Settings.Current.AddOrUpdateValue<string>(Settings.AutosaveGWSKey, Storage.Current.GetFullnameForSavegame("autosave.gws"));
 			Settings.Current.AddOrUpdateValue<string>(Settings.AutosaveGWCKey, this.cartridgeTag.Cartridge.Filename);
 		}
 
 		/// <summary>
 		/// Delete autosave information and file.
 		/// </summary>
-		public void AutoRemove()
+		public async void AutoRemove()
 		{
 			if (string.IsNullOrEmpty(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey)))
 			{
 				return;
 			}
 
-			var filename = Path.Combine(App.PathForSavegames, Path.GetFileName(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey)));
+			var filename = Storage.Current.GetFullnameForSavegame(Path.GetFileName(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey)));
 
-			// Delete files
-			if (File.Exists(filename))
+            // Delete files
+            var fileExists = await PCLStorage.FileSystem.Current.LocalStorage.CheckExistsAsync(filename);
+
+			if (fileExists == PCLStorage.ExistenceCheckResult.FileExists)
 			{
-				File.Delete(filename);
+                var file = await PCLStorage.FileSystem.Current.LocalStorage.GetFileAsync(filename);
+                await file.DeleteAsync();
 			}
 
 			// Delete entries in preferences
@@ -609,7 +620,7 @@ namespace WF.Player
 			// If we are no longer playing
 			if (this.engine == null || (this.engine.GameState != EngineGameState.Playing && this.engine.GameState != EngineGameState.Starting && this.engine.GameState != EngineGameState.Restoring))
 			{
-				Console.WriteLine(this.engine.GameState.ToString());
+                System.Diagnostics.Debug.WriteLine(this.engine.GameState.ToString());
 				return;
 			}
 
@@ -1013,8 +1024,8 @@ namespace WF.Player
 				this.logFile.TryWriteLogEntry(this.logLevel, message, this.engine);
 			}
 
-			// TODO: Remove
-			Console.WriteLine(message);
+            // TODO: Remove
+            System.Diagnostics.Debug.WriteLine(message);
 		}
 
 		/// <summary>
@@ -1060,7 +1071,10 @@ namespace WF.Player
 			this.logFile = this.cartridgeTag.CreateLogFile();
 			this.logFile.MinimalLogLevel = this.logLevel;
 
-			await System.Threading.Tasks.Task.Run(() => this.engine.Init(new FileStream(Path.Combine(App.PathCartridges, Path.GetFileName(cartridge.Filename)), FileMode.Open), cartridge));
+            var openFile = await PCLStorage.FileSystem.Current.LocalStorage.GetFileAsync(Path.Combine(App.PathCartridges, Path.GetFileName(cartridge.Filename)));
+            var file = await openFile.OpenAsync(PCLStorage.FileAccess.Read);
+
+			await System.Threading.Tasks.Task.Run(() => this.engine.Init(file, cartridge));
 		}
 
 		/// <summary>
@@ -1137,7 +1151,7 @@ namespace WF.Player
 		{
 			if (this.engine != null && e != null && e.Position != null)
 			{
-				System.Threading.Tasks.Task.Run(() => this.engine.RefreshLocation(e.Position.Latitude, e.Position.Longitude, (double)(e.Position.Altitude ?? double.NaN), (double)(e.Position.Accuracy ?? double.NaN)));
+				System.Threading.Tasks.Task.Run(() => this.engine.RefreshLocation(e.Position.Latitude, e.Position.Longitude, e.Position.Altitude, e.Position.Accuracy));
 			}
 		}
 

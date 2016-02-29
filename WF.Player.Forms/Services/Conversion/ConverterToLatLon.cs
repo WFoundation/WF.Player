@@ -18,15 +18,15 @@
 
 namespace WF.Player
 {
-	using System;
-	using System.Globalization;
-	using WF.Player.Services.Geolocation;
-	using Xamarin.Forms;
+    using Plugin.Geolocator.Abstractions;
+    using System;
+    using System.Globalization;
+    using Xamarin.Forms;
 
-	/// <summary>
-	/// Converter to lat lon.
-	/// </summary>
-	public class ConverterToLatLon : IValueConverter
+    /// <summary>
+    /// Converter to lat lon.
+    /// </summary>
+    public class ConverterToLatLon : IValueConverter
 	{
 		/// <param name="value">Value to convert.</param>
 		/// <param name="targetType">Type of value to convert.</param>

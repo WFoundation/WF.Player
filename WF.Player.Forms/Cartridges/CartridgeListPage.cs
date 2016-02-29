@@ -24,18 +24,19 @@ using System.Linq;
 
 namespace WF.Player
 {
-	using System.ComponentModel;
-	using System.Threading.Tasks;
-	using Vernacular;
-	using WF.Player.Controls;
-	using WF.Player.Models;
-	using WF.Player.Services.Device;
-	using Xamarin.Forms;
+    using Common;
+    using System.ComponentModel;
+    using System.Threading.Tasks;
+    using Vernacular;
+    using WF.Player.Controls;
+    using WF.Player.Models;
+    using WF.Player.Services.Device;
+    using Xamarin.Forms;
 
-	/// <summary>
-	/// Cartridge list page.
-	/// </summary>
-	public class CartridgeListPage : ContentPage, INotifyPropertyChanged
+    /// <summary>
+    /// Cartridge list page.
+    /// </summary>
+    public class CartridgeListPage : ContentPage, INotifyPropertyChanged
 	{
 		/// <summary>
 		/// The cartridges.
@@ -218,7 +219,7 @@ namespace WF.Player
 		/// <summary>
 		/// Raises the appearing event.
 		/// </summary>
-		protected override void OnAppearing()
+		protected override async void OnAppearing()
 		{
 			base.OnAppearing();
 
@@ -233,14 +234,11 @@ namespace WF.Player
 			else
 			{
 				// If an auto save file exists, delete it
-				var filename = Path.Combine(App.PathForSavegames, "autosave.gws");
-
-				if (File.Exists(filename))
-				{
-					File.Delete(filename);
-				}
-			}
-		}
+				Storage.Current.RemoveFile(Storage.Current.GetFullnameForSavegame("autosave.gws"));
+                Settings.Current.Remove(Settings.AutosaveGWSKey);
+                Settings.Current.Remove(Settings.AutosaveGWCKey);
+            }
+        }
 
 		/// <summary>
 		/// Handle back button pressed event on devices, that have one.
@@ -260,10 +258,13 @@ namespace WF.Player
 
 		private static async void HandleAutosave()
 		{
-			var gwcFilename = Path.Combine(App.PathForCartridges, Path.GetFileName(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWCKey)));
-			var gwsFilename = Path.Combine(App.PathForSavegames, Path.GetFileName(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey)));
+			var gwcFilename = Storage.Current.GetFullnameForCartridge(Path.GetFileName(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWCKey)));
+			var gwsFilename = Storage.Current.GetFullnameForSavegame(Path.GetFileName(Settings.Current.GetValueOrDefault<string>(Settings.AutosaveGWSKey)));
 
-			if (!File.Exists(gwsFilename) || !File.Exists(gwcFilename))
+            var foundGWSFile = await Storage.Current.FileExistsAsync(gwsFilename);
+            var foundGWCFile = await Storage.Current.FileExistsAsync(gwcFilename);
+
+            if (!foundGWSFile || !foundGWCFile)
 			{
 				// Remove settings
 				Settings.Current.Remove(Settings.AutosaveGWCKey);
@@ -294,9 +295,13 @@ namespace WF.Player
 			}
 			else
 			{
-				// Remove file from directory
-				File.Delete(gwsFilename);
-			}
+                // Remove file from directory
+                var file = await PCLStorage.FileSystem.Current.LocalStorage.GetFileAsync(gwsFilename);
+                if (file != null)
+                {
+                    await file.DeleteAsync();
+                }
+            }
 
 			// Remove settings
 			Settings.Current.Remove(Settings.AutosaveGWCKey);

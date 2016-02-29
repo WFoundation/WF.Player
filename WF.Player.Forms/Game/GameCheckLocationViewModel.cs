@@ -18,16 +18,16 @@
 
 namespace WF.Player
 {
-	using Vernacular;
-	using WF.Player.Models;
-	using WF.Player.Services.Device;
-	using WF.Player.Services.Geolocation;
-	using Xamarin.Forms;
+    using Plugin.Geolocator;
+    using Plugin.Geolocator.Abstractions;
+    using Vernacular;
+    using WF.Player.Models;
+    using Xamarin.Forms;
 
-	/// <summary>
-	/// Game check location view model.
-	/// </summary>
-	public class GameCheckLocationViewModel : BaseViewModel
+    /// <summary>
+    /// Game check location view model.
+    /// </summary>
+    public class GameCheckLocationViewModel : BaseViewModel
 	{
 		#region Public
 
@@ -96,14 +96,14 @@ namespace WF.Player
 			this.savegame = savegame;
 
 			// Is GPS running?
-			if (!App.GPS.IsListening)
+			if (!CrossGeolocator.Current.IsListening)
 			{
-				// Start listening when app is on screen
-				App.GPS.StartListening(500, 2.0, true);
+                // Start listening when app is on screen
+                CrossGeolocator.Current.StartListeningAsync(500, 2.0, true);
 			}
 
-			App.GPS.PositionChanged += OnPositionChanged;
-			Position = App.GPS.LastKnownPosition;
+            CrossGeolocator.Current.PositionChanged += OnPositionChanged;
+			Position = App.LastKnownPosition;
 		}
 
 		#endregion
@@ -197,7 +197,8 @@ namespace WF.Player
 					{
 						IsBusy = true;
 
-						App.GPS.PositionChanged -= OnPositionChanged;
+						CrossGeolocator.Current.PositionChanged -= OnPositionChanged;
+                        await CrossGeolocator.Current.StopListeningAsync();
 
 						// Create GameModel
 						App.Game = new GameModel(this.cartridgeTag);

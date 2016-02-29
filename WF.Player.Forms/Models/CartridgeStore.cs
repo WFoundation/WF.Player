@@ -19,22 +19,24 @@
 
 namespace WF.Player.Models
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Collections.Specialized;
-	using System.ComponentModel;
-	using System.IO;
-	using System.Linq;
-	using System.Text.RegularExpressions;
-	using WF.Player.Core;
-	using WF.Player.Models.Providers;
-	using WF.Player.Utils;
-	using Xamarin.Forms;
+    using Common;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.ComponentModel;
+    using System.IO;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using WF.Player.Core;
+    using WF.Player.Models.Providers;
+    using WF.Player.Utils;
+    using Xamarin.Forms;
 
-	/// <summary>
-	/// A store for Cartridges and their related data.
-	/// </summary>
-	public class CartridgeStore : List<CartridgeTag>, INotifyCollectionChanged, INotifyPropertyChanged
+    /// <summary>
+    /// A store for Cartridges and their related data.
+    /// </summary>
+    public class CartridgeStore : List<CartridgeTag>, INotifyCollectionChanged, INotifyPropertyChanged
 	{
 		/// <summary>
 		/// The name of the cartridge name property.
@@ -174,7 +176,7 @@ namespace WF.Player.Models
 		/// its tag if the GUIDs match.</remarks>
 		/// <param name="filename">Filename of the cartridge.</param>
 		/// <returns>Null if the tag was not found or the GUIDs didn't match.</returns>
-		public CartridgeTag GetCartridgeTagOrDefault(string filename)
+		public async Task<CartridgeTag> GetCartridgeTagOrDefault(string filename)
 		{
 			CartridgeTag tag = null;
 			lock (syncRoot)
@@ -190,7 +192,7 @@ namespace WF.Player.Models
 			}
 
 			// Tries to accept the tag from filename.
-			tag = AcceptCartridge(filename);
+			tag = await AcceptCartridge(filename);
 
 			// Only returns the tag if both GUIDs match.
 			return tag;
@@ -221,32 +223,22 @@ namespace WF.Player.Models
 		/// Syncs from store core.
 		/// </summary>
 		/// <param name="asyncEachCartridge">If set to <c>true</c> async each cartridge.</param>
-		private void SyncFromStoreCore(bool asyncEachCartridge)
+		private async void SyncFromStoreCore(bool asyncEachCartridge)
 		{
 			// Imports all GWC files from the directory.
-			var files = new DirectoryInfo(App.PathForCartridges).GetFiles();
+			var folder = await PCLStorage.FileSystem.Current.GetFolderFromPathAsync(App.PathForCartridges);
+            var files = await folder.GetFilesAsync();
 
-			foreach (var file in files.Where((f) => f.Extension.EndsWith("gwc", StringComparison.InvariantCultureIgnoreCase)))
+            foreach (var file in files.Where((f) => f.Name.EndsWith("gwc", StringComparison.OrdinalIgnoreCase)))
 			{
-				var filename = file.FullName;
-
-				// Check filename
-//				if (!Regex.IsMatch(file.FullName, @"[-](\d{14}).gwc"))
-//				{
-//					// New file, so convert file name
-//					// Append date and time of first time, this file is checked
-//					filename = Path.Combine(App.PathForCartridges, string.Format("{0}-{1:yyyyMMddhhmmss}.gwc", Path.GetFileNameWithoutExtension(file.FullName), DateTime.Now.ToUniversalTime()));
-//					file.MoveTo(filename);
-//				}
-
 				// Accept the GWC.
 				if (asyncEachCartridge)
 				{
-					AcceptCartridgeAsync(filename);
+					AcceptCartridgeAsync(file.Name);
 				}
 				else
 				{
-					AcceptCartridge(filename);
+					AcceptCartridge(file.Name);
 				}
 			}
 		}
@@ -310,11 +302,14 @@ namespace WF.Player.Models
 		/// <param name="filename">Filename of the cartridge to consider.</param>
 		private void AcceptCartridgeAsync(string filename)
 		{
-			BackgroundWorker bw = new BackgroundWorker();
+            //BackgroundWorker bw = new BackgroundWorker();
 
-			bw.DoWork += new System.ComponentModel.DoWorkEventHandler((o, e) => AcceptCartridge(filename));
+            //bw.DoWork += new System.ComponentModel.DoWorkEventHandler((o, e) => AcceptCartridge(filename));
 
-			bw.RunWorkerAsync();
+            //bw.RunWorkerAsync();
+
+            var task = new System.Threading.Tasks.Task(() => AcceptCartridge(filename));
+            task.Start();
 		}
 
 		/// <summary>
@@ -323,7 +318,7 @@ namespace WF.Player.Models
 		/// <param name="filename">Filename of the cartridge to consider.</param>
 		/// <returns>The CartridgeContext for this cartridge from the store, or a new CartridgeContext
 		/// if there was none in store for this cartridge.</returns>
-		private CartridgeTag AcceptCartridge(string filename)
+		private async Task<CartridgeTag> AcceptCartridge(string filename)
 		{
 			System.Diagnostics.Debug.WriteLine("CartridgeStore: Trying to accept cartridge " + filename);
 
@@ -336,11 +331,11 @@ namespace WF.Player.Models
 			// Creates a cartridge object.
 			Cartridge cart = new Cartridge(filename);
 
-			// Loads the cartridge.
-			var file = new FileInfo(Path.Combine(App.PathForCartridges, filename));
+            // Loads the cartridge.
+            var found = await Storage.Current.FileExists(Path.Combine(App.PathForCartridges, filename));
 
 			// File exist check.
-			if (!file.Exists)
+			if (!found)
 			{
 				System.Diagnostics.Debug.WriteLine("CartridgeStore: WARNING: Cartridge file not found: " + filename);
 
@@ -350,22 +345,22 @@ namespace WF.Player.Models
 			// Loads the metadata.
 			if (!isAborted)
 			{
-				using (var fs = new FileStream(Path.Combine(App.PathForCartridges, filename), FileMode.Open, FileAccess.Read))
-				{
-					try
-					{
-						WF.Player.Core.Formats.CartridgeLoaders.LoadMetadata(fs, cart);
-					}
-					catch (Exception ex)
-					{
-						// This cartridge seems improper to loading.
-						// Let's just dump the exception and return.
-						// TODO
-//							DebugUtils.DumpException(ex, dumpOnBugSenseToo: true);
-						System.Diagnostics.Debug.WriteLine("CartridgeStore: WARNING: Loading failed, ignored : " + filename);
-						isAborted = true;
-					}
-				} 
+                using (var fs = await Storage.Current.GetStreamForReading(Path.Combine(App.PathForCartridges, filename)))
+                {
+                    try
+                    {
+                        WF.Player.Core.Formats.CartridgeLoaders.LoadMetadata(fs, cart);
+                    }
+                    catch (Exception ex)
+                    {
+                        // This cartridge seems improper to loading.
+                        // Let's just dump the exception and return.
+                        // TODO
+                        //							DebugUtils.DumpException(ex, dumpOnBugSenseToo: true);
+                        System.Diagnostics.Debug.WriteLine("CartridgeStore: WARNING: Loading failed, ignored : " + filename);
+                        isAborted = true;
+                    }
+                } 
 			}
 
 			CartridgeTag existingCC;
@@ -423,7 +418,7 @@ namespace WF.Player.Models
 		/// Accepts the savegame.
 		/// </summary>
 		/// <param name="filename">Filename of savegame.</param>
-		private void AcceptSavegame(string filename)
+		private async void AcceptSavegame(string filename)
 		{
 			System.Diagnostics.Debug.WriteLine("CartridgeStore: Trying to accept savegame " + filename);
 
@@ -434,10 +429,11 @@ namespace WF.Player.Models
 			// Gets the cartridge this savegame is associated with.
 			bool isAborted = false;
 			WF.Player.Core.Formats.GWS.Metadata saveMetadata = null;
-			var file = new FileInfo(Path.Combine(App.PathForSavegames, filename));
+
+			var found = await Storage.Current.FileExists(Storage.Current.GetFullnameForSavegame(filename));
 
 			// File exist check.
-			if (!file.Exists)
+			if (!found)
 			{
 				System.Diagnostics.Debug.WriteLine("CartridgeStore: WARNING: Savegame file not found: " + filename);
 
@@ -446,8 +442,8 @@ namespace WF.Player.Models
 
 			if (!isAborted)
 			{
-				using (var fs = new FileStream(Path.Combine(App.PathForSavegames, filename), FileMode.Open, FileAccess.Read))
-				{
+                using (var fs = await Storage.Current.GetStreamForReading(Storage.Current.GetFullnameForSavegame(filename)))
+                {
 					saveMetadata = WF.Player.Core.Formats.GWS.LoadMetadata(fs);
 				} 
 			}
@@ -556,16 +552,16 @@ namespace WF.Player.Models
 		/// Processes the sync event.
 		/// </summary>
 		/// <param name="e">Cartridge provider sync event arguments.</param>
-		private void ProcessSyncEvent(CartridgeProviderSyncEventArgs e)
+		private async void ProcessSyncEvent(CartridgeProviderSyncEventArgs e)
 		{
 			// Accepts the files that have been added.
 			List<string> filesToRemove = new List<string>();
-			foreach (string filename in e.AddedFiles.Where(s => s.EndsWith(".gwc", StringComparison.InvariantCultureIgnoreCase)))
+			foreach (string filename in e.AddedFiles.Where(s => s.EndsWith(".gwc", StringComparison.OrdinalIgnoreCase)))
 			{
 				AcceptCartridge(filename);
 			}
 
-			foreach (string filename in e.AddedFiles.Where(s => s.EndsWith(".gws", StringComparison.InvariantCultureIgnoreCase)))
+			foreach (string filename in e.AddedFiles.Where(s => s.EndsWith(".gws", StringComparison.OrdinalIgnoreCase)))
 			{
 				// Copies this savegame to the content folders of each cartridge
 				// whose name matches the cartridge name in the savegame metadata.
@@ -581,17 +577,18 @@ namespace WF.Player.Models
 			foreach (string filename in filesToRemove)
 			{
 				// Removes the file from the list.
-				if (filename.EndsWith(".gwc", StringComparison.InvariantCultureIgnoreCase))
+				if (filename.EndsWith(".gwc", StringComparison.OrdinalIgnoreCase))
 				{
 					RejectCartridge(filename); 
 				}
 
 				// Deletes the file in the store.
-				var file = new FileInfo(Path.Combine(App.PathForCartridges, filename));
+				var found = await PCLStorage.FileSystem.Current.LocalStorage.CheckExistsAsync(Path.Combine(App.PathForCartridges, filename));
 
-				if (file.Exists)
+				if (found == PCLStorage.ExistenceCheckResult.FileExists)
 				{
-					file.Delete();
+                    var file = await PCLStorage.FileSystem.Current.LocalStorage.GetFileAsync(Path.Combine(App.PathForCartridges, filename));
+                    await file.DeleteAsync();
 				}
 			}
 		}

@@ -19,21 +19,22 @@ using WF.Player.Services.Device;
 
 namespace WF.Player
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using WF.Player.Services.UserDialogs;
-	using Vernacular;
-	using WF.Player.Core;
-	using WF.Player.Core.Utils;
-	using WF.Player.Services.Geolocation;
-	using Xamarin.Forms;
-	using Xamarin.Forms.Maps;
-
-	/// <summary>
-	/// Game main view model.
-	/// </summary>
-	public class GameMainViewModel : BaseViewModel
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using WF.Player.Services.UserDialogs;
+    using Vernacular;
+    using WF.Player.Core;
+    using WF.Player.Core.Utils;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Maps;
+    using Plugin.Geolocator;
+    using Plugin.Geolocator.Abstractions;
+    using Plugin.Compass;
+    using Plugin.Compass.Abstractions;/// <summary>
+                                      /// Game main view model.
+                                      /// </summary>
+    public class GameMainViewModel : BaseViewModel
 	{
 		/// <summary>
 		/// The name of the active screen property.
@@ -193,7 +194,7 @@ namespace WF.Player
 		/// <summary>
 		/// The position.
 		/// </summary>
-		private WF.Player.Services.Geolocation.Position position;
+		private Plugin.Geolocator.Abstractions.Position position;
 
 		/// <summary>
 		/// The game main list.
@@ -246,7 +247,7 @@ namespace WF.Player
 			this.gameModel = gameModel;
 			this.geoMathHelper = new GeoMathHelper();
 
-			Position = App.GPS.LastKnownPosition;
+			Position = App.LastKnownPosition;
 
 			// Deactivate always on behavior of screen
 			DependencyService.Get<IScreen>().AlwaysOn(true);
@@ -344,7 +345,7 @@ namespace WF.Player
 		/// Gets Position from the actual location.
 		/// </summary>
 		/// <value>The Position.</value>
-		public WF.Player.Services.Geolocation.Position Position
+		public Plugin.Geolocator.Abstractions.Position Position
 		{
 			get
 			{
@@ -353,7 +354,7 @@ namespace WF.Player
 
 			internal set
 			{
-				SetProperty<WF.Player.Services.Geolocation.Position>(ref this.position, value, PositionPropertyName);
+				SetProperty<Plugin.Geolocator.Abstractions.Position>(ref this.position, value, PositionPropertyName);
 			}
 		}
 
@@ -999,8 +1000,10 @@ namespace WF.Player
 		{
 			base.OnAppearing();
 
-			App.GPS.PositionChanged += OnPositionChanged;
-			App.GPS.HeadingChanged += OnHeadingChanged;
+            CrossGeolocator.Current.PositionChanged += OnPositionChanged;
+			CrossCompass.Current.CompassChanged += OnHeadingChanged;
+
+            CrossCompass.Current.Start();
 
 			Refresh();
 		}
@@ -1012,8 +1015,10 @@ namespace WF.Player
 		{
 			base.OnDisappearing();
 
-			App.GPS.HeadingChanged -= OnHeadingChanged;
-			App.GPS.PositionChanged -= OnPositionChanged;
+            CrossCompass.Current.Stop();
+
+			CrossCompass.Current.CompassChanged -= OnHeadingChanged;
+            CrossGeolocator.Current.PositionChanged -= OnPositionChanged;
 		}
 
 		#endregion
@@ -1044,9 +1049,9 @@ namespace WF.Player
 
 			if (MapViewModel.Map.VisibleRegion == null)
 			{
-				if (App.GPS.LastKnownPosition != null)
+				if (App.LastKnownPosition != null)
 				{
-					MapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+					MapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.LastKnownPosition.Latitude, App.LastKnownPosition.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
 				}
 				else
 				{
@@ -1179,10 +1184,10 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="sender">Sender of event.</param>
 		/// <param name="e">Position changed event arguments.</param>
-		private void OnHeadingChanged(object sender, PositionEventArgs e)
+		private void OnHeadingChanged(object sender, CompassChangedEventArgs e)
 		{
-			Position = e.Position;
-			MapViewModel.Position = e.Position;
+			Position.Heading = e.Heading;
+			MapViewModel.Position.Heading = e.Heading;
 
 			RefreshDirections(false);
 		}

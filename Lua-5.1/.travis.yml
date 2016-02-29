@@ -1,0 +1,34 @@
+#
+# lua Travis-CI Hook
+#
+
+# Travis language: C++
+language: cpp
+
+# We need CMake and LuaDist
+install:
+  - sudo apt-get install cmake >/dev/null 2>&1
+
+script:
+  - mkdir _build
+  - cd _build
+  - cmake ..
+  - cmake --build . --config Release
+  - ctest -C Release
+
+# Execute additional tests or commands
+#after_script:
+#  - [run additional test commans]
+
+# Only watch the master branch
+branches:
+  only:
+    - lua-5.1
+
+# Notify if needed
+notifications:
+  recipients:
+    - codefoco@gmail.com
+  email:
+    on_success: change
+    on_failure: always

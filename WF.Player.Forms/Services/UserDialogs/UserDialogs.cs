@@ -19,15 +19,18 @@
 namespace WF.Player.Services.UserDialogs
 {
 	using System;
-	#if __ANDROID__
+#if __ANDROID__
 	using Android.App;
 	using WF.Player.Droid.Services.UserDialogs;
-	#endif
-	#if __IOS__
+#endif
+#if __IOS__
 	using WF.Player.iOS.Services.UserDialogs;
-	#endif
+#endif
+#if __WINPHONE8__
+    using WF.Player.WinPhone8.Services.UserDialogs;
+#endif
 
-	public static class UserDialogs
+    public static class UserDialogs
 	{
 		#if __ANDROID__
 		public static void Init(Func<Activity> getActivity)

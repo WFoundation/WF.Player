@@ -18,16 +18,18 @@
 
 namespace WF.Player.Models
 {
-	using System;
-	using System.IO;
-	using System.Runtime.Serialization;
-	using WF.Player.Core;
-	using WF.Player.Core.Formats;
+    using Common;
+    using System;
+    using System.IO;
+    using System.Runtime.Serialization;
+    using System.Threading.Tasks;
+    using WF.Player.Core;
+    using WF.Player.Core.Formats;
 
-	/// <summary>
-	/// Provides a static metadata description of a Cartridge savegame.
-	/// </summary>
-	public class CartridgeSavegame
+    /// <summary>
+    /// Provides a static metadata description of a Cartridge savegame.
+    /// </summary>
+    public class CartridgeSavegame
 	{
 		#region Constructors
 
@@ -38,9 +40,14 @@ namespace WF.Player.Models
 		/// <param name="gwsFilename">Gws filename.</param>
 		public CartridgeSavegame(CartridgeTag tag, string gwsFilename)
 		{
+            var openFile = PCLStorage.FileSystem.Current.LocalStorage.CreateFileAsync(gwsFilename, PCLStorage.CreationCollisionOption.OpenIfExists);
+            openFile.RunSynchronously();
+            var file = openFile.Result.OpenAsync(PCLStorage.FileAccess.Read);
+            file.RunSynchronously();
+
 			this.Tag = tag;
 			this.Filename = gwsFilename;
-			this.Metadata = GWS.LoadMetadata(new FileStream(gwsFilename, FileMode.Open));
+			this.Metadata = GWS.LoadMetadata(file.Result);
 		}
 
 		/// <summary>
@@ -109,24 +116,17 @@ namespace WF.Player.Models
 		/// stream for it.
 		/// </summary>
 		/// <returns>The stream to write the savegame on.</returns>
-		public System.IO.Stream CreateOrReplace()
+		public async Task<Stream> CreateOrReplace()
 		{
-			// Returns the stream to SavegameFile.
-			return new FileStream(Path.Combine(App.PathForSavegames, this.Filename), FileMode.Create, FileAccess.Write);
+            return await Storage.Current.GetStreamForWriting(Storage.Current.GetFullnameForSavegame(this.Filename), false);
 		}
 
 		/// <summary>
 		/// Removes this savegame's files from the storage.
 		/// </summary>
-		public void RemoveFromStore()
+		public async void RemoveFromStore()
 		{
-			var file = new FileInfo(Path.Combine(App.PathForSavegames, this.Filename));
-
-			if (file.Exists)
-			{
-				// Remove savegame from local store
-				file.Delete();
-			}
+            Storage.Current.RemoveFile(Storage.Current.GetFullnameForSavegame(this.Filename));
 		}
 
 		/// <summary>
@@ -142,13 +142,13 @@ namespace WF.Player.Models
 			{
 				return string.Format(
 					"{0}.gws",
-					Path.Combine(App.PathForSavegames, Path.GetFileNameWithoutExtension(tag.Cartridge.Filename)));
+					Storage.Current.GetFullnameForSavegame(Path.GetFileNameWithoutExtension(tag.Cartridge.Filename)));
 			}
 			else
 			{
 				return string.Format(
 					"{0}.{1}.gws",
-					Path.Combine(App.PathForSavegames, Path.GetFileNameWithoutExtension(tag.Cartridge.Filename)),
+					Storage.Current.GetFullnameForSavegame(Path.GetFileNameWithoutExtension(tag.Cartridge.Filename)),
 					DateTime.Now.ToLocalTime().ToString("yyyyMMddHHmmss"));
 			}
 		}

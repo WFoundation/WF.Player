@@ -19,20 +19,20 @@ using WF.Player.Services.Settings;
 
 namespace WF.Player
 {
-	using System;
-	using System.IO;
-	using WF.Player.Services.UserDialogs;
-	using Vernacular;
-	using WF.Player.Core;
-	using WF.Player.Core.Utils;
-	using WF.Player.Services.Device;
-	using WF.Player.Services.Geolocation;
-	using Xamarin.Forms;
-
-	/// <summary>
-	/// Game detail view model.
-	/// </summary>
-	public class GameDetailViewModel : BaseViewModel
+    using System;
+    using System.IO;
+    using WF.Player.Services.UserDialogs;
+    using Vernacular;
+    using WF.Player.Core;
+    using WF.Player.Core.Utils;
+    using Xamarin.Forms;
+    using Plugin.Geolocator.Abstractions;
+    using Plugin.Geolocator;
+    using Plugin.Compass;
+    using Plugin.Compass.Abstractions;/// <summary>
+                                      /// Game detail view model.
+                                      /// </summary>
+    public class GameDetailViewModel : BaseViewModel
 	{
 		/// <summary>
 		/// The name of the name property.
@@ -129,7 +129,7 @@ namespace WF.Player
 			this.geoMathHelper = new GeoMathHelper();
 			this.activeObject = activeObject;
 
-			Position = App.GPS.LastKnownPosition;
+			Position = App.LastKnownPosition;
 		}
 
 		#endregion
@@ -164,8 +164,8 @@ namespace WF.Player
 				if (this.activeObject == null) 
 				{
 					// If there isn't an active object, we don't need a update (problems with ShowScreen(Mainscreen) for "Catch me - if you can")
-					App.GPS.HeadingChanged -= HandleHeadingChanged;
-					App.GPS.PositionChanged -= HandlePositionChanged;
+					CrossCompass.Current.CompassChanged -= HandleHeadingChanged;
+                    CrossGeolocator.Current.PositionChanged -= HandlePositionChanged;
 					return;
 				}
 
@@ -448,8 +448,10 @@ namespace WF.Player
 		{
 			base.OnAppearing();
 
-			App.GPS.PositionChanged += HandlePositionChanged;
-			App.GPS.HeadingChanged += HandleHeadingChanged;
+            CrossGeolocator.Current.PositionChanged += HandlePositionChanged;
+			CrossCompass.Current.CompassChanged += HandleHeadingChanged;
+
+            CrossCompass.Current.Start();
 
 			if (this.activeObject != null)
 			{
@@ -496,8 +498,10 @@ namespace WF.Player
 				this.activeObject.PropertyChanged -= HandlePropertyChanged;
 			}
 
-			App.GPS.HeadingChanged -= HandleHeadingChanged;
-			App.GPS.PositionChanged -= HandlePositionChanged;
+			CrossCompass.Current.CompassChanged -= HandleHeadingChanged;
+            CrossGeolocator.Current.PositionChanged -= HandlePositionChanged;
+
+            CrossCompass.Current.Stop();
 
 			base.OnDisappearing();
 		}
@@ -577,14 +581,14 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="sender">Sender of event.</param>
 		/// <param name="e">Position event arguments.</param>
-		private void HandleHeadingChanged(object sender, PositionEventArgs e)
+		private void HandleHeadingChanged(object sender, CompassChangedEventArgs e)
 		{
 			if (this.activeObject == null)
 			{
 				return;
 			}
 
-			Position = e.Position;
+			Position.Heading = e.Heading;
 
 			UpdateDirection(false);
 		}

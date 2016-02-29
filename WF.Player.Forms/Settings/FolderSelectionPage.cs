@@ -64,12 +64,12 @@ namespace WF.Player.SettingsPage
 					cfg.Title = Catalog.GetString("New folder");
 					cfg.OnResult = (result) =>
 						{
-							Device.BeginInvokeOnMainThread(() =>
+							Device.BeginInvokeOnMainThread(async () => 
 								{
 									App.Click();
 									if (result.Ok)
 									{
-										Directory.CreateDirectory(Path.Combine(path, result.Text));
+                                        var dir = await PCLStorage.FileSystem.Current.LocalStorage.CreateFolderAsync(Path.Combine(path, result.Text), PCLStorage.CreationCollisionOption.OpenIfExists);
 										this.path = Path.Combine(path, result.Text);
 										UpdateDirectories();
 									}
@@ -136,23 +136,29 @@ namespace WF.Player.SettingsPage
 //			App.Navigation.Navigation.PopModalAsync();
 //		}
 
-		private void UpdateDirectories()
+		private async void UpdateDirectories()
 		{
 			List<PathItem> dirs = new List<PathItem>();
 
 			// Set title of activity
 			Title = path;
 
-			// Check, if there is a parent directory
-			if (Directory.GetParent(path) != null)
+            // Check, if there is a parent directory
+            var dir = await PCLStorage.FileSystem.Current.LocalStorage.GetFolderAsync(path);
+
+            var relativePath = dir.Path.Substring(PCLStorage.FileSystem.Current.LocalStorage.Path.Length);
+
+            if (relativePath.Length > 1)
 			{
-				dirs.Add(new PathItem(string.Format("<{0}>", Catalog.GetString("Parent directory")), Directory.GetParent(path).FullName));
+				dirs.Add(new PathItem(string.Format("<{0}>", Catalog.GetString("Parent directory")), "TODO"));
 			}
 
-			// Add all other directories
-			foreach (string dir in Directory.GetDirectories(path))
+            // Add all other directories
+            var folders = await dir.GetFoldersAsync();
+
+			foreach (PCLStorage.IFolder folder in folders)
 			{
-				dirs.Add(new PathItem(Path.GetFileName(dir), dir));
+				dirs.Add(new PathItem(folder.Name, folder.Path));
 			}
 
 			list.ItemsSource = dirs.ToArray();

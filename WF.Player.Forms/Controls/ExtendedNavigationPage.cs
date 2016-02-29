@@ -20,7 +20,7 @@ using System.ComponentModel;
 
 namespace WF.Player.Controls
 {
-	using System.Collections;
+	using System.Collections.Generic;
 	using Xamarin.Forms;
 
 	/// <summary>
@@ -31,7 +31,7 @@ namespace WF.Player.Controls
 		/// <summary>
 		/// The stack.
 		/// </summary>
-		private Stack stack;
+		private Stack<Page> stack;
 
 		/// <summary>
 		/// The transition.
@@ -62,7 +62,7 @@ namespace WF.Player.Controls
 		/// <param name="animation">If set to <c>true</c> animation.</param>
 		public ExtendedNavigationPage(Page page, bool animation = true) : base(page)
 		{
-			stack = new Stack(8);
+			stack = new Stack<Page>(8);
 
 			Animation = animation;
 			showBackButton = false;

@@ -173,7 +173,7 @@ namespace WF.Player
 		/// <param name="e">Event argumeeeents.</param>
 		private void HandleDetailsClicked(object sender, EventArgs e)
 		{
-			Console.WriteLine("Details");
+            System.Diagnostics.Debug.WriteLine("Details");
 		}
 
 		/// <summary>
@@ -183,7 +183,7 @@ namespace WF.Player
 		/// <param name="e">Event arguments.</param>
 		private void HandleAttributesClicked(object sender, EventArgs e)
 		{
-			Console.WriteLine("Attributes");
+            System.Diagnostics.Debug.WriteLine("Attributes");
 		}
 
 		/// <summary>
@@ -203,7 +203,7 @@ namespace WF.Player
 		/// <param name="e">Event arguments.</param>
 		private void HandleHistoryClicked(object sender, EventArgs e)
 		{
-			Console.WriteLine("History");
+            System.Diagnostics.Debug.WriteLine("History");
 		}
 
 		/// <summary>
@@ -213,7 +213,7 @@ namespace WF.Player
 		/// <param name="e">Event arguments.</param>
 		private void HandleLogsClicked(object sender, EventArgs e)
 		{
-			Console.WriteLine("Logs");
+            System.Diagnostics.Debug.WriteLine("Logs");
 		}
 
 		#endregion

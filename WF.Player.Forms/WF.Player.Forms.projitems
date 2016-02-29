@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Storage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TranslateExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\ScreenType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\MapSource.cs" />
@@ -46,7 +47,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameMainCellView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Resources\Texts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\CustomWebView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Routing\IRouting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DirectionArrow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\GameToolBarButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BasePage.cs" />
@@ -67,6 +67,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Providers\CartridgeProviderSyncAbortEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Providers\CartridgeProviderSyncEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Providers\ICartridgeProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\ExtensionZonePoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\ExtesionPosition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\ProgressAggregator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Utils\IImageTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AccessoryCell.cs" />
@@ -81,7 +83,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Enums\MapOrientation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DirectionInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFormsPlatformHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGeolocator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\PositionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\Position.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\GeolocationException.cs" />
@@ -131,15 +132,12 @@
     <Folder Include="$(MSBuildThisFileDirectory)Services\" />
     <Folder Include="$(MSBuildThisFileDirectory)Enums\" />
     <Folder Include="$(MSBuildThisFileDirectory)Cartridges\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Common\" />
     <Folder Include="$(MSBuildThisFileDirectory)Data\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Resources\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Device\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\Routing\" />
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Providers\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Utils\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Utils\" />
     <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Geolocation\" />
