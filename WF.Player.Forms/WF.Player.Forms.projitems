@@ -35,7 +35,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameCheckLocationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameMainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Device\ISound.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Device\IVibration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameDetailView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameMessageboxView.cs" />

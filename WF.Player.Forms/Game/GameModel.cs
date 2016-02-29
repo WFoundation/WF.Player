@@ -24,6 +24,7 @@ namespace WF.Player
     using Common;
     using Plugin.Geolocator;
     using Plugin.Geolocator.Abstractions;
+    using Plugin.Vibrate;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -65,11 +66,6 @@ namespace WF.Player
 		/// The sound.
 		/// </summary>
 		private ISound sound;
-
-		/// <summary>
-		/// The vibration.
-		/// </summary>
-		private IVibration vibration;
 
 		/// <summary>
 		/// The timer.
@@ -478,10 +474,7 @@ namespace WF.Player
 				this.sound.PlayAlert();
 			}
 
-			if (this.vibration != null)
-			{
-				this.vibration.Vibrate();
-			}
+			CrossVibrate.Current.Vibration();
 		}
 
 		/// <summary>
@@ -1040,9 +1033,8 @@ namespace WF.Player
 				this.DestroyEngine();
 			}
 
-			// Get device sound and vibration
+			// Get device sound
 			this.sound = DependencyService.Get<ISound>();
-			this.vibration = DependencyService.Get<IVibration>();
 
 			// Get os helper
 			var helper = DependencyService.Get<IPlatformHelper>();

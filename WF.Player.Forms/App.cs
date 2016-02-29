@@ -34,9 +34,10 @@ namespace WF.Player
     using Xamarin.Forms;
     using Common;
     using Plugin.Geolocator;
-    using Plugin.Geolocator.Abstractions;/// <summary>
-                                         /// Forms app.
-                                         /// </summary>
+    using Plugin.Geolocator.Abstractions;
+    using Plugin.Vibrate;/// <summary>
+                         /// Forms app.
+                         /// </summary>
     public class App : Application
 	{
 		/// <summary>
@@ -73,11 +74,6 @@ namespace WF.Player
 		/// Sound interface for app.
 		/// </summary>
 		private static ISound sound;
-
-		/// <summary>
-		/// Vibration interface for app.
-		/// </summary>
-		private static IVibration vibrate;
 
 		#region Constructor
 
@@ -398,14 +394,9 @@ namespace WF.Player
 				sound.PlayKeyboardSound();
 			}
 
-			if (vibrate == null)
+			if (Settings.Current.GetValueOrDefault<bool>(Settings.FeedbackVibrationKey))
 			{
-				vibrate = DependencyService.Get<IVibration>();
-			}
-
-			if (vibrate != null && Settings.Current.GetValueOrDefault<bool>(Settings.FeedbackVibrationKey))
-			{
-				vibrate.Vibrate(150);
+                CrossVibrate.Current.Vibration(150);
 			}
 		}
 
