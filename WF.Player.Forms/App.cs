@@ -35,9 +35,11 @@ namespace WF.Player
     using Common;
     using Plugin.Geolocator;
     using Plugin.Geolocator.Abstractions;
-    using Plugin.Vibrate;/// <summary>
-                         /// Forms app.
-                         /// </summary>
+    using Plugin.Vibrate;
+    
+    /// <summary>
+    /// Forms app.
+    /// </summary>
     public class App : Application
 	{
 		/// <summary>
@@ -89,7 +91,7 @@ namespace WF.Player
 
             CrossGeolocator.Current.DesiredAccuracy = 1.0;
 
-			MainPage = GetMainPage();
+            MainPage = GetMainPage();
 		}
 
 		#endregion
@@ -281,6 +283,8 @@ namespace WF.Player
             // Set starting values for folders
             string cartridgePath = Settings.Current.GetValueOrDefault<string>(Settings.CartridgePathKey);
 
+            //Settings.Current.Remove(Settings.CartridgePathKey);
+
             // Did we find a path in the preferences?
             //if (!string.IsNullOrEmpty(cartridgePath))
             //{
@@ -332,22 +336,37 @@ namespace WF.Player
 				cartridgePath = PathCartridges;
 #endif
 #if __WINPHONE8__
-                cartridgePath = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+                // Use LocalStorage for storing cartridges
+                cartridgePath = PathCartridges;
 #endif
 
                 // Now we have a valid cartridge path
-                App.PathForCartridges = cartridgePath;
+                App.PathForCartridges = "Cartridges"; // cartridgePath;
             }
 
-            App.PathForSavegames = App.PathForCartridges;
-            App.PathForLogs = App.PathForCartridges;
+            App.PathForSavegames = "Save";
+            App.PathForLogs = "Logs";
 
             // Save for later use
             Settings.Current.AddOrUpdateValue<string>(Settings.CartridgePathKey, App.PathForCartridges);
 
+            // Create folders, if they don't exist
+            if (await PCLStorage.FileSystem.Current.LocalStorage.CheckExistsAsync(App.PathForCartridges) == PCLStorage.ExistenceCheckResult.NotFound)
+            {
+                await PCLStorage.FileSystem.Current.LocalStorage.CreateFolderAsync(App.PathForCartridges, PCLStorage.CreationCollisionOption.OpenIfExists);
+            }
+            if (await PCLStorage.FileSystem.Current.LocalStorage.CheckExistsAsync(App.PathForSavegames) == PCLStorage.ExistenceCheckResult.NotFound)
+            {
+                await PCLStorage.FileSystem.Current.LocalStorage.CreateFolderAsync(App.PathForSavegames, PCLStorage.CreationCollisionOption.OpenIfExists);
+            }
+            if (await PCLStorage.FileSystem.Current.LocalStorage.CheckExistsAsync(App.PathForLogs) == PCLStorage.ExistenceCheckResult.NotFound)
+            {
+                await PCLStorage.FileSystem.Current.LocalStorage.CreateFolderAsync(App.PathForLogs, PCLStorage.CreationCollisionOption.OpenIfExists);
+            }
+
             // If there isn't any gwc file in the path,
             // than copy Wherigo Tutorial to cartridges folder
-            var dir = await PCLStorage.FileSystem.Current.GetFolderFromPathAsync(PathForCartridges);
+            var dir = await PCLStorage.FileSystem.Current.LocalStorage.GetFolderAsync(PathForCartridges);
             var files = await dir.GetFilesAsync();
 
 			if (files == null || !files.Any((file) => Path.GetExtension(file.Name).EndsWith("gwc", StringComparison.OrdinalIgnoreCase)))
@@ -359,6 +378,7 @@ namespace WF.Player
 				using (var input = File.OpenRead(Path.Combine("Assets", "Wherigo Tutorial.gwc")))
 #endif
 #if __WINPHONE8__
+                Debug.WriteLine("Copy cartridge");
                 Windows.Storage.StorageFile winFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Wherigo Tutorial.gwc"));
                 using (var input = await winFile.OpenStreamForReadAsync())
 #endif
@@ -376,8 +396,8 @@ namespace WF.Player
                         ((CartridgeListPage)App.Navigation.CurrentPage).RefreshCommand.Execute(null);
                     }
                 }
-			}
-		}
+            }
+        }
 
 		/// <summary>
 		/// Play click sounds and vibrate if that is selected in the preferences.

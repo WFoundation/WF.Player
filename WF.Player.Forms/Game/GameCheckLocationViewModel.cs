@@ -99,7 +99,7 @@ namespace WF.Player
 			if (!CrossGeolocator.Current.IsListening)
 			{
                 // Start listening when app is on screen
-                CrossGeolocator.Current.StartListeningAsync(500, 2.0, true);
+                CrossGeolocator.Current.StartListeningAsync(500, 1, true);
 			}
 
             CrossGeolocator.Current.PositionChanged += OnPositionChanged;
@@ -198,7 +198,6 @@ namespace WF.Player
 						IsBusy = true;
 
 						CrossGeolocator.Current.PositionChanged -= OnPositionChanged;
-                        await CrossGeolocator.Current.StopListeningAsync();
 
 						// Create GameModel
 						App.Game = new GameModel(this.cartridgeTag);

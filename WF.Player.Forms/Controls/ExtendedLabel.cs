@@ -43,11 +43,11 @@ namespace WF.Player.Controls
 
 				if (UseMarkdown)
 				{
-					html = ConverterToHtml.FromMarkdown(Text, XAlign, null, (int)Font.FontSize);
+					html = ConverterToHtml.FromMarkdown(Text, HorizontalTextAlignment, null, (int)FontSize);
 				}
 				else
 				{
-					html = ConverterToHtml.FromText(Text, XAlign, null, (int)Font.FontSize);
+					html = ConverterToHtml.FromText(Text, HorizontalTextAlignment, null, (int)FontSize);
 				}
 
 				while (html.EndsWith(Environment.NewLine))

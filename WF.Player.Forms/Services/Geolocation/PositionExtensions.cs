@@ -1,10 +1,10 @@
+using Plugin.Geolocator.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WF.Player.Core;
-using WF.Player.Services.Geolocation;
 
 namespace WF.Player.Services.Geolocation
 {
@@ -57,7 +57,7 @@ namespace WF.Player.Services.Geolocation
 		/// <param name="p">Position</param>
 		public static ZonePoint ToZonePoint(this Position p)
 		{
-			return new ZonePoint (p.Latitude, p.Longitude, p.Altitude ?? 0);
+			return new ZonePoint (p.Latitude, p.Longitude, p.Altitude);
 		}
 	}
 }

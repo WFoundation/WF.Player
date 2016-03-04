@@ -76,7 +76,10 @@ namespace WF.Player
 		/// <param name="cartridges">Cartridges to show.</param>
 		public CartridgeListPage(CartridgeStore store)
 		{
-			this.cartridges = store;
+            // TODO: Only for WinPhone
+            Settings.Current.AddOrUpdateValue<int>(Settings.DisplayThemeKey, 1);
+
+            this.cartridges = store;
 
 			this.cartridges.CollectionChanged += HandleCartridgesCollectionChanged;
 

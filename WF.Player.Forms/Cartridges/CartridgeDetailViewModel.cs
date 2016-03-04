@@ -425,8 +425,8 @@ namespace WF.Player
 			{
 				return new Xamarin.Forms.Command((sender) =>
 					{
-						// Create check location page
-						var checkLocationPage = new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, null, App.Navigation.CurrentPage));
+                        // Create check location page
+                        var checkLocationPage = new GameCheckLocationView(new GameCheckLocationViewModel(cartridgeTag, null, App.Navigation.CurrentPage));
 
 						// Create a new navigation page for the game
 						App.GameNavigation = new ExtendedNavigationPage(checkLocationPage, false)
@@ -456,7 +456,7 @@ namespace WF.Player
 			if (!CrossGeolocator.Current.IsListening)
 			{
                 // Start listening when app is on screen
-                await CrossGeolocator.Current.StartListeningAsync(500, 2.0, true);
+                await CrossGeolocator.Current.StartListeningAsync(500, 1, true);
                 CrossCompass.Current.Start();
 			}
 
@@ -471,9 +471,6 @@ namespace WF.Player
 		{
             CrossCompass.Current.CompassChanged -= HandleHeadingChanged;
             CrossGeolocator.Current.PositionChanged -= HandlePositionChanged;
-
-            CrossCompass.Current.Stop();
-            await CrossGeolocator.Current.StopListeningAsync();
 		}
 
 		#endregion

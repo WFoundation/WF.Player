@@ -309,7 +309,7 @@ namespace WF.Player
 					UseMarkdown = true,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.Fill,
-					XAlign = TextAlignment.Start,
+					HorizontalTextAlignment = TextAlignment.Start,
 				};
 
 			labelOverviewYouSee.SetBinding(Label.TextProperty, GameMainViewModel.YouSeeOverviewContentPropertyName);

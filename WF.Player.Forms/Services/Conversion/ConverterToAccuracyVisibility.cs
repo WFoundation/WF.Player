@@ -20,8 +20,8 @@ namespace WF.Player
 {
 	using System;
 	using System.Globalization;
-	using WF.Player.Services.Geolocation;
-	using Xamarin.Forms;
+    using Plugin.Geolocator.Abstractions;
+    using Xamarin.Forms;
 
 	/// <summary>
 	/// Converter to accuracy visibility.
@@ -45,12 +45,7 @@ namespace WF.Player
 				return null;
 			}
 
-			if (pos.Accuracy != null)
-			{
-				return App.Colors.IsDarkTheme ? "IconAccuracyLight" : "IconAccuracyDark";
-			}
-
-			return null;
+			return App.Colors.IsDarkTheme ? "IconAccuracyLight" : "IconAccuracyDark";
 		}
 
 		/// <param name="value">Value to convert.</param>

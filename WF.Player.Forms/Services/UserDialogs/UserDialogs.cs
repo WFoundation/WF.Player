@@ -27,7 +27,7 @@ namespace WF.Player.Services.UserDialogs
 	using WF.Player.iOS.Services.UserDialogs;
 #endif
 #if __WINPHONE8__
-    using WF.Player.WinPhone8.Services.UserDialogs;
+    using WF.Player.Services.WP8.UserDialogs;
 #endif
 
     public static class UserDialogs

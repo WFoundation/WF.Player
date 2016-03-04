@@ -14,6 +14,8 @@ namespace WF.Player.Services.UserDialogs
 
 		public IList<ActionSheetOption> Options { get; set; }
 
+        public object Parent { get; set; }
+
 		public ActionSheetConfig() 
 		{
 			this.Options = new List<ActionSheetOption>();

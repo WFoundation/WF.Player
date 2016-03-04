@@ -1,3 +1,4 @@
+using Plugin.Geolocator.Abstractions;
 using System;
 
 namespace WF.Player.Services.Geolocation

@@ -57,7 +57,7 @@ namespace WF.Player.Droid.Services.BarCode
 		{
 			config = config ?? BarCodeReadConfiguration.Default;
 
-			var scanner = new MobileBarcodeScanner(Forms.Context) { UseCustomOverlay = false };
+			var scanner = new MobileBarcodeScanner() { UseCustomOverlay = false };
 
 			cancelToken.Register(scanner.Cancel);
 

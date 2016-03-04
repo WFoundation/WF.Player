@@ -22,6 +22,7 @@ using System.Text.RegularExpressions;
 namespace WF.Player
 {
     using Common;
+    using Plugin.Compass;
     using Plugin.Geolocator;
     using Plugin.Geolocator.Abstractions;
     using Plugin.Vibrate;
@@ -253,11 +254,17 @@ namespace WF.Player
 
             CrossGeolocator.Current.PositionChanged += this.OnPositionChanged;
 
+            if (!CrossGeolocator.Current.IsListening)
+            {
+                await CrossGeolocator.Current.StartListeningAsync(500, 1, true);
+                CrossCompass.Current.Start();
+            }
+
             // If there is a valid savefile, than open it
-            var stream = await Storage.Current.GetStreamForReading(Storage.Current.GetFullnameForSavegame(savegame.Filename));
-			if (stream != null)
+			if (savegame != null)
 			{
-				await System.Threading.Tasks.Task.Run(() => this.engine.Restore(stream));
+                var stream = await Storage.Current.GetStreamForReading(Storage.Current.GetFullnameForSavegame(savegame.Filename));
+                await System.Threading.Tasks.Task.Run(() => this.engine.Restore(stream));
 			}
 			else
 			{
@@ -313,21 +320,15 @@ namespace WF.Player
 				filename = Storage.Current.GetFullnameForSavegame("autosave.gws");
 			}
 
-            // Save game
-            var createFile = PCLStorage.FileSystem.Current.GetFileFromPathAsync(filename);
-            createFile.RunSynchronously();
-            var file = createFile.Result.OpenAsync(PCLStorage.FileAccess.ReadAndWrite);
-            file.RunSynchronously();
+            CartridgeSavegameCore(name, filename);
 
-			this.engine.Save(file.Result, name);
+            // Add savegame, which is now in store, to cartridge tag
+            if (!autosaving)
+            {
+                this.cartridgeTag.AddSavegame(cs);
+            }
 
-			// Add savegame, which is now in store, to cartridge tag
-			if (!autosaving)
-			{
-				this.cartridgeTag.AddSavegame(cs);
-			}
-
-			App.GameNavigation.CurrentPage.IsBusy = false;
+            App.GameNavigation.CurrentPage.IsBusy = false;
 
 			return cs;
 		}
@@ -601,14 +602,29 @@ namespace WF.Player
 			this.HandleScreenQueue();
 		}
 
-		#endregion
+        #endregion
 
-		#region Private Functions
+        #region Private Functions
 
-		/// <summary>
-		/// Handles the screen queue.
-		/// </summary>
-		private void HandleScreenQueue()
+
+        /// <summary>
+        /// Async core for saving cartridge
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="filename"></param>
+        private async void CartridgeSavegameCore(string name, string filename)
+        {
+            // Save game
+            var createFile = await PCLStorage.FileSystem.Current.LocalStorage.CreateFileAsync(filename, PCLStorage.CreationCollisionOption.ReplaceExisting);
+            var file = await createFile.OpenAsync(PCLStorage.FileAccess.ReadAndWrite);
+
+            this.engine.Save(file, name);
+        }
+
+        /// <summary>
+        /// Handles the screen queue.
+        /// </summary>
+        private void HandleScreenQueue()
 		{
 			// If we are no longer playing
 			if (this.engine == null || (this.engine.GameState != EngineGameState.Playing && this.engine.GameState != EngineGameState.Starting && this.engine.GameState != EngineGameState.Restoring))
@@ -1004,11 +1020,11 @@ namespace WF.Player
 		/// </summary>
 		/// <param name="level">Level of log message.</param>
 		/// <param name="message">Message to log.</param>
-		private void LogMessage(LogLevel level, string message)
+		private async void LogMessage(LogLevel level, string message)
 		{
 			if (this.logFile == null)
 			{
-				this.logFile = this.cartridgeTag.CreateLogFile();
+				this.logFile = await this.cartridgeTag.CreateLogFile();
 				this.logFile.MinimalLogLevel = this.logLevel;
 			}
 
@@ -1060,19 +1076,20 @@ namespace WF.Player
 			this.engine.CartridgeCrashed += this.OnCartridgeCrashed;
 
 			// Open logFile first time
-			this.logFile = this.cartridgeTag.CreateLogFile();
+			this.logFile = await this.cartridgeTag.CreateLogFile();
 			this.logFile.MinimalLogLevel = this.logLevel;
 
-            var openFile = await PCLStorage.FileSystem.Current.LocalStorage.GetFileAsync(Path.Combine(App.PathCartridges, Path.GetFileName(cartridge.Filename)));
+            var openFile = await PCLStorage.FileSystem.Current.LocalStorage.GetFileAsync(Path.Combine(App.PathForCartridges, cartridge.Filename));
             var file = await openFile.OpenAsync(PCLStorage.FileAccess.Read);
 
-			await System.Threading.Tasks.Task.Run(() => this.engine.Init(file, cartridge));
-		}
+            //			await System.Threading.Tasks.Task.Run(() => this.engine.Init(file, cartridge));
+            this.engine.Init(file, cartridge);
+        }
 
-		/// <summary>
-		/// Destroies the engine.
-		/// </summary>
-		private void DestroyEngine()
+        /// <summary>
+        /// Destroys the engine.
+        /// </summary>
+        private void DestroyEngine()
 		{
 			// Stop sound
 			if (this.sound != null)

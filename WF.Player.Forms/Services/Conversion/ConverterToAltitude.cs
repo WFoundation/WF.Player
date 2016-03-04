@@ -20,8 +20,8 @@ namespace WF.Player
 {
 	using System;
 	using System.Globalization;
-	using WF.Player.Services.Geolocation;
-	using Xamarin.Forms;
+    using Plugin.Geolocator.Abstractions;
+    using Xamarin.Forms;
 
 	/// <summary>
 	/// Converter to altitude.
@@ -45,12 +45,7 @@ namespace WF.Player
 				return string.Empty;
 			}
 
-			double alt = 0;
-
-			if (pos.Altitude != null)
-			{
-				alt = (double)pos.Altitude;
-			}
+			double alt = (double)pos.Altitude;
 
 			if (alt == 0)
 			{

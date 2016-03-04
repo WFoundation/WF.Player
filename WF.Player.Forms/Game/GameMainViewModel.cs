@@ -247,7 +247,7 @@ namespace WF.Player
 			this.gameModel = gameModel;
 			this.geoMathHelper = new GeoMathHelper();
 
-			Position = App.LastKnownPosition;
+			Position = App.LastKnownPosition ?? new Plugin.Geolocator.Abstractions.Position();
 
 			// Deactivate always on behavior of screen
 			DependencyService.Get<IScreen>().AlwaysOn(true);
@@ -996,14 +996,18 @@ namespace WF.Player
 		/// <summary>
 		/// Raises the appearing event.
 		/// </summary>
-		public override void OnAppearing()
+		public override async void OnAppearing()
 		{
 			base.OnAppearing();
 
             CrossGeolocator.Current.PositionChanged += OnPositionChanged;
 			CrossCompass.Current.CompassChanged += OnHeadingChanged;
 
-            CrossCompass.Current.Start();
+            if (!CrossGeolocator.Current.IsListening)
+            {
+                await CrossGeolocator.Current.StartListeningAsync(500, 1, true);
+                CrossCompass.Current.Start();
+            }
 
 			Refresh();
 		}
@@ -1014,8 +1018,6 @@ namespace WF.Player
 		public override void OnDisappearing()
 		{
 			base.OnDisappearing();
-
-            CrossCompass.Current.Stop();
 
 			CrossCompass.Current.CompassChanged -= OnHeadingChanged;
             CrossGeolocator.Current.PositionChanged -= OnPositionChanged;
@@ -1173,10 +1175,14 @@ namespace WF.Player
 		/// <param name="e">Position changed event arguments.</param>
 		private void OnPositionChanged(object sender, PositionEventArgs e)
 		{
-			Position = e.Position;
-			MapViewModel.Position = e.Position;
+            if (Position != null)
+            {
+                App.LastKnownPosition = e.Position;
+                Position = e.Position;
+                MapViewModel.Position = e.Position;
 
-			RefreshDirections(true);
+                RefreshDirections(true);
+            }
 		}
 
 		/// <summary>
@@ -1186,10 +1192,17 @@ namespace WF.Player
 		/// <param name="e">Position changed event arguments.</param>
 		private void OnHeadingChanged(object sender, CompassChangedEventArgs e)
 		{
-			Position.Heading = e.Heading;
-			MapViewModel.Position.Heading = e.Heading;
+            if (MapViewModel.Position != null)
+            {
+                MapViewModel.Position.Heading = e.Heading;
+            }
 
-			RefreshDirections(false);
+            if (Position != null)
+            {
+                Position.Heading = e.Heading;
+
+                RefreshDirections(false);
+            }
 		}
 
 		/// <summary>

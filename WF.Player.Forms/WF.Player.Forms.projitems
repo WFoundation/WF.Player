@@ -83,7 +83,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\DirectionInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFormsPlatformHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\PositionExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\Position.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\GeolocationException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Geolocation\PositionEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\FormatCoordinates.cs" />

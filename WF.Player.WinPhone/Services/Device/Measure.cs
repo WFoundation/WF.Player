@@ -30,11 +30,12 @@ namespace WF.Player.WP8.Services.Device
 
 		public float ButtonTextSize(string text, double fontSize)
 		{
-            TextBlock t = new TextBlock();
-            t.FontSize = fontSize;
-            t.Text = text;
+            var b = new TextBlock();
+            b.FontSize = fontSize;
+            b.Text = text;
+            b.Measure(new Windows.Foundation.Size(Xamarin.Forms.DependencyService.Get<IScreen>().Width, Xamarin.Forms.DependencyService.Get<IScreen>().Height));
 
-            return (int)Math.Ceiling(t.ActualWidth);
+            return (int)Math.Ceiling(b.DesiredSize.Width);
         }
 
 		#endregion

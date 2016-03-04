@@ -225,8 +225,8 @@ namespace WF.Player.Models
 		/// <param name="asyncEachCartridge">If set to <c>true</c> async each cartridge.</param>
 		private async void SyncFromStoreCore(bool asyncEachCartridge)
 		{
-			// Imports all GWC files from the directory.
-			var folder = await PCLStorage.FileSystem.Current.GetFolderFromPathAsync(App.PathForCartridges);
+            // Imports all GWC files from the directory.
+            var folder = await PCLStorage.FileSystem.Current.LocalStorage.GetFolderAsync(App.PathForCartridges);
             var files = await folder.GetFilesAsync();
 
             foreach (var file in files.Where((f) => f.Name.EndsWith("gwc", StringComparison.OrdinalIgnoreCase)))

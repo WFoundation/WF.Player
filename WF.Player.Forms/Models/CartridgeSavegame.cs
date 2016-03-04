@@ -40,14 +40,7 @@ namespace WF.Player.Models
 		/// <param name="gwsFilename">Gws filename.</param>
 		public CartridgeSavegame(CartridgeTag tag, string gwsFilename)
 		{
-            var openFile = PCLStorage.FileSystem.Current.LocalStorage.CreateFileAsync(gwsFilename, PCLStorage.CreationCollisionOption.OpenIfExists);
-            openFile.RunSynchronously();
-            var file = openFile.Result.OpenAsync(PCLStorage.FileAccess.Read);
-            file.RunSynchronously();
-
-			this.Tag = tag;
-			this.Filename = gwsFilename;
-			this.Metadata = GWS.LoadMetadata(file.Result);
+            OpenSavegame(tag, gwsFilename);
 		}
 
 		/// <summary>
@@ -129,12 +122,27 @@ namespace WF.Player.Models
             Storage.Current.RemoveFile(Storage.Current.GetFullnameForSavegame(this.Filename));
 		}
 
-		/// <summary>
-		/// Creates the savegame filename.
-		/// </summary>
-		/// <returns>The savegame filename.</returns>
-		/// <param name="tag">Tag of cartridge.</param>
-		private string CreateSavegameFilename(CartridgeTag tag)
+        /// <summary>
+        /// Opens the savegame and load the metadata
+        /// </summary>
+        /// <param name="tag">Tag of the cartridge</param>
+        /// <param name="gwsFilename">Filename of the GWS file</param>
+        private async void OpenSavegame(CartridgeTag tag, string gwsFilename)
+        {
+            var openFile = await PCLStorage.FileSystem.Current.LocalStorage.CreateFileAsync(gwsFilename, PCLStorage.CreationCollisionOption.OpenIfExists);
+            var file = await openFile.OpenAsync(PCLStorage.FileAccess.Read);
+
+            this.Tag = tag;
+            this.Filename = gwsFilename;
+            this.Metadata = GWS.LoadMetadata(file);
+        }
+
+        /// <summary>
+        /// Creates the savegame filename.
+        /// </summary>
+        /// <returns>The savegame filename.</returns>
+        /// <param name="tag">Tag of cartridge.</param>
+        private string CreateSavegameFilename(CartridgeTag tag)
 		{
 			// TODO
 			// If cartridge don't allow multiple save files, than return default name

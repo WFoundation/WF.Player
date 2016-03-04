@@ -54,17 +54,17 @@ namespace WF.Player.WP8.Services.Core
 
 		public virtual string CartridgeFolder
 		{
-			get { return "/Cartridges"; }
+			get { return "Cartridges"; }
 		}
 
 		public virtual string SavegameFolder
 		{
-			get { return "/Savegames"; }
+			get { return "Savegames"; }
 		}
 
 		public virtual string LogFolder
 		{
-			get { return "/Log"; }
+			get { return "Logs"; }
 		}
 
         public virtual string Ok
@@ -155,7 +155,7 @@ namespace WF.Player.WP8.Services.Core
         {
             get
             {
-                return PCLStorage.FileSystem.Current.LocalStorage.Path;
+                return "";
             }
         }
 
@@ -163,7 +163,7 @@ namespace WF.Player.WP8.Services.Core
         {
             get
             {
-                return PCLStorage.FileSystem.Current.LocalStorage.Path;
+                return "Data";
             }
         }
 

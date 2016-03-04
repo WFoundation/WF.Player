@@ -20,8 +20,8 @@ namespace WF.Player
 {
 	using System;
 	using System.Globalization;
-	using WF.Player.Services.Geolocation;
-	using Xamarin.Forms;
+    using Plugin.Geolocator.Abstractions;
+    using Xamarin.Forms;
 
 	/// <summary>
 	/// Converter to latitude.

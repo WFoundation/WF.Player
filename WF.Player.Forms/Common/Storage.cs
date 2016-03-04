@@ -23,8 +23,7 @@ namespace WF.Player.Common
     {
         public async void RemoveFile(string filename)
         {
-            var found = await PCLStorage.FileSystem.Current.LocalStorage.CheckExistsAsync(filename);
-            if (found == PCLStorage.ExistenceCheckResult.FileExists)
+            if (await FileExists(filename))
             {
                 var file = await PCLStorage.FileSystem.Current.LocalStorage.GetFileAsync(filename);
                 if (file != null)
@@ -50,14 +49,14 @@ namespace WF.Player.Common
             {
                 return false;
             }
-            var result = await PCLStorage.FileSystem.Current.GetFileFromPathAsync(filename);
-            return result != null;
+            var result = await PCLStorage.FileSystem.Current.LocalStorage.CheckExistsAsync(filename);
+            return result == PCLStorage.ExistenceCheckResult.FileExists;
         }
 
         public async Task<bool> FileExistsAsync(string filename)
         {
-            var result = await PCLStorage.FileSystem.Current.GetFileFromPathAsync(filename);
-            return result != null;
+            var result = await PCLStorage.FileSystem.Current.LocalStorage.CheckExistsAsync(filename);
+            return result == PCLStorage.ExistenceCheckResult.FileExists;
         }
 
         public async Task<Stream> GetStreamForReading(string filename)
@@ -65,7 +64,7 @@ namespace WF.Player.Common
             var found = await FileExists(filename);
             if (found)
             {
-                    var file = await PCLStorage.FileSystem.Current.GetFileFromPathAsync(filename);
+                    var file = await PCLStorage.FileSystem.Current.LocalStorage.GetFileAsync(filename);
                     var stream = await file.OpenAsync(PCLStorage.FileAccess.Read);
 
                     return stream;

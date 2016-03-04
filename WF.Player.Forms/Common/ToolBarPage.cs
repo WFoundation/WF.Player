@@ -153,6 +153,13 @@ namespace WF.Player
 			Thickness padding = new Thickness(10, 0);
 			double spacing = 6;
 
+            // New
+            var butSize = buttons[0].Button.GetSizeRequest(double.PositiveInfinity, 80);
+            textLayout.MinimumWidthRequest = DependencyService.Get<IScreen>().Width;
+            BottomLayout.Children.Add(textLayout);
+            var temp = textLayout.GetSizeRequest(DependencyService.Get<IScreen>().Width, double.PositiveInfinity);
+            // New
+
 			// Get max size of bottom
 			var maxWidth = (BottomLayout.Width == -1 ? DependencyService.Get<IScreen>().Width : BottomLayout.Width) - padding.Left - padding.Right;
 

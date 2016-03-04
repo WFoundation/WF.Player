@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using WF.Player.Services.UserDialogs;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -65,6 +66,8 @@ namespace WF.Player.WinPhone
                 rootFrame.CacheSize = 1;
 
                 Xamarin.Forms.Forms.Init(e);
+
+                UserDialogs.Init();
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

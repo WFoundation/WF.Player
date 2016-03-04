@@ -29,9 +29,10 @@ namespace WF.Player
     using Plugin.Geolocator.Abstractions;
     using Plugin.Geolocator;
     using Plugin.Compass;
-    using Plugin.Compass.Abstractions;/// <summary>
-                                      /// Game detail view model.
-                                      /// </summary>
+    using Plugin.Compass.Abstractions;
+    using System.Collections.Generic;/// <summary>
+                                     /// Game detail view model.
+                                     /// </summary>
     public class GameDetailViewModel : BaseViewModel
 	{
 		/// <summary>
@@ -571,9 +572,12 @@ namespace WF.Player
 				return;
 			}
 
-			Position = e.Position;
+            if (Position != null)
+            {
+                Position = e.Position;
 
-			UpdateDirection(true);
+                UpdateDirection(true);
+            }
 		}
 
 		/// <summary>
@@ -588,40 +592,55 @@ namespace WF.Player
 				return;
 			}
 
-			Position.Heading = e.Heading;
+            if (Position != null)
+            {
+                Position.Heading = e.Heading;
 
-			UpdateDirection(false);
-		}
+    			UpdateDirection(false);
+            }
+        }
 
-		/// <summary>
-		/// Handles the click of toolbar button, if there are more than one command active.
-		/// </summary>
-		/// <param name="obj">Object, which is clicked.</param>
-		private void HandleCommandsClicked(object obj)
+        /// <summary>
+        /// Handles the click of toolbar button, if there are more than one command active.
+        /// </summary>
+        /// <param name="obj">Object, which is clicked.</param>
+        private async void HandleCommandsClicked(object obj)
 		{
 			// Now show a list with all active commands
 			var cfg = new ActionSheetConfig().SetTitle(Catalog.GetString("Actions"));
+            var targets = new List<string>();
 
-			foreach (WF.Player.Core.Command c in ((Thing)this.activeObject).ActiveCommands)
+            foreach (WF.Player.Core.Command c in ((Thing)this.activeObject).ActiveCommands)
 			{
 				cfg.Add(
 					c.Text, 
 					() => 
 					{
+                        App.Click();
 						ExecuteCommand(c);
 					});
+                targets.Add(c.Text);
 			}
 
 			cfg.Cancel = new ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 
-			UserDialogs.Instance.ActionSheet(cfg);
-		}
+            var result = await((Page)App.GameNavigation.CurrentPage).DisplayActionSheet(Catalog.GetString("Actions"), Catalog.GetString("Cancel"), null, targets.ToArray());
 
-		/// <summary>
-		/// Executes the selected command.
-		/// </summary>
-		/// <param name="command">Command to execute.</param>
-		private async void ExecuteCommand(WF.Player.Core.Command command)
+            App.Click();
+
+            if (result != Catalog.GetString("Cancel"))
+            {
+                //ExecuteCommand(null,((Thing)this.activeObject).ActiveCommands[targets.IndexOf(result)]);
+            }
+            //			UserDialogs.Instance.ActionSheet(cfg);
+
+        }
+
+        /// <summary>
+        /// Executes the selected command.
+        /// </summary>
+        /// <param name="command">Command to execute.</param>
+        private async void ExecuteCommand(WF.Player.Core.Command command)
 		{
 			if (command == null)
 			{
@@ -637,6 +656,7 @@ namespace WF.Player
 				{
 					// There are one or more targets for this command
 					var cfg = new ActionSheetConfig().SetTitle(command.Text);
+                    var targets = new List<string>();
 
 					foreach (Thing t in command.TargetObjects)
 					{
@@ -647,16 +667,26 @@ namespace WF.Player
 								App.Click();
 								command.Execute(t);
 							});
+                        targets.Add(t.Name);
 					}
 
 					cfg.Cancel = new ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 
-					UserDialogs.Instance.ActionSheet(cfg);
-				} 
+                    var result = await ((Page)App.GameNavigation.CurrentPage).DisplayActionSheet(command.Text, Catalog.GetString("Cancel"), null, targets.ToArray());
+
+                    App.Click();
+
+                    if (result != Catalog.GetString("Cancel"))
+                    {
+                        command.Execute(command.TargetObjects[targets.IndexOf(result)]);
+                    }
+                    //UserDialogs.Instance.ActionSheet(cfg);
+                } 
 				else 
 				{
-					// There are no target for this command
-					await UserDialogs.Instance.AlertAsync(command.EmptyTargetListText, command.Text, Catalog.GetString("Ok"));
+                    // There are no target for this command
+                    await ((Page)App.GameNavigation.CurrentPage).DisplayAlert(command.EmptyTargetListText, command.Text, null);
+//                    await UserDialogs.Instance.AlertAsync(command.EmptyTargetListText, command.Text, Catalog.GetString("Ok"));
 					App.Click();
 				}
 			} 
@@ -696,11 +726,8 @@ namespace WF.Player
 
 			double heading = 0;
 
-			if (Position.Heading != null)
-			{
-				// Show always to north
-				heading = 360.0 - (double)Position.Heading;
-			}
+    		// Show always to north
+			heading = 360.0 - (double)Position.Heading;
 
 			// Do it only for entries with ObjectLocation
 			if (this.activeObject is Zone || this.activeObject.ObjectLocation != null)
@@ -787,7 +814,7 @@ namespace WF.Player
 				// Add all commands. Each command creates one button.
 				foreach (WF.Player.Core.Command c in thing.ActiveCommands)
 				{
-					view.Buttons.Add(new ToolTextButton(c.Text, new Xamarin.Forms.Command(() => ExecuteCommand(c))));
+					view.Buttons.Add(new ToolTextButton(c.Text, new Xamarin.Forms.Command((sender) => ExecuteCommand(c))));
 				}
 			}
 		}

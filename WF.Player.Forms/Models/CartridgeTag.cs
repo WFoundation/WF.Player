@@ -305,7 +305,7 @@ namespace WF.Player.Models
 		/// Creates a new log file for this cartridge tag.
 		/// </summary>
 		/// <returns>New log file for this cartridge.</returns>
-		public GWL CreateLogFile()
+		public async System.Threading.Tasks.Task<GWL> CreateLogFile()
 		{
 			// Creates a file in the logs folder.
 			string filename = string.Format(
@@ -313,19 +313,15 @@ namespace WF.Player.Models
 				Path.GetFileNameWithoutExtension(Cartridge.Filename),
 				DateTime.Now.ToLocalTime());
             // Create log path
-            var found = PCLStorage.FileSystem.Current.LocalStorage.CheckExistsAsync(App.PathForLogs);
-            found.RunSynchronously();
-
-			if (found.Result == ExistenceCheckResult.NotFound)
+            var found = await PCLStorage.FileSystem.Current.LocalStorage.GetFolderAsync(App.PathForLogs);
+			if (found == null)
 			{
-                var dir = PCLStorage.FileSystem.Current.LocalStorage.CreateFolderAsync(App.PathForLogs, CreationCollisionOption.ReplaceExisting);
-                dir.RunSynchronously();
+                var dir = await PCLStorage.FileSystem.Current.LocalStorage.CreateFolderAsync(App.PathForLogs, CreationCollisionOption.ReplaceExisting);
 			}
+
             // Creates a logger for this file.
-            var openFile = PCLStorage.FileSystem.Current.LocalStorage.CreateFileAsync(Path.Combine(App.PathForLogs, filename), CreationCollisionOption.ReplaceExisting);
-            openFile.RunSynchronously();
-            var file = openFile.Result.OpenAsync(PCLStorage.FileAccess.ReadAndWrite);
-            file.RunSynchronously();
+            var openFile = await PCLStorage.FileSystem.Current.LocalStorage.CreateFileAsync(Path.Combine(App.PathForLogs, filename), CreationCollisionOption.ReplaceExisting);
+            var file = openFile.OpenAsync(PCLStorage.FileAccess.ReadAndWrite);
 
             return new GWL(file.Result);
 		}
@@ -336,25 +332,26 @@ namespace WF.Player.Models
 		/// <param name="filename">Filename of log file to delete.</param>
 		public bool RemoveLogFile(string filename)
 		{
-			// Get path for logs
-			var dir = PCLStorage.FileSystem.Current.LocalStorage.GetFolderAsync(App.PathForLogs);
-            dir.RunSynchronously();
+            //// Get path for logs
+            //var dir = PCLStorage.FileSystem.Current.LocalStorage.GetFolderAsync(App.PathForLogs);
+            //         dir.RunSynchronously();
 
-            var files = dir.Result.GetFilesAsync();
-            files.RunSynchronously();
+            //         var files = dir.Result.GetFilesAsync();
+            //         files.RunSynchronously();
 
-            foreach(var file in files.Result)
-            {
-                if (file.Name.StartsWith(filename, StringComparison.OrdinalIgnoreCase))
-                {
-                    var deleteFile = PCLStorage.FileSystem.Current.LocalStorage.GetFileAsync(file.Name);
-                    deleteFile.RunSynchronously();
+            //         foreach(var file in files.Result)
+            //         {
+            //             if (file.Name.StartsWith(filename, StringComparison.OrdinalIgnoreCase))
+            //             {
+            //                 var deleteFile = PCLStorage.FileSystem.Current.LocalStorage.GetFileAsync(file.Name);
+            //                 deleteFile.RunSynchronously();
 
-                    deleteFile.Result.DeleteAsync().RunSynchronously();
-                }
-            }
+            //                 deleteFile.Result.DeleteAsync().RunSynchronously();
+            //             }
+            //         }
 
-            return files.Result != null;
+            //         return files.Result != null;
+            return false;
 		}
 
 		#endregion
@@ -369,7 +366,7 @@ namespace WF.Player.Models
 			List<CartridgeSavegame> savegames = new List<CartridgeSavegame>();
 
 			// Get path for savegames
-			var dir = await PCLStorage.FileSystem.Current.GetFolderFromPathAsync(App.PathForSavegames);
+			var dir = await PCLStorage.FileSystem.Current.LocalStorage.GetFolderAsync(App.PathForSavegames);
 
 			// Get cartridge filename without extension
 			var cartFilename = Path.GetFileNameWithoutExtension(Cartridge.Filename);
