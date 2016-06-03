@@ -71,7 +71,7 @@ namespace WF.Player.Controls.iOS
 					{
 						return;
 					}
-					mapModel.VisibleRegion = new MapSpan(new Position(mkMapView.Region.Center.Latitude, mkMapView.Region.Center.Longitude), mkMapView.Region.Span.LatitudeDelta, mkMapView.Region.Span.LongitudeDelta);
+//					mapModel.VisibleRegion = new MapSpan(new Position(mkMapView.Region.Center.Latitude, mkMapView.Region.Center.Longitude), mkMapView.Region.Span.LatitudeDelta, mkMapView.Region.Span.LongitudeDelta);
 				};
 
 			MessagingCenter.Subscribe<Map, MapSpan>(this, "MapMoveToRegion", delegate(Map s, MapSpan a)

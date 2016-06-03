@@ -57,27 +57,27 @@ namespace WF.Player.Controls
 			private set;
 		}
 
-		public MapSpan VisibleRegion
-		{
-			get
-			{
-				return this.visibleRegion;
-			}
-			internal set
-			{
-				if(this.visibleRegion == value)
-				{
-					return;
-				}
-				if(value == null)
-				{
-					throw new ArgumentNullException("value");
-				}
-				this.OnPropertyChanging("VisibleRegion");
-				this.visibleRegion = value;
-				this.OnPropertyChanged("VisibleRegion");
-			}
-		}
+//		public MapSpan VisibleRegion
+//		{
+//			get
+//			{
+//				return this.visibleRegion;
+//			}
+//			internal set
+//			{
+//				if(this.visibleRegion == value)
+//				{
+//					return;
+//				}
+//				if(value == null)
+//				{
+//					throw new ArgumentNullException("value");
+//				}
+//				this.OnPropertyChanging("VisibleRegion");
+//				this.visibleRegion = value;
+//				this.OnPropertyChanged("VisibleRegion");
+//			}
+//		}
 
 		public class MapPoint
 		{

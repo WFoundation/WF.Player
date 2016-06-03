@@ -76,11 +76,11 @@ namespace WF.Player
 			{
 				if (App.GPS.LastKnownPosition != null)
 				{
-					mapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+					mapViewModel.Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000)));
 				}
 				else
 				{
-					mapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(0, 0), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+					mapViewModel.Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(0, 0), Xamarin.Forms.Maps.Distance.FromMeters(1000)));
 				}
 
 				if (!((CartridgeDetailViewModel)BindingContext).IsPlayAnywhere)
@@ -89,7 +89,7 @@ namespace WF.Player
 					mapViewModel.AddPin(((CartridgeDetailViewModel)BindingContext).StartingLocation, Catalog.GetString("Starting Location"), ((CartridgeDetailViewModel)BindingContext).StartingLocationDescription);
 
 					mapViewModel.Position = new WF.Player.Services.Geolocation.Position(mapViewModel.StartingLocation.Latitude, mapViewModel.StartingLocation.Longitude);
-					mapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(mapViewModel.StartingLocation.Latitude, mapViewModel.StartingLocation.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+					mapViewModel.Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(mapViewModel.StartingLocation.Latitude, mapViewModel.StartingLocation.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000)));
 				}
 			}
 

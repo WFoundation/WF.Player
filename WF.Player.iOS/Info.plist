@@ -52,7 +52,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>WFPlayer</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.6</string>
+	<string>0.9</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon</string>
@@ -73,6 +73,6 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleVersion</key>
-	<string>34</string>
+	<string>1</string>
 </dict>
 </plist>

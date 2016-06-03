@@ -1046,11 +1046,11 @@ namespace WF.Player
 			{
 				if (App.GPS.LastKnownPosition != null)
 				{
-					MapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+					MapViewModel.Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(App.GPS.LastKnownPosition.Latitude, App.GPS.LastKnownPosition.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000)));
 				}
 				else
 				{
-					MapViewModel.Map.VisibleRegion = MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(0, 0), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+					MapViewModel.Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(0, 0), Xamarin.Forms.Maps.Distance.FromMeters(1000)));
 				}
 			}
 

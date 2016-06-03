@@ -116,7 +116,7 @@ namespace WF.Player
 
 					if (map != null)
 					{
-						map.VisibleRegion = MapSpan.FromCenterAndRadius(new Position(startingLocation.Latitude, startingLocation.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000));
+						map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(startingLocation.Latitude, startingLocation.Longitude), Xamarin.Forms.Maps.Distance.FromMeters(1000)));
 					}
 				}
 			}

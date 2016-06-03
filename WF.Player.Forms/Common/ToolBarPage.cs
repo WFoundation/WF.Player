@@ -100,7 +100,7 @@ namespace WF.Player
 							TextColor = App.Colors.Tint,
 							Image = null,
 							HorizontalOptions = LayoutOptions.FillAndExpand,
-							BackgroundColor = Color.Transparent,
+							BackgroundColor = this.BarColor,
 							Command = new Command((parameter) => KeyClick(t.Command, parameter)),
 							CommandParameter = (t is ToolTextButton) ? ((ToolTextButton)t).Text : null,
 							#if __IOS__

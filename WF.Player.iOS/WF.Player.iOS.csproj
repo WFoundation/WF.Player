@@ -25,8 +25,6 @@
     <MtouchLink>None</MtouchLink>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <MtouchI18n>
-    </MtouchI18n>
     <MtouchArch>i386</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
@@ -58,11 +56,10 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignKey>iPhone Developer</CodesignKey>
     <IpaPackageName>WF.Player</IpaPackageName>
-    <MtouchI18n>
-    </MtouchI18n>
     <MtouchArch>ARMv7</MtouchArch>
     <MtouchDebug>true</MtouchDebug>
     <BuildIpa>true</BuildIpa>
+    <CodesignProvision>66c2d8d2-7830-4b31-adda-86f58347ec5d</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>

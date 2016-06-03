@@ -59,6 +59,8 @@ namespace WF.Player.Controls.Droid
 			googleMap.UiSettings.ZoomGesturesEnabled = true;
 			googleMap.UiSettings.CompassEnabled = true;
 			googleMap.UiSettings.MapToolbarEnabled = false;
+
+			nativeMap = googleMap;
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -105,7 +107,7 @@ namespace WF.Player.Controls.Droid
 				{
 					var polygonOptions = new Android.Gms.Maps.Model.PolygonOptions();
 
-					polygonOptions.InvokeStrokeWidth(2f);
+					polygonOptions.InvokeStrokeWidth(4f);
 					polygonOptions.InvokeStrokeColor(Color.Red.MultiplyAlpha(0.7).ToAndroid());
 					polygonOptions.InvokeFillColor(Color.Red.MultiplyAlpha(0.3).ToAndroid());
 
