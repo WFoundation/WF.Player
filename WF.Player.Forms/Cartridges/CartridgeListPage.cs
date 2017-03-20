@@ -325,8 +325,8 @@ namespace WF.Player
 				#if __ANDROID__
 
 				this.ToolbarItems[0].Text = Catalog.GetString("Settings");
-				this.ToolbarItems[1].Text = Catalog.GetString("About");
-				this.ToolbarItems[2].Text = Catalog.GetString("Feedback");
+				this.ToolbarItems[1].Text = Catalog.GetString("Feedback");
+				this.ToolbarItems[2].Text = Catalog.GetString("About");
 				this.ToolbarItems[3].Text = Catalog.GetString("Quit");
 
 				#endif
