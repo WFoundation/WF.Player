@@ -100,9 +100,11 @@ namespace WF.Player
 					App.Navigation.Popped += HandleSettingsClosed;
 					App.Navigation.Navigation.PushAsync(new SettingsPage.SettingsPage());
 				}, ToolbarItemOrder.Secondary));
+			#if __HOCKEYAPP__
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("Feedback"), null, () =>
 				HockeyApp.FeedbackManager.ShowFeedbackActivity(Forms.Context), 
 				ToolbarItemOrder.Secondary));
+			#endif
 			this.ToolbarItems.Add(new ToolbarItem(Catalog.GetString("About"), null, () =>
 				{
 					App.Navigation.Navigation.PushAsync(new SettingsPage.AboutPage());
@@ -121,7 +123,9 @@ namespace WF.Player
 				App.Navigation.Popped += HandleSettingsClosed;
 				var cfg = new WF.Player.Services.UserDialogs.ActionSheetConfig().SetTitle(Catalog.GetString("Main Menu"));
 				cfg.Add(Catalog.GetString("Settings"), () => App.Navigation.Navigation.PushAsync(new SettingsPage.SettingsPage()));
+				#if __HOCKEYAPP__
 				cfg.Add(Catalog.GetString("Feedback"), () => HockeyApp.BITHockeyManager.SharedHockeyManager.FeedbackManager.ShowFeedbackListView());
+				#endif
 				cfg.Add(Catalog.GetString("About"), () => App.Navigation.Navigation.PushAsync(new SettingsPage.AboutPage()));
 				cfg.Cancel = new WF.Player.Services.UserDialogs.ActionSheetOption(Catalog.GetString("Cancel"), App.Click);
 				UserDialogs.Instance.ActionSheet(cfg);
@@ -324,10 +328,13 @@ namespace WF.Player
 
 				#if __ANDROID__
 
-				this.ToolbarItems[0].Text = Catalog.GetString("Settings");
-				this.ToolbarItems[1].Text = Catalog.GetString("About");
-				this.ToolbarItems[2].Text = Catalog.GetString("Feedback");
-				this.ToolbarItems[3].Text = Catalog.GetString("Quit");
+				int pos = 0;
+				this.ToolbarItems[pos++].Text = Catalog.GetString("Settings");
+				#if __HOCKEYAPP__
+				this.ToolbarItems[pos++].Text = Catalog.GetString("Feedback");
+				#endif
+				this.ToolbarItems[pos++].Text = Catalog.GetString("About");
+				this.ToolbarItems[pos++].Text = Catalog.GetString("Quit");
 
 				#endif
 
